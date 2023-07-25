@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 
 export const DonationService = {
+
     Adduser: async (data,config) => {
         console.log(data);
         try {
@@ -23,6 +24,28 @@ export const DonationService = {
            }
         }
       },
+
+      
+    AddOnlineuser: async (data,config) => {
+      console.log(data);
+      try {
+        const response = await APIService.Instance.post(
+          URLS.USERONLINEADD,
+          data,
+          config
+        );
+        return response?.data;
+      } catch (err) {
+        if (err?.response?.data) {
+          return err?.response?.data;
+        }else{
+      //   toast.error(err?.message);
+      console.log("Hello");
+         }
+      }
+    },
+
+    
 
       getDetailsByEmailId: async (emailId) => {
         console.log(emailId);
@@ -54,6 +77,20 @@ export const DonationService = {
         // // }
       },
 
+      // getAllPackages: async () => {
+      //   try {
+      //      const response = await APIService.Instance.get(
+      //       URLS.GETALLPACKAGE
+      //     );
+      //     return response?.data;
+      //   } catch (err) {
+      //     if (err?.response?.data) {
+      //       return err?.response?.data;
+      //     }else{
+      //     toast.error(err?.message);
+      //      }
+      //   }
+      // },
       getAllPackages: async () => {
         try {
            const response = await APIService.Instance.get(
@@ -68,7 +105,6 @@ export const DonationService = {
            }
         }
       },
-    
       getAllUserDonation : async () => {
       
         try {
