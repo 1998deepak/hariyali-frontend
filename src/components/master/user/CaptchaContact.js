@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FiRefreshCcw } from "react-icons/fi";
 
-function CaptchaGift({verified, setVerified}) {
+function CaptchaContact({ verified, setVerified }) {
   const [captcha, setCaptcha] = useState("");
   const [user, setUser] = useState({
     username: "",
@@ -70,41 +70,37 @@ function CaptchaGift({verified, setVerified}) {
 
   return (
     <>
-    <div className="row">
-    <div className="captactcode">
-     <div className="capt-code" id="captcha">
-        {captcha}
-      </div>
-      
-      <button
-        onClick={handleCaptchaRefresh}
-        type="reset"
-        className=" capt-refresh"
-        disabled={verified===true}
-      >
-<FiRefreshCcw />
-        
-      </button>
-      </div><div className="col-6">
-     <input
-        type="text"
-        id="inputType"
-        className="login-input login-captcha"
-        placeholder="Enter Captcha"
-        name="username"
-        onChange={handleChange}
-        autoComplete="off"
-      />
-<button
-        type="button"
-        id="succesBTN"
-        onClick={onSubmit}
-        className="verify-capt"
-      >
-        Verify Captcha
-      </button></div>
+      <div className="row">
+        <div className="captactcode">
+          <div className="capt-code" id="captcha">
+            {captcha}
+          </div>
+          <button
+            onClick={handleCaptchaRefresh}
+            type="reset"
+            className=" capt-refresh"
+            disabled={verified === true}
+          ><FiRefreshCcw />
+          </button>
+        </div><div className="col-5">
+          <input
+            type="text"
+            id="inputType"
+            className="login-input login-captcha"
+            placeholder="Enter Captcha"
+            name="username"
+            onChange={handleChange}
+            autoComplete="off"
+          />
+          <button
+            type="button"
+            id="succesBTN"
+            onClick={onSubmit}
+            className="verify-capt"
+          > Verify Captcha
+          </button></div>
       </div>
     </>
   );
 }
-export default CaptchaGift;
+export default CaptchaContact;

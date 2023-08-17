@@ -2,6 +2,7 @@ import "./App.css";
 import "./assets/css/style.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/master/homePage/HomePage";
+import AboutUs from "./components/master/otherMenu/AboutUs";
 import Login from "./components/master/user/Login";
 import UserHeader from "./components/common/UserHeader";
 import UserFooter from "./components/common/UserFooter";
@@ -22,6 +23,13 @@ import { ROLEAUTHORITY } from "./components/constants/constants";
 import ProtectedRoutes from "./components/guards/ProtectedRoutes";
 import Unauthorised from "./components/common/Unautherised";
 import OfflineDonation from "./components/master/admin/offlineDonation/OfflineDonation";
+import WhatWeDo from "./components/master/otherMenu/WhatWeDo";
+import WhySupportUs from "./components/master/otherMenu/WhySupportUs";
+import FootPrint from "./components/master/otherMenu/FootPrint";
+import GalleryAwards from "./components/master/otherMenu/GalleryAwards";
+import ContactUs from "./components/master/otherMenu/ContactUs";
+import Policy from "./components/master/otherMenu/PolicyPayment";
+import WaystoAssociate from "./components/master/otherMenu/WaystoAssociate";
 
 
 function HomeWithHeaderAndFooter() {
@@ -29,6 +37,78 @@ function HomeWithHeaderAndFooter() {
     <>
       <UserHeader />
       <Home />
+      <UserFooter />
+    </>
+  );
+}
+function AboutWithHeaderAndFooter() {
+  return (
+    <>
+      <UserHeader />
+      <AboutUs />
+      <UserFooter />
+    </>
+  );
+}
+function PolicyWithHeaderAndFooter() {
+  return (
+    <>
+      <UserHeader />
+      <Policy />
+      <UserFooter />
+    </>
+  );
+}
+function WaystoAssociateWithHeaderAndFooter() {
+  return (
+    <>
+      <UserHeader />
+      <WaystoAssociate />
+      <UserFooter />
+    </>
+  );
+}
+function WhatWeDoWithHeaderAndFooter() {
+  return (
+    <>
+      <UserHeader />
+      <WhatWeDo />
+      <UserFooter />
+    </>
+  );
+}
+function WhySupportUsWithHeaderAndFooter() {
+  return (
+    <>
+      <UserHeader />
+      <WhySupportUs />
+      <UserFooter />
+    </>
+  );
+}
+function FootPrintWithHeaderAndFooter() {
+  return (
+    <>
+      <UserHeader />
+      <FootPrint />
+      <UserFooter />
+    </>
+  );
+}
+function GalleryAwardsWithHeaderAndFooter() {
+  return (
+    <>
+      <UserHeader />
+      <GalleryAwards />
+      <UserFooter />
+    </>
+  );
+}
+function ContactUsWithHeaderAndFooter() {
+  return (
+    <>
+      <UserHeader />
+      <ContactUs />
       <UserFooter />
     </>
   );
@@ -153,6 +233,14 @@ function App() {
       <Route path="/Unauthorised"
                 element={<Unauthorised />} />
         <Route path="/" element={<HomeWithHeaderAndFooter />} />
+        <Route path="/Policy" element={<PolicyWithHeaderAndFooter />} />
+        <Route path="/AboutUs" element={<AboutWithHeaderAndFooter />} />
+        <Route path="/WaystoAssociate" element={<WaystoAssociateWithHeaderAndFooter />} />
+        <Route path="/WhatWeDo" element={<WhatWeDoWithHeaderAndFooter />} />
+        <Route path="/WhySupportUs" element={<WhySupportUsWithHeaderAndFooter />} />
+        <Route path="/FootPrint" element={<FootPrintWithHeaderAndFooter />} />
+        <Route path="/GalleryAwards" element={<GalleryAwardsWithHeaderAndFooter />} />
+        <Route path="/ContactUs" element={<ContactUsWithHeaderAndFooter />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/OtpId" element={<OtpId />} />
         <Route path="/ConformPassword" element={<ConformPassword />} />

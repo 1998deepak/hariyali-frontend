@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { SUCCESS, TOKEN, USER_DETAILS } from "../../constants/constants";
 import { AuthService } from '../../../services/auth/auth.service';
 import { toast } from "react-toastify";
+import axios from 'axios';
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -26,11 +27,11 @@ function Login() {
   const regexMail =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-  useEffect(() => {
-    if (localStorage.getItem(TOKEN) !== null) {
-      navigate("/Dashboard");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem(TOKEN) !== null) {
+  //     navigate("/Dashboard");
+  //   }
+  // }, []);
 
   const checkEmail = (e) => {
     if (regexMail.test(e) == false) {
@@ -65,14 +66,12 @@ function Login() {
       console.log(response);
       if (response) {
         if (response?.status === SUCCESS) {
-          console.log("Hiiiiiiii");
-          console.log(response?.token);
-          localStorage.setItem(TOKEN, response?.token);
+          console.log("Response: "+response);
           localStorage.setItem(USER_DETAILS, JSON.stringify(formData));
-          toast.success("Successfully Login!");
-          setTimeout(() => {
-            navigate("/Dashboard");
-          }, 2000);
+          //toast.success("Successfully Login!");
+          // setTimeout(() => {
+          //   navigate("/Dashboard");
+          // }, 2000);
         } else {
           toast.error(response?.message);
         }
@@ -81,6 +80,46 @@ function Login() {
       }
     }
   };
+
+
+  const [donarIdOrEmail, setDonarIdOrEmail] = useState('');
+    const [otp, setOtp] = useState('');
+    const [verificationStatus, setVerificationStatus] = useState('');
+
+    const verifyOtp = async (e) => {
+      e.preventDefault(); 
+      try {
+        const response = await axios.post(
+        `http://localhost:8080/api/v1/verify-otp?donarIdOrEmail=${formData.username}&otp=${otp}`);
+         console.log("Response: "+JSON.stringify(response))
+        
+        // console.log("Error Massage: "+response.data.message);
+        if (response) {
+          if (response?.data.status === SUCCESS) {
+        console.log(response?.data.token);
+        localStorage.setItem(TOKEN, response?.data.token);
+        // Assuming the response contains a 'status' or 'message' field indicating the verification status
+        setVerificationStatus(response.data.status);
+        toast.success("Successfully Login!");
+          setTimeout(() => {
+            navigate("/Dashboard");
+          }, 2000);
+        }else{
+             console.log("Response: "+response.data.status)
+        }
+      }else {
+          //toast.error("Invalid credentials ! Username or Password Incorrect");
+          console.log("Failed To Login")
+        }
+      } catch (error) {
+        console.error(error);
+        console.log(error.response.data.message)
+        toast.success("OTP verification failed");
+        setVerificationStatus('OTP verification failed');
+      }
+    };
+
+
   const [donarID, setDonarID] = useState("");
   const sendEmail = async (e) => {
     console.log("hii");
@@ -199,12 +238,28 @@ function Login() {
                 <div className="col-6 account-act">Account Activation</div>
                 <div className="col-6 forgot-pass justify-content-end" onClick={forgotLink}>Forgot Password</div>
               </div>
+              <label className="col-12">
+                <input
+                  name="verifyOTP"
+                  type="text"
+                  placeholder="Verify OTP"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                />
+              </label>
               <Captcha verified={verified} setVerified={setVerified}></Captcha>
               <button onClick={login}
                 className="webform-button--submit button button--primary js-form-submit form-submit"
               >
                 Login
               </button>
+
+              <button onClick={verifyOtp}
+                className="webform-button--submit button button--primary js-form-submit form-submit"
+              >
+                Verify OTP
+              </button>
+
             </form>
             <div className="loginpoli-text pt10">
               Your information is secured under our privacy policy.

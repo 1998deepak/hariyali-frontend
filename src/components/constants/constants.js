@@ -13,4 +13,4 @@ const ROUTE = {
     Dashboard: "/dashboard",
   };
   
-  export { USER_DETAILS, ROUTE , TOKEN , SUCCESS,ROLEAUTHORITY };
+  export { USER_DETAILS, ROUTE , TOKEN , SUCCESS, ROLEAUTHORITY };
