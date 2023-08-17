@@ -5,8 +5,7 @@ export const URLS = {
     SENDMAILFORGETPASSWORD:'/forgetPassword',
     VERIFYOTP:'/verifyOtp',
  // user
- USERADD: "/userAddOffline",
- USERONLINEADD:"/userAddOnline",
+ USERADD: "/userAdd",
  GETBYEMAILID: "/getuser/",
  GETALLPACKAGE:"/getAllPackages",
 

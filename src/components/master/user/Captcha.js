@@ -70,7 +70,7 @@ function Captcha({ verified, setVerified }) {
   return (
     <>
       <div className="row">
-        <div className="col-6">
+        <div className="captactcode">
           <div className="capt-code" id="captcha">
             {captcha}
           </div>

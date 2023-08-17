@@ -430,15 +430,15 @@ const [activeTab, setActiveTab] = useState("Self Donate");
             {/* <Container>
               <Row className="justify-content-between postionindex">
                 <div className="interested-in-contact">
-                  <div class="section-header text-center">
-                    <h6 class="mb-5">
+                  <div className="section-header text-center">
+                    <h6 className="mb-5">
                       <em>
                         Whether you’re a investor, dealer, Business professional
                         or an investor, you can find the best way to contact us
                         from the list below.
                       </em>
                     </h6>
-                    <h2 class="heading font-regular">I am interested In</h2>
+                    <h2 className="heading font-regular">I am interested In</h2>
                   </div>
                 </div>
               </Row>

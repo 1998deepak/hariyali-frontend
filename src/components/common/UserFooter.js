@@ -53,9 +53,9 @@ const Header = () => {
                   <ul>
                     <li>About Us</li>
                     <li>What we do</li>
-                    <li>Support</li>
-                    <li>Project</li>
-                    <li>Media</li>
+                    <li>Why Support Us</li>
+                    <li>FootPrint</li>
+                    <li>Gallery & Awards</li>
                     <li>Contact Us</li>
                   </ul>
                 </div>
