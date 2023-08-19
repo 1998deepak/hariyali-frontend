@@ -10,6 +10,7 @@ import { SUCCESS } from "../../../constants/constants";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
 
 function OfflineDonation() {
+
   const [donationType, setDonationType] = useState("Self-Donate");
   const [generalDonation, setGeneralDonation] = useState(null);
   const [newEmail, setNewEmail] = useState(null);
@@ -19,28 +20,14 @@ function OfflineDonation() {
       packageName: "",
       bouquetPrice: "",
       NoOfBouquets: "",
-      maintenanceCost: "",
+      // maintenanceCost: "",
       amount: "",
     },
     {
       packageName: "",
       bouquetPrice: "",
       NoOfBouquets: "",
-      maintenanceCost: "",
-      amount: "",
-    },
-    {
-      packageName: "",
-      bouquetPrice: "",
-      NoOfBouquets: "",
-      maintenanceCost: "",
-      amount: "",
-    },
-    {
-      packageName: "",
-      bouquetPrice: "",
-      NoOfBouquets: "",
-      maintenanceCost: "",
+      // maintenanceCost: "",
       amount: "",
     },
   ];
@@ -470,25 +457,50 @@ function OfflineDonation() {
   useEffect(() => {
     getAllPackages();
   }, []);
+  // const getAllPackages = async () => {
+  //   const response = await DonationService.getAllPackages();
+  //   if (response?.status === SUCCESS) {
+  //     console.log(response);
+  //     let packageData = [...initialPackageData];
+  //     console.log(packageData);
+  //     response.data.map((item, index) => {
+  //       packageData[index].packageName = item.packageName;
+  //       packageData[index].bouquetPrice = item.bouquetPrice;
+  //       packageData[index].NoOfBouquets = 0;
+  //       packageData[index].maintenanceCost = item.maintenanceCost;
+  //       packageData[index].amount = 0;
+  //     });
+  //     console.log(packageData);
+  //     setPackageData(packageData);
+  //   } else {
+  //     toast.error(response?.message);
+  //   }
+  // };
+
   const getAllPackages = async () => {
     const response = await DonationService.getAllPackages();
-    if (response?.status === SUCCESS) {
+    if (response?.status === 'Success') {
       console.log(response);
       let packageData = [...initialPackageData];
       console.log(packageData);
-      response.data.map((item, index) => {
-        packageData[index].packageName = item.packageName;
-        packageData[index].bouquetPrice = item.bouquetPrice;
+  
+      const parsedData = JSON.parse(response.data);
+  
+      parsedData.forEach((item, index) => {
+        packageData[index].packageName = item.package_name;
+        packageData[index].bouquetPrice = item.bouquet_price;
         packageData[index].NoOfBouquets = 0;
-        packageData[index].maintenanceCost = item.maintenanceCost;
+        // packageData[index].maintenanceCost = 0;
         packageData[index].amount = 0;
       });
+  
       console.log(packageData);
       setPackageData(packageData);
     } else {
       toast.error(response?.message);
     }
   };
+  
   console.log(packageData);
 
   const stateOptions = [
@@ -569,7 +581,7 @@ function OfflineDonation() {
     userPackageData[rowIndex][name] = value;
 
     const totalCost =
-      (row.bouquetPrice + row.maintenanceCost) * row.NoOfBouquets;
+      (row.bouquetPrice) * row.NoOfBouquets;
     userPackageData[rowIndex]["amount"] = totalCost;
     setPackageData(userPackageData);
     calculateOverallTotal();
@@ -581,7 +593,7 @@ function OfflineDonation() {
       (accumulator, packageItem, index) => {
         return (
           accumulator +
-          (packageItem.bouquetPrice + packageItem.maintenanceCost) *
+          (packageItem.bouquetPrice) *
           packageItem.NoOfBouquets
         );
       },
@@ -871,6 +883,7 @@ function OfflineDonation() {
 
   console.log(userData?.user?.firstName);
 
+
   return (
     <>
       <ToastContainer />
@@ -902,10 +915,10 @@ function OfflineDonation() {
                           <table>
                             <thead>
                               <tr>
-                                <th>Package Name</th>
-                                <th>Bouquet Price</th>
-                                <th>Maintenance Cost</th>
-                                <th className="w200">Number of Bouquets</th>
+                                <th>Planning Season</th>
+                                <th>Cost per Sapling</th>
+                                {/* <th>Maintenance Cost</th> */}
+                                <th className="w200">No. of Sapling</th>
                                 <th>Total Cost</th>
                               </tr>
                             </thead>
@@ -916,7 +929,7 @@ function OfflineDonation() {
                                   <tr key={index}>
                                     <td>{packageItem.packageName}</td>
                                     <td>{packageItem.bouquetPrice}</td>
-                                    <td>{packageItem.maintenanceCost}</td>
+                                    {/* <td>{packageItem.maintenanceCost}</td> */}
                                     <td>
                                       <input
                                         type="number"
@@ -1842,10 +1855,10 @@ function OfflineDonation() {
                           <table>
                             <thead>
                               <tr>
-                                <th>Package Name</th>
-                                <th>Bouquet Price</th>
-                                <th>Maintenance Cost</th>
-                                <th className="w200">Number of Bouquets</th>
+                                <th>Planting Season</th>
+                                <th>Cost per Sampling</th>
+                                {/* <th>Maintenance Cost</th> */}
+                                <th className="w200">No. Sampling</th>
                                 <th>Total Cost</th>
                               </tr>
                             </thead>
@@ -1856,7 +1869,7 @@ function OfflineDonation() {
                                   <tr key={index}>
                                     <td>{packageItem.packageName}</td>
                                     <td>{packageItem.bouquetPrice}</td>
-                                    <td>{packageItem.maintenanceCost}</td>
+                                    {/* <td>{packageItem.maintenanceCost}</td> */}
                                     <td>
                                       <input
                                         type="number"
@@ -2918,10 +2931,10 @@ function OfflineDonation() {
                           <table>
                             <thead>
                               <tr>
-                                <th>Package Name</th>
-                                <th>Bouquet Price</th>
-                                <th>Maintenance Cost</th>
-                                <th className="w200">Number of Bouquets</th>
+                                <th>Planting Season</th>
+                                <th>Cost per Sampling</th>
+                                {/* <th>Maintenance Cost</th> */}
+                                <th className="w200">No. Sampling</th>
                                 <th>Total Cost</th>
                               </tr>
                             </thead>
@@ -2932,7 +2945,7 @@ function OfflineDonation() {
                                   <tr key={index}>
                                     <td>{packageItem.packageName}</td>
                                     <td>{packageItem.bouquetPrice}</td>
-                                    <td>{packageItem.maintenanceCost}</td>
+                                    {/* <td>{packageItem.maintenanceCost}</td> */}
                                     <td>
                                       <input
                                         type="number"
@@ -3886,10 +3899,10 @@ function OfflineDonation() {
                           <table>
                             <thead>
                               <tr>
-                                <th>Package Name</th>
-                                <th>Bouquet Price</th>
-                                <th>Maintenance Cost</th>
-                                <th className="w200">Number of Bouquets</th>
+                                <th>Planning Season</th>
+                                <th>Cost per Sapling</th>
+                                {/* <th>Maintenance Cost</th> */}
+                                <th className="w200">No. of Sapling</th>
                                 <th>Total Cost</th>
                               </tr>
                             </thead>
@@ -3900,7 +3913,7 @@ function OfflineDonation() {
                                   <tr key={index}>
                                     <td>{packageItem.packageName}</td>
                                     <td>{packageItem.bouquetPrice}</td>
-                                    <td>{packageItem.maintenanceCost}</td>
+                                    {/* <td>{packageItem.maintenanceCost}</td> */}
                                     <td>
                                       <input
                                         type="number"

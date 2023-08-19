@@ -24,7 +24,7 @@ function OfflineDonationPay() {
       packageName: "",
       bouquetPrice: "",
       NoOfBouquets: "",
-      maintenanceCost: "",
+      // maintenanceCost: "",
       amount: "",
     },
     {
@@ -32,25 +32,10 @@ function OfflineDonationPay() {
       packageName: "",
       bouquetPrice: "",
       NoOfBouquets: "",
-      maintenanceCost: "",
+      // maintenanceCost: "",
       amount: "",
     },
-    {
-      packageId: null,
-      packageName: "",
-      bouquetPrice: "",
-      NoOfBouquets: "",
-      maintenanceCost: "",
-      amount: "",
-    },
-    {
-      packageId: null,
-      packageName: "",
-      bouquetPrice: "",
-      NoOfBouquets: "",
-      maintenanceCost: "",
-      amount: "",
-    },
+   
   ];
 
   const [packageData, setPackageData] = useState(initialPackageData);
@@ -195,39 +180,73 @@ function OfflineDonationPay() {
   const [donationData, setDonationData] = useState(intialDonations[0]);
   const [recipient, setRecipient] = useState(initialRecipientData[0]);
 
+  // const handleChangeNumberOfBouquets = (e, row, rowIndex) => {
+  //   let { name, value } = e.target;
+  //   console.log({ name, value, rowIndex }, row);
+  //   let userPackageData = [...packageData]; // Clone the packageData array
+  //   userPackageData[rowIndex][name] = value;
+
+  //   const totalCost = (row.bouquetPrice + row.maintenanceCost) * value;
+  //   userPackageData[rowIndex]["amount"] = totalCost;
+
+  //   setPackageData(userPackageData, () => {
+  //     calculateOverallTotal();
+  //   });
+
+  //   console.log(userPackageData);
+  // };
+
+  // console.log(packageData);
+  // const calculateOverallTotal = () => {
+  //   const totalAmountOfPackage = packageData.reduce((accumulator, packageItem) => {
+  //     return (
+  //       accumulator +
+  //       (packageItem.bouquetPrice + packageItem.maintenanceCost) *
+  //       packageItem.NoOfBouquets
+  //     );
+  //   }, 0);
+
+  //   setDonationData((prevDonationData) => ({
+  //     ...prevDonationData,
+  //     totalAmount: totalAmountOfPackage,
+  //   }));
+  // };
+
   const handleChangeNumberOfBouquets = (e, row, rowIndex) => {
     let { name, value } = e.target;
     console.log({ name, value, rowIndex }, row);
-    let userPackageData = [...packageData]; // Clone the packageData array
+    let userPackageData = packageData;
     userPackageData[rowIndex][name] = value;
 
-    const totalCost = (row.bouquetPrice + row.maintenanceCost) * value;
+    const totalCost =
+      (row.bouquetPrice) * row.NoOfBouquets;
     userPackageData[rowIndex]["amount"] = totalCost;
-
-    setPackageData(userPackageData, () => {
-      calculateOverallTotal();
-    });
-
+    setPackageData(userPackageData);
+    calculateOverallTotal();
     console.log(userPackageData);
   };
-
-  console.log(packageData);
   const calculateOverallTotal = () => {
-    const totalAmountOfPackage = packageData.reduce((accumulator, packageItem) => {
-      return (
-        accumulator +
-        (packageItem.bouquetPrice + packageItem.maintenanceCost) *
-        packageItem.NoOfBouquets
-      );
-    }, 0);
-
-    setDonationData((prevDonationData) => ({
-      ...prevDonationData,
-      totalAmount: totalAmountOfPackage,
-    }));
+    const totalAmountOfPackage = packageData.reduce(
+      (accumulator, packageItem) => {
+        return accumulator + packageItem.bouquetPrice * packageItem.NoOfBouquets;
+      },
+      0
+    );
+  
+    if (donationData.length > 0) {
+      const updatedDonationData = [
+        {
+          ...donationData[0],
+          totalAmount: totalAmountOfPackage,
+        },
+        ...donationData.slice(1),
+      ];
+  
+      setDonationData(updatedDonationData);
+    }
   };
-
-
+  
+  
   console.log(donationData);
 
   const handleRecipentAddressChange = (name, value, index) => {
@@ -352,7 +371,7 @@ console.log(handleRecipientChange);
               packageName: packageItem.packageName,
               bouquetPrice: packageItem.bouquetPrice,
               NoOfBouquets: packageItem.NoOfBouquets,
-              maintenanceCost: packageItem.maintenanceCost,
+              // maintenanceCost: packageItem.maintenanceCost,
               amount: packageItem.amount,
             };
           });
@@ -376,7 +395,7 @@ console.log(handleRecipientChange);
     }
   };
   console.log(recipient);
-  console.log(donationData.recipient[0]);
+  // console.log(donationData.recipient[0]);
 
 
   const [errors, setErrors] = useState({});
@@ -417,10 +436,10 @@ console.log(handleRecipientChange);
     }
 
     console.log(donationData.donationType);
-    if (donationData.donationType !== "self-Donate") {
+    if (donationData.donationType !== "Self-Donate") {
 
       // Donation Event validation
-  if (donationData.donationType !== "self-Donate") {
+  if (donationData.donationType !== "Self-Donate") {
 
     if (!donationData.donationEvent) {
       errors.push({ donationEvent: "Donation Event is required" });
@@ -546,7 +565,7 @@ console.log(errors.length === 0);
 
 
   console.log(donationData.paymentInfo[0]?.paymentDate);
-  console.log(donationData.recipient[0]?.address[0])
+  // console.log(donationData.recipient[0]?.address[0])
 
 
   const handleBack = () => {
@@ -619,7 +638,7 @@ console.log(errors.length === 0);
                         </div>
                       </div>
                     </div>
-                    {donationData.donationType !== "self-Donate" && (
+                    {donationData.donationType !== "Self-Donate" && (
                       <div className="col-6">
                         <div className="row select-label">
                           <div className="col-4">Occasion</div>
@@ -655,10 +674,10 @@ console.log(errors.length === 0);
                       <table className="donatetable">
                         <thead>
                           <tr>
-                            <th>Plan</th>
-                            <th>Price of Bouquet</th>
-                            <th>No. Of Bouquets</th>
-                            <th>2 Years Maintenance</th>
+                            <th>Plantin Sampling</th>
+                            <th>Cost per Sampling</th>
+                            <th>No. Sampling</th>
+                            {/* <th>2 Years Maintenance</th> */}
                             <th>Amount</th>
                           </tr>
                         </thead>
@@ -691,14 +710,14 @@ console.log(errors.length === 0);
                                   }}
                                 />
                               </td>
-                              <td className="w18p">
+                              {/* <td className="w18p">
                                 <input
                                   type="number"
                                   className="form-control-inside"
                                   value={item.maintenanceCost}
                                   disabled
                                 />
-                              </td>
+                              </td> */}
                               <td className="text-right w18p">
                                 <input
                                   type="number"
@@ -710,7 +729,7 @@ console.log(errors.length === 0);
                             </tr>
                           ))}
                           <tr>
-                            <td className="text-right" colSpan="4">
+                            {/* <td className="text-right" colSpan="4">
                               Total
                             </td>
                             <td className="text-right">
@@ -720,10 +739,13 @@ console.log(errors.length === 0);
                                 value={totalAmountOfPackage}
                                 disabled
                               />
-                            </td>
+                            </td> */}
                           </tr>
                         </tbody>
                       </table>
+                      <div className="overalltotal">
+  Overall Total: {donationData.length > 0 ? donationData[0].totalAmount : 0}
+</div>
                     </div>
                   )}
 
@@ -749,7 +771,7 @@ console.log(errors.length === 0);
                   </div> */}
 
                   <hr />
-                  {donationData.donationType !== "self-Donate" && (
+                  {donationData.donationType !== "Self-Donate" && (
                     <>
                       <div className="actionheadingdiv">DETAILS OF RECIPIENT</div>
                       <div className="col-12 pr15 mt20">

@@ -15,35 +15,23 @@ function OnlineDonation() {
   const [generalDonation, setGeneralDonation] = useState(null);
   const [newEmail, setNewEmail] = useState(null);
 
+
   const initialPackageData = [
     {
       packageName: "",
       bouquetPrice: "",
       NoOfBouquets: "",
-      maintenanceCost: "",
+      // maintenanceCost: "",
       amount: "",
     },
     {
       packageName: "",
       bouquetPrice: "",
       NoOfBouquets: "",
-      maintenanceCost: "",
+      // maintenanceCost: "",
       amount: "",
     },
-    {
-      packageName: "",
-      bouquetPrice: "",
-      NoOfBouquets: "",
-      maintenanceCost: "",
-      amount: "",
-    },
-    {
-      packageName: "",
-      bouquetPrice: "",
-      NoOfBouquets: "",
-      maintenanceCost: "",
-      amount: "",
-    },
+   
   ];
 
   const initialUserData = {
@@ -85,7 +73,7 @@ function OnlineDonation() {
   const intialDonations = [
     {
       donationType: donationType,
-      donationMode: "offline",
+      donationMode: "online",
       donationEvent: "",
       totalAmount: 0,
       generalDonation: null,
@@ -199,9 +187,40 @@ function OnlineDonation() {
     if (!userData?.user?.panCard) {
       validationErrors.push({ field: "userData.user.panCard", message: "PAN card is required" });
     }
-    if (userData?.user?.activityType === null) {
-      validationErrors.push({ field: "userData.user.activityType", message: "Activity Type is required" });
-    }
+    // if (userData?.user?.activityType === null) {
+    //   validationErrors.push({ field: "userData.user.activityType", message: "Activity Type is required" });
+    // }
+
+
+    // // Validate payment info
+    // if (donations && donations[0]?.paymentInfo) {
+    //   for (let i = 0; i < donations[0].paymentInfo.length; i++) {
+    //     if (i === 1) {
+    //       // Skip validation for paymentInfo[1]
+    //       continue;
+    //     }
+    //     const payment = donations[0].paymentInfo[i];
+
+    //     if (!payment.paymentMode) {
+    //       validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].paymentMode", message: "Payment Mode is required" });
+    //     }
+    //     if (!payment.chqORddDate) {
+    //       validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].chqORddDate", message: "ChqORddDate is required" });
+    //     }
+    //     if (!payment.paymentDate) {
+    //       validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].paymentDate", message: "Payment Date is required" });
+    //     }
+    //     if (!payment.amount) {
+    //       validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].amount", message: "Amount is required" });
+    //     }
+    //     if (!payment.bankName || payment.bankName.trim() === "") {
+    //       validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].bankName", message: "Bank Name is required" });
+    //     }
+    //     if (!payment.chqORddNo) {
+    //       validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].chqORddNo", message: "ChqORddNo is required" });
+    //     }
+    //   }
+    // }
 
     // Validate addresses
     for (let i = 0; i < address.length; i++) {
@@ -411,7 +430,7 @@ function OnlineDonation() {
       setNewEmail(formData.formData.user.emailId);
 
       console.log(formData);
-      const response = await DonationService.Adduser(formData);
+      const response = await DonationService.AddOnlineuser(formData);
       console.log(response);
       if (response?.status === SUCCESS) {
         toast.success(response?.message);
@@ -431,23 +450,28 @@ function OnlineDonation() {
   }, []);
   const getAllPackages = async () => {
     const response = await DonationService.getAllPackages();
-    if (response?.status === SUCCESS) {
+    if (response?.status === 'Success') {
       console.log(response);
       let packageData = [...initialPackageData];
       console.log(packageData);
-      response.data.map((item, index) => {
-        packageData[index].packageName = item.packageName;
-        packageData[index].bouquetPrice = item.bouquetPrice;
+  
+      const parsedData = JSON.parse(response.data);
+  
+      parsedData.forEach((item, index) => {
+        packageData[index].packageName = item.package_name;
+        packageData[index].bouquetPrice = item.bouquet_price;
         packageData[index].NoOfBouquets = 0;
-        packageData[index].maintenanceCost = item.maintenanceCost;
+        // packageData[index].maintenanceCost = 0;
         packageData[index].amount = 0;
       });
+  
       console.log(packageData);
       setPackageData(packageData);
     } else {
       toast.error(response?.message);
     }
   };
+  
   console.log(packageData);
 
   const stateOptions = [
@@ -528,7 +552,7 @@ function OnlineDonation() {
     userPackageData[rowIndex][name] = value;
 
     const totalCost =
-      (row.bouquetPrice + row.maintenanceCost) * row.NoOfBouquets;
+      (row.bouquetPrice) * row.NoOfBouquets;
     userPackageData[rowIndex]["amount"] = totalCost;
     setPackageData(userPackageData);
     calculateOverallTotal();
@@ -540,7 +564,7 @@ function OnlineDonation() {
       (accumulator, packageItem, index) => {
         return (
           accumulator +
-          (packageItem.bouquetPrice + packageItem.maintenanceCost) *
+          (packageItem.bouquetPrice) *
           packageItem.NoOfBouquets
         );
       },
@@ -632,24 +656,6 @@ function OnlineDonation() {
     setDonations(updatedDonations);
   };
   // hide show forgot link
-  const donortypeselectcor = () => {
-    if (document.getElementById("donortypecorDiv")) {
-      if (document.getElementById("donortypecorDiv").style.display === "none") {
-        document.getElementById("donortypecorDiv").style.display = "block";
-      } else {
-        document.getElementById("donortypecorDiv").style.display = "block";
-      }
-    }
-  };
-  const donortypeselectrel = () => {
-    if (document.getElementById("donortyperelDiv")) {
-      if (document.getElementById("donortyperelDiv").style.display === "none") {
-        document.getElementById("donortyperelDiv").style.display = "block";
-      } else {
-        document.getElementById("donortyperelDiv").style.display = "block";
-      }
-    }
-  };
   const addaddressicon = () => {
     if (document.getElementById("addaddressDiv")) {
       if (document.getElementById("addaddressDiv").style.display === "none") {
@@ -759,8 +765,22 @@ function OnlineDonation() {
   const [isCSRGift, setIsCSRGift] = useState(false);
   const [isDivOpen, setIsDivOpen] = useState(false);
   const [isDivOpenGift, setIsDivOpenGift] = useState(false);
+
   const changeHandler = (e) => {
     if (e.target.value === 'Corporate') {
+      const { name, value } = e.target;
+      const updatedFormData = { ...userData };
+      console.log(updatedFormData);
+      const keys = name.split(".");
+      console.log(keys);
+      let currentField = updatedFormData;
+      for (let i = 0; i < keys.length - 1; i++) {
+        currentField = currentField[keys[i]];
+      }
+      console.log(currentField);
+      currentField[keys[keys.length - 1]] = value;
+      console.log(updatedFormData);
+      setUserData(updatedFormData);
       setIsVisible(true);
     } else {
       setIsVisible(false);
@@ -793,6 +813,7 @@ function OnlineDonation() {
   const handleInputFocusGift = () => {
     setIsDivOpenGift(true);
   };
+
   return (
     <>
       <ToastContainer />
@@ -889,7 +910,11 @@ function OnlineDonation() {
                           <div className="col-8 p0">
                             <input
                               type="text"
+                              name="user.emailId"
                               onFocus={handleInputFocus}
+                              value={userData?.user?.emailId}
+                              onBlur={(e) => handleBlur(e)}
+                              onChange={handleChange}
                               placeholder="Click me to open the div"
                             />
                             {errors.map((error, index) => {
@@ -912,10 +937,10 @@ function OnlineDonation() {
                           <table>
                             <thead>
                               <tr>
-                                <th>Package Name</th>
-                                <th>Bouquet Price</th>
-                                <th>Maintenance Cost</th>
-                                <th className="w200">Number of Bouquets</th>
+                                <th>Planting Season</th>
+                                <th>Cost per Sapling</th>
+                                {/* <th></th> */}
+                                <th className="w200">No. Sapling</th>
                                 <th>Total Cost</th>
                               </tr>
                             </thead>
@@ -926,7 +951,7 @@ function OnlineDonation() {
                                   <tr key={index}>
                                     <td>{packageItem.packageName}</td>
                                     <td>{packageItem.bouquetPrice}</td>
-                                    <td>{packageItem.maintenanceCost}</td>
+                                    {/* <td>{packageItem.maintenanceCost}</td> */}
                                     <td>
                                       <input
                                         type="number"
@@ -1581,10 +1606,10 @@ function OnlineDonation() {
                         <table>
                           <thead>
                             <tr>
-                              <th>Package Name</th>
-                              <th>Bouquet Price</th>
-                              <th>Maintenance Cost</th>
-                              <th className="w200">Number of Bouquets</th>
+                              <th>Planting Season</th>
+                              <th>Cost per Sampling</th>
+                              {/* <th>Maintenance Cost</th> */}
+                              <th className="w200">No. Sampling</th>
                               <th>Total Cost</th>
                             </tr>
                           </thead>
@@ -1595,7 +1620,7 @@ function OnlineDonation() {
                                 <tr key={index}>
                                   <td>{packageItem.packageName}</td>
                                   <td>{packageItem.bouquetPrice}</td>
-                                  <td>{packageItem.maintenanceCost}</td>
+                                  {/* <td>{packageItem.maintenanceCost}</td> */}
                                   <td>
                                     <input
                                       type="number"

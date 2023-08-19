@@ -23,7 +23,61 @@ export const DonationService = {
            }
         }
       },
-
+      AddOnlineuser: async (data,config) => {
+        console.log(data);
+        try {
+          const response = await APIService.Instance.post(
+            URLS.USERONLINEADD,
+            data,
+            config
+          );
+          return response?.data;
+        } catch (err) {
+          if (err?.response?.data) {
+            return err?.response?.data;
+          }else{
+        //   toast.error(err?.message);
+        console.log("Hello");
+           }
+        }
+      },
+      AddOnlineuser: async (data,config) => {
+        console.log(data);
+        try {
+          const response = await APIService.Instance.post(
+            URLS.USERONLINEADD,
+            data,
+            config
+          );
+          return response?.data;
+        } catch (err) {
+          if (err?.response?.data) {
+            return err?.response?.data;
+          }else{
+        //   toast.error(err?.message);
+        console.log("Hello");
+           }
+        }
+      },
+ AddOnlineuser: async (data,config) => {
+      console.log(data);
+      try {
+        const response = await APIService.Instance.post(
+          URLS.USERONLINEADD,
+          data,
+          config
+        );
+        return response?.data;
+      } catch (err) {
+        if (err?.response?.data) {
+          return err?.response?.data;
+        }else{
+      //   toast.error(err?.message);
+      console.log("Hello");
+         }
+      }
+    },
+    
       getDetailsByEmailId: async (emailId) => {
         console.log(emailId);
         const response = await APIService.Instance.get(
@@ -95,7 +149,7 @@ export const DonationService = {
         const response = await APIService.Instance.get(
           URLS.GETALLDONATIONOFUSER+emailId
         );
-        console.log(response);
+        console.log(response.data);
         return response?.data;
         
       },
