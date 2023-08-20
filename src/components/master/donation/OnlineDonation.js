@@ -41,7 +41,7 @@ function OnlineDonation() {
       // maintenanceCost: "",
       amount: "",
     },
-   
+
   ];
 
   const initialUserData = {
@@ -443,17 +443,19 @@ function OnlineDonation() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const orderId = urlParams.get('orderId');
-    getPaymentInformation(orderId);
+    if (orderId) {
+      getPaymentInformation(orderId);
+    }
     getAllPackages();
   }, []);
 
-  const getPaymentInformation = async(paymentId) =>{
+  const getPaymentInformation = async (paymentId) => {
     const response = await DonationService.getPaymentInformation(paymentId);
     if (response?.status === 'Success') {
       console.log(response);
 
-      if(response?.data?.paymentStatus == 'Success'){
-        toast.success("Donation payment successful, payment reference no "+ response?.data?.bankPaymentRefNo);
+      if (response?.data?.paymentStatus == 'Success') {
+        toast.success("Donation payment successful, payment reference no " + response?.data?.bankPaymentRefNo);
       } else {
         toast.error(response?.data?.remark);
       }
@@ -468,11 +470,11 @@ function OnlineDonation() {
       console.log(response);
       let packageData = [...initialPackageData];
       console.log(packageData);
-  
+
       const parsedData = JSON.parse(response.data);
 
-      let data = parsedData.map((item)=>({packageName:item.package_name,bouquetPrice: item.bouquet_price,NoOfBouquets:0,amount:0}))
-  
+      let data = parsedData.map((item) => ({ packageName: item.package_name, bouquetPrice: item.bouquet_price, NoOfBouquets: 0, amount: 0 }))
+
       setPackageData(data);
     } else {
       toast.error(response?.message);
@@ -744,17 +746,17 @@ function OnlineDonation() {
       setUserData(formData.formData);
       clearState();
       setDonation(type)
-      if(type === "self"){
+      if (type === "self") {
         setValidSelfUser(true);
-      }else{
+      } else {
         setValidGiftUser(true);
       }
     } else if (response?.statusCode === 409) {
       toast.error(response?.message);
-    }else{
-      if(type === "self"){
+    } else {
+      if (type === "self") {
         setValidSelfUser(false);
-      }else{
+      } else {
         setValidGiftUser(false);
       }
     }
@@ -872,7 +874,7 @@ function OnlineDonation() {
   };
 
   const clearState = () => {
-    sendOtp("");
+    setOtp("");
   }
 
   return (
@@ -991,8 +993,8 @@ function OnlineDonation() {
 
                       <div className="col-12">
                         <Button className="float-right" variant="success"
-                        disabled={!validSelfUser}
-                        onClick={()=>sendOtp(userEmail)}
+                          disabled={!validSelfUser}
+                          onClick={() => sendOtp(userEmail)}
                         >
                           Verify User
                         </Button>
@@ -1673,14 +1675,14 @@ function OnlineDonation() {
                           </div>
                         </div>
                         <div className="col-12">
-                        <Button className="float-right" variant="success"
-                        disabled={!validGiftUser}
-                        onClick={()=>sendOtp(giftUserEmail)}
-                        >
-                          Verify User
-                        </Button>
-                      </div>
-                        </div> </div>
+                          <Button className="float-right" variant="success"
+                            disabled={!validGiftUser}
+                            onClick={() => sendOtp(giftUserEmail)}
+                          >
+                            Verify User
+                          </Button>
+                        </div>
+                      </div> </div>
                     {isDivOpenGift && <div>
                       <div className="actionheadingdiv">
                         Select Your Donation Plan
@@ -2450,10 +2452,10 @@ function OnlineDonation() {
         </Container>
       </div>
       {gatewayConfiguration != null && (
-      <form method="post"  name="redirect" id="gatewayForm" action={gatewayConfiguration.gatewayURL}>
-        <input type="hidden" id="encRequest" name="encRequest" value={gatewayConfiguration.encRequest}/>
-        <input type="hidden" name="access_code" id="access_code" value={gatewayConfiguration.accessCode}/>
-      </form>
+        <form method="post" name="redirect" id="gatewayForm" action={gatewayConfiguration.gatewayURL}>
+          <input type="hidden" id="encRequest" name="encRequest" value={gatewayConfiguration.encRequest} />
+          <input type="hidden" name="access_code" id="access_code" value={gatewayConfiguration.accessCode} />
+        </form>
       )}
       {/* body */}
     </>
