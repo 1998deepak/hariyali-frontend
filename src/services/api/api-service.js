@@ -31,9 +31,9 @@ export class APIService extends Axios {
           // localStorage.clear();
           // window.location.href = "/";
         }
-        else if(err.response.data.message){
-          toast.error(err.response.data.message)
-        }
+        // else if(err.response.data.message){
+        //   toast.error(err.response.data.message)
+        // }
       }
     )
    }

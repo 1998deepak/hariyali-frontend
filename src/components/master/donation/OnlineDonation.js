@@ -184,11 +184,12 @@ function OnlineDonation() {
       validationErrors.push({ field: "userData.user.mobileNo", message: "Mobile Number must contain exactly 10 digits and no alphabetic characters" });
     }
 
-    if (!userData?.user?.emailId) {
-      validationErrors.push({ field: "userData.user.emailId", message: "Email ID is required" });
-    } else if (!/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(userData.user.emailId)) {
-      validationErrors.push({ field: "userData.user.emailId", message: "Invalid Email ID" });
-    }
+    // if (!userData?.user?.emailId) {
+    //   validationErrors.push({ field: "userData.user.emailId", message: "Email ID is required" });
+    // } 
+    // else if (!/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(userData.user.emailId)) {
+    //   validationErrors.push({ field: "userData.user.emailId", message: "Invalid Email ID" });
+    // }
 
     if (!userData?.user?.donarType) {
       validationErrors.push({ field: "userData.user.donarType", message: "Donor Type is required" });
@@ -420,6 +421,7 @@ function OnlineDonation() {
       // Send the form data as JSON
       console.log(formData);
       console.log(JSON.stringify(formData));
+      console.log("Donation: "+ JSON.stringify(formData.formData.user.donations[0]))
 
       setNewEmail(formData.formData.user.emailId);
 
@@ -756,9 +758,12 @@ function OnlineDonation() {
     } else {
       if (type === "self") {
         setValidSelfUser(false);
+        setIsDivOpen(true);
       } else {
         setValidGiftUser(false);
+        setIsDivOpenGift(true);
       }
+      
     }
   }
 
@@ -2425,7 +2430,7 @@ function OnlineDonation() {
                   <Form.Label>OTP</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="123456"
+                    placeholder="Enter OTP"
                     value={otp}
                     onChange={(event) => setOtp(event.target.value)}
                     maxLength={6}

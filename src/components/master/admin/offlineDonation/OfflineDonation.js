@@ -8,7 +8,6 @@ import Donateslid from "../../../../assets/img/slider/Donateslid.jpg";
 import { DonationService } from "../../../../services/donationService/donation.service";
 import { SUCCESS } from "../../../constants/constants";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
-import Select from 'react-select';
 import SearchWithSuggestions from "../../../common/searchComponent/SearchWithSuggestions";
 
 const options = [
