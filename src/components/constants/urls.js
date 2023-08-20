@@ -25,5 +25,6 @@ UPDATEDONATIONOFUSER:"/updateDonation",
 // Web donor
 GETALLUSERWITHWEBID:"/getAlluserWithWebId",
 APPROVEDONATION:"/approvedDonation",
+GETPAYMENTINFO:"/searchPaymentByPaymentId/",
 
 };

@@ -123,6 +123,21 @@ export const DonationService = {
         }
       },
     
+      getPaymentInformation: async (paymentId) => {
+        try {
+           const response = await APIService.Instance.get(
+            URLS.GETPAYMENTINFO+paymentId
+          );
+          return response?.data;
+        } catch (err) {
+          if (err?.response?.data) {
+            return err?.response?.data;
+          }else{
+          toast.error(err?.message);
+           }
+        }
+      },
+
       getAllUserDonation : async () => {
       
         try {

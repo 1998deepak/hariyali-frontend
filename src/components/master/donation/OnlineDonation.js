@@ -14,6 +14,7 @@ function OnlineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
   const [generalDonation, setGeneralDonation] = useState(null);
   const [newEmail, setNewEmail] = useState(null);
+  const [gatewayConfiguration, setGatewayConfiguration] = useState(null);
 
 
   const initialPackageData = [
@@ -127,7 +128,6 @@ function OnlineDonation() {
   const [donations, setDonations] = useState(intialDonations);
 
   const [recipient, setRecipient] = useState(initialRecipientData);
-
 
   function hasValues(obj) {
     for (let key in obj) {
@@ -333,9 +333,6 @@ function OnlineDonation() {
   //  console.log(errors[0].paymentInfo[0].amount);
 
 
-
-
-
   const userAdd = async (e) => {
     e.preventDefault();
 
@@ -433,11 +430,12 @@ function OnlineDonation() {
       const response = await DonationService.AddOnlineuser(formData);
       console.log(response);
       if (response?.status === SUCCESS) {
-        toast.success(response?.message);
+        // toast.success(response?.message);
+        setGatewayConfiguration(response);
 
-        // setTimeout(() => {
-        //   // navigate("/ModelView");
-        // }, 2000);
+        setTimeout(() => {
+          document.getElementById("gatewayForm").submit();
+        }, 1000);
         // // clearForm(e);
       } else {
         toast.error(response?.message);
@@ -446,8 +444,27 @@ function OnlineDonation() {
   };
 
   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('orderId');
+    getPaymentInformation(orderId);
     getAllPackages();
   }, []);
+
+  const getPaymentInformation = async(paymentId) =>{
+    const response = await DonationService.getPaymentInformation(paymentId);
+    if (response?.status === 'Success') {
+      console.log(response);
+      
+      if(response?.data?.paymentStatus == 'Success'){
+        toast.success("Donation payment successful, payment reference no "+ response?.data?.bankPaymentRefNo);
+      } else {
+        toast.error(response?.data?.remark);
+      }
+    } else {
+      toast.error(response?.message);
+    }
+  }
+
   const getAllPackages = async () => {
     const response = await DonationService.getAllPackages();
     if (response?.status === 'Success') {
@@ -2319,7 +2336,12 @@ function OnlineDonation() {
           </Row>
         </Container>
       </div>
-
+      {gatewayConfiguration != null && (
+      <form method="post"  name="redirect" id="gatewayForm" action={gatewayConfiguration.gatewayURL}>  
+        <input type="hidden" id="encRequest" name="encRequest" value={gatewayConfiguration.encRequest}/> 
+        <input type="hidden" name="access_code" id="access_code" value={gatewayConfiguration.accessCode}/> 
+      </form>
+      )}
       {/* body */}
     </>
   );
