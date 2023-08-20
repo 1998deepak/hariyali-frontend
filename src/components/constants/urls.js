@@ -1,12 +1,11 @@
 export const URLS = {
     // login
-    LOGIN:'/login',
+    LOGIN:'/loginOtp',
     LOGOUT:'/logout',
     SENDMAILFORGETPASSWORD:'/forgetPassword',
-    VERIFYOTP:'/verifyOtp',
+    VERIFYOTP:'/verify-otp/',
  // user
- USERADD: "/userAddOffline",
- USERONLINEADD:"/userAddOnline",
+ USERADD: "/userAdd",
  GETBYEMAILID: "/getuser/",
  GETALLPACKAGE:"/getAllPackages",
 
@@ -25,5 +24,8 @@ UPDATEDONATIONOFUSER:"/updateDonation",
 // Web donor
 GETALLUSERWITHWEBID:"/getAlluserWithWebId",
 APPROVEDONATION:"/approvedDonation",
+
+//Contact Us Form
+CONTACTUSFORM:"/saveContact"
 
 };
