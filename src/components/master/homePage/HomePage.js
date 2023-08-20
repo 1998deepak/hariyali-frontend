@@ -69,6 +69,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { ContactUsService } from "../../../services/ContactUsService/contactUs.service";
+import { toast,ToastContainer } from "react-toastify";
 // style was imported in index.css
 // import "react-slideshow-image/dist/styles.css";
 const images = [image1, image2, image3, image4];
@@ -132,8 +133,44 @@ function HomePage() {
   };
 
   const [contactData, setContactData] = useState(initialUserData);
-
+  const [errors, setErrors] = useState([]);
   
+  const validate = () => {
+    const validationErrors = [];
+    // Validate user data fields
+    if (!contactData?.contactName) {
+      validationErrors.push({ field: "contactData.contactName", message: "Contact Name is required" });
+    } else if (/\d/.test(contactData.contactName)) {
+      validationErrors.push({ field: "contactData.contactName", message: "Contact Name should only contain alphabets" });
+    }
+
+    if (!contactData?.massage) {
+      validationErrors.push({ field: "contactData.massage", message: "Query is required" });
+    } else if (/\d/.test(contactData.massage)) {
+      validationErrors.push({ field: "contactData.massage", message: "Query should only contain alphabets" });
+    }
+
+
+    if (!contactData?.contactEmail) {
+      validationErrors.push({ field: "contactData.contactEmail", message: "Email ID is required" });
+    } else if (!/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(contactData.contactEmail)) {
+      validationErrors.push({ field: "contactData.contactEmail", message: "Invalid Email ID" });
+    }
+
+    console.log(validationErrors);
+
+
+    const errorMessages = validationErrors.map(error => `${error.field}: ${error.message}`);
+    const errorMessageString = errorMessages.join("\n");
+
+    console.log(errorMessageString);
+
+    setErrors(validationErrors);
+
+    return validationErrors.length === 0;
+
+  };
+
 
   const handleValueChange = (event) => {
     const { name, value } = event.target;
@@ -145,18 +182,24 @@ function HomePage() {
 
   const addConntactUsForm = async (e) => {
     e.preventDefault();
+    const isValid = validate();
+    if(isValid){
+      console.log(isValid);
     console.log(contactData);
     const response = await ContactUsService.AddConatct(contactData);
     if (response !== null) {
       console.log("Contact Us Form: "+JSON.stringify(response));
+      toast.success("Email Send to Hariyali Team!")
     } else {
       //toast.error(response?.message);
       console.log("Error Massage");
     }
+  }
   };
 
   return (
     <>
+    <ToastContainer/>
       {/* body */}
       {/* slider */}
       <div className="pt100">
@@ -383,11 +426,29 @@ function HomePage() {
                       <Modal.Body>
                         <div className="homeinput-div">
                           <input className="form-control form-text required" type="text" name="contactName" value={contactData.contactName} onChange={handleValueChange} placeholder="Name" required="required" />
+                          {errors.map((error, index) => {
+                              if (error.field === 'contactData.contactName') {
+                                return <div key={index} className="error-message red-text">{error.message}</div>;
+                              }
+                              return null;
+                            })}
                         </div><div className="homeinput-div">
                           <input className="form-control form-text required" type="text" name="contactEmail" value={contactData.contactEmail} onChange={handleValueChange} placeholder="Email" required="required" />
+                          {errors.map((error, index) => {
+                              if (error.field === 'contactData.contactEmail') {
+                                return <div key={index} className="error-message red-text">{error.message}</div>;
+                              }
+                              return null;
+                            })}
                         </div><div className="homeinput-div">
                         <label for="edit-query" className="form-label">Query</label>
                           <textarea className="form-control form-textarea required" rows="4" cols="60" maxlength="2500" name="massage" placeholder="Write you query here...." value={contactData.massage} onChange={handleValueChange} required="required" aria-required="true"></textarea>
+                          {errors.map((error, index) => {
+                              if (error.field === 'contactData.massage') {
+                                return <div key={index} className="error-message red-text">{error.message}</div>;
+                              }
+                              return null;
+                            })}
                         </div>
                       </Modal.Body>
                       <Modal.Footer>

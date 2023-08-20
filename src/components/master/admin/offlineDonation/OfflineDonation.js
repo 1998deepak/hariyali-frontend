@@ -260,12 +260,24 @@ function OfflineDonation() {
       }
       if (!addr?.country) {
         validationErrors.push({ field: "address[" + i + "].country", message: "Country is required" });
+      }else if (/\d/.test(userData.user.lastName)) {
+        validationErrors.push({ field: "address[" + i + "].country", message: "Country should only contain alphabets" });
       }
+
       if (!addr?.state) {
         validationErrors.push({ field: "address[" + i + "].state", message: "State is required" });
       }
+
       if (!addr?.city) {
         validationErrors.push({ field: "address[" + i + "].city", message: "City is required" });
+      }else if (/\d/.test(addr?.city)) {
+        validationErrors.push({ field: "address[" + i + "].city", message: "City should only contain alphabets" });
+      }
+
+      if (/^\d+$/.test(addr?.postalCode)) {
+        validationErrors.push({ field: "address[" + i + "].postalCode", message: "Postal Code should only contain numbers" });
+      }else if ((addr?.postalCode).length > 6) {
+        validationErrors.push({ field: "address[" + i + "].postalCode", message: "Postal Code should only contain six numbers" });
       }
     }
 
@@ -841,10 +853,11 @@ function OfflineDonation() {
             console.log(donation.donationType);
             if (donation.donationType === "Self-Donate") {
               donationData.recipient = []; // Exclude recipient data
+              toast.success("Self-Donation Succesfully Saved");
             } else if (donation.donationType === "Gift-Donate") {
               donationData.recipient = recipient;
+              toast.success("Gift-Donation Succesfully Saved");
             }
-
             return donationData;
           }),
         },
@@ -1480,6 +1493,12 @@ function OfflineDonation() {
                                         handleAddressChange(event, 1)
                                       }
                                     />
+                                    {errors.map((error, index) => {
+                                    if (error.field === 'address[1].postalCode') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
                                   </div>
                                 </div>
                               </div>
@@ -2267,6 +2286,12 @@ function OfflineDonation() {
                                       handleAddressChange(event, 0)
                                     }
                                   />
+                                  {errors.map((error, index) => {
+                                    if (error.field === 'address[0].postalCode') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
                                 </div>
                               </div>
                             </div>
@@ -3510,6 +3535,12 @@ function OfflineDonation() {
                                         handleAddressChange(event, 1)
                                       }
                                     />
+                                    {errors.map((error, index) => {
+                                    if (error.field === 'address[1].postalCode') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
                                   </div>
                                 </div>
                               </div>
