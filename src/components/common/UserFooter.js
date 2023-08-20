@@ -17,8 +17,10 @@ const Header = () => {
         <Container>
           <Row className="justify-content-between ptb50">
             <div className="col-4 small-center">
-              <img src={logo} alt="Logo" className="logo" />
-              <div className="footersocial-div row">
+              <div className="logo-container">
+                <img src={logo} alt="Logo" className="logo" />  
+              </div>              
+              <div className="footersocial-div row mb-3">
                 <div className="col-2 ">
                   <div className="footersocial">
                     <FaFacebookF />
@@ -45,39 +47,44 @@ const Header = () => {
                   </div>
                 </div>
               </div>
+              <h5>Contact us at: <a href="tel:+91 987 8765 111">+91 987 8765 111</a> <br/> 10.00am to 7.00pm IST <br/>(Monday to
+          Saturday)</h5>
             </div>
-            <div className="col-7 footerlinks">
+            <div className="col-12 col-md-6 col-lg-7 footerlinks">
               <div className="row">
-                <div className="col-4 footer-div small-non">
+                <div className="col-12 col-md-6 col-lg-4 footer-div small-non">
                   <div className="footer-divheading">Company</div>
                   <ul>
-                    <li>About Us</li>
-                    <li>What we do</li>
-                    <li>Why Support Us</li>
-                    <li>FootPrint</li>
-                    <li>Gallery & Awards</li>
-                    <li>Contact Us</li>
+                    <li>
+                      <a href="">About Us</a>
+                    </li>
+                    <li>
+                    <a href="">What we do</a></li>
+                    <li><a href="">Why Support Us</a></li>
+                    <li><a href="">FootPrint</a></li>
+                    <li><a href="">Gallery & Awards</a></li>
+                    <li><a href="">Contact Us</a></li>
                   </ul>
                 </div>
-                <div className="col-4 footer-div">
+                <div className="col-12 col-md-6 col-lg-4 footer-div">
                   <div className="footer-divheading">About Us</div>
                   <ul>
-                    <li>Mission & Vision</li>
-                    <li>Our Journey</li>
-                    <li>Our Team</li>
-                    <li>Our Achievements </li>
-                    <li>Volunteer with us</li>
+                    <li><a href="">Mission & Vision</a></li>
+                    <li><a href="">Our Journey</a></li>
+                    <li><a href="">Our Team</a></li>
+                    <li><a href="">Our Achievements </a></li>
+                    <li><a href="">Volunteer with us</a></li>
                   </ul>
                 </div>
-                <div className="col-4 footer-div">
+                <div className="col-12 col-md-6 col-lg-4 footer-div">
                   <div className="footer-divheading">Resources</div>
                   <ul>
-                    <li>Careers</li>
-                    <li>FAQs</li>
-                    <li>Privacy Policy</li>
-                    <li>Terms & Conditions</li>
-                    <li>Volunteer</li>
-                    <li>Register as Farmer Beneficiary</li>
+                    <li><a href="">Careers</a></li>
+                    <li><a href="">FAQs</a></li>
+                    <li><a href="">Privacy Policy</a></li>
+                    <li><a href="">Terms & Conditions</a></li>
+                    <li><a href="">Volunteer</a></li>
+                    <li><a href="">Register as Farmer Beneficiary</a></li>
                   </ul>
                 </div>
               </div>
@@ -85,9 +92,6 @@ const Header = () => {
           </Row>
         </Container>
         <div className="copyright">
-          Contact us at: +91 987 8765 111 - 10.00am to 7.00pm IST (Monday to
-          Saturday)
-          <br />
           Copyrights © 2023 Hariyali.com | All rights reserved
         </div>
       </div>
