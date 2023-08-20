@@ -48,7 +48,7 @@ function OfflineDonation() {
       packageName: "",
       bouquetPrice: "",
       NoOfBouquets: "",
-      maintenanceCost: "",
+      // maintenanceCost: "",
       amount: "",
     },
   ];
@@ -513,15 +513,11 @@ function OfflineDonation() {
       console.log(response);
       let packageData = [...initialPackageData];
       console.log(packageData);
-      response.data.map((item, index) => {
-        packageData[index].packageName = item.packageName;
-        packageData[index].bouquetPrice = item.bouquetPrice;
-        packageData[index].NoOfBouquets = 0;
-        packageData[index].maintenanceCost = item.maintenanceCost;
-        packageData[index].amount = 0;
-      });
-      console.log(packageData);
-      setPackageData(packageData);
+      const parsedData = JSON.parse(response.data);
+
+      let data = parsedData.map((item)=>({packageName:item.package_name,bouquetPrice: item.bouquet_price,NoOfBouquets:0,amount:0}))
+  
+      setPackageData(data);
     } else {
       toast.error(response?.message);
     }
@@ -615,7 +611,7 @@ function OfflineDonation() {
     userPackageData[rowIndex][name] = value;
 
     const totalCost =
-      (row.bouquetPrice + row.maintenanceCost) * row.NoOfBouquets;
+      (row.bouquetPrice) * row.NoOfBouquets;
     userPackageData[rowIndex]["amount"] = totalCost;
     setPackageData(userPackageData);
     calculateOverallTotal();
@@ -627,7 +623,7 @@ function OfflineDonation() {
       (accumulator, packageItem, index) => {
         return (
           accumulator +
-          (packageItem.bouquetPrice + packageItem.maintenanceCost) *
+          (packageItem.bouquetPrice) *
           packageItem.NoOfBouquets
         );
       },
@@ -718,6 +714,20 @@ function OfflineDonation() {
     console.log(updatedDonations);
     setDonations(updatedDonations);
   };
+
+  const handlePaymentInfoChangeGift = (e, donationIndex, payIndex) => {
+    let { name, value } = e.target;
+    if (value < 0) {
+      value = 0;
+    }
+    const updatedDonations = [...donationsGift];
+    console.log(updatedDonations);
+    console.log("Offline Donation: "+updatedDonations[donationIndex].paymentInfo[payIndex][name])
+    updatedDonations[donationIndex].paymentInfo[payIndex][name] = value;
+    console.log(updatedDonations);
+    setDonations(updatedDonations);
+  };
+
   // hide show forgot link
   const addaddressicon = () => {
     if (document.getElementById("addaddressDiv")) {
@@ -828,9 +838,10 @@ function OfflineDonation() {
 
 
   // get Detail by donar ID
-  const handleDonarIdBlur = async (donarId) => {
-    console.log(donarId);
-    let response = await DonationService.getDetailsByDonorId(donarId);
+  const handleDonarIdBlur = async (e) => {
+    e.preventDefault();
+    const donorId = e.target.value;
+    let response = await DonationService.getDetailsByDonorId(donorId);
     console.log("API Response:", response);
 
     if (response?.status === "Success") {
@@ -856,6 +867,37 @@ function OfflineDonation() {
       toast.error(response?.message);
     }
   };
+
+  // get Detail by donar ID
+  const handleDonarId = async (donorId) => {
+    let response = await DonationService.getDetailsByDonorId(donorId);
+    console.log("API Response:", response);
+
+    if (response?.status === "Success") {
+      toast.success(response?.message);
+      const { data } = response;
+      const { address = [], ...userDataWithoutAddress } = data;
+
+      setUserData((prevUserData) => {
+        return {
+          ...prevUserData,
+          user: {
+            ...prevUserData.user,
+            ...userDataWithoutAddress,
+          },
+        };
+      });
+
+      setAddress(address);
+    } else if (response?.statusCode === 409) {
+      toast.error(response?.message);
+    }else{
+      console.log(response);
+      toast.error(response?.message);
+    }
+  };
+
+
 
 
   console.log(address);
@@ -891,11 +933,10 @@ function OfflineDonation() {
             console.log(donation.donationType);
             if (donation.donationType === "Self-Donate") {
               donationData.recipient = []; // Exclude recipient data
-              toast.success("Self-Donation Succesfully Saved");
             } else if (donation.donationType === "Gift-Donate") {
               donationData.recipient = recipient;
-              toast.success("Gift-Donation Succesfully Saved");
             }
+
             return donationData;
           }),
         },
@@ -975,17 +1016,6 @@ function OfflineDonation() {
   console.log("Not Working !")
   };
 
-  // const options =
-  // donarIdList?.map((vendor) => {
-  //   return { label: vendor.plantNm + "---" + vendor.plantCd, value: vendor.plantCd };
-  // });
-
- 
-
-  const handleDonarIdChange = (selectedOption) => {
-    console.log(selectedOption);
-    setSelectedDonarId(selectedOption);
-  };
 
   return (
     <>
@@ -1018,10 +1048,10 @@ function OfflineDonation() {
                           <table>
                             <thead>
                               <tr>
-                                <th>Package Name</th>
-                                <th>Bouquet Price</th>
-                                <th>Maintenance Cost</th>
-                                <th className="w200">Number of Bouquets</th>
+                                <th>Planning Season</th>
+                                <th>Cost per Sapling</th>
+                                {/* <th>Maintenance Cost</th> */}
+                                <th className="w200">No. of Sapling</th>
                                 <th>Total Cost</th>
                               </tr>
                             </thead>
@@ -1032,7 +1062,7 @@ function OfflineDonation() {
                                   <tr key={index}>
                                     <td>{packageItem.packageName}</td>
                                     <td>{packageItem.bouquetPrice}</td>
-                                    <td>{packageItem.maintenanceCost}</td>
+                                    {/* <td>{packageItem.maintenanceCost}</td> */}
                                     <td>
                                       <input
                                         type="number"
@@ -1964,10 +1994,10 @@ function OfflineDonation() {
                           <table>
                             <thead>
                               <tr>
-                                <th>Package Name</th>
-                                <th>Bouquet Price</th>
-                                <th>Maintenance Cost</th>
-                                <th className="w200">Number of Bouquets</th>
+                                <th>Planting Season</th>
+                                <th>Cost per Sampling</th>
+                                {/* <th>Maintenance Cost</th> */}
+                                <th className="w200">No. Sampling</th>
                                 <th>Total Cost</th>
                               </tr>
                             </thead>
@@ -1978,7 +2008,7 @@ function OfflineDonation() {
                                   <tr key={index}>
                                     <td>{packageItem.packageName}</td>
                                     <td>{packageItem.bouquetPrice}</td>
-                                    <td>{packageItem.maintenanceCost}</td>
+                                    {/* <td>{packageItem.maintenanceCost}</td> */}
                                     <td>
                                       <input
                                         type="number"
@@ -3028,7 +3058,7 @@ function OfflineDonation() {
                               <div className="row select-label">
                                 <div className="col-4 ">Donar ID</div>
                                 <div className="col-8 p0">
-                                  <SearchWithSuggestions data={donarIdList} onClickSearch={handleDonarIdBlur}/>
+                                  <SearchWithSuggestions data={donarIdList} onClickSearch={handleDonarId}/>
                                   {/* <Select
                                     options={donarIdList}
                                    value={selectedDonarId}
@@ -3053,10 +3083,10 @@ function OfflineDonation() {
                           <table>
                             <thead>
                               <tr>
-                                <th>Package Name</th>
-                                <th>Bouquet Price</th>
-                                <th>Maintenance Cost</th>
-                                <th className="w200">Number of Bouquets</th>
+                                <th>Planting Season</th>
+                                <th>Cost per Sampling</th>
+                                {/* <th>Maintenance Cost</th> */}
+                                <th className="w200">No. Sampling</th>
                                 <th>Total Cost</th>
                               </tr>
                             </thead>
@@ -3067,7 +3097,7 @@ function OfflineDonation() {
                                   <tr key={index}>
                                     <td>{packageItem.packageName}</td>
                                     <td>{packageItem.bouquetPrice}</td>
-                                    <td>{packageItem.maintenanceCost}</td>
+                                    {/* <td>{packageItem.maintenanceCost}</td> */}
                                     <td>
                                       <input
                                         type="number"
@@ -3975,12 +4005,7 @@ function OfflineDonation() {
                               <div className="row select-label">
                                 <div className="col-4 ">Donar ID</div>
                                 <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    placeholder="Donar ID"
-                                    type="text"
-                                    onBlur={(e) => handleDonarIdBlur(e)}
-                                  />
+                                <SearchWithSuggestions data={donarIdList} onClickSearch={handleDonarId}/>
                                 </div>
                               </div>
                             </div>
@@ -4027,10 +4052,10 @@ function OfflineDonation() {
                           <table>
                             <thead>
                               <tr>
-                                <th>Package Name</th>
-                                <th>Bouquet Price</th>
-                                <th>Maintenance Cost</th>
-                                <th className="w200">Number of Bouquets</th>
+                                <th>Planning Season</th>
+                                <th>Cost per Sapling</th>
+                                {/* <th>Maintenance Cost</th> */}
+                                <th className="w200">No. of Sapling</th>
                                 <th>Total Cost</th>
                               </tr>
                             </thead>
@@ -4041,7 +4066,7 @@ function OfflineDonation() {
                                   <tr key={index}>
                                     <td>{packageItem.packageName}</td>
                                     <td>{packageItem.bouquetPrice}</td>
-                                    <td>{packageItem.maintenanceCost}</td>
+                                    {/* <td>{packageItem.maintenanceCost}</td> */}
                                     <td>
                                       <input
                                         type="number"
@@ -4799,9 +4824,9 @@ function OfflineDonation() {
                                   <select
                                     name="paymentMode"
                                     className=" form-control-inside form-select"
-                                    value={donations[0]?.paymentInfo[0].paymentMode}
+                                    value={donationsGift[0]?.paymentInfo[0].paymentMode}
                                     onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
+                                      handlePaymentInfoChangeGift(event, 0, 0)
                                     }
                                   >
                                     <option disabled selected value="">Donar Type</option>
@@ -4809,7 +4834,7 @@ function OfflineDonation() {
                                     <option value="Cash">Cash</option>
                                   </select>
                                   {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].paymentMode') {
+                                    if (error.field === 'donationGift[0].paymentInfo[0].paymentMode') {
                                       return <div key={index} className="error-message red-text">{error.message}</div>;
                                     }
                                     return null;
@@ -4826,13 +4851,13 @@ function OfflineDonation() {
                                     name="bankName"
                                     placeholder="Bank Name"
                                     type="text"
-                                    value={donations[0]?.paymentInfo[0].bankName}
+                                    value={donationsGift[0]?.paymentInfo[0].bankName}
                                     onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
+                                      handlePaymentInfoChangeGift(event, 0, 0)
                                     }
                                   />
                                   {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].bankName') {
+                                    if (error.field === 'donationGift[0].paymentInfo[0].bankName') {
                                       return <div key={index} className="error-message red-text">{error.message}</div>;
                                     }
                                     return null;
@@ -4849,13 +4874,13 @@ function OfflineDonation() {
                                     name="chqORddNo"
                                     placeholder="Chq/DD No."
                                     type="text"
-                                    value={donations[0]?.paymentInfo[0]?.chqORddNo}
+                                    value={donationsGift[0]?.paymentInfo[0]?.chqORddNo}
                                     onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
+                                      handlePaymentInfoChangeGift(event, 0, 0)
                                     }
                                   />
                                   {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].chqORddNo') {
+                                    if (error.field === 'donationGift[0].paymentInfo[0].chqORddNo') {
                                       return <div key={index} className="error-message red-text">{error.message}</div>;
                                     }
                                     return null;
@@ -4873,14 +4898,14 @@ function OfflineDonation() {
                                     placeholder="Chq/DD Date"
                                     type="date"
                                     value={
-                                      donations[0]?.paymentInfo[0].chqORddDate
+                                      donationsGift[0]?.paymentInfo[0].chqORddDate
                                     }
                                     onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
+                                      handlePaymentInfoChangeGift(event, 0, 0)
                                     }
                                   />
                                   {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].chqORddDate') {
+                                    if (error.field === 'donationGift[0].paymentInfo[0].chqORddDate') {
                                       return <div key={index} className="error-message red-text">{error.message}</div>;
                                     }
                                     return null;
@@ -4898,14 +4923,14 @@ function OfflineDonation() {
                                     placeholder="Payment Date"
                                     type="date"
                                     value={
-                                      donations[0]?.paymentInfo[0].paymentDate
+                                      donationsGift[0]?.paymentInfo[0].paymentDate
                                     }
                                     onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
+                                      handlePaymentInfoChangeGift(event, 0, 0)
                                     }
                                   />
                                   {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].paymentDate') {
+                                    if (error.field === 'donationGift[0].paymentInfo[0].paymentDate') {
                                       return <div key={index} className="error-message red-text">{error.message}</div>;
                                     }
                                     return null;
@@ -4922,16 +4947,16 @@ function OfflineDonation() {
                                     name="amount"
                                     placeholder="Amount"
                                     type="number"
-                                    value={donations[0]?.paymentInfo[0].amount}
+                                    value={donationsGift[0]?.paymentInfo[0].amount}
                                     onChange={(event) => {
                                       if (event.target.value < 0) {
                                         event.target.value = 0;
                                       }
-                                      handlePaymentInfoChange(event, 0, 0);
+                                      handlePaymentInfoChangeGift(event, 0, 0);
                                     }}
                                   />
                                   {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].amount') {
+                                    if (error.field === 'donationsGift[0].paymentInfo[0].amount') {
                                       return <div key={index} className="error-message red-text">{error.message}</div>;
                                     }
                                     return null;
@@ -4959,9 +4984,9 @@ function OfflineDonation() {
                                     <select
                                       name="paymentMode"
                                       className=" form-control-inside form-select"
-                                      value={donations[0].paymentInfo[1].paymentMode}
+                                      value={donationsGift[0].paymentInfo[1].paymentMode}
                                       onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
+                                        handlePaymentInfoChangeGift(event, 0, 1)
                                       }
                                     >
                                       <option selected>Donar Type</option>
@@ -4980,9 +5005,9 @@ function OfflineDonation() {
                                       name="bankName"
                                       placeholder="Bank Name"
                                       type="text"
-                                      value={donations[0]?.paymentInfo[1].bankName}
+                                      value={donationsGift[0]?.paymentInfo[1].bankName}
                                       onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
+                                        handlePaymentInfoChangeGift(event, 0, 1)
                                       }
                                     />
                                   </div>
@@ -4997,9 +5022,9 @@ function OfflineDonation() {
                                       name="chqORddNo"
                                       placeholder="Chq/DD No."
                                       type="text"
-                                      value={donations[0]?.paymentInfo[1].chqORddNo}
+                                      value={donationsGift[0]?.paymentInfo[1].chqORddNo}
                                       onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
+                                        handlePaymentInfoChangeGift(event, 0, 1)
                                       }
                                     />
                                   </div>
@@ -5015,10 +5040,10 @@ function OfflineDonation() {
                                       placeholder="Chq/DD Date"
                                       type="date"
                                       value={
-                                        donations[0]?.paymentInfo[1].chqORddDate
+                                        donationsGift[0]?.paymentInfo[1].chqORddDate
                                       }
                                       onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
+                                        handlePaymentInfoChangeGift(event, 0, 1)
                                       }
                                     />
                                   </div>
@@ -5034,10 +5059,10 @@ function OfflineDonation() {
                                       placeholder="Payment Date"
                                       type="date"
                                       value={
-                                        donations[0]?.paymentInfo[1].paymentDate
+                                        donationsGift[0]?.paymentInfo[1].paymentDate
                                       }
                                       onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
+                                        handlePaymentInfoChangeGift(event, 0, 1)
                                       }
                                     />
                                   </div>
@@ -5052,12 +5077,12 @@ function OfflineDonation() {
                                       name="amount"
                                       placeholder="Amount"
                                       type="number"
-                                      value={donations[0]?.paymentInfo[1].amount}
+                                      value={donationsGift[0]?.paymentInfo[1].amount}
                                       onChange={(event) => {
                                         if (event.target.value < 0) {
                                           event.target.value = 0;
                                         }
-                                        handlePaymentInfoChange(event, 0, 1);
+                                        handlePaymentInfoChangeGift(event, 0, 1);
                                       }}
                                     />
                                   </div>

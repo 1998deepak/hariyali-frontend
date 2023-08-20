@@ -470,17 +470,10 @@ function OnlineDonation() {
       console.log(packageData);
   
       const parsedData = JSON.parse(response.data);
+
+      let data = parsedData.map((item)=>({packageName:item.package_name,bouquetPrice: item.bouquet_price,NoOfBouquets:0,amount:0}))
   
-      parsedData.forEach((item, index) => {
-        packageData[index].packageName = item.package_name;
-        packageData[index].bouquetPrice = item.bouquet_price;
-        packageData[index].NoOfBouquets = 0;
-        // packageData[index].maintenanceCost = 0;
-        packageData[index].amount = 0;
-      });
-  
-      console.log(packageData);
-      setPackageData(packageData);
+      setPackageData(data);
     } else {
       toast.error(response?.message);
     }
