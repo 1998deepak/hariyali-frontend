@@ -11,6 +11,7 @@ import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
 
 function OfflineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
+  const [donationType1, setDonationType1] = useState("Gift-Donate");
   const [generalDonation, setGeneralDonation] = useState(null);
   const [newEmail, setNewEmail] = useState(null);
 
@@ -111,6 +112,35 @@ function OfflineDonation() {
       ],
     },
   ];
+  const intialDonationsGift = [
+    {
+      donationType: donationType1,
+      donationMode: "offline",
+      donationEvent: "",
+      totalAmount: 0,
+      generalDonation: null,
+      userPackage: [],
+      recipient: [],
+      paymentInfo: [
+        {
+          paymentMode: "",
+          bankName: "",
+          chqORddNo: "",
+          chqORddDate: "",
+          paymentDate: "",
+          amount: 0,
+        },
+        {
+          paymentMode: "",
+          bankName: "",
+          chqORddNo: "",
+          chqORddDate: "",
+          paymentDate: "",
+          amount: 0,
+        },
+      ],
+    },
+  ];
   const initialRecipientData = [
     {
       firstName: "",
@@ -147,6 +177,8 @@ function OfflineDonation() {
   const [address, setAddress] = useState(initialAddress);
 
   const [donations, setDonations] = useState(intialDonations);
+
+  const [donationsGift, setDonationsGift] = useState(intialDonationsGift);
 
   const [recipient, setRecipient] = useState(initialRecipientData);
 
@@ -274,9 +306,7 @@ function OfflineDonation() {
         validationErrors.push({ field: "address[" + i + "].city", message: "City should only contain alphabets" });
       }
 
-      if (/^\d+$/.test(addr?.postalCode)) {
-        validationErrors.push({ field: "address[" + i + "].postalCode", message: "Postal Code should only contain numbers" });
-      }else if ((addr?.postalCode).length > 6) {
+       if ((addr?.postalCode).length > 6) {
         validationErrors.push({ field: "address[" + i + "].postalCode", message: "Postal Code should only contain six numbers" });
       }
     }
@@ -827,14 +857,72 @@ function OfflineDonation() {
   console.log(address[0]?.street1);
   console.log(userData.user.emailId);
 
+
+  //Donation for Self Donate
+  const createDonationGift = async (e, userData) => {
+    e.preventDefault();
+
+  //   const isValid = validate();
+  //   console.log("isValid:", isValid);
+
+
+    //if (isValid) {
+    const updatedDonations = [...donationsGift];
+    const filteredPackages = packageData.filter((pkg) => pkg.NoOfBouquets > 0);
+    console.log(filteredPackages);
+    updatedDonations[0].userPackage = filteredPackages;
+
+    const formData = {
+      formData: {
+        user: {
+          emailId: userData?.user?.emailId,
+          donorId: userData?.user?.donorId,
+          donations: updatedDonations.map((donation) => {
+            const donationData = {
+              ...donation,
+              paymentInfo: donation.paymentInfo.slice(0, 1), // Keep only the first payment info record
+            };
+            console.log(donation.donationType);
+            if (donation.donationType === "Self-Donate") {
+              donationData.recipient = []; // Exclude recipient data
+              toast.success("Self-Donation Succesfully Saved");
+            } else if (donation.donationType === "Gift-Donate") {
+              donationData.recipient = recipient;
+              toast.success("Gift-Donation Succesfully Saved");
+            }
+            return donationData;
+          }),
+        },
+      },
+    };
+
+
+    const response = await DonationService.AddNewDonation(formData);
+    console.log(response);
+    if (response?.status === SUCCESS) {
+      console.log("Create Donation: "+JSON.stringify(response))
+      toast.success(response?.message);
+    } else {
+      toast.error(response?.message);
+    }
+  
+    console.log(donations);
+    console.log(formData);
+    console.log(updatedDonations);
+    console.log();
+  //}
+  console.log("Not Working !")
+  };
+
+  //Donation for Self Donate
   const createDonation = async (e, userData) => {
     e.preventDefault();
 
-    const isValid = validate();
-    console.log("isValid:", isValid);
+  //   const isValid = validate();
+  //   console.log("isValid:", isValid);
 
 
-    if (isValid) {
+    //if (isValid) {
     const updatedDonations = [...donations];
     const filteredPackages = packageData.filter((pkg) => pkg.NoOfBouquets > 0);
     console.log(filteredPackages);
@@ -868,9 +956,8 @@ function OfflineDonation() {
     const response = await DonationService.AddNewDonation(formData);
     console.log(response);
     if (response?.status === SUCCESS) {
+      console.log("Create Donation: "+JSON.stringify(response))
       toast.success(response?.message);
-
-
     } else {
       toast.error(response?.message);
     }
@@ -879,7 +966,8 @@ function OfflineDonation() {
     console.log(formData);
     console.log(updatedDonations);
     console.log();
-  }
+  //}
+  console.log("Not Working !")
   };
 
   console.log(userData?.user?.firstName);
@@ -4959,7 +5047,7 @@ function OfflineDonation() {
                         <button
                           type="submit"
                           className="mt20 mr10 webform-button--submit"
-                          onClick={(e) => createDonation(e, userData)}
+                          onClick={(e) => createDonationGift(e, userData)}
                         >
                           Create Donate
                         </button>
