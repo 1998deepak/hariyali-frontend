@@ -8,6 +8,13 @@ import Donateslid from "../../../../assets/img/slider/Donateslid.jpg";
 import { DonationService } from "../../../../services/donationService/donation.service";
 import { SUCCESS } from "../../../constants/constants";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
+import Select from 'react-select';
+import SearchWithSuggestions from "../../../common/searchComponent/SearchWithSuggestions";
+
+const options = [
+  { value: '110199', label: '110199' },
+  { value: '765396249428', label: '765396249428' },
+];
 
 function OfflineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
@@ -181,6 +188,12 @@ function OfflineDonation() {
   const [donationsGift, setDonationsGift] = useState(intialDonationsGift);
 
   const [recipient, setRecipient] = useState(initialRecipientData);
+
+  const [selectedDonarId, setSelectedDonarId] = useState(null);
+
+  const [donarIdList, setDonarIdList] = useState([]);
+
+
 
 
   function hasValues(obj) {
@@ -372,30 +385,11 @@ function OfflineDonation() {
     return validationErrors.length === 0;
   };
 
-
-
-
-  console.log(errors);
-
-  // console.log(errors.map((error) => error.message).join(", "));
-
-
   {
     errors.length > 0 && (
       <p>{errors.map(error => `${error.field}: ${error.message}`).join(', ')}</p>
     )
   }
-
-
-  // console.log(errors[0].paymentMode);
-
-
-
-
-
-
-  //  console.log(errors[0].paymentInfo[0].amount);
-
 
 
 
@@ -511,6 +505,7 @@ function OfflineDonation() {
 
   useEffect(() => {
     getAllPackages();
+    getDonarIdList();
   }, []);
   const getAllPackages = async () => {
     const response = await DonationService.getAllPackages();
@@ -531,7 +526,16 @@ function OfflineDonation() {
       toast.error(response?.message);
     }
   };
-  console.log(packageData);
+
+  const getDonarIdList = async () => {
+    const response = await DonationService.getAllDonarId();
+    if (response?.status === 200) {
+      // let data = response.data.map((item)=> ({ label: item, value: item }))
+      setDonarIdList(response.data);
+    } else {
+      toast.error(response?.message);
+    }
+  };
 
   const stateOptions = [
     "Andhra Pradesh",
@@ -824,10 +828,9 @@ function OfflineDonation() {
 
 
   // get Detail by donar ID
-  const handleDonarIdBlur = async (e) => {
-    e.preventDefault();
-    const donorId = e.target.value;
-    let response = await DonationService.getDetailsByDonorId(donorId);
+  const handleDonarIdBlur = async (donarId) => {
+    console.log(donarId);
+    let response = await DonationService.getDetailsByDonorId(donarId);
     console.log("API Response:", response);
 
     if (response?.status === "Success") {
@@ -847,6 +850,9 @@ function OfflineDonation() {
 
       setAddress(address);
     } else if (response?.statusCode === 409) {
+      toast.error(response?.message);
+    }else{
+      console.log(response);
       toast.error(response?.message);
     }
   };
@@ -928,29 +934,28 @@ function OfflineDonation() {
     console.log(filteredPackages);
     updatedDonations[0].userPackage = filteredPackages;
 
-    const formData = {
-      formData: {
-        user: {
-          emailId: userData?.user?.emailId,
-          donorId: userData?.user?.donorId,
-          donations: updatedDonations.map((donation) => {
-            const donationData = {
-              ...donation,
-              paymentInfo: donation.paymentInfo.slice(0, 1), // Keep only the first payment info record
-            };
-            console.log(donation.donationType);
-            if (donation.donationType === "Self-Donate") {
-              donationData.recipient = []; // Exclude recipient data
-              toast.success("Self-Donation Succesfully Saved");
-            } else if (donation.donationType === "Gift-Donate") {
-              donationData.recipient = recipient;
-              toast.success("Gift-Donation Succesfully Saved");
-            }
-            return donationData;
-          }),
+      const formData = {
+        formData: {
+          user: {
+            emailId: userData?.user?.emailId,
+            donorId: userData?.user?.donorId,
+            donations: updatedDonations.map((donation) => {
+              const donationData = {
+                ...donation,
+                paymentInfo: donation.paymentInfo.slice(0, 1), // Keep only the first payment info record
+              };
+              console.log(donation.donationType);
+              if (donation.donationType === "Self-Donate") {
+                donationData.recipient = []; // Exclude recipient data
+              } else if (donation.donationType === "Gift-Donate") {
+                donationData.recipient = recipient;
+              }
+
+              return donationData;
+            }),
+          },
         },
-      },
-    };
+      };
 
 
     const response = await DonationService.AddNewDonation(formData);
@@ -970,7 +975,17 @@ function OfflineDonation() {
   console.log("Not Working !")
   };
 
-  console.log(userData?.user?.firstName);
+  // const options =
+  // donarIdList?.map((vendor) => {
+  //   return { label: vendor.plantNm + "---" + vendor.plantCd, value: vendor.plantCd };
+  // });
+
+ 
+
+  const handleDonarIdChange = (selectedOption) => {
+    console.log(selectedOption);
+    setSelectedDonarId(selectedOption);
+  };
 
   return (
     <>
@@ -3013,12 +3028,19 @@ function OfflineDonation() {
                               <div className="row select-label">
                                 <div className="col-4 ">Donar ID</div>
                                 <div className="col-8 p0">
-                                  <input
+                                  <SearchWithSuggestions data={donarIdList} onClickSearch={handleDonarIdBlur}/>
+                                  {/* <Select
+                                    options={donarIdList}
+                                   value={selectedDonarId}
+                                    onBlur={handleDonarIdBlur}
+                                    onChange={handleDonarIdChange}
+                                  /> */}
+                                  {/* <input
                                     className="form-control-inside"
                                     placeholder="Donar ID"
                                     type="text"
                                     onBlur={(e) => handleDonarIdBlur(e)}
-                                  />
+                                  /> */}
                                 </div>
                               </div>
                             </div>
