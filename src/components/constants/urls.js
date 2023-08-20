@@ -27,10 +27,11 @@ export const URLS = {
     GETDONARIDLIST: "/getAllDonarId",
 
     // Web donor
-    GETALLUSERWITHWEBID: "/getAlluserWithWebId",
-    APPROVEDONATION: "/approvedDonation",
+    GETALLUSERWITHWEBID:"/getAlluserWithWebId",
+    APPROVEDONATION:"/approvedDonation",
+    GETPAYMENTINFO:"/searchPaymentByPaymentId/",
 
-//Contact Us Form
-CONTACTUSFORM:"/saveContact"
+    //Contact Us Form
+    CONTACTUSFORM:"/saveContact"
 
 };

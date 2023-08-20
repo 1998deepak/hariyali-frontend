@@ -89,39 +89,54 @@ export const DonationService = {
     return response?.data;
   },
 
-  getAllPackages: async () => {
-    try {
-      const response = await APIService.Instance.get(
-        URLS.GETALLPACKAGE
-      );
-      return response?.data;
-    } catch (err) {
-      if (err?.response?.data) {
-        return err?.response?.data;
-      } else {
-        toast.error(err?.message);
-      }
-    }
-  },
+      getAllPackages: async () => {
+        try {
+           const response = await APIService.Instance.get(
+            URLS.GETALLPACKAGE
+          );
+          return response?.data;
+        } catch (err) {
+          if (err?.response?.data) {
+            return err?.response?.data;
+          }else{
+          toast.error(err?.message);
+           }
+        }
+      },
+    
+      getPaymentInformation: async (paymentId) => {
+        try {
+           const response = await APIService.Instance.get(
+            URLS.GETPAYMENTINFO+paymentId
+          );
+          return response?.data;
+        } catch (err) {
+          if (err?.response?.data) {
+            return err?.response?.data;
+          }else{
+          toast.error(err?.message);
+           }
+        }
+      },
 
-  getAllUserDonation: async () => {
-
-    try {
-      const response = await APIService.Instance.get(
-        URLS.GETALLUSERDONATION
-      );
-      console.log(response);
-      return response;
-
-    } catch (err) {
-      console.log(err);
-      if (err?.response?.data) {
-        return err?.response;
-      } else {
-        toast.error(err?.message);
-      }
-    }
-  },
+      getAllUserDonation : async () => {
+      
+        try {
+          const response = await APIService.Instance.get(
+            URLS.GETALLUSERDONATION
+          );
+          console.log(response);
+          return response;
+          
+        } catch (err) {
+          console.log(err);
+          if (err?.response?.data) {
+            return err?.response;
+          }else{
+            toast.error(err?.message);
+           }
+        }
+      },
 
 
 
