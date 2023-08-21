@@ -1,31 +1,38 @@
 export const URLS = {
     // login
-    LOGIN:'/loginOtp',
-    LOGOUT:'/logout',
-    SENDMAILFORGETPASSWORD:'/forgetPassword',
-    VERIFYOTP:'/verify-otp/',
- // user
- USERADD: "/userAdd",
- GETBYEMAILID: "/getuser/",
- GETALLPACKAGE:"/getAllPackages",
+    LOGIN: '/loginOtp',
+    LOGOUT: '/logout',
+    SENDMAILFORGETPASSWORD: '/forgetPassword',
+    VERIFYOTP: '/verify-otp/',
+    // user
+    USERADD: "/userAddOffline",
+    USERONLINEADD: "/userAddOnline",
+    GETBYEMAILID: "/getuser/",
+    GETALLPACKAGE: "/getAllPackages",
 
-// GET USER DETAILS BY DONOR ID
-GETUSERDETAILSBYDONORID:"/getUserDetailsByDonorId/",
-ADDNEWDONATIONS:"/newDonation",
+    // GET USER DETAILS BY DONOR ID
+    GETUSERDETAILSBYDONORID: "/getUserDetailsByDonorId/",
+    ADDNEWDONATIONS: "/newDonation",
 
- //  Donar
-GETALLUSERDONATION:"/getAlluser",
-GETALLDONATIONOFUSER:"/getAllDonationOfUser/",
-GETDONATIONBYID:"/getDonationById/",
-GETUSERDETAILS:"/getUserDetails/",
-UPDATEUSER:"/updateUser",
-UPDATEDONATIONOFUSER:"/updateDonation",
+    //opt
+    SENDOTP: "/sendOtp",
+    VERIFYOTPONLINE: "/verify-otp",
 
-// Web donor
-GETALLUSERWITHWEBID:"/getAlluserWithWebId",
-APPROVEDONATION:"/approvedDonation",
+    //  Donar
+    GETALLUSERDONATION: "/getAlluser",
+    GETALLDONATIONOFUSER: "/getAllDonationOfUser/",
+    GETDONATIONBYID: "/getDonationById/",
+    GETUSERDETAILS: "/getUserDetails/",
+    UPDATEUSER: "/updateUser",
+    UPDATEDONATIONOFUSER: "/updateDonation",
+    GETDONARIDLIST: "/getAllDonarId",
 
-//Contact Us Form
-CONTACTUSFORM:"/saveContact"
+    // Web donor
+    GETALLUSERWITHWEBID: "/getAlluserWithWebId",
+    APPROVEDONATION: "/approvedDonation",
+    GETPAYMENTINFO: "/searchPaymentByPaymentId/",
+
+    //Contact Us Form
+    CONTACTUSFORM: "/saveContact"
 
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Container, Row, Tab, Tabs } from "react-bootstrap";
+import { Button, Container, Form, Modal, Row, Tab, Tabs } from "react-bootstrap";
 import Captcha from "../user/Captcha";
 import CaptchaGift from "../user/CaptchaGift";
 import Donateslid from "../../../assets/img/slider/Donateslid.jpg";
@@ -14,7 +14,17 @@ function OnlineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
   const [generalDonation, setGeneralDonation] = useState(null);
   const [newEmail, setNewEmail] = useState(null);
+  const [gatewayConfiguration, setGatewayConfiguration] = useState(null);
 
+  const [donation, setDonation] = useState("");
+
+  const [validatePopup, setValidatePopup] = useState({});
+  const [show, setShow] = useState(false);
+  const [validSelfUser, setValidSelfUser] = useState(false);
+  const [validGiftUser, setValidGiftUser] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const initialPackageData = [
     {
@@ -31,7 +41,7 @@ function OnlineDonation() {
       // maintenanceCost: "",
       amount: "",
     },
-   
+
   ];
 
   const initialUserData = {
@@ -128,6 +138,11 @@ function OnlineDonation() {
 
   const [recipient, setRecipient] = useState(initialRecipientData);
 
+  const [userEmail, setUserEmail] = useState(null);
+  const [giftUserEmail, setGiftUserEmail] = useState(null);
+
+  const [otp, setOtp] = useState(null);
+
 
   function hasValues(obj) {
     for (let key in obj) {
@@ -169,11 +184,12 @@ function OnlineDonation() {
       validationErrors.push({ field: "userData.user.mobileNo", message: "Mobile Number must contain exactly 10 digits and no alphabetic characters" });
     }
 
-    if (!userData?.user?.emailId) {
-      validationErrors.push({ field: "userData.user.emailId", message: "Email ID is required" });
-    } else if (!/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(userData.user.emailId)) {
-      validationErrors.push({ field: "userData.user.emailId", message: "Invalid Email ID" });
-    }
+    // if (!userData?.user?.emailId) {
+    //   validationErrors.push({ field: "userData.user.emailId", message: "Email ID is required" });
+    // } 
+    // else if (!/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(userData.user.emailId)) {
+    //   validationErrors.push({ field: "userData.user.emailId", message: "Invalid Email ID" });
+    // }
 
     if (!userData?.user?.donarType) {
       validationErrors.push({ field: "userData.user.donarType", message: "Donor Type is required" });
@@ -309,30 +325,11 @@ function OnlineDonation() {
   };
 
 
-
-
-  console.log(errors);
-
-  // console.log(errors.map((error) => error.message).join(", "));
-
-
   {
     errors.length > 0 && (
       <p>{errors.map(error => `${error.field}: ${error.message}`).join(', ')}</p>
     )
   }
-
-
-  // console.log(errors[0].paymentMode);
-
-
-
-
-
-
-  //  console.log(errors[0].paymentInfo[0].amount);
-
-
 
 
 
@@ -344,8 +341,6 @@ function OnlineDonation() {
 
 
     if (isValid) {
-      console.log(isValid);
-      console.log(donationType);
       let updatedUserPackage = [];
       packageData.map((item) => {
         if (item.NoOfBouquets && item.amount) {
@@ -426,6 +421,7 @@ function OnlineDonation() {
       // Send the form data as JSON
       console.log(formData);
       console.log(JSON.stringify(formData));
+      console.log("Donation: "+ JSON.stringify(formData.formData.user.donations[0]))
 
       setNewEmail(formData.formData.user.emailId);
 
@@ -433,11 +429,12 @@ function OnlineDonation() {
       const response = await DonationService.AddOnlineuser(formData);
       console.log(response);
       if (response?.status === SUCCESS) {
-        toast.success(response?.message);
+        // toast.success(response?.message);
+        setGatewayConfiguration(response);
 
-        // setTimeout(() => {
-        //   // navigate("/ModelView");
-        // }, 2000);
+        setTimeout(() => {
+          document.getElementById("gatewayForm").submit();
+        }, 1000);
         // // clearForm(e);
       } else {
         toast.error(response?.message);
@@ -446,33 +443,45 @@ function OnlineDonation() {
   };
 
   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('orderId');
+    if (orderId) {
+      getPaymentInformation(orderId);
+    }
     getAllPackages();
   }, []);
+
+  const getPaymentInformation = async (paymentId) => {
+    const response = await DonationService.getPaymentInformation(paymentId);
+    if (response?.status === 'Success') {
+      console.log(response);
+
+      if (response?.data?.paymentStatus == 'Success') {
+        toast.success("Donation payment successful, payment reference no " + response?.data?.bankPaymentRefNo);
+      } else {
+        toast.error(response?.data?.remark);
+      }
+    } else {
+      toast.error(response?.message);
+    }
+  }
+
   const getAllPackages = async () => {
     const response = await DonationService.getAllPackages();
     if (response?.status === 'Success') {
       console.log(response);
       let packageData = [...initialPackageData];
       console.log(packageData);
-  
+
       const parsedData = JSON.parse(response.data);
-  
-      parsedData.forEach((item, index) => {
-        packageData[index].packageName = item.package_name;
-        packageData[index].bouquetPrice = item.bouquet_price;
-        packageData[index].NoOfBouquets = 0;
-        // packageData[index].maintenanceCost = 0;
-        packageData[index].amount = 0;
-      });
-  
-      console.log(packageData);
-      setPackageData(packageData);
+
+      let data = parsedData.map((item) => ({ packageName: item.package_name, bouquetPrice: item.bouquet_price, NoOfBouquets: 0, amount: 0 }))
+
+      setPackageData(data);
     } else {
       toast.error(response?.message);
     }
   };
-  
-  console.log(packageData);
 
   const stateOptions = [
     "Andhra Pradesh",
@@ -708,57 +717,92 @@ function OnlineDonation() {
     }
   };
 
-  const handleBlur = async (e) => {
-    e.preventDefault();
-    console.log("Hii");
-    console.log(e.target.value);
-    const emailId = e.target.value;
-    let response = await DonationService.getDetailsByEmailId(emailId);
+  const handleBlur = async (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    if (value) {
+      getUserInfo(value, name);
+    }
 
-    console.log(response);
+  };
+
+  const getUserInfo = async (emailId, type) => {
+    let response = await DonationService.getDetailsByEmailId(emailId);
     if (response?.status === "Success") {
       toast.success(response?.message);
-      console.log(response?.data);
-      // console.log(formData.formData.user.address);
-
-
-
-
       let addr = [...initialAddress];
       if (hasValues(response.data.address[0])) {
         addr[0] = response.data.address[0];
       }
-      // console.log(formData.formData.user.address);
-      console.log(hasValues(response.data.address[1]));
       if (hasValues(response.data.address[1])) {
 
         addr[1] = response.data.address[1];
       }
-      console.log(addr);
       setAddress(addr);
-      // console.log(formData);
       const formData = {
         formData: {
           user: response?.data,
         },
       };
-      console.log(response?.data.donations[0].paymentInfo);
-
-      console.log(formData.formData.user.firstName);
-      console.log(formData.formData.user.donations[0].userPackage);
       setPackageData(formData.formData.user.donations[0].userPackage);
       setUserData(formData.formData);
-      setTimeout(() => {
-        // navigate("/ModelView");
-      }, 2000);
+      clearState();
+      setDonation(type)
+      if (type === "self") {
+        setValidSelfUser(true);
+      } else {
+        setValidGiftUser(true);
+      }
     } else if (response?.statusCode === 409) {
       toast.error(response?.message);
+    } else {
+      if (type === "self") {
+        setValidSelfUser(false);
+        setIsDivOpen(true);
+      } else {
+        setValidGiftUser(false);
+        setIsDivOpenGift(true);
+      }
+      
     }
-    // Call your function here or perform any desired actions
+  }
+
+  const sendOtp = async (emailId) => {
+    console.log(emailId);
+    let response = await DonationService.sendOtp(emailId);
+    if (response?.status === "Success") {
+      toast.success(response?.message);
+      handleShow();
+    }
   };
 
+  const verifyOtp = async (event, email, otp) => {
+    event.preventDefault();
+    event.stopPropagation();
+    let validate = {};
+    if (!otp) {
+      validate.otp = "OTP is Required";
+    }
 
-  console.log(userData?.user?.firstName);
+    if (Object.entries(validate).length > 0) {
+      setValidatePopup(validate);
+      return;
+    }
+
+    let response = await DonationService.verifiyOtp(email, otp);
+    if (response?.status === "Success") {
+      toast.success("User Verified Successfully");
+      if (donation === "self") {
+        setIsDivOpen(true);
+      } else {
+        setIsDivOpenGift(true);
+      }
+      clearState();
+      handleClose();
+    }
+
+  };
+
   const [isVisible, setIsVisible] = useState(false);
   const [isCSR, setIsCSR] = useState(false);
   const [isVisibleGift, setIsVisibleGift] = useState(false);
@@ -807,12 +851,36 @@ function OnlineDonation() {
       setIsCSRGift(false);
     }
   };
-  const handleInputFocus = () => {
-    setIsDivOpen(true);
-  };
+
   const handleInputFocusGift = () => {
     setIsDivOpenGift(true);
   };
+
+  //enter key login
+  const handleKeyPress = (event) => {
+    const { name, value } = event.target;
+    if (event.key === "Enter") {
+      if (value) {
+        getUserInfo(value, name);
+      }
+
+    }
+  };
+
+  //enter key login
+  const onChangeUserEmail = (event) => {
+    const { value } = event.target;
+    setUserEmail(value);
+  };
+
+  const onChangeGiftUserEmail = (event) => {
+    const { value } = event.target;
+    setGiftUserEmail(value);
+  };
+
+  const clearState = () => {
+    setOtp("");
+  }
 
   return (
     <>
@@ -910,13 +978,13 @@ function OnlineDonation() {
                           <div className="col-8 p0">
                             <input
                               type="text"
-                              name="user.emailId"
-                              onFocus={handleInputFocus}
-                              value={userData?.user?.emailId}
-                              onBlur={(e) => handleBlur(e)}
-                              onChange={handleChange}
-                              className="form-control"
                               placeholder="Click me to open the div"
+                              name="self"
+                              value={userEmail}
+                              onChange={onChangeUserEmail}
+                              className="form-control"
+                              // onKeyPress={handleKeyPress}
+                              onBlur={(event) => handleBlur(event)}
                             />
                             {errors.map((error, index) => {
                               if (error.field === 'userData.user.emailId') {
@@ -927,7 +995,17 @@ function OnlineDonation() {
 
                           </div>
                         </div>
-                      </div></div> </div>
+                      </div>
+
+                      <div className="col-12">
+                        <Button className="float-right" variant="success"
+                          disabled={!validSelfUser}
+                          onClick={() => sendOtp(userEmail)}
+                        >
+                          Verify User
+                        </Button>
+                      </div>
+                    </div> </div>
                   <div>
                     {isDivOpen && <div>
                       <form className="form-div contact-form-wrap">
@@ -947,7 +1025,6 @@ function OnlineDonation() {
                             </thead>
                             <tbody>
                               {packageData.map((packageItem, index) => {
-                                console.log(index);
                                 return (
                                   <tr key={index}>
                                     <td>{packageItem.packageName}</td>
@@ -1468,7 +1545,7 @@ function OnlineDonation() {
                 </Tab>
                 <Tab eventKey="giftaPlant" title="Gift a Plant">
                   <div className="pageheadingdiv mb10">Gift a Plant</div>
-                
+
                   <form
                     // onSubmit={userAdd}
                     className="form-div contact-form-wrap"
@@ -1531,36 +1608,36 @@ function OnlineDonation() {
                               })}
                             </div>
                           </div> </div> </div>
-                        {isVisibleGift ? (
-                          <div className="row">
-                            <div className="col-6 mb10"><div className="select-label">
-                              <div className="col-4 ">I want to opt</div>
-                              <div className="col-8 p0">
-                                <select
-                                  className=" form-control-inside form-select"
-                                  name="user.donarType"
-                                  // value={userData?.user?.donarType}
-                                  // onChange={handleChange}
-                                  onChange={changeActiveHandlerGift}
-                                >
-                                  <option disabled selected value="">Select Activity</option>
-                                  <option value="csr" >CSR Activity</option>
-                                  <option value="noncsr">NON-CSR Activity</option>
-                                </select>
-                                {errors.map((error, index) => {
-                                  if (error.field === 'userData.user.donarType') {
-                                    return <div key={index} className="error-message red-text">{error.message}</div>;
-                                  }
-                                  return null;
-                                })}
-                              </div></div></div></div>
-                        ) : null}
-                        {isCSRGift ? (
-                          <div className=" mb10"> <p>
-                            For CSR related enquireis please reach us at Gangar Sunny GANGAR.SUNNY@mahindra.com 93224 56789
-                          </p></div>
-                        ) : null}
-                     
+                      {isVisibleGift ? (
+                        <div className="row">
+                          <div className="col-6 mb10"><div className="select-label">
+                            <div className="col-4 ">I want to opt</div>
+                            <div className="col-8 p0">
+                              <select
+                                className=" form-control-inside form-select"
+                                name="user.donarType"
+                                // value={userData?.user?.donarType}
+                                // onChange={handleChange}
+                                onChange={changeActiveHandlerGift}
+                              >
+                                <option disabled selected value="">Select Activity</option>
+                                <option value="csr" >CSR Activity</option>
+                                <option value="noncsr">NON-CSR Activity</option>
+                              </select>
+                              {errors.map((error, index) => {
+                                if (error.field === 'userData.user.donarType') {
+                                  return <div key={index} className="error-message red-text">{error.message}</div>;
+                                }
+                                return null;
+                              })}
+                            </div></div></div></div>
+                      ) : null}
+                      {isCSRGift ? (
+                        <div className=" mb10"> <p>
+                          For CSR related enquireis please reach us at Gangar Sunny GANGAR.SUNNY@mahindra.com 93224 56789
+                        </p></div>
+                      ) : null}
+
 
                     </div>
                     <div>
@@ -1587,9 +1664,13 @@ function OnlineDonation() {
                             <div className="col-8 p0">
                               <input
                                 type="text"
-                                onFocus={handleInputFocusGift}
+                                name="gift"
+                                value={giftUserEmail}
+                                onChange={onChangeGiftUserEmail}
                                 placeholder="Click me to open the div"
                                 className="form-control"
+                                // onKeyPress={handleKeyPress}
+                                onBlur={handleBlur}
                               />
                               {errors.map((error, index) => {
                                 if (error.field === 'userData.user.emailId') {
@@ -1600,7 +1681,16 @@ function OnlineDonation() {
 
                             </div>
                           </div>
-                        </div></div> </div>
+                        </div>
+                        <div className="col-12">
+                          <Button className="float-right" variant="success"
+                            disabled={!validGiftUser}
+                            onClick={() => sendOtp(giftUserEmail)}
+                          >
+                            Verify User
+                          </Button>
+                        </div>
+                      </div> </div>
                     {isDivOpenGift && <div>
                       <div className="actionheadingdiv">
                         Select Your Donation Plan
@@ -2321,9 +2411,61 @@ function OnlineDonation() {
               </Tabs>
             </div>
           </Row>
+          <Modal show={show} onHide={handleClose} backdrop="static"
+            keyboard={false}>
+            <Modal.Header style={{ backgroundColor: "#23aa4a" }} closeButton>
+              <Modal.Title>OTP Verification</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form>
+                <Form.Group className="mb-3" controlId="validate.ControlInput1">
+                  <Form.Label>Email Address</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="name@example.com"
+                    value={donation === "self" ? userEmail : giftUserEmail}
+                    disabled
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="validate.ControlInput2"
+                >
+                  <Form.Label>OTP</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter OTP"
+                    value={otp}
+                    onChange={(event) => setOtp(event.target.value)}
+                    maxLength={6}
+                    required
+                  />{
+                    validatePopup.otp ?
+                      <div className="error-message red-text">{validatePopup.otp}</div> : <></>
+                  }
+                  <Form.Text className="text-muted">
+                    Check Email for OTP if not found click on <Button className="resend-otp-btn" onClick={() => sendOtp(donation === "self" ? userEmail : giftUserEmail)}>RESEND OTP</Button>
+                  </Form.Text>
+                </Form.Group>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="dark" onClick={handleClose}>
+                Close
+              </Button>
+              <Button type="submit" variant="success" onClick={(event) => verifyOtp(event, donation === "self" ? userEmail : giftUserEmail, otp)}>
+                Verify OTP
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </Container>
       </div>
-
+      {gatewayConfiguration != null && (
+        <form method="post" name="redirect" id="gatewayForm" action={gatewayConfiguration.gatewayURL}>
+          <input type="hidden" id="encRequest" name="encRequest" value={gatewayConfiguration.encRequest} />
+          <input type="hidden" name="access_code" id="access_code" value={gatewayConfiguration.accessCode} />
+        </form>
+      )}
       {/* body */}
     </>
   );

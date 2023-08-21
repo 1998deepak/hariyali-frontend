@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 /* @import "https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,400;0,500;1,400&display=swap"; */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+=======
+@import "https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,400;0,500;1,400&display=swap";
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 * {
   margin: 0;
   padding: 0;
@@ -8,11 +12,17 @@
   -webkit-box-sizing: border-box;
 }
 body {
+<<<<<<< HEAD
   /* font-family: "Georama-Regular", sans-serif; */
   font-family: 'Poppins', sans-serif;
   background-color: #fff;
   color: #000;
   /* letter-spacing: 1px; */
+=======
+  font-family: "Georama-Regular", sans-serif;
+  background-color: #fff;
+  color: #000;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 }
 /* width */
 ::-webkit-scrollbar {
@@ -31,17 +41,21 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+<<<<<<< HEAD
 h1,h2,h3,h4,h5,h6{
   line-height: 1.4;
 }
 p{
   line-height: 1.2;
 }
+=======
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 /* body */
 .clearboth {
   clear: both;
 }
 .form-control {
+<<<<<<< HEAD
   /* border-radius: 0; */
 }
 .form-control:focus{
@@ -50,6 +64,13 @@ p{
 /* ul {
   font-family: "Georama-Regular", sans-serif;
 } */
+=======
+  border-radius: 0;
+}
+ul {
+  font-family: "Georama-Regular", sans-serif;
+}
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 .homeinput-div {
   margin-bottom: 17px;
 }
@@ -58,7 +79,11 @@ p{
   margin-right: 10px;
 }
 .homesubmit-div {
+<<<<<<< HEAD
   /* font-family: "Georama", sans-serif; */
+=======
+  font-family: "Georama", sans-serif;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
   font-size: 1rem;
   font-weight: 50;
   border-radius: 0;
@@ -73,7 +98,11 @@ p{
   background: #dd052b;
 }
 .contact-usbtn {
+<<<<<<< HEAD
   /* font-family: "Georama", sans-serif; */
+=======
+  font-family: "Georama", sans-serif;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
   font-weight: 500;
   font-size: 1rem;
   color: #000000;
@@ -87,7 +116,11 @@ p{
   margin-top: 20px;
 }
 .form-label {
+<<<<<<< HEAD
   /* font-family: "Georama-Regular", sans-serif; */
+=======
+  font-family: "Georama-Regular", sans-serif;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
   font-size: 1rem;
   color: #000;
   line-height: 1.5;
@@ -101,7 +134,11 @@ p{
   color: #000000;
   font-size: 1.5rem;
   text-transform: uppercase;
+<<<<<<< HEAD
   /* font-family: "Georama", sans-serif; */
+=======
+  font-family: "Georama", sans-serif;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
   margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2;
@@ -128,20 +165,35 @@ p{
 .heading {
   text-transform: uppercase;
   font-size: 2.25rem;
+<<<<<<< HEAD
   /* font-family: "Georama", sans-serif; */
+=======
+  font-family: "Georama", sans-serif;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 }
 .subheading {
   font-size: 1.125rem;
   line-height: 1.4;
+<<<<<<< HEAD
   /* font-family: "Georama-Regular", sans-serif; */
+=======
+  font-family: "Georama-Regular", sans-serif;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
   color: #000;
 }
 .headinguptext {
   font-size: 1.125rem;
+<<<<<<< HEAD
   /* font-family: "Georama-Regular", sans-serif; */
 }
 p {
   font-size: 1.125rem;
+=======
+  font-family: "Georama-Regular", sans-serif;
+}
+p {
+  font-size: 1rem;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
   line-height: 1.4;
 }
 .pt100 {
@@ -196,6 +248,7 @@ p {
 .pt75 {
   padding-top: 75px;
 }
+<<<<<<< HEAD
 .pb75 {
   padding-bottom: 75px;
 }
@@ -203,6 +256,8 @@ p {
   padding-top:50px;
   padding-bottom: 50px;
 }
+=======
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 .pt10 {
   padding-top: 10px;
 }
@@ -260,7 +315,11 @@ p {
   background-color: #000;
 }
 .bggray {
+<<<<<<< HEAD
   /* background: linear-gradient(to bottom,#fff 0,#23aa4a 100%); */
+=======
+  background-color: #fff;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 }
 .background-gray {
   background-color: #d8dbde;
@@ -338,8 +397,13 @@ input:disabled {
   background-color: #dddddd !important;
 }
 .btn-secondary {
+<<<<<<< HEAD
   /* background-color: #fff !important; */
   /* color: #9f9e9e; */
+=======
+  background-color: #fff !important;
+  color: #9f9e9e;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
   border: 0 !important;
 }
 .learnmore a {
@@ -454,17 +518,26 @@ input:disabled {
 }
 .navbar-expand {
   padding: 0;
+<<<<<<< HEAD
+=======
+  position: fixed;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
   width: 100%;
   background-color: #fff;
   z-index: 99;
 }
 .logo {
+<<<<<<< HEAD
   width: 100%;
   height: auto;
+=======
+  width: 40%;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 }
 .headermenu {
   z-index: 9999;
   background-color: #000;
+<<<<<<< HEAD
   /* position: fixed; */
   width: 100%;
   padding: 10px 50px 0;
@@ -497,6 +570,17 @@ input:disabled {
 .nav-list .nav-item.active a.nav-link,
 .nav-list .nav-item a.nav-link:hover{
   color: #23aa4a;
+=======
+  position: fixed;
+  width: 100%;
+  padding: 0 50px;
+}
+.nav-list .nav-item a {
+  color: #fff;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  font-family: "Georama-Regular", sans-serif;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 }
 .nav-sublist .nav-item {
   font-weight: 600;
@@ -505,7 +589,11 @@ input:disabled {
   margin: 0 11px 0px 11px;
 }
 .menu-button-donet {
+<<<<<<< HEAD
   /* text-transform: uppercase; */
+=======
+  text-transform: uppercase;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
   color: #fff;
   background-color: #23aa4a;
   border-color: #23aa4a;
@@ -528,6 +616,7 @@ input:disabled {
 .topmenu-icon {
   cursor: pointer;
   font-size: 20px;
+<<<<<<< HEAD
   /* border: 1px solid #fff;
   border-radius: 100%; */
   height: 30px;
@@ -536,6 +625,12 @@ input:disabled {
 .topmenu-icon svg {
   /* width: 25px;
   height: 25px; */
+=======
+  border: 1px solid #fff;
+  border-radius: 100%;
+  height: 40px;
+  width: 40px;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 }
 .menu-button-wrapper {
   display: flex;
@@ -544,10 +639,17 @@ input:disabled {
   height: 100%;
 }
 .nav-list {
+<<<<<<< HEAD
   margin-top: 1.5rem;
 }
 .nav-sublist {
   /* padding-top: 15px; */
+=======
+  margin-top: 10px;
+}
+.nav-sublist {
+  padding-top: 15px;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 }
 /* slider */
 .mainslidesubheading {
@@ -591,7 +693,11 @@ input:disabled {
 }
 .sliderup-heading {
   font-size: 18px;
+<<<<<<< HEAD
   /* font-family: "Georama-Regular", sans-serif; */
+=======
+  font-family: "Georama-Regular", sans-serif;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
   text-align: center;
   color: #23aa4a;
 }
@@ -696,6 +802,7 @@ input:disabled {
   font-weight: 600;
   line-height: 25px;
 }
+<<<<<<< HEAD
 .otherpages-heading {  
   /* font-family: "Georama-Regular", sans-serif; */
   font-size: 36px;  
@@ -704,6 +811,15 @@ input:disabled {
   /* line-height: 25px; */
   padding-bottom: 10px;
   text-align: left;
+=======
+.otherpages-heading {
+  margin-bottom: 15px;
+  font-size: 30px;
+  font-family: "Georama-Regular", sans-serif;
+  font-weight: 400;
+  line-height: 25px;
+  padding-bottom: 10px;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 }
 .otherpagesulli ul li {
   line-height: 28px;
@@ -844,7 +960,11 @@ input:disabled {
   font-size: 16px;
   margin-bottom: 8px;
   font-weight: bold;
+<<<<<<< HEAD
   /* font-family: "Georama-Regular", sans-serif; */
+=======
+  font-family: "Georama-Regular", sans-serif;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 }
 .about2div {
   margin-top: 30px;
@@ -996,7 +1116,11 @@ input:disabled {
   margin-top: 0;
   margin-bottom: 1rem;
   font-size: 0.875rem;
+<<<<<<< HEAD
   /* font-family: "Georama-Regular", sans-serif; */
+=======
+  font-family: "Georama-Regular", sans-serif;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
   line-height: 1.625;
   color: #000;
 }
@@ -1009,8 +1133,13 @@ input:disabled {
   text-transform: uppercase;
 }
 textarea.form-control {
+<<<<<<< HEAD
   /* font-family: "georama", sans-serif;
   border: 1px solid #9d9fa2 !important; */
+=======
+  font-family: "georama", sans-serif;
+  border: 1px solid #9d9fa2 !important;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 }
 .contact-heading {
   font-size: 2.25rem;
@@ -1104,7 +1233,14 @@ textarea.form-control {
   margin-top: -10px;
 }
 /* whatwedo */
+<<<<<<< HEAD
 
+=======
+.whatwedo2img {
+  margin-top: 50px;
+  text-align: center;
+}
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 .vertical-timeline-element-content p {
   font-size: 16px !important;
   line-height: 20px !important;
@@ -1117,6 +1253,10 @@ textarea.form-control {
 }
 .whatwe-approachdiv {
   margin-bottom: 40px;
+<<<<<<< HEAD
+=======
+  text-align: center;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 }
 .whatwe-approach {
   min-height: 100px;
@@ -1161,6 +1301,7 @@ textarea.form-control {
 }
 /* footer */
 .footer-divheading {
+<<<<<<< HEAD
   /* font-family: "Georama-Regular", sans-serif; */
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
@@ -1172,6 +1313,15 @@ textarea.form-control {
   font-size: 1rem;
   color: #fff;
   text-decoration: none;
+=======
+  font-family: "Georama-Regular", sans-serif;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+}
+.footer-div ul li {
+  line-height: 25px;
+  font-size: 14px;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 }
 .footerbg {
   background-image: url(../img/footer-bg.jpg);
@@ -1181,11 +1331,17 @@ textarea.form-control {
 }
 .footersocial {
   background-color: #fff;
+<<<<<<< HEAD
   border-radius: 50%;
   width: 45px;
   height: 45px;
   line-height: 45px;
   cursor: pointer;
+=======
+  border-radius: 100px;
+  width: 50px;
+  height: 50px;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
   text-align: center;
 }
 .footersocial-div {
@@ -1193,6 +1349,7 @@ textarea.form-control {
 }
 .footersocial svg {
   color: #3b7b15;
+<<<<<<< HEAD
   /* margin-top: 13px; */
   font-size: 22px;
 }
@@ -1203,6 +1360,19 @@ textarea.form-control {
   padding: 15px 15px;
   text-align: center;
   letter-spacing: 1px;
+=======
+  margin-top: 13px;
+  font-size: 26px;
+}
+.copyright {
+  font-family: "Georama-Regular", sans-serif;
+  background-color: #000;
+  font-size: 11px;
+  border-top: 3px solid #fff;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  text-align: center;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
 }
 /* login */
 .logindiv {
@@ -1210,7 +1380,11 @@ textarea.form-control {
   width: 100%;
 }
 .contact-form-wrap h5 {
+<<<<<<< HEAD
   /* font-family: "Georama-Regular", sans-serif; */
+=======
+  font-family: "Georama-Regular", sans-serif;
+>>>>>>> 4df81f386c7ed36086f66afed080f9b5a069b3f8
   font-size: 1.25rem;
   color: #23aa4a;
   line-height: 1.5;
@@ -2559,4 +2733,12 @@ address a{
   .nav-sublist {
     padding-top: 6px;
   }
+}
+
+.resend-otp-btn {
+  background: white;
+  color: blue;
+  padding: 0;
+  text-decoration: underline;
+  border: none;
 }

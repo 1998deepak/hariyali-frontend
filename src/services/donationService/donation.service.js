@@ -5,11 +5,30 @@ import { toast } from "react-toastify";
 
 
 export const DonationService = {
-    Adduser: async (data,config) => {
+  Adduser: async (data, config) => {
+    console.log(data);
+    try {
+      const response = await APIService.Instance.post(
+        URLS.USERADD,
+        data,
+        config
+      );
+      return response?.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+        //   toast.error(err?.message);
+        console.log("Hello");
+           }
+        }
+      },
+
+      AddOnlineuser: async (data,config) => {
         console.log(data);
         try {
           const response = await APIService.Instance.post(
-            URLS.USERADD,
+            URLS.USERONLINEADD,
             data,
             config
           );
@@ -18,11 +37,11 @@ export const DonationService = {
           if (err?.response?.data) {
             return err?.response?.data;
           }else{
-        //   toast.error(err?.message);
         console.log("Hello");
            }
         }
       },
+
       AddOnlineuser: async (data,config) => {
         console.log(data);
         try {
@@ -41,24 +60,7 @@ export const DonationService = {
            }
         }
       },
-      AddOnlineuser: async (data,config) => {
-        console.log(data);
-        try {
-          const response = await APIService.Instance.post(
-            URLS.USERONLINEADD,
-            data,
-            config
-          );
-          return response?.data;
-        } catch (err) {
-          if (err?.response?.data) {
-            return err?.response?.data;
-          }else{
-        //   toast.error(err?.message);
-        console.log("Hello");
-           }
-        }
-      },
+
  AddOnlineuser: async (data,config) => {
       console.log(data);
       try {
@@ -77,36 +79,15 @@ export const DonationService = {
          }
       }
     },
-    
-      getDetailsByEmailId: async (emailId) => {
-        console.log(emailId);
-        const response = await APIService.Instance.get(
-          URLS.GETBYEMAILID+emailId
-        );
-        console.log(response);
-        return response?.data;
-        // try {
-        //   const response = await APIService.Instance.get(
-        //     URLS.GETBYEMAILID+emailId
-           
-        //   );
-        //   console.log(response.data.message);
-        //   console.log(JSON.stringify(response));
-        //   // return response;
-        // } catch (response) {
-        //   console.log(response);
-        //   // if (err?.response?.data) {
-            
-        //   //   return err?.response?.data;
-            
 
-        //   }
-        //   // else{
-        //   // toast.error(err?.message);
-          
-        //   //  }
-        // // }
-      },
+  getDetailsByEmailId: async (emailId) => {
+    console.log(emailId);
+    const response = await APIService.Instance.get(
+      URLS.GETBYEMAILID + emailId
+    );
+    console.log(response);
+    return response?.data;
+  },
 
       getAllPackages: async () => {
         try {
@@ -123,6 +104,21 @@ export const DonationService = {
         }
       },
     
+      getPaymentInformation: async (paymentId) => {
+        try {
+           const response = await APIService.Instance.get(
+            URLS.GETPAYMENTINFO+paymentId
+          );
+          return response?.data;
+        } catch (err) {
+          if (err?.response?.data) {
+            return err?.response?.data;
+          }else{
+          toast.error(err?.message);
+           }
+        }
+      },
+
       getAllUserDonation : async () => {
       
         try {
@@ -144,114 +140,137 @@ export const DonationService = {
 
 
 
-      getAllDonationOfUser: async (emailId) => {
-        console.log(emailId);
-        const response = await APIService.Instance.get(
-          URLS.GETALLDONATIONOFUSER+emailId
-        );
-        console.log(response.data);
-        return response?.data;
-        
-      },
+  getAllDonationOfUser: async (emailId) => {
+    console.log(emailId);
+    const response = await APIService.Instance.get(
+      URLS.GETALLDONATIONOFUSER + emailId
+    );
+    console.log(response);
+    return response?.data;
 
-      getDonationById: async (donationId) => {
-        console.log(donationId);
-        const response = await APIService.Instance.get(
-          URLS.GETDONATIONBYID+donationId
-        );
-        console.log(response);
-        return response?.data;
-        
-      },
+  },
 
-      getUserDetails: async (emailId) => {
-        console.log(emailId);
-        const response = await APIService.Instance.get(
-          URLS.GETUSERDETAILS+emailId
-        );
-        console.log(response);
-        return response?.data;
-        
-      },
+  getDonationById: async (donationId) => {
+    console.log(donationId);
+    const response = await APIService.Instance.get(
+      URLS.GETDONATIONBYID + donationId
+    );
+    console.log(response);
+    return response?.data;
 
+  },
+
+  getUserDetails: async (emailId) => {
+    console.log(emailId);
+    const response = await APIService.Instance.get(
+      URLS.GETUSERDETAILS + emailId
+    );
+    console.log(response);
+    return response?.data;
+  },
 
 
-      updateUser: async (emailId,formData) => {
-        console.log(emailId);
-        console.log(formData);
-        try {
-          const response = await APIService.Instance.put(
-            URLS.UPDATEUSER+"?emailId="+emailId, formData
-          );
-          console.log(response);
-          return response?.data;
-        } catch (err) {
-          if (err?.response?.data) {
-            return err?.response?.data;
-          }else{
+
+  updateUser: async (emailId, formData) => {
+    console.log(emailId);
+    console.log(formData);
+    try {
+      const response = await APIService.Instance.put(
+        URLS.UPDATEUSER + "?emailId=" + emailId, formData
+      );
+      console.log(response);
+      return response?.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
         //   toast.error(err?.message);
         console.log("Hello");
-           }
-        }
-      },
-
-
-
-
-      updateDonation: async (formData) => {
-      
-        console.log(formData);
-        try {
-          const response = await APIService.Instance.post(
-            URLS.UPDATEDONATIONOFUSER,formData
-          );
-          console.log(response);
-          return response?.data;
-        } catch (err) {
-          if (err?.response?.data) {
-            return err?.response?.data;
-          }else{
-        //   toast.error(err?.message);
-        console.log("Hello");
-           }
-        }
-      },
-
-
-
-
-
-
-      // get user details by donor id
-      getDetailsByDonorId: async (donorId) => {
-        console.log(donorId);
-        const response = await APIService.Instance.get(
-          URLS.GETUSERDETAILSBYDONORID+donorId
-        );
-        console.log(response);
-        return response?.data;
-    },
-
-
-
-    AddNewDonation: async (data,config) => {
-      console.log(data);
-      try {
-        const response = await APIService.Instance.post(
-          URLS.ADDNEWDONATIONS,
-          data,
-          config
-        );
-        console.log(response);
-        return response?.data;
-      } catch (err) {
-        if (err?.response?.data) {
-          return err?.response?.data;
-        }else{
-      //   toast.error(err?.message);
-      console.log("Hello");
-         }
       }
-    },
+    }
+  },
 
+
+  updateDonation: async (formData) => {
+
+    console.log(formData);
+    try {
+      const response = await APIService.Instance.post(
+        URLS.UPDATEDONATIONOFUSER, formData
+      );
+      console.log(response);
+      return response?.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+        //   toast.error(err?.message);
+        console.log("Hello");
+      }
+    }
+  },
+
+
+  // get user details by donor id
+  getDetailsByDonorId: async (donorId) => {
+    console.log(donorId);
+    const response = await APIService.Instance.get(
+      URLS.GETUSERDETAILSBYDONORID + donorId
+    );
+    console.log(response);
+    return response?.data;
+  },
+
+
+
+  AddNewDonation: async (data, config) => {
+    console.log(data);
+    try {
+      const response = await APIService.Instance.post(
+        URLS.ADDNEWDONATIONS,
+        data,
+        config
+      );
+      console.log(response);
+      return response?.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+        //   toast.error(err?.message);
+        console.log("Hello");
+      }
+    }
+  },
+
+  getAllDonarId: async () => {
+    try {
+      const response = await APIService.Instance.get(
+        URLS.GETDONARIDLIST
+      );
+      return response;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+        toast.error(err?.message);
+      }
+    }
+  },
+
+  sendOtp: async (email) => {
+    console.log(email);
+    const response = await APIService.Instance.post(
+      URLS.SENDOTP+`?email=${email}`,
+    );
+    return response?.data;
+  },
+
+  verifiyOtp: async (userId,otp) => {
+    console.log(userId);
+    const response = await APIService.Instance.post(
+      URLS.VERIFYOTPONLINE+`?donarIdOrEmail=${userId}&otp=${otp}`,
+    );
+    return response?.data;
   }
+}
