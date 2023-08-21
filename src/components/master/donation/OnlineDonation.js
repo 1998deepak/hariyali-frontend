@@ -982,6 +982,7 @@ function OnlineDonation() {
                               name="self"
                               value={userEmail}
                               onChange={onChangeUserEmail}
+                              className="form-control"
                               // onKeyPress={handleKeyPress}
                               onBlur={(event) => handleBlur(event)}
                             />
@@ -1033,6 +1034,7 @@ function OnlineDonation() {
                                       <input
                                         type="number"
                                         name="NoOfBouquets"
+                                        className="form-control"
                                         value={packageItem.NoOfBouquets}
                                         onChange={(event) => {
                                           if (event.target.value < 0) {
@@ -1065,7 +1067,7 @@ function OnlineDonation() {
                                 <div className="col-4 ">Mobile No.</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     type="text"
                                     name="user.mobileNo"
                                     placeholder="Mobile No."
@@ -1086,7 +1088,7 @@ function OnlineDonation() {
                                 <div className="col-4 "> Organisation</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="user.organisation"
                                     placeholder="Organisation"
                                     type="text"
@@ -1108,7 +1110,7 @@ function OnlineDonation() {
                                 <div className="col-4 ">Prefix</div>
                                 <div className="col-8 p0">
                                   <select
-                                    className=" form-control-inside form-select"
+                                    className=" form-control-inside form-select form-control"
                                     name="user.prefix"
                                     value={userData?.user?.prefix}
                                     onChange={handleChange}
@@ -1132,7 +1134,7 @@ function OnlineDonation() {
                                 <div className="col-4 ">First Name</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     type="text"
                                     name="user.firstName"
                                     placeholder="First Name"
@@ -1153,7 +1155,7 @@ function OnlineDonation() {
                                 <div className="col-4 ">Last Name</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     type="text"
                                     name="user.lastName"
                                     placeholder="Last Name"
@@ -1175,7 +1177,7 @@ function OnlineDonation() {
                                 <div className="col-4 ">PAN card</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="user.panCard"
                                     placeholder="PAN card No."
                                     type="text"
@@ -1210,7 +1212,7 @@ function OnlineDonation() {
                                 <div className="col-4 "> Street 1</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="street1"
                                     placeholder=" Street 1"
                                     type="text"
@@ -1235,7 +1237,7 @@ function OnlineDonation() {
                                 <div className="col-4 "> Street 2</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="street2"
                                     placeholder="Street 2"
                                     type="text"
@@ -1253,7 +1255,7 @@ function OnlineDonation() {
                                 <div className="col-4 "> Street 3</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="street3"
                                     placeholder="Street 3"
                                     type="text"
@@ -1270,7 +1272,7 @@ function OnlineDonation() {
                                 <div className="col-4 ">Country</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="country"
                                     placeholder="Country"
                                     type="text"
@@ -1293,7 +1295,7 @@ function OnlineDonation() {
                                 <div className="col-4 ">State</div>
                                 <div className="col-8 p0">
                                   <select
-                                    className=" form-control-inside form-select"
+                                    className=" form-control-inside form-select form-control"
                                     name="state"
                                     value={address[0]?.state}
                                     onChange={(event) =>
@@ -1321,7 +1323,7 @@ function OnlineDonation() {
                                 <div className="col-4 ">City</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="city"
                                     placeholder="City"
                                     type="text"
@@ -1344,7 +1346,7 @@ function OnlineDonation() {
                                 <div className="col-4 ">Postal Code</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="postalCode"
                                     placeholder="Postal Code"
                                     type="text"
@@ -1376,7 +1378,7 @@ function OnlineDonation() {
                                   <div className="col-4 "> Street 1</div>
                                   <div className="col-8 p0">
                                     <input
-                                      className="form-control-inside"
+                                      className="form-control-inside form-control"
                                       name="street1"
                                       placeholder=" Street 1"
                                       type="text"
@@ -1393,7 +1395,7 @@ function OnlineDonation() {
                                   <div className="col-4 "> Street 2</div>
                                   <div className="col-8 p0">
                                     <input
-                                      className="form-control-inside"
+                                      className="form-control-inside form-control"
                                       name="street2"
                                       placeholder="Street 2"
                                       type="text"
@@ -1410,7 +1412,7 @@ function OnlineDonation() {
                                   <div className="col-4 "> Street 3</div>
                                   <div className="col-8 p0">
                                     <input
-                                      className="form-control-inside"
+                                      className="form-control-inside form-control"
                                       name="street3"
                                       placeholder="Street 3"
                                       type="text"
@@ -1427,7 +1429,7 @@ function OnlineDonation() {
                                   <div className="col-4 ">Country</div>
                                   <div className="col-8 p0">
                                     <input
-                                      className="form-control-inside"
+                                      className="form-control-inside form-control"
                                       name="country"
                                       placeholder="Country"
                                       type="text"
@@ -1444,7 +1446,7 @@ function OnlineDonation() {
                                   <div className="col-4 ">State</div>
                                   <div className="col-8 p0">
                                     <select
-                                      className=" form-control-inside form-select"
+                                      className=" form-control-inside form-select  form-control"
                                       name="state"
                                       value={address[1]?.state}
                                       onChange={(event) =>
@@ -1466,7 +1468,7 @@ function OnlineDonation() {
                                   <div className="col-4 ">City</div>
                                   <div className="col-8 p0">
                                     <input
-                                      className="form-control-inside"
+                                      className="form-control-inside form-control"
                                       name="city"
                                       placeholder="City"
                                       type="text"
@@ -1483,7 +1485,7 @@ function OnlineDonation() {
                                   <div className="col-4 ">Postal Code</div>
                                   <div className="col-8 p0">
                                     <input
-                                      className="form-control-inside"
+                                      className="form-control-inside form-control"
                                       name="postalCode"
                                       placeholder="Postal Code"
                                       type="text"
@@ -1666,6 +1668,7 @@ function OnlineDonation() {
                                 value={giftUserEmail}
                                 onChange={onChangeGiftUserEmail}
                                 placeholder="Click me to open the div"
+                                className="form-control"
                                 // onKeyPress={handleKeyPress}
                                 onBlur={handleBlur}
                               />
@@ -1715,6 +1718,7 @@ function OnlineDonation() {
                                     <input
                                       type="number"
                                       name="NoOfBouquets"
+                                      className="form-control"
                                       value={packageItem.NoOfBouquets}
                                       onChange={(event) => {
                                         if (event.target.value < 0) {
@@ -1763,7 +1767,7 @@ function OnlineDonation() {
                               <div className="col-4 "> Email ID</div>
                               <div className="col-8 p0">
                                 <input
-                                  className="form-control-inside"
+                                  className="form-control-inside form-control"
                                   type="text"
                                   name="user.emailId"
                                   placeholder="Email ID"
@@ -1785,7 +1789,7 @@ function OnlineDonation() {
                               <div className="col-4 ">Mobile No.</div>
                               <div className="col-8 p0">
                                 <input
-                                  className="form-control-inside"
+                                  className="form-control-inside form-control"
                                   type="text"
                                   name="user.mobileNo"
                                   placeholder="Mobile No."
@@ -1806,7 +1810,7 @@ function OnlineDonation() {
                               <div className="col-4 "> Organisation</div>
                               <div className="col-8 p0">
                                 <input
-                                  className="form-control-inside"
+                                  className="form-control-inside form-control"
                                   name="user.organisation"
                                   placeholder="Organisation"
                                   type="text"
@@ -1851,7 +1855,7 @@ function OnlineDonation() {
                               <div className="col-4 ">First Name</div>
                               <div className="col-8 p0">
                                 <input
-                                  className="form-control-inside"
+                                  className="form-control-inside form-control"
                                   type="text"
                                   name="user.firstName"
                                   placeholder="First Name"
@@ -1872,7 +1876,7 @@ function OnlineDonation() {
                               <div className="col-4 ">Last Name</div>
                               <div className="col-8 p0">
                                 <input
-                                  className="form-control-inside"
+                                  className="form-control-inside form-control"
                                   type="text"
                                   name="user.lastName"
                                   placeholder="Last Name"
@@ -1894,7 +1898,7 @@ function OnlineDonation() {
                               <div className="col-4 ">PAN card</div>
                               <div className="col-8 p0">
                                 <input
-                                  className="form-control-inside"
+                                  className="form-control-inside form-control"
                                   name="user.panCard"
                                   placeholder="PAN card No."
                                   type="text"
@@ -1923,7 +1927,7 @@ function OnlineDonation() {
                               <div className="col-4 "> Street 1</div>
                               <div className="col-8 p0">
                                 <input
-                                  className="form-control-inside"
+                                  className="form-control-inside form-control"
                                   name="street1"
                                   placeholder=" Street 1"
                                   type="text"
@@ -1946,7 +1950,7 @@ function OnlineDonation() {
                               <div className="col-4 "> Street 2</div>
                               <div className="col-8 p0">
                                 <input
-                                  className="form-control-inside"
+                                  className="form-control-inside form-control"
                                   name="street2"
                                   placeholder="Street 2"
                                   type="text"
@@ -1964,7 +1968,7 @@ function OnlineDonation() {
                               <div className="col-4 "> Street 3</div>
                               <div className="col-8 p0">
                                 <input
-                                  className="form-control-inside"
+                                  className="form-control-inside form-control"
                                   name="street3"
                                   placeholder="Street 3"
                                   type="text"
@@ -1982,7 +1986,7 @@ function OnlineDonation() {
                               <div className="col-4 ">Country</div>
                               <div className="col-8 p0">
                                 <input
-                                  className="form-control-inside"
+                                  className="form-control-inside form-control"
                                   name="country"
                                   placeholder="Country"
                                   type="text"
@@ -2005,7 +2009,7 @@ function OnlineDonation() {
                               <div className="col-4 ">State</div>
                               <div className="col-8 p0">
                                 <select
-                                  className=" form-control-inside form-select"
+                                  className=" form-control-inside form-select form-control"
                                   name="state"
                                   value={address[0]?.state}
                                   onChange={(event) =>
@@ -2033,7 +2037,7 @@ function OnlineDonation() {
                               <div className="col-4 ">City</div>
                               <div className="col-8 p0">
                                 <input
-                                  className="form-control-inside"
+                                  className="form-control-inside form-control"
                                   name="city"
                                   placeholder="City"
                                   type="text"
@@ -2056,7 +2060,7 @@ function OnlineDonation() {
                               <div className="col-4 ">Postal Code</div>
                               <div className="col-8 p0">
                                 <input
-                                  className="form-control-inside"
+                                  className="form-control-inside form-control"
                                   name="postalCode"
                                   placeholder="Postal Code"
                                   type="text"
@@ -2086,7 +2090,7 @@ function OnlineDonation() {
                                 </div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="street1"
                                     placeholder=" Street 1"
                                     type="text"
@@ -2116,7 +2120,7 @@ function OnlineDonation() {
                                 </div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="street2"
                                     placeholder="Street 2"
                                     type="text"
@@ -2139,7 +2143,7 @@ function OnlineDonation() {
                                 </div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="street3"
                                     placeholder="Street 3"
                                     type="text"
@@ -2159,7 +2163,7 @@ function OnlineDonation() {
                                 <div className="col-4 ">Country</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="country"
                                     placeholder="Country"
                                     type="text"
@@ -2185,7 +2189,7 @@ function OnlineDonation() {
                                 <div className="col-4 ">Statesss</div>
                                 <div className="col-8 p0">
                                   <select
-                                    className=" form-control-inside form-select"
+                                    className=" form-control-inside form-select form-control"
                                     name="state"
                                     value={recipient[0].address[0].state}
                                     onChange={(e) =>
@@ -2221,7 +2225,7 @@ function OnlineDonation() {
                                 <div className="col-4 ">City</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="city"
                                     placeholder="City"
                                     type="text"
@@ -2249,7 +2253,7 @@ function OnlineDonation() {
                                 </div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="postalCode"
                                     placeholder="Postal Code"
                                     type="text"
@@ -2272,7 +2276,7 @@ function OnlineDonation() {
                                 <div className="col-4 ">First Name</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="firstName"
                                     placeholder="First Name"
                                     type="text"
@@ -2295,7 +2299,7 @@ function OnlineDonation() {
                                 <div className="col-4 ">Last Name</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="lastName"
                                     placeholder="Last Name"
                                     type="text"
@@ -2318,7 +2322,7 @@ function OnlineDonation() {
                                 <div className="col-4 ">Mobile No.</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="mobileNo"
                                     placeholder="Mobile No."
                                     type="text"
@@ -2341,7 +2345,7 @@ function OnlineDonation() {
                                 <div className="col-4 ">Email Id</div>
                                 <div className="col-8 p0">
                                   <input
-                                    className="form-control-inside"
+                                    className="form-control-inside form-control"
                                     name="emailId"
                                     placeholder="Email Id"
                                     type="text"

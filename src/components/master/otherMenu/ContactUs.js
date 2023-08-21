@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import "animate.css/animate.min.css";
 import "react-image-gallery/styles/css/image-gallery.css";
 import CaptchaContact from "../user/CaptchaContact";
@@ -102,122 +103,142 @@ function ContactUs() {
   return (
     <>
       {/* body */}
+      <section className="banner banner-about">
+        <div className="title">
+          <h1>Conatct Us</h1>
+        </div>          
+      </section>
       <ToastContainer/>
-      <div className="pt100">
-        <div className="section bggray">
-          <Container className="pt30">
-            <Row className="justify-content-between  padding30tb contact-form-wrap">
-              <div className="section-header">
-                <div className="otherbotmborder">
-                  <div className="otherpages-heading">Contact Us</div>
+      <div className="">
+        <div className="section bggray pt100">
+            {/* <div className="otherbotmborder">
+              <div className="otherpages-heading">Contact Us</div>
+            </div> */}
+            <div className="container">
+              <div className="row">
+                <div className="col-12 col-md-4">
+                  <address>
+                  <h3>Mahindra Foundation</h3>
+                  <p>3rd Floor, Cecil Court, Shahid Bhagat Singh Marg, Colaba, Mumbai, Maharashtra 400005</p>
+
+                  <p>Contact (with Landline and Mobile Icon) </p> 
+                  <a href="tel:93224 56789"><i class="bi bi-telephone-fill"></i> 93224 56789</a><br/>
+                  <a href="tel:022 22021031"><i class="bi bi-telephone-fill"></i> 022 22021031</a>
+                  </address>
                 </div>
-                <Row className="justify-content-between  padding30tb contact-form-wrap">
-                  <div className=" col-lg-2"></div>
-                  <div className="pt30 col-lg-8 ">
-                    <div className="contactpages-subheading text-center">
-                      {" "}
-                      Send us a message
-                    </div>
-                    <form className="">
-                      <div className="">
-                        <Row>
-                          <div className="homeinput-div col-lg-6 col-12">
-                            <input
-                              className="form-control form-text required"
-                              type="text"
-                              name="contactName"
-                              placeholder="Your name*"
-                              required="required"
-                              value={contactData.contactName}
-                              onChange={handleValueChange}
-                            />
-                            {errors.map((error, index) => {
-                              if (error.field === 'contactData.contactName') {
-                                return <div key={index} className="error-message red-text">{error.message}</div>;
-                              }
-                              return null;
-                            })}
-                          </div>
-                          <div className="homeinput-div col-lg-6 col-12">
-                            <input
-                              className="form-control form-text required"
-                              type="email"
-                              placeholder="Your e-mail*"
-                              required="required"
-                              name="contactEmail"
-                              value={contactData.contactEmail}
-                              onChange={handleValueChange}
-                            />
-                            {errors.map((error, index) => {
-                              if (error.field === 'contactData.contactEmail') {
-                                return <div key={index} className="error-message red-text">{error.message}</div>;
-                              }
-                              return null;
-                            })}
-                          </div>
-                          <div className="homeinput-div col-lg-12 col-12">
-                            <input
-                              className="form-control form-text required"
-                              type="subject"
-                              placeholder="Subject"
-                              required="required"
-                              name="contactSubject"
-                              value={contactData.contactSubject}
-                              onChange={handleValueChange}
-                            />
-                            {errors.map((error, index) => {
-                              if (error.field === 'contactData.contactSubject') {
-                                return <div key={index} className="error-message red-text">{error.message}</div>;
-                              }
-                              return null;
-                            })}
-                          </div>
-                          <div className="homeinput-div col-lg-12 col-12">
-                            <textarea
-                              className="form-control form-textarea required"
-                              rows="4"
-                              cols="60"
-                              maxlength="2500"
-                              placeholder="Message*"
-                              required="required"
-                              aria-required="true"
-                              name="massage"
-                              value={contactData.massage}
-                              onChange={handleValueChange}
-                            ></textarea>
-                            {errors.map((error, index) => {
-                              if (error.field === 'contactData.massage') {
-                                return <div key={index} className="error-message red-text">{error.message}</div>;
-                              }
-                              return null;
-                            })}
-                          </div>
-                          <div className="homeinput-div col-lg-12 col-12">
-                            <CaptchaContact
-                              verified={false}
-                              setVerified={() => {}}
-                              id="captcha2"
-                            />
-                          </div>
-                        </Row>
-                      </div>
-                      <div className=" text-center">
-                        <button
-                          className="homesubmit-div"
-                          type="submit"
-                          value="Submit"
-                          onClick={addConntactUsForm}
-                        >
-                          Send a Message
-                        </button>
-                      </div>
-                    </form>
+                <div className="col-12 col-md-8">
+                  <div className="contactpages-subheading">
+                    {" "}
+                    Send us a message
                   </div>
-                  <div className=" col-lg-2"></div>
-                </Row>
+                  <form className="contact-form-wrap">
+                    <div className="">
+                      <Row>
+                        <div className="homeinput-div col-lg-6 col-12">
+                          <input
+                            className="form-control form-text required"
+                            type="text"
+                            name="contactName"
+                            placeholder="Your name*"
+                            required="required"
+                            value={contactData.contactName}
+                            onChange={handleValueChange}
+                          />
+                          {errors.map((error, index) => {
+                            if (error.field === 'contactData.contactName') {
+                              return <div key={index} className="error-message red-text">{error.message}</div>;
+                            }
+                            return null;
+                          })}
+                        </div>
+                        <div className="homeinput-div col-lg-6 col-12">
+                          <input
+                            className="form-control form-text required"
+                            type="email"
+                            placeholder="Your e-mail*"
+                            required="required"
+                            name="contactEmail"
+                            value={contactData.contactEmail}
+                            onChange={handleValueChange}
+                          />
+                          {errors.map((error, index) => {
+                            if (error.field === 'contactData.contactEmail') {
+                              return <div key={index} className="error-message red-text">{error.message}</div>;
+                            }
+                            return null;
+                          })}
+                        </div>
+                        <div className="homeinput-div col-lg-12 col-12">
+                          <input
+                            className="form-control form-text required"
+                            type="subject"
+                            placeholder="Subject"
+                            required="required"
+                            name="contactSubject"
+                            value={contactData.contactSubject}
+                            onChange={handleValueChange}
+                          />
+                          {errors.map((error, index) => {
+                            if (error.field === 'contactData.contactSubject') {
+                              return <div key={index} className="error-message red-text">{error.message}</div>;
+                            }
+                            return null;
+                          })}
+                        </div>
+                        <div className="homeinput-div col-lg-12 col-12">
+                          <textarea
+                            className="form-control form-textarea required"
+                            rows="4"
+                            cols="60"
+                            maxlength="2500"
+                            placeholder="Message*"
+                            required="required"
+                            aria-required="true"
+                            name="massage"
+                            value={contactData.massage}
+                            onChange={handleValueChange}
+                          ></textarea>
+                          {errors.map((error, index) => {
+                            if (error.field === 'contactData.massage') {
+                              return <div key={index} className="error-message red-text">{error.message}</div>;
+                            }
+                            return null;
+                          })}
+                        </div>
+                        <div className="homeinput-div col-lg-12 col-12">
+                          <CaptchaContact
+                            verified={false}
+                            setVerified={() => {}}
+                            id="captcha2"
+                          />
+                        </div>
+                      </Row>
+                    </div>
+                    <div className=" text-center">
+                      <button
+                        className="homesubmit-div btn btn-primary"
+                        type="submit"
+                        value="Submit"
+                        onClick={addConntactUsForm}
+                      >
+                        Send a Message
+                      </button>
+                    </div>
+                  </form>
+                </div>
               </div>
-            </Row>
-          </Container>
+              <div className="my-5">
+              <iframe width="100%" height="500px" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.180251338984!2d72.83045697599867!3d18.923414056743518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7d1daffffffff%3A0x10104990a52ce0ed!2sKc%20Mahindra%20Education%20Trust!5e0!3m2!1sen!2sin!4v1692557952647!5m2!1sen!2sin" 
+              ></iframe>
+              </div>
+            </div>
+            {/* <Row className="justify-content-between  padding30tb contact-form-wrap">
+              <div className=" col-lg-2"></div>
+              <div className="pt30 col-lg-8 ">
+                
+              </div>
+              <div className=" col-lg-2"></div>
+            </Row> */}
         </div>
       </div>
       {/* body */}

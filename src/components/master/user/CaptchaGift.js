@@ -71,7 +71,7 @@ function CaptchaGift({verified, setVerified}) {
   return (
     <>
     <div className="row">
-    <div className="captactcode">
+    <div className="captactcode ">
      <div className="capt-code" id="captcha">
         {captcha}
       </div>
@@ -85,24 +85,26 @@ function CaptchaGift({verified, setVerified}) {
 <FiRefreshCcw />
         
       </button>
-      </div><div className="col-6">
-     <input
-        type="text"
-        id="inputType"
-        className="login-input login-captcha"
-        placeholder="Enter Captcha"
-        name="username"
-        onChange={handleChange}
-        autoComplete="off"
-      />
-<button
-        type="button"
-        id="succesBTN"
-        onClick={onSubmit}
-        className="verify-capt"
-      >
-        Verify Captcha
-      </button></div>
+      </div>
+      <div className="col-6 captcha-wrapper">
+        <input
+            type="text"
+            id="inputType"
+            className="login-input login-captcha form-control"
+            placeholder="Enter Captcha"
+            name="username"
+            onChange={handleChange}
+            autoComplete="off"
+          />
+          <button
+            type="button"
+            id="succesBTN"
+            onClick={onSubmit}
+            className="verify-capt"
+          >
+            Verify Captcha
+          </button>
+          </div>
       </div>
     </>
   );

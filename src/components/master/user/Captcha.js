@@ -84,11 +84,11 @@ function Captcha({ verified, setVerified }) {
             <FiRefreshCcw />
           </button>
         </div>
-        <div className="col-6">
+        <div className="col-6 captcha-wrapper">
           <input
             type="text"
             id="inputType"
-            className="login-input login-captcha"
+            className="login-input login-captcha form-control"
             placeholder="Enter Captcha"
             name="username"
             onChange={handleChange}
