@@ -11,21 +11,25 @@ function WhySupportUs() {
   return (
     <>
       {/* body */}
-      <div className="pt100">
+      <section className="banner banner-about">
+        <div className="title">
+          <h1>Why Support Us</h1>
+        </div>
+      </section>
+      <div className="">
         {/* <img src={planting} alt="planting" className="imgwidth100" /> */}
         <div className="section bggray">
           <Container className="pt30">
             <Row className="justify-content-between  padding30tb contact-form-wrap">
-              <div className="otherbotmborder"><div className="otherpages-heading">Why Support Us</div>
-              </div>
+            
               <div className="col-12">
                 <div>
                   {/* <div className="otherpages-subheading textupp">We are available at 1t.org</div> */}
                   <p>
-                  Our project is a unique blend in the sphere of environmental sustainability and impacting livelihood.
-<br/>
-We focus on large scale <span className="colorgreen">tree planting, natural resource management, Global regenerative organic farming</span>  protocols to enrich agricultural eco-system and build functional forests as means to increase communities' income for an overall wellbeing of the community and mother earth
-<br/><br/>
+                  Project Hariyali is a unique blend in the sphere of environmental sustainability and impacting livelihood.
+                <br/>
+                The Project on large scale <span className="colorgreen">tree planting, natural resource management, Global regenerative organic farming</span>  protocols to enrich agricultural eco-system and build functional forests as means to increase communities' income for an overall wellbeing of the community and mother earth
+                <br/><br/>
                   We are available at<span className="colorgreen"> 1t.org</span>
                   </p></div>
                 {/* <div className="otherpages-subheading">

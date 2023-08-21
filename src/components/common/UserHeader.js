@@ -1,5 +1,6 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+
 import { Button, Col, Nav, Row, Navbar, NavDropdown } from "react-bootstrap";
 import {
   FaFacebookF,
@@ -27,10 +28,25 @@ const Header = () => {
   const handleToggle = () => {
     setExpanded(!expanded);
   };
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+  };
+  window.addEventListener('scroll', handleScroll);
+  return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <>
-      <div className="headermenu">
+      <div className={`headermenu ${isSticky ? 'sticky' : ''}`}>
         <Row>
           <Col md={4} className="small-center ">
             <Link to="/" className="logo-container"><img src={logo} alt="Logo" className="logo" /></Link>

@@ -61,8 +61,8 @@ const Header = () => {
                     <li>
                     <a href="">What we do</a></li>
                     <li><a href="">Why Support Us</a></li>
-                    <li><a href="">FootPrint</a></li>
-                    <li><a href="">Gallery & Awards</a></li>
+                    <li><a href="">Ways to Associate</a></li>
+                    <li><a href="">FootPrint</a></li>                    
                     <li><a href="">Contact Us</a></li>
                   </ul>
                 </div>

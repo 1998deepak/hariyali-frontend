@@ -14,7 +14,7 @@ import about3 from "../../../assets/img/about/about3.png";
 // import program1 from "../../assets/img/program/program1.png";
 import program1 from "../../../assets/img/tree-plantation.png";
 import program2 from "../../../assets/img/carbon.png";
-import program3 from "../../../assets/img/carbon-neutral.jpg";
+import program3 from "../../../assets/img/carbon-neutral.png";
 import program4 from "../../../assets/img/lifestyle.jpg";
 import planting from "../../../assets/img/about/hariyali-img-4.jpg";
 import bio from "../../../assets/img/program/hariyali-img-2.jpg";
@@ -73,6 +73,10 @@ import image3 from "../../../assets/img/slider/Picture3.jpg";
 import image4 from "../../../assets/img/slider/Picture4.jpg";
 
 import plantimg from "../../../assets/img/pmat_a_tree.png";
+
+import planttreeImg from "../../../assets/img/plant.png";
+import gifttreeImg from "../../../assets/img/holding-hand.png";
+
 import { useEffect } from "react";
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
@@ -80,7 +84,30 @@ import Modal from 'react-bootstrap/Modal';
 
 // style was imported in index.css
 // import "react-slideshow-image/dist/styles.css";
-const images = [image1, image2, image3, image4];
+// const images = [image1, image2, image3, image4];
+const slides = [
+  {
+    image: image1,
+    title: 'When you cut a tree you take a life and when you plant a tree you plant a HOPE',
+    description: 'PLANT A TREE',
+  },
+  {
+    image: image2,
+    title: 'Take your first step towards a green future',
+    description: 'Araku Valley, Vishakhapatnam, Andhra Pradesh',
+  },
+  {
+    image: image3,
+    title: 'A hectare of tropical forest absorbs 50-100 tonnes of CO2 per annum. Come sow a better future',
+    description: 'Taran Taran, Punjab',
+  },
+  {
+    image: image3,
+    title: 'Trees need people as much as people need trees',
+    description: 'Shravasti, Uttar Pradesh',
+  },
+  // Add more slides here
+];
 
 const zoomOutProperties = {
   duration: 5000,
@@ -96,12 +123,16 @@ const Slideshow = () => {
   return (
     <div className="slide-container">
       <Zoom {...zoomOutProperties}>
-        {images.map((each, index) => (
+        {slides.map((each, index) => (
           <>
-            <img key={index} style={{ width: "100%" }} src={each} />
+          <img key={index} style={{ width: "100%" }} src={each.image} />
+          <div className="slide-content">
+            <h2>{each.title}</h2>
+            <p><i className="bi-bi bi-geo-alt"></i>{each.description}</p>
+          </div>
           </>
         ))}
-      </Zoom>      
+      </Zoom>
     </div>
   );
 };
@@ -111,6 +142,8 @@ function HomePage() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  
+
   // const goToLogin = () => {
   //   navigate("/Login");
   // };
@@ -139,12 +172,13 @@ function HomePage() {
     <>
       {/* body */}
       {/* slider */}
-      <div className="pt100">
+      <div className="">
         <Slideshow />
-        {/* <div className="slid-linkdiv">
-          <div className="all">
-            <div className="lefterside">
-              <div className="explainer">
+
+        {/* <div classNameName="slid-linkdiv">
+          <div classNameName="all">
+            <div classNameName="lefterside">
+              <div classNameName="explainer">
                 {" "}
                 <BiLink />
               </div>
@@ -187,7 +221,7 @@ function HomePage() {
         {/* <div className="mahindralogo">
           <img src={mahindraLogo} alt="Mahindra Logo" />
         </div> */}
-        <h2 className="text-center mb-5">Impact & Reach</h2>
+        <h2 className="sub-title text-center mb-5">Impact & Reach</h2>
         <div className="row mb30">
           <div className="col-12 col-md-4 text-center mb30">
             <div className="tree-features">
@@ -221,12 +255,15 @@ function HomePage() {
         <div className="d-flex flex-wrap">
           <div className="col-12 col-md-6">
             <a href="" className="px-4 nav-redirect">
-              <h4 className="text-center">Plant A tree</h4>
+              <h4 className="text-center">
+                Plant A tree <img src={planttreeImg} /></h4>
             </a>          
           </div>
           <div className="col-12 col-md-6">
-          <a href="" className="px-4 nav-redirect">
-            <h4 className="text-center">Gift a Tree</h4> 
+          <a href="" className="px-4 nav-redirect nav-redirect2">
+            <h4 className="text-center">
+           
+            Gift a Tree  <img src={gifttreeImg} /></h4> 
           </a>
           </div>
         </div>
@@ -239,12 +276,15 @@ function HomePage() {
             </div>            
           </div>
           <div className="col-12 col-md-6">
-            <div className="p-4 program-details">
-              <h3 className="mb-5">Regenerative Agriculture</h3>
+            <div className="program-details">
+              <h3 className="mb-3">Regenerative Agriculture</h3>
               <p>Project Hariyali is part of nature-based solution that promotes Regenerative agriculture</p>
               <p>Regenerative Agriculture is a holistic farming system that focuses on improving soil health, biodiversity, water quality, air quality and thus food quality
-              </p> 
-              <button className="btn tbn-primary">Donate</button> 
+              </p>
+              <div className="pt-5">
+              <a className="btn btn-secondary">Read More</a>
+                <button className="btn btn-primary">Donate</button> 
+              </div>
             </div>          
           </div>
         </div>
@@ -253,11 +293,15 @@ function HomePage() {
         <div className="container pv-75">
           <div className="row">
             <div className="col-12 col-md-6">
-            <div className="p-4 program-details">
-                <h3 className="mb-5">ENHANCING BIO-DIVERSITY</h3>
+            <div className="program-details">
+                <h3 className="mb-3">Enhancing Bio-Diveristy</h3>
                 <p>Project Hariyali is part of nature-based solution that promotes Regenerative agriculture</p>
                 <p>The trees we plant strengthen the ecosystem and enhance ecological diversity.
                 </p>  
+                <div className="pt-5">
+                <a className="btn btn-secondary">Read More</a>
+                  <button className="btn btn-primary">Donate</button> 
+                </div>
               </div>          
             </div>
             <div className="col-12 col-md-6">
@@ -276,11 +320,14 @@ function HomePage() {
             </div>
           </div>   
           <div className="col-12 col-md-6">
-          <div className="p-4 program-details">
-              <h3 className="mb-5">India’s commitment to carbon neutrality</h3>
+          <div className="program-details">
+              <h3 className="mb-3">India’s commitment to carbon neutrality</h3>
               <p>UN Framework Convention on Climate Change raises awareness and builds knowledge to help mitigate climate change. 
                 The Paris Agreement within the UNFCCC aims at achieving greenhouse gas emissions mitigations. The agreement outlines the National Determined Contributions (NDCs), each member country should make in order to stay ‘well below’ the 2°C target. India is committed to its NDC and seeks to be carbon neutral by 2070</p>
-              
+                <div className="pt-5">
+                <a className="btn btn-secondary">Read More</a>
+                  <button className="btn btn-primary">Donate</button> 
+                </div>
             </div>          
           </div>                 
         </div>
@@ -289,11 +336,14 @@ function HomePage() {
         <div className="container pv-75">
           <div className="row">
             <div className="col-12 col-md-6">
-            <div className="p-4 program-details">
-                <h3 className="mb-5"></h3>
+            <div className="program-details">
+                <h3 className="mb-3">Lifestyle for Environment</h3>
                 <p>India is promoting individual responsibility toward climate action through Mission LIFE “Lifestyle for Environment”. 
                   This movement aims to transform individuals into pro planet people by having them adopt sustainable lifestyles and minimize their carbon footprint</p>
-                
+                  <div className="pt-5">
+                  <a className="btn btn-secondary">Read More</a>
+                    <button className="btn btn-primary">Donate</button> 
+                </div>
               </div>          
             </div>
             <div className="col-12 col-md-6">
@@ -395,9 +445,9 @@ function HomePage() {
       <div className="project-bg ">
         <Container>
           <Row className="justify-content-between ptb50">
-            <div className="heading colorblack text-center mb30">
+            <h2 className="sub-title text-center mb30">
               SDG Links
-            </div>
+            </h2>
             <div className="col-lg-2 col-12 mb-lg-0 mb-3 discover-block">
               <div className="positin-relative " >
                 <div className="discoverImg"><img src={sdg13} width="100%" /></div>
@@ -485,9 +535,9 @@ function HomePage() {
       <div className=" ">
         <Container>
           <Row className="justify-content-between ptb50 ">
-            <div className="heading colorblack text-center mb30">
-              GET IN TOUCH
-            </div>
+            <h2 className="sub-title text-center mb30">
+              Get in Touch
+            </h2>
 
             <div className="col-12">
               <div className=" row">
