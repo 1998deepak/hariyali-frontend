@@ -3,7 +3,7 @@ import { Container, Row } from "react-bootstrap";
 import "animate.css/animate.min.css";
 // import "react-image-gallery/styles/css/image-gallery.css";
 import goalimg from "../../../assets/img/goal.png";
-import projectimg from "../../../assets/img/slider/IMG_6982.png";
+import projectimg from "../../../assets/img/associate.jpg";
 import ventureimg from "../../../assets/img/environment.jpg";
 
 function AboutUs() {
