@@ -12,7 +12,10 @@ import about3 from "../../../assets/img/about/about3.png";
 // about
 // program
 // import program1 from "../../assets/img/program/program1.png";
-import program1 from "../../../assets/img/program/hariyali-img-1.jpg";
+import program1 from "../../../assets/img/regenarate.png";
+import program2 from "../../../assets/img/biodiversity.jpg";
+import program3 from "../../../assets/img/co2.jpg";
+import program4 from "../../../assets/img/lifestyle.jpg";
 import planting from "../../../assets/img/about/hariyali-img-4.jpg";
 import bio from "../../../assets/img/program/hariyali-img-2.jpg";
 import impro from "../../../assets/img/program/hariyali-img-3.jpg";
@@ -60,17 +63,51 @@ import { Link } from "react-router-dom";
 import { AnimationOnScroll } from "react-animation-on-scroll";
 //
 import { Zoom } from "react-slideshow-image";
-import image1 from "../../../assets/img/slider/rise-program-resgions-1.jpg";
-import image2 from "../../../assets/img/slider/rise-program-resgions-2.jpg";
-import image3 from "../../../assets/img/slider/rise-program-resgions-3.jpg";
-import image4 from "../../../assets/img/slider/rise-program-resgions-4.jpg";
+// import image1 from "../../../assets/img/slider/rise-program-resgions-1.jpg";
+// import image2 from "../../../assets/img/slider/rise-program-resgions-2.jpg";
+// import image3 from "../../../assets/img/slider/rise-program-resgions-3.jpg";
+// import image4 from "../../../assets/img/slider/rise-program-resgions-4.jpg";
+import image1 from "../../../assets/img/slider/banner1.png";
+import image2 from "../../../assets/img/slider/banner2.png";
+import image3 from "../../../assets/img/slider/banner3.png";
+import image4 from "../../../assets/img/slider/banner4.jpg";
+
+import plantimg from "../../../assets/img/pmat_a_tree.png";
+
+import planttreeImg from "../../../assets/img/plant.png";
+import gifttreeImg from "../../../assets/img/holding-hand.png";
+
 import { useEffect } from "react";
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+
 // style was imported in index.css
 // import "react-slideshow-image/dist/styles.css";
-const images = [image1, image2, image3, image4];
+// const images = [image1, image2, image3, image4];
+const slides = [
+  {
+    image: image1,
+    title: 'When you cut a tree you take a life and when you plant a tree you plant a HOPE',
+    description: 'PLANT A TREE',
+  },
+  {
+    image: image2,
+    title: 'Take your first step towards a green future',
+    description: 'Araku Valley, Vishakhapatnam, Andhra Pradesh',
+  },
+  {
+    image: image3,
+    title: 'A hectare of tropical forest absorbs 50-100 tonnes of CO2 per annum. Come sow a better future',
+    description: 'Taran Taran, Punjab',
+  },
+  {
+    image: image4,
+    title: 'Trees need people as much as people need trees',
+    description: 'Shravasti, Uttar Pradesh',
+  },
+  // Add more slides here
+];
 
 const zoomOutProperties = {
   duration: 5000,
@@ -81,12 +118,19 @@ const zoomOutProperties = {
   arrows: true,
 };
 
+
 const Slideshow = () => {
   return (
     <div className="slide-container">
       <Zoom {...zoomOutProperties}>
-        {images.map((each, index) => (
-          <img key={index} style={{ width: "100%" }} src={each} />
+        {slides.map((each, index) => (
+          <>
+          <img key={index} style={{ width: "100%" }} src={each.image} />
+          <div className="slide-content">
+            <h2>{each.title}</h2>
+            <p><i className="bi-bi bi-geo-alt"></i>{each.description}</p>
+          </div>
+          </>
         ))}
       </Zoom>
     </div>
@@ -98,6 +142,8 @@ function HomePage() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  
+
   // const goToLogin = () => {
   //   navigate("/Login");
   // };
@@ -126,12 +172,13 @@ function HomePage() {
     <>
       {/* body */}
       {/* slider */}
-      <div className="pt100">
+      <div className="">
         <Slideshow />
-        <div className="slid-linkdiv">
-          <div className="all">
-            <div className="lefterside">
-              <div className="explainer">
+
+        {/* <div classNameName="slid-linkdiv">
+          <div classNameName="all">
+            <div classNameName="lefterside">
+              <div classNameName="explainer">
                 {" "}
                 <BiLink />
               </div>
@@ -166,61 +213,214 @@ function HomePage() {
               <div className="text">SEO</div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       {/* slide info */}
 
-      <div className="justify-content-between pt75 mb30">
+      <div className="container pv-75">
         {/* <div className="mahindralogo">
           <img src={mahindraLogo} alt="Mahindra Logo" />
         </div> */}
-
-        <div className="heading colorblack text-center ">2,28,61,288</div>
+        {/* <h2 className="sub-title text-center mb-5">Impact & Reach</h2> */}
+        <div className="row mb30 impact-wrapper">
+          <div className="col-12 col-md-4 text-center">
+            <div className="tree-features">
+              {/* <i className="icon-tree"></i> */}
+              <h4>Trees Planted</h4>
+              <p>228,61,288</p>
+            </div>
+          </div>
+          <div className="col-12 col-md-4 text-center">
+            <div className="tree-features">
+              {/* <i className="icon-survival"></i> */}
+              <h4>Survival Rate</h4>
+              <p>85%</p>
+            </div>
+          </div>
+          <div className="col-12 col-md-4 text-center">
+            <div className="tree-features">
+              {/* <i className="icon-carbon"></i> */}
+              <h4>Carbon Sequestered</h4>
+              <p>400,000+ tonnes</p>
+            </div>
+          </div>
+        </div>
+        {/* <div className="heading colorblack text-center ">2,28,61,288</div>
 
         <div className="subheading text-center">
           Creating carbon sink through focussed large scale plantation
-        </div>
-      </div>
-
-      <img src={planting} alt="planting" className="imgwidth100" />
-      {/* about */}
-      <div className="aboutbg-img">
-        <img src={aboutbg} alt="About" />
-      </div>
-
-      {/* about */}
-      <div className="clear"></div>
-      {/* Hariyali program */}
-      <div className="pt50">
-        {/* <div className="heading colorblack text-center ">
-          OVERVIEW
         </div> */}
-        <div className="section-header mt-5">
-          <div className=" heading-red-medium text-center ">
-            Regenerative Agriculture
-          </div>
-          <div className="subheading text-center ">
-            Improving soil health using regen agri practices and that resource mgt techniques          </div>
-        </div>
-        <div className="col-12 ">
-          <img src={program1} alt="Program" className="imgwidth100" />
-        </div>{" "}
       </div>
+      <div className="donate-btn-group">
+        <div className="d-flex flex-wrap justify-content-center">          
+            <a href="" className="btn btn-primary">     
+                Plant A tree <img src={planttreeImg} />
+            </a>          
+            <a href="" className="btn btn-primary">     
+              Gift a Tree  <img src={gifttreeImg} /> 
+            </a>
+        </div>
+      </div>
+      <div className="container pv-75">
+        <h2 className="sub-title text-center mb-5">Impact & Reach</h2>
+        <div className="row">
+          <div className="col-12 col-md-6">
+            <div className="img-responsive feature-image">
+              <img src={program1} alt="planting" className="imgwidth100" />  
+            </div>            
+          </div>
+          <div className="col-12 col-md-6">
+            <div className="program-details">
+              <h3 className="mb-3">Regenerative Agriculture</h3>
+              <p>Project Hariyali is part of nature-based solution that promotes Regenerative agriculture</p>
+              <p>Regenerative Agriculture is a holistic farming system that focuses on improving soil health, biodiversity, water quality, air quality and thus food quality
+              </p>
+              <div className="pt-5">
+              <a className="btn btn-secondary">Read More</a>
+                <button className="btn btn-primary">Donate</button> 
+              </div>
+            </div>          
+          </div>
+        </div>
+      </div>
+      <section className="bg-green">
+        <div className="container pv-75">
+          <div className="row">
+            <div className="col-12 col-md-6">
+            <div className="program-details">
+                <h3 className="mb-3">Enhancing Bio-Diveristy</h3>
+                <p>Project Hariyali is part of nature-based solution that promotes Regenerative agriculture</p>
+                <p>The trees we plant strengthen the ecosystem and enhance ecological diversity.
+                </p>  
+                <div className="pt-5">
+                <a className="btn btn-secondary">Read More</a>
+                  <button className="btn btn-primary">Donate</button> 
+                </div>
+              </div>          
+            </div>
+            <div className="col-12 col-md-6">
+            <div className="img-responsive feature-image">
+              <img src={program2} alt="Program" className="imgwidth100" />
+              </div>
+            </div>          
+          </div>
+        </div>   
+      </section>      
+      <div className="container pv-75">
+        <div className="row">
+          <div className="col-12 col-md-6">
+            <div className="img-responsive feature-image">
+              <img src={program3} alt="Program" className="imgwidth100" />
+            </div>
+          </div>   
+          <div className="col-12 col-md-6">
+          <div className="program-details">
+              <h3 className="mb-3">India’s commitment to carbon neutrality</h3>
+              <p>UN Framework Convention on Climate Change raises awareness and builds knowledge to help mitigate climate change. 
+                The Paris Agreement within the UNFCCC aims at achieving greenhouse gas emissions mitigations. The agreement outlines the National Determined Contributions (NDCs), each member country should make in order to stay ‘well below’ the 2°C target. India is committed to its NDC and seeks to be carbon neutral by 2070</p>
+                <div className="pt-5">
+                <a className="btn btn-secondary">Read More</a>
+                  <button className="btn btn-primary">Donate</button> 
+                </div>
+            </div>          
+          </div>                 
+        </div>
+      </div> 
+      <section className="bg-green">
+        <div className="container pv-75">
+          <div className="row">
+            <div className="col-12 col-md-6">
+            <div className="program-details">
+                <h3 className="mb-3">Lifestyle for Environment</h3>
+                <p>India is promoting individual responsibility toward climate action through Mission LIFE “Lifestyle for Environment”. 
+                  This movement aims to transform individuals into pro planet people by having them adopt sustainable lifestyles and minimize their carbon footprint</p>
+                  <div className="pt-5">
+                  <a className="btn btn-secondary">Read More</a>
+                    <button className="btn btn-primary">Donate</button> 
+                </div>
+              </div>          
+            </div>
+            <div className="col-12 col-md-6">
+            <div className="img-responsive feature-image">
+              <img src={program4} alt="Program" className="imgwidth100" />
+              </div>
+            </div>          
+          </div>
+        </div>   
+      </section>
+      {/* <div className="container pt75 mb30">
+       
+      <div className="row">
+        <div className="col-12 col-md-6 col-lg-4 mb30">
+          <div className="card">
+            <img src={planting} className="card-img-top" alt="..."/>
+            <div className="card-body">
+              <h5 className="card-title">Regenerative Agriculture</h5>
+              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div className="card-body">
+              <a href="#" className="card-link">Card link</a>
+            </div>
+          </div>
+        </div>
+        <div className="col-12 col-md-6 col-lg-4 mb30">
+          <div className="card">
+            <img src={program1} className="card-img-top" alt="..."/>
+            <div className="card-body">
+              <h5 className="card-title">Improving soil fertility</h5>
+              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div className="card-body">
+              <a href="#" className="card-link">Card link</a>
+            </div>
+          </div>
+        </div>
+        <div className="col-12 col-md-6 col-lg-4 mb30">
+          <div className="card">
+            <img src={bio} className="card-img-top" alt="..."/>
+            <div className="card-body">
+              <h5 className="card-title">Enhancing Bio-Diversity</h5>
+              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div className="card-body">
+              <a href="#" className="card-link">Card link</a>
+            </div>
+          </div>
+        </div>
+        <div className="col-12 col-md-6 col-lg-4 mb30">
+          <div className="card">
+            <img src={impro} className="card-img-top" alt="..."/>
+            <div className="card-body">
+              <h5 className="card-title">Improving livelihood</h5>
+              <p className="card-text">25,984 lives of farmer families impacted.</p>
+            </div>
+            <div className="card-body">
+              <a href="#" className="card-link">Card link</a>
+            </div>
+          </div>
+        </div>
+      </div>     
+      </div> */}
+      {/* about */}
+      
+
       {/* Hariyali program */}
-      <div className="pt50">
+     
+      {/* Hariyali program */}
+      {/* <div className="pt50">
         <div className="section-header ">
           <div className=" heading-red-medium text-center ">
             ENHANCING BIO-DIVERSITY
           </div>
           <div className="subheading text-center ">
-            The trees we plant strengthen the ecosystem and enhance ecological diversity.         </div>
+                     </div>
         </div>
         <div className="col-12 ">
           <img src={bio} alt="Program" className="imgwidth100" />
-        </div>{" "}
-      </div>
+        </div>
+      </div> */}
       {/* Hariyali program */}
-      <div className="pt50">
+      {/* <div className="pt50">
         <div className="section-header ">
           <div className=" heading-red-medium text-center ">
             improving livelihood
@@ -231,17 +431,17 @@ function HomePage() {
         </div>
         <div className="col-12 ">
           <img src={impro} alt="Program" className="imgwidth100" />
-        </div>{" "}
-      </div>
+        </div>
+      </div> */}
       {/* Hariyali program */}
 
       {/* sdg */}
       <div className="project-bg ">
         <Container>
           <Row className="justify-content-between ptb50">
-            <div className="heading colorblack text-center mb30">
+            <h2 className="sub-title text-center mb30">
               SDG Links
-            </div>
+            </h2>
             <div className="col-lg-2 col-12 mb-lg-0 mb-3 discover-block">
               <div className="positin-relative " >
                 <div className="discoverImg"><img src={sdg13} width="100%" /></div>
@@ -326,12 +526,12 @@ function HomePage() {
       </div>
       {/* project */}
       {/* Blogs and news */}
-      <div className=" ">
+      {/* <div className=" ">
         <Container>
           <Row className="justify-content-between ptb50 ">
-            <div className="heading colorblack text-center mb30">
-              GET IN TOUCH
-            </div>
+            <h2 className="sub-title text-center mb30">
+              Get in Touch
+            </h2>
 
             <div className="col-12">
               <div className=" row">
@@ -339,10 +539,33 @@ function HomePage() {
                   <img src={blogs1} alt="Blogs" className="imgwidth100" />
                 </div>
                 <div className="col-5 bgblack">
-                  <div className="bloginheading blog-rightdiv">LEARN MORE
+                  <div className="bloginheading blog-rightdiv">
+                    <h3>LEARN MORE</h3>
                     <div className="btn-grp contact-usbtndiv" >
-                      <a className="btn inquire-now contact-usbtn" variant="primary" href="/ContactUs" >Contact Us</a>
+                      <a className="btn inquire-now contact-usbtn" variant="primary" onClick={handleShow}>Contact Us</a>
                     </div>
+                    <Modal show={show} onHide={handleClose}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Contact Us</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        <div className="homeinput-div">
+                          <label for="name" className="form-label">Name</label>
+                          <input className="form-control form-text required" type="text" name="name" value="" placeholder="Name" required="required" />
+                        </div>
+                        <div className="homeinput-div">
+                          <label for="email" className="form-label">Email</label>
+                          <input className="form-control form-text required" type="text" name="email" value="" placeholder="Email" required="required" />
+                        </div><div className="homeinput-div">
+                        <label for="edit-query" className="form-label">Query</label>
+                          <textarea className="form-control form-textarea required" rows="4" cols="60" maxlength="2500" placeholder="Write you query here...." required="required" aria-required="true"></textarea>
+                        </div>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button className="homesubmit-div" variant="primary" >Submit
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
                   </div>
                 </div>
               </div>
@@ -350,7 +573,7 @@ function HomePage() {
 
           </Row>
         </Container>
-      </div>
+      </div> */}
       {/* body */}
     </>
   );

@@ -8,10 +8,16 @@ import Donateslid from "../../../../assets/img/slider/Donateslid.jpg";
 import { DonationService } from "../../../../services/donationService/donation.service";
 import { SUCCESS } from "../../../constants/constants";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
+import SearchWithSuggestions from "../../../common/searchComponent/SearchWithSuggestions";
+
+const options = [
+  { value: '110199', label: '110199' },
+  { value: '765396249428', label: '765396249428' },
+];
 
 function OfflineDonation() {
-
   const [donationType, setDonationType] = useState("Self-Donate");
+  const [donationType1, setDonationType1] = useState("Gift-Donate");
   const [generalDonation, setGeneralDonation] = useState(null);
   const [newEmail, setNewEmail] = useState(null);
 
@@ -20,7 +26,21 @@ function OfflineDonation() {
       packageName: "",
       bouquetPrice: "",
       NoOfBouquets: "",
-      // maintenanceCost: "",
+      maintenanceCost: "",
+      amount: "",
+    },
+    {
+      packageName: "",
+      bouquetPrice: "",
+      NoOfBouquets: "",
+      maintenanceCost: "",
+      amount: "",
+    },
+    {
+      packageName: "",
+      bouquetPrice: "",
+      NoOfBouquets: "",
+      maintenanceCost: "",
       amount: "",
     },
     {
@@ -98,6 +118,35 @@ function OfflineDonation() {
       ],
     },
   ];
+  const intialDonationsGift = [
+    {
+      donationType: donationType1,
+      donationMode: "offline",
+      donationEvent: "",
+      totalAmount: 0,
+      generalDonation: null,
+      userPackage: [],
+      recipient: [],
+      paymentInfo: [
+        {
+          paymentMode: "",
+          bankName: "",
+          chqORddNo: "",
+          chqORddDate: "",
+          paymentDate: "",
+          amount: 0,
+        },
+        {
+          paymentMode: "",
+          bankName: "",
+          chqORddNo: "",
+          chqORddDate: "",
+          paymentDate: "",
+          amount: 0,
+        },
+      ],
+    },
+  ];
   const initialRecipientData = [
     {
       firstName: "",
@@ -135,7 +184,15 @@ function OfflineDonation() {
 
   const [donations, setDonations] = useState(intialDonations);
 
+  const [donationsGift, setDonationsGift] = useState(intialDonationsGift);
+
   const [recipient, setRecipient] = useState(initialRecipientData);
+
+  const [selectedDonarId, setSelectedDonarId] = useState(null);
+
+  const [donarIdList, setDonarIdList] = useState([]);
+
+
 
 
   function hasValues(obj) {
@@ -247,12 +304,22 @@ function OfflineDonation() {
       }
       if (!addr?.country) {
         validationErrors.push({ field: "address[" + i + "].country", message: "Country is required" });
+      }else if (/\d/.test(userData.user.lastName)) {
+        validationErrors.push({ field: "address[" + i + "].country", message: "Country should only contain alphabets" });
       }
+
       if (!addr?.state) {
         validationErrors.push({ field: "address[" + i + "].state", message: "State is required" });
       }
+
       if (!addr?.city) {
         validationErrors.push({ field: "address[" + i + "].city", message: "City is required" });
+      }else if (/\d/.test(addr?.city)) {
+        validationErrors.push({ field: "address[" + i + "].city", message: "City should only contain alphabets" });
+      }
+
+       if ((addr?.postalCode).length > 6) {
+        validationErrors.push({ field: "address[" + i + "].postalCode", message: "Postal Code should only contain six numbers" });
       }
     }
 
@@ -317,30 +384,11 @@ function OfflineDonation() {
     return validationErrors.length === 0;
   };
 
-
-
-
-  console.log(errors);
-
-  // console.log(errors.map((error) => error.message).join(", "));
-
-
   {
     errors.length > 0 && (
       <p>{errors.map(error => `${error.field}: ${error.message}`).join(', ')}</p>
     )
   }
-
-
-  // console.log(errors[0].paymentMode);
-
-
-
-
-
-
-  //  console.log(errors[0].paymentInfo[0].amount);
-
 
 
 
@@ -456,52 +504,33 @@ function OfflineDonation() {
 
   useEffect(() => {
     getAllPackages();
+    getDonarIdList();
   }, []);
-  // const getAllPackages = async () => {
-  //   const response = await DonationService.getAllPackages();
-  //   if (response?.status === SUCCESS) {
-  //     console.log(response);
-  //     let packageData = [...initialPackageData];
-  //     console.log(packageData);
-  //     response.data.map((item, index) => {
-  //       packageData[index].packageName = item.packageName;
-  //       packageData[index].bouquetPrice = item.bouquetPrice;
-  //       packageData[index].NoOfBouquets = 0;
-  //       packageData[index].maintenanceCost = item.maintenanceCost;
-  //       packageData[index].amount = 0;
-  //     });
-  //     console.log(packageData);
-  //     setPackageData(packageData);
-  //   } else {
-  //     toast.error(response?.message);
-  //   }
-  // };
-
   const getAllPackages = async () => {
     const response = await DonationService.getAllPackages();
-    if (response?.status === 'Success') {
+    if (response?.status === SUCCESS) {
       console.log(response);
       let packageData = [...initialPackageData];
       console.log(packageData);
-  
       const parsedData = JSON.parse(response.data);
+
+      let data = parsedData.map((item)=>({packageName:item.package_name,bouquetPrice: item.bouquet_price,NoOfBouquets:0,amount:0}))
   
-      parsedData.forEach((item, index) => {
-        packageData[index].packageName = item.package_name;
-        packageData[index].bouquetPrice = item.bouquet_price;
-        packageData[index].NoOfBouquets = 0;
-        // packageData[index].maintenanceCost = 0;
-        packageData[index].amount = 0;
-      });
-  
-      console.log(packageData);
-      setPackageData(packageData);
+      setPackageData(data);
     } else {
       toast.error(response?.message);
     }
   };
-  
-  console.log(packageData);
+
+  const getDonarIdList = async () => {
+    const response = await DonationService.getAllDonarId();
+    if (response?.status === 200) {
+      // let data = response.data.map((item)=> ({ label: item, value: item }))
+      setDonarIdList(response.data);
+    } else {
+      toast.error(response?.message);
+    }
+  };
 
   const stateOptions = [
     "Andhra Pradesh",
@@ -684,6 +713,20 @@ function OfflineDonation() {
     console.log(updatedDonations);
     setDonations(updatedDonations);
   };
+
+  const handlePaymentInfoChangeGift = (e, donationIndex, payIndex) => {
+    let { name, value } = e.target;
+    if (value < 0) {
+      value = 0;
+    }
+    const updatedDonations = [...donationsGift];
+    console.log(updatedDonations);
+    console.log("Offline Donation: "+updatedDonations[donationIndex].paymentInfo[payIndex][name])
+    updatedDonations[donationIndex].paymentInfo[payIndex][name] = value;
+    console.log(updatedDonations);
+    setDonations(updatedDonations);
+  };
+
   // hide show forgot link
   const addaddressicon = () => {
     if (document.getElementById("addaddressDiv")) {
@@ -818,8 +861,42 @@ function OfflineDonation() {
       setAddress(address);
     } else if (response?.statusCode === 409) {
       toast.error(response?.message);
+    }else{
+      console.log(response);
+      toast.error(response?.message);
     }
   };
+
+  // get Detail by donar ID
+  const handleDonarId = async (donorId) => {
+    let response = await DonationService.getDetailsByDonorId(donorId);
+    console.log("API Response:", response);
+
+    if (response?.status === "Success") {
+      toast.success(response?.message);
+      const { data } = response;
+      const { address = [], ...userDataWithoutAddress } = data;
+
+      setUserData((prevUserData) => {
+        return {
+          ...prevUserData,
+          user: {
+            ...prevUserData.user,
+            ...userDataWithoutAddress,
+          },
+        };
+      });
+
+      setAddress(address);
+    } else if (response?.statusCode === 409) {
+      toast.error(response?.message);
+    }else{
+      console.log(response);
+      toast.error(response?.message);
+    }
+  };
+
+
 
 
   console.log(address);
@@ -827,15 +904,17 @@ function OfflineDonation() {
   console.log(address[0]?.street1);
   console.log(userData.user.emailId);
 
-  const createDonation = async (e, userData) => {
+
+  //Donation for Self Donate
+  const createDonationGift = async (e, userData) => {
     e.preventDefault();
 
-    const isValid = validate();
-    console.log("isValid:", isValid);
+  //   const isValid = validate();
+  //   console.log("isValid:", isValid);
 
 
-    if (isValid) {
-    const updatedDonations = [...donations];
+    //if (isValid) {
+    const updatedDonations = [...donationsGift];
     const filteredPackages = packageData.filter((pkg) => pkg.NoOfBouquets > 0);
     console.log(filteredPackages);
     updatedDonations[0].userPackage = filteredPackages;
@@ -867,9 +946,8 @@ function OfflineDonation() {
     const response = await DonationService.AddNewDonation(formData);
     console.log(response);
     if (response?.status === SUCCESS) {
+      console.log("Create Donation: "+JSON.stringify(response))
       toast.success(response?.message);
-
-
     } else {
       toast.error(response?.message);
     }
@@ -878,10 +956,64 @@ function OfflineDonation() {
     console.log(formData);
     console.log(updatedDonations);
     console.log();
-  }
+  //}
+  console.log("Not Working !")
   };
 
-  console.log(userData?.user?.firstName);
+  //Donation for Self Donate
+  const createDonation = async (e, userData) => {
+    e.preventDefault();
+
+  //   const isValid = validate();
+  //   console.log("isValid:", isValid);
+
+
+    //if (isValid) {
+    const updatedDonations = [...donations];
+    const filteredPackages = packageData.filter((pkg) => pkg.NoOfBouquets > 0);
+    console.log(filteredPackages);
+    updatedDonations[0].userPackage = filteredPackages;
+
+      const formData = {
+        formData: {
+          user: {
+            emailId: userData?.user?.emailId,
+            donorId: userData?.user?.donorId,
+            donations: updatedDonations.map((donation) => {
+              const donationData = {
+                ...donation,
+                paymentInfo: donation.paymentInfo.slice(0, 1), // Keep only the first payment info record
+              };
+              console.log(donation.donationType);
+              if (donation.donationType === "Self-Donate") {
+                donationData.recipient = []; // Exclude recipient data
+              } else if (donation.donationType === "Gift-Donate") {
+                donationData.recipient = recipient;
+              }
+
+              return donationData;
+            }),
+          },
+        },
+      };
+
+
+    const response = await DonationService.AddNewDonation(formData);
+    console.log(response);
+    if (response?.status === SUCCESS) {
+      console.log("Create Donation: "+JSON.stringify(response))
+      toast.success(response?.message);
+    } else {
+      toast.error(response?.message);
+    }
+  
+    console.log(donations);
+    console.log(formData);
+    console.log(updatedDonations);
+    console.log();
+  //}
+  console.log("Not Working !")
+  };
 
 
   return (
@@ -1493,6 +1625,12 @@ function OfflineDonation() {
                                         handleAddressChange(event, 1)
                                       }
                                     />
+                                    {errors.map((error, index) => {
+                                    if (error.field === 'address[1].postalCode') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
                                   </div>
                                 </div>
                               </div>
@@ -2280,6 +2418,12 @@ function OfflineDonation() {
                                       handleAddressChange(event, 0)
                                     }
                                   />
+                                  {errors.map((error, index) => {
+                                    if (error.field === 'address[0].postalCode') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
                                 </div>
                               </div>
                             </div>
@@ -2913,12 +3057,19 @@ function OfflineDonation() {
                               <div className="row select-label">
                                 <div className="col-4 ">Donar ID</div>
                                 <div className="col-8 p0">
-                                  <input
+                                  <SearchWithSuggestions data={donarIdList} onClickSearch={handleDonarId}/>
+                                  {/* <Select
+                                    options={donarIdList}
+                                   value={selectedDonarId}
+                                    onBlur={handleDonarIdBlur}
+                                    onChange={handleDonarIdChange}
+                                  /> */}
+                                  {/* <input
                                     className="form-control-inside"
                                     placeholder="Donar ID"
                                     type="text"
                                     onBlur={(e) => handleDonarIdBlur(e)}
-                                  />
+                                  /> */}
                                 </div>
                               </div>
                             </div>
@@ -3523,6 +3674,12 @@ function OfflineDonation() {
                                         handleAddressChange(event, 1)
                                       }
                                     />
+                                    {errors.map((error, index) => {
+                                    if (error.field === 'address[1].postalCode') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
                                   </div>
                                 </div>
                               </div>
@@ -3847,12 +4004,7 @@ function OfflineDonation() {
                               <div className="row select-label">
                                 <div className="col-4 ">Donar ID</div>
                                 <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    placeholder="Donar ID"
-                                    type="text"
-                                    onBlur={(e) => handleDonarIdBlur(e)}
-                                  />
+                                <SearchWithSuggestions data={donarIdList} onClickSearch={handleDonarId}/>
                                 </div>
                               </div>
                             </div>
@@ -4671,9 +4823,9 @@ function OfflineDonation() {
                                   <select
                                     name="paymentMode"
                                     className=" form-control-inside form-select"
-                                    value={donations[0]?.paymentInfo[0].paymentMode}
+                                    value={donationsGift[0]?.paymentInfo[0].paymentMode}
                                     onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
+                                      handlePaymentInfoChangeGift(event, 0, 0)
                                     }
                                   >
                                     <option disabled selected value="">Donar Type</option>
@@ -4681,7 +4833,7 @@ function OfflineDonation() {
                                     <option value="Cash">Cash</option>
                                   </select>
                                   {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].paymentMode') {
+                                    if (error.field === 'donationGift[0].paymentInfo[0].paymentMode') {
                                       return <div key={index} className="error-message red-text">{error.message}</div>;
                                     }
                                     return null;
@@ -4698,13 +4850,13 @@ function OfflineDonation() {
                                     name="bankName"
                                     placeholder="Bank Name"
                                     type="text"
-                                    value={donations[0]?.paymentInfo[0].bankName}
+                                    value={donationsGift[0]?.paymentInfo[0].bankName}
                                     onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
+                                      handlePaymentInfoChangeGift(event, 0, 0)
                                     }
                                   />
                                   {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].bankName') {
+                                    if (error.field === 'donationGift[0].paymentInfo[0].bankName') {
                                       return <div key={index} className="error-message red-text">{error.message}</div>;
                                     }
                                     return null;
@@ -4721,13 +4873,13 @@ function OfflineDonation() {
                                     name="chqORddNo"
                                     placeholder="Chq/DD No."
                                     type="text"
-                                    value={donations[0]?.paymentInfo[0]?.chqORddNo}
+                                    value={donationsGift[0]?.paymentInfo[0]?.chqORddNo}
                                     onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
+                                      handlePaymentInfoChangeGift(event, 0, 0)
                                     }
                                   />
                                   {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].chqORddNo') {
+                                    if (error.field === 'donationGift[0].paymentInfo[0].chqORddNo') {
                                       return <div key={index} className="error-message red-text">{error.message}</div>;
                                     }
                                     return null;
@@ -4745,14 +4897,14 @@ function OfflineDonation() {
                                     placeholder="Chq/DD Date"
                                     type="date"
                                     value={
-                                      donations[0]?.paymentInfo[0].chqORddDate
+                                      donationsGift[0]?.paymentInfo[0].chqORddDate
                                     }
                                     onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
+                                      handlePaymentInfoChangeGift(event, 0, 0)
                                     }
                                   />
                                   {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].chqORddDate') {
+                                    if (error.field === 'donationGift[0].paymentInfo[0].chqORddDate') {
                                       return <div key={index} className="error-message red-text">{error.message}</div>;
                                     }
                                     return null;
@@ -4770,14 +4922,14 @@ function OfflineDonation() {
                                     placeholder="Payment Date"
                                     type="date"
                                     value={
-                                      donations[0]?.paymentInfo[0].paymentDate
+                                      donationsGift[0]?.paymentInfo[0].paymentDate
                                     }
                                     onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
+                                      handlePaymentInfoChangeGift(event, 0, 0)
                                     }
                                   />
                                   {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].paymentDate') {
+                                    if (error.field === 'donationGift[0].paymentInfo[0].paymentDate') {
                                       return <div key={index} className="error-message red-text">{error.message}</div>;
                                     }
                                     return null;
@@ -4794,16 +4946,16 @@ function OfflineDonation() {
                                     name="amount"
                                     placeholder="Amount"
                                     type="number"
-                                    value={donations[0]?.paymentInfo[0].amount}
+                                    value={donationsGift[0]?.paymentInfo[0].amount}
                                     onChange={(event) => {
                                       if (event.target.value < 0) {
                                         event.target.value = 0;
                                       }
-                                      handlePaymentInfoChange(event, 0, 0);
+                                      handlePaymentInfoChangeGift(event, 0, 0);
                                     }}
                                   />
                                   {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].amount') {
+                                    if (error.field === 'donationsGift[0].paymentInfo[0].amount') {
                                       return <div key={index} className="error-message red-text">{error.message}</div>;
                                     }
                                     return null;
@@ -4831,9 +4983,9 @@ function OfflineDonation() {
                                     <select
                                       name="paymentMode"
                                       className=" form-control-inside form-select"
-                                      value={donations[0].paymentInfo[1].paymentMode}
+                                      value={donationsGift[0].paymentInfo[1].paymentMode}
                                       onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
+                                        handlePaymentInfoChangeGift(event, 0, 1)
                                       }
                                     >
                                       <option selected>Donar Type</option>
@@ -4852,9 +5004,9 @@ function OfflineDonation() {
                                       name="bankName"
                                       placeholder="Bank Name"
                                       type="text"
-                                      value={donations[0]?.paymentInfo[1].bankName}
+                                      value={donationsGift[0]?.paymentInfo[1].bankName}
                                       onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
+                                        handlePaymentInfoChangeGift(event, 0, 1)
                                       }
                                     />
                                   </div>
@@ -4869,9 +5021,9 @@ function OfflineDonation() {
                                       name="chqORddNo"
                                       placeholder="Chq/DD No."
                                       type="text"
-                                      value={donations[0]?.paymentInfo[1].chqORddNo}
+                                      value={donationsGift[0]?.paymentInfo[1].chqORddNo}
                                       onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
+                                        handlePaymentInfoChangeGift(event, 0, 1)
                                       }
                                     />
                                   </div>
@@ -4887,10 +5039,10 @@ function OfflineDonation() {
                                       placeholder="Chq/DD Date"
                                       type="date"
                                       value={
-                                        donations[0]?.paymentInfo[1].chqORddDate
+                                        donationsGift[0]?.paymentInfo[1].chqORddDate
                                       }
                                       onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
+                                        handlePaymentInfoChangeGift(event, 0, 1)
                                       }
                                     />
                                   </div>
@@ -4906,10 +5058,10 @@ function OfflineDonation() {
                                       placeholder="Payment Date"
                                       type="date"
                                       value={
-                                        donations[0]?.paymentInfo[1].paymentDate
+                                        donationsGift[0]?.paymentInfo[1].paymentDate
                                       }
                                       onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
+                                        handlePaymentInfoChangeGift(event, 0, 1)
                                       }
                                     />
                                   </div>
@@ -4924,12 +5076,12 @@ function OfflineDonation() {
                                       name="amount"
                                       placeholder="Amount"
                                       type="number"
-                                      value={donations[0]?.paymentInfo[1].amount}
+                                      value={donationsGift[0]?.paymentInfo[1].amount}
                                       onChange={(event) => {
                                         if (event.target.value < 0) {
                                           event.target.value = 0;
                                         }
-                                        handlePaymentInfoChange(event, 0, 1);
+                                        handlePaymentInfoChangeGift(event, 0, 1);
                                       }}
                                     />
                                   </div>
@@ -4941,7 +5093,7 @@ function OfflineDonation() {
                         <button
                           type="submit"
                           className="mt20 mr10 webform-button--submit"
-                          onClick={(e) => createDonation(e, userData)}
+                          onClick={(e) => createDonationGift(e, userData)}
                         >
                           Create Donate
                         </button>

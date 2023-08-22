@@ -1,5 +1,6 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+
 import { Button, Col, Nav, Row, Navbar, NavDropdown } from "react-bootstrap";
 import {
   FaFacebookF,
@@ -27,16 +28,31 @@ const Header = () => {
   const handleToggle = () => {
     setExpanded(!expanded);
   };
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+  };
+  window.addEventListener('scroll', handleScroll);
+  return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <>
-      <div className="headermenu">
+      <div className={`headermenu ${isSticky ? 'sticky' : ''}`}>
         <Row>
-          <Col md={4} className="small-center">
-            <Link to="/"><img src={logo} alt="Logo" className="logo" /></Link>
+          <Col md={4} className="small-center ">
+            <Link to="/" className="logo-container"><img src={logo} alt="Logo" className="logo" /></Link>
           </Col>
           <Col md={8}>
-            <Navbar expand="lg" expanded={expanded}>
+            <Navbar expand="lg" expanded={expanded} className="pb-0">
               <Navbar.Toggle onClick={handleToggle} aria-controls="responsive-navbar-nav" >
                 <BsChevronBarLeft />
 
@@ -50,7 +66,7 @@ const Header = () => {
                 >
                   <Nav.Item>
                     <div className="menu-button-wrapper" onClick={goToDonate}>
-                      <Button className="menu-button-donet"><img src={donoteicon} alt="Donote" className="donoteicon" />Donate</Button>
+                      <Button className="menu-button-donet"><img src={donoteicon} alt="Donote" className="donoteicon" />Plant A Tree </Button>
                     </div>
                   </Nav.Item>
                   <Nav.Item className="text-center small-non">
@@ -92,11 +108,14 @@ const Header = () => {
                     <Nav.Link href="/WhySupportUs" eventKey="link-2">Why support us</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link href="/FootPrint" eventKey="link-3">FootPrint</Nav.Link>
+                    <Nav.Link href="/WaystoAssociate" eventKey="link-2">Ways to associate</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link href="/GalleryAwards" eventKey="link-4">Gallery & Awards</Nav.Link>
+                    <Nav.Link href="/FootPrint" eventKey="link-3">FootPrint</Nav.Link>
                   </Nav.Item>
+                  {/* <Nav.Item>
+                    <Nav.Link href="/GalleryAwards" eventKey="link-4">Gallery & Awards</Nav.Link>
+                  </Nav.Item> */}
                   <Nav.Item>
                     <Nav.Link href="/ContactUs" eventKey="link-5">Contact Us</Nav.Link>
                   </Nav.Item>

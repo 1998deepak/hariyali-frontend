@@ -82,11 +82,13 @@ function CaptchaContact({ verified, setVerified }) {
             disabled={verified === true}
           ><FiRefreshCcw />
           </button>
-        </div><div className="col-5">
+        </div>
+        <div className="col-5">
+          <div className="captcha-wrapper">
           <input
             type="text"
             id="inputType"
-            className="login-input login-captcha"
+            className="login-input login-captcha form-control"
             placeholder="Enter Captcha"
             name="username"
             onChange={handleChange}
@@ -98,7 +100,9 @@ function CaptchaContact({ verified, setVerified }) {
             onClick={onSubmit}
             className="verify-capt"
           > Verify Captcha
-          </button></div>
+          </button>
+          </div>
+          </div>
       </div>
     </>
   );

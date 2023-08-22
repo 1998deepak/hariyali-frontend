@@ -5,13 +5,14 @@ import ReactPasswordToggleIcon from "react-password-toggle-icon";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { SUCCESS, TOKEN, USER_DETAILS } from "../../constants/constants";
-import { AuthService } from '../../../services/auth/auth.service';
-import { toast } from "react-toastify";
+import { AuthService } from "../../../services/auth/auth.service";
+import axios from "axios";
+import { toast,ToastContainer } from "react-toastify";
 
 function Login() {
   const [formData, setFormData] = useState({
     username: "",
-    password: ""
+    password: "",
   });
   const inputRef = useRef(false);
   const [redirectFlag, setRedirectFlag] = useState(false);
@@ -26,11 +27,11 @@ function Login() {
   const regexMail =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-  useEffect(() => {
-    if (localStorage.getItem(TOKEN) !== null) {
-      navigate("/Dashboard");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem(TOKEN) !== null) {
+  //     navigate("/Dashboard");
+  //   }
+  // }, []);
 
   const checkEmail = (e) => {
     if (regexMail.test(e) == false) {
@@ -50,29 +51,25 @@ function Login() {
 
   const handleEmailChange = (event) => {
     checkEmail(event.target.value);
-    setEmail(event.target.value)
+    setEmail(event.target.value);
   };
 
   const login = async (e) => {
     e.preventDefault();
     if (formData.username == "") {
-      setErrors({ ...errors, username: "Enter the Username" })
-    }
-    else if (formData.password == "") {
-      setErrors({ ...errors, password: "Enter the Password" })
+      setErrors({ ...errors, username: "Enter the Username" });
+    } else if (formData.password == "") {
+      setErrors({ ...errors, password: "Enter the Password" });
     } else if (errors.username == "" && errors.password == "") {
       const response = await AuthService.login(formData);
       console.log(response);
       if (response) {
         if (response?.status === SUCCESS) {
-          console.log("Hiiiiiiii");
-          console.log(response?.token);
-          localStorage.setItem(TOKEN, response?.token);
+          console.log("Response: " + response);
           localStorage.setItem(USER_DETAILS, JSON.stringify(formData));
-          toast.success("Successfully Login!");
-          setTimeout(() => {
-            navigate("/Dashboard");
-          }, 2000);
+          toast.success("OTP Send Successfully!")
+          setIsHidden(!isHidden);
+          setIsHide(!isHide);
         } else {
           toast.error(response?.message);
         }
@@ -81,6 +78,47 @@ function Login() {
       }
     }
   };
+
+  const [donarIdOrEmail, setDonarIdOrEmail] = useState("");
+  const [otp, setOtp] = useState("");
+  const [verificationStatus, setVerificationStatus] = useState("");
+  const [isHidden, setIsHidden] = useState(true);
+  const [isHide, setIsHide] = useState(true);
+
+  const verifyOtp = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `http://localhost:8080/api/v1/verify-otp?donarIdOrEmail=${formData.username}&otp=${otp}`
+      );
+      console.log("Response: " + JSON.stringify(response));
+
+      // console.log("Error Massage: "+response.data.message);
+      if (response) {
+        if (response?.data.status === SUCCESS) {
+          console.log(response?.data.token);
+          localStorage.setItem(TOKEN, response?.data.token);
+          // Assuming the response contains a 'status' or 'message' field indicating the verification status
+          setVerificationStatus(response.data.status);
+          setTimeout(() => {
+            navigate("/Dashboard");
+          }, 2000);
+          toast.success("Successfully Login!");
+        } else {
+          console.log("Response: " + response.data.status);
+        }
+      } else {
+        //toast.error("Invalid credentials ! Username or Password Incorrect");
+        console.log("Failed To Login");
+      }
+    } catch (error) {
+      console.error(error);
+      console.log(error.response.data.message);
+      toast.success("OTP verification failed");
+      setVerificationStatus("OTP verification failed");
+    }
+  };
+
   const [donarID, setDonarID] = useState("");
   const sendEmail = async (e) => {
     console.log("hii");
@@ -107,8 +145,6 @@ function Login() {
     //  }
   };
 
-
-  
   if (redirectFlag === true) {
     return navigate("/Dashboard");
   }
@@ -155,26 +191,32 @@ function Login() {
   const hideIcon = () => <FaEye />;
   const goToLogin = () => {
     navigate("/OtpId");
-  }
+  };
   return (
+    <>
+    <ToastContainer/>
     <div className="logindiv bggray">
       <div className="col-6 mauto">
         <div className="loginlogo">
           <img src={logo} alt="Logo" />
         </div>
-        <div id="loginDiv" className="row justify-content-between bgwite border1 padding30 contact-form-wrap">
+        <div
+          id="loginDiv"
+          className="row justify-content-between bgwite border1 padding30 contact-form-wrap"
+        >
           <h5>THANKS FOR YOUR INTEREST IN HARIYALI</h5>
           <p>
             Please provide your UserName and password, so we can help you
             better!
           </p>
           <div className="col-12">
-            <form className="form-div contact-form-wrap" >
+            <form className="form-div contact-form-wrap">
               <label className="col-12">
                 <input
                   name="username"
                   type="text"
                   placeholder="Username"
+                  className="form-control"
                   value={formData.username}
                   onChange={(e) => handleValueChange(e)}
                 />
@@ -183,13 +225,14 @@ function Login() {
                 <input
                   type="password"
                   placeholder="Password"
-                  className="login-input login-password"
+                  className="login-input login-password form-control"
                   name="password"
                   value={formData.password}
                   onChange={(e) => handleValueChange(e)}
                   ref={inputRef}
                 />
-                <ReactPasswordToggleIcon className="logineye"
+                <ReactPasswordToggleIcon
+                  className="logineye"
                   inputRef={inputRef}
                   hideIcon={hideIcon}
                   showIcon={showIcon}
@@ -197,11 +240,37 @@ function Login() {
               </label>
               <div className="for-accdiv row justify-content-between">
                 <div className="col-6 account-act">Account Activation</div>
-                <div className="col-6 forgot-pass justify-content-end" onClick={forgotLink}>Forgot Password</div>
+                <div
+                  className="col-6 forgot-pass justify-content-end"
+                  onClick={forgotLink}
+                >
+                  Forgot Password
+                </div>
+              </div>
+              <div id="VerifyOTP">
+                <label className="col-12">
+                  <input
+                    name="verifyOTP"
+                    className={isHidden ? 'hide' : 'form-control'}
+                    type="text"
+                    placeholder="Verify OTP"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                  />
+                </label>
               </div>
               <Captcha verified={verified} setVerified={setVerified}></Captcha>
-              <button onClick={login}
-                className="webform-button--submit button button--primary js-form-submit form-submit"
+              <button
+                onClick={login}
+                //className="webform-button--submit button button--primary js-form-submit form-submit"
+                className={isHide ? 'webform-button--submit button button--primary js-form-submit form-submit' : 'hide'}
+              >
+                Send OTP
+              </button>
+              &nbsp;&nbsp;
+              <button
+                onClick={verifyOtp}
+                className={isHidden ? 'hide' : 'webform-button--submit button button--primary js-form-submit form-submit'}
               >
                 Login
               </button>
@@ -211,19 +280,32 @@ function Login() {
             </div>
           </div>
         </div>
-        <div id="forgotDiv" className="hide row justify-content-between bgwite border1 padding30 contact-form-wrap">
+        <div
+          id="forgotDiv"
+          className="hide row justify-content-between bgwite border1 padding30 contact-form-wrap"
+        >
           <h5>Donor ID</h5>
           <p>Please Enter your Donor ID!</p>
           <div className="col-12">
-            <form className="form-div contact-form-wrap" >
+            <form className="form-div contact-form-wrap">
               <label className="col-12">
-                <input type="text" value={donarID} onChange={(e) => setDonarID(e.target.value)} />
-
+                <input
+                  type="text"
+                  className="form-control"
+                  value={donarID}
+                  onChange={(e) => setDonarID(e.target.value)}
+                />
               </label>
-              <button className="mt20 mr10 webform-button--submit" onClick={(e) => sendEmail(e)}>
+              <button
+                className="mt20 mr10 webform-button--submit"
+                onClick={(e) => sendEmail(e)}
+              >
                 Next
               </button>
-              <button onClick={toggleDiv} className="mt20 mr10 webform-button--cancel">
+              <button
+                onClick={toggleDiv}
+                className="mt20 mr10 webform-button--cancel"
+              >
                 Back
               </button>
             </form>
@@ -231,6 +313,7 @@ function Login() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
