@@ -12,9 +12,9 @@ import about3 from "../../../assets/img/about/about3.png";
 // about
 // program
 // import program1 from "../../assets/img/program/program1.png";
-import program1 from "../../../assets/img/tree-plantation.png";
-import program2 from "../../../assets/img/carbon.png";
-import program3 from "../../../assets/img/carbon-neutral.png";
+import program1 from "../../../assets/img/regenarate.png";
+import program2 from "../../../assets/img/biodiversity.jpg";
+import program3 from "../../../assets/img/co2.jpg";
 import program4 from "../../../assets/img/lifestyle.jpg";
 import planting from "../../../assets/img/about/hariyali-img-4.jpg";
 import bio from "../../../assets/img/program/hariyali-img-2.jpg";
@@ -67,10 +67,10 @@ import { Zoom } from "react-slideshow-image";
 // import image2 from "../../../assets/img/slider/rise-program-resgions-2.jpg";
 // import image3 from "../../../assets/img/slider/rise-program-resgions-3.jpg";
 // import image4 from "../../../assets/img/slider/rise-program-resgions-4.jpg";
-import image1 from "../../../assets/img/slider/Picture1.jpg";
-import image2 from "../../../assets/img/slider/Picture2.jpg";
-import image3 from "../../../assets/img/slider/Picture3.jpg";
-import image4 from "../../../assets/img/slider/Picture4.jpg";
+import image1 from "../../../assets/img/slider/banner1.png";
+import image2 from "../../../assets/img/slider/banner2.png";
+import image3 from "../../../assets/img/slider/banner3.png";
+import image4 from "../../../assets/img/slider/banner4.jpg";
 
 import plantimg from "../../../assets/img/pmat_a_tree.png";
 
@@ -102,7 +102,7 @@ const slides = [
     description: 'Taran Taran, Punjab',
   },
   {
-    image: image3,
+    image: image4,
     title: 'Trees need people as much as people need trees',
     description: 'Shravasti, Uttar Pradesh',
   },
@@ -221,25 +221,25 @@ function HomePage() {
         {/* <div className="mahindralogo">
           <img src={mahindraLogo} alt="Mahindra Logo" />
         </div> */}
-        <h2 className="sub-title text-center mb-5">Impact & Reach</h2>
-        <div className="row mb30">
-          <div className="col-12 col-md-4 text-center mb30">
+        {/* <h2 className="sub-title text-center mb-5">Impact & Reach</h2> */}
+        <div className="row mb30 impact-wrapper">
+          <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
-              <i className="icon-tree"></i>
+              {/* <i className="icon-tree"></i> */}
               <h4>Trees Planted</h4>
               <p>228,61,288</p>
             </div>
           </div>
-          <div className="col-12 col-md-4 text-center mb30">
+          <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
-              <i className="icon-survival"></i>
+              {/* <i className="icon-survival"></i> */}
               <h4>Survival Rate</h4>
               <p>85%</p>
             </div>
           </div>
-          <div className="col-12 col-md-4 text-center mb30">
+          <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
-              <i className="icon-carbon"></i>
+              {/* <i className="icon-carbon"></i> */}
               <h4>Carbon Sequestered</h4>
               <p>400,000+ tonnes</p>
             </div>
@@ -251,24 +251,18 @@ function HomePage() {
           Creating carbon sink through focussed large scale plantation
         </div> */}
       </div>
-      <div className="">
-        <div className="d-flex flex-wrap">
-          <div className="col-12 col-md-6">
-            <a href="" className="px-4 nav-redirect">
-              <h4 className="text-center">
-                Plant A tree <img src={planttreeImg} /></h4>
+      <div className="donate-btn-group">
+        <div className="d-flex flex-wrap justify-content-center">          
+            <a href="" className="btn btn-primary">     
+                Plant A tree <img src={planttreeImg} />
             </a>          
-          </div>
-          <div className="col-12 col-md-6">
-          <a href="" className="px-4 nav-redirect nav-redirect2">
-            <h4 className="text-center">
-           
-            Gift a Tree  <img src={gifttreeImg} /></h4> 
-          </a>
-          </div>
+            <a href="" className="btn btn-primary">     
+              Gift a Tree  <img src={gifttreeImg} /> 
+            </a>
         </div>
       </div>
       <div className="container pv-75">
+        <h2 className="sub-title text-center mb-5">Impact & Reach</h2>
         <div className="row">
           <div className="col-12 col-md-6">
             <div className="img-responsive feature-image">
@@ -532,7 +526,7 @@ function HomePage() {
       </div>
       {/* project */}
       {/* Blogs and news */}
-      <div className=" ">
+      {/* <div className=" ">
         <Container>
           <Row className="justify-content-between ptb50 ">
             <h2 className="sub-title text-center mb30">
@@ -579,7 +573,7 @@ function HomePage() {
 
           </Row>
         </Container>
-      </div>
+      </div> */}
       {/* body */}
     </>
   );

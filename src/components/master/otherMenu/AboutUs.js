@@ -2,9 +2,9 @@ import React from "react";
 import { Container, Row } from "react-bootstrap";
 import "animate.css/animate.min.css";
 // import "react-image-gallery/styles/css/image-gallery.css";
-import goalimg from "../../../assets/img/goal.jpg";
-import projectimg from "../../../assets/img/project-detail.png";
-import ventureimg from "../../../assets/img/venture.png";
+import goalimg from "../../../assets/img/goal.png";
+import projectimg from "../../../assets/img/about/about3.png";
+import ventureimg from "../../../assets/img/environment.jpg";
 
 function AboutUs() {
 
@@ -23,17 +23,20 @@ function AboutUs() {
             <div className="row pv-75">
               <div className="col-12 col-md-6">
               <div className="feature-description">
-                <h2 className="text-center text-capitalize">Project Details</h2>
+                <h2 className="text-capitalize">Project Details</h2>
                 <p>Launched on 2nd October 2007, as an afforestation initiative, with a target to plant a million trees every year. 
                   Project Hariyali aims to increase the green cover, arrest the rising ecological imbalance to create environmentally conscious and aware citizenry.</p>
-                  <p>In 2010, the project was further extended to <span className="colorgreen">Araku</span>,  <span className="colorgreen">Visakhapatnam</span>,  <span className="colorgreen">Andhra Pradesh</span></p>
-
-                  <ul className="">
-                    <li>To Restore the Ecosystem</li><li>
-                    To Create a Functional</li><li>
-                      Ensure Nutritional / Economic security of the small & Marginalized Farmers
-                    </li>
-                  </ul>
+                  <p>Large Scale Plantation Locations:
+                    Araku Valley – The project started in Araku, Visakhapatnam, Andhra Pradesh in 2010. The aim was to
+                    <ul className="mb-2">
+                      <li>Restore the ecosystem</li>
+                      <li>Create a functional forest for the tribal community</li>
+                      <li>Ensure nutritional / economic security of the small & marginalized farmers</li>
+                    </ul>
+                    Northern India - The project was further extended in Punjab, Uttar Pradesh and Himachal Pradesh in 2021
+                    Western India – The project is being currently replicated in Wardha, Maharashtra.
+                    </p>
+                  
                   </div>
               </div>
               <div className="col-12 col-md-6">
@@ -53,20 +56,20 @@ function AboutUs() {
                   </div>
                   <div className="col-12 col-md-6">
                       <div className="feature-description">
-                    <h2 className="text-center text-capitalize">Goal</h2>
-                    <p className=""><quote>Planting 5 million trees per annum through partnerships with like-minded organizations and people an in the process support livelihood of marginalized farmer communities.</quote></p>
+                    <h2 className="text-capitalize">Goal</h2>
+                    <p className=""><quote>Planting 5 million trees per annum through partnerships with like-minded organizations and people and in the process support livelihood of marginalized farmer communities.</quote></p>
                       
                       </div>
                   </div>
               </div>
             </div>
           </section>
-          
+          <section className="bg-venture">
           <div className="container">
             <div className="row pv-75">              
-              <div className="col-12 col-md-8">
+              <div className="col-12">
                   <div className="feature-description">
-                  <h2 className="text-center text-capitalize">Joint Venture</h2>
+                  <h2 className="text-capitalize">Joint Venture</h2>
                   <p>
                     <b>Mahindra Foundation</b> is a public charitable trust incorporated in 1969 and registered under Maharashtra Public Trust Act.
 
@@ -81,13 +84,20 @@ function AboutUs() {
                   
                   </div>
               </div>
-              <div className="col-12 col-md-4">
+              {/* <div className="col-12 col-md-5">
                 <div className="feature-image">
                   <img src={ventureimg} alt=""/>
                 </div>              
               </div>
+              <div className="col-12 col-md-12">
+                <div className="feature-image">
+                  <img src={ventureimg} alt=""/>
+                </div>              
+              </div> */}
+              
             </div>
           </div>
+          </section>
           {/* <Container className="pt30">
             <Row className="justify-content-between  padding30tb contact-form-wrap">              
               <div className="col-12">
