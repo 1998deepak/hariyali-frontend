@@ -3,7 +3,7 @@ import { Container, Row } from "react-bootstrap";
 import "animate.css/animate.min.css";
 // import "react-image-gallery/styles/css/image-gallery.css";
 import goalimg from "../../../assets/img/goal.png";
-import projectimg from "../../../assets/img/about/about3.png";
+import projectimg from "../../../assets/img/slider/IMG_6982.png";
 import ventureimg from "../../../assets/img/environment.jpg";
 
 function AboutUs() {
@@ -13,15 +13,15 @@ function AboutUs() {
       {/* body */}
       <section className="banner banner-about">
         <div className="title">
-          <h1>About Us</h1>
+          {/* <h1>About Us</h1> */}
         </div>          
       </section>
       <div className="">
         {/* <img src={planting} alt="planting" className="imgwidth100" /> */}
         <div className="section bggray">
           <div className="container">
-            <div className="row pv-75">
-              <div className="col-12 col-md-6">
+            <div className="row align-items-center pv-75">
+              <div className="col-12 col-md-7">
               <div className="feature-description">
                 <h2 className="text-capitalize">Project Details</h2>
                 <p>Launched on 2nd October 2007, as an afforestation initiative, with a target to plant a million trees every year. 
@@ -39,7 +39,7 @@ function AboutUs() {
                   
                   </div>
               </div>
-              <div className="col-12 col-md-6">
+              <div className="col-12 col-md-5">
                 <div className="feature-image">
                   <img src={projectimg} alt=""/>
                 </div>
@@ -48,13 +48,13 @@ function AboutUs() {
           </div>
           <section className="bg-tree">
             <div className="container">
-              <div className="row pv-75">
-                  <div className="col-12 col-md-6">
+            <div className="row align-items-center pv-75">
+                  <div className="col-12 col-md-5">
                     <div className="feature-image">
                       <img src={goalimg} alt=""/>
                     </div>              
                   </div>
-                  <div className="col-12 col-md-6">
+                  <div className="col-12 col-md-7">
                       <div className="feature-description">
                     <h2 className="text-capitalize">Goal</h2>
                     <p className=""><quote>Planting 5 million trees per annum through partnerships with like-minded organizations and people and in the process support livelihood of marginalized farmer communities.</quote></p>

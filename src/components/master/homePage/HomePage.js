@@ -129,6 +129,16 @@ const Slideshow = () => {
           <div className="slide-content">
             <h2>{each.title}</h2>
             <p><i className="bi-bi bi-geo-alt"></i>{each.description}</p>
+            <div className="donate-btn-group">
+            <div className="d-flex flex-wrap justify-content-start">          
+                <a href="" className="btn btn-primary">     
+                    Plant A tree <img src={planttreeImg} />
+                </a>          
+                <a href="" className="btn btn-primary">     
+                  Gift a Tree  <img src={gifttreeImg} /> 
+                </a>
+            </div>
+          </div>
           </div>
           </>
         ))}
@@ -251,18 +261,9 @@ function HomePage() {
           Creating carbon sink through focussed large scale plantation
         </div> */}
       </div>
-      <div className="donate-btn-group">
-        <div className="d-flex flex-wrap justify-content-center">          
-            <a href="" className="btn btn-primary">     
-                Plant A tree <img src={planttreeImg} />
-            </a>          
-            <a href="" className="btn btn-primary">     
-              Gift a Tree  <img src={gifttreeImg} /> 
-            </a>
-        </div>
-      </div>
+      
       <div className="container pv-75">
-        <h2 className="sub-title text-center mb-5">Impact & Reach</h2>
+        {/* <h2 className="sub-title text-center mb-5">Impact & Reach</h2> */}
         <div className="row">
           <div className="col-12 col-md-6">
             <div className="img-responsive feature-image">
