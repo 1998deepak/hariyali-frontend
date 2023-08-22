@@ -138,7 +138,7 @@ function OfflineDonationPay() {
       paymentInfo: [
         {
           paymentMode: "",
-          bankName: "",
+          bankname: "",
           chqORddNo: "",
           chqORddDate: "",
           paymentDate: "",
@@ -146,7 +146,7 @@ function OfflineDonationPay() {
         },
         {
           paymentMode: "",
-          bankName: "",
+          bankname: "",
           chqORddNo: "",
           chqORddDate: "",
           paymentDate: "",
@@ -339,7 +339,7 @@ console.log(handleRecipientChange);
 
 
         if (
-          donations.donationType === "gift-Donate" &&
+          donations.donationType === "Gift-Donate" &&
           donations.recipient &&
           donations.recipient.length > 0
         ) {
@@ -594,126 +594,72 @@ console.log(handleRecipientChange);
   
   
 // test 
-// const validate = () => {
-//   const errors = [];
+const validate = () => {
+  const errors = [];
 
-//   // Payment validation
-//   for (let i = 0; i < donationData.paymentInfo.length; i++) {
-//     const payment = donationData.paymentInfo[i];
-//     const paymentErrors = {};
-
-//     // Payment mode validation
-//     if (!payment.paymentMode || payment.paymentMode === "Donor Type") {
-//       paymentErrors.paymentMode = "Payment Mode is required";
-//     }
-
-//     // Other payment validations...
-//     if (!payment.chqORddDate) {
-//               paymentErrors.chqORddDate = "ChqORddDate is required";
-//             }
-//             if (!payment.paymentDate) {
-//               paymentErrors.paymentDate = "Payment Date is required";
-//             }
-//             if (!payment.amount) {
-//               paymentErrors.amount = "Amount is required";
-//             }
-//             if (!payment.bankname || payment.bankname.trim() === '') {
-//               paymentErrors.bankname = "BankName is required";
-//             } else if (!/^[A-Za-z]+$/.test(payment.bankname)) {
-//               paymentErrors.bankName = "Bank Name is invalid";
-//             }
-//             if (!payment.chqORddNo) {
-//               paymentErrors.chqORddNo = "ChqORddNo is required";
-//             }
-    
-//     if (Object.keys(paymentErrors).length > 0) {
-//       errors.push(paymentErrors);
-//     }
-//   }
-
-//   // Donation event validation for non-self-donate
-//   if (donationData.donationType !== "Self-Donate" && !donationData.donationEvent) {
-//     errors.push({ donationEvent: "Donation Event is required" });
-//   }
-
-//   // Recipient validation only if donationType is not "Gift-Donate"
-//   // if (donationData.donationType === "Self-Donate") {
-//   //   donationData.recipient = []; // Set recipient array to empty for self-donate
-//   // } else {
-//   //   for (let i = 0; i < donationData.recipient.length; i++) {
-//   //     const recipientValidate = donationData.recipient[i]; // Assuming recipient data is an array
-//   //     const recipientErrors = {};
-
-//   //     // Recipient validation logic...
-//   //     if (!recipientValidate.emailID) {
-//   //           recipientErrors.emailID = "Email Id is required";
-//   //         }
-  
-//   //     if (Object.keys(recipientErrors).length > 0) {
-//   //       errors.push(recipientErrors);
-//   //     }
-//   //   }
-//   if (donationData.donationType === "Self-Donate") {
-//     donationData.recipient = []; // Set recipient array to empty for gift-donate
-//   } else {
-//     if (!donationData.recipient) {
-//       donationData.recipient = []; // Initialize recipient array if not present
-//     }
-
-//     for (let i = 0; i < donationData.recipient.length; i++) {
-//       const recipientValidate = donationData.recipient[i]; // Assuming recipient data is an array
-//       const recipientErrors = {};
-
-//       // Recipient validation logic...
-//       if (!recipientValidate.mobileNo) {
-//                     recipientErrors.mobileNo = "Mobile Number is required";
-//                   }
-//       if (Object.keys(recipientErrors).length > 0) {
-//         errors.push(recipientErrors);
-//       }
-//     }
-//    }
-
-//   return errors;
-// };
-
-const validate=()=>{
-
+  // Payment validation
   for (let i = 0; i < donationData.paymentInfo.length; i++) {
-        const payment = donationData.paymentInfo[i];
-        const paymentErrors = {};
-    
-        // Payment mode validation
-        if (!payment.paymentMode || payment.paymentMode === "Donor Type") {
-          paymentErrors.paymentMode = "Payment Mode is required";
-        }
-    
-        // Other payment validations...
-        if (!payment.chqORddDate) {
-                  paymentErrors.chqORddDate = "ChqORddDate is required";
-                }
-                if (!payment.paymentDate) {
-                  paymentErrors.paymentDate = "Payment Date is required";
-                }
-                if (!payment.amount) {
-                  paymentErrors.amount = "Amount is required";
-                }
-                if (!payment.bankname || payment.bankname.trim() === '') {
-                  paymentErrors.bankname = "BankName is required";
-                } else if (!/^[A-Za-z]+$/.test(payment.bankname)) {
-                  paymentErrors.bankName = "Bank Name is invalid";
-                }
-                if (!payment.chqORddNo) {
-                  paymentErrors.chqORddNo = "ChqORddNo is required";
-                }
-        
-        if (Object.keys(paymentErrors).length > 0) {
-          errors.push(paymentErrors);
-        }
-      }
-        return errors;
+    const payment = donationData.paymentInfo[i];
+    const paymentErrors = {};
 
-}
+    // Payment mode validation
+    if (!payment.paymentMode || payment.paymentMode === "Donor Type") {
+      paymentErrors.paymentMode = "Payment Mode is required";
+    }
+
+    // Other payment validations...
+    if (!payment.chqORddDate) {
+              paymentErrors.chqORddDate = "ChqORddDate is required";
+            }
+            if (!payment.paymentDate) {
+              paymentErrors.paymentDate = "Payment Date is required";
+            }
+            if (!payment.amount) {
+              paymentErrors.amount = "Amount is required";
+            }
+            if (!payment.bankname || payment.bankname.trim() === '') {
+              paymentErrors.bankname = "BankName is required";
+            } else if (!/^[A-Za-z]+$/.test(payment.bankname)) {
+              paymentErrors.bankname = "Bank Name is invalid";
+            }
+            if (!payment.chqORddNo) {
+              paymentErrors.chqORddNo = "ChqORddNo is required";
+            }
+    
+    if (Object.keys(paymentErrors).length > 0) {
+      errors.push(paymentErrors);
+    }
+  }
+
+  //   if (donationData.donationType === "Gift Donate") {
+  //     for (let i = 0; i < donationData.recipient.length; i++) {
+  //       const recipient = donationData.recipient[i];
+  //       const recipientErrors = {};
+  
+  //       // Recipient validation logic goes here
+  //       // ...
+  //       // if (!recipientValidate.mobileNo) {
+  //       //               recipientErrors.mobileNo = "Mobile Number is required";
+  //       //             }
+  
+  //       if (Object.keys(recipientErrors).length > 0) {
+  //         errors.push(recipientErrors);
+  //       }
+  //     }
+    
+  // }
+
+  errors.forEach((error) => {
+    console.log(error.bankName);
+  });
+  setErrors(errors);
+  return errors;
+};
+
+
+
+
+
 const updateDonation = async (e) => {
   e.preventDefault();
 
@@ -748,7 +694,7 @@ const updateDonation = async (e) => {
       const response = await DonationService.updateDonation(updatedFormData);
       console.log(response);
       // Process the API response as needed
-      if (response?.status === "Data Update Successfully") {
+      if (response?.status) {
         toast.success(response?.message);
       } else {
         toast.error(response?.message);
@@ -793,7 +739,7 @@ const updateDonation = async (e) => {
     return amountInWords;
   };
 
- 
+ console.log(recipient.address[0])
 
   return (
     <>
@@ -909,6 +855,7 @@ const updateDonation = async (e) => {
                                       index
                                     );
                                   }}
+                                  disabled
                                 />
                               </td>
                               {/* <td className="w18p">
@@ -987,6 +934,7 @@ const updateDonation = async (e) => {
                               <div className="col-8  p0">
                                 <input
                                   className="form-control-inside"
+                                  name="street1"
                                   placeholder=" Street 1"
                                   type="text"
                                   value={recipient.address[0]?.street1 || ""}
@@ -1175,6 +1123,15 @@ const updateDonation = async (e) => {
                     >
                       <FaPlusSquare />
                     </div></div>
+
+
+
+
+
+
+
+
+                    
                   <div className="col-12 pr15 mt20">
                     <div className="row">
                       <div className="col-6">
@@ -1202,17 +1159,17 @@ const updateDonation = async (e) => {
                         <div className="row select-label">
                           <div className="col-4 "> Bank Name</div>
                           <div className="col-8 p0">
-                            <input
-                              className="form-control-inside"
-                              name="bankname"
-                              placeholder="Bank Name"
-                              type="text"
-                              value={donationData.paymentInfo[0]?.bankname || ""}
-                              onChange={(event) =>
-                                handlePaymentInfoChange(event, 0)
-                              }
-                            />
-                            {errors[0]?.bankname && <div className="error-message red-text">{errors[0]?.bankname}</div>}
+                          <input
+        className="form-control-inside"
+        name="bankname" 
+        placeholder="Bank Name"
+        type="text"
+        value={donationData.paymentInfo[0]?.bankname || ""} 
+        onChange={(event) => handlePaymentInfoChange(event, 0)}
+      /> 
+      {errors[0]?.bankname && ( 
+      <div className="error-message red-text">{errors[0]?.bankname}</div>
+    )}
                           </div>
                         </div>
                       </div>
@@ -1293,6 +1250,16 @@ const updateDonation = async (e) => {
                       </div>
                     </div>
                   </div>
+
+
+
+
+
+
+
+
+
+
                   <div id="addpaymentDiv" className="hide">
                     <hr />
                     <div className="actionheadingdiv">Mode of Payment
@@ -1329,10 +1296,10 @@ const updateDonation = async (e) => {
                             <div className="col-8 p0">
                               <input
                                 className="form-control-inside"
-                                name="bankName"
+                                name="bankname"
                                 placeholder="Bank Name"
                                 type="text"
-                                value={donationData.paymentInfo[1]?.bankName || ""}
+                                value={donationData.paymentInfo[1]?.bankname || ""}
                                 onChange={(event) =>
                                   handlePaymentInfoChange(event, 1)
                                 }

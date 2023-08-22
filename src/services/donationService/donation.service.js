@@ -189,6 +189,7 @@ export const DonationService = {
            }
         }
       },
+
       updateDonation: async (formData) => {
       
         console.log(formData);
@@ -242,24 +243,24 @@ export const DonationService = {
   
 
 
-  updateDonation: async (formData) => {
+  // updateDonation: async (formData) => {
 
-    console.log(formData);
-    try {
-      const response = await APIService.Instance.post(
-        URLS.UPDATEDONATIONOFUSER, formData
-      );
-      console.log(response);
-      return response?.data;
-    } catch (err) {
-      if (err?.response?.data) {
-        return err?.response?.data;
-      } else {
-        //   toast.error(err?.message);
-        console.log("Hello");
-      }
-    }
-  },
+  //   console.log(formData);
+  //   try {
+  //     const response = await APIService.Instance.post(
+  //       URLS.UPDATEDONATIONOFUSER, formData
+  //     );
+  //     console.log(response);
+  //     return response?.data;
+  //   } catch (err) {
+  //     if (err?.response?.data) {
+  //       return err?.response?.data;
+  //     } else {
+  //       //   toast.error(err?.message);
+  //       console.log("Hello");
+  //     }
+  //   }
+  // },
 
 
   // get user details by donor id
