@@ -378,6 +378,8 @@ function OnlineDonation() {
 
       formData.formData.user.donations[0].donationType = donationType;
 
+      formData.formData.user.emailId = userEmail;
+
       //Setting Address array
       console.log(address.length);
 
@@ -1024,7 +1026,7 @@ function OnlineDonation() {
                               </tr>
                             </thead>
                             <tbody>
-                              {packageData.map((packageItem, index) => {
+                              {packageData?.map((packageItem, index) => {
                                 return (
                                   <tr key={index}>
                                     <td>{packageItem.packageName}</td>
@@ -1575,7 +1577,12 @@ function OnlineDonation() {
                                 <option value="Memorial Tribute">
                                   Memorial Tribute
                                 </option>
+                                <option value="other">Others: </option><input type="text" className="form-control"/>
                               </select>
+                              {/* <div id="otherOption">
+                                <label for="otherText">Enter other option:</label>
+                                <input type="text" id="otherText"/>
+                              </div> */}
                               {errors.map((error, index) => {
                                 if (error.field === 'donations.donationEvent') {
                                   return <div key={index} className="error-message red-text">{error.message}</div>;
@@ -2374,6 +2381,10 @@ function OnlineDonation() {
                           setVerified={() => { }}
                           id="captcha2"
                         />
+                        {
+                    validatePopup.captcha ?
+                      <div className="error-message red-text">{validatePopup.captcha}</div> : <></>
+                  }
                       </div>
                       <hr />
                       <div className="col-12 mt20 select-label">
