@@ -216,6 +216,7 @@ function Login() {
                   name="username"
                   type="text"
                   placeholder="Username"
+                  className="form-control"
                   value={formData.username}
                   onChange={(e) => handleValueChange(e)}
                 />
@@ -224,7 +225,7 @@ function Login() {
                 <input
                   type="password"
                   placeholder="Password"
-                  className="login-input login-password"
+                  className="login-input login-password form-control"
                   name="password"
                   value={formData.password}
                   onChange={(e) => handleValueChange(e)}
@@ -250,7 +251,7 @@ function Login() {
                 <label className="col-12">
                   <input
                     name="verifyOTP"
-                    className={isHidden ? 'hide' : ''}
+                    className={isHidden ? 'hide' : 'form-control'}
                     type="text"
                     placeholder="Verify OTP"
                     value={otp}
@@ -290,6 +291,7 @@ function Login() {
               <label className="col-12">
                 <input
                   type="text"
+                  className="form-control"
                   value={donarID}
                   onChange={(e) => setDonarID(e.target.value)}
                 />

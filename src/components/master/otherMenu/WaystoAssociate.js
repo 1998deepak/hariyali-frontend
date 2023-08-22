@@ -12,10 +12,14 @@ import csr3 from "../../../assets/img/csr3.png";
 import csr4 from "../../../assets/img/csr4.png";
 import csr5 from "../../../assets/img/csr5.png";
 
+import monsoonImg from "../../../assets/img/monsoon.jpg";
+import winterImg from "../../../assets/img/winter.jpg";
+import associateImg from "../../../assets/img/associate.jpg";
+
 function WaystoAssociate() {
     return (
         <>
-            <section className="banner banner-about">
+            <section className="banner banner-associate">
                 <div className="title">
                     <h1>Ways to Associate</h1>
                 </div>
@@ -24,8 +28,33 @@ function WaystoAssociate() {
             <div className="">
                 <div className="container">
                     <div className="pv-75">
-                        <h2 className="sub-title text-center mb-5">Plantation season</h2>
-                        <div className="row justify-content-around mb30">
+                        <h2 className="sub-title text-center mb-0">Plantation season</h2>
+                        <p className="text-center"> You can chose plant any of the season or both and reporting for next two years</p>
+                        <div className="row justify-content-center mt-5">
+                            <div className="col col-md-3">
+                                <div class="card plantation-card">
+                                    <img src={monsoonImg} class="card-img-top" alt="..."/>
+                                    {/* <i className="icon-monsoon"></i> */}
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center">Mansoon <span>(Jun - Sep)</span></h5>
+                                        {/* <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <a href="#" class="btn btn-primary">Go somewhere</a> */}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col col-md-3">
+                                <div class="card plantation-card">
+                                    <img src={winterImg} class="card-img-top" alt="..."/>
+                                    {/* <i className="icon-monsoon"></i> */}
+                                    <div class="card-body">
+                                    <h5 class="card-title text-center">Winter <span>(Nov - Jan)</span></h5>
+                                        {/* <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <a href="#" class="btn btn-primary">Go somewhere</a> */}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/* <div className="row justify-content-around mb30">
                             <div className="col-12 col-md-4 text-center mb30">
                                 <div className="tree-features">
                                     <i className="icon-monsoon"></i>
@@ -38,8 +67,8 @@ function WaystoAssociate() {
                                     <h4>Winter <br />(Nov - Jun)</h4>
                                 </div>
                             </div>
-                        </div>
-                        <p className="text-center"><i class="bi bi-info-circle-fill"> You can chose plant any of the season or both and reporting for next two years</i></p>
+                        </div> */}
+                        
                     </div>
                 </div>
                 <div className="container">
@@ -80,7 +109,7 @@ function WaystoAssociate() {
                     <h2 className="sub-title text-center mb30">
                     Corporate Social Responsibility
                     </h2>
-                    <p className="text-center">Become a Corporate Partner for Project Hariyali and contribute towards making our nation Carbon Neutral by 2070.. Project Hariyali aligns with Schedule VII of the Companies Act 2013 (India) under (iv) ensuring environmental sustainability, ecological balance, protection of flora and fauna, animal welfare, agroforestry, conservation of natural resources and maintaining quality of soil, air and water . Our implementation expertise, 
+                    <p className="">Become a Corporate Partner for Project Hariyali and contribute towards making our nation Carbon Neutral by 2070. Project Hariyali aligns with Schedule VII of the Companies Act 2013 (India) under (iv) ensuring environmental sustainability, ecological balance, protection of flora and fauna, animal welfare, agroforestry, conservation of natural resources and maintaining quality of soil, air and water . Our implementation expertise, 
                         ability to map project milestones and outcomes, as well as a comprehensive monitoring and reporting framework makes Project Hariyali a preferred CSR partner.</p>
                     <div className="row justify-content-between py-3">
                         <div className="col-lg-2 col-12 mb-lg-0 mb-3 discover-block">
@@ -113,7 +142,81 @@ function WaystoAssociate() {
                     </div>
 
                 </div>
-
+                <section className="bg-green">
+                <div className="container pv-75">
+                    <h2 className="sub-title text-center mb30">
+                    Cause Related Marketing
+                    </h2>
+                    <p>Partner with Project Hariyali to develop cause-related marketing campaigns which highlight your organisation’s 
+                        commitment towards Environment. Customised, co-branded campaigns can be conceptualised to help you build good will for your business, 
+                        while ensuring environmental sustainability.</p>
+                    <p>Options to associate with Project Hariyali.</p>
+                    <div className="row mt-5">
+                        <div className="col-12 col-md-5">
+                            <ul class="tree-veiw">
+                                <li>
+                                    <div className="media-image">
+                                        <i className="bi bi bi-flower3"></i>
+                                    </div>
+                                    <div className="media-body">
+                                        Campaign with employees
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className="media-image">
+                                        <i className="bi bi bi-flower3"></i>
+                                    </div>
+                                    <div className="media-body">
+                                    Campaign with Customers
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className="media-image">
+                                        <i className="bi bi bi-flower3"></i>
+                                    </div>
+                                    <div className="media-body">
+                                    Special Days Celebration
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className="media-image">
+                                        <i className="bi bi bi-flower3"></i>
+                                    </div>
+                                    <div className="media-body">
+                                    Gifting
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="col-12 col-md-7">
+                            <img src={associateImg} alt="Image " width={500}/>
+                        </div>
+                    </div>
+                    
+                    {/* <div className="row no-gutters">
+                        <div className="col-12 col-md-3">
+                            <div className="card">
+                                <span class="">Campaign with employees</span>
+                            </div>
+                        </div>
+                        <div className="col-12 col-md-3">
+                            <div className="card">
+                                <span class="">Campaign with Customers</span>
+                            </div>
+                        </div>
+                        <div className="col-12 col-md-3">
+                            <div className="card">
+                                <span class="">Special Days Celebration</span>
+                            </div>
+                        </div>
+                        <div className="col-12 col-md-3">
+                            <div className="card">
+                                <span class="">Gifting</span>
+                            </div>
+                        </div>                        
+                    </div> */}
+                </div>
+                </section>
                 {/* <img src={planting} alt="planting" className="imgwidth100" /> */}
                 {/* <div className="section bggray">
                     <Container className="pt30">
