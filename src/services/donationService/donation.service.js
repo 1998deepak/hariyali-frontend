@@ -186,29 +186,81 @@ export const DonationService = {
       } else {
         //   toast.error(err?.message);
         console.log("Hello");
-      }
-    }
-  },
+           }
+        }
+      },
 
-
-  updateDonation: async (formData) => {
-
-    console.log(formData);
-    try {
-      const response = await APIService.Instance.post(
-        URLS.UPDATEDONATIONOFUSER, formData
-      );
-      console.log(response);
-      return response?.data;
-    } catch (err) {
-      if (err?.response?.data) {
-        return err?.response?.data;
-      } else {
+      updateDonation: async (formData) => {
+      
+        console.log(formData);
+        try {
+          const response = await APIService.Instance.put(
+            URLS.UPDATEDONATIONOFUSER,formData
+          );
+          console.log(response);
+          return response?.data;
+        } catch (err) {
+          if (err?.response?.data) {
+            return err?.response?.data;
+          }else{
         //   toast.error(err?.message);
         console.log("Hello");
+           }
+        }
+      },
+
+      // get user details by donor id
+      getDetailsByDonorId: async (donorId) => {
+        console.log(donorId);
+        const response = await APIService.Instance.get(
+          URLS.GETUSERDETAILSBYDONORID+donorId
+        );
+        console.log(response);
+        return response?.data;
+    },
+
+
+
+    AddNewDonation: async (data,config) => {
+      console.log(data);
+      try {
+        const response = await APIService.Instance.post(
+          URLS.ADDNEWDONATIONS,
+          data,
+          config
+        );
+        console.log(response);
+        return response?.data;
+      } catch (err) {
+        if (err?.response?.data) {
+          return err?.response?.data;
+        }else{
+      //   toast.error(err?.message);
+      console.log("Hello");
+         }
       }
-    }
-  },
+    },
+  
+
+
+  // updateDonation: async (formData) => {
+
+  //   console.log(formData);
+  //   try {
+  //     const response = await APIService.Instance.post(
+  //       URLS.UPDATEDONATIONOFUSER, formData
+  //     );
+  //     console.log(response);
+  //     return response?.data;
+  //   } catch (err) {
+  //     if (err?.response?.data) {
+  //       return err?.response?.data;
+  //     } else {
+  //       //   toast.error(err?.message);
+  //       console.log("Hello");
+  //     }
+  //   }
+  // },
 
 
   // get user details by donor id
@@ -273,4 +325,5 @@ export const DonationService = {
     );
     return response?.data;
   }
+
 }
