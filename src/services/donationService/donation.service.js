@@ -202,7 +202,7 @@ export const DonationService = {
       
         console.log(formData);
         try {
-          const response = await APIService.Instance.post(
+          const response = await APIService.Instance.put(
             URLS.UPDATEDONATIONOFUSER,formData
           );
           console.log(response);

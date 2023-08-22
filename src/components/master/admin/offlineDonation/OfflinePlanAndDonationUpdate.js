@@ -232,7 +232,7 @@ function OfflineDonationPay() {
       },
       0
     );
-  
+    console.log("totalAmountOfPackage:", totalAmountOfPackage);
     if (donationData.length > 0) {
       const updatedDonationData = [
         {
@@ -244,10 +244,13 @@ function OfflineDonationPay() {
   
       setDonationData(updatedDonationData);
     }
+    // const updatedDonations = [...donationData];
+    // updatedDonations[0]["totalAmount"] = totalAmountOfPackage;
+    // setDonationData(updatedDonations);
   };
   
   
-  console.log(donationData);
+  console.log(donationData.totalAmount);
 
   const handleRecipentAddressChange = (name, value, index) => {
     const updatedRecipient = { ...recipient };
@@ -404,163 +407,361 @@ console.log(handleRecipientChange);
   //   validate(); // Call the validate function whenever the dependencies change
   // }, [donationData, recipient]);
   
-  const validate = () => {
-    const errors = [];
+//   const validate = () => {
+//     const errors = [];
 
-    for (let i = 0; i < donationData.paymentInfo.length; i++) {
-      const payment = donationData.paymentInfo[i];
-      const paymentErrors = {};
+//     for (let i = 0; i < donationData.paymentInfo.length; i++) {
+//       const payment = donationData.paymentInfo[i];
+//       const paymentErrors = {};
 
-      if (!payment.paymentMode || payment.paymentMode === "Donor Type") {
-        paymentErrors.paymentMode = "Payment Mode is required";
-      }
-      if (!payment.chqORddDate) {
-        paymentErrors.chqORddDate = "ChqORddDate is required";
-      }
-      if (!payment.paymentDate) {
-        paymentErrors.paymentDate = "Payment Date is required";
-      }
-      if (!payment.amount) {
-        paymentErrors.amount = "Amount is required";
-      }
-      if (!payment.bankname || payment.bankname.trim() === '') {
-        paymentErrors.bankname = "BankName is required";
-      } else if (!/^[A-Za-z]+$/.test(payment.bankname)) {
-        paymentErrors.bankName = "Bank Name is invalid";
-      }
-      if (!payment.chqORddNo) {
-        paymentErrors.chqORddNo = "ChqORddNo is required";
-      }
-      console.log(paymentErrors);
-      errors.push(paymentErrors);
-    }
+//       if (!payment.paymentMode || payment.paymentMode === "Donor Type") {
+//         paymentErrors.paymentMode = "Payment Mode is required";
+//       }
+//       if (!payment.chqORddDate) {
+//         paymentErrors.chqORddDate = "ChqORddDate is required";
+//       }
+//       if (!payment.paymentDate) {
+//         paymentErrors.paymentDate = "Payment Date is required";
+//       }
+//       if (!payment.amount) {
+//         paymentErrors.amount = "Amount is required";
+//       }
+//       if (!payment.bankname || payment.bankname.trim() === '') {
+//         paymentErrors.bankname = "BankName is required";
+//       } else if (!/^[A-Za-z]+$/.test(payment.bankname)) {
+//         paymentErrors.bankName = "Bank Name is invalid";
+//       }
+//       if (!payment.chqORddNo) {
+//         paymentErrors.chqORddNo = "ChqORddNo is required";
+//       }
+//       console.log(paymentErrors);
+//       errors.push(paymentErrors);
+//     }
 
-    console.log(donationData.donationType);
-    if (donationData.donationType !== "Self-Donate") {
-
-      // Donation Event validation
-  if (donationData.donationType !== "Self-Donate") {
-
-    if (!donationData.donationEvent) {
-      errors.push({ donationEvent: "Donation Event is required" });
-    }
-  }
-  console.log(donationData.recipient.length);
-      for (let i = 0; i < donationData.recipient.length; i++) {
-        const recipientValidate = recipient;
-       
-        console.log(recipient);
-        console.log(recipientValidate);
-        const recipientErrors = {};
-
-        if (!recipientValidate.emailID) {
-          recipientErrors.emailID = "Email Id is required";
-        }
-        else if (
-          !/^([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+)\.([a-zA-Z]{2,5})$/.test(
-            recipient.emailID
-          )
-        ) {
-          recipientErrors.emailID = "Enter a Valid Email Address";
-        }
-        if (!recipientValidate.mobileNo ) {
-          recipientErrors.mobileNo = "Mobile Number is required";
-        }
-        console.log(recipientValidate.mobileNo)
-        // else if (!/^[0-9]{10}$/.test(recipient.mobileNo)) {
-        //   recipientErrors.mobileNo = "Mobile No. must contain only 10 digits";
-        // }
-        
-
-        if (!recipientValidate.address[0]?.street1) {
-          recipientErrors.street1 = "Street 1 is required";
-        }
-        if (!recipientValidate.address[0]?.country) {
-          recipientErrors.country = "Country is required";
-        }
-        if (!recipientValidate.address[0]?.state) {
-          recipientErrors.state = "State 1 is required";
-        }
-        if (!recipientValidate.address[0]?.city) {
-          recipientErrors.city = "City is required";
-        }
-        console.log(recipientErrors);
-        // Add other recipient address validations here
-
-        if (Object.keys(recipientErrors).length > 0) {
-          errors.push(recipientErrors);
-        }
-      }
-    }
+//     console.log(donationData.donationType);
+//     // if (donationData.donationType !== "Self-Donate") {
+//     //   // Donation Event validation
+//     //   if (!donationData.donationEvent) {
+//     //     errors.push({ donationEvent: "Donation Event is required" });
+//     //   }
   
-   
-    console.log(errors);
-    setErrors(errors);
-    console.log(errors.length === 0);
-  return errors.length === 0;
-  };
+//     //   // Recipient validation only if donationType is not "Gift-Donate"
+//     //   if (donationData.donationType == "Gift-Donate") {
+//     //     for (let i = 0; i < donationData.recipient.length; i++) {
+//     //       const recipientValidate = donationData.recipient[i]; // Assuming recipient data is an array
+  
+//     //       const recipientErrors = {};
+  
+//     //       if (!recipientValidate.emailID) {
+//     //         recipientErrors.emailID = "Email Id is required";
+//     //       } else if (
+//     //         !/^([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+)\.([a-zA-Z]{2,5})$/.test(
+//     //           recipientValidate.emailID
+//     //         )
+//     //       ) {
+//     //         recipientErrors.emailID = "Enter a Valid Email Address";
+//     //       }
+  
+//     //       if (!recipientValidate.mobileNo) {
+//     //         recipientErrors.mobileNo = "Mobile Number is required";
+//     //       }
+  
+//     //       // Other recipient validation logic...
+  
+//     //       if (Object.keys(recipientErrors).length > 0) {
+//     //         errors.push(recipientErrors);
+//     //       }
+//     //     }
+//     //   } else {
+//     //     // Set recipient data to null if donationType is "Gift-Donate"
+//     //     donationData.recipient = null; // Assuming recipient data is an array
+//     //   }
+//     // }
+  
+  
+    
+//     console.log(errors);
+//     setErrors(errors);
+//     console.log("Errors:", errors); // Log the errors array
+//   console.log("Errors length:", errors.length);
+//   // Log each error object and its properties
+// errors.forEach((error, index) => {
+//   console.log(`Error ${index + 1}:`, error);
+// });
+//     console.log(errors.length === 0);
+//   return errors.length === 0;
+//   };
 
-console.log(errors.length === 0);
+// console.log(errors.length === 0);
 
 
 
 
   // Update Donation data
-  const updateDonation = async (e) => {
-    e.preventDefault();
+  // const updateDonation = async (e) => {
+  //   e.preventDefault();
   
-    const isValid = validate();
+  //   // const isValid = validate();
+  //   // console.log("isValid:", isValid);
+  //   let updatedFormData = null;
   
-    let updatedFormData = null;
+  //   // if (isValid) {
+  //     // console.log(isValid);
+  //     // Construct the updated form data
+  //     const updatedRecipientData = {
+  //       ...initialRecipientData[0],
+  //       ...recipient,
+  //     };
   
-    if (isValid) {
-      console.log(isValid);
-      // Construct the updated form data
-      const updatedRecipientData = {
-        ...initialRecipientData[0],
-        ...recipient,
-      };
+  //     const updatedDonationData = {
+  //       ...donationData,
+  //       userPackage: packageData,
+  //       recipient: [updatedRecipientData],
+  //     };
   
-      const updatedDonationData = {
-        ...donationData,
-        userPackage: packageData,
-        recipient: [updatedRecipientData],
-      };
+  //     updatedFormData = {
+  //       formData: {
+  //         user: {
+  //           ...userData,
+  //           donations: [updatedDonationData],
+  //         },
+  //       },
+  //     };
+  //   // }
   
-      updatedFormData = {
-        formData: {
-          user: {
-            ...userData,
-            donations: [updatedDonationData],
-          },
-        },
-      };
-    }
+  //   setPackageData(packageData); // Set the updated package data to packageData state
   
-    setPackageData(packageData); // Set the updated package data to packageData state
+  //   console.log(updatedFormData);
   
-    console.log(updatedFormData);
+  //   if (updatedFormData) {
+  //     try {
+  //       // Make the API call only if the form data is valid
+  //       const response = await DonationService.updateDonation(updatedFormData);
+  //       console.log(response);
+  //       // Process the API response as needed
+  //       if (response?.status === "Data Update Successfully") {
+  //         toast.success(response?.message);
+  //       } else {
+  //         toast.error(response?.message);
+  //       }
+  //     } catch (error) {
+  //       console.error(error);
+  //       // Handle any errors from the API call
+  //     }
+  //   }
+  // };
   
-    if (updatedFormData) {
-      try {
-        // Make the API call only if the form data is valid
-        const response = await DonationService.updateDonation(updatedFormData);
-        console.log(response);
-        // Process the API response as needed
-        if (response?.status === "Data Update Successfully") {
-          toast.success(response?.message);
-        } else {
-          toast.error(response?.message);
+
+  //proper code for update
+  // const updateDonation = async (e) => {
+  //   e.preventDefault();
+  
+  //   // Construct the updated form data
+  //   const updatedDonationData = {
+  //     ...donationData,
+  //     userPackage: packageData,
+  //     recipient: [] // Set recipient array to empty for self-donate
+  //   };
+  
+  //   const updatedFormData = {
+  //     formData: {
+  //       user: {
+  //         ...userData,
+  //         donations: [updatedDonationData],
+  //       },
+  //     },
+  //   };
+  
+  //   setPackageData(packageData); // Set the updated package data to packageData state
+  
+  //   console.log(updatedFormData);
+  
+  //   try {
+  //     // Make the API call
+  //     const response = await DonationService.updateDonation(updatedFormData);
+  //     console.log(response);
+  //     // Process the API response as needed
+  //     if (response?.status === "Data Update Successfully") {
+  //       toast.success(response?.message);
+  //     } else {
+  //       toast.error(response?.message);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     // Handle any errors from the API call
+  //   }
+  // };
+  
+  
+// test 
+// const validate = () => {
+//   const errors = [];
+
+//   // Payment validation
+//   for (let i = 0; i < donationData.paymentInfo.length; i++) {
+//     const payment = donationData.paymentInfo[i];
+//     const paymentErrors = {};
+
+//     // Payment mode validation
+//     if (!payment.paymentMode || payment.paymentMode === "Donor Type") {
+//       paymentErrors.paymentMode = "Payment Mode is required";
+//     }
+
+//     // Other payment validations...
+//     if (!payment.chqORddDate) {
+//               paymentErrors.chqORddDate = "ChqORddDate is required";
+//             }
+//             if (!payment.paymentDate) {
+//               paymentErrors.paymentDate = "Payment Date is required";
+//             }
+//             if (!payment.amount) {
+//               paymentErrors.amount = "Amount is required";
+//             }
+//             if (!payment.bankname || payment.bankname.trim() === '') {
+//               paymentErrors.bankname = "BankName is required";
+//             } else if (!/^[A-Za-z]+$/.test(payment.bankname)) {
+//               paymentErrors.bankName = "Bank Name is invalid";
+//             }
+//             if (!payment.chqORddNo) {
+//               paymentErrors.chqORddNo = "ChqORddNo is required";
+//             }
+    
+//     if (Object.keys(paymentErrors).length > 0) {
+//       errors.push(paymentErrors);
+//     }
+//   }
+
+//   // Donation event validation for non-self-donate
+//   if (donationData.donationType !== "Self-Donate" && !donationData.donationEvent) {
+//     errors.push({ donationEvent: "Donation Event is required" });
+//   }
+
+//   // Recipient validation only if donationType is not "Gift-Donate"
+//   // if (donationData.donationType === "Self-Donate") {
+//   //   donationData.recipient = []; // Set recipient array to empty for self-donate
+//   // } else {
+//   //   for (let i = 0; i < donationData.recipient.length; i++) {
+//   //     const recipientValidate = donationData.recipient[i]; // Assuming recipient data is an array
+//   //     const recipientErrors = {};
+
+//   //     // Recipient validation logic...
+//   //     if (!recipientValidate.emailID) {
+//   //           recipientErrors.emailID = "Email Id is required";
+//   //         }
+  
+//   //     if (Object.keys(recipientErrors).length > 0) {
+//   //       errors.push(recipientErrors);
+//   //     }
+//   //   }
+//   if (donationData.donationType === "Self-Donate") {
+//     donationData.recipient = []; // Set recipient array to empty for gift-donate
+//   } else {
+//     if (!donationData.recipient) {
+//       donationData.recipient = []; // Initialize recipient array if not present
+//     }
+
+//     for (let i = 0; i < donationData.recipient.length; i++) {
+//       const recipientValidate = donationData.recipient[i]; // Assuming recipient data is an array
+//       const recipientErrors = {};
+
+//       // Recipient validation logic...
+//       if (!recipientValidate.mobileNo) {
+//                     recipientErrors.mobileNo = "Mobile Number is required";
+//                   }
+//       if (Object.keys(recipientErrors).length > 0) {
+//         errors.push(recipientErrors);
+//       }
+//     }
+//    }
+
+//   return errors;
+// };
+
+const validate=()=>{
+
+  for (let i = 0; i < donationData.paymentInfo.length; i++) {
+        const payment = donationData.paymentInfo[i];
+        const paymentErrors = {};
+    
+        // Payment mode validation
+        if (!payment.paymentMode || payment.paymentMode === "Donor Type") {
+          paymentErrors.paymentMode = "Payment Mode is required";
         }
-      } catch (error) {
-        console.error(error);
-        // Handle any errors from the API call
+    
+        // Other payment validations...
+        if (!payment.chqORddDate) {
+                  paymentErrors.chqORddDate = "ChqORddDate is required";
+                }
+                if (!payment.paymentDate) {
+                  paymentErrors.paymentDate = "Payment Date is required";
+                }
+                if (!payment.amount) {
+                  paymentErrors.amount = "Amount is required";
+                }
+                if (!payment.bankname || payment.bankname.trim() === '') {
+                  paymentErrors.bankname = "BankName is required";
+                } else if (!/^[A-Za-z]+$/.test(payment.bankname)) {
+                  paymentErrors.bankName = "Bank Name is invalid";
+                }
+                if (!payment.chqORddNo) {
+                  paymentErrors.chqORddNo = "ChqORddNo is required";
+                }
+        
+        if (Object.keys(paymentErrors).length > 0) {
+          errors.push(paymentErrors);
+        }
       }
+        return errors;
+
+}
+const updateDonation = async (e) => {
+  e.preventDefault();
+
+  const validationErrors = validate();
+
+  if (validationErrors.length === 0) {
+    // Construct the updated form data
+    const updatedDonationData = {
+      ...donationData,
+      userPackage: packageData,
+    };
+
+    if (donationData.donationType === "Self-Donate") {
+      updatedDonationData.recipient = []; // Set recipient array to empty for self-donate
     }
-  };
-  
-  
-  
+
+    const updatedFormData = {
+      formData: {
+        user: {
+          ...userData,
+          donations: [updatedDonationData],
+        },
+      },
+    };
+
+    setPackageData(packageData); // Set the updated package data to packageData state
+
+    console.log(updatedFormData);
+
+    try {
+      // Make the API call
+      const response = await DonationService.updateDonation(updatedFormData);
+      console.log(response);
+      // Process the API response as needed
+      if (response?.status === "Data Update Successfully") {
+        toast.success(response?.message);
+      } else {
+        toast.error(response?.message);
+      }
+    } catch (error) {
+      console.error(error);
+      // Handle any errors from the API call
+    }
+  } else {
+    // Handle validation errors here, e.g., show error messages to the user
+    console.log("Validation Errors:", validationErrors);
+  }
+};
 
 
 
@@ -743,9 +944,13 @@ console.log(errors.length === 0);
                           </tr>
                         </tbody>
                       </table>
-                      <div className="overalltotal">
+                      {/* <div className="overalltotal">
   Overall Total: {donationData.length > 0 ? donationData[0].totalAmount : 0}
+</div> */}
+<div className="overalltotal">
+  Overall Total: {donationData.totalAmount}
 </div>
+
                     </div>
                   )}
 
