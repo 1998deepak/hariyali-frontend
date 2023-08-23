@@ -12,16 +12,19 @@ import csr3 from "../../../assets/img/csr3.png";
 import csr4 from "../../../assets/img/csr4.png";
 import csr5 from "../../../assets/img/csr5.png";
 
+import indImg1 from "../../../assets/img/ind1.avif";
+import indImg2 from "../../../assets/img/ind2.avif";
+
 import monsoonImg from "../../../assets/img/monsoon.jpg";
 import winterImg from "../../../assets/img/winter.jpg";
-import associateImg from "../../../assets/img/associate.jpg";
+import associateImg from "../../../assets/img/funnel.png";
 
 function WaystoAssociate() {
     return (
         <>
             <section className="banner banner-associate">
                 <div className="title">
-                    <h1>Ways to Associate</h1>
+                    {/* <h1>Ways to Associate</h1> */}
                 </div>
             </section>
             {/* body */}
@@ -36,7 +39,7 @@ function WaystoAssociate() {
                                     <img src={monsoonImg} class="card-img-top" alt="..."/>
                                     {/* <i className="icon-monsoon"></i> */}
                                     <div class="card-body">
-                                        <h5 class="card-title text-center">Mansoon <span>(Jun - Sep)</span></h5>
+                                        <h5 class="card-title text-center">Monsoon <span>(Jun - Sep)</span></h5>
                                         {/* <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                         <a href="#" class="btn btn-primary">Go somewhere</a> */}
                                     </div>
@@ -79,10 +82,41 @@ function WaystoAssociate() {
                         <span class="badge rounded-pill text-bg-success">Plantation Report <i class="bi bi-receipt"></i></span>
                     </div>
                 </div>
-                <section className="bg-green">
+                <section className="">
                     <div className="container">
                         <div className="pv-75">
-                            <h3 className="text-center sub-title">Individual Ways to associate</h3>
+                            <ul class="nav nav-pills justify-content-center mb50">                            
+                                <a className="nav-link active" href="#">Individual</a>
+                                <a className="nav-link" href="#">Corporate</a>
+                            </ul>
+                            <div className="tab-content group-content" id="myTabContent">
+                                <div className="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                    <div className="row justify-content-center">
+                                        <div className="col-12 col-md-3">
+                                            <div className="card" >
+                                                <img src={indImg1} className="card-img-top" alt="..."/>
+                                                <div className="card-body">
+                                                    <h5 className="card-title">Donate a sapling</h5>
+                                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" className="btn btn-primary">Donate</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-12 col-md-3">
+                                            <div className="card" >
+                                                <img src={indImg2} className="card-img-top" alt="..."/>
+                                                <div className="card-body">
+                                                    <h5 className="card-title">Gift a sapling</h5>
+                                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" className="btn btn-primary">Gift</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>
+                            </div>
+                            {/* <h3 className="text-center sub-title mt-5">Individual Ways to associate</h3>
                             <p className="text-center"> You can donate or gift or occasion</p>
                             <div className="d-flex flex-wrap justify-content-around">
                                 <a className="tile-wrapper">
@@ -91,7 +125,7 @@ function WaystoAssociate() {
                                 </a>
                                 <a className="tile-wrapper">
                                     <i className="bi bi-trophy"></i>
-                                    <h4>Donate a sapling</h4>
+                                    <h4>Gift a sapling</h4>
                                 </a>
                                 <a className="tile-wrapper">
                                     <i className="bi bi-trophy"></i>
@@ -101,7 +135,7 @@ function WaystoAssociate() {
                                     <i className="bi bi-trophy"></i>
                                     <h4>Donate a sapling</h4>
                                 </a>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </section>
@@ -114,8 +148,7 @@ function WaystoAssociate() {
                     <div className="row justify-content-between py-3">
                         <div className="col-lg-2 col-12 mb-lg-0 mb-3 discover-block">
                             <div className="positin-relative " >
-                                <div className="discoverImg"><img src={csr1} width="100%" /></div>
-                               
+                                <div className="discoverImg"><img src={csr1} width="100%" /></div>                               
                             </div>
                         </div>
                         <div className="col-lg-2 col-12 mb-lg-0 mb-3 discover-block">
@@ -140,56 +173,24 @@ function WaystoAssociate() {
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <section className="bg-green">
                 <div className="container pv-75">
-                    <h2 className="sub-title text-center mb30">
-                    Cause Related Marketing
-                    </h2>
-                    <p>Partner with Project Hariyali to develop cause-related marketing campaigns which highlight your organisation’s 
+                    <div className="row mt-5">
+                        <div className="col-12 col-md-7">
+                            <div className="feature-description">
+                                <h2 className="text-capitalize">Cause Related Marketing</h2>
+                            <p>Partner with Project Hariyali to develop cause-related marketing campaigns which highlight your organisation’s 
                         commitment towards Environment. Customised, co-branded campaigns can be conceptualised to help you build good will for your business, 
                         while ensuring environmental sustainability.</p>
                     <p>Options to associate with Project Hariyali.</p>
-                    <div className="row mt-5">
-                        <div className="col-12 col-md-5">
-                            <ul class="tree-veiw">
-                                <li>
-                                    <div className="media-image">
-                                        <i className="bi bi bi-flower3"></i>
-                                    </div>
-                                    <div className="media-body">
-                                        Campaign with employees
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="media-image">
-                                        <i className="bi bi bi-flower3"></i>
-                                    </div>
-                                    <div className="media-body">
-                                    Campaign with Customers
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="media-image">
-                                        <i className="bi bi bi-flower3"></i>
-                                    </div>
-                                    <div className="media-body">
-                                    Special Days Celebration
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="media-image">
-                                        <i className="bi bi bi-flower3"></i>
-                                    </div>
-                                    <div className="media-body">
-                                    Gifting
-                                    </div>
-                                </li>
-                            </ul>
+                            </div>
+                        
                         </div>
-                        <div className="col-12 col-md-7">
-                            <img src={associateImg} alt="Image " width={500}/>
+                        <div className="col-12 col-md-5">
+                            <div className="feature-img">
+                                <img src={associateImg} alt="Image " width={500}/>
+                            </div>
                         </div>
                     </div>
                     

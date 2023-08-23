@@ -69,24 +69,21 @@ const Header = () => {
                   </ul>
                 </div>
                 <div className="col-12 col-md-6 col-lg-4 footer-div">
-                  <div className="footer-divheading">About Us</div>
+                  {/* <div className="footer-divheading">About Us</div>
                   <ul>
                     <li><a href="">Mission & Vision</a></li>
                     <li><a href="">Our Journey</a></li>
                     <li><a href="">Our Team</a></li>
                     <li><a href="">Our Achievements </a></li>
                     <li><a href="">Volunteer with us</a></li>
-                  </ul>
+                  </ul> */}
                 </div>
                 <div className="col-12 col-md-6 col-lg-4 footer-div">
                   <div className="footer-divheading">Resources</div>
                   <ul>
-                    <li><a href="">Careers</a></li>
-                    <li><a href="">FAQs</a></li>
                     <li><a href="">Privacy Policy</a></li>
                     <li><a href="">Terms & Conditions</a></li>
-                    <li><a href="">Volunteer</a></li>
-                    <li><a href="">Register as Farmer Beneficiary</a></li>
+                   
                   </ul>
                 </div>
               </div>

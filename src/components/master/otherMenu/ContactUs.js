@@ -105,7 +105,7 @@ function ContactUs() {
       {/* body */}
       <section className="banner banner-about">
         <div className="title">
-          <h1>Conatct Us</h1>
+          {/* <h1>Conatct Us</h1> */}
         </div>          
       </section>
       <ToastContainer/>
@@ -120,9 +120,7 @@ function ContactUs() {
                   <address>
                   <h3>Mahindra Foundation</h3>
                   <p>3rd Floor, Cecil Court, Shahid Bhagat Singh Marg, Colaba, Mumbai, Maharashtra 400005</p>
-
-                  <p>Contact (with Landline and Mobile Icon) </p> 
-                  <a href="tel:93224 56789"><i class="bi bi-telephone-fill"></i> 93224 56789</a><br/>
+                  <a href="tel:93224 56789"><i class="bi bi-phone"></i> 93224 56789</a><br/>
                   <a href="tel:022 22021031"><i class="bi bi-telephone-fill"></i> 022 22021031</a>
                   </address>
                 </div>
