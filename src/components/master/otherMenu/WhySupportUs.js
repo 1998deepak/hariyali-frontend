@@ -224,7 +224,7 @@ function WhySupportUs() {
       <div className="container">
         <h3 className="text-center sub-title">Testimonials</h3>
         <div className="row">
-          <div className="col-12 col-md-6">
+          <div className="col-12 col-md-6 text-center">
             <iframe
               width="560"
               height="315"
@@ -235,7 +235,7 @@ function WhySupportUs() {
               allowfullscreen
             ></iframe>
           </div>
-          <div className="col-12 col-md-6">
+          <div className="col-12 col-md-6 text-center">
             <iframe
               width="560"
               height="315"
