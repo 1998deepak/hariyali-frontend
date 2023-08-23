@@ -14,6 +14,7 @@ import {
 import Captcha from "../user/Captcha";
 import CaptchaGift from "../user/CaptchaGift";
 import Donateslid from "../../../assets/img/slider/Donateslid.jpg";
+import DonationImg from "../../../assets/img/DonationImg.jpg";
 import { DonationService } from "../../../services/donationService/donation.service";
 import { SUCCESS } from "../../constants/constants";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
@@ -1016,25 +1017,27 @@ function OnlineDonation() {
       <ToastContainer />
       {/* slider */}
 
-      <div className="pt100"></div>
+      {/* <div className="pt100"></div> */}
       <div className="section bggray ">
         {/* form */}
-        <Container className="pt30">
-          <Row className="justify-content-between  padding30tb contact-form-wrap">
-            <div className="otherpages-heading">Online Donation</div>
-            <div className="col-12">
+        <Container className="pt30" fluid>
+          <Row className="justify-content-between  padding30b contact-form-wrap donation-wrapper">
+            {/* <div className="otherpages-heading">Online Donation</div> */}
+            <div className="col-4 left-img"><img src={DonationImg} alt="donation image" class="box-img"/></div>
+            <div className="col-8 main-content">
               <Tabs
                 defaultActiveKey="selfDonate"
                 id="uncontrolled-tab-example"
-                className="mb-3 selftGift-tab "
+                className="selftGift-tab online-donation-tabs"
               >
-                <Tab eventKey="selfDonate" title="Self Donor">
-                  <div className="pageheadingdiv mb10">Self Donor</div>
+                <Tab eventKey="selfDonate" title="Self Donor" className="donation-tab">
+                  {/* <div className="pageheadingdiv mb10">Self Donor</div> */}
                   <div className="row">
                     <div className="col-6">
                       <div className="select-label">
-                        <div className="col-4 "> Donor Type</div>
-                        <div className="col-8 p0">
+                        {/* <div className="col-4 "> Donor Type</div> */}
+                        <div className="col-12 p0 field-wrapper">
+                          <label for="donorName" class="form-label">Donor Name</label>
                           <select
                             className=" form-control-inside form-select"
                             name="user.donarType"
@@ -1064,13 +1067,12 @@ function OnlineDonation() {
                         </div>
                       </div>{" "}
                     </div>
-                  </div>
                   {isVisible ? (
-                    <div className="row">
                       <div className="col-6 mb10">
                         <div className="select-label">
-                          <div className="col-4 ">I want to opt</div>
-                          <div className="col-8 p0">
+                          {/* <div className="col-4 ">I want to opt</div> */}
+                        <div className="col-12 p0 field-wrapper">
+                          <label for="activity" class="form-label">I want to opt</label>
                             <select
                               className=" form-control-inside form-select"
                               name="user.donarType"
@@ -1100,10 +1102,10 @@ function OnlineDonation() {
                           </div>
                         </div>
                       </div>
-                    </div>
                   ) : null}
+                  </div>
                   {isCSR ? (
-                    <div className=" mb10">
+                    <div>
                       {" "}
                       <p>
                         For CSR related enquireis please reach us at Gangar
@@ -1115,8 +1117,9 @@ function OnlineDonation() {
                     <div className="row">
                       <div className="col-6">
                         <div className="select-label">
-                          <div className="col-4 "> Select Your Citizenship</div>
-                          <div className="col-8 p0">
+                          {/* <div className="col-4 "> Select Your Citizenship</div> */}
+                          <div className="col-12 p0 field-wrapper">
+                            <label for="citizenship" class="form-label">Select Your Citizenship</label>
                             <select
                               className=" form-control-inside form-select"
                               name="user.donarType"
@@ -1133,8 +1136,9 @@ function OnlineDonation() {
                       </div>
                       <div className="col-6">
                         <div className="select-label">
-                          <div className="col-4 "> Email ID</div>
-                          <div className="col-8 p0">
+                          {/* <div className="col-4 "> Email ID</div> */}
+                          <div className="col-12 p0 field-wrapper">
+                            <label for="emailId" class="form-label top-18">Email ID</label>
                             <input
                               type="text"
                               placeholder="Enter Email Id"
@@ -1156,7 +1160,7 @@ function OnlineDonation() {
                         </div>
                       </div>
 
-                      <div className="col-12">
+                      <div className="col-12 padding-top-10">
                         <Button
                           className="float-right"
                           variant="success"
@@ -1225,12 +1229,13 @@ function OnlineDonation() {
                           <div className="actionheadingdiv">
                             Personal Details
                           </div>
-                          <div className="col-12 pr15 mt20">
+                          <div className="col-12 pr15">
                             <div className="row">
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">Mobile No.</div>
-                                  <div className="col-8 p0">
+                                  {/* <div className="col-4 ">Mobile No.</div> */}
+                                <div className="col-12 p0 field-wrapper">
+                                  <label for="mobileNo" class="form-label top-27">Mobile No.</label>
                                     <input
                                       className="form-control-inside form-control"
                                       type="text"
@@ -1259,8 +1264,9 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 "> Organisation</div>
-                                  <div className="col-8 p0">
+                                  {/* <div className="col-4 "> Organisation</div> */}
+                                <div className="col-12 p0 field-wrapper">
+                                  <label for='organisation' class="form-label top-27">Organisation</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="user.organisation"
@@ -1291,8 +1297,9 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">Prefix</div>
-                                  <div className="col-8 p0">
+                                  {/* <div className="col-4 ">Prefix</div> */}
+                                <div className="col-12 p0 field-wrapper">
+                                  <label for ="prefix" class="form-label top-27">Prefix</label>
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="user.prefix"
@@ -1326,8 +1333,9 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">First Name</div>
-                                  <div className="col-8 p0">
+                                  {/* <div className="col-4 ">First Name</div> */}
+                                <div className="col-12 p0 field-wrapper">
+                                  <label for="firstName" class="form-label top-27">First Name</label>
                                     <input
                                       className="form-control-inside form-control"
                                       type="text"
@@ -1357,8 +1365,9 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">Last Name</div>
-                                  <div className="col-8 p0">
+                                  {/* <div className="col-4 ">Last Name</div> */}
+                                <div className="col-12 p0 field-wrapper">
+                                  <label for="lastName" class="form-label top-27">Last Name</label>
                                     <input
                                       className="form-control-inside form-control"
                                       type="text"
@@ -1388,8 +1397,9 @@ function OnlineDonation() {
 
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">PAN card</div>
-                                  <div className="col-8 p0">
+                                  {/* <div className="col-4 ">PAN card</div> */}
+                                <div className="col-12 p0 field-wrapper">
+                                  <label for="panCard" class="form-label top-27">PAN Card</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="user.panCard"
@@ -1428,12 +1438,13 @@ function OnlineDonation() {
                               <FaPlusSquare />
                             </div>
                           </div>
-                          <div className="col-12 pr15 mt20">
+                          <div className="col-12 pr15">
                             <div className="row">
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 "> Street 1</div>
-                                  <div className="col-8 p0">
+                                  {/* <div className="col-4 "> Street 1</div> */}
+                                <div className="col-12 p0 field-wrapper">
+                                  <label class="form-label top-27">Street 1</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="street1"
@@ -1464,8 +1475,9 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 "> Street 2</div>
-                                  <div className="col-8 p0">
+                                  {/* <div className="col-4 "> Street 2</div> */}
+                                <div className="col-12 p0 field-wrapper">
+                                  <label class="form-label top-27">Street 2</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="street2"
@@ -1481,8 +1493,9 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 "> Street 3</div>
-                                  <div className="col-8 p0">
+                                  {/* <div className="col-4 "> Street 3</div> */}
+                                <div className="col-12 p0 field-wrapper">
+                                  <label class="form-label top-27">Street 3</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="street3"
@@ -1498,8 +1511,9 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">Country</div>
-                                  <div className="col-8 p0">
+                                  {/* <div className="col-4 ">Country</div> */}
+                                <div className="col-12 p0 field-wrapper">
+                                  <label class="form-label top-27">Country</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="country"
@@ -1530,8 +1544,9 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">State</div>
-                                  <div className="col-8 p0">
+                                  {/* <div className="col-4 ">State</div> */}
+                                <div className="col-12 p0 field-wrapper">
+                                <label class="form-label top-27">State</label>
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="state"
@@ -1567,8 +1582,9 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">City</div>
-                                  <div className="col-8 p0">
+                                  {/* <div className="col-4 ">City</div> */}
+                                <div className="col-12 p0 field-wrapper">
+                                <label class="form-label top-27">City</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="city"
@@ -1597,8 +1613,9 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">Postal Code</div>
-                                  <div className="col-8 p0">
+                                  {/* <div className="col-4 ">Postal Code</div> */}
+                                <div className="col-12 p0 field-wrapper">
+                                <label class="form-label top-27">Postal Code</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="postalCode"
@@ -1639,12 +1656,13 @@ function OnlineDonation() {
                                 <FaMinusSquare />
                               </div>
                             </div>
-                            <div className="col-12 pr15 mt20">
+                            <div className="col-12 pr15">
                               <div className="row">
                                 <div className="col-6">
                                   <div className="select-label">
-                                    <div className="col-4 "> Street 1</div>
-                                    <div className="col-8 p0">
+                                    {/* <div className="col-4 "> Street 1</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">Street 1</label>
                                       <input
                                         className="form-control-inside form-control"
                                         name="street1"
@@ -1660,8 +1678,9 @@ function OnlineDonation() {
                                 </div>
                                 <div className="col-6">
                                   <div className="select-label">
-                                    <div className="col-4 "> Street 2</div>
-                                    <div className="col-8 p0">
+                                    {/* <div className="col-4 "> Street 2</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">Street 2</label>
                                       <input
                                         className="form-control-inside form-control"
                                         name="street2"
@@ -1677,8 +1696,9 @@ function OnlineDonation() {
                                 </div>
                                 <div className="col-6">
                                   <div className="select-label">
-                                    <div className="col-4 "> Street 3</div>
-                                    <div className="col-8 p0">
+                                    {/* <div className="col-4 "> Street 3</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">Street 3</label>
                                       <input
                                         className="form-control-inside form-control"
                                         name="street3"
@@ -1694,8 +1714,9 @@ function OnlineDonation() {
                                 </div>
                                 <div className="col-6">
                                   <div className="select-label">
-                                    <div className="col-4 ">Country</div>
-                                    <div className="col-8 p0">
+                                    {/* <div className="col-4 ">Country</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                  <label class="form-label top-27">Country</label>
                                       <input
                                         className="form-control-inside form-control"
                                         name="country"
@@ -1711,8 +1732,9 @@ function OnlineDonation() {
                                 </div>
                                 <div className="col-6">
                                   <div className="select-label">
-                                    <div className="col-4 ">State</div>
-                                    <div className="col-8 p0">
+                                    {/* <div className="col-4 ">State</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                  <label class="form-label top-27">State</label>
                                       <select
                                         className=" form-control-inside form-select  form-control"
                                         name="state"
@@ -1733,8 +1755,9 @@ function OnlineDonation() {
                                 </div>
                                 <div className="col-6">
                                   <div className="select-label">
-                                    <div className="col-4 ">City</div>
-                                    <div className="col-8 p0">
+                                    {/* <div className="col-4 ">City</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                  <label class="form-label top-27">City</label>
                                       <input
                                         className="form-control-inside form-control"
                                         name="city"
@@ -1750,8 +1773,9 @@ function OnlineDonation() {
                                 </div>
                                 <div className="col-6">
                                   <div className="select-label">
-                                    <div className="col-4 ">Postal Code</div>
-                                    <div className="col-8 p0">
+                                    {/* <div className="col-4 ">Postal Code</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                  <label class="form-label top-27">Postal Code</label>
                                       <input
                                         className="form-control-inside form-control"
                                         name="postalCode"
@@ -1812,8 +1836,8 @@ function OnlineDonation() {
                     )}
                   </div>
                 </Tab>
-                <Tab eventKey="giftaPlant" title="Gift a Plant">
-                  <div className="pageheadingdiv mb10">Gift a Plant</div>
+                <Tab eventKey="giftaPlant" title="Gift a Plant" className="donation-tab">
+                  {/* <div className="pageheadingdiv mb10">Gift a Plant</div> */}
 
                   <form
                     // onSubmit={userAdd}
@@ -1823,8 +1847,9 @@ function OnlineDonation() {
                       <div className="row">
                         <div className="col-6">
                           <div className=" select-label">
-                            <div className="col-4 ">Occasion</div>
-                            <div className="col-8 p0">
+                            {/* <div className="col-4 ">Occasion</div> */}
+                            <div className="col-12 p0 field-wrapper">
+                              <label className="form-label">Occasion</label>
                               <select
                                 className=" form-control-inside form-select"
                                 name="donationEvent"
@@ -1867,8 +1892,9 @@ function OnlineDonation() {
                         </div>
                         <div className="col-6">
                           <div className=" select-label">
-                            <div className="col-4 "> Donor Type</div>
-                            <div className="col-8 p0">
+                            {/* <div className="col-4 "> Donor Type</div> */}
+                            <div className="col-12 p0 field-wrapper">
+                            <label className="form-label top-27">Donor Type</label>
                               <select
                                 className=" form-control-inside form-select"
                                 name="user.donarType"
@@ -1903,8 +1929,9 @@ function OnlineDonation() {
                         <div className="row">
                           <div className="col-6 mb10">
                             <div className="select-label">
-                              <div className="col-4 ">I want to opt</div>
-                              <div className="col-8 p0">
+                             {/* <div className="col-4 ">I want to opt</div> */}
+                            <div className="col-12 p0 field-wrapper">
+                              <label className="form-label top-27">I want to opt</label>
                                 <select
                                   className=" form-control-inside form-select"
                                   name="user.donarType"
@@ -1941,7 +1968,7 @@ function OnlineDonation() {
                         </div>
                       ) : null}
                       {isCSRGift ? (
-                        <div className=" mb10">
+                        <div>
                           {" "}
                           <p>
                             For CSR related enquireis please reach us at Gangar
@@ -1954,11 +1981,9 @@ function OnlineDonation() {
                       <div className="row">
                         <div className="col-6">
                           <div className=" select-label">
-                            <div className="col-4 ">
-                              {" "}
-                              Select Your Citizenship
-                            </div>
-                            <div className="col-8 p0">
+                            {/* <div className="col-4 "> Select Your Citizenship</div> */}
+                            <div className="col-12 p0 field-wrapper">
+                              <label className="form-label">Select Your Citizenship</label>
                               <select
                                 className=" form-control-inside form-select"
                                 name="user.donarType"
@@ -1975,8 +2000,9 @@ function OnlineDonation() {
                         </div>
                         <div className="col-6">
                           <div className="select-label">
-                            <div className="col-4 "> Email ID</div>
-                            <div className="col-8 p0">
+                            {/* <div className="col-4 "> Email ID</div> */}
+                            <div className="col-12 p0 field-wrapper">
+                              <label className="form-label">Email ID</label>
                               <input
                                 type="text"
                                 name="gift"
@@ -1997,7 +2023,7 @@ function OnlineDonation() {
                             </div>
                           </div>
                         </div>
-                        <div className="col-12">
+                        <div className="col-12 padding-top-10">
                           <Button
                             className="float-right"
                             variant="success"
@@ -2059,7 +2085,7 @@ function OnlineDonation() {
                           </table>
                           <p>Overall Total: {donations[0].totalAmount}</p>
                         </div>
-                        <div className="col-6 mt20">
+                        {/* <div className="col-6 mt20"> */}
                           {/* <div className="select-label">
                             <div className="col-4 "> General Donation</div>
                             <input
@@ -2076,15 +2102,15 @@ function OnlineDonation() {
                               }}
                             />
                           </div> */}
-                        </div>
+                        {/* </div> */}
                         <hr />
                         <div className="actionheadingdiv">Personal Details</div>
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-6">
                               <div className="select-label">
-                                <div className="col-4 "> Email ID</div>
-                                <div className="col-8 p0">
+                              <div className="col-12 p0 field-wrapper">
+                              <label className="form-label">Email Id</label>
                                   <input
                                     className="form-control-inside form-control"
                                     type="text"
@@ -2114,8 +2140,9 @@ function OnlineDonation() {
                             </div>
                             <div className="col-6">
                               <div className="select-label">
-                                <div className="col-4 ">Mobile No.</div>
-                                <div className="col-8 p0">
+                                {/* <div className="col-4 ">Mobile No.</div> */}
+                              <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">Mobile No.</label>
                                   <input
                                     className="form-control-inside form-control"
                                     type="text"
@@ -2144,8 +2171,9 @@ function OnlineDonation() {
                             </div>
                             <div className="col-6">
                               <div className="select-label">
-                                <div className="col-4 "> Organisation</div>
-                                <div className="col-8 p0">
+                                {/* <div className="col-4 "> Organisation</div> */}
+                              <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">Organisation</label>
                                   <input
                                     className="form-control-inside form-control"
                                     name="user.organisation"
@@ -2175,8 +2203,9 @@ function OnlineDonation() {
                             </div>
                             <div className="col-6">
                               <div className="select-label">
-                                <div className="col-4 ">Prefix</div>
-                                <div className="col-8 p0">
+                                {/* <div className="col-4 ">Prefix</div> */}
+                              <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">Prefix</label>
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.prefix"
@@ -2210,8 +2239,9 @@ function OnlineDonation() {
                             </div>
                             <div className="col-6">
                               <div className="select-label">
-                                <div className="col-4 ">First Name</div>
-                                <div className="col-8 p0">
+                                {/* <div className="col-4 ">First Name</div> */}
+                              <div className="col-12 p0 field-wrapper">
+                              <label className="form-label">First Name</label>
                                   <input
                                     className="form-control-inside form-control"
                                     type="text"
@@ -2240,8 +2270,9 @@ function OnlineDonation() {
                             </div>
                             <div className="col-6">
                               <div className="select-label">
-                                <div className="col-4 ">Last Name</div>
-                                <div className="col-8 p0">
+                                {/* <div className="col-4 ">Last Name</div> */}
+                              <div className="col-12 p0 field-wrapper">
+                              <label className="form-label">Last Name</label>
                                   <input
                                     className="form-control-inside form-control"
                                     type="text"
@@ -2271,8 +2302,9 @@ function OnlineDonation() {
 
                             <div className="col-6">
                               <div className="select-label">
-                                <div className="col-4 ">PAN card</div>
-                                <div className="col-8 p0">
+                                {/* <div className="col-4 ">PAN card</div> */}
+                              <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">PAN Card</label>
                                   <input
                                     className="form-control-inside form-control"
                                     name="user.panCard"
@@ -2303,12 +2335,13 @@ function OnlineDonation() {
                         </div>
                         <hr />
                         <div className="actionheadingdiv">Address</div>
-                        <div className="col-12 pr15 mt20">
+                        <div className="col-12 pr15">
                           <div className="row">
                             <div className="col-6">
                               <div className="select-label">
-                                <div className="col-4 "> Street 1</div>
-                                <div className="col-8 p0">
+                                {/* <div className="col-4 "> Street 1</div> */}
+                              <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">Street 1</label>
                                   <input
                                     className="form-control-inside form-control"
                                     name="street1"
@@ -2337,8 +2370,9 @@ function OnlineDonation() {
                             </div>
                             <div className="col-6">
                               <div className="select-label">
-                                <div className="col-4 "> Street 2</div>
-                                <div className="col-8 p0">
+                                {/* <div className="col-4 "> Street 2</div> */}
+                              <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">Street 2</label>
                                   <input
                                     className="form-control-inside form-control"
                                     name="street2"
@@ -2354,8 +2388,8 @@ function OnlineDonation() {
                             </div>
                             <div className="col-6">
                               <div className="select-label">
-                                <div className="col-4 "> Street 3</div>
-                                <div className="col-8 p0">
+                              <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">Street 3</label>
                                   <input
                                     className="form-control-inside form-control"
                                     name="street3"
@@ -2371,8 +2405,9 @@ function OnlineDonation() {
                             </div>
                             <div className="col-6">
                               <div className="select-label">
-                                <div className="col-4 ">Country</div>
-                                <div className="col-8 p0">
+                                {/* <div className="col-4 ">Country</div> */}
+                              <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">Country</label>
                                   <input
                                     className="form-control-inside form-control"
                                     name="country"
@@ -2401,8 +2436,9 @@ function OnlineDonation() {
                             </div>
                             <div className="col-6">
                               <div className="select-label">
-                                <div className="col-4 ">State</div>
-                                <div className="col-8 p0">
+                                {/* <div className="col-4 ">State</div> */}
+                              <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">State</label>
                                   <select
                                     className=" form-control-inside form-select form-control"
                                     name="state"
@@ -2438,8 +2474,8 @@ function OnlineDonation() {
                             </div>
                             <div className="col-6">
                               <div className="select-label">
-                                <div className="col-4 ">City</div>
-                                <div className="col-8 p0">
+                              <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">City</label>
                                   <input
                                     className="form-control-inside form-control"
                                     name="city"
@@ -2468,8 +2504,8 @@ function OnlineDonation() {
                             </div>
                             <div className="col-6">
                               <div className="select-label">
-                                <div className="col-4 ">Postal Code</div>
-                                <div className="col-8 p0">
+                              <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">Postal Code</label>
                                   <input
                                     className="form-control-inside form-control"
                                     name="postalCode"
@@ -2503,13 +2539,13 @@ function OnlineDonation() {
                         <div className="actionheadingdiv">
                           DETAILS OF RECIPIENT
                         </div>
-                        <div className="col-12 pr15 mt20">
+                        <div className="col-12 pr15">
                           <div>
                             <div className="row">
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 "> Street 1</div>
-                                  <div className="col-8 p0">
+                                <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">Street 1</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="street1"
@@ -2542,8 +2578,8 @@ function OnlineDonation() {
 
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 "> Street 2</div>
-                                  <div className="col-8 p0">
+                                <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">Street 2</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="street2"
@@ -2559,8 +2595,8 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 "> Street 3</div>
-                                  <div className="col-8 p0">
+                                <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">Street 3</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="street3"
@@ -2576,8 +2612,8 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">Country</div>
-                                  <div className="col-8 p0">
+                                <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">Country</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="country"
@@ -2609,8 +2645,9 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">Statesss</div>
-                                  <div className="col-8 p0">
+                                {/* <div className="col-4 ">Statesss</div> */}
+                                <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">State</label>
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="state"
@@ -2649,8 +2686,8 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">City</div>
-                                  <div className="col-8 p0">
+                                <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">City</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="city"
@@ -2682,8 +2719,8 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">Postal Code</div>
-                                  <div className="col-8 p0">
+                                <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">Postal Code</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="postalCode"
@@ -2702,8 +2739,8 @@ function OnlineDonation() {
                             <div className="row">
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">First Name</div>
-                                  <div className="col-8 p0">
+                                <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">First Name</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="firstName"
@@ -2734,8 +2771,8 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">Last Name</div>
-                                  <div className="col-8 p0">
+                                <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">Last Name</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="lastName"
@@ -2766,8 +2803,8 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">Mobile No.</div>
-                                  <div className="col-8 p0">
+                                <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">Mobile No.</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="mobileNo"
@@ -2798,8 +2835,8 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">Email Id</div>
-                                  <div className="col-8 p0">
+                                <div className="col-12 p0 field-wrapper">
+                                <label className="form-label">Email Id</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="emailId"

@@ -472,7 +472,7 @@ input:disabled {
 .nav-list .nav-item a.nav-link {
   position: relative;
   /* font-family: "Georama-Regular", sans-serif; */
-  font-size: 1.25rem;
+  /* font-size: 1.25rem; */
   text-transform: capitalize;
   color: #fff;
   padding: 0 0 1rem; 
@@ -1292,7 +1292,7 @@ input:-internal-autofill-selected {
 .contact-form-wrap input.form-control,
 .contact-form-wrap select.form-control {
   width: 100%;
-  height: 44px;
+  height: 39px;
   /* border: 0 !important;
   border-bottom: 1px solid #000 !important;
   border-radius: 0 !important;
@@ -2797,4 +2797,124 @@ iframe{
   padding: 0;
   text-decoration: underline;
   border: none;
+}
+
+.online-donation-tabs .nav-item{
+  width: 50%;
+}
+
+.online-donation-tabs .nav-link{
+  border: none !important;
+  color: #23aa4a !important;
+}
+
+.online-donation-tabs .nav-item button{
+  font-size: 20px;
+  font-weight: 500;
+  height: 61px;
+  width: 100% !important;
+}
+
+.online-donation-tabs .nav-item:first-child button{
+  border-top-left-radius: 45px !important;
+  background-color: #fff;
+}
+
+.donation-wrapper .tab-content{
+  height: calc(100% - 61px);
+}
+
+.donation-tab{
+  padding: 0 20px;
+  background-color: #fff;
+  height: 100%;
+}
+
+.padding30b {
+  padding-bottom: 30px;
+}
+
+.field-wrapper .form-control, .field-wrapper .form-control-inside {
+  -webkit-appearance: none;
+  appearance: none;
+  background-clip: padding-box;
+  background-color: #fff;
+  border: 1px solid #ced4da !important;
+  border-radius: 0.375rem;
+  color: #212529;
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 0.375rem 0.75rem;  
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  width: 100%;
+  margin: 0;
+}
+
+.field-wrapper .form-label {
+  background: #fff;
+  color: rgba(31,31,31,.71);
+  display: inline-block;
+  font-size: 12.5px;
+  left: 11px;
+  padding: 0 10px;
+  position: relative;
+  text-transform: capitalize;
+  top: 18px;
+  z-index: 1;
+}
+
+.top-18{
+  top: 18px !important;
+}
+
+.top-27{
+  top:27px !important;
+}
+.no-margin-bm{
+  margin-bottom: 0 !important;
+}
+
+.donation-wrapper.contact-form-wrap p {
+  font-size: 14px;
+  color: #4e4d4d;
+  margin-bottom: 0;
+  line-height: 20px;
+  padding-top: 10px;
+}
+
+.padding-top-10{
+  padding-top: 10px;
+}
+
+#uncontrolled-tab-example-tabpane-selfDonate, #uncontrolled-tab-example-tabpane-giftaPlant{
+  border-bottom-left-radius: 45px !important;
+  margin-bottom: 23px;
+}
+
+#uncontrolled-tab-example-tabpane-giftaPlant .form-label{
+  top:26px;
+}
+
+.donation-wrapper .left-img{
+  width: 38%;
+}
+
+.donation-wrapper .left-img img{
+  width: 112%;
+  height: 100%;
+}
+
+.donation-wrapper .main-content{
+  width: 62%;
+}
+
+.donation-wrapper td input{
+  height: 35px !important;
+  line-height: 35px;
+}
+.donation-wrapper th{
+  background-color: #ddf7e4;
+  color: #23aa4a;;
 }
