@@ -72,7 +72,7 @@ import image2 from "../../../assets/img/slider/banner2.png";
 import image3 from "../../../assets/img/slider/banner3.png";
 import image4 from "../../../assets/img/slider/banner4.jpg";
 
-import plantimg from "../../../assets/img/pmat_a_tree.png";
+// import plantimg from "../../../assets/img/pmat_a_tree.png";
 
 import planttreeImg from "../../../assets/img/plant.png";
 import gifttreeImg from "../../../assets/img/holding-hand.png";
@@ -89,7 +89,7 @@ const slides = [
   {
     image: image1,
     title: 'When you cut a tree you take a life and when you plant a tree you plant a HOPE',
-    description: 'PLANT A TREE',
+    description: '',
   },
   {
     image: image2,

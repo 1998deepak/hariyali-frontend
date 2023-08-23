@@ -7,6 +7,13 @@ import 'react-vertical-timeline-component/style.min.css';
 import { FaSearchLocation, FaEdit, FaCalendarAlt, FaWpforms, FaRegUserCircle, FaStar, FaTree, FaUsers, FaCogs, FaCannabis } from "react-icons/fa";
 import whatwe1 from "../../../assets/img/whatwe1.jpg";
 import whatwe2 from "../../../assets/img/whatwe2.jpg";
+import step1Img from "../../../assets/img/pr-step1.png";
+import step2Img from "../../../assets/img/pr-step2.png";
+import step3Img from "../../../assets/img/pr-step3.png";
+import step4Img from "../../../assets/img/pr-step4.png";
+import step5Img from "../../../assets/img/pr-step5.png";
+ 
+
 function WhatWeDo() {
 
   return (
@@ -55,16 +62,92 @@ function WhatWeDo() {
                   <img src={whatwe1} alt="what we do" />
                 </div>
 
-                <p>
+                {/* <p>
                   <br />This process starts in the September of previous year, giving our teams a total of 10 months for timely planting in June, year on year. </p>
                 <div className="whatwe-heading">
                   The steps below summarise the said process:
                 </div>
                 <div className="whatwedo2img">
                   <img src={whatwe2} alt="what we do" />
+                </div> */}
+              </div>
+            </Row>
+          </Container>
+          <div className="container-xxxl">
+            <h2 className="sub-title text-center">Planting Process</h2>
+            <div className="row">
+              <div className="col-12 col-md-6">
+                <div className="row align-items-center">
+                  <div className="col-12 col-md-2">
+                      <ul className="nav nav-tabs nunav border-0 d-flex flex-row flex-xl-column justify-content-xl-between steps-nav">
+                        <li className="nav-item py-4 py-xl-3">
+                          <a ></a>
+                        </li>
+                        <li className="nav-item py-4 py-xl-3">
+                          <a ></a>
+                        </li>
+                        <li className="nav-item py-4 py-xl-3">
+                          <a ></a>
+                        </li>
+                        <li className="nav-item py-4 py-xl-3">
+                          <a ></a>
+                        </li>
+                        <li className="nav-item py-4 py-xl-3">
+                          <a ></a>
+                        </li>
+                      </ul>
+                  </div>
+                  <div className="col-12 col-md-10">
+                    <div className="steps-description">
+                      <div className="">
+                        <h3>Step 1</h3>
+                        <div className="step-image">
+                          <img src={step1Img} alt="" width={100} height={250}/>
+                        </div>
+                        {/* <p>Thinnings are carried out in accordance with the specifications of the sustainable management plan, to encourage the growth of future stems.</p> */}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </Row></Container>
+              {/* <div className="col-12 col-md-1"></div> */}
+              <div className="col-12 col-md-6">
+                <div className="row align-items-center">
+                  <div className="col-12 col-md-2">
+                      <ul className="nav nav-tabs nunav border-0 d-flex flex-row flex-xl-column justify-content-xl-between steps-nav">
+                        <li className="nav-item py-4 py-xl-3">
+                          <a ></a>
+                        </li>
+                        <li className="nav-item py-4 py-xl-3">
+                          <a ></a>
+                        </li>
+                        <li className="nav-item py-4 py-xl-3">
+                          <a ></a>
+                        </li>
+                        <li className="nav-item py-4 py-xl-3">
+                          <a ></a>
+                        </li>
+                        <li className="nav-item py-4 py-xl-3">
+                          <a ></a>
+                        </li>
+                      </ul>
+                  </div>
+                  <div className="col-12 col-md-10">
+                    <div className="steps-description">
+                      <div className="">
+                        <h3>Step 1</h3>
+                        <div className="step-image">
+                          <img src={step1Img} alt="" width={100} height={250}/>
+                        </div>
+                        {/* <p>Thinnings are carried out in accordance with the specifications of the sustainable management plan, to encourage the growth of future stems.</p> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <img scr={step1Img} alt="" width={100}/>
+          </div>
         </div>
       </div>
     </>
