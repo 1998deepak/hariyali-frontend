@@ -88,24 +88,22 @@ function Login() {
   const verifyOtp = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `http://localhost:8080/api/v1/verify-otp?donarIdOrEmail=${formData.username}&otp=${otp}`
-      );
+      const response = await AuthService.verifyOtp( formData.username, otp)
       console.log("Response: " + JSON.stringify(response));
 
       // console.log("Error Massage: "+response.data.message);
       if (response) {
-        if (response?.data.status === SUCCESS) {
-          console.log(response?.data.token);
-          localStorage.setItem(TOKEN, response?.data.token);
+        if (response?.status === SUCCESS) {
+          //console.log(response?.data.token);
+          localStorage.setItem(TOKEN, response?.token);
           // Assuming the response contains a 'status' or 'message' field indicating the verification status
-          setVerificationStatus(response.data.status);
+          setVerificationStatus(response.status);
           setTimeout(() => {
             navigate("/Dashboard");
           }, 2000);
           toast.success("Successfully Login!");
         } else {
-          console.log("Response: " + response.data.status);
+          console.log("Response: " + response.status);
         }
       } else {
         //toast.error("Invalid credentials ! Username or Password Incorrect");
@@ -113,7 +111,7 @@ function Login() {
       }
     } catch (error) {
       console.error(error);
-      console.log(error.response.data.message);
+      //console.log(error.response.data.message);
       toast.success("OTP verification failed");
       setVerificationStatus("OTP verification failed");
     }

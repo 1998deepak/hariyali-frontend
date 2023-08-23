@@ -448,23 +448,25 @@ function OnlineDonation() {
         },
       };
 
+      if(donations[0].paymentInfo){
+
+      
       let paymentArray = { ...donations[0] };
 
-      console.log(paymentArray.paymentInfo[0]);
       paymentArray.paymentInfo = [];
       if (hasValues(donations[0].paymentInfo[0])) {
         paymentArray.paymentInfo[0] = donations[0].paymentInfo[0];
       }
 
-      console.log(hasValues(donations[0].paymentInfo[1]));
       if (hasValues(donations[0].paymentInfo[1])) {
         paymentArray.paymentInfo[1] = donations[0].paymentInfo[1];
       }
-
+    
       console.log(paymentArray);
 
       formData.formData.user.donations[0] = paymentArray;
       console.log(formData.formData.user.donations[0]);
+    }
 
       console.log(formData);
       //setting Donation event
