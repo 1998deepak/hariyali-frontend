@@ -526,12 +526,12 @@ function OnlineDonation() {
       const response = await DonationService.AddOnlineuser(formData);
       console.log(response);
       if (response?.status === SUCCESS) {
-        // toast.success(response?.message);
-        // setGatewayConfiguration(response);
-        // setTimeout(() => {
-        //   document.getElementById("gatewayForm").submit();
-        // }, 1000);
-        // // clearForm(e);
+        toast.success(response?.message);
+        setGatewayConfiguration(response);
+        setTimeout(() => {
+          document.getElementById("gatewayForm").submit();
+        }, 1000);
+        // clearForm(e);
       } else {
         toast.error(response?.message);
       }
