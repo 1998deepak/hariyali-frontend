@@ -53,14 +53,70 @@ import testimonialImg from "../../../assets/img/testimonial.png";
 // };
 
 
+
 function WhySupportUs() {
+
+  const awards = [
+    {
+      quote:
+        'FICCI CSR Awards – In Skill Development & Livelihood Category'
+    },
+    {
+      quote:
+        'The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category'
+    },
+    {
+      quote:
+        'Food Vision 2050 Prize by Rockefeller Foundation to Naandi Foundation'
+    },
+    {
+      quote:
+        'Limca book of Awards.'
+    }
+  ]
+
+  const testimonials = [
+    {
+      image: testimonialImg,
+      name: 'Maria Kate',
+      role: 'Photographer',
+      quote:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti nesciunt sint eligendi reprehenderit reiciendis, quibusdam illo, beatae quia fugit consequatur laudantium velit magnam error. Consectetur distinctio fugit doloremque.',
+      stars: [1, 2, 3, 4],
+    },
+    {
+      image: image3,
+      name: 'Maria Kate',
+      role: 'Photographer',
+      quote:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti nesciunt sint eligendi reprehenderit reiciendis, quibusdam illo, beatae quia fugit consequatur laudantium velit magnam error. Consectetur distinctio fugit doloremque.',
+      stars: [1, 2, 3, 4],
+    },
+    {
+      image: image1,
+      name: 'Maria Kate',
+      role: 'Photographer',
+      quote:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti nesciunt sint eligendi reprehenderit reiciendis, quibusdam illo, beatae quia fugit consequatur laudantium velit magnam error. Consectetur distinctio fugit doloremque.',
+      stars: [1, 2, 3, 4],
+    },
+    {
+      image: image2,
+      name: 'Maria Kate',
+      role: 'Photographer',
+      quote:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus et deleniti nesciunt sint eligendi reprehenderit reiciendis, quibusdam illo, beatae quia fugit consequatur laudantium velit magnam error. Consectetur distinctio fugit doloremque.',
+      stars: [1, 2, 3, 4],
+    },
+    // Add other testimonials
+  ];
+
+
   return (
     <>
       {/* body */}
       <section className="banner banner-support">
-        <div className="title">
-          {/* <h1>Why Support Us</h1> */}
-        </div>
+        <div className="title">{/* <h1>Why Support Us</h1> */}</div>
       </section>
       <div className="container pv-75">
         <div className="row mb30 impact-wrapper">
@@ -81,14 +137,17 @@ function WhySupportUs() {
           <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
               {/* <i className="icon-carbon"></i> */}
-              <h4>Trees sequestered through the project Since inspection  </h4>
+              <h4>Trees sequestered through the project Since inspection </h4>
               <p> approx.</p>
             </div>
           </div>
           <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
               {/* <i className="icon-carbon"></i> */}
-              <h4>Project has  witnessed significant positive change in bio diversity</h4>
+              <h4>
+                Project has witnessed significant positive change in bio
+                diversity
+              </h4>
               {/* <p> approx.</p> */}
             </div>
           </div>
@@ -97,8 +156,20 @@ function WhySupportUs() {
 
       <div className="container pv-75">
         <h3 className="text-center sub-title">Awards Won</h3>
-        <div className="row justify-content-center my-5 overflow-x">
-          {/* <div className="col-12 col-md-6 mb-3">
+        <Zoom scope={0.4}>
+          {awards.map((contant, index) => (
+            <div className="row justify-content-center my-5 overflow-x">
+              <div className="col-12 col-md-6 mb-3"></div>
+              <div key={index} className="slide-content">
+                <div className="award-wrapper">
+                  <h4>{contant.quote}</h4>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Zoom>
+        {/* <div className="row justify-content-center my-5 overflow-x">
+          <div className="col-12 col-md-6 mb-3">
                 <div className="award-wrapper">
                   <h4>FICCI CSR Awards – In Skill Development & Livelihood Category</h4>
                 </div>   
@@ -107,7 +178,7 @@ function WhySupportUs() {
                 <div className="award-wrapper">
                   <h4>FICCI CSR Awards – In Skill Development & Livelihood Category</h4>
                 </div>   
-            </div> */}
+            </div>
           <div className="col-12 col-md-4 mb-3">
             <div className="award-wrapper">
               <h4>FICCI CSR Awards – In Skill Development & Livelihood Category</h4>
@@ -128,22 +199,63 @@ function WhySupportUs() {
               <h4>Limca book of Awards.</h4>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="container">
         <h3 className="text-center sub-title">Testimonials</h3>
         <div className="row">
           <div className="col-12 col-md-6">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/h5JfhFJG3vQ" title="YouTube video player"
-              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/h5JfhFJG3vQ"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
           </div>
           <div className="col-12 col-md-6">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/YnhmRcQ4q6M" title="YouTube video player" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/YnhmRcQ4q6M"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
         {/* <Slideshow /> */}
-        <div id="carouselExampleControls" className="carousel slide text-center carousel-dark my-5" data-mdb-ride="carousel">
+        <Zoom scope={0.4}>
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="slide-content">
+              <img
+                style={{ width: "150px" }}
+                src={testimonial.image}
+                alt="avatar"
+              />
+              <h5 className="mb-3">{testimonial.name}</h5>
+              <p>{testimonial.role}</p>
+              <p className="text-muted">
+                <i className="fas fa-quote-left pe-2"></i>
+                {testimonial.quote}
+              </p>
+              <ul className="list-unstyled d-flex justify-content-center text-warning mb-0">
+                {/* {testimonial.stars.map((star, starIndex) => (
+              <li key={starIndex}>
+                <i className="fas fa-star fa-sm"></i>
+              </li>
+            ))} */}
+                <li>
+                  <i className="far fa-star fa-sm"></i>
+                </li>
+              </ul>
+            </div>
+          ))}
+        </Zoom>
+        {/* <div id="carouselExampleControls" className="carousel slide text-center carousel-dark my-5" data-mdb-ride="carousel">
           <div className="carousel-inner">
             <div className="carousel-item active">
               <img className="rounded-circle shadow-1-strong mb-4"
@@ -182,7 +294,7 @@ function WhySupportUs() {
             <span className="carousel-control-next-icon" aria-hidden="true"></span>
             <span className="visually-hidden">Next</span>
           </button>
-        </div>
+        </div> */}
 
         {/* <MDBContainer className="py-5">
         <MDBCarousel showControls dark>
@@ -291,27 +403,34 @@ function WhySupportUs() {
           </MDBCarouselInner>
         </MDBCarousel>
       </MDBContainer> */}
-
       </div>
       <div className="">
-       
         <div className="section bggray">
           <Container className="pt30">
             <Row className="justify-content-between  padding30tb contact-form-wrap">
-            
               <div className="col-12">
                 <div>
-                
                   <p>
-                  Project Hariyali is a unique blend in the sphere of environmental sustainability and impacting livelihood.
-                <br/>
-                The Project on large scale <span className="colorgreen">tree planting, natural resource management, Global regenerative organic farming</span>  protocols to enrich agricultural eco-system and build functional forests as means to increase communities' income for an overall wellbeing of the community and mother earth
-                <br/><br/>
-                  We are available at<span className="colorgreen"> 1t.org</span>
-                  </p></div>
-               
+                    Project Hariyali is a unique blend in the sphere of
+                    environmental sustainability and impacting livelihood.
+                    <br />
+                    The Project on large scale{" "}
+                    <span className="colorgreen">
+                      tree planting, natural resource management, Global
+                      regenerative organic farming
+                    </span>{" "}
+                    protocols to enrich agricultural eco-system and build
+                    functional forests as means to increase communities' income
+                    for an overall wellbeing of the community and mother earth
+                    <br />
+                    <br />
+                    We are available at
+                    <span className="colorgreen"> 1t.org</span>
+                  </p>
+                </div>
               </div>
-            </Row></Container>
+            </Row>
+          </Container>
         </div>
       </div>
       {/* body */}
