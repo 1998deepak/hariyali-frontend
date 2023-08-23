@@ -89,6 +89,15 @@ export const DonationService = {
     return response?.data;
   },
 
+  getExistingDetailsByEmailId: async (emailId) => {
+    console.log(emailId);
+    const response = await APIService.Instance.get(
+      URLS.GETBYEXISTINGEMAILID + emailId
+    );
+    console.log(response);
+    return response?.data;
+  },
+
       getAllPackages: async () => {
         try {
            const response = await APIService.Instance.get(

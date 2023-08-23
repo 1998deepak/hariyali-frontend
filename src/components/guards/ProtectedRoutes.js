@@ -36,7 +36,9 @@ const ProtectedRoutes = ({ children, admin, user }) => {
         } if (admin) {
             if (admin === role)
                 return true;
-        } else {
+        } else if(user === role){
+            return true;
+        }else{
             return false;
         }
     }

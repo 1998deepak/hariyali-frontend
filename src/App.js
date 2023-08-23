@@ -30,6 +30,7 @@ import GalleryAwards from "./components/master/otherMenu/GalleryAwards";
 import ContactUs from "./components/master/otherMenu/ContactUs";
 import Policy from "./components/master/otherMenu/PolicyPayment";
 import WaystoAssociate from "./components/master/otherMenu/WaystoAssociate";
+import OnlineExistingDonar from "./components/master/donation/OnlineExistingDonar";
 
 
 function HomeWithHeaderAndFooter() {
@@ -119,6 +120,15 @@ function DonateWithHeaderAndFooter() {
     <>
       <UserHeader />
       <OnlineDonation />
+      <UserFooter />
+    </>
+  );
+}
+function ExistingOnlineDonate() {
+  return (
+    <>
+      <UserHeader />
+      <OnlineExistingDonar />
       <UserFooter />
     </>
   );
@@ -245,6 +255,10 @@ function App() {
         <Route path="/OtpId" element={<OtpId />} />
         <Route path="/ConformPassword" element={<ConformPassword />} />
         <Route path="/OnlineDonation" element={<DonateWithHeaderAndFooter />} />
+
+        <Route path="/ExistingOnlineDonation" element = {<ProtectedRoutes user={authority.user}>
+                    <ExistingOnlineDonate setAuthToken={setAuthToken} authToken={authToken} />
+                  </ProtectedRoutes>}/>
         {/* <Route
           path="/OfflineDonation"
           element={<OfflineDonationWithHeaderAndFooter />}
@@ -323,7 +337,7 @@ function App() {
         /> */}
         <Route path="/Dashboard"
                 element={
-                  <ProtectedRoutes admin={authority.admin} user={authority.user}>
+                  <ProtectedRoutes admin={authority.admin} >
                     <DashboardWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
                   </ProtectedRoutes>
                 } />
