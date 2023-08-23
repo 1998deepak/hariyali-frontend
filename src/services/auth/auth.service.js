@@ -72,12 +72,10 @@ export const AuthService = {
   },
   
 
-  verifyOtp: async (formData) => {
-    console.log(formData);
+  verifyOtp: async ( email, otp) => {
     try {
       const response = await APIService.Instance.post(
-        URLS.VERIFYOTP,
-        formData
+        URLS.VERIFYOTP+`?donarIdOrEmail=${email}&otp=${otp}`,
       );
       console.log(response);
       return response?.data;
