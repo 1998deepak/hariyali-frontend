@@ -47,10 +47,7 @@ const Header = () => {
                   </div>
                 </div>
               </div>
-              <h5>Contact us at: </h5>
-              <a href="tel:+91 987 8765 111"><i className="bi bi-telephone-fill"></i>+91 987 8765 111</a> <br/>
-              <i className="bi bi-clock"></i> 10.00am to 7.00pm IST <br/>(Monday to
-          Saturday)
+              
             </div>
             <div className="col-12 col-md-6 col-lg-7 footerlinks">
               <div className="row">
@@ -58,26 +55,16 @@ const Header = () => {
                   <div className="footer-divheading">Company</div>
                   <ul>
                     <li>
-                      <a href=""><i class="bi bi-flower3"></i> About Us</a>
+                      <a href=""> About Us</a>
                     </li>
                     <li>
-                    <a href=""><i class="bi bi-flower3"></i> What we do</a></li>
-                    <li><a href=""><i class="bi bi-flower3"></i> Why Support Us</a></li>
-                    <li><a href=""><i class="bi bi-flower3"></i> Ways to Associate</a></li>
-                    <li><a href=""><i class="bi bi-flower3"></i> FootPrint</a></li>                    
-                    <li><a href=""><i class="bi bi-flower3"></i> Contact Us</a></li>
+                    <a href=""> What we do</a></li>
+                    <li><a href=""> Why Support Us</a></li>
+                    <li><a href=""> Ways to Associate</a></li>
+                    <li><a href=""> FootPrint</a></li>                    
+                    <li><a href=""> Contact Us</a></li>
                   </ul>
-                </div>
-                <div className="col-12 col-md-6 col-lg-4 footer-div">
-                  {/* <div className="footer-divheading">About Us</div>
-                  <ul>
-                    <li><a href="">Mission & Vision</a></li>
-                    <li><a href="">Our Journey</a></li>
-                    <li><a href="">Our Team</a></li>
-                    <li><a href="">Our Achievements </a></li>
-                    <li><a href="">Volunteer with us</a></li>
-                  </ul> */}
-                </div>
+                </div>                
                 <div className="col-12 col-md-6 col-lg-4 footer-div">
                   <div className="footer-divheading">Resources</div>
                   <ul>
@@ -85,6 +72,26 @@ const Header = () => {
                     <li><a href="">Terms & Conditions</a></li>
                    
                   </ul>
+                </div>
+                <div className="col-12 col-md-6 col-lg-4 footer-div">
+                <div className="footer-divheading">Contact Us </div>
+                  <address>
+                  <h5>Mahindra Foundation</h5>
+                  <p>3rd Floor, Cecil Court, Shahid Bhagat Singh Marg, Colaba, Mumbai, Maharashtra 400005</p>
+                  <a href="tel:93224 56789"><i class="bi bi-phone"></i> 93224 56789</a><br/>
+                  <a href="tel:022 22021031"><i class="bi bi-telephone-fill"></i> 022 22021031</a> <br/>
+                  </address>
+                 
+                  {/* <i className="bi bi-clock"></i> 10.00am to 7.00pm IST <br/>(Monday to
+                    Saturday) */}
+                    {/* <div className="footer-divheading">About Us</div>
+                    <ul>
+                      <li><a href="">Mission & Vision</a></li>
+                      <li><a href="">Our Journey</a></li>
+                      <li><a href="">Our Team</a></li>
+                      <li><a href="">Our Achievements </a></li>
+                      <li><a href="">Volunteer with us</a></li>
+                    </ul> */}
                 </div>
               </div>
             </div>

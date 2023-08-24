@@ -24,19 +24,20 @@ function AboutUs() {
               <div className="col-12 col-md-7">
               <div className="feature-description">
                 <h2 className="text-capitalize">Project Details</h2>
-                <p>Launched on 2nd October 2007, as an afforestation initiative, with a target to plant a million trees every year. 
+                  <p>Launched on 2nd October 2007, as an afforestation initiative, with a target to plant a million trees every year. 
                   Project Hariyali aims to increase the green cover, arrest the rising ecological imbalance to create environmentally conscious and aware citizenry.</p>
-                  <p>Large Scale Plantation Locations:
-                    Araku Valley – The project started in Araku, Visakhapatnam, Andhra Pradesh in 2010. The aim was to
-                    <ul className="mb-2">
-                      <li>Restore the ecosystem</li>
-                      <li>Create a functional forest for the tribal community</li>
-                      <li>Ensure nutritional / economic security of the small & marginalized farmers</li>
-                    </ul>
-                    Northern India - The project was further extended in Punjab, Uttar Pradesh and Himachal Pradesh in 2021
-                    Western India – The project is being currently replicated in Wardha, Maharashtra.
-                    </p>
-                  
+                  <p>Large Scale Plantation Locations:</p>
+                   <ul>
+                      <li>Araku Valley – The project started in <b className="colorgreen">Araku</b>, <b className="colorgreen">Visakhapatnam</b>, <b className="colorgreen">Andhra Pradesh</b> in 2010. The aim was to
+                        <ul className="mb-2">
+                          <li>Restore the ecosystem</li>
+                          <li>Create a functional forest for the tribal community</li>
+                          <li>Ensure nutritional / economic security of the small & marginalized farmers</li>
+                        </ul>
+                      </li>
+                      <li>Northern India - The project was further extended in Punjab, Uttar Pradesh and Himachal Pradesh in 2021</li>
+                      <li>Western India – The project is being currently replicated in Wardha, Maharashtra.</li>
+                   </ul>
                   </div>
               </div>
               <div className="col-12 col-md-5">

@@ -72,7 +72,7 @@ import image2 from "../../../assets/img/slider/banner2.png";
 import image3 from "../../../assets/img/slider/banner3.png";
 import image4 from "../../../assets/img/slider/banner4.jpg";
 
-import plantimg from "../../../assets/img/pmat_a_tree.png";
+// import plantimg from "../../../assets/img/pmat_a_tree.png";
 
 import planttreeImg from "../../../assets/img/plant.png";
 import gifttreeImg from "../../../assets/img/holding-hand.png";
@@ -89,7 +89,7 @@ const slides = [
   {
     image: image1,
     title: 'When you cut a tree you take a life and when you plant a tree you plant a HOPE',
-    description: 'PLANT A TREE',
+    description: '',
   },
   {
     image: image2,
@@ -128,17 +128,20 @@ const Slideshow = () => {
           <img key={index} style={{ width: "100%" }} src={each.image} />
           <div className="slide-content">
             <h2>{each.title}</h2>
-            <p><i className="bi-bi bi-geo-alt"></i>{each.description}</p>
+            
             <div className="donate-btn-group">
-            <div className="d-flex flex-wrap justify-content-start">          
-                <a href="" className="btn btn-primary">     
-                    Plant A tree <img src={planttreeImg} />
-                </a>          
-                <a href="" className="btn btn-primary">     
-                  Gift a Tree  <img src={gifttreeImg} /> 
-                </a>
+              <div className="d-flex flex-wrap justify-content-start">          
+                  <a href="" className="btn btn-primary">     
+                      Plant A tree <img src={planttreeImg} />
+                  </a>          
+                  <a href="" className="btn btn-primary">     
+                    Gift a Tree  <img src={gifttreeImg} /> 
+                  </a>
+              </div>
             </div>
           </div>
+          <div className="slide-location">
+            <p><i className="bi-bi bi-geo-alt"></i>{each.description}</p>
           </div>
           </>
         ))}
