@@ -1,5 +1,6 @@
-import React from "react";
-import { Container, Row ,Carousel} from "react-bootstrap";
+import React, { useState } from 'react';
+import { Carousel, Modal, Button } from 'react-bootstrap';
+import { Container, Row } from "react-bootstrap";
 import "animate.css/animate.min.css";
 // import "react-image-gallery/styles/css/image-gallery.css";
 import { Zoom } from "react-slideshow-image";
@@ -14,6 +15,13 @@ import image2 from "../../../assets/img/slider/banner2.png";
 import image3 from "../../../assets/img/slider/banner3.png";
 
 import testimonialImg from "../../../assets/img/testimonial.png";
+import limcaAward from "../../../assets/img/Limca Records 2015_page-0001.jpg";
+import limcaAward1 from "../../../assets/img/Limca Records 2020_pages-to-jpg-0001.jpg";
+import impactAssessment1 from "../../../assets/img/Impact Assessment Report FY 22_page-0001.jpg";
+import impactAssessment2 from "../../../assets/img/Impact Assessment Report FY 23_page-0001.jpg";
+import csrCertificate from "../../../assets/img/Image20230825001140.png";
+import csrCertificate1 from "../../../assets/img/Image20230825001136.png";
+
 
 // const slides = [
 //   {
@@ -58,14 +66,18 @@ function WhySupportUs() {
 
   const items = [
     [
-      { quote: 'FICCI CSR Awards – In Skill Development & Livelihood Category' },
-      { quote: 'The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category' },
-      { quote: 'The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category' }
+      { quote: 'FICCI CSR Awards – In Skill Development & Livelihood Category',
+    image: limcaAward },
+      { quote: 'Limca book of Awards - Indian Record',
+      image: limcaAward1 },
+      { quote: 'Limca book of Awards - National Record',
+      image: limcaAward }
     ],
     [
-      { quote: 'Food Vision 2050 Prize by Rockefeller Foundation to Naandi Foundation' },
-      { quote: 'Food Vision 2050 Prize by Rockefeller Foundation to Naandi Foundation' },
-      { quote: 'The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category' }
+      { quote: 'Food Vision 2050 Prize by Rockefeller Foundation to Naandi Foundation',
+    image : csrCertificate },
+      { quote: 'The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category',
+      image : csrCertificate1 }
     ],
     // Add more item groups as needed
   ];
@@ -105,6 +117,19 @@ function WhySupportUs() {
     },
     // Add other testimonials
   ];
+
+  const [showModal, setShowModal] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const openModal = (image) => {
+    setSelectedImage(image);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+    setShowModal(false);
+  };
 
 
   return (
@@ -170,9 +195,9 @@ function WhySupportUs() {
           <div className="d-flex justify-content-center">
             {item.map((subItem, subIndex) => (
               <>
-              <div className="row justify-content-center my-5 overflow-x">
+              <div key={index} className="row justify-content-center my-5 overflow-x">
                 <div className="col-12 col-md-6 mb-3"></div>
-                  <div key={index} className="slide-content2">
+                  <div  className="slide-content2" onClick={() => openModal(subItem.image)}>
                       <div className="award-wrapper">
                         <h4>{subItem.quote}</h4>
                       </div>
@@ -184,6 +209,17 @@ function WhySupportUs() {
         </Carousel.Item>
       ))}
     </Carousel>
+    <Modal show={showModal} onHide={closeModal}>
+        <Modal.Body>
+          {selectedImage && (
+            <img
+              src={selectedImage}
+              alt="Modal"
+              className="img-fluid"
+            />
+          )}
+        </Modal.Body>
+      </Modal>
         {/* <div className="row justify-content-center my-5 overflow-x">
           <div className="col-12 col-md-6 mb-3">
                 <div className="award-wrapper">

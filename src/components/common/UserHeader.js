@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-
-
 import { Button, Col, Nav, Row, Navbar, NavDropdown } from "react-bootstrap";
 import {
   FaFacebookF,
@@ -12,9 +10,12 @@ import {
 import { BsChevronBarLeft } from "react-icons/bs";
 import logo from "../../assets/img/logotrans.png";
 import donoteicon from "../../assets/img/donote.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation} from "react-router-dom";
 
 const Header = () => {
+
+  const [activeTab, setActiveTab] = useState('');
+
   const navigate = useNavigate();
 
   const goToLogin = () => {
@@ -43,6 +44,9 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const location = useLocation();
+  console.log(JSON.stringify(location))
 
   return (
     <>
@@ -97,27 +101,33 @@ const Header = () => {
                 </Nav>
                 <div className="clear"></div>
 
-                <Nav className="justify-content-end  nav-list" activeKey="/home">
+                <Nav className="justify-content-end  nav-list" activeKey={location.pathname}>
                   <Nav.Item >
-                    <Nav.Link href="/AboutUs" eventKey="link-0">About Us</Nav.Link>
+                    <Nav.Link href="/AboutUs" className={`${activeTab === 'AboutUs' ? 'active' : ''}`}
+        onClick={() => setActiveTab('AboutUs')} eventKey="/AboutUs">About Us</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link href="/WhatWeDo" eventKey="link-1">What we do</Nav.Link>
+                    <Nav.Link href="/WhatWeDo" className={`${activeTab === 'WhatWeDo' ? 'active' : ''}`}
+        onClick={() => setActiveTab('WhatWeDo')} eventKey="/WhatWeDo">What we do</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link href="/WhySupportUs" eventKey="link-2">Why support us</Nav.Link>
+                    <Nav.Link href="/WhySupportUs" className={`${activeTab === 'WhySupportUs' ? 'active' : ''}`}
+        onClick={() => setActiveTab('WhySupportUs')} eventKey="/WhySupportUs">Why support us</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link href="/WaystoAssociate" eventKey="link-2">Ways to associate</Nav.Link>
+                    <Nav.Link href="/WaystoAssociate" className={`${activeTab === 'WaystoAssociate' ? 'active' : ''}`}
+        onClick={() => setActiveTab('WaystoAssociate')} eventKey="/WaystoAssociate">Ways to associate</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link href="/FootPrint" eventKey="link-3">FootPrint</Nav.Link>
+                    <Nav.Link href="/FootPrint" className={`${activeTab === 'FootPrint' ? 'active' : ''}`}
+        onClick={() => setActiveTab('FootPrint')} eventKey="/FootPrint">FootPrint</Nav.Link>
                   </Nav.Item>
                   {/* <Nav.Item>
                     <Nav.Link href="/GalleryAwards" eventKey="link-4">Gallery & Awards</Nav.Link>
                   </Nav.Item> */}
                   <Nav.Item>
-                    <Nav.Link href="/ContactUs" eventKey="link-5">Contact Us</Nav.Link>
+                    <Nav.Link href="/ContactUs" className={`${activeTab === 'ContactUs' ? 'active' : ''}`}
+        onClick={() => setActiveTab('ContactUs')} eventKey="/ContactUs">Contact Us</Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Navbar.Collapse>
