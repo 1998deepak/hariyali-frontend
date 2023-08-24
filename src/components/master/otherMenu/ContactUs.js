@@ -20,15 +20,26 @@ function ContactUs() {
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isAlphbate, setIsAlphbate] = useState(true);
   const [errors, setErrors] = useState([]);
+  const [captchaVerfied, setCaptchaVerfied] = useState(false);
 
   const validateEmail = (email) => {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
   };
 
+  const setCaptchaFlag = async (flag) =>{
+    setCaptchaVerfied(flag);
+  }
+
   const validate = () => {
     const validationErrors = [];
     console.log("Working!! : "+contactData.contactName)
+    if(!captchaVerfied){
+      validationErrors.push({
+        field: "captchaError",
+        message: "Captcha not verified",
+      });
+    }
     // Validate user data fields
     if (!contactData?.contactName) {
       validationErrors.push({ field: "contactData.contactName", message: "Contact Name is required" });
@@ -210,9 +221,22 @@ function ContactUs() {
                         <div className="homeinput-div col-lg-12 col-12">
                           <CaptchaContact
                             verified={false}
-                            setVerified={() => {}}
+                            setVerified={() => setCaptchaFlag(true)}
                             id="captcha2"
                           />
+                          {errors.map((error, index) => {
+                                if (error.field === "captchaError") {
+                                  return (
+                                    <div
+                                      key={index}
+                                      className="error-message red-text"
+                                    >
+                                      {error.message}
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              })}
                         </div>
                       </Row>
                     </div>
