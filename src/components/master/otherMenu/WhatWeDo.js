@@ -23,7 +23,7 @@ function WhatWeDo() {
           {/* <h1>What we do</h1> */}
         </div>
       </section>
-      <div className="pt100">
+      <div className="">
         {/* <img src={planting} alt="planting" className="imgwidth100" /> */}
         <div className="section bg-green">
           <Container className="pv-75">

@@ -1,0 +1,21 @@
+.navigation .nav {
+    list-style: none;
+    display: flex;
+    padding: 0;
+  }
+  
+  .navigation .nav-item {
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  
+  .navigation .nav-link {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .navigation .nav-item.active .nav-link {
+    font-weight: bold; /* or apply any styling you prefer */
+    color: #007bff; /* or your preferred active color */
+  }
+  

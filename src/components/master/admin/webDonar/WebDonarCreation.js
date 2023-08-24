@@ -114,14 +114,14 @@ function WebDonarCreation() {
         return (
           <span>
             <button
-              className="approve-button"
+              className="approve-button btn btn-danger"
               onClick={() => handleApproveAndReject(row, "approved")}
             // disabled={isApproved}
             >
               Approve
             </button>
             <button
-              className="reject-button"
+              className="reject-button btn btn-warning"
               onClick={() => handleApproveAndReject(row, "rejected")}
             // disabled={!isApproved}
             >

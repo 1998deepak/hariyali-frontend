@@ -2330,10 +2330,12 @@ tr td input {
 .banner-support{
   position: relative;
   background-size: cover;
-  width: 100%;
-  height: 40vh;
-  max-width: 95%;
+  width: auto;
+  height: 47vh;
+  max-width: 52%;
   margin: 0 auto;
+  object-fit: cover;
+  display: flex;
 }
 .banner-about{
   background: url("../img/slider/extra.jpg") no-repeat;
@@ -2345,7 +2347,7 @@ tr td input {
   border-bottom: 1px solid #9c9b9b;
 }
 .banner-wedo{
-  background: url("../img/program/hariyali-img-2.jpg");
+  background: url("../img/whatWeDo.png");
 }
 .banner-support{
   background: url('../img/slider/support-us.png') no-repeat;
@@ -2923,6 +2925,18 @@ iframe{
   border: none;
 }
 
+.slide-content2{
+  position: relative;
+  /* left: 10%; */
+  /* bottom: 50%; */
+  /* width: 50%; */
+  right: auto;
+  /* background: rgb(233 37 52/ 90% ); */
+  /* background: rgb(250 175 5 / 60%); */
+  color: #fff;
+  padding: 2.5rem;
+  border-radius: 4rem 0 4rem 0;
+}
 .online-donation-tabs .nav-item{
   width: 50%;
 }
