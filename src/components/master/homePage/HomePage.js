@@ -128,17 +128,20 @@ const Slideshow = () => {
           <img key={index} style={{ width: "100%" }} src={each.image} />
           <div className="slide-content">
             <h2>{each.title}</h2>
-            <p><i className="bi-bi bi-geo-alt"></i>{each.description}</p>
+            
             <div className="donate-btn-group">
-            <div className="d-flex flex-wrap justify-content-start">          
-                <a href="" className="btn btn-primary">     
-                    Plant A tree <img src={planttreeImg} />
-                </a>          
-                <a href="" className="btn btn-primary">     
-                  Gift a Tree  <img src={gifttreeImg} /> 
-                </a>
+              <div className="d-flex flex-wrap justify-content-start">          
+                  <a href="" className="btn btn-primary">     
+                      Plant A tree <img src={planttreeImg} />
+                  </a>          
+                  <a href="" className="btn btn-primary">     
+                    Gift a Tree  <img src={gifttreeImg} /> 
+                  </a>
+              </div>
             </div>
           </div>
+          <div className="slide-location">
+            <p><i className="bi-bi bi-geo-alt"></i>{each.description}</p>
           </div>
           </>
         ))}

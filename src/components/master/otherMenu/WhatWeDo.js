@@ -29,7 +29,7 @@ function WhatWeDo() {
           <Container className="pv-75">
             <Row className="justify-content-between align-items-center">
               <div className="col-12 col-md-6 feature-description">
-              <h2 className="">Approach for pan India Hariyali Project</h2>
+              <h2 className="">Approach for PAN India Hariyali Project</h2>
               <p>Each year, we follow a systematic planting process.
                 
                 For Monsoon plantation, this process starts in September of the previous financial year, giving our team 9-10 months of lead time to select and nurture the saplings so that the survival rates after plantation are high. Similarly, for winter plantation, the process starts by September and saplings are planted from November to January of the same financial year.</p>
