@@ -494,7 +494,7 @@ input:disabled {
   background: #23aa4a;
   color: #23aa4a;
 }
-.nav-list .nav-item.active a.nav-link,
+.nav-list .nav-item a.nav-link.active,
 .nav-list .nav-item a.nav-link:hover{
   color: #23aa4a;
 }
