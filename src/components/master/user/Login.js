@@ -22,6 +22,7 @@ function Login() {
     userName: "",
     password: "",
     email: "",
+    captcha: ""
   });
   const navigate = useNavigate();
   const regexMail =
@@ -56,11 +57,14 @@ function Login() {
 
   const login = async (e) => {
     e.preventDefault();
+    setErrors({ ...errors, captcha: "" }); 
     if (formData.username == "") {
       setErrors({ ...errors, username: "Enter the Username" });
     } else if (formData.password == "") {
       setErrors({ ...errors, password: "Enter the Password" });
-    } else if (errors.username == "" && errors.password == "") {
+    }else if(!verified){
+      setErrors({ ...errors, captcha: "Please verify captcha" }); 
+    } else if (errors.username == "" && errors.password == "" && errors.captcha == "") {
       const response = await AuthService.login(formData);
       console.log(response);
       if (response) {
@@ -259,6 +263,14 @@ function Login() {
                 </label>
               </div>
               <Captcha verified={verified} setVerified={setVerified}></Captcha>
+              {errors.captcha != "" &&
+                                  (
+                                    <div
+                                      className="error-message red-text"
+                                    >
+                                     {errors.captcha}
+                                    </div>
+                                  )}
               <button
                 onClick={login}
                 //className="webform-button--submit button button--primary js-form-submit form-submit"
