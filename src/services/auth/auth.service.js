@@ -70,7 +70,6 @@ export const AuthService = {
       }
     }
   },
-  
 
   verifyOtp: async ( email, otp) => {
     try {

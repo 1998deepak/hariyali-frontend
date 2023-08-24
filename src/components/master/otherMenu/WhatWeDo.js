@@ -7,6 +7,7 @@ import 'react-vertical-timeline-component/style.min.css';
 import { FaSearchLocation, FaEdit, FaCalendarAlt, FaWpforms, FaRegUserCircle, FaStar, FaTree, FaUsers, FaCogs, FaCannabis } from "react-icons/fa";
 import whatwe1 from "../../../assets/img/whatwe1.jpg";
 import whatwe2 from "../../../assets/img/whatwe2.jpg";
+import whatwe3 from "../../../assets/img/whatWeDo.png";
 function WhatWeDo() {
 
   return (
@@ -16,7 +17,7 @@ function WhatWeDo() {
           {/* <h1>What we do</h1> */}
         </div>
       </section>
-      <div className="pt100">
+      <div className="">
         {/* <img src={planting} alt="planting" className="imgwidth100" /> */}
         <div className="section bggray">
           <Container className="pt30">

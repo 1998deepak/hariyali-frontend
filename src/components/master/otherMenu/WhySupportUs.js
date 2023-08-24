@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row ,Carousel} from "react-bootstrap";
 import "animate.css/animate.min.css";
 // import "react-image-gallery/styles/css/image-gallery.css";
 import { Zoom } from "react-slideshow-image";
@@ -56,24 +56,19 @@ import testimonialImg from "../../../assets/img/testimonial.png";
 
 function WhySupportUs() {
 
-  const awards = [
-    {
-      quote:
-        'FICCI CSR Awards – In Skill Development & Livelihood Category'
-    },
-    {
-      quote:
-        'The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category'
-    },
-    {
-      quote:
-        'Food Vision 2050 Prize by Rockefeller Foundation to Naandi Foundation'
-    },
-    {
-      quote:
-        'Limca book of Awards.'
-    }
-  ]
+  const items = [
+    [
+      { quote: 'FICCI CSR Awards – In Skill Development & Livelihood Category' },
+      { quote: 'The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category' },
+      { quote: 'The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category' }
+    ],
+    [
+      { quote: 'Food Vision 2050 Prize by Rockefeller Foundation to Naandi Foundation' },
+      { quote: 'Food Vision 2050 Prize by Rockefeller Foundation to Naandi Foundation' },
+      { quote: 'The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category' }
+    ],
+    // Add more item groups as needed
+  ];
 
   const testimonials = [
     {
@@ -156,8 +151,8 @@ function WhySupportUs() {
 
       <div className="container pv-75">
         <h3 className="text-center sub-title">Awards Won</h3>
-        <Zoom scope={0.4}>
-          {awards.map((contant, index) => (
+        {/* <Zoom scope={0.4}>
+          {awards.quotes.map((contant, index) => (
             <div className="row justify-content-center my-5 overflow-x">
               <div className="col-12 col-md-6 mb-3"></div>
               <div key={index} className="slide-content">
@@ -166,8 +161,29 @@ function WhySupportUs() {
                 </div>
               </div>
             </div>
+            
           ))}
-        </Zoom>
+        </Zoom> */}
+        <Carousel indicators={true}>
+      {items.map((item, index) => (
+        <Carousel.Item key={index}>
+          <div className="d-flex justify-content-center">
+            {item.map((subItem, subIndex) => (
+              <>
+              <div className="row justify-content-center my-5 overflow-x">
+                <div className="col-12 col-md-6 mb-3"></div>
+                  <div key={index} className="slide-content2">
+                      <div className="award-wrapper">
+                        <h4>{subItem.quote}</h4>
+                      </div>
+                  </div>
+              </div>
+              </>
+            ))}
+          </div>
+        </Carousel.Item>
+      ))}
+    </Carousel>
         {/* <div className="row justify-content-center my-5 overflow-x">
           <div className="col-12 col-md-6 mb-3">
                 <div className="award-wrapper">

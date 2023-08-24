@@ -23,6 +23,7 @@ export default function OnlineExistingDonar() {
     const [show, setShow] = useState(false);
     const [validSelfUser, setValidSelfUser] = useState(false);
     const [validGiftUser, setValidGiftUser] = useState(false);
+    
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -44,6 +45,36 @@ export default function OnlineExistingDonar() {
       },
   
     ];
+
+    const intialDonationsOnline = [
+        {
+          donationType: donationType,
+          donationMode: "online",
+          donationEvent: "",
+          totalAmount: 0,
+          generalDonation: null,
+          userPackage: [],
+          recipient: [],
+          paymentInfo: [
+            {
+              paymentMode: "",
+              bankName: "",
+              chqORddNo: "",
+              chqORddDate: "",
+              paymentDate: "",
+              amount: 0,
+            },
+            {
+              paymentMode: "",
+              bankName: "",
+              chqORddNo: "",
+              chqORddDate: "",
+              paymentDate: "",
+              amount: 0,
+            },
+          ],
+        },
+      ];
   
     const initialUserData = {
       user: {
@@ -134,14 +165,13 @@ export default function OnlineExistingDonar() {
     const [userData, setUserData] = useState(initialUserData);
   
     const [address, setAddress] = useState(initialAddress);
-  
-    const [donations, setDonations] = useState(intialDonations);
+
   
     const [recipient, setRecipient] = useState(initialRecipientData);
   
     const [userEmail, setUserEmail] = useState(null);
     const [giftUserEmail, setGiftUserEmail] = useState(null);
-  
+    const [donations, setDonations] = useState(intialDonationsOnline);
     const [otp, setOtp] = useState(null);
   
   
@@ -331,119 +361,95 @@ export default function OnlineExistingDonar() {
         <p>{errors.map(error => `${error.field}: ${error.message}`).join(', ')}</p>
       )
     }
-  
-  
-  
-    const userAdd = async (e) => {
-      e.preventDefault();
-  
-      const isValid = validate();
-      console.log("isValid:", isValid);
-  
-  
-      if (isValid) {
-        let updatedUserPackage = [];
-        packageData.map((item) => {
-          if (item.noOfBouquets && item.amount) {
-            updatedUserPackage.push(item);
-          }
-        });
-        const formData = {
-          formData: {
-            user: userData?.user,
-          },
-        };
-  
-        let paymentArray = { ...donations[0] };
-  
-        console.log(paymentArray.paymentInfo[0]);
-        paymentArray.paymentInfo = [];
-        if (hasValues(donations[0].paymentInfo[0])) {
-          paymentArray.paymentInfo[0] = donations[0].paymentInfo[0];
+
+
+      const handleDonarIdBlur = async (e) => {
+        e.preventDefault();
+        const donorId = e.target.value;
+        let response = await DonationService.getDetailsByDonorId(donorId);
+        console.log("API Response:", response);
+    
+        if (response?.status === "Success") {
+          toast.success(response?.message);
+          const { data } = response;
+          const { address = [], ...userDataWithoutAddress } = data;
+    
+          setUserData((prevUserData) => {
+            return {
+              ...prevUserData,
+              user: {
+                ...prevUserData.user,
+                ...userDataWithoutAddress,
+              },
+            };
+          });
+    
+          setAddress(address);
+        } else if (response?.statusCode === 409) {
+          toast.error(response?.message);
+        }else{
+          console.log(response);
+          toast.error(response?.message);
         }
-  
-        console.log(hasValues(donations[0].paymentInfo[1]));
-        if (hasValues(donations[0].paymentInfo[1])) {
-          paymentArray.paymentInfo[1] = donations[0].paymentInfo[1];
-        }
+      };
   
   
-        console.log(paymentArray);
   
-        formData.formData.user.donations[0] = paymentArray;
-        console.log(formData.formData.user.donations[0]);
-  
-        console.log(formData);
-        //setting Donation event
-  
-  
-        formData.formData.user.donations[0].donationType = donationType;
-  
-        formData.formData.user.emailId = userEmail;
-  
-        //Setting Address array
-        console.log(address.length);
-  
-        // if (!formData.formData.user.address) {
-        //   formData.formData.user.address = initialAddress.slice();
-        // }
-        console.log(formData.formData.user.address);
-  
-        if (hasValues(address[0])) {
-          formData.formData.user.address[0] = address[0];
-        }
-        console.log(formData.formData.user.address);
-        console.log(hasValues(address[1]));
-        if (hasValues(address[1])) {
-  
-          formData.formData.user.address[1] = address[1];
-        }
-  
-        //Setting user Package array
-  
-        if (
-          !formData.formData.user.donations[0].generalDonation ||
-          formData.formData.user.donations[0].generalDonation < 0
-        ) {
-          formData.formData.user.donations[0].userPackage = updatedUserPackage;
-        } else {
-          formData.formData.user.donations[0].userPackage = [];
-        }
-  
-        //setting recipent data
-        if (recipient[0].address[0].state) {
-          console.log(recipient);
-          console.log("Reci");
-          formData.formData.user.donations[0].recipient = recipient;
-        } else {
-          console.log(recipient);
-          console.log("Not present");
-          formData.formData.user.donations[0].recipient = [];
-        }
-  
-        // Send the form data as JSON
-        console.log(formData);
-        console.log(JSON.stringify(formData));
-        console.log("Donation: "+ JSON.stringify(formData.formData.user.donations[0]))
-  
-        setNewEmail(formData.formData.user.emailId);
-  
-        console.log(formData);
-        const response = await DonationService.AddOnlineuser(formData);
+    const createDonation = async (e) => {
+        e.preventDefault();
+    
+        const isValid = validate();
+        console.log("isValid:", isValid);
+    
+    
+        //if (isValid) {
+        const updatedDonations = [...donations];
+        const filteredPackages = packageData.filter((pkg) => pkg.NoOfBouquets > 0);
+        console.log(filteredPackages);
+        updatedDonations[0].userPackage = filteredPackages;
+    
+          const formData = {
+            formData: {
+              user: {
+                emailId: userData?.user?.emailId,
+                donorId: userData?.user?.donorId,
+                donations: updatedDonations.map((donation) => {
+                  const donationData = {
+                    ...donation,
+                    //paymentInfo: donation.paymentInfo.slice(0, 1), // Keep only the first payment info record
+                  };
+                  console.log(donation.donationType);
+                  if (donation.donationType === "Self-Donate") {
+                    donationData.recipient = []; // Exclude recipient data
+                  } else if (donation.donationType === "Gift-Donate") {
+                    donationData.recipient = recipient;
+                  }
+    
+                  return donationData;
+                }),
+              },
+            },
+          };
+          console.log(userData);
+    
+    
+        const response = await DonationService.AddNewDonation(formData);
         console.log(response);
         if (response?.status === SUCCESS) {
-          // toast.success(response?.message);
-          setGatewayConfiguration(response);
-  
-          setTimeout(() => {
-            document.getElementById("gatewayForm").submit();
-          }, 1000);
-          // // clearForm(e);
+          console.log("Create Donation: "+JSON.stringify(response))
+          toast.success(response?.message);
+          clearForm(e);
         } else {
           toast.error(response?.message);
         }
-      }
-    };
+      
+        console.log(donations);
+        console.log(formData);
+        console.log(updatedDonations);
+        console.log();
+      //}
+      console.log("Not Working !")
+      };
   
     useEffect(() => {
       const urlParams = new URLSearchParams(window.location.search);
@@ -920,7 +926,7 @@ export default function OnlineExistingDonar() {
                     <div className="col-6">
                       <div className="select-label">
                         <div className="col-4 ">Existing Donor Type</div>
-                        <div className="col-8 p0">
+                        {/* <div className="col-8 p0">
                           <select
                             className=" form-control-inside form-select"
                             name="user.donarType"
@@ -938,7 +944,7 @@ export default function OnlineExistingDonar() {
                             }
                             return null;
                           })}
-                        </div>
+                        </div> */}
                       </div> </div></div>
                   {isVisible ? (
                     <div className="row">
@@ -973,33 +979,17 @@ export default function OnlineExistingDonar() {
                     <div className="row">
                       <div className="col-6">
                         <div className="select-label">
-                          <div className="col-4 "> Select Your Citizenship</div>
-                          <div className="col-8 p0">
-                            <select
-                              className=" form-control-inside form-select"
-                              name="user.donarType"
-                            >
-                              <option disabled selected value="">Select Country</option>
-                              <option value="France">France</option>
-                              <option value="India">India</option>
-                              <option value="USA" >USA</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-6">
-                        <div className="select-label">
                           <div className="col-4 "> Email ID</div>
                           <div className="col-8 p0">
                             <input
                               type="text"
                               placeholder="Enter Email ID"
                               name="self"
-                              value={userEmail}
-                              onChange={onChangeUserEmail}
-                              className="form-control"
-                              // onKeyPress={handleKeyPress}
-                              onBlur={(event) => handleBlur(event)}
+                              className='form-control'
+                              value={userData?.user?.emailId}
+                              onBlur={(e) => handleDonarIdBlur(e)}
+                                onChange={handleChange}
+                              disabled
                             />
                             {errors.map((error, index) => {
                               if (error.field === 'userData.user.emailId') {
@@ -1079,6 +1069,7 @@ export default function OnlineExistingDonar() {
                                     placeholder="Mobile No."
                                     value={userData?.user?.mobileNo}
                                     onChange={handleChange}
+                                    disabled
                                   />
                                   {errors.map((error, index) => {
                                     if (error.field === 'userData.user.mobileNo') {
@@ -1100,6 +1091,7 @@ export default function OnlineExistingDonar() {
                                     type="text"
                                     value={userData?.user?.organisation}
                                     onChange={handleChange}
+                                    disabled
                                   />
 
                                   {errors.map((error, index) => {
@@ -1120,6 +1112,7 @@ export default function OnlineExistingDonar() {
                                     name="user.prefix"
                                     value={userData?.user?.prefix}
                                     onChange={handleChange}
+                                    disabled
                                   >
                                     <option disabled selected value="">Prefix</option>
                                     <option value="Mr.">Mr.</option>
@@ -1146,6 +1139,7 @@ export default function OnlineExistingDonar() {
                                     placeholder="First Name"
                                     value={userData?.user?.firstName}
                                     onChange={handleChange}
+                                    disabled
                                   />
                                   {errors.map((error, index) => {
                                     if (error.field === 'userData.user.firstName') {
@@ -1167,6 +1161,7 @@ export default function OnlineExistingDonar() {
                                     placeholder="Last Name"
                                     value={userData?.user?.lastName}
                                     onChange={handleChange}
+                                    disabled
                                   />
                                   {errors.map((error, index) => {
                                     if (error.field === 'userData.user.lastName') {
@@ -1189,6 +1184,7 @@ export default function OnlineExistingDonar() {
                                     type="text"
                                     value={userData?.user?.panCard}
                                     onChange={handleChange}
+                                    disabled
                                   />
                                   {errors.map((error, index) => {
                                     if (error.field === 'userData.user.panCard') {
@@ -1225,7 +1221,9 @@ export default function OnlineExistingDonar() {
                                     value={address[0]?.street1}
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
+                                      
                                     }
+                                    disabled
                                   />
                                   {errors.map((error, index) => {
                                     if (error.field === 'address[0].street1') {
@@ -1251,6 +1249,7 @@ export default function OnlineExistingDonar() {
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
                                     }
+                                    disabled
                                   />
 
                                 </div>
@@ -1269,6 +1268,7 @@ export default function OnlineExistingDonar() {
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
                                     }
+                                    disabled
                                   />
                                 </div>
                               </div>
@@ -1286,6 +1286,7 @@ export default function OnlineExistingDonar() {
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
                                     }
+                                    disabled
                                   />
                                   {errors.map((error, index) => {
                                     if (error.field === 'address[0].country') {
@@ -1307,6 +1308,7 @@ export default function OnlineExistingDonar() {
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
                                     }
+                                    disabled
                                   >
                                     <option disabled selected value="">Select State</option>
                                     {stateOptions.map((state) => (
@@ -1337,6 +1339,7 @@ export default function OnlineExistingDonar() {
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
                                     }
+                                    disabled
                                   />
                                   {errors.map((error, index) => {
                                     if (error.field === 'address[0].city') {
@@ -1360,6 +1363,7 @@ export default function OnlineExistingDonar() {
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
                                     }
+                                    disabled
                                   />
                                 </div>
                               </div>
@@ -1392,6 +1396,7 @@ export default function OnlineExistingDonar() {
                                       onChange={(event) =>
                                         handleAddressChange(event, 1)
                                       }
+                                      disabled
                                     />
                                   </div>
                                 </div>
@@ -1409,6 +1414,7 @@ export default function OnlineExistingDonar() {
                                       onChange={(event) =>
                                         handleAddressChange(event, 1)
                                       }
+                                      disabled
                                     />
                                   </div>
                                 </div>
@@ -1426,6 +1432,7 @@ export default function OnlineExistingDonar() {
                                       onChange={(event) =>
                                         handleAddressChange(event, 1)
                                       }
+                                      disabled
                                     />
                                   </div>
                                 </div>
@@ -1443,6 +1450,7 @@ export default function OnlineExistingDonar() {
                                       onChange={(event) =>
                                         handleAddressChange(event, 1)
                                       }
+                                      disabled
                                     />
                                   </div>
                                 </div>
@@ -1458,6 +1466,7 @@ export default function OnlineExistingDonar() {
                                       onChange={(event) =>
                                         handleAddressChange(event, 1)
                                       }
+                                      disabled
                                     >
                                       <option value="">Select State</option>
                                       {stateOptions.map((state) => (
@@ -1482,6 +1491,7 @@ export default function OnlineExistingDonar() {
                                       onChange={(event) =>
                                         handleAddressChange(event, 1)
                                       }
+                                      disabled
                                     />
                                   </div>
                                 </div>
@@ -1499,6 +1509,7 @@ export default function OnlineExistingDonar() {
                                       onChange={(event) =>
                                         handleAddressChange(event, 1)
                                       }
+                                      disabled
                                     />
                                   </div>
                                 </div>
@@ -1528,7 +1539,7 @@ export default function OnlineExistingDonar() {
                         <button
                           type="submit"
                           className="mt20 mr10 webform-button--submit"
-                          onClick={userAdd}
+                          onClick={createDonation}
                         >
                           Donate
                         </button>
@@ -1596,29 +1607,7 @@ export default function OnlineExistingDonar() {
                             </div>
                           </div>
                         </div>
-                        <div className="col-6">
-                          <div className=" select-label">
-                            <div className="col-4 "> Donor Type</div>
-                            <div className="col-8 p0">
-                              <select
-                                className=" form-control-inside form-select"
-                                name="user.donarType"
-                                value={userData?.user?.donarType}
-                                // onChange={handleChange}
-                                onChange={changeHandlerGift}
-                              >
-                                <option disabled selected value="">Donor Type</option>
-                                <option value="Corporate" >Corporate</option>
-                                <option value="Retail">Retail</option>
-                              </select>
-                              {errors.map((error, index) => {
-                                if (error.field === 'userData.user.donarType') {
-                                  return <div key={index} className="error-message red-text">{error.message}</div>;
-                                }
-                                return null;
-                              })}
-                            </div>
-                          </div> </div> </div>
+                     </div>
                       {isVisibleGift ? (
                         <div className="row">
                           <div className="col-6 mb10"><div className="select-label">
@@ -1654,34 +1643,19 @@ export default function OnlineExistingDonar() {
                     <div>
                       <div className="row">
                         <div className="col-6">
-                          <div className=" select-label">
-                            <div className="col-4 "> Select Your Citizenship</div>
-                            <div className="col-8 p0">
-                              <select
-                                className=" form-control-inside form-select"
-                                name="user.donarType"
-                              >
-                                <option disabled selected value="">Select Country</option>
-                                <option value="France">France</option>
-                                <option value="India">India</option>
-                                <option value="USA" >USA</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-6">
                           <div className="select-label">
                             <div className="col-4 "> Email ID</div>
                             <div className="col-8 p0">
                               <input
                                 type="text"
                                 name="gift"
-                                value={giftUserEmail}
+                                value={userData?.user?.emailId}
                                 onChange={onChangeGiftUserEmail}
                                 placeholder="Enter Email Id"
                                 className="form-control"
                                 // onKeyPress={handleKeyPress}
                                 onBlur={handleBlur}
+                                disabled
                               />
                               {errors.map((error, index) => {
                                 if (error.field === 'userData.user.emailId') {
@@ -1777,6 +1751,7 @@ export default function OnlineExistingDonar() {
                                   value={userData.user.emailId}
                                   // onBlur={handleBlur}
                                   onChange={handleChange}
+                                  disabled
                                 />
                                 {errors.map((error, index) => {
                                   if (error.field === 'userData.user.emailId') {
@@ -1798,6 +1773,7 @@ export default function OnlineExistingDonar() {
                                   placeholder="Mobile No."
                                   value={userData.user.mobileNo}
                                   onChange={handleChange}
+                                  disabled
                                 />
                                 {errors.map((error, index) => {
                                   if (error.field === 'userData.user.mobileNo') {
@@ -1819,6 +1795,7 @@ export default function OnlineExistingDonar() {
                                   type="text"
                                   value={userData.user.organisation}
                                   onChange={handleChange}
+                                  disabled
                                 />
                                 {errors.map((error, index) => {
                                   if (error.field === 'userData.user.organisation') {
@@ -1838,6 +1815,7 @@ export default function OnlineExistingDonar() {
                                   name="user.prefix"
                                   value={userData.user.prefix}
                                   onChange={handleChange}
+                                  disabled
                                 >
                                   <option disabled selected value="">Prefix</option>
                                   <option value="Mr.">Mr.</option>
@@ -1864,6 +1842,7 @@ export default function OnlineExistingDonar() {
                                   placeholder="First Name"
                                   value={userData.user.firstName}
                                   onChange={handleChange}
+                                  disabled
                                 />
                                 {errors.map((error, index) => {
                                   if (error.field === 'userData.user.firstName') {
@@ -1885,6 +1864,7 @@ export default function OnlineExistingDonar() {
                                   placeholder="Last Name"
                                   value={userData.user.lastName}
                                   onChange={handleChange}
+                                  disabled
                                 />
                                 {errors.map((error, index) => {
                                   if (error.field === 'userData.user.lastName') {
@@ -1907,6 +1887,7 @@ export default function OnlineExistingDonar() {
                                   type="text"
                                   value={userData.user.panCard}
                                   onChange={handleChange}
+                                  disabled
                                 />
                                 {errors.map((error, index) => {
                                   if (error.field === 'userData.user.panCard') {
@@ -1938,6 +1919,7 @@ export default function OnlineExistingDonar() {
                                   onChange={(event) =>
                                     handleAddressChange(event, 0)
                                   }
+                                  disabled
                                 />
                                 {errors.map((error, index) => {
                                   if (error.field === 'address[0].street1') {
@@ -1961,6 +1943,7 @@ export default function OnlineExistingDonar() {
                                   onChange={(event) =>
                                     handleAddressChange(event, 0)
                                   }
+                                  disabled
                                 />
 
                               </div>
@@ -1979,6 +1962,7 @@ export default function OnlineExistingDonar() {
                                   onChange={(event) =>
                                     handleAddressChange(event, 0)
                                   }
+                                  disabled
                                 />
 
                               </div>
@@ -1997,6 +1981,7 @@ export default function OnlineExistingDonar() {
                                   onChange={(event) =>
                                     handleAddressChange(event, 0)
                                   }
+                                  disabled
                                 />
                                 {errors.map((error, index) => {
                                   if (error.field === 'address[0].country') {
@@ -2018,6 +2003,7 @@ export default function OnlineExistingDonar() {
                                   onChange={(event) =>
                                     handleAddressChange(event, 0)
                                   }
+                                  disabled
                                 >
                                   <option disabled selected value="">Select State</option>
                                   {stateOptions.map((state) => (
@@ -2048,6 +2034,7 @@ export default function OnlineExistingDonar() {
                                   onChange={(event) =>
                                     handleAddressChange(event, 0)
                                   }
+                                  disabled
                                 />
                                 {errors.map((error, index) => {
                                   if (error.field === 'address[0].city') {
@@ -2071,6 +2058,7 @@ export default function OnlineExistingDonar() {
                                   onChange={(event) =>
                                     handleAddressChange(event, 0)
                                   }
+                                  disabled
                                 />
                               </div>
                             </div>
@@ -2395,7 +2383,7 @@ export default function OnlineExistingDonar() {
                       <button
                         type="submit"
                         className="mt20 mr10 webform-button--submit"
-                        onClick={userAdd}
+                        onClick={createDonation}
                       >
                         Donate
                       </button>

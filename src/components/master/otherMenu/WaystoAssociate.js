@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import { Container, Row } from "react-bootstrap";
 import "animate.css/animate.min.css";
 // import "react-image-gallery/styles/css/image-gallery.css";
@@ -18,8 +18,20 @@ import indImg2 from "../../../assets/img/ind2.avif";
 import monsoonImg from "../../../assets/img/monsoon.jpg";
 import winterImg from "../../../assets/img/winter.jpg";
 import associateImg from "../../../assets/img/funnel.png";
+import freeshImage from "../../../assets/img/fresh-growth-green-plant-nature-beauty-generated-by-ai.jpg";
+import freeshImage1 from "../../../assets/img/plant-that-is-growing-dirt.jpg"
+import freeshImage2 from "../../../assets/img/hand-holding-pile-soil-with-plant-growing-out-it.jpg"
+import freeshImage3 from "../../../assets/img/organic-farm-harvests-fresh-fruit-vegetables-generated-by-ai.jpg"
+import freeshImage4 from "../../../assets/img/one-man-holding-freshly-planted-seedling-developing-growth-generated-by-ai.jpg"
 
 function WaystoAssociate() {
+
+    const [activeTab, setActiveTab] = useState('individual');
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
     return (
         <>
             <section className="banner banner-associate">
@@ -86,11 +98,16 @@ function WaystoAssociate() {
                     <div className="container">
                         <div className="pv-75">
                             <ul class="nav nav-pills justify-content-center mb50">                            
-                                <a className="nav-link active" href="#">Individual</a>
-                                <a className="nav-link" href="#">Corporate</a>
+                                <a className={`nav-link ${activeTab === 'individual' ? 'active' : ''}`}
+          onClick={() => handleTabClick('individual')}>Individual</a>
+
+                                <a className={`nav-link ${activeTab === 'corporate' ? 'active' : ''}`}
+          onClick={() => handleTabClick('corporate')}>Corporate</a>
                             </ul>
+                            
                             <div className="tab-content group-content" id="myTabContent">
-                                <div className="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                <div className={`tab-pane fade ${activeTab === 'individual' ? 'show active' : ''}`} 
+                                    id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab">
                                     <div className="row justify-content-center">
                                         <div className="col-12 col-md-3">
                                             <div className="card" >
@@ -112,10 +129,103 @@ function WaystoAssociate() {
                                                 </div>
                                             </div>
                                         </div>
+                                        <div className="col-12 col-md-3">
+                                            <div className="card" >
+                                                <img src={freeshImage} className="card-img-top" alt="..."/>
+                                                <div className="card-body">
+                                                    <h5 className="card-title">Gift a sapling</h5>
+                                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" className="btn btn-primary">Gift</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">...</div>
+                                <div className={`tab-pane fade ${activeTab === 'corporate' ? 'show active' : ''}`} 
+                                id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div className="row justify-content-center">
+                                        <div className="col-12 col-md-3">
+                                            <div className="card" >
+                                                <img src={freeshImage1} className="card-img-top" alt="..."/>
+                                                <div className="card-body">
+                                                    <h5 className="card-title">Gift a sapling</h5>
+                                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" className="btn btn-primary">Gift</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-12 col-md-3">
+                                            <div className="card" >
+                                                <img src={freeshImage2} className="card-img-top" alt="..."/>
+                                                <div className="card-body">
+                                                    <h5 className="card-title">Gift a sapling</h5>
+                                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" className="btn btn-primary">Gift</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-12 col-md-3">
+                                            <div className="card" >
+                                                <img src={freeshImage3} className="card-img-top" alt="..."/>
+                                                <div className="card-body">
+                                                    <h5 className="card-title">Gift a sapling</h5>
+                                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" className="btn btn-primary">Gift</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-12 col-md-3">
+                                            <div className="card" >
+                                                <img src={freeshImage4} className="card-img-top" alt="..."/>
+                                                <div className="card-body">
+                                                    <h5 className="card-title">Gift a sapling</h5>
+                                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#" className="btn btn-primary">Gift</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                 </div>
+                                
                             </div>
+                            
+                            
+                            <div>
+                            <h2 className="sub-title text-center mb30">
+                    Corporate Social Responsibility
+                    </h2>
+                    <p className="">Become a Corporate Partner for Project Hariyali and contribute towards making our nation Carbon Neutral by 2070. Project Hariyali aligns with Schedule VII of the Companies Act 2013 (India) under (iv) ensuring environmental sustainability, ecological balance, protection of flora and fauna, animal welfare, agroforestry, conservation of natural resources and maintaining quality of soil, air and water . Our implementation expertise, 
+                        ability to map project milestones and outcomes, as well as a comprehensive monitoring and reporting framework makes Project Hariyali a preferred CSR partner.</p>
+                    <div className="row justify-content-between py-3">
+                        <div className="col-lg-2 col-12 mb-lg-0 mb-3 discover-block">
+                            <div className="positin-relative " >
+                                <div className="discoverImg"><img src={csr1} width="100%" /></div>                               
+                            </div>
+                        </div>
+                        <div className="col-lg-2 col-12 mb-lg-0 mb-3 discover-block">
+                            <div className="positin-relative" >
+                                <div className="discoverImg"><img src={csr2} width="100%" /></div>
+                            </div>
+                        </div>
+                        <div className="col-lg-2 col-12 discover-block">
+                            <div className="positin-relative aos-init aos-animate" >
+                                <div className="discoverImg"><img src={csr3} width="100%" /></div>
+                            </div>
+                            <div className="clear"></div>
+                        </div>
+                        <div className="col-lg-2 col-12 discover-block">
+                            <div className="positin-relative aos-init aos-animate">
+                                <div className="discoverImg"><img src={csr4} width="100%" /></div>
+                            </div>
+                        </div>
+                        <div className="col-lg-2 col-12 discover-block">
+                            <div className="positin-relative aos-init aos-animate">
+                                <div className="discoverImg"><img src={csr5} width="100%" /></div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
                             {/* <h3 className="text-center sub-title mt-5">Individual Ways to associate</h3>
                             <p className="text-center"> You can donate or gift or occasion</p>
                             <div className="d-flex flex-wrap justify-content-around">
@@ -139,7 +249,7 @@ function WaystoAssociate() {
                         </div>
                     </div>
                 </section>
-                <div className="container pv-75">
+                {/* <div className="container pv-75">
                     <h2 className="sub-title text-center mb30">
                     Corporate Social Responsibility
                     </h2>
@@ -173,7 +283,7 @@ function WaystoAssociate() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <section className="bg-green">
                 <div className="container pv-75">
                     <div className="row mt-5">

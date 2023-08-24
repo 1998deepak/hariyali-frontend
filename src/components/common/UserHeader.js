@@ -98,7 +98,7 @@ const Header = () => {
                 <div className="clear"></div>
 
                 <Nav className="justify-content-end  nav-list" activeKey="/home">
-                  <Nav.Item>
+                  <Nav.Item >
                     <Nav.Link href="/AboutUs" eventKey="link-0">About Us</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
