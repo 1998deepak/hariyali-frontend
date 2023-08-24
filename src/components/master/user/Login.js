@@ -271,6 +271,7 @@ function Login() {
                                      {errors.captcha}
                                     </div>
                                   )}
+              <div className="text-center mb-4">
               <button
                 onClick={login}
                 //className="webform-button--submit button button--primary js-form-submit form-submit"
@@ -278,13 +279,15 @@ function Login() {
               >
                 Send OTP
               </button>
-              &nbsp;&nbsp;
+              </div>
+              <div className="text-center mb-4">
               <button
                 onClick={verifyOtp}
                 className={isHidden ? 'hide' : 'webform-button--submit button button--primary js-form-submit form-submit'}
               >
                 Login
               </button>
+              </div>
             </form>
             <div className="loginpoli-text pt10">
               Your information is secured under our privacy policy.
