@@ -151,6 +151,8 @@ function OnlineDonation() {
 
   const [otp, setOtp] = useState(null);
 
+  const [captchaVerfied, setCaptchaVerfied] = useState(false);
+
   function hasValues(obj) {
     for (let key in obj) {
       console.log(obj.hasOwnProperty(key));
@@ -172,6 +174,13 @@ function OnlineDonation() {
       validationErrors.push({
         field: "donationType",
         message: "Donation Type is required",
+      });
+    }
+
+    if(!captchaVerfied){
+      validationErrors.push({
+        field: "captchaError",
+        message: "Captcha not verified",
       });
     }
 
@@ -429,9 +438,16 @@ function OnlineDonation() {
     );
   }
 
+  const resetErrors = async() =>{
+    setErrors([]);
+  }
+
+  const setCaptchaFlag = async (flag) =>{
+    setCaptchaVerfied(flag);
+  }
+
   const userAdd = async (e) => {
     e.preventDefault();
-
     const isValid = validate();
     console.log("isValid:", isValid);
 
@@ -1029,6 +1045,7 @@ function OnlineDonation() {
                 defaultActiveKey="selfDonate"
                 id="uncontrolled-tab-example"
                 className="selftGift-tab online-donation-tabs"
+                onSelect={() => resetErrors()}
               >
                 <Tab eventKey="selfDonate" title="Self Donor" className="donation-tab">
                   {/* <div className="pageheadingdiv mb10">Self Donor</div> */}
@@ -1797,10 +1814,23 @@ function OnlineDonation() {
                           <div className="col-6 mt20">
                             <Captcha
                               verified={false}
-                              setVerified={() => {}}
+                              setVerified={() => {setCaptchaFlag(true)}}
                               id="captcha1"
                             />
                           </div>
+                          {errors.map((error, index) => {
+                                if (error.field === "captchaError") {
+                                  return (
+                                    <div
+                                      key={index}
+                                      className="error-message red-text"
+                                    >
+                                      {error.message}
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              })}
                           <hr />
                           <div className="col-12 mt20 select-label">
                             <input
@@ -2052,7 +2082,7 @@ function OnlineDonation() {
                               </tr>
                             </thead>
                             <tbody>
-                              {packageData.map((packageItem, index) => {
+                              {packageData?.map((packageItem, index) => {
                                 console.log(index);
                                 return (
                                   <tr key={index}>
@@ -2873,9 +2903,22 @@ function OnlineDonation() {
                         <div className="col-6 mt20">
                           <CaptchaGift
                             verified={false}
-                            setVerified={() => {}}
+                            setVerified={() => setCaptchaFlag(true)}
                             id="captcha2"
                           />
+                          {errors.map((error, index) => {
+                                if (error.field === "captchaError") {
+                                  return (
+                                    <div
+                                      key={index}
+                                      className="error-message red-text"
+                                    >
+                                      {error.message}
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              })}
                           {validatePopup.captcha ? (
                             <div className="error-message red-text">
                               {validatePopup.captcha}
