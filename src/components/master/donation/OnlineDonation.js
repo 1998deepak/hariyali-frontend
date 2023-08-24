@@ -1036,18 +1036,18 @@ function OnlineDonation() {
       {/* <div className="pt100"></div> */}
       <div className="section bggray ">
         {/* form */}
-        <Container className="pt30" fluid>
-          <Row className="justify-content-between  padding30b contact-form-wrap donation-wrapper">
+        <Container className="pt30">
+          <Row className="contact-form-wrap donation-wrapper">
             {/* <div className="otherpages-heading">Online Donation</div> */}
-            <div className="col-4 left-img"><img src={DonationImg} alt="donation image" class="box-img"/></div>
-            <div className="col-8 main-content">
+            {/* <div className="col-4 left-img"><img src={DonationImg} alt="donation image" class="box-img"/></div> */}
+            <div className="main-content">
               <Tabs
                 defaultActiveKey="selfDonate"
                 id="uncontrolled-tab-example"
                 className="selftGift-tab online-donation-tabs"
                 onSelect={() => resetErrors()}
               >
-                <Tab eventKey="selfDonate" title="Self Donor" className="donation-tab">
+                <Tab eventKey="selfDonate" title="Plant a Tree" className="donation-tab">
                   {/* <div className="pageheadingdiv mb10">Self Donor</div> */}
                   <div className="row">
                     <div className="col-6">
@@ -1125,8 +1125,9 @@ function OnlineDonation() {
                     <div>
                       {" "}
                       <p>
-                        For CSR related enquireis please reach us at Gangar
-                        Sunny GANGAR.SUNNY@mahindra.com 93224 56789
+                        For CSR related enquireis please reach us at <b>Gangar
+                        Sunny</b>, <a href="mailto:GANGAR.SUNNY@mahindra.com">GANGAR.SUNNY@mahindra.com</a> 
+                        <a href="tel:93224 56789">93224 56789</a>
                       </p>
                     </div>
                   ) : null}
@@ -1184,7 +1185,7 @@ function OnlineDonation() {
                           disabled={!validSelfUser}
                           onClick={() => sendOtp(userEmail)}
                         >
-                          Verify User
+                          Proceed
                         </Button>
                       </div>
                     </div>{" "}
@@ -2001,8 +2002,8 @@ function OnlineDonation() {
                         <div>
                           {" "}
                           <p>
-                            For CSR related enquireis please reach us at Gangar
-                            Sunny GANGAR.SUNNY@mahindra.com 93224 56789
+                            For CSR related enquireis please reach us at <b>Gangar
+                            Sunny</b>, <a href="mailto:GANGAR.SUNNY@mahindra.com">GANGAR.SUNNY@mahindra.com</a> <a href="tel:93224 56789">93224 56789</a>
                           </p>
                         </div>
                       ) : null}
@@ -2060,7 +2061,7 @@ function OnlineDonation() {
                             disabled={!validGiftUser}
                             onClick={() => sendOtp(giftUserEmail)}
                           >
-                            Verify User
+                            Proceed
                           </Button>
                         </div>
                       </div>{" "}
