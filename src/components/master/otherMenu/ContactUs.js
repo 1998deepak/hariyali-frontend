@@ -132,7 +132,8 @@ function ContactUs() {
                   <form className="contact-form-wrap">
                     <div className="">
                       <Row>
-                        <div className="homeinput-div col-lg-6 col-12">
+                        <div className="homeinput-div col-lg-6 col-12 field-wrapper">
+                          <label className="form-label">Name</label>
                           <input
                             className="form-control form-text required"
                             type="text"
@@ -149,7 +150,8 @@ function ContactUs() {
                             return null;
                           })}
                         </div>
-                        <div className="homeinput-div col-lg-6 col-12">
+                        <div className="homeinput-div col-lg-6 col-12 field-wrapper">
+                        <label className="form-label">Email Id</label>
                           <input
                             className="form-control form-text required"
                             type="email"
@@ -166,7 +168,8 @@ function ContactUs() {
                             return null;
                           })}
                         </div>
-                        <div className="homeinput-div col-lg-12 col-12">
+                        <div className="homeinput-div col-lg-12 col-12 field-wrapper">
+                        <label className="form-label">Subject</label>
                           <input
                             className="form-control form-text required"
                             type="subject"
@@ -183,7 +186,8 @@ function ContactUs() {
                             return null;
                           })}
                         </div>
-                        <div className="homeinput-div col-lg-12 col-12">
+                        <div className="homeinput-div col-lg-12 col-12 field-wrapper">
+                        <label className="form-label">Message</label>
                           <textarea
                             className="form-control form-textarea required"
                             rows="4"
