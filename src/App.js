@@ -9,6 +9,7 @@ import UserFooter from "./components/common/UserFooter";
 import WebDonarCreation from "./components/master/admin/webDonar/WebDonarCreation";
 import AdminHeader from "./components/common/AdminHeader";
 import AdminLeftMenu from "./components/common/AdminLeftMenu";
+import UserLeftMenu from "./components/common/UserLeftMenu";
 import OnlineDonation from "./components/master/donation/OnlineDonation";
 import DonarCreation from "./components/master/admin/donarCreation/DonarAdd";
 import DonarView from "./components/master/admin/donarCreation/Donarview";
@@ -31,6 +32,7 @@ import ContactUs from "./components/master/otherMenu/ContactUs";
 import Policy from "./components/master/otherMenu/PolicyPayment";
 import WaystoAssociate from "./components/master/otherMenu/WaystoAssociate";
 import OnlineExistingDonar from "./components/master/donation/OnlineExistingDonar";
+import UserUpdate from "./components/master/user/UserUpdate";
 
 
 function HomeWithHeaderAndFooter() {
@@ -133,6 +135,21 @@ function ExistingOnlineDonate() {
     </>
   );
 }
+
+function UpdateUserWithHeaderFooter() {
+  return (
+    <>
+    <AdminHeader />
+    <div className="leftmenu-main">
+        <UserLeftMenu />
+        <div className="float-left page-scroll remove-top-margin" style={{ width: "100%" }}>
+        <UserUpdate />
+        </div>
+      </div>
+    </>
+  );
+}
+
 function OfflineDonationWithHeaderAndFooter() {
   return (
     <>
@@ -258,6 +275,10 @@ function App() {
 
         <Route path="/ExistingOnlineDonation" element = {<ProtectedRoutes user={authority.user}>
                     <ExistingOnlineDonate setAuthToken={setAuthToken} authToken={authToken} />
+                  </ProtectedRoutes>}/>
+
+                  <Route path="/updateUser" element = {<ProtectedRoutes user={authority.user}>
+                    <UpdateUserWithHeaderFooter/>
                   </ProtectedRoutes>}/>
         {/* <Route
           path="/OfflineDonation"

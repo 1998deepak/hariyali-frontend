@@ -1386,12 +1386,12 @@ input:-internal-autofill-selected {
   margin-right: 20px;
 }
 .form-control-inside {
-  /* background-color: #fff;
+  background-color: #fff;
   font-size: 14px !important;
   border: 1px solid #9d9fa2 !important;
   margin-bottom: 7px;
   margin-top: 7px;
-  padding: 8px; */
+  padding: 8px;
 }
 .select-label {
   display: flex;
@@ -1445,9 +1445,9 @@ input:-internal-autofill-selected {
 .nav-tabs .nav-link.active {
   width: 100%;
   color: #fff !important;
-  /* background-color: #23aa4a !important;
+  background-color: #23aa4a !important;
   border: 0 !important;
-  border-radius: 0 !important; */
+  border-radius: 0 !important;
 }
 .newexti-tab .nav-link {
   padding: 14px;
@@ -3219,3 +3219,15 @@ iframe{
   font-weight: bold;
   color: green;
 } */
+
+.sticky-navbar{
+  position:sticky;
+  top: 0;
+}
+
+.remove-top-margin{
+  margin-top: 0 !important;  
+}
+.leftmenu-main aside{
+  margin-top: 0 !important;
+}

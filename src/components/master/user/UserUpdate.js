@@ -1,13 +1,13 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { SUCCESS } from "../../../constants/constants";
-import { DonationService } from "../../../../services/donationService/donation.service";
-import { useParams, Link } from "react-router-dom";
+import { DonationService } from "../../../services/donationService/donation.service";
+import { Link } from "react-router-dom";
+import { SUCCESS, stateOptions } from "../../constants/constants";
+import { UserService } from "../../../services/userService/user.service";
 
 
-function OfflineDonationEdit() {
+function UserUpdate() {
 
   // Initial Data for user
   const initialUserData = {
@@ -36,57 +36,36 @@ function OfflineDonationEdit() {
     city: "",
     postalCode: "",
   }];
+
+//states to store data
   const [userData, setUserData] = useState(initialUserData);
-
+  const [errors, setErrors] = useState({});
   const [addressData, setAddressData] = useState(initialAddress);
-
-  const id = useParams().id;
-  const [data, setData] = useState([]);
-  const [emailData, setEmailData] = useState([]);
+  const { email } = UserService.userDetails();
 
   // getUser Details
   const getUserDetails = async (id) => {
     try {
-      console.log(id);
       const response = await DonationService.getUserDetails(id);
-      console.log(id);
-      console.log(response?.data?.donorId);
-
       if (response?.data) {
-        console.log(response.data.address);
-        console.log(response.data);
-        // const addressData = response.data.address[0];
-
         setUserData(response.data);
         setAddressData(response.data.address);
-      
-        setEmailData(response.data.emailId);
-
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  console.log(userData);
-  console.log(emailData);
+  //calling api
   useEffect(() => {
-    console.log(id);
-    if (id) {
-      getUserDetails(id);
+    if (email) {
+      getUserDetails(email);
     }
+  }, [email]);
 
-  }, [id]);
-
-
-  const [errors, setErrors] = useState({});
-
-
+  //validate form
   const validateFields = (userData,addressData) => {
     const errors = {};
-    // console.log(addressData && addressData.length > 0 ? addressData[0].city : null);
-    console.log(userData);
-   
     // Validate emailId
     if (!userData.emailId) {
       errors.emailId = "Email ID is required";
@@ -132,16 +111,9 @@ function OfflineDonationEdit() {
       errors.lastName = "Last Name is invalid";
     }
 
-   
-   
-    // Add validation for other fields here
-    console.log(errors.donarType);
-
     // validation for address field
     if (addressData && addressData.length > 0) {
-      const firstAddress = addressData[0];
-      console.log(firstAddress);
-      
+      const firstAddress = addressData[0];      
       if (!firstAddress.street1) {
         errors.street1 = "Street 1 is required";
       }
@@ -155,32 +127,18 @@ function OfflineDonationEdit() {
         errors.city = "City is required";
       }
     }
-    
-
     setErrors(errors);
-
     return errors;
-   
   };
-  console.log(errors.city);
-
-console.log(errors);
-
-
-
-
 
   // Update user Data
   const updateUser = async (e, emailID, userData, addressData) => {
     try {
       e.preventDefault();
-      console.log(addressData[0].street1);
    // Perform validation for userData
    const userErrors = validateFields(userData);
-console.log(userErrors)
    // Perform validation for addressData
    const addressErrors =  validateFields(userData, addressData||[]);
-console.log(addressErrors);
    // Merge the validation errors for both userData and addressData
    const errors = { ...userErrors,...addressErrors};
    console.log(errors);
@@ -190,33 +148,16 @@ console.log(addressErrors);
       console.log(errors);
       return;
     }
-      console.log(emailID);
-      console.log(userData);
-      
-      
       const formData = {
         formData: {
           user: userData,
         },
       };
   
-      console.log(formData);
       formData.formData.user.address = addressData;
-      console.log(formData);
-  
-      Object.keys(data).forEach(key => {
-        if (key !== 'address') {
-          formData.formData.user[key] = data[key];
-        }
-      });
-  
-      console.log(addressData);
-      console.log(formData);
-  
       const response = await DonationService.updateUser(emailID, formData);
-      console.log(response);
-      
-      if (response?.status === "Data Update Successfully") {
+  
+      if (response?.status === SUCCESS) {
         toast.success(response?.message);
       } else {
         toast.error(response?.message);
@@ -229,51 +170,6 @@ console.log(addressErrors);
       }
     }
   };
-  
-
-  // State options
-  const stateOptions = [
-    "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Bihar",
-    "Chhattisgarh",
-    "Goa",
-    "Gujarat",
-    "Haryana",
-    "Himachal Pradesh",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Odisha",
-    "Punjab",
-    "Rajasthan",
-    "Sikkim",
-    "Tamil Nadu",
-    "Telangana",
-    "Tripura",
-    "Uttar Pradesh",
-    "Uttarakhand",
-    "West Bengal",
-    "Andaman and Nicobar Islands",
-    "Chandigarh",
-    "Dadra and Nagar Haveli",
-    "Daman and Diu",
-    "Lakshadweep",
-    "Delhi",
-    "Puducherry",
-  ];
-
-
-
-
-
 
   //Handle address change
   const handleAddressChange = (event, index) => {
@@ -284,7 +180,6 @@ console.log(addressErrors);
         ...updatedAddress[index],
         [name]: value,
       };
-      console.log(updatedAddress[index]);
       return updatedAddress;
     });
   };
@@ -293,19 +188,14 @@ console.log(addressErrors);
   const handleChange = (event) => {
     const { name, value } = event.target;
     const updatedFormData = { ...userData };
-    console.log(updatedFormData);
     const keys = name.split('.');
-    console.log(keys);
     let currentField = updatedFormData;
     for (let i = 0; i < keys.length - 1; i++) {
       currentField = currentField[keys[i]];
     }
-    console.log(currentField);
     currentField[keys[keys.length - 1]] = value;
-    console.log(updatedFormData);
     setUserData(updatedFormData);
   };
-  console.log(data.address);
 
   return (
     <>
@@ -313,7 +203,7 @@ console.log(addressErrors);
       <div className="bggray">
         <div className="col-12 admin-maindiv">
           <div className=" justify-content-between bgwite borderform1 padding30 all-form-wrap">
-            <h5>OFFLINE DONATION UPDATE</h5>
+            <h5>Personal Details</h5>
             <div className="col-12 pr0 contact-form-wrap">
               {" "}
               <div className="row">
@@ -353,7 +243,7 @@ console.log(addressErrors);
                               value={userData.emailId}
                               // onBlur={handleBlur}
                               onChange={handleChange}
-                             
+                                disabled   
                             />
                             {errors.emailId && <div className="error-message red-text">{errors.emailId}</div>}
                           </div>
@@ -382,7 +272,7 @@ console.log(addressErrors);
                             <select className=" form-control-inside form-select"
                               name="donarType"
                               value={userData.donarType}
-
+                            disabled
                               onChange={handleChange}>
                               <option selected>Donor Type</option>
                               <option value="Corporate">Corporate</option>
@@ -404,6 +294,7 @@ console.log(addressErrors);
                               type="text"
                               value={userData.organisation}
                               onChange={handleChange}
+                              disabled
                             />
                           </div>
                         </div>
@@ -414,7 +305,9 @@ console.log(addressErrors);
                           <div className="col-8 p0">
                             <select className=" form-control-inside form-select"
                               value={userData.prefix}
-                              onChange={handleChange}>
+                              onChange={handleChange}
+                              disabled
+                              >
                               <option selected>Prefix</option>
                               <option value="Mr.">Mr.</option>
                               <option value="Mrs.">Mrs.</option>
@@ -434,6 +327,7 @@ console.log(addressErrors);
                               placeholder="First Name"
                               value={userData.firstName}
                               onChange={handleChange}
+                              disabled
                             />
                             {errors.firstName && <div className="error-message red-text">{errors.firstName}</div>}
                           </div>
@@ -450,7 +344,7 @@ console.log(addressErrors);
                               placeholder="Last Name"
                               value={userData.lastName}
                               onChange={handleChange}
-                              
+                              disabled
                             />
                              {errors.lastName && <div className="error-message red-text">{errors.lastName}</div>}
                           </div>
@@ -605,7 +499,7 @@ console.log(addressErrors);
                   <button
                     type="submit"
                     className="mt20 mr10 webform-button--submit"
-                    onClick={(e) => updateUser(e, emailData, userData, addressData)}
+                    onClick={(e) => updateUser(e, email, userData, addressData)}
                   >
                     Update
                   </button>
@@ -641,4 +535,4 @@ console.log(addressErrors);
   );
 }
 
-export default OfflineDonationEdit;
+export default UserUpdate;

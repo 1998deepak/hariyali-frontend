@@ -39,7 +39,7 @@ const AdminHeader = () => {
   };
   return (
     <>
-      <Navbar className="navbar-top Navbar Navbar-login">
+      <Navbar className="navbar-top Navbar Navbar-login sticky-navbar">
         <div className="Navbar-div collapse navbar-collapse justify-content-between">
           <div className="navbar-logo">
             <div className="bar-icon">
