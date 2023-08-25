@@ -550,7 +550,7 @@ function OnlineDonation() {
         setTimeout(() => {
           document.getElementById("gatewayForm").submit();
         }, 1000);
-        // clearForm(e);
+        clearForm(e);
       } else {
         toast.error(response?.message);
       }

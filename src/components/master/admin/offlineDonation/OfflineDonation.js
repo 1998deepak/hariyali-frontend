@@ -495,7 +495,7 @@ function OfflineDonation() {
         // setTimeout(() => {
         //   // navigate("/ModelView");
         // }, 2000);
-        // // clearForm(e);
+        clearForm(e);
       } else {
         toast.error(response?.message);
       }
@@ -948,6 +948,7 @@ function OfflineDonation() {
     if (response?.status === SUCCESS) {
       console.log("Create Donation: "+JSON.stringify(response))
       toast.success(response?.message);
+      clearForm(e);
     } else {
       toast.error(response?.message);
     }
@@ -1003,6 +1004,7 @@ function OfflineDonation() {
     if (response?.status === SUCCESS) {
       console.log("Create Donation: "+JSON.stringify(response))
       toast.success(response?.message);
+      clearForm(e);
     } else {
       toast.error(response?.message);
     }
