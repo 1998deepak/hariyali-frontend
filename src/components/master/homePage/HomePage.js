@@ -68,7 +68,7 @@ import { Zoom } from "react-slideshow-image";
 // import image3 from "../../../assets/img/slider/rise-program-resgions-3.jpg";
 // import image4 from "../../../assets/img/slider/rise-program-resgions-4.jpg";
 import image1 from "../../../assets/img/slider/banner1.png";
-import image2 from "../../../assets/img/slider/banner2.png";
+import image2 from "../../../assets/img/slider/extra.jpg";
 import image3 from "../../../assets/img/slider/banner3.png";
 import image4 from "../../../assets/img/slider/banner4.jpg";
 
@@ -87,19 +87,19 @@ import Modal from 'react-bootstrap/Modal';
 // const images = [image1, image2, image3, image4];
 const slides = [
   {
-    image: image1,
-    title: 'When you cut a tree you take a life and when you plant a tree you plant a HOPE',
+    image: image2,
+    title: 'When you cut a tree you take a life and when you plant a tree you plant hope',
     description: '',
   },
   {
-    image: image2,
+    image: image1,
     title: 'Take your first step towards a green future',
     description: 'Araku Valley, Vishakhapatnam, Andhra Pradesh',
   },
   {
     image: image3,
     title: 'A hectare of tropical forest absorbs 50-100 tonnes of CO2 per annum. Come sow a better future',
-    description: 'Taran Taran, Punjab',
+    description: 'Tarn Taran, Punjab',
   },
   {
     image: image4,
@@ -263,22 +263,22 @@ function HomePage() {
           <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
               {/* <i className="icon-tree"></i> */}
-              <h4>Trees Planted</h4>
+              <h4>Trees planted so far</h4>
               <p>228,61,288</p>
             </div>
           </div>
           <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
               {/* <i className="icon-survival"></i> */}
-              <h4>Survival Rate</h4>
+              <h4>Survival rate of trees</h4>
               <p>85%</p>
             </div>
           </div>
           <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
               {/* <i className="icon-carbon"></i> */}
-              <h4>Carbon Sequestered</h4>
-              <p>400,000+ tonnes</p>
+              <h4>Carbon sequestered</h4>
+              <p>0.4 milion tCO<sub>2</sub>e</p>
             </div>
           </div>
         </div>
@@ -299,6 +299,44 @@ function HomePage() {
           </div>
           <div className="col-12 col-md-6">
             <div className="program-details">
+              <h3 className="mb-3">About us</h3>
+              <p>The project hariyali is a joint initiative by Mahindra Foundation and Nandi Foundation.
+            The project aims to plant 5 million trees per annum. Project Hariyali is part of nature-based solution that promotes Regenerative agriculture.</p>
+              <div className="pt-5">
+                <a className="btn btn-secondary">Know More</a>
+                <button className="btn btn-primary">Donate</button> 
+              </div>
+            </div>          
+          </div>
+        </div>
+
+        <div className="row pv-75">          
+          <div className="col-12 col-md-6">
+            <div className="program-details">
+              <h3 className="mb-3">What we do</h3>
+              <p>The project hariyali is a joint initiative by Mahindra Foundation and Nandi Foundation.
+            The project aims to plant 5 million trees per annum. Project Hariyali is part of nature-based solution that promotes Regenerative agriculture.</p>
+              <div className="pt-5">
+                <a className="btn btn-secondary">Know More</a>
+                <button className="btn btn-primary">Donate</button> 
+              </div>
+            </div>          
+          </div>
+          <div className="col-12 col-md-6">
+            <div className="img-responsive feature-image">
+              <img src={program1} alt="planting" className="imgwidth100" />  
+            </div>            
+          </div>
+        </div>
+
+        {/* <div className="row">
+          <div className="col-12 col-md-6">
+            <div className="img-responsive feature-image">
+              <img src={program1} alt="planting" className="imgwidth100" />  
+            </div>            
+          </div>
+          <div className="col-12 col-md-6">
+            <div className="program-details">
               <h3 className="mb-3">Regenerative Agriculture</h3>
               <p>Project Hariyali is part of nature-based solution that promotes Regenerative agriculture</p>
               <p>Regenerative Agriculture is a holistic farming system that focuses on improving soil health, biodiversity, water quality, air quality and thus food quality
@@ -309,7 +347,7 @@ function HomePage() {
               </div>
             </div>          
           </div>
-        </div>
+        </div> */}
       </div>
       <section className="bg-green">
         <div className="container pv-75">
