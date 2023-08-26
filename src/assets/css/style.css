@@ -464,17 +464,19 @@ input:disabled {
 }
 .headermenu {
   z-index: 9999;
-  background-color: #000;
+  background-color: #fff;
   /* position: fixed; */
   width: 100%;
   padding: 10px 50px 0;
+  box-shadow: 0 0 8px 0 #ccc;
 }
 .nav-list .nav-item a.nav-link {
   position: relative;
   /* font-family: "Georama-Regular", sans-serif; */
-  /* font-size: 1.25rem; */
+  font-size: 1.25rem;
+  font-weight: 500;
   text-transform: capitalize;
-  color: #fff;
+  color: #23aa4a;
   padding: 0 0 1rem; 
 }
 .nav-list .nav-item + .nav-item{
@@ -489,14 +491,17 @@ input:disabled {
   left: 0;
   background: transparent;
 }
-.nav-list .nav-item.active a.nav-link:before,
+.nav-list .nav-item a.nav-link:focus:before,
 .nav-list .nav-item a.nav-link:hover:before {
-  background: #23aa4a;
+  background: #e92534;
   color: #23aa4a;
+}
+.nav-list .nav-item a.nav-link.active:before{
+  background: #e92534;
 }
 .nav-list .nav-item a.nav-link.active,
 .nav-list .nav-item a.nav-link:hover{
-  color: #23aa4a;
+  color: #e92534;
 }
 .nav-list .nav-item{
   position: relative;
@@ -520,6 +525,7 @@ input:disabled {
 }
 .menu-button-donet {
   /* text-transform: uppercase; */
+  font-weight: 600;
   color: #fff;
   background-color: #23aa4a;
   border-color: #23aa4a;
@@ -2055,6 +2061,7 @@ tr td input {
   max-width: 100%;
   width: 145px;
   height: auto;
+  margin-right: 2rem;
 }
 .icon-tree,
 .icon-survival,
@@ -2266,7 +2273,7 @@ tr td input {
   position: relative;
 }
 .react-slideshow-fadezoom-wrapper{
-  height: 80vh;
+  height: 100vh;
 }
 .slide-content,
 .slide-location{
@@ -2397,7 +2404,7 @@ tr td input {
   animation: all 0.5ms ease-in 0.5ms;
 }
 .headermenu.sticky .nav-sublist{
-  display: none;
+  /* display: none; */
 }
 .headermenu.sticky .logo-container{
   transform: scale(0.75);
@@ -2618,7 +2625,9 @@ address a:hover{
   height: 100%; */
 }
 .plantation-card .card-img-top{
-  height: 220px;
+  min-height: 220px;
+  height: 100%;
+  object-fit: cover;  
   filter: brightness(0.5);
 }
 .plantation-card h5{
@@ -2901,6 +2910,9 @@ iframe{
 }
 .pdf2{
   background: url('../img/pdf2.png') no-repeat;
+}
+.react-slideshow-fadezoom-wrapper div[data-index="0"] .slide-location{
+  display: none;
 }
 @media only screen and (max-width: 1017px) {
   .headermenu {
