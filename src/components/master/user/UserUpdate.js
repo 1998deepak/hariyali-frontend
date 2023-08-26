@@ -503,29 +503,6 @@ function UserUpdate() {
                   >
                     Update
                   </button>
-                  {/* <button
-                    type="submit"
-                    className="mt20 mr10 webform-button--cancel "
-                    
-                  >
-                    
-                    Back
-                  </button> */}
-                  <div className="col-auto">
-                    <Link to="/donarCreation">
-                      <button className="mt20 mr10 webform-button--cancel">
-                        Back
-                      </button>
-                    </Link>
-                  </div>
-
-                  {/* <button
-                    type="submit"
-                    className="mt20 mr10 webform-button--cancel "
-                  // onClick={clearForm}
-                  >
-                    Clear
-                  </button> */}
                 </form>
               </div></div></div></div>
       </div>

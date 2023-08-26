@@ -33,7 +33,7 @@ const LeftMenu = () => {
           <Menu>
             <MenuItem className="sidebar-leftli left-sp">
               <Link
-                to="/Dashboard"
+                to="/user/dashboard"
                 className="nav-link dropdown-indicator-left label-1"
               >
                 <FaHome />
@@ -53,7 +53,7 @@ const LeftMenu = () => {
           <Menu>
             <MenuItem className="sidebar-leftli left-sp">
               <Link
-                to="/userUpdate"
+                to="/user/update"
                 className="nav-link dropdown-indicator-left label-1"
               > <FaUserFriends />
                 <SubMenu

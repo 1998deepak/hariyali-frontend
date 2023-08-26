@@ -8,6 +8,7 @@ import { SUCCESS, TOKEN, USER_DETAILS } from "../../constants/constants";
 import { AuthService } from "../../../services/auth/auth.service";
 import axios from "axios";
 import { toast,ToastContainer } from "react-toastify";
+import { UserService } from "../../../services/userService/user.service";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -103,9 +104,17 @@ function Login() {
           localStorage.setItem(TOKEN, response?.token);
           // Assuming the response contains a 'status' or 'message' field indicating the verification status
           setVerificationStatus(response.status);
-          setTimeout(() => {
-            navigate("/Dashboard");
-          }, 2000);
+          const { roleId } = UserService.getUserDetailsFromToken(response?.token);
+          console.log(roleId);
+          if (roleId === 1) {
+            setTimeout(() => {
+              navigate("/Dashboard");
+            }, 2000);
+          }else{
+            setTimeout(() => {
+              navigate("/user/dashboard");
+            }, 2000);
+          }
           toast.success("Successfully Login!");
         } else {
           console.log("Response: " + response.status);
