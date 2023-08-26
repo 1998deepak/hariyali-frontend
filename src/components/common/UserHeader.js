@@ -103,7 +103,7 @@ const Header = () => {
             </Nav.Item>
             <Nav.Item className="text-center small-non">
               <div className="topmenu-icon" onClick={goToLogin}>
-                <FaUser />
+                <FaUser style={{ color: "#23aa4a"}} />
               </div>
             </Nav.Item>
             {/* <Nav.Item className="text-center small-non">
