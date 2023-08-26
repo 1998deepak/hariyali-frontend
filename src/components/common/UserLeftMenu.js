@@ -8,6 +8,7 @@ import {
 } from "react-pro-sidebar";
 import { Link } from "react-router-dom";
 import { FaHome, FaUserFriends } from "react-icons/fa";
+import { MdCreateNewFolder } from "react-icons/md";
 
 const LeftMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,6 +62,23 @@ const LeftMenu = () => {
                   className="homemenu-icon menu-icon"
                 >
                   <MenuItem className=" hideshowmenu">Profile</MenuItem>
+                </SubMenu>
+              </Link>
+            </MenuItem>
+          </Menu>
+
+          <Menu>
+            <MenuItem className="sidebar-leftli left-sp">
+              <Link
+                to="/UserDonation"
+                className="nav-link dropdown-indicator-left label-1"
+              > <MdCreateNewFolder />
+                <SubMenu
+                  onClick={toggleMenu}
+                  label="Donar  Creation"
+                  className="homemenu-icon menu-icon"
+                >
+                  <MenuItem className=" hideshowmenu">Donar  Creation</MenuItem>
                 </SubMenu>
               </Link>
             </MenuItem>

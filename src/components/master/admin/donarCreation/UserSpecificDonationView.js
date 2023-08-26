@@ -9,8 +9,9 @@ import { DonationService } from "../../../../services/donationService/donation.s
 import { SUCCESS } from "../../../constants/constants";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
-// nyn
-function OfflineDonationPay() {
+
+
+function UserSpecificDonationView() {
 
   const navigate = useNavigate();
 
@@ -750,7 +751,7 @@ console.log(donationData);
 
 
   const handleBack = () => {
-    navigate(`/DonarView/${userData.emailId}`);
+    navigate(`/UserDonation/${userData.emailId}`);
   };
 
 
@@ -976,6 +977,7 @@ console.log(donationData);
                                   onChange={(e) =>
                                     handleRecipentAddressChange("street1", e.target.value, 0)
                                   }
+                                  disabled
                                 />
                                 {errors?.street1 && (
                                   <div className="error-message red-text">
@@ -998,6 +1000,7 @@ console.log(donationData);
                                   onChange={(e) =>
                                     handleRecipentAddressChange("street2", e.target.value, 0)
                                   }
+                                  disabled
                                 />
   {errors?.street2 && (
                                   <div className="error-message red-text">
@@ -1022,6 +1025,7 @@ console.log(donationData);
                                   onChange={(e) =>
                                     handleRecipentAddressChange("street3", e.target.value, 0)
                                   }
+                                  disabled
                                 />
                                  {errors?.street3 && (
                                   <div className="error-message red-text">
@@ -1044,6 +1048,7 @@ console.log(donationData);
                                   onChange={(e) =>
                                     handleRecipentAddressChange("country", e.target.value, 0)
                                   }
+                                  disabled
                                 />
                                  {errors?.country && (
                                   <div className="error-message red-text">
@@ -1092,6 +1097,7 @@ console.log(donationData);
                                   onChange={(e) =>
                                     handleRecipentAddressChange("city", e.target.value, 0)
                                   }
+                                  disabled
                                 />
                                 {errors.length > 0 && errors?.city && (
                                   <div className="error-message red-text">
@@ -1114,6 +1120,7 @@ console.log(donationData);
                                   onChange={(e) =>
                                     handleRecipentAddressChange("postalCode", e.target.value, 0)
                                   }
+                                  disabled
                                 />
                                 {errors.length > 0 && errors?.postalCode && (
                                   <div className="error-message red-text">
@@ -1136,6 +1143,7 @@ console.log(donationData);
                                   onChange={(e) =>
                                     handleRecipientChange("mobileNo", e.target.value)
                                   }
+                                  disabled
                                 />
                                 {errors.mobileNo && <div className="error-message red-text">{errors.mobileNo}</div>}
                               </div>
@@ -1154,6 +1162,7 @@ console.log(donationData);
                                   onChange={(e) =>
                                     handleRecipientChange("emailId", e.target.value)
                                   }
+                                  disabled
                                 />
                                 {errors.length > 0 && errors?.emailId && (
                                   <div className="error-message red-text">
@@ -1220,6 +1229,7 @@ console.log(donationData);
         type="text"
         value={donationData.paymentInfo[0]?.bankname || ""} 
         onChange={(event) => handlePaymentInfoChange(event, 0)}
+        disabled
       /> 
       {errors?.bankname && ( 
       <div className="error-message red-text">{errors?.bankname}</div>
@@ -1240,6 +1250,7 @@ console.log(donationData);
                               onChange={(event) =>
                                 handlePaymentInfoChange(event, 0)
                               }
+                              disabled
                             />
                             {errors?.chqORddNo && <div className="error-message red-text">{errors?.chqORddNo}</div>}
                           </div>
@@ -1258,6 +1269,7 @@ console.log(donationData);
                               onChange={(event) =>
                                 handlePaymentInfoChange(event, 0)
                               }
+                              disabled
                             />
                             {errors?.chqORddDate && <div className="error-message red-text">{errors?.chqORddDate}</div>}
                           </div>
@@ -1276,6 +1288,7 @@ console.log(donationData);
                               onChange={(event) =>
                                 handlePaymentInfoChange(event, 0)
                               }
+                              disabled
                             />
                             {errors?.paymentDate && <div className="error-message red-text">{errors?.paymentDate}</div>}
                           </div>
@@ -1297,6 +1310,7 @@ console.log(donationData);
                                 }
                                 handlePaymentInfoChange(event, 0);
                               }}
+                              disabled
                             />
                             {errors?.amount && <div className="error-message red-text">{errors?.amount}</div>}
                           </div>
@@ -1357,6 +1371,7 @@ console.log(donationData);
                                 onChange={(event) =>
                                   handlePaymentInfoChange(event, 1)
                                 }
+                                disabled
                               />
                             </div>
                           </div>
@@ -1374,6 +1389,7 @@ console.log(donationData);
                                 onChange={(event) =>
                                   handlePaymentInfoChange(event, 1)
                                 }
+                                disabled
                               />
                             </div>
                           </div>
@@ -1391,6 +1407,7 @@ console.log(donationData);
                                 onChange={(event) =>
                                   handlePaymentInfoChange(event, 1)
                                 }
+                                disabled
                               />
                             </div>
                           </div>
@@ -1408,6 +1425,7 @@ console.log(donationData);
                                 onChange={(event) =>
                                   handlePaymentInfoChange(event, 1)
                                 }
+                                disabled
                               />
                             </div>
                           </div>
@@ -1428,6 +1446,7 @@ console.log(donationData);
                                   }
                                   handlePaymentInfoChange(event, 1);
                                 }}
+                                disabled
                               />
                             </div>
                           </div>
@@ -1435,13 +1454,13 @@ console.log(donationData);
                       </div>
                     </div>
                   </div>
-                  <button
+                  {/* <button
                     type="submit"
                     className="mt20 mr10 webform-button--submit"
                     onClick={(e) => updateDonation(e)}
                   >
                     Update
-                  </button>
+                  </button> */}
 
                   <button className="mt20 mr10 webform-button--cancel" onClick={handleBack}>
                     Back
@@ -1465,4 +1484,4 @@ console.log(donationData);
   );
 }
 
-export default OfflineDonationPay;
+export default UserSpecificDonationView;
