@@ -36,6 +36,7 @@ import UserUpdate from "./components/master/user/UserUpdate";
 import UserdonationView from "./components/master/admin/donarCreation/UserdonationView";
 import { UserService } from "./services/userService/user.service";
 import UserSpecificDonationView from "./components/master/admin/donarCreation/UserSpecificDonationView";
+import UserDashboard from "./components/master/user/UserDashboard";
 
 
 function HomeWithHeaderAndFooter() {
@@ -147,6 +148,20 @@ function UpdateUserWithHeaderFooter() {
         <UserLeftMenu />
         <div className="float-left page-scroll remove-top-margin" style={{ width: "100%" }}>
         <UserUpdate />
+        </div>
+      </div>
+    </>
+  );
+}
+
+function UserDashboardWithHeaderFooter() {
+  return (
+    <>
+    <AdminHeader />
+    <div className="leftmenu-main">
+        <UserLeftMenu />
+        <div className="float-left page-scroll remove-top-margin" style={{ width: "100%" }}>
+        <UserDashboard />
         </div>
       </div>
     </>
@@ -310,8 +325,11 @@ function App() {
         <Route path="/ExistingOnlineDonation" element = {<ProtectedRoutes user={authority.user}>
                     <ExistingOnlineDonate setAuthToken={setAuthToken} authToken={authToken} />
                   </ProtectedRoutes>}/>
-
-                  <Route path="/updateUser" element = {<ProtectedRoutes user={authority.user}>
+        
+                  <Route path="/user/dashboard" element = {<ProtectedRoutes user={authority.user}>
+                    <UserDashboardWithHeaderFooter setAuthToken={setAuthToken} authToken={authToken} />
+                  </ProtectedRoutes>}/>
+                  <Route path="/user/update" element = {<ProtectedRoutes user={authority.user}>
                     <UpdateUserWithHeaderFooter/>
                   </ProtectedRoutes>}/>
 
