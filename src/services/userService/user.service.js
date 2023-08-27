@@ -16,6 +16,18 @@ export const UserService = {
         const expiryTime = decoded.exp;
         return {email,role,expiryTime};
         }
+      },
+
+      getUserDetailsFromToken:(token)=> {
+        if (token) {
+        const decoded = jwt_decode(token);
+        console.log(decoded);
+        const email = decoded.sub;
+        const role = decoded.roleName;
+        const roleId = decoded.roleId;
+        const expiryTime = decoded.exp;
+        return {email,role,roleId,expiryTime};
+        }
       }
     
     };

@@ -162,7 +162,7 @@ function OfflineDonationPay() {
       firstName: "",
       lastName: "",
       mobileNo: "",
-      emailID: "",
+      emailId: "",
       address: [
         {
           street1: "",
@@ -595,63 +595,92 @@ console.log(handleRecipientChange);
   
 // test 
 const validate = () => {
-  const errors = [];
+  const errors = {};
 
   // Payment validation
   for (let i = 0; i < donationData.paymentInfo.length; i++) {
     const payment = donationData.paymentInfo[i];
-    const paymentErrors = {};
+    // const paymentErrors = {};
 
     // Payment mode validation
     if (!payment.paymentMode || payment.paymentMode === "Donor Type") {
-      paymentErrors.paymentMode = "Payment Mode is required";
+      errors.paymentMode = "Payment Mode is required";
     }
 
     // Other payment validations...
     if (!payment.chqORddDate) {
-              paymentErrors.chqORddDate = "ChqORddDate is required";
+      errors.chqORddDate = "ChqORddDate is required";
             }
             if (!payment.paymentDate) {
-              paymentErrors.paymentDate = "Payment Date is required";
+              errors.paymentDate = "Payment Date is required";
             }
             if (!payment.amount) {
-              paymentErrors.amount = "Amount is required";
+              errors.amount = "Amount is required";
             }
             if (!payment.bankname || payment.bankname.trim() === '') {
-              paymentErrors.bankname = "BankName is required";
+              errors.bankname = "BankName is required";
             } else if (!/^[A-Za-z]+$/.test(payment.bankname)) {
-              paymentErrors.bankname = "Bank Name is invalid";
+              errors.bankname = "Bank Name is invalid";
             }
             if (!payment.chqORddNo) {
-              paymentErrors.chqORddNo = "ChqORddNo is required";
+              errors.chqORddNo = "ChqORddNo is required";
             }
     
-    if (Object.keys(paymentErrors).length > 0) {
-      errors.push(paymentErrors);
-    }
+    // if (Object.keys(paymentErrors).length > 0) {
+    //   errors.push(paymentErrors);
+    // }
   }
 
-  //   if (donationData.donationType === "Gift Donate") {
-  //     for (let i = 0; i < donationData.recipient.length; i++) {
-  //       const recipient = donationData.recipient[i];
-  //       const recipientErrors = {};
-  
-  //       // Recipient validation logic goes here
-  //       // ...
-  //       // if (!recipientValidate.mobileNo) {
-  //       //               recipientErrors.mobileNo = "Mobile Number is required";
-  //       //             }
-  
-  //       if (Object.keys(recipientErrors).length > 0) {
-  //         errors.push(recipientErrors);
-  //       }
-  //     }
-    
-  // }
-
-  errors.forEach((error) => {
-    console.log(error.bankName);
-  });
+  if (donationData.donationType == "Gift-Donate") {
+    console.log(recipient);
+    console.log(recipient.emailId);
+           
+              if (!recipient.emailId) {
+                errors.emailId = "Email Id is required";
+              } else if (
+                !/^([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+)\.([a-zA-Z]{2,5})$/.test(
+                  recipient.emailId
+                )
+              ) {
+                errors.emailId = "Enter a Valid Email Address";
+              }
+      
+              if (!recipient.mobileNo) {
+                errors.mobileNo = "Mobile Number is required";
+              } 
+              else if(!/^[6-9]\d{9}$/.test(recipient.mobileNo))
+              {
+                errors.mobileNo= "Invalid mobile number, mobile no contain only 10 digits.";
+              }
+              
+              if(!recipient.address[0].street1)
+              {
+                errors.street1  = "Street 1 is required";
+              }
+              if(!recipient.address[0].street2)
+              {
+                errors.street2  = "Street 2 is required";
+              }
+              if(!recipient.address[0].street3)
+              {
+                errors.street3  = "Street 2 is required";
+              }
+              if(!recipient.address[0].state)
+              {
+                errors.street1  = "Street 1 is required";
+              }
+              if(!recipient.address[0].city)
+              {
+                errors.city  = "City 1 is required";
+              }
+              if(!recipient.address[0].postalCode)
+              {
+                errors.postalCode  = "Postal code is required";
+              }
+              
+            }
+         
+  console.log(errors);
   setErrors(errors);
   return errors;
 };
@@ -665,15 +694,20 @@ const updateDonation = async (e) => {
 
   const validationErrors = validate();
 
-  if (validationErrors.length === 0) {
+  if (Object.entries(validationErrors).length === 0) {
     // Construct the updated form data
     const updatedDonationData = {
       ...donationData,
       userPackage: packageData,
+      
     };
-
+      console.log(packageData);
     if (donationData.donationType === "Self-Donate") {
       updatedDonationData.recipient = []; // Set recipient array to empty for self-donate
+    }
+    else {
+       updatedDonationData.recipient=[];
+      updatedDonationData.recipient = [...updatedDonationData.recipient,recipient]
     }
 
     const updatedFormData = {
@@ -685,7 +719,7 @@ const updateDonation = async (e) => {
       },
     };
 
-    setPackageData(packageData); // Set the updated package data to packageData state
+    // setPackageData(packageData); // Set the updated package data to packageData state
 
     console.log(updatedFormData);
 
@@ -710,7 +744,7 @@ const updateDonation = async (e) => {
 };
 
 
-
+console.log(donationData);
   console.log(donationData.paymentInfo[0]?.paymentDate);
   // console.log(donationData.recipient[0]?.address[0])
 
@@ -739,7 +773,7 @@ const updateDonation = async (e) => {
     return amountInWords;
   };
 
- console.log(recipient.address[0])
+ 
 
   return (
     <>
@@ -797,6 +831,7 @@ const updateDonation = async (e) => {
                               value={donationData.donationEvent}
                               placeholder="Occasion"
                               onChange={(e) => handleDonationChange("donationEvent", e.target.value)}
+                              disabled
                             />
                             {errors.donationEvent && (
                               <div className="error-message red-text">
@@ -934,17 +969,17 @@ const updateDonation = async (e) => {
                               <div className="col-8  p0">
                                 <input
                                   className="form-control-inside"
-                                  name="street1"
                                   placeholder=" Street 1"
+                                  name="street1"
                                   type="text"
                                   value={recipient.address[0]?.street1 || ""}
                                   onChange={(e) =>
                                     handleRecipentAddressChange("street1", e.target.value, 0)
                                   }
                                 />
-                                {errors.length > 0 && errors[1]?.street1 && (
+                                {errors?.street1 && (
                                   <div className="error-message red-text">
-                                    {errors[1].street1}
+                                    {errors.street1}
                                   </div>
                                 )}
                               </div>
@@ -957,13 +992,18 @@ const updateDonation = async (e) => {
                                 <input
                                   className="form-control-inside"
                                   placeholder="Street 2"
+                                  name="street2"
                                   type="text"
                                   value={recipient.address[0].street2}
                                   onChange={(e) =>
                                     handleRecipentAddressChange("street2", e.target.value, 0)
                                   }
                                 />
-
+  {errors?.street2 && (
+                                  <div className="error-message red-text">
+                                    {errors.street2}
+                                  </div>
+                                )}
 
 
                               </div>
@@ -976,12 +1016,18 @@ const updateDonation = async (e) => {
                                 <input
                                   className="form-control-inside"
                                   placeholder="Street 3"
+                                  name="street3"
                                   type="text"
                                   value={recipient.address[0].street3}
                                   onChange={(e) =>
                                     handleRecipentAddressChange("street3", e.target.value, 0)
                                   }
                                 />
+                                 {errors?.street3 && (
+                                  <div className="error-message red-text">
+                                    {errors.street3}
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
@@ -992,15 +1038,16 @@ const updateDonation = async (e) => {
                                 <input
                                   className="form-control-inside"
                                   placeholder="Country"
+                                  name="country"
                                   type="text"
                                   value={recipient.address[0].country}
                                   onChange={(e) =>
                                     handleRecipentAddressChange("country", e.target.value, 0)
                                   }
                                 />
-                                {errors.length > 0 && errors[1]?.country && (
+                                 {errors?.country && (
                                   <div className="error-message red-text">
-                                    {errors[1].country}
+                                    {errors.country}
                                   </div>
                                 )}
                               </div>
@@ -1024,9 +1071,9 @@ const updateDonation = async (e) => {
                                     </option>
                                   ))}
                                 </select>
-                                {errors.length > 0 && errors[1]?.state && (
+                                {errors.length > 0 && errors?.state && (
                                   <div className="error-message red-text">
-                                    {errors[1].state}
+                                    {errors.state}
                                   </div>
                                 )}
                               </div>
@@ -1040,14 +1087,15 @@ const updateDonation = async (e) => {
                                   className="form-control-inside"
                                   placeholder="City"
                                   type="text"
+                                  name="city"
                                   value={recipient.address[0].city}
                                   onChange={(e) =>
                                     handleRecipentAddressChange("city", e.target.value, 0)
                                   }
                                 />
-                                {errors.length > 0 && errors[1]?.city && (
+                                {errors.length > 0 && errors?.city && (
                                   <div className="error-message red-text">
-                                    {errors[1].city}
+                                    {errors.city}
                                   </div>
                                 )}
                               </div>
@@ -1060,12 +1108,18 @@ const updateDonation = async (e) => {
                                 <input
                                   className="form-control-inside"
                                   placeholder="Postal Code"
+                                  name="postalCode"
                                   type="text"
                                   value={recipient.address[0].postalCode}
                                   onChange={(e) =>
                                     handleRecipentAddressChange("postalCode", e.target.value, 0)
                                   }
                                 />
+                                {errors.length > 0 && errors?.postalCode && (
+                                  <div className="error-message red-text">
+                                    {errors.postalCode}
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
@@ -1083,7 +1137,7 @@ const updateDonation = async (e) => {
                                     handleRecipientChange("mobileNo", e.target.value)
                                   }
                                 />
-                                {errors[1]?.mobileNo && <div className="error-message red-text">{errors[1]?.mobileNo}</div>}
+                                {errors.mobileNo && <div className="error-message red-text">{errors.mobileNo}</div>}
                               </div>
                             </div>
                           </div>
@@ -1095,15 +1149,15 @@ const updateDonation = async (e) => {
                                   className="form-control-inside"
                                   placeholder="Email ID"
                                   type="text"
-                                  name="emailID"
-                                  value={recipient.emailID}
+                                  name="emailId"
+                                  value={recipient.emailId}
                                   onChange={(e) =>
-                                    handleRecipientChange("emailID", e.target.value)
+                                    handleRecipientChange("emailId", e.target.value)
                                   }
                                 />
-                                {errors.length > 0 && errors[1]?.emailID && (
+                                {errors.length > 0 && errors?.emailId && (
                                   <div className="error-message red-text">
-                                    {errors[1].emailID}
+                                    {errors.emailId}
                                   </div>
                                 )}
                               </div>
@@ -1151,7 +1205,7 @@ const updateDonation = async (e) => {
                               <option value="Cheque">Cheque</option>
                               <option value="Cash">Cash</option>
                             </select>
-                            {errors[0]?.paymentMode && <div className="error-message red-text">{errors[0].paymentMode}</div>}
+                            {errors?.paymentMode && <div className="error-message red-text">{errors.paymentMode}</div>}
                           </div>
                         </div>
                       </div>
@@ -1167,8 +1221,8 @@ const updateDonation = async (e) => {
         value={donationData.paymentInfo[0]?.bankname || ""} 
         onChange={(event) => handlePaymentInfoChange(event, 0)}
       /> 
-      {errors[0]?.bankname && ( 
-      <div className="error-message red-text">{errors[0]?.bankname}</div>
+      {errors?.bankname && ( 
+      <div className="error-message red-text">{errors?.bankname}</div>
     )}
                           </div>
                         </div>
@@ -1187,7 +1241,7 @@ const updateDonation = async (e) => {
                                 handlePaymentInfoChange(event, 0)
                               }
                             />
-                            {errors[0]?.chqORddNo && <div className="error-message red-text">{errors[0]?.chqORddNo}</div>}
+                            {errors?.chqORddNo && <div className="error-message red-text">{errors?.chqORddNo}</div>}
                           </div>
                         </div>
                       </div>
@@ -1205,7 +1259,7 @@ const updateDonation = async (e) => {
                                 handlePaymentInfoChange(event, 0)
                               }
                             />
-                            {errors[0]?.chqORddDate && <div className="error-message red-text">{errors[0]?.chqORddDate}</div>}
+                            {errors?.chqORddDate && <div className="error-message red-text">{errors?.chqORddDate}</div>}
                           </div>
                         </div>
                       </div>
@@ -1223,7 +1277,7 @@ const updateDonation = async (e) => {
                                 handlePaymentInfoChange(event, 0)
                               }
                             />
-                            {errors[0]?.paymentDate && <div className="error-message red-text">{errors[0]?.paymentDate}</div>}
+                            {errors?.paymentDate && <div className="error-message red-text">{errors?.paymentDate}</div>}
                           </div>
                         </div>
                       </div>
@@ -1244,7 +1298,7 @@ const updateDonation = async (e) => {
                                 handlePaymentInfoChange(event, 0);
                               }}
                             />
-                            {errors[0]?.amount && <div className="error-message red-text">{errors[0]?.amount}</div>}
+                            {errors?.amount && <div className="error-message red-text">{errors?.amount}</div>}
                           </div>
                         </div>
                       </div>

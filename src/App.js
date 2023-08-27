@@ -33,6 +33,10 @@ import Policy from "./components/master/otherMenu/PolicyPayment";
 import WaystoAssociate from "./components/master/otherMenu/WaystoAssociate";
 import OnlineExistingDonar from "./components/master/donation/OnlineExistingDonar";
 import UserUpdate from "./components/master/user/UserUpdate";
+import UserdonationView from "./components/master/admin/donarCreation/UserdonationView";
+import { UserService } from "./services/userService/user.service";
+import UserSpecificDonationView from "./components/master/admin/donarCreation/UserSpecificDonationView";
+import UserDashboard from "./components/master/user/UserDashboard";
 
 
 function HomeWithHeaderAndFooter() {
@@ -154,6 +158,20 @@ function UpdateUserWithHeaderFooter() {
   );
 }
 
+function UserDashboardWithHeaderFooter() {
+  return (
+    <>
+    <AdminHeader />
+    <div className="leftmenu-main">
+        <UserLeftMenu />
+        <div className="float-left page-scroll remove-top-margin" style={{ width: "100%" }}>
+        <UserDashboard />
+        </div>
+      </div>
+    </>
+  );
+}
+
 function OfflineDonationWithHeaderAndFooter() {
   return (
     <>
@@ -251,8 +269,39 @@ function DashboardWithHeaderAndFooter() {
     </>
   );
 }
+function UserDonationView({ userDetails, setAuthToken, authToken }) {
+  return (
+    <>
+     {/* <AdminHeader /> */}
+     <AdminHeader />
+      <div className="leftmenu-main">
+      <UserLeftMenu />
+        <UserdonationView userDetails={userDetails.email} setAuthToken={setAuthToken} authToken={authToken} />
+       
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
+         
+        </div>
+      </div>
+    </>
+  );
+}
+
+function UserSpecificDonation() {
+  return (
+    <>
+       <AdminHeader />
+      <div className="leftmenu-main">
+        {/* <AdminLeftMenu /> */}
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
+      <UserSpecificDonationView />
+      </div></div>
+    </>
+  );
+}
 function App() {
   const [authToken, setAuthToken] = useState();
+  const userDetails = UserService.userDetails();
+  console.log("userDetails:", userDetails);
 
   const authority = ROLEAUTHORITY;
   useEffect(() => {
@@ -280,10 +329,31 @@ function App() {
         <Route path="/ExistingOnlineDonation" element = {<ProtectedRoutes user={authority.user}>
                     <ExistingOnlineDonate  />
                   </ProtectedRoutes>}/>
-
-                  <Route path="/updateUser" element = {<ProtectedRoutes user={authority.user}>
+        
+                  <Route path="/user/dashboard" element = {<ProtectedRoutes user={authority.user}>
+                    <UserDashboardWithHeaderFooter setAuthToken={setAuthToken} authToken={authToken} />
+                  </ProtectedRoutes>}/>
+                  <Route path="/user/update" element = {<ProtectedRoutes user={authority.user}>
                     <UpdateUserWithHeaderFooter/>
                   </ProtectedRoutes>}/>
+
+
+
+
+                  <Route path="/UserDonation/:email?"
+                element={
+                  <ProtectedRoutes user={authority.user}>
+                    <UserDonationView userDetails={userDetails} setAuthToken={setAuthToken} authToken={authToken} />
+                  </ProtectedRoutes>
+                } />
+
+            <Route path="/UserSpecificDonationView/:id?"
+                element={
+                  <ProtectedRoutes user={authority.user}>
+                    <UserSpecificDonation setAuthToken={setAuthToken} authToken={authToken} />
+                  </ProtectedRoutes>
+                } />
+
         {/* <Route
           path="/OfflineDonation"
           element={<OfflineDonationWithHeaderAndFooter />}

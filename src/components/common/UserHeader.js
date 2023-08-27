@@ -51,11 +51,9 @@ const Header = () => {
   return (
     <>
       <div className={`headermenu ${isSticky ? 'sticky' : ''}`}>
-        <Row>
-          <Col md={4} className="small-center ">
-            <Link to="/" className="logo-container"><img src={logo} alt="Logo" className="logo" /></Link>
-          </Col>
-          <Col md={8}>
+        <div className="d-flex align-items-center justify-content-between">
+            <Link to="/" className="logo-container mr-2"><img src={logo} alt="Logo" className="logo" /></Link>
+          <div className="">
             <Navbar expand="lg" expanded={expanded} className="pb-0">
               <Navbar.Toggle onClick={handleToggle} aria-controls="responsive-navbar-nav" >
                 <BsChevronBarLeft />
@@ -63,44 +61,7 @@ const Header = () => {
               </Navbar.Toggle >
 
               <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
-                <Nav
-                  className="justify-content-end  nav-sublist"
-                  activeKey="/home"
-                  onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
-                >
-                  <Nav.Item>
-                    <div className="menu-button-wrapper" onClick={goToDonate}>
-                      <Button className="menu-button-donet"><img src={donoteicon} alt="Donote" className="donoteicon" />Plant A Tree </Button>
-                    </div>
-                  </Nav.Item>
-                  <Nav.Item className="text-center small-non">
-                    <div className="topmenu-icon" onClick={goToLogin}>
-                      <FaUser />
-                    </div>
-                  </Nav.Item>
-                  <Nav.Item className="text-center small-non">
-                    <div className="topmenu-icon">
-                      <FaFacebookF />
-                    </div>
-                  </Nav.Item>
-                  <Nav.Item className="text-center small-non">
-                    <div className="topmenu-icon">
-                      <FaTwitter />
-                    </div>
-                  </Nav.Item>
-                  <Nav.Item className="text-center small-non">
-                    <div className="topmenu-icon">
-                      <FaYoutube />
-                    </div>
-                  </Nav.Item>
-                  <Nav.Item className="text-center small-non">
-                    <div className="topmenu-icon">
-                      <FaInstagramSquare />
-                    </div>
-                  </Nav.Item>
-                </Nav>
-                <div className="clear"></div>
-
+           
                 <Nav className="justify-content-end  nav-list" activeKey={location.pathname}>
                   <Nav.Item >
                     <Nav.Link href="/AboutUs" className={`${activeTab === 'AboutUs' ? 'active' : ''}`}
@@ -122,9 +83,6 @@ const Header = () => {
                     <Nav.Link href="/FootPrint" className={`${activeTab === 'FootPrint' ? 'active' : ''}`}
         onClick={() => setActiveTab('FootPrint')} eventKey="/FootPrint">FootPrint</Nav.Link>
                   </Nav.Item>
-                  {/* <Nav.Item>
-                    <Nav.Link href="/GalleryAwards" eventKey="link-4">Gallery & Awards</Nav.Link>
-                  </Nav.Item> */}
                   <Nav.Item>
                     <Nav.Link href="/ContactUs" className={`${activeTab === 'ContactUs' ? 'active' : ''}`}
         onClick={() => setActiveTab('ContactUs')} eventKey="/ContactUs">Contact Us</Nav.Link>
@@ -132,6 +90,50 @@ const Header = () => {
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
+          </div>
+          <Nav
+            className="nav-sublist"
+            activeKey="/home"
+            onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
+          >
+            <Nav.Item>
+              <div className="menu-button-wrapper" onClick={goToDonate}>
+                <Button className="menu-button-donet"><img src={donoteicon} alt="Donote" className="donoteicon" />Plant A Tree </Button>
+              </div>
+            </Nav.Item>
+            <Nav.Item className="text-center small-non">
+              <div className="topmenu-icon" onClick={goToLogin}>
+                <FaUser style={{ color: "#23aa4a"}} />
+              </div>
+            </Nav.Item>
+            {/* <Nav.Item className="text-center small-non">
+              <div className="topmenu-icon">
+                <FaFacebookF />
+              </div>
+            </Nav.Item>
+            <Nav.Item className="text-center small-non">
+              <div className="topmenu-icon">
+                <FaTwitter />
+              </div>
+            </Nav.Item>
+            <Nav.Item className="text-center small-non">
+              <div className="topmenu-icon">
+                <FaYoutube />
+              </div>
+            </Nav.Item>
+            <Nav.Item className="text-center small-non">
+              <div className="topmenu-icon">
+                <FaInstagramSquare />
+              </div>
+            </Nav.Item> */}
+          </Nav>
+        </div>
+        <Row>
+          <Col md={4} className="small-center ">
+            {/* <Link to="/" className="logo-container"><img src={logo} alt="Logo" className="logo" /></Link> */}
+          </Col>
+          <Col md={8}>
+            
           </Col>
         </Row>
       </div>

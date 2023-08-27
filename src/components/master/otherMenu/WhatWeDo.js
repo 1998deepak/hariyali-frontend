@@ -12,6 +12,9 @@ import step2Img from "../../../assets/img/pr-step2.png";
 import step3Img from "../../../assets/img/pr-step3.png";
 import step4Img from "../../../assets/img/pr-step4.png";
 import step5Img from "../../../assets/img/pr-step5.png";
+
+import monsoonImg from "../../../assets/img/monsoon.jpg";
+import winterImg from "../../../assets/img/winter.jpg";
  
 
 function WhatWeDo() {
@@ -27,16 +30,61 @@ function WhatWeDo() {
         {/* <img src={planting} alt="planting" className="imgwidth100" /> */}
         <div className="section bg-green">
           <Container className="pv-75">
+          <div className="pv-75">
+            <div className="feature-description">
+              <h2 className="sub-title">What we do</h2>
+              <p>Project Hariyali is a unique blend in the sphere of environmental sustainability and impacting livelihood.
+The project focusses on large scale tree plantation, natural resource management, global regenerative organic farming protocols to enrich agricultural eco-system and build functional forests as means to improve overall wellbeing of communities. The trees we plant strengthen the ecosystem and enhance ecological diversity.</p>
+            </div>
+          </div>
             <Row className="justify-content-between align-items-center">
-              <div className="col-12 col-md-6 feature-description">
-              <h2 className="">Approach for PAN India Hariyali Project</h2>
-              <p>Each year, we follow a systematic planting process.
+              <div className="col-12 feature-description">
+              <h2 className="">Approach</h2>
+              <p>We have two season for plantation</p>
+              <div className="row justify-content-center mt-5">
+                      <div className="col-12 col-md-6">
+                          <div className="card plantation-card h-100">
+                          <div className="row g-0 h-100">
+                            <div className="col-md-4">
+                              <img src={monsoonImg} className="card-img-top" alt="..." />
+                            </div>
+                            <div className="col-md-8">
+                                <div class="card-body">
+                                  <h5 class="card-title text-center">Monsoon <span>(Jun - Sep)</span></h5>
+                                  <p className="card-text">
+                                  Each year, we follow a systematic planting process. For Monsoon plantation, this process starts in September of the previous financial year, giving our team 9-10 months of lead time to select and nurture the saplings so that the survival rates after plantation are high
+                                  </p>
+                              </div>
+                            </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div className="col-12 col-md-6">
+                          <div class="card plantation-card h-100">
+                          <div className="row g-0 h-100">
+                            <div className="col-md-4">
+                              <img src={winterImg} class="card-img-top" alt="..." />
+                            </div>
+                            <div className="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Winter <span>(Nov - Jan)</span></h5>
+                                    <p className="card-text">Winter plantation, the process starts by September and saplings are planted from November to January of the same financial year.</p>
+                                </div>
+                            </div>
+                            </div>
+                              {/* <i className="icon-monsoon"></i> */}
+                              
+                          </div>
+                      </div>
+                  </div>
+              {/* <p>Each year, we follow a systematic planting process.
                 
-                For Monsoon plantation, this process starts in September of the previous financial year, giving our team 9-10 months of lead time to select and nurture the saplings so that the survival rates after plantation are high. Similarly, for winter plantation, the process starts by September and saplings are planted from November to January of the same financial year.</p>
+                For Monsoon plantation, this process starts in September of the previous financial year, giving our team 9-10 months of lead time to select and nurture the saplings so that the survival rates after plantation are high. Similarly, for winter plantation, the process starts by September and saplings are planted from November to January of the same financial year.</p> */}
               </div>
               <div className="col-12 col-md-5">
                 <div className="">
-                <img src={whatwe1} alt="what we do" />
+                  
+                {/* <img src={whatwe1} alt="what we do" /> */}
                 </div>                  
               </div>
             </Row>

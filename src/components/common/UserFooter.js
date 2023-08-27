@@ -97,8 +97,8 @@ const Header = () => {
             </div>
           </Row>
         </Container>
-        <div className="copyright">
-          Copyrights © 2023 Hariyali.com | All rights reserved
+        <div className="copyright">          
+         Copyrights © 2023 Hariyali.com | All rights reserved | Photo credit by Nandi Foundation
         </div>
       </div>
     </>
