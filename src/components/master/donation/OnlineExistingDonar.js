@@ -495,7 +495,7 @@ export default function OnlineExistingDonar() {
         const parsedData = JSON.parse(response.data);
   
         let data = parsedData.map((item) => ({ packageName: item.package_name, bouquetPrice: item.bouquet_price, noOfBouquets: 0, amount: 0 }))
-  
+        console.log(data)
         setPackageData(data);
       } else {
         toast.error(response?.message);
@@ -747,8 +747,9 @@ export default function OnlineExistingDonar() {
   
     const getUserInfo = async (email, type) => {
       let response = await DonationService.getExistingDetailsByEmailId(email);
-      console.log(response)
+      console.log(JSON.stringify(response))
       if (response?.status === "Success") {
+        console.log(response.data.emailId);
         toast.success(response?.message);
         let addr = [...initialAddress];
         if (hasValues(response.data.address[0])) {

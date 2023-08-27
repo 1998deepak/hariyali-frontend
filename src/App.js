@@ -129,9 +129,13 @@ function DonateWithHeaderAndFooter() {
 function ExistingOnlineDonate() {
   return (
     <>
-      <UserHeader />
-      <OnlineExistingDonar />
-      <UserFooter />
+    <AdminHeader />
+    <div className="leftmenu-main">
+        <UserLeftMenu />
+        <div className="float-left page-scroll remove-top-margin" style={{ width: "100%" }}>
+        <OnlineExistingDonar />
+        </div>
+      </div>
     </>
   );
 }
@@ -274,7 +278,7 @@ function App() {
         <Route path="/OnlineDonation" element={<DonateWithHeaderAndFooter />} />
 
         <Route path="/ExistingOnlineDonation" element = {<ProtectedRoutes user={authority.user}>
-                    <ExistingOnlineDonate setAuthToken={setAuthToken} authToken={authToken} />
+                    <ExistingOnlineDonate  />
                   </ProtectedRoutes>}/>
 
                   <Route path="/updateUser" element = {<ProtectedRoutes user={authority.user}>
