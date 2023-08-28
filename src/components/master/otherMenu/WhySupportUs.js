@@ -24,6 +24,8 @@ import impactAssessment1 from "../../../assets/img/Impact Assessment Report FY 2
 import impactAssessment2 from "../../../assets/img/Impact Assessment Report FY 23_page-0001.jpg";
 import csrCertificate from "../../../assets/img/Image20230825001140.png";
 import csrCertificate1 from "../../../assets/img/Image20230825001136.png";
+import program3 from "../../../assets/img/co2.jpg";
+import program4 from "../../../assets/img/lifestyle.jpg";
 
 
 // const slides = [
@@ -80,8 +82,12 @@ function WhySupportUs() {
       { quote: 'Food Vision 2050 Prize by Rockefeller Foundation to Naandi Foundation',
     image : csrCertificate },
       { quote: 'The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category',
-      image : csrCertificate1 }
-    ],
+      image : csrCertificate1 },
+      {
+        quote: "Runner Up under Private Sector Category 2",
+        //image : 
+      }
+    ]
     // Add more item groups as needed
   ];
 
@@ -126,7 +132,54 @@ function WhySupportUs() {
     <>
       {/* body */}
       <section className="banner banner-support">
-
+  
+      </section>
+      <section>
+        <div className='container pv-75'>
+          <h2 className="sub-title text-center">Why Support Us</h2>
+          <p>
+            The total forest and tree cover in India is 8,09,537 square kilometres i.e., 24.62 % of the total geographical area. But as per the National Forest Policy, the ideal percentage of total geographical area under forest should be at least 33% to maintain ecological stability. India ranked the second highest for the rate of deforestation after losing 668,400 hectares of forest cover in the last 30 years. The forest areas are under threat due to rapid industrialization, road and other connectivity projects and irrigation projects. Over and above, 90% of the area under the biodiversity hotspots have been lost as per the Centre for Science and Environment’s (CSE) new report entitled ‘State of India’s Environment in Figures 2021’.
+          </p>
+        </div>
+      </section>
+      <section className="container">
+        <div className="row justify-content-center mt-5">
+                        <div className="col-12 col-md-6">
+                            <div className="card plantation-card h-100">
+                            <div className="row g-0 h-100">
+                              <div className="col-md-4">
+                                <img src={program3} className="card-img-top" alt="..." />
+                              </div>
+                              <div className="col-md-8">
+                                  <div class="card-body">
+                                    <h5 class="card-title text-center">India's commitment to carbon neutrality</h5>
+                                    <p>UN Framework Convention on Climate Change raises awareness and builds knowledge to help mitigate climate change. 
+                                    The Paris Agreement within the UNFCCC aims at achieving greenhouse gas emissions mitigations. The agreement outlines the National Determined Contributions (NDCs), each member country should make in order to stay ‘well below’ the 2°C target. India is committed to its NDC and seeks to be carbon neutral by 2070</p>
+                                </div>
+                              </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div className="col-12 col-md-6">
+                            <div class="card plantation-card h-100">
+                            <div className="row g-0 h-100">
+                              <div className="col-md-4">
+                                <img src={program4} class="card-img-top" alt="..." />
+                              </div>
+                              <div className="col-md-8">
+                                  <div class="card-body">
+                                      <h5 class="card-title text-center">Lifestyle for Environment</h5>
+                                      <br/><br/>
+                                      <p>India is promoting individual responsibility toward climate action through Mission LIFE “Lifestyle for Environment”. 
+                                      This movement aims to transform individuals into pro planet people by having them adopt sustainable lifestyles and minimize their carbon footprint</p>
+                                  </div>
+                              </div>
+                              </div>
+                                {/* <i className="icon-monsoon"></i> */}
+                                
+                            </div>
+                        </div>
+        </div>
       </section>
       {/* <div className="container pv-75">
         <div className="row mb30 impact-wrapper">
@@ -139,12 +192,12 @@ function WhySupportUs() {
           </div>
         </div> */}
       <div className="container pv-75">
-        <h3 className="sub-title text-center">Impact of the Project</h3>
+        <h3 className="sub-title text-center">Impact of Hariyali Project</h3>
         <div className="row justify-content-center mb30">
           <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
               <h4>Number of trees planted since 2007</h4>
-              <p>20.89 Millions</p>
+              <p>22.86 Millions</p>
             </div>
           </div>
           <div className="col-12 col-md-4 text-center">
@@ -162,15 +215,16 @@ function WhySupportUs() {
           <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
               <h4>
-                Project has witnessed significant positive change in bio
-                diversity
+              
+              Improment in soil quality in terms of  <p>carbon, water </p>holding capacity & <p> nutrients</p>
+
               </h4>
             </div>
           </div>
           <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
               <h4>
-                Re generative agriculture practices has enhanced the soil richness in terms of carbon, water holding capacity and nutrients
+                Significant positive change in <p>bio-diversity</p>
               </h4>
             </div>
           </div>
@@ -191,8 +245,8 @@ function WhySupportUs() {
           for an overall wellbeing of the community and mother earth
           <br />
           <br />
-          We are available at
-          <span className="colorgreen"> <a className="colorgreen" href="1t.org">1t.org</a></span>
+          {/* We are available at
+          <span className="colorgreen"> <a className="colorgreen" href="1t.org">1t.org</a></span> */}
         </p>
       </div>
       <div className="container pv-75">
@@ -280,9 +334,9 @@ function WhySupportUs() {
         <div className="row align-items-center pv-75">
           <div className="col-12 col-md-6">
             <div className="feature-description">
-              <h3 className="sub-title text-center">Impact assessment report of 2 years</h3>
-              <p><i>Impact Assessment: An Annual third - party tree audits have been conducted since 2012 by Unique Agroforestry and Land use, Germany which is a globally recognized company specializing in forestry consulting, climate, forest investments,
-                agriculture and rural developments. Since FY22, Impact Assessment as part of CSR guidelines have been conducted by third party organizations In the last Impact Assessment carried out for plantations done in FY21, the survival rate has been reported at 94.67%, Project Hariyali was awarded “Platinum” category performance of CSR Activity by an NABCB accredited “Type A” Inspection Body.</i></p>
+              <h3 className="sub-title text-center">Impact assessment report </h3>
+              <p><i> An Annual third - party tree audits have been conducted since 2012 by Unique Agroforestry and Land use, Germany which is a globally recognized company specializing in forestry consulting, climate, forest investments,
+                agriculture and rural developments. Since FY22, Impact Assessment as part of CSR guidelines have been conducted by third party organizations. In the last Impact Assessment carried out for plantations done in FY21, the survival rate has been reported at 94.67%. Project Hariyali was awarded “Platinum” category performance of CSR Activity by an NABCB accredited “Type A” Inspection Body.</i></p>
             </div>
           </div>
           <div className="col-12 col-md-6">

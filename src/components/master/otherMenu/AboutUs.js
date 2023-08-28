@@ -27,7 +27,7 @@ function AboutUs() {
           <div className="pv-75">
             <div className="feature-description">
               <h2 className="sub-title">About us</h2>
-              <p>The project hariyali is a join initiative by mahindra foundation and nandi foundation. (know more...)</p>
+              <p>The project hariyali is a join initiative by mahindra foundation and nandi foundation. (<a href="#knowYourPatners">know more...</a>)</p>
             </div>
           </div>
             <div className="row align-items-center pv-75">
@@ -106,7 +106,7 @@ function AboutUs() {
               </div>
             </div>
           </section>
-          <section className="bg-venture">
+          <section id="knowYourPatners" className="bg-venture">
           <div className="container">
             <div className="row pv-75">              
               <div className="col-12">

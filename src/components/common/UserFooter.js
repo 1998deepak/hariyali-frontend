@@ -55,14 +55,13 @@ const Header = () => {
                   <div className="footer-divheading">Company</div>
                   <ul>
                     <li>
-                      <a href=""> About Us</a>
-                    </li>
+                    <a href="/AboutUs"> Who Are We</a></li>
                     <li>
-                    <a href=""> What we do</a></li>
-                    <li><a href=""> Why Support Us</a></li>
-                    <li><a href=""> Ways to Associate</a></li>
-                    <li><a href=""> FootPrint</a></li>                    
-                    <li><a href=""> Contact Us</a></li>
+                    <a href="/WhatWeDo"> What We Do</a></li>
+                    <li><a href="/WhySupportUs"> Why Support Us</a></li>
+                    <li><a href="/WaystoAssociate"> How to Associate</a></li>
+                    <li><a href="/FootPrint"> Where Are We</a></li>                    
+                    <li><a href="/ContactUs"> Ask Us</a></li>
                   </ul>
                 </div>                
                 <div className="col-12 col-md-6 col-lg-4 footer-div">
@@ -98,7 +97,8 @@ const Header = () => {
           </Row>
         </Container>
         <div className="copyright">          
-         Copyrights © 2023 Hariyali.com | All rights reserved | Photo credit by Nandi Foundation
+         Copyrights © 2023 <span><a className="colorgreen" href="Hariyali.org.in">Hariyali.org.in</a></span> | All rights reserved | Photo credit by Nandi Foundation | We are available at
+          <span className="colorgreen"> <a className="colorgreen" href="1t.org">1t.org</a></span>
         </div>
       </div>
     </>
