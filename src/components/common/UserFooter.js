@@ -15,33 +15,33 @@ const Header = () => {
     <>
       <div className="footerbg">
         <Container>
-          <Row className="justify-content-between ptb50">
-            <div className="col-4 small-center">
+          <Row className="justify-content-between ptb50 row">
+            <div className="col-12 col-md-12 col-lg-6 small-center">
               <div className="logo-container">
                 <img src={logo} alt="Logo" className="logo" />  
               </div>              
               <div className="footersocial-div row mb-3">
-                <div className="col-2 ">
+                <div className="col-2">
                   <div className="footersocial">
                     <FaFacebookF />
                   </div>
                 </div>
-                <div className="col-2 ">
+                <div className="col-2">
                   <div className="footersocial">
                     <FaTwitter />
                   </div>
                 </div>
-                <div className="col-2 ">
+                <div className="col-2">
                   <div className="footersocial">
                     <FaInstagramSquare />
                   </div>
                 </div>
-                <div className="col-2 ">
+                <div className="col-2">
                   <div className="footersocial">
                     <FaWhatsapp />
                   </div>
                 </div>
-                <div className="col-2 ">
+                <div className="col-2">
                   <div className="footersocial">
                     <FaYoutube />
                   </div>
@@ -49,7 +49,7 @@ const Header = () => {
               </div>
               
             </div>
-            <div className="col-12 col-md-6 col-lg-7 footerlinks">
+            <div className="col-12 col-md-12 col-lg-7 footerlinks">
               <div className="row">
                 <div className="col-12 col-md-6 col-lg-4 footer-div small-non">
                   <div className="footer-divheading">Company</div>

@@ -26,7 +26,7 @@ function AboutUs() {
           <div className="container">
           <div className="pv-75">
             <div className="feature-description">
-              <h2 className="sub-title">About us</h2>
+              <h2 className="sub-title">Who are we</h2>
               <p>The project hariyali is a join initiative by mahindra foundation and nandi foundation. (<a href="#knowYourPatners">know more...</a>)</p>
             </div>
           </div>
@@ -38,7 +38,7 @@ function AboutUs() {
                   Project Hariyali aims to increase the green cover, arrest the rising ecological imbalance to create environmentally conscious and aware citizenry.</p>
                   <p>We are currently active in three regions for large scale plantation:</p>
                   <div className="row">
-                    <div className="col-12 col-md-6 col-lg-4">
+                    <div className="col-12 col-md-6 col-lg-4 mb-4">
                       <div class="card h-100">
                         <img src={arakuImg} className="img-fluid rounded-start" alt="..."/>
                         <div class="card-body text-center">
@@ -47,7 +47,7 @@ function AboutUs() {
                         </div>
                       </div>
                     </div>
-                    <div className="col-12 col-md-6 col-lg-4">
+                    <div className="col-12 col-md-6 col-lg-4 mb-4">
                       <div class="card h-100">
                           <img src={tarnImg} className="img-fluid rounded-start" alt="..."/>
                           <div class="card-body text-center">
@@ -58,7 +58,7 @@ function AboutUs() {
                           </div>
                         </div>
                     </div>
-                    <div className="col-12 col-md-6 col-lg-4">
+                    <div className="col-12 col-md-6 col-lg-4 mb-4">
                       <div class="card h-100">
                           <img src={wardhaImg} className="img-fluid rounded-start" alt="..."/>
                           <div class="card-body text-center">
@@ -92,12 +92,12 @@ function AboutUs() {
           <section className="bg-tree">
             <div className="container">
             <div className="row align-items-center pv-75">
-                  <div className="col-12 col-md-5">
+                  <div className="col-12 col-md-6 col-lg-5">
                     <div className="feature-image">
                       <img src={goalimg} alt=""/>
                     </div>              
                   </div>
-                  <div className="col-12 col-md-7">
+                  <div className="col-12 col-md-6 col-lg-7">
                       <div className="feature-description">
                           <h2 className="text-capitalize">Goal</h2>
                           <p className=""><quote><b className="colorgreen">Planting 5 million trees</b> per annum through partnerships with like-minded organizations and people and in the process support livelihood of marginalized farmer communities.</quote></p>                      

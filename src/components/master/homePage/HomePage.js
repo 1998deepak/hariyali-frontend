@@ -511,46 +511,25 @@ Project Hariyali has been conferred multiple awards by national and internationa
 
       {/* sdg */}
       <div className="project-bg ">
-        <Container>
-          <Row className="justify-content-between ptb50">
-            <h2 className="sub-title text-center mb30">
+        <Container className="ptb50">
+          <h2 className="sub-title text-center mb30 ">
               SDG Links
-            </h2>
-            <div className="col-lg-2 col-12 mb-lg-0 mb-3 discover-block">
-              <div className="positin-relative " >
+          </h2>
+          <Row className="justify-content-between ">            
+            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
                 <div className="discoverImg"><img src={sdg13} width="100%" /></div>
-                {/* <div className="discoverLink text-lg-start text-center"><span>Trust Positive </span></div> */}
-                {/* <a href="/trust-positive" className="stretched-link"></a> */}
-              </div>
             </div>
-            <div className="col-lg-2 col-12 mb-lg-0 mb-3 discover-block">
-              <div className="positin-relative" >
+            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
                 <div className="discoverImg"><img src={sdg15} width="100%" /></div>
-                {/* <div className="discoverLink text-lg-start text-center"><span>Planet Positive </span></div> */}
-                {/* <a href="/sustainability" className="stretched-link"></a> */}
-              </div>
             </div>
-            <div className="col-lg-2 col-12 discover-block">
-              <div className="positin-relative aos-init aos-animate" >
+            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
                 <div className="discoverImg"><img src={sdg8} width="100%" /></div>
-                {/* <div className="discoverLink text-lg-start text-center"><span>Discover Business Verticals </span></div> */}
-                {/* <a href="/our-business" className="stretched-link"></a> */}
-              </div>
-              <div className="clear"></div>
             </div>
-            <div className="col-lg-2 col-12 discover-block">
-              <div className="positin-relative aos-init aos-animate">
+            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
                 <div className="discoverImg"><img src={sdg14} width="100%" /></div>
-                {/* <div className="discoverLink text-lg-start text-center"><span>Discover Business Verticals </span></div> */}
-                {/* <a href="/our-business" className="stretched-link"></a> */}
-              </div>
             </div>
-            <div className="col-lg-2 col-12 discover-block">
-              <div className="positin-relative aos-init aos-animate">
+            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
                 <div className="discoverImg"><img src={sdg17} width="100%" /></div>
-                {/* <div className="discoverLink text-lg-start text-center"><span>Discover Business Verticals</span></div> */}
-                {/* <a href="/our-business" className="stretched-link"></a> */}
-              </div>
             </div>
             {/* <div className="col-4 ">
               <div className="bggreen projectdiv row">
