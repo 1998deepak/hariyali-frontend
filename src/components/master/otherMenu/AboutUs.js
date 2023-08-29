@@ -17,14 +17,12 @@ function AboutUs() {
       {/* body */}
       <section className="banner banner-about">
         <div className="title">
-          {/* <h1>About Us</h1> */}
         </div>          
       </section>
       <div className="">
-        {/* <img src={planting} alt="planting" className="imgwidth100" /> */}
         <div className="section bggray">
           <div className="container">
-          <div className="pv-75">
+          <div className="pv-75 pb-0">
             <div className="feature-description">
               <h2 className="sub-title">Who are we</h2>
               <p>The project hariyali is a join initiative by mahindra foundation and nandi foundation. (<a href="#knowYourPatners">know more...</a>)</p>
@@ -33,60 +31,44 @@ function AboutUs() {
             <div className="row align-items-center pv-75">
               <div className="col-12">
               <div className="feature-description">
-                <h2 className="text-capitalize">Details about initiative</h2>
+                <h2 className="">Details about initiative</h2>
                   <p>The project was launched on 2nd October 2007, as an afforestation initiative, with a target to plant a million trees every year. 
                   Project Hariyali aims to increase the green cover, arrest the rising ecological imbalance to create environmentally conscious and aware citizenry.</p>
                   <p>We are currently active in three regions for large scale plantation:</p>
                   <div className="row">
                     <div className="col-12 col-md-6 col-lg-4 mb-4">
-                      <div class="card h-100">
+                      <div className="card h-100">
                         <img src={arakuImg} className="img-fluid rounded-start" alt="..."/>
-                        <div class="card-body text-center">
+                        <div className="card-body text-center">
                           <h5 className="card-title">Southern India</h5>
                           <p className="card-text">The project started in <b className="colorgreen">Araku Valley</b>, <b className="colorgreen">Visakhapatnam</b>, <b className="colorgreen">Andhra Pradesh</b> in 2010</p>                          
                         </div>
                       </div>
                     </div>
                     <div className="col-12 col-md-6 col-lg-4 mb-4">
-                      <div class="card h-100">
+                      <div className="card h-100">
                           <img src={tarnImg} className="img-fluid rounded-start" alt="..."/>
-                          <div class="card-body text-center">
-                              <h5 class="card-title">Northern India</h5>
-                              <p class="card-text">The project <b className="colorgreen">Shravasti in Uttar Pradesh</b>,
+                          <div className="card-body text-center">
+                              <h5 className="card-title">Northern India</h5>
+                              <p className="card-text">The project <b className="colorgreen">Shravasti in Uttar Pradesh</b>,
                               <b className="colorgreen">Tarn Taran & Moga in Punjab</b> and <b className="colorgreen">Solan in Himachal Pradesh</b> in 2010</p>
-                              {/* <a href="#" class="btn btn-primary">Button</a> */}
+                              {/* <a href="#" className="btn btn-primary">Button</a> */}
                           </div>
                         </div>
                     </div>
                     <div className="col-12 col-md-6 col-lg-4 mb-4">
-                      <div class="card h-100">
+                      <div className="card h-100">
                           <img src={wardhaImg} className="img-fluid rounded-start" alt="..."/>
-                          <div class="card-body text-center">
-                            <h5 class="card-title">Western India</h5>
-                            <p class="card-text">The project is being currently replicated in <b className="colorgreen">Wardha, Maharashtra</b></p>
-                            {/* <a href="#" class="btn btn-primary">Button</a> */}
+                          <div className="card-body text-center">
+                            <h5 className="card-title">Western India</h5>
+                            <p className="card-text">The project is being currently replicated in <b className="colorgreen">Wardha, Maharashtra</b></p>
+                            {/* <a href="#" className="btn btn-primary">Button</a> */}
                           </div>
                       </div>
                     </div>
                   </div>
-                   {/* <ul>
-                      <li>Araku Valley – The project started in <b className="colorgreen">Araku</b>, <b className="colorgreen">Visakhapatnam</b>, <b className="colorgreen">Andhra Pradesh</b> in 2010. The aim was to
-                      <ul className="mb-2">
-                        <li>Restore the ecosystem</li>
-                        <li>Create a functional forest for the tribal community</li>
-                        <li>Ensure nutritional / economic security of the small & marginalized farmers</li>
-                      </ul>
-                      </li>
-                      <li>Northern India - The project was further extended in Punjab, Uttar Pradesh and Himachal Pradesh in 2021</li>
-                      <li>Western India – The project is being currently replicated in Wardha, Maharashtra.</li>
-                   </ul> */}
                 </div>
               </div>
-              {/* <div className="col-12 col-md-5">
-                <div className="feature-image">
-                  <img src={projectimg} alt=""/>
-                </div>
-              </div> */}
             </div>
           </div>
           <section className="bg-tree">
@@ -111,7 +93,7 @@ function AboutUs() {
             <div className="row pv-75">              
               <div className="col-12">
                   <div className="feature-description">
-                  <h2 className="text-capitalize">Know your Partners</h2>
+                  <h2 className="">Know your Partners</h2>
                   <p>
                     <b>Mahindra Foundation</b> is a public charitable trust incorporated in 1969 and registered under Maharashtra Public Trust Act.
 

@@ -157,9 +157,9 @@ function WhySupportUs() {
         <div className="row justify-content-center mt-5">
           <div className="col-12 col-md-5">
             <div className="card plantation-card h-100">
-                <img src={program3} className="card-img-top" alt="..." />
-                <div class="card-body">
-                  <h5 class="card-title text-center">
+                <img src={program3} className="card-img-top full-height" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title text-center">
                     India's commitment to carbon neutrality
                   </h5>
                   <p>
@@ -176,10 +176,10 @@ function WhySupportUs() {
             </div>
           </div>
           <div className="col-12 col-md-5">
-            <div class="card plantation-card h-100">
-                <img src={program4} class="card-img-top" alt="..." />
-                <div class="card-body">
-                  <h5 class="card-title text-center">
+            <div className="card plantation-card h-100">
+                <img src={program4} className="card-img-top full-height" alt="..." />
+                <div className="card-body">
+                  <h5 className="card-title text-center">
                     Lifestyle for Environment
                   </h5>
                   <p>
@@ -372,11 +372,11 @@ function WhySupportUs() {
             <div className="">
               <div className="d-flex justify-content-center pdf-wrapper">
                 <a className="pdf-tile" href={impactFile2} target="_blank">
-                  <span class="pdf1"></span>
+                  <span className="pdf1"></span>
                   <span>View</span>
                 </a>
                 <a className="pdf-tile" href={impactFile1} target="_blank">
-                  <span class="pdf2"></span>
+                  <span className="pdf2"></span>
                   <span>View</span>
                 </a>
               </div>
