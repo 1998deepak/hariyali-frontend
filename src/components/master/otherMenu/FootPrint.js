@@ -4,16 +4,21 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import footprintimg from "../../../assets/img/footprint.png";
 import { Container, Row } from "react-bootstrap";
 import { GoLocation } from "react-icons/go";
-import image from "../../../assets/img/Image20230827165032.png";
+import image from "../../../assets/img/bannerWherearewe.png";
 
 function FootPrint() {
 
   return (
     <>
       {/* body */}
-      <div>
+      <section className="banner banner-footprint">
+            <div className="title">
+                {/* <h1>Ways to Associate</h1> */}
+            </div>
+        </section>
+      {/* <div>
             <img src = {image} className="imgwidth100"/>
-          </div>
+          </div> */}
       <div className="">
         {/* <img src={planting} alt="planting" className="imgwidth100" /> */}
         <div className="section-footprint bggray">

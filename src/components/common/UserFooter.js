@@ -16,7 +16,7 @@ const Header = () => {
       <div className="footerbg">
         <Container>
           <Row className="justify-content-between ptb50 row">
-            <div className="col-12 col-md-12 col-lg-6 small-center">
+            <div className="col-12 col-md-12 col-lg-4 small-center">
               <div className="logo-container">
                 <img src={logo} alt="Logo" className="logo" />  
               </div>              
@@ -49,7 +49,7 @@ const Header = () => {
               </div>
               
             </div>
-            <div className="col-12 col-md-12 col-lg-7 footerlinks">
+            <div className="col-12 col-md-12 col-lg-8 footerlinks">
               <div className="row">
                 <div className="col-12 col-md-6 col-lg-4 footer-div small-non">
                   <div className="footer-divheading">Company</div>
@@ -77,8 +77,8 @@ const Header = () => {
                   <address>
                   <h5>Mahindra Foundation</h5>
                   <p>3rd Floor, Cecil Court, Shahid Bhagat Singh Marg, Colaba, Mumbai, Maharashtra 400005</p>
-                  <a href="tel:93224 56789"><i class="bi bi-phone"></i> 93224 56789</a><br/>
-                  <a href="tel:022 22021031"><i class="bi bi-telephone-fill"></i> 022 22021031</a> <br/>
+                  <a href="tel:93224 56789"><i className="bi bi-phone"></i> 93224 56789</a><br/>
+                  <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a> <br/>
                   </address>
                  
                   {/* <i className="bi bi-clock"></i> 10.00am to 7.00pm IST <br/>(Monday to
