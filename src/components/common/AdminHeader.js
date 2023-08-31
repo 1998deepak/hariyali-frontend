@@ -14,15 +14,17 @@ import { AuthService } from "../../../src/services/auth/auth.service";
 import { SUCCESS, TOKEN, USER_DETAILS } from "../../../src/components/constants/constants";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { EncryptionService } from "../../../src/services/encryption.service";
 
 const AdminHeader = () => {
   const navigate = useNavigate();
   const [authToken, setAuthToken] = useState();
 
   const logout = async () => {
-      console.log(localStorage.getItem(USER_DETAILS));
-      const response = await AuthService.logout(
-          JSON.parse(localStorage.getItem(USER_DETAILS))
+
+let userDetails = await EncryptionService.decrypt(localStorage.getItem(USER_DETAILS));      
+const response = await AuthService.logout(
+          JSON.parse(userDetails)
       );
       if (response.status === SUCCESS) {
           toast.success(response?.message);

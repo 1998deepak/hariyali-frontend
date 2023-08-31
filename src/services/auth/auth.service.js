@@ -4,14 +4,18 @@ import { URLS } from "../../components/constants/urls";
 import { APIService } from '../api/api-service'
 import jwt_decode from "jwt-decode";
 import { getLoginModel } from "./auth.model";
-
+import { EncryptionService } from "../../../src/services/encryption.service";
 export const AuthService = {
   
   login: async (data) => {
     console.log(data);
     try {
+      let request = {username:"", password:""};
+      request.username = (await EncryptionService.encrypt(data.username)).toString();
+      request.password = (await EncryptionService.encrypt(data.password)).toString();
+      console.log(request);
       const response = await APIService.Instance.post(
-        URLS.LOGIN,data        
+        URLS.LOGIN,request        
       );
       console.log(response);
 
@@ -44,7 +48,8 @@ export const AuthService = {
   },
 
   getUserDetails: () => {
-    const stringifiedResponse = localStorage.getItem(USER_DETAILS);
+
+    const stringifiedResponse = EncryptionService.decrypt(localStorage.getItem(USER_DETAILS));
     if (!stringifiedResponse) return null;
     return JSON.parse(stringifiedResponse);
   },
@@ -73,6 +78,10 @@ export const AuthService = {
 
   verifyOtp: async ( email, otp) => {
     try {
+      email = (await EncryptionService.encrypt(email)).toString();
+      otp = (await EncryptionService.encrypt(otp)).toString();
+      console.log(email);
+      console.log(otp);
       const response = await APIService.Instance.post(
         URLS.VERIFYOTP+`?donarIdOrEmail=${email}&otp=${otp}`,
       );

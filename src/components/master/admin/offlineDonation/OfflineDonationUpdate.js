@@ -213,7 +213,7 @@ console.log(addressErrors);
       console.log(addressData);
       console.log(formData);
   
-      const response = await DonationService.updateUser(emailID, formData);
+      const response = await DonationService.updateUser(emailID, formData.formData.user);
       console.log(response);
       
       if (response?.status === "Data Update Successfully") {

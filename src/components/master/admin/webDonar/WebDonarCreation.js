@@ -59,9 +59,9 @@ function WebDonarCreation() {
   //Approve donation with webid
   const approveDonationWithWebId = async (data) => {
     console.log(data);
-    const response = await WebDonorCreationService.approveDonation(data);
-   console.log(response);
-   getAllUserWithWebID();
+    const response = await WebDonorCreationService.approveDonation(data.formData);
+      console.log(response);
+      getAllUserWithWebID();
       if (response?.status === SUCCESS) {
         toast.success(response?.message);
       } else {

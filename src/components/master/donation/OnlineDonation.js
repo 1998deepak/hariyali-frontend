@@ -459,11 +459,8 @@ function OnlineDonation() {
         }
       });
       console.log(updatedUserPackage);
-      const formData = {
-        formData: {
-          user: userData?.user,
-        },
-      };
+      const user = userData?.user;
+        
 
       if(donations[0].paymentInfo){
 
@@ -481,16 +478,16 @@ function OnlineDonation() {
     
       console.log(paymentArray);
 
-      formData.formData.user.donations[0] = paymentArray;
-      console.log(formData.formData.user.donations[0]);
+      user.donations[0] = paymentArray;
+      console.log(user.donations[0]);
     }
 
-      console.log(formData);
+      console.log(user);
       //setting Donation event
 
-      formData.formData.user.donations[0].donationType = donationType;
+      user.donations[0].donationType = donationType;
 
-      formData.formData.user.emailId = userEmail;
+      user.emailId = userEmail;
 
       //Setting Address array
       console.log(address.length);
@@ -498,51 +495,51 @@ function OnlineDonation() {
       // if (!formData.formData.user.address) {
       //   formData.formData.user.address = initialAddress.slice();
       // }
-      console.log(formData.formData.user.address);
+      console.log(user.address);
 
       if (hasValues(address[0])) {
-        formData.formData.user.address[0] = address[0];
+        user.address[0] = address[0];
       }
-      console.log(formData.formData.user.address);
+      console.log(user.address);
       console.log(hasValues(address[1]));
       if (hasValues(address[1])) {
-        formData.formData.user.address[1] = address[1];
+        user.address[1] = address[1];
       }
 
       //Setting user Package array
 
       if (
-        !formData.formData.user.donations[0].generalDonation ||
-        formData.formData.user.donations[0].generalDonation < 0
+        !user.donations[0].generalDonation ||
+        user.donations[0].generalDonation < 0
       ) {
-        formData.formData.user.donations[0].userPackage = updatedUserPackage;
+        user.donations[0].userPackage = updatedUserPackage;
       } else {
-        formData.formData.user.donations[0].userPackage = [];
+        user.donations[0].userPackage = [];
       }
-      console.log(formData);
+      console.log(user);
 
       //setting recipent data
       if (recipient[0].address[0].state) {
         console.log(recipient);
         console.log("Reci");
-        formData.formData.user.donations[0].recipient = recipient;
+        user.donations[0].recipient = recipient;
       } else {
         console.log(recipient);
         console.log("Not present");
-        formData.formData.user.donations[0].recipient = [];
+        user.donations[0].recipient = [];
       }
 
       // Send the form data as JSON
-      console.log(formData);
-      console.log(JSON.stringify(formData));
-      console.log(
-        "Donation: " + JSON.stringify(formData.formData.user.donations[0])
-      );
+      console.log(user);
+      // console.log(JSON.stringify(user));
+      // console.log(
+      //   "Donation: " + JSON.stringify(user.donations[0])
+      // );
 
-      setNewEmail(formData.formData.user.emailId);
+      setNewEmail(user.emailId);
 
-      console.log(formData);
-      const response = await DonationService.AddOnlineuser(formData);
+      // console.log(formData);
+      const response = await DonationService.AddOnlineuser(user);
       console.log(response);
       if (response?.status === SUCCESS) {
         toast.success(response?.message);
@@ -587,7 +584,6 @@ function OnlineDonation() {
   const getAllPackages = async () => {
     const response = await DonationService.getAllPackages();
     if (response?.status === "Success") {
-      console.log(response);
       let packageData = [...initialPackageData];
       console.log(packageData);
 

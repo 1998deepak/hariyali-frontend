@@ -8,6 +8,7 @@ import { SUCCESS, TOKEN, USER_DETAILS } from "../../constants/constants";
 import { AuthService } from "../../../services/auth/auth.service";
 import axios from "axios";
 import { toast,ToastContainer } from "react-toastify";
+import { EncryptionService } from "../../../services/encryption.service";
 import { UserService } from "../../../services/userService/user.service";
 
 function Login() {
@@ -71,7 +72,8 @@ function Login() {
       if (response) {
         if (response?.status === SUCCESS) {
           console.log("Response: " + response);
-          localStorage.setItem(USER_DETAILS, JSON.stringify(formData));
+          let userDetails = await EncryptionService.encrypt(JSON.stringify(formData));
+          localStorage.setItem(USER_DETAILS, userDetails);
           toast.success("OTP Send Successfully!")
           setIsHidden(!isHidden);
           setIsHide(!isHide);
@@ -140,9 +142,7 @@ function Login() {
     console.log(donarID);
 
     const formData = {
-      formData: {
-        donarID: donarID,
-      },
+        donorId: donarID,
     };
     console.log(formData);
     const response = await AuthService.sendForgetPasswordLink(formData);

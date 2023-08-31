@@ -487,7 +487,7 @@ function OfflineDonation() {
       setNewEmail(formData.formData.user.emailId);
 
       console.log(formData);
-      const response = await DonationService.Adduser(formData);
+      const response = await DonationService.Adduser(formData.formData.user);
       console.log(response);
       if (response?.status === SUCCESS) {
         toast.success(response?.message);
