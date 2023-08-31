@@ -217,54 +217,12 @@ function HomePage() {
       {/* slider */}
       <div className="">
         <Slideshow />
-
-        {/* <div classNameName="slid-linkdiv">
-          <div classNameName="all">
-            <div classNameName="lefterside">
-              <div classNameName="explainer">
-                {" "}
-                <BiLink />
-              </div>
-              <div className="text">Hosting</div>
-            </div>
-            <div className="leftside">
-              <div className="explainer">
-                {" "}
-                <BiLink />
-              </div>
-              <div className="text">Web Design</div>
-            </div>
-            <div className="centerside">
-              <div className="explainer">
-                {" "}
-                <BiLink />
-              </div>
-              <div className="text">Discover the chain</div>
-            </div>
-            <div className="rightside">
-              <div className="explainer">
-                {" "}
-                <BiLink />
-              </div>
-              <div className="text">Backend Development</div>
-            </div>
-            <div className="righterside">
-              <div className="explainer">
-                {" "}
-                <BiLink />
-              </div>
-              <div className="text">SEO</div>
-            </div>
-          </div>
-        </div> */}
+        
       </div>
       {/* slide info */}
 
       <div className="container pv-75">
-        {/* <div className="mahindralogo">
-          <img src={mahindraLogo} alt="Mahindra Logo" />
-        </div> */}
-        {/* <h2 className="sub-title text-center mb-5">Impact & Reach</h2> */}
+        
         <div className="row mb30 impact-wrapper">
           <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
@@ -288,15 +246,11 @@ function HomePage() {
             </div>
           </div>
         </div>
-        {/* <div className="heading colorblack text-center ">2,28,61,288</div>
-
-        <div className="subheading text-center">
-          Creating carbon sink through focussed large scale plantation
-        </div> */}
+        
       </div>
       
       <div className="container pv-75">
-        {/* <h2 className="sub-title text-center mb-5">Impact & Reach</h2> */}
+        
         <div className="row">
         
           <div className="col-12 col-md-6">
@@ -333,29 +287,7 @@ function HomePage() {
               </div>
             </div>          
           </div>
-          
-          
         </div>
-
-        {/* <div className="row">
-          <div className="col-12 col-md-6">
-            <div className="img-responsive feature-image">
-              <img src={program1} alt="planting" className="imgwidth100" />  
-            </div>            
-          </div>
-          <div className="col-12 col-md-6">
-            <div className="program-details">
-              <h3 className="mb-3">Regenerative Agriculture</h3>
-              <p>Project Hariyali is part of nature-based solution that promotes Regenerative agriculture</p>
-              <p>Regenerative Agriculture is a holistic farming system that focuses on improving soil health, biodiversity, water quality, air quality and thus food quality
-              </p>
-              <div className="pt-5">
-              <a className="btn btn-secondary">Read More</a>
-                <button className="btn btn-primary">Donate</button> 
-              </div>
-            </div>          
-          </div>
-        </div> */}
       </div>
       <section className="bg-green">
         <div className="container pv-75">
@@ -364,7 +296,7 @@ function HomePage() {
             <div className="program-details">
                 <h3 className="mb-3">Why Support Us</h3>
                 <p>India is the 7th most vulnerable country with respect to climate extremes. The total forest and tree cover in India is 24.62 % as opposed to the minimum 33% to maintain ecological stability. Project Hariyali has increased the green cover and is in alignment with LIFE "Lifestyle for Environment" initiative by the government of India.
-Project Hariyali has been conferred multiple awards by national and international bodies.</p>
+                  Project Hariyali has been conferred multiple awards by national and international bodies.</p>
  
                 <div className="pt-5">
                 <a href="/WhySupportUs" className="btn btn-secondary">Read More</a>

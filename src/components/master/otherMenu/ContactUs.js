@@ -131,8 +131,8 @@ function ContactUs() {
                   <address>
                   <h3>Mahindra Foundation</h3>
                   <p>3rd Floor, Cecil Court, Shahid Bhagat Singh Marg, Colaba, Mumbai, Maharashtra 400005</p>
-                  <a href="tel:93224 56789"><i class="bi bi-phone"></i> 93224 56789</a><br/>
-                  <a href="tel:022 22021031"><i class="bi bi-telephone-fill"></i> 022 22021031</a>
+                  <a href="tel:93224 56789"><i className="bi bi-phone"></i> 93224 56789</a><br/>
+                  <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a>
                   </address>
                 </div>
                 <div className="col-12 col-md-8">
