@@ -446,7 +446,7 @@ function OnlineDonation() {
     setCaptchaVerfied(flag);
   }
 
-  const userAdd = async (e) => {
+  const userAdd = async (e, donationType) => {
     e.preventDefault();
     const isValid = validate();
     console.log("isValid:", isValid);
@@ -488,9 +488,9 @@ function OnlineDonation() {
       console.log(formData);
       //setting Donation event
 
-      formData.formData.user.donations[0].donationType = donationType;
+      formData.formData.user.donations[0].donationType = donationType == "self" ? "self-donate" : "gift-donate";
 
-      formData.formData.user.emailId = userEmail;
+      formData.formData.user.emailId =  donationType == "self" ? userEmail : giftUserEmail;
 
       //Setting Address array
       console.log(address.length);
@@ -498,7 +498,7 @@ function OnlineDonation() {
       // if (!formData.formData.user.address) {
       //   formData.formData.user.address = initialAddress.slice();
       // }
-      console.log(formData.formData.user.address);
+      console.log(donationType);
 
       if (hasValues(address[0])) {
         formData.formData.user.address[0] = address[0];
@@ -596,11 +596,11 @@ function OnlineDonation() {
       let data = parsedData.map((item) => ({
         packageName: item.package_name,
         bouquetPrice: item.bouquet_price,
-        noOfBouquets: 0,
-        amount: 0,
+        noOfBouquets: 1,
+        amount: item.bouquet_price,
       }));
-
       setPackageData(data);
+      calculateOverallTotal(data);
     } else {
       toast.error(response?.message);
     }
@@ -683,11 +683,11 @@ function OnlineDonation() {
     const totalCost = row.bouquetPrice * row.noOfBouquets;
     userPackageData[rowIndex]["amount"] = totalCost;
     setPackageData(userPackageData);
-    calculateOverallTotal();
+    calculateOverallTotal(packageData);
     console.log(userPackageData);
   };
 
-  const calculateOverallTotal = () => {
+  const calculateOverallTotal = (packageData) => {
     const totalAmountOfPackage = packageData.reduce(
       (accumulator, packageItem, index) => {
         return (
@@ -1047,14 +1047,14 @@ function OnlineDonation() {
                 className="selftGift-tab online-donation-tabs"
                 onSelect={() => resetErrors()}
               >
-                <Tab eventKey="selfDonate" title="Plant a Tree" className="donation-tab">
+                <Tab eventKey="selfDonate" title="Plant a tree" className="donation-tab">
                   {/* <div className="pageheadingdiv mb10">Self Donor</div> */}
                   <div className="row">
                     <div className="col-6">
                       <div className="select-label">
                         {/* <div className="col-4 "> Donor Type</div> */}
                         <div className="col-12 p0 field-wrapper">
-                          <label for="donorName" class="form-label">Donor Name</label>
+                          <label for="donorName" class="form-label">Donor Type</label>
                           <select
                             className=" form-control-inside form-select"
                             name="user.donarType"
@@ -1066,7 +1066,7 @@ function OnlineDonation() {
                               Donor Type
                             </option>
                             <option value="Corporate">Corporate</option>
-                            <option value="Retail">Retail</option>
+                            <option value="Individual">Individual</option>
                           </select>
                           {errors.map((error, index) => {
                             if (error.field === "userData.user.donarType") {
@@ -1089,7 +1089,7 @@ function OnlineDonation() {
                         <div className="select-label">
                           {/* <div className="col-4 ">I want to opt</div> */}
                         <div className="col-12 p0 field-wrapper">
-                          <label for="activity" class="form-label">I want to opt</label>
+                          <label for="activity" class="form-label">Type of Corporate</label>
                             <select
                               className=" form-control-inside form-select"
                               name="user.donarType"
@@ -1100,8 +1100,8 @@ function OnlineDonation() {
                               <option disabled selected value="">
                                 Select Activity
                               </option>
-                              <option value="csr">CSR Activity</option>
-                              <option value="noncsr">NON-CSR Activity</option>
+                              <option value="csr">CSR</option>
+                              <option value="noncsr">NON-CSR</option>
                             </select>
                             {errors.map((error, index) => {
                               if (error.field === "userData.user.donarType") {
@@ -1243,6 +1243,7 @@ function OnlineDonation() {
                               Overall Total: {donations[0].totalAmount}
                             </div>
                           </div>
+                          <div className="clear"></div>
                           <hr />
                           <div className="actionheadingdiv">
                             Personal Details
@@ -1845,7 +1846,7 @@ function OnlineDonation() {
                           <button
                             type="submit"
                             className="mt20 mr10 webform-button--submit"
-                            onClick={userAdd}
+                            onClick={(e) =>userAdd(e,"self")}
                           >
                             Donate
                           </button>
@@ -1867,7 +1868,7 @@ function OnlineDonation() {
                     )}
                   </div>
                 </Tab>
-                <Tab eventKey="giftaPlant" title="Gift a Plant" className="donation-tab">
+                <Tab eventKey="giftaPlant" title="Gift a tree" className="donation-tab">
                   {/* <div className="pageheadingdiv mb10">Gift a Plant</div> */}
 
                   <form
@@ -1876,6 +1877,40 @@ function OnlineDonation() {
                   >
                     <div className="col-12 ">
                       <div className="row">
+                      <div className="col-6">
+                          <div className=" select-label">
+                            {/* <div className="col-4 "> Donor Type</div> */}
+                            <div className="col-12 p0 field-wrapper">
+                            <label className="form-label top-27">Donor Type</label>
+                              <select
+                                className=" form-control-inside form-select"
+                                name="user.donarType"
+                                value={userData?.user?.donarType}
+                                // onChange={handleChange}
+                                onChange={changeHandlerGift}
+                              >
+                                <option disabled selected value="">
+                                  Donor Type
+                                </option>
+                                <option value="Corporate">Corporate</option>
+                                <option value="Individual">Individual</option>
+                              </select>
+                              {errors.map((error, index) => {
+                                if (error.field === "userData.user.donarType") {
+                                  return (
+                                    <div
+                                      key={index}
+                                      className="error-message red-text"
+                                    >
+                                      {error.message}
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              })}
+                            </div>
+                          </div>
+                        </div>
                         <div className="col-6">
                           <div className=" select-label">
                             {/* <div className="col-4 ">Occasion</div> */}
@@ -1921,40 +1956,6 @@ function OnlineDonation() {
                             </div>
                           </div>
                         </div>
-                        <div className="col-6">
-                          <div className=" select-label">
-                            {/* <div className="col-4 "> Donor Type</div> */}
-                            <div className="col-12 p0 field-wrapper">
-                            <label className="form-label top-27">Donor Type</label>
-                              <select
-                                className=" form-control-inside form-select"
-                                name="user.donarType"
-                                value={userData?.user?.donarType}
-                                // onChange={handleChange}
-                                onChange={changeHandlerGift}
-                              >
-                                <option disabled selected value="">
-                                  Donor Type
-                                </option>
-                                <option value="Corporate">Corporate</option>
-                                <option value="Retail">Retail</option>
-                              </select>
-                              {errors.map((error, index) => {
-                                if (error.field === "userData.user.donarType") {
-                                  return (
-                                    <div
-                                      key={index}
-                                      className="error-message red-text"
-                                    >
-                                      {error.message}
-                                    </div>
-                                  );
-                                }
-                                return null;
-                              })}
-                            </div>
-                          </div>{" "}
-                        </div>{" "}
                       </div>
                       {isVisibleGift ? (
                         <div className="row">
@@ -1962,7 +1963,7 @@ function OnlineDonation() {
                             <div className="select-label">
                              {/* <div className="col-4 ">I want to opt</div> */}
                             <div className="col-12 p0 field-wrapper">
-                              <label className="form-label top-27">I want to opt</label>
+                              <label className="form-label top-27">Type of Corporate</label>
                                 <select
                                   className=" form-control-inside form-select"
                                   name="user.donarType"
@@ -1973,9 +1974,9 @@ function OnlineDonation() {
                                   <option disabled selected value="">
                                     Select Activity
                                   </option>
-                                  <option value="csr">CSR Activity</option>
+                                  <option value="csr">CSR</option>
                                   <option value="noncsr">
-                                    NON-CSR Activity
+                                    NON-CSR
                                   </option>
                                 </select>
                                 {errors.map((error, index) => {
@@ -2076,9 +2077,9 @@ function OnlineDonation() {
                             <thead>
                               <tr>
                                 <th>Planting Season</th>
-                                <th>Cost per Sampling</th>
+                                <th>Cost per Sapling</th>
                                 {/* <th>Maintenance Cost</th> */}
-                                <th className="w200">No. Sampling</th>
+                                <th className="w200">No. Sapling</th>
                                 <th>Total Cost</th>
                               </tr>
                             </thead>
@@ -2138,37 +2139,6 @@ function OnlineDonation() {
                         <div className="actionheadingdiv">Personal Details</div>
                         <div className="col-12 pr15 mt20">
                           <div className="row">
-                            <div className="col-6">
-                              <div className="select-label">
-                              <div className="col-12 p0 field-wrapper">
-                              <label className="form-label">Email Id</label>
-                                  <input
-                                    className="form-control-inside form-control"
-                                    type="text"
-                                    name="user.emailId"
-                                    placeholder="Email ID"
-                                    value={userData.user.emailId}
-                                    // onBlur={handleBlur}
-                                    onChange={handleChange}
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (
-                                      error.field === "userData.user.emailId"
-                                    ) {
-                                      return (
-                                        <div
-                                          key={index}
-                                          className="error-message red-text"
-                                        >
-                                          {error.message}
-                                        </div>
-                                      );
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
                             <div className="col-6">
                               <div className="select-label">
                                 {/* <div className="col-4 ">Mobile No.</div> */}
@@ -2941,7 +2911,7 @@ function OnlineDonation() {
                         <button
                           type="submit"
                           className="mt20 mr10 webform-button--submit"
-                          onClick={userAdd}
+                          onClick={(e) =>userAdd(e,"gift")}
                         >
                           Donate
                         </button>

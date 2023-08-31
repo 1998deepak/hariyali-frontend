@@ -937,7 +937,7 @@ export default function OnlineExistingDonar() {
                           >
                             <option disabled selected value="">Donor Type</option>
                             <option value="Corporate" >Corporate</option>
-                            <option value="Retail">Retail</option>
+                            <option value="Individual">Individual</option>
                           </select>
                           {errors.map((error, index) => {
                             if (error.field === 'userData.user.donarType') {
@@ -1678,9 +1678,9 @@ export default function OnlineExistingDonar() {
                           <thead>
                             <tr>
                               <th>Planting Season</th>
-                              <th>Cost per Sampling</th>
+                              <th>Cost per Sapling</th>
                               {/* <th>Maintenance Cost</th> */}
-                              <th className="w200">No. Sampling</th>
+                              <th className="w200">No. Sapling</th>
                               <th>Total Cost</th>
                             </tr>
                           </thead>

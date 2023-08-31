@@ -63,7 +63,7 @@ function OfflineDonation() {
       organisation: "",
       isTaxBenefit: false,
       panCard: "",
-      activityType: null,
+      activityType: "",
       address: [],
       donations: [],
     },
@@ -514,9 +514,10 @@ function OfflineDonation() {
       console.log(packageData);
       const parsedData = JSON.parse(response.data);
 
-      let data = parsedData.map((item)=>({packageName:item.package_name,bouquetPrice: item.bouquet_price,NoOfBouquets:0,amount:0}))
-  
+      let data = parsedData.map((item)=>({packageName:item.package_name,bouquetPrice: item.bouquet_price,NoOfBouquets:1,amount:item.bouquet_price}))
+      
       setPackageData(data);
+      calculateOverallTotal(data)
     } else {
       toast.error(response?.message);
     }
@@ -613,11 +614,11 @@ function OfflineDonation() {
       (row.bouquetPrice) * row.NoOfBouquets;
     userPackageData[rowIndex]["amount"] = totalCost;
     setPackageData(userPackageData);
-    calculateOverallTotal();
+    calculateOverallTotal(packageData);
     console.log(userPackageData);
   };
 
-  const calculateOverallTotal = () => {
+  const calculateOverallTotal = (packageData) => {
     const totalAmountOfPackage = packageData.reduce(
       (accumulator, packageItem, index) => {
         return (
@@ -745,7 +746,6 @@ function OfflineDonation() {
     }
   };
   const addpaymenticon = () => {
-    console.log("Hiiiiiii");
     if (document.getElementById("addpaymentDiv")) {
       if (document.getElementById("addpaymentDiv").style.display === "none") {
         document.getElementById("addpaymentDiv").style.display = "block";
@@ -763,7 +763,6 @@ function OfflineDonation() {
   };
 
   const addgiftpaymenticon = () => {
-    console.log("Hiiiiiii");
     if (document.getElementById("addgiftpaymentDiv")) {
       if (document.getElementById("addgiftpaymentDiv").style.display === "none") {
         document.getElementById("addgiftpaymentDiv").style.display = "block";
@@ -780,15 +779,9 @@ function OfflineDonation() {
     }
   };
 
-
-
-
-
-
   // get Detail by email id
   const handleBlur = async (e) => {
     e.preventDefault();
-    console.log("Hii");
     console.log(e.target.value);
     const emailId = e.target.value;
     let response = await DonationService.getDetailsByEmailId(emailId);
@@ -1038,8 +1031,8 @@ function OfflineDonation() {
                     //  onClick={() => handleTabSelect()}
                     activeKey={donationType} onSelect={handleTabSelect}
                   >
-                    <Tab eventKey="Self-Donate" title="Self Donate">
-                      <h5>Self Planting</h5>
+                    <Tab eventKey="Self-Donate" title="Plant a tree">
+                      {/* <h5>Self Planting</h5> */}
 
                       <form className="form-div contact-form-wrap">
                         <div className="actionheadingdiv">
@@ -1172,7 +1165,7 @@ function OfflineDonation() {
                                   >
                                     <option disabled selected value="">Donar Type</option>
                                     <option value="Corporate">Corporate</option>
-                                    <option value="Retail">Retail</option>
+                                    <option value="Individual">Individual</option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (error.field === 'userData.user.donarType') {
@@ -1293,8 +1286,7 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
-
+                            {/* <div className="col-6">
                               <div className="row select-label">
                                 <label className="col-4 ">I want to opt</label>
                                 <div className="col-8 p0">
@@ -1325,6 +1317,29 @@ function OfflineDonation() {
                                   }
                                   return null;
                                 })}
+                              </div>
+                            </div> */}
+                            <div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 ">Type of Corporate</div>
+                                <div className="col-8 p0">
+                                  <select
+                                    className=" form-control-inside form-select"
+                                    name="user.donarType"
+                                    value={userData?.user?.activityType}
+                                    onChange={handleChange}
+                                  >
+                                    <option disabled selected value="">Select</option>
+                                    <option value="Corporate">CSR</option>
+                                    <option value="Individual">Non-CSR</option>
+                                  </select>
+                                  {errors.map((error, index) => {
+                                    if (error.field === 'userData.user.donarType') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -1661,7 +1676,7 @@ function OfflineDonation() {
                                       handlePaymentInfoChange(event, 0, 0)
                                     }
                                   >
-                                    <option disabled selected value="">Donar Type</option>
+                                    <option disabled selected value="">Select</option>
                                     <option value="Cheque">Cheque</option>
                                     <option value="Cash">Cash</option>
                                   </select>
@@ -1821,7 +1836,7 @@ function OfflineDonation() {
                                         handlePaymentInfoChange(event, 0, 1)
                                       }
                                     >
-                                      <option selected>Donar Type</option>
+                                      <option selected>Select</option>
                                       <option value="Cheque">Cheque</option>
                                       <option value="Cash">Cash</option>
                                     </select>
@@ -1945,10 +1960,10 @@ function OfflineDonation() {
                     </Tab>
                     <Tab
                       eventKey="Gift-Donate"
-                      title="Gift a Plant"
+                      title="Gift a tree"
                     //  onClick={(eventKey) => handleTabSelect()}
                     >
-                      <h5>Gift a Plant</h5>
+                      {/* <h5>Gift a tree</h5> */}
                       <form className="form-div contact-form-wrap">
                         <div className="col-12 mt20">
                           <div className="row ">
@@ -1962,7 +1977,7 @@ function OfflineDonation() {
                                     value={donations[0].donationEvent}
                                     onChange={(e) => handleDonationChange(e, 0)}
                                   >
-                                    <option disabled selected value="">Occasion</option>
+                                    <option disabled selected value="">select occasion</option>
                                     <option value="Birthday">Birthday</option>
                                     <option value="Wedding">Wedding</option>
                                     <option value="Anniversary">
@@ -1996,9 +2011,9 @@ function OfflineDonation() {
                             <thead>
                               <tr>
                                 <th>Planting Season</th>
-                                <th>Cost per Sampling</th>
+                                <th>Cost per Sapling</th>
                                 {/* <th>Maintenance Cost</th> */}
-                                <th className="w200">No. Sampling</th>
+                                <th className="w200">No. Sapling</th>
                                 <th>Total Cost</th>
                               </tr>
                             </thead>
@@ -2112,7 +2127,7 @@ function OfflineDonation() {
                                   >
                                     <option disabled selected value="">Donar Type</option>
                                     <option value="Corporate">Corporate</option>
-                                    <option value="Retail">Retail</option>
+                                    <option value="Individual">Individual</option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (error.field === 'userData.user.DonarType') {
@@ -2232,7 +2247,7 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            {/* <div className="col-6">
                               <div className="row select-label">
                                 <label className="col-4 ">I want to opt</label>
                                 <div className="col-8 p0">
@@ -2263,6 +2278,29 @@ function OfflineDonation() {
                                   }
                                   return null;
                                 })}
+                              </div>
+                            </div> */}
+                            <div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 ">Type of Corporate</div>
+                                <div className="col-8 p0">
+                                  <select
+                                    className=" form-control-inside form-select"
+                                    name="user.donarType"
+                                    value={userData?.user?.activityType}
+                                    onChange={handleChange}
+                                  >
+                                    <option disabled selected value="">Select</option>
+                                    <option value="Corporate">CSR</option>
+                                    <option value="Individual">Non-CSR</option>
+                                  </select>
+                                  {errors.map((error, index) => {
+                                    if (error.field === 'userData.user.donarType') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -2746,7 +2784,7 @@ function OfflineDonation() {
                                       handlePaymentInfoChange(event, 0, 0)
                                     }
                                   >
-                                    <option disabled selected value="">Donar Type</option>
+                                    <option disabled selected value="">Select</option>
                                     <option value="Cheque">Cheque</option>
                                     <option value="Cash">Cash</option>
                                   </select>
@@ -2906,7 +2944,7 @@ function OfflineDonation() {
                                         handlePaymentInfoChange(event, 0, 1)
                                       }
                                     >
-                                      <option selected>Donar Type</option>
+                                      <option selected>Select</option>
                                       <option value="Cheque">Cheque</option>
                                       <option value="Cash">Cash</option>
                                     </select>
@@ -3049,8 +3087,8 @@ function OfflineDonation() {
                     //  onClick={() => handleTabSelect()}
                     activeKey={donationType} onSelect={handleTabSelect}
                   >
-                    <Tab eventKey="Self-Donate" title="Self Donate">
-                      <h5>Self Planting</h5>
+                    <Tab eventKey="Self-Donate" title="Plant a tree">
+                      {/* <h5>Self Planting</h5> */}
 
                       <form className="form-div contact-form-wrap">
                         <div className="col-12 mt20">
@@ -3085,9 +3123,9 @@ function OfflineDonation() {
                             <thead>
                               <tr>
                                 <th>Planting Season</th>
-                                <th>Cost per Sampling</th>
+                                <th>Cost per Sapling</th>
                                 {/* <th>Maintenance Cost</th> */}
-                                <th className="w200">No. Sampling</th>
+                                <th className="w200">No. Sapling</th>
                                 <th>Total Cost</th>
                               </tr>
                             </thead>
@@ -3209,7 +3247,7 @@ function OfflineDonation() {
                                   >
                                     <option disabled selected value="">Donar Type</option>
                                     <option value="Corporate">Corporate</option>
-                                    <option value="Retail">Retail</option>
+                                    <option value="Individual">Individual</option>
                                   </select>
                                   {/* {errors.map((error, index) => {
                                     if (error.field === 'userData.user.donarType') {
@@ -3336,37 +3374,26 @@ function OfflineDonation() {
                               </div>
                             </div>
                             <div className="col-6">
-
                               <div className="row select-label">
-                                <label className="col-4 ">I want to opt</label>
+                                <div className="col-4 ">Type of Corporate</div>
                                 <div className="col-8 p0">
-                                  <input
-                                    type="radio"
-                                    name="user.activityType"
-                                    value="CSR Activity"
-                                    onClick={handleChange}
-                                    className="radioinput"
-                                  />
-                                  <label className="radiospan" checked>
-                                    CSR Activity
-                                  </label>
-                                  <input
-                                    type="radio"
-                                    name="user.activityType"
-                                    value="NON-CSR Activity"
-                                    onClick={handleChange}
-                                    className="radioinput"
-                                  />
-                                  <label className="radiospan">
-                                    NON-CSR Activity
-                                  </label>
+                                  <select
+                                    className=" form-control-inside form-select"
+                                    name="user.donarType"
+                                    value={userData?.user?.activityType}
+                                    onChange={handleChange}
+                                  >
+                                    <option disabled selected value="">Select</option>
+                                    <option value="Corporate">CSR</option>
+                                    <option value="Individual">Non-CSR</option>
+                                  </select>
+                                  {errors.map((error, index) => {
+                                    if (error.field === 'userData.user.donarType') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
                                 </div>
-                                {errors.map((error, index) => {
-                                  if (error.field === 'userData.user.activityType') {
-                                    return <div key={index} className="error-message red-text">{error.message}</div>;
-                                  }
-                                  return null;
-                                })}
                               </div>
                             </div>
                           </div>
@@ -3710,7 +3737,7 @@ function OfflineDonation() {
                                       handlePaymentInfoChange(event, 0, 0)
                                     }
                                   >
-                                    <option disabled selected value="">Donar Type</option>
+                                    <option disabled selected value="">Select</option>
                                     <option value="Cheque">Cheque</option>
                                     <option value="Cash">Cash</option>
                                   </select>
@@ -3870,7 +3897,7 @@ function OfflineDonation() {
                                         handlePaymentInfoChange(event, 0, 1)
                                       }
                                     >
-                                      <option selected>Donar Type</option>
+                                      <option selected>Select</option>
                                       <option value="Cheque">Cheque</option>
                                       <option value="Cash">Cash</option>
                                     </select>
@@ -3994,10 +4021,10 @@ function OfflineDonation() {
                     </Tab>
                     <Tab
                       eventKey="Gift-Donate"
-                      title="Gift a Plant"
+                      title="Gift a tree"
                     //  onClick={(eventKey) => handleTabSelect()}
                     >
-                      <h5>Gift a Plant</h5>
+                      {/* <h5>Gift a tree</h5> */}
                       <form className="form-div contact-form-wrap">
 
                         <div className="col-12 mt20">
@@ -4020,7 +4047,7 @@ function OfflineDonation() {
                                     value={donations[0].donationEvent}
                                     onChange={(e) => handleDonationChange(e, 0)}
                                   >
-                                    <option disabled selected value="">Occasion</option>
+                                    <option disabled selected value="">Select occasion</option>
                                     <option value="Birthday">Birthday</option>
                                     <option value="Wedding">Wedding</option>
                                     <option value="Anniversary">
@@ -4175,7 +4202,7 @@ function OfflineDonation() {
                                   >
                                     <option disabled selected value="">Donar Type</option>
                                     <option value="Corporate">Corporate</option>
-                                    <option value="Retail">Retail</option>
+                                    <option value="Individual">Individual</option>
                                   </select>
                                   {/* {errors.map((error, index) => {
                                     if (error.field === 'userData.user.DonarType') {
@@ -4308,36 +4335,25 @@ function OfflineDonation() {
                             </div>
                             <div className="col-6">
                               <div className="row select-label">
-                                <label className="col-4 ">I want to opt</label>
+                                <div className="col-4 ">Type of Corporate</div>
                                 <div className="col-8 p0">
-                                  <input
-                                    type="radio"
-                                    name="user.activityType"
-                                    value="CSR Activity"
-                                    onBlur={(e) => handleDonarIdBlur(e)}
-                                    onClick={handleChange}
-                                    className="radioinput"
-                                  />
-                                  <label className="radiospan" checked>
-                                    CSR Activity
-                                  </label>
-                                  <input
-                                    type="radio"
-                                    name="user.activityType"
-                                    value="NON-CSR Activity"
-                                    onClick={handleChange}
-                                    className="radioinput"
-                                  />
-                                  <label className="radiospan">
-                                    NON-CSR Activity
-                                  </label>
+                                  <select
+                                    className=" form-control-inside form-select"
+                                    name="user.donarType"
+                                    value={userData?.user?.activityType}
+                                    onChange={handleChange}
+                                  >
+                                    <option disabled selected value="">Select</option>
+                                    <option value="Corporate">CSR</option>
+                                    <option value="Individual">Non-CSR</option>
+                                  </select>
+                                  {errors.map((error, index) => {
+                                    if (error.field === 'userData.user.donarType') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
                                 </div>
-                                {errors.map((error, index) => {
-                                  if (error.field === 'userData.user.activityType') {
-                                    return <div key={index} className="error-message red-text">{error.message}</div>;
-                                  }
-                                  return null;
-                                })}
                               </div>
                             </div>
                           </div>
@@ -4521,6 +4537,100 @@ function OfflineDonation() {
                         <div className="col-12 pr15 mt20">
                           <div>
 
+                          <div className="row">
+                              <div className="col-6">
+                                <div className="row select-label">
+                                  <div className="col-4 ">First Name</div>
+                                  <div className="col-8 p0">
+                                    <input
+                                      className="form-control-inside"
+                                      name="firstName"
+                                      placeholder="First Name"
+                                      type="text"
+                                      value={recipient[0].firstName}
+                                      onChange={(e) =>
+                                        handleRecipentChange(e, 0)
+                                      }
+                                    />
+                                    {errors.map((error, index) => {
+                                      if (error.field === 'recipient[0].firstName') {
+                                        return <div key={index} className="error-message red-text">{error.message}</div>;
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="col-6">
+                                <div className="row select-label">
+                                  <div className="col-4 ">Last Name</div>
+                                  <div className="col-8 p0">
+                                    <input
+                                      className="form-control-inside"
+                                      name="lastName"
+                                      placeholder="Last Name"
+                                      type="text"
+                                      value={recipient[0].lastName}
+                                      onChange={(e) =>
+                                        handleRecipentChange(e, 0)
+                                      }
+                                    />
+                                    {errors.map((error, index) => {
+                                      if (error.field === 'recipient[0].lastName') {
+                                        return <div key={index} className="error-message red-text">{error.message}</div>;
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="col-6">
+                                <div className="row select-label">
+                                  <div className="col-4 ">Mobile No.</div>
+                                  <div className="col-8 p0">
+                                    <input
+                                      className="form-control-inside"
+                                      name="mobileNo"
+                                      placeholder="Mobile No."
+                                      type="text"
+                                      value={recipient[0].mobileNo}
+                                      onChange={(e) =>
+                                        handleRecipentChange(e, 0)
+                                      }
+                                    />
+                                    {errors.map((error, index) => {
+                                      if (error.field === 'recipient[0].mobileNo') {
+                                        return <div key={index} className="error-message red-text">{error.message}</div>;
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="col-6">
+                                <div className="row select-label">
+                                  <div className="col-4 ">Email Id</div>
+                                  <div className="col-8 p0">
+                                    <input
+                                      className="form-control-inside"
+                                      name="emailId"
+                                      placeholder="Email Id"
+                                      type="text"
+                                      value={recipient[0].emailId}
+                                      onChange={(e) =>
+                                        handleRecipentChange(e, 0)
+                                      }
+                                    />
+                                    {errors.map((error, index) => {
+                                      if (error.field === 'recipient[0].emailId') {
+                                        return <div key={index} className="error-message red-text">{error.message}</div>;
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                             <div className="row">
                               <div className="col-6">
                                 <div className="row select-label">
@@ -4627,7 +4737,7 @@ function OfflineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">Statesss</div>
+                                  <div className="col-4 ">State</div>
                                   <div className="col-8 p0">
                                     <select
                                       className=" form-control-inside form-select"
@@ -4706,101 +4816,6 @@ function OfflineDonation() {
                                         )
                                       }
                                     />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="row">
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">First Name</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="firstName"
-                                      placeholder="First Name"
-                                      type="text"
-                                      value={recipient[0].firstName}
-                                      onChange={(e) =>
-                                        handleRecipentChange(e, 0)
-                                      }
-                                    />
-                                    {errors.map((error, index) => {
-                                      if (error.field === 'recipient[0].firstName') {
-                                        return <div key={index} className="error-message red-text">{error.message}</div>;
-                                      }
-                                      return null;
-                                    })}
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">Last Name</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="lastName"
-                                      placeholder="Last Name"
-                                      type="text"
-                                      value={recipient[0].lastName}
-                                      onChange={(e) =>
-                                        handleRecipentChange(e, 0)
-                                      }
-                                    />
-                                    {errors.map((error, index) => {
-                                      if (error.field === 'recipient[0].lastName') {
-                                        return <div key={index} className="error-message red-text">{error.message}</div>;
-                                      }
-                                      return null;
-                                    })}
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">Mobile No.</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="mobileNo"
-                                      placeholder="Mobile No."
-                                      type="text"
-                                      value={recipient[0].mobileNo}
-                                      onChange={(e) =>
-                                        handleRecipentChange(e, 0)
-                                      }
-                                    />
-                                    {errors.map((error, index) => {
-                                      if (error.field === 'recipient[0].mobileNo') {
-                                        return <div key={index} className="error-message red-text">{error.message}</div>;
-                                      }
-                                      return null;
-                                    })}
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">Email Id</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="emailId"
-                                      placeholder="Email Id"
-                                      type="text"
-                                      value={recipient[0].emailId}
-                                      onChange={(e) =>
-                                        handleRecipentChange(e, 0)
-                                      }
-                                    />
-                                    {errors.map((error, index) => {
-                                      if (error.field === 'recipient[0].emailId') {
-                                        return <div key={index} className="error-message red-text">{error.message}</div>;
-                                      }
-                                      return null;
-                                    })}
                                   </div>
                                 </div>
                               </div>

@@ -857,9 +857,9 @@ console.log(donationData);
                       <table className="donatetable">
                         <thead>
                           <tr>
-                            <th>Plantin Sampling</th>
-                            <th>Cost per Sampling</th>
-                            <th>No. Sampling</th>
+                            <th>Plantin Sapling</th>
+                            <th>Cost per Sapling</th>
+                            <th>No. Sapling</th>
                             {/* <th>2 Years Maintenance</th> */}
                             <th>Amount</th>
                           </tr>

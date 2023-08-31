@@ -1431,13 +1431,14 @@ input:-internal-autofill-selected {
 }
 .verify-capt {
   position: absolute;
-  top: 50%;
+  top: 43%;
   right: 0;
-  right: 10px;
+  right: 17px;
   border: 0;
   transform: translateY(-50%);
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
+  border-radius: 5px;
 }
 /* Donate */
 .Donateslidimg {
@@ -1556,13 +1557,11 @@ table {
   width: 100%;
 }
 tr th {
-  font-weight: 500;
-  padding: 0.7rem 0.7rem;
-  background-color: #9d9fa2;
-  color: #000;
+  background-color: #c7ffd7 !important;
+  color: #23aa4a;
+  padding: 0.7rem;
   text-transform: uppercase;
-  /* font-family: "Georama-Regular", sans-serif; */
-  font-size: 0.9rem;
+  font-weight: 600 !important;
 }
 tr td {
   padding: 0rem 0.7rem;
@@ -1763,7 +1762,10 @@ tr td input {
 }
 /* admin */
 .overalltotal {
-  margin: 10px 0;
+  /* margin: 10px 0; */
+  float: right;
+  margin-top: 10px;
+  margin-right: 90px;
 }
 .edit-icon {
   color: #23aa4a;
@@ -2442,9 +2444,10 @@ tr td input {
   border-bottom: 1px solid #9c9b9b;
 }
 .banner-wedo{
-  background: url("../img/whatWeDo.png") no-repeat;
+  background: url("../img/whatWeDog.png") no-repeat;
   background-position: center;
   border-bottom: 1px solid #ccc;
+  object-fit: cover;
 }
 .banner-support{
   background: url('../img/slider/support-us.png') no-repeat;
@@ -3394,4 +3397,17 @@ iframe{
   margin-top: -6rem;
   /* height: 100%; */
   margin-bottom: 0px;
+}
+.approve-button{
+  color: green;
+}
+
+.reject-button{
+  color: red;
+}
+
+.icon-btn{
+  font-size: 25px;
+  margin: 0px 5px;
+  cursor: pointer;
 }

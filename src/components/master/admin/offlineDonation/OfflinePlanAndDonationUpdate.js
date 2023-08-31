@@ -180,37 +180,7 @@ function OfflineDonationPay() {
   const [donationData, setDonationData] = useState(intialDonations[0]);
   const [recipient, setRecipient] = useState(initialRecipientData[0]);
 
-  // const handleChangeNumberOfBouquets = (e, row, rowIndex) => {
-  //   let { name, value } = e.target;
-  //   console.log({ name, value, rowIndex }, row);
-  //   let userPackageData = [...packageData]; // Clone the packageData array
-  //   userPackageData[rowIndex][name] = value;
 
-  //   const totalCost = (row.bouquetPrice + row.maintenanceCost) * value;
-  //   userPackageData[rowIndex]["amount"] = totalCost;
-
-  //   setPackageData(userPackageData, () => {
-  //     calculateOverallTotal();
-  //   });
-
-  //   console.log(userPackageData);
-  // };
-
-  // console.log(packageData);
-  // const calculateOverallTotal = () => {
-  //   const totalAmountOfPackage = packageData.reduce((accumulator, packageItem) => {
-  //     return (
-  //       accumulator +
-  //       (packageItem.bouquetPrice + packageItem.maintenanceCost) *
-  //       packageItem.NoOfBouquets
-  //     );
-  //   }, 0);
-
-  //   setDonationData((prevDonationData) => ({
-  //     ...prevDonationData,
-  //     totalAmount: totalAmountOfPackage,
-  //   }));
-  // };
 
   const handleChangeNumberOfBouquets = (e, row, rowIndex) => {
     let { name, value } = e.target;
@@ -402,196 +372,6 @@ console.log(handleRecipientChange);
 
 
   const [errors, setErrors] = useState({});
-
-  // useEffect(() => {
-  //   validate(); // Call the validate function whenever the dependencies change
-  // }, [donationData, recipient]);
-  
-//   const validate = () => {
-//     const errors = [];
-
-//     for (let i = 0; i < donationData.paymentInfo.length; i++) {
-//       const payment = donationData.paymentInfo[i];
-//       const paymentErrors = {};
-
-//       if (!payment.paymentMode || payment.paymentMode === "Donor Type") {
-//         paymentErrors.paymentMode = "Payment Mode is required";
-//       }
-//       if (!payment.chqORddDate) {
-//         paymentErrors.chqORddDate = "ChqORddDate is required";
-//       }
-//       if (!payment.paymentDate) {
-//         paymentErrors.paymentDate = "Payment Date is required";
-//       }
-//       if (!payment.amount) {
-//         paymentErrors.amount = "Amount is required";
-//       }
-//       if (!payment.bankname || payment.bankname.trim() === '') {
-//         paymentErrors.bankname = "BankName is required";
-//       } else if (!/^[A-Za-z]+$/.test(payment.bankname)) {
-//         paymentErrors.bankName = "Bank Name is invalid";
-//       }
-//       if (!payment.chqORddNo) {
-//         paymentErrors.chqORddNo = "ChqORddNo is required";
-//       }
-//       console.log(paymentErrors);
-//       errors.push(paymentErrors);
-//     }
-
-//     console.log(donationData.donationType);
-//     // if (donationData.donationType !== "Self-Donate") {
-//     //   // Donation Event validation
-//     //   if (!donationData.donationEvent) {
-//     //     errors.push({ donationEvent: "Donation Event is required" });
-//     //   }
-  
-//     //   // Recipient validation only if donationType is not "Gift-Donate"
-//     //   if (donationData.donationType == "Gift-Donate") {
-//     //     for (let i = 0; i < donationData.recipient.length; i++) {
-//     //       const recipientValidate = donationData.recipient[i]; // Assuming recipient data is an array
-  
-//     //       const recipientErrors = {};
-  
-//     //       if (!recipientValidate.emailID) {
-//     //         recipientErrors.emailID = "Email Id is required";
-//     //       } else if (
-//     //         !/^([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+)\.([a-zA-Z]{2,5})$/.test(
-//     //           recipientValidate.emailID
-//     //         )
-//     //       ) {
-//     //         recipientErrors.emailID = "Enter a Valid Email Address";
-//     //       }
-  
-//     //       if (!recipientValidate.mobileNo) {
-//     //         recipientErrors.mobileNo = "Mobile Number is required";
-//     //       }
-  
-//     //       // Other recipient validation logic...
-  
-//     //       if (Object.keys(recipientErrors).length > 0) {
-//     //         errors.push(recipientErrors);
-//     //       }
-//     //     }
-//     //   } else {
-//     //     // Set recipient data to null if donationType is "Gift-Donate"
-//     //     donationData.recipient = null; // Assuming recipient data is an array
-//     //   }
-//     // }
-  
-  
-    
-//     console.log(errors);
-//     setErrors(errors);
-//     console.log("Errors:", errors); // Log the errors array
-//   console.log("Errors length:", errors.length);
-//   // Log each error object and its properties
-// errors.forEach((error, index) => {
-//   console.log(`Error ${index + 1}:`, error);
-// });
-//     console.log(errors.length === 0);
-//   return errors.length === 0;
-//   };
-
-// console.log(errors.length === 0);
-
-
-
-
-  // Update Donation data
-  // const updateDonation = async (e) => {
-  //   e.preventDefault();
-  
-  //   // const isValid = validate();
-  //   // console.log("isValid:", isValid);
-  //   let updatedFormData = null;
-  
-  //   // if (isValid) {
-  //     // console.log(isValid);
-  //     // Construct the updated form data
-  //     const updatedRecipientData = {
-  //       ...initialRecipientData[0],
-  //       ...recipient,
-  //     };
-  
-  //     const updatedDonationData = {
-  //       ...donationData,
-  //       userPackage: packageData,
-  //       recipient: [updatedRecipientData],
-  //     };
-  
-  //     updatedFormData = {
-  //       formData: {
-  //         user: {
-  //           ...userData,
-  //           donations: [updatedDonationData],
-  //         },
-  //       },
-  //     };
-  //   // }
-  
-  //   setPackageData(packageData); // Set the updated package data to packageData state
-  
-  //   console.log(updatedFormData);
-  
-  //   if (updatedFormData) {
-  //     try {
-  //       // Make the API call only if the form data is valid
-  //       const response = await DonationService.updateDonation(updatedFormData);
-  //       console.log(response);
-  //       // Process the API response as needed
-  //       if (response?.status === "Data Update Successfully") {
-  //         toast.success(response?.message);
-  //       } else {
-  //         toast.error(response?.message);
-  //       }
-  //     } catch (error) {
-  //       console.error(error);
-  //       // Handle any errors from the API call
-  //     }
-  //   }
-  // };
-  
-
-  //proper code for update
-  // const updateDonation = async (e) => {
-  //   e.preventDefault();
-  
-  //   // Construct the updated form data
-  //   const updatedDonationData = {
-  //     ...donationData,
-  //     userPackage: packageData,
-  //     recipient: [] // Set recipient array to empty for self-donate
-  //   };
-  
-  //   const updatedFormData = {
-  //     formData: {
-  //       user: {
-  //         ...userData,
-  //         donations: [updatedDonationData],
-  //       },
-  //     },
-  //   };
-  
-  //   setPackageData(packageData); // Set the updated package data to packageData state
-  
-  //   console.log(updatedFormData);
-  
-  //   try {
-  //     // Make the API call
-  //     const response = await DonationService.updateDonation(updatedFormData);
-  //     console.log(response);
-  //     // Process the API response as needed
-  //     if (response?.status === "Data Update Successfully") {
-  //       toast.success(response?.message);
-  //     } else {
-  //       toast.error(response?.message);
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     // Handle any errors from the API call
-  //   }
-  // };
-  
   
 // test 
 const validate = () => {
@@ -819,7 +599,7 @@ console.log(donationData);
                         </div>
                       </div>
                     </div>
-                    {donationData.donationType !== "Self-Donate" && (
+                    {donationData.donationType.toUpperCase() !== "SELF-DONATE" && (
                       <div className="col-6">
                         <div className="row select-label">
                           <div className="col-4">Occasion</div>
@@ -853,12 +633,12 @@ console.log(donationData);
 
                   {packageData && packageData.length > 0 && (
                     <div className="mt20">
-                      <table className="donatetable">
+                      <table >
                         <thead>
                           <tr>
-                            <th>Plantin Sampling</th>
-                            <th>Cost per Sampling</th>
-                            <th>No. Sampling</th>
+                            <th>Plantin Sapling</th>
+                            <th>Cost per Sapling</th>
+                            <th>No. Sapling</th>
                             {/* <th>2 Years Maintenance</th> */}
                             <th>Amount</th>
                           </tr>
@@ -935,30 +715,9 @@ console.log(donationData);
 
                     </div>
                   )}
-
-
-                  {/* ) : null
-)} */}
-
-
-
-                  {/* <div className="col-6 mt20">
-                    <div className="row select-label">
-                      <div className="col-4 "> General Donation</div>
-                      <input
-                        placeholder=" General Donation"
-                        className="col-4 form-control-inside"
-                        type="text"
-                        value={donationData.generalDonation}
-                      // onChange={(e) =>
-                      //   setGeneralDonation(parseFloat(e.target.value))
-                      // }
-                      />
-                    </div>
-                  </div> */}
-
+                  <div className="clear"></div>
                   <hr />
-                  {donationData.donationType !== "Self-Donate" && (
+                  {donationData.donationType.toUpperCase() !== "SELF-DONATE" && (
                     <>
                       <div className="actionheadingdiv">DETAILS OF RECIPIENT</div>
                       <div className="col-12 pr15 mt20">
@@ -1201,7 +960,7 @@ console.log(donationData);
                               }
                               required
                             >
-                              <option disabled selected value="">Donar Type</option>
+                              <option disabled selected value="">Select</option>
                               <option value="Cheque">Cheque</option>
                               <option value="Cash">Cash</option>
                             </select>

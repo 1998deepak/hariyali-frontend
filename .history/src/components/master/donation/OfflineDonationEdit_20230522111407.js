@@ -441,7 +441,7 @@ function OfflineDonationEdit() {
                           >
                             <option selected>Donar Type</option>
                             <option value="Corporate">Corporate</option>
-                            <option value="Retail">Retail</option>
+                            <option value="Individual">Individual</option>
                           </select>
                         </div>
                       </div>

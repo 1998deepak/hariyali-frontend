@@ -298,7 +298,7 @@ function OfflineDonation() {
                               <select className=" form-control-inside form-select">
                                 <option selected>Donor Type</option>
                                 <option value="0">Corporate</option>
-                                <option value="1">Retail</option>
+                                <option value="1">Individual</option>
                               </select>
                             </div>
                             {/* <input
@@ -812,7 +812,7 @@ function OfflineDonation() {
                               <select className=" form-control-inside form-select">
                                 <option selected>Donor Type</option>
                                 <option value="0">Corporate</option>
-                                <option value="1">Retail</option>
+                                <option value="1">Individual</option>
                               </select>
                             </div>
                             {/* <input

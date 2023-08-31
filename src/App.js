@@ -247,15 +247,15 @@ function DonarAdminPayWithHeaderAndFooter() {
     </>
   );
 }
-// function TryWithHeaderAndFooter() {
-//   return (
-//     <>
-//       <UserHeader />
-//       <TryingDonation />
-//       <UserFooter />
-//     </>
-//   );
-// }
+function LoginWithHeaderAndFooter() {
+  return (
+    <>
+      <UserHeader />
+      <Login />
+      <UserFooter />
+    </>
+  );
+}
 function DashboardWithHeaderAndFooter() {
   return (
     <>
@@ -321,7 +321,7 @@ function App() {
         <Route path="/FootPrint" element={<FootPrintWithHeaderAndFooter />} />
         <Route path="/GalleryAwards" element={<GalleryAwardsWithHeaderAndFooter />} />
         <Route path="/ContactUs" element={<ContactUsWithHeaderAndFooter />} />
-        <Route path="/Login" element={<Login />} />
+        <Route path="/Login" element={<LoginWithHeaderAndFooter />} />
         <Route path="/OtpId" element={<OtpId />} />
         <Route path="/ConformPassword" element={<ConformPassword />} />
         <Route path="/OnlineDonation" element={<DonateWithHeaderAndFooter />} />
