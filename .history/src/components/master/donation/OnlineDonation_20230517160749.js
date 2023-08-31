@@ -522,7 +522,7 @@ function OnlineDonation() {
                                 onChange={(e) => setDonarType(e.target.value)}>
                                 <option selected>Donar Type</option>
                                 <option value="Corporate">Corporate</option>
-                                <option value="Retail">Retail</option>
+                                <option value="Individual">Individual</option>
                               </select>
                             </div>{" "}
                           </div>
@@ -971,7 +971,7 @@ function OnlineDonation() {
                                 onChange={(e) => setDonarType(e.target.value)}>
                                 <option selected>Donar Type</option>
                                 <option value="Corporate">Corporate</option>
-                                <option value="Retail">Retail</option>
+                                <option value="Individual">Individual</option>
                               </select>
                             </div>{" "}
                           </div>

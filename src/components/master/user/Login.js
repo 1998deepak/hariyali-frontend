@@ -209,18 +209,18 @@ function Login() {
     <ToastContainer/>
     <div className="logindiv bggray">
       <div className="col-6 mauto">
-        <div className="loginlogo">
-          <img src={logo} alt="Logo" />
-        </div>
         <div
           id="loginDiv"
           className="row justify-content-between bgwite border1 padding30 contact-form-wrap"
         >
-          <h5>THANKS FOR YOUR INTEREST IN HARIYALI</h5>
-          <p>
+          {/* <h5>THANKS FOR YOUR INTEREST IN HARIYALI</h5> */}
+          {/* <p>
             Please provide your UserName and password, so we can help you
             better!
-          </p>
+          </p> */}
+          <div className="loginlogo">
+          <img src={logo} alt="Logo" />
+        </div>
           <div className="col-12">
             <form className="form-div contact-form-wrap">
               <label className="col-12">
@@ -259,6 +259,16 @@ function Login() {
                   Forgot Password
                 </div>
               </div>
+              <Captcha verified={verified} setVerified={setVerified}></Captcha>
+              {errors.captcha != "" &&
+                                  (
+                                    <div
+                                      className="error-message red-text"
+                                    >
+                                     {errors.captcha}
+                                    </div>
+                                  )}
+                                <br/>
               <div id="VerifyOTP">
                 <label className="col-12">
                   <input
@@ -271,15 +281,6 @@ function Login() {
                   />
                 </label>
               </div>
-              <Captcha verified={verified} setVerified={setVerified}></Captcha>
-              {errors.captcha != "" &&
-                                  (
-                                    <div
-                                      className="error-message red-text"
-                                    >
-                                     {errors.captcha}
-                                    </div>
-                                  )}
               <div className="text-center mb-4">
               <button
                 onClick={login}

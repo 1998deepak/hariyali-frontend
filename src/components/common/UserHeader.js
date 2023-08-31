@@ -11,6 +11,7 @@ import { BsChevronBarLeft } from "react-icons/bs";
 import logo from "../../assets/img/logotrans.png";
 import donoteicon from "../../assets/img/donote.png";
 import { Link, useNavigate, useLocation} from "react-router-dom";
+import plantation from "../../assets/img/GIF's/output-onlinegiftools.gif";
 
 const Header = () => {
 
@@ -65,7 +66,7 @@ const Header = () => {
                 <Nav className="justify-content-end  nav-list" activeKey={location.pathname}>
                   <Nav.Item >
                     <Nav.Link href="/AboutUs" className={`${activeTab === 'AboutUs' ? 'active' : ''}`}
-        onClick={() => setActiveTab('AboutUs')} eventKey="/AboutUs">About Us</Nav.Link>
+        onClick={() => setActiveTab('AboutUs')} eventKey="/AboutUs">Who are we</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="/WhatWeDo" className={`${activeTab === 'WhatWeDo' ? 'active' : ''}`}
@@ -77,15 +78,15 @@ const Header = () => {
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="/WaystoAssociate" className={`${activeTab === 'WaystoAssociate' ? 'active' : ''}`}
-        onClick={() => setActiveTab('WaystoAssociate')} eventKey="/WaystoAssociate">Ways to associate</Nav.Link>
+        onClick={() => setActiveTab('WaystoAssociate')} eventKey="/WaystoAssociate">How to associate</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="/FootPrint" className={`${activeTab === 'FootPrint' ? 'active' : ''}`}
-        onClick={() => setActiveTab('FootPrint')} eventKey="/FootPrint">FootPrint</Nav.Link>
+        onClick={() => setActiveTab('FootPrint')} eventKey="/FootPrint">Where are we</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="/ContactUs" className={`${activeTab === 'ContactUs' ? 'active' : ''}`}
-        onClick={() => setActiveTab('ContactUs')} eventKey="/ContactUs">Contact Us</Nav.Link>
+        onClick={() => setActiveTab('ContactUs')} eventKey="/ContactUs">Ask Us</Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Navbar.Collapse>
@@ -98,7 +99,7 @@ const Header = () => {
           >
             <Nav.Item>
               <div className="menu-button-wrapper" onClick={goToDonate}>
-                <Button className="menu-button-donet"><img src={donoteicon} alt="Donote" className="donoteicon" />Plant A Tree </Button>
+                <Button className="menu-button-donet"><img src={plantation} alt="Donote" className="donoteicon" />Plant A Tree </Button>
               </div>
             </Nav.Item>
             <Nav.Item className="text-center small-non">

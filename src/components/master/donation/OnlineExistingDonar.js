@@ -228,7 +228,7 @@ export default function OnlineExistingDonar() {
       if (!userData?.user?.prefix) {
         validationErrors.push({ field: "userData.user.prefix", message: "Prefix is required" });
       }
-      if (!userData?.user?.organisation) {
+      if (userData?.user?.donarType.toLocaleLowerCase() === "corporate" && !userData?.user?.organisation) {
         validationErrors.push({ field: "userData.user.organisation", message: "Organisation is required" });
       }
       if (!userData?.user?.panCard) {
@@ -404,7 +404,7 @@ export default function OnlineExistingDonar() {
     
         //if (isValid) {
         const updatedDonations = [...donations];
-        const filteredPackages = packageData.filter((pkg) => pkg.NoOfBouquets > 0);
+        const filteredPackages = packageData.filter((pkg) => pkg.noOfBouquets > 0);
         console.log(filteredPackages);
         updatedDonations[0].userPackage = filteredPackages;
     
@@ -495,7 +495,7 @@ export default function OnlineExistingDonar() {
         const parsedData = JSON.parse(response.data);
   
         let data = parsedData.map((item) => ({ packageName: item.package_name, bouquetPrice: item.bouquet_price, noOfBouquets: 0, amount: 0 }))
-  
+        console.log(data)
         setPackageData(data);
       } else {
         toast.error(response?.message);
@@ -747,8 +747,9 @@ export default function OnlineExistingDonar() {
   
     const getUserInfo = async (email, type) => {
       let response = await DonationService.getExistingDetailsByEmailId(email);
-      console.log(response)
+      console.log(JSON.stringify(response))
       if (response?.status === "Success") {
+        console.log(response.data.emailId);
         toast.success(response?.message);
         let addr = [...initialAddress];
         if (hasValues(response.data.address[0])) {
@@ -936,7 +937,7 @@ export default function OnlineExistingDonar() {
                           >
                             <option disabled selected value="">Donor Type</option>
                             <option value="Corporate" >Corporate</option>
-                            <option value="Retail">Retail</option>
+                            <option value="Individual">Individual</option>
                           </select>
                           {errors.map((error, index) => {
                             if (error.field === 'userData.user.donarType') {
@@ -1677,9 +1678,9 @@ export default function OnlineExistingDonar() {
                           <thead>
                             <tr>
                               <th>Planting Season</th>
-                              <th>Cost per Sampling</th>
+                              <th>Cost per Sapling</th>
                               {/* <th>Maintenance Cost</th> */}
-                              <th className="w200">No. Sampling</th>
+                              <th className="w200">No. Sapling</th>
                               <th>Total Cost</th>
                             </tr>
                           </thead>

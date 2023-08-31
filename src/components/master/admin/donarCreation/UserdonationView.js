@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { BiSearchAlt } from "react-icons/bi";
-import { BsPlusCircleFill } from "react-icons/bs";
-// import { AiFillEdit } from "react-icons/ai";
-import { BsGiftFill } from "react-icons/bs";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link, useParams } from "react-router-dom";
-import { AiFillEdit } from "react-icons/ai";
 import { DonationService } from "../../../../services/donationService/donation.service";
 import { FaRegEye } from "react-icons/fa";
 function UserdonationView({ userDetails, setAuthToken, authToken }) {

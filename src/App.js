@@ -133,9 +133,13 @@ function DonateWithHeaderAndFooter() {
 function ExistingOnlineDonate() {
   return (
     <>
-      <UserHeader />
-      <OnlineExistingDonar />
-      <UserFooter />
+    <AdminHeader />
+    <div className="leftmenu-main">
+        <UserLeftMenu />
+        <div className="float-left page-scroll remove-top-margin" style={{ width: "100%" }}>
+        <OnlineExistingDonar />
+        </div>
+      </div>
     </>
   );
 }
@@ -243,15 +247,15 @@ function DonarAdminPayWithHeaderAndFooter() {
     </>
   );
 }
-// function TryWithHeaderAndFooter() {
-//   return (
-//     <>
-//       <UserHeader />
-//       <TryingDonation />
-//       <UserFooter />
-//     </>
-//   );
-// }
+function LoginWithHeaderAndFooter() {
+  return (
+    <>
+      <UserHeader />
+      <Login />
+      <UserFooter />
+    </>
+  );
+}
 function DashboardWithHeaderAndFooter() {
   return (
     <>
@@ -268,14 +272,11 @@ function DashboardWithHeaderAndFooter() {
 function UserDonationView({ userDetails, setAuthToken, authToken }) {
   return (
     <>
-     {/* <AdminHeader /> */}
      <AdminHeader />
       <div className="leftmenu-main">
       <UserLeftMenu />
-        <UserdonationView userDetails={userDetails.email} setAuthToken={setAuthToken} authToken={authToken} />
-       
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
-         
+        <div className="float-left" style={{ width: "100%" }}>
+        <UserdonationView userDetails={userDetails?.email} setAuthToken={setAuthToken} authToken={authToken} />
         </div>
       </div>
     </>
@@ -287,8 +288,8 @@ function UserSpecificDonation() {
     <>
        <AdminHeader />
       <div className="leftmenu-main">
-        {/* <AdminLeftMenu /> */}
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+      <UserLeftMenu />
+        <div className="float-left" style={{ width: "100%" }}>
       <UserSpecificDonationView />
       </div></div>
     </>
@@ -317,13 +318,13 @@ function App() {
         <Route path="/FootPrint" element={<FootPrintWithHeaderAndFooter />} />
         <Route path="/GalleryAwards" element={<GalleryAwardsWithHeaderAndFooter />} />
         <Route path="/ContactUs" element={<ContactUsWithHeaderAndFooter />} />
-        <Route path="/Login" element={<Login />} />
+        <Route path="/Login" element={<LoginWithHeaderAndFooter />} />
         <Route path="/OtpId" element={<OtpId />} />
         <Route path="/ConformPassword" element={<ConformPassword />} />
         <Route path="/OnlineDonation" element={<DonateWithHeaderAndFooter />} />
 
         <Route path="/ExistingOnlineDonation" element = {<ProtectedRoutes user={authority.user}>
-                    <ExistingOnlineDonate setAuthToken={setAuthToken} authToken={authToken} />
+                    <ExistingOnlineDonate  />
                   </ProtectedRoutes>}/>
         
                   <Route path="/user/dashboard" element = {<ProtectedRoutes user={authority.user}>

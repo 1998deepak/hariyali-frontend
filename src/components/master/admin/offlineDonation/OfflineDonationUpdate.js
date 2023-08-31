@@ -386,7 +386,7 @@ console.log(addressErrors);
                               onChange={handleChange}>
                               <option selected>Donor Type</option>
                               <option value="Corporate">Corporate</option>
-                              <option value="Retail">Retail</option>
+                              <option value="Individual">Individual</option>
                             </select>
                             {errors.donarType && <div className="error-message red-text">{errors.donarType}</div>}
                           </div>

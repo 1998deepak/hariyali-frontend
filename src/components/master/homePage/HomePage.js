@@ -67,10 +67,11 @@ import { Zoom } from "react-slideshow-image";
 // import image2 from "../../../assets/img/slider/rise-program-resgions-2.jpg";
 // import image3 from "../../../assets/img/slider/rise-program-resgions-3.jpg";
 // import image4 from "../../../assets/img/slider/rise-program-resgions-4.jpg";
-import image1 from "../../../assets/img/slider/banner1.png";
+import image1 from "../../../assets/img/hariyali-img-4.jpg";
 import image2 from "../../../assets/img/slider/extra.jpg";
 import image3 from "../../../assets/img/slider/banner3.png";
 import image4 from "../../../assets/img/slider/banner4.jpg";
+import image5 from "../../../assets/img/Image20230827121634.png"
 
 // import plantimg from "../../../assets/img/pmat_a_tree.png";
 
@@ -89,11 +90,11 @@ const slides = [
   {
     image: image2,
     title: 'When you cut a tree you take a life and when you plant a tree you plant hope',
-    description: '',
+    description: 'we are planting millions of trees across indian since 2007',
   },
   {
     image: image1,
-    title: 'Take your first step towards a green future',
+    title: 'Trees need people as much as people need trees',
     description: 'Araku Valley, Vishakhapatnam, Andhra Pradesh',
   },
   {
@@ -103,8 +104,13 @@ const slides = [
   },
   {
     image: image4,
-    title: 'Trees need people as much as people need trees',
+    title: 'Take your first step towards a green future',
     description: 'Shravasti, Uttar Pradesh',
+  },
+  {
+    image: image5,
+    title: 'A farmer does not only grow crops but creates a healthy environment',
+    description: 'Wardha, Maharashtra',
   },
   // Add more slides here
 ];
@@ -211,54 +217,12 @@ function HomePage() {
       {/* slider */}
       <div className="">
         <Slideshow />
-
-        {/* <div classNameName="slid-linkdiv">
-          <div classNameName="all">
-            <div classNameName="lefterside">
-              <div classNameName="explainer">
-                {" "}
-                <BiLink />
-              </div>
-              <div className="text">Hosting</div>
-            </div>
-            <div className="leftside">
-              <div className="explainer">
-                {" "}
-                <BiLink />
-              </div>
-              <div className="text">Web Design</div>
-            </div>
-            <div className="centerside">
-              <div className="explainer">
-                {" "}
-                <BiLink />
-              </div>
-              <div className="text">Discover the chain</div>
-            </div>
-            <div className="rightside">
-              <div className="explainer">
-                {" "}
-                <BiLink />
-              </div>
-              <div className="text">Backend Development</div>
-            </div>
-            <div className="righterside">
-              <div className="explainer">
-                {" "}
-                <BiLink />
-              </div>
-              <div className="text">SEO</div>
-            </div>
-          </div>
-        </div> */}
+        
       </div>
       {/* slide info */}
 
       <div className="container pv-75">
-        {/* <div className="mahindralogo">
-          <img src={mahindraLogo} alt="Mahindra Logo" />
-        </div> */}
-        {/* <h2 className="sub-title text-center mb-5">Impact & Reach</h2> */}
+        
         <div className="row mb30 impact-wrapper">
           <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
@@ -282,84 +246,60 @@ function HomePage() {
             </div>
           </div>
         </div>
-        {/* <div className="heading colorblack text-center ">2,28,61,288</div>
-
-        <div className="subheading text-center">
-          Creating carbon sink through focussed large scale plantation
-        </div> */}
+        
       </div>
       
       <div className="container pv-75">
-        {/* <h2 className="sub-title text-center mb-5">Impact & Reach</h2> */}
+        
         <div className="row">
+        
+          <div className="col-12 col-md-6">
+            <div className="program-details">
+              <h3 className="mb-3">Who are we</h3>
+              <p>The project hariyali is a joint initiative by Mahindra Foundation and Nandi Foundation.
+            The project aims to plant 5 million trees per annum. Project Hariyali is part of nature-based solution that promotes Regenerative agriculture.</p>
+              <div className="pt-5">
+                <a href = "/AboutUs" className="btn btn-secondary">Know More</a>
+                <button className="btn btn-primary">Donate</button> 
+              </div>
+            </div>          
+          </div>
           <div className="col-12 col-md-6">
             <div className="img-responsive feature-image">
               <img src={program1} alt="planting" className="imgwidth100" />  
             </div>            
           </div>
-          <div className="col-12 col-md-6">
-            <div className="program-details">
-              <h3 className="mb-3">About us</h3>
-              <p>The project hariyali is a joint initiative by Mahindra Foundation and Nandi Foundation.
-            The project aims to plant 5 million trees per annum. Project Hariyali is part of nature-based solution that promotes Regenerative agriculture.</p>
-              <div className="pt-5">
-                <a className="btn btn-secondary">Know More</a>
-                <button className="btn btn-primary">Donate</button> 
-              </div>
-            </div>          
-          </div>
         </div>
 
-        <div className="row pv-75">          
+        <div className="row pv-75">  
+        <div className="col-12 col-md-6">
+            <div className="img-responsive feature-image">
+              <img src={program3} alt="planting" className="imgwidth100" />  
+            </div>            
+          </div>        
           <div className="col-12 col-md-6">
             <div className="program-details">
               <h3 className="mb-3">What we do</h3>
-              <p>The project hariyali is a joint initiative by Mahindra Foundation and Nandi Foundation.
-            The project aims to plant 5 million trees per annum. Project Hariyali is part of nature-based solution that promotes Regenerative agriculture.</p>
+              <p>Project Hariyali aims to increase the green cover, arrest the rising ecological imbalance, enhace biodiversity and in the process support the livelihood of marginalized farmers.</p>
               <div className="pt-5">
-                <a className="btn btn-secondary">Know More</a>
+                <a href="/WhatWeDo" className="btn btn-secondary">Know More</a>
                 <button className="btn btn-primary">Donate</button> 
               </div>
             </div>          
-          </div>
-          <div className="col-12 col-md-6">
-            <div className="img-responsive feature-image">
-              <img src={program1} alt="planting" className="imgwidth100" />  
-            </div>            
           </div>
         </div>
-
-        {/* <div className="row">
-          <div className="col-12 col-md-6">
-            <div className="img-responsive feature-image">
-              <img src={program1} alt="planting" className="imgwidth100" />  
-            </div>            
-          </div>
-          <div className="col-12 col-md-6">
-            <div className="program-details">
-              <h3 className="mb-3">Regenerative Agriculture</h3>
-              <p>Project Hariyali is part of nature-based solution that promotes Regenerative agriculture</p>
-              <p>Regenerative Agriculture is a holistic farming system that focuses on improving soil health, biodiversity, water quality, air quality and thus food quality
-              </p>
-              <div className="pt-5">
-              <a className="btn btn-secondary">Read More</a>
-                <button className="btn btn-primary">Donate</button> 
-              </div>
-            </div>          
-          </div>
-        </div> */}
       </div>
       <section className="bg-green">
         <div className="container pv-75">
           <div className="row">
             <div className="col-12 col-md-6">
             <div className="program-details">
-                <h3 className="mb-3">Enhancing Bio-Diveristy</h3>
-                <p>Project Hariyali is part of nature-based solution that promotes Regenerative agriculture</p>
-                <p>The trees we plant strengthen the ecosystem and enhance ecological diversity.
-                </p>  
+                <h3 className="mb-3">Why Support Us</h3>
+                <p>India is the 7th most vulnerable country with respect to climate extremes. The total forest and tree cover in India is 24.62 % as opposed to the minimum 33% to maintain ecological stability. Project Hariyali has increased the green cover and is in alignment with LIFE "Lifestyle for Environment" initiative by the government of India.
+                  Project Hariyali has been conferred multiple awards by national and international bodies.</p>
+ 
                 <div className="pt-5">
-                <a className="btn btn-secondary">Read More</a>
+                <a href="/WhySupportUs" className="btn btn-secondary">Read More</a>
                   <button className="btn btn-primary">Donate</button> 
                 </div>
               </div>          
@@ -381,11 +321,11 @@ function HomePage() {
           </div>   
           <div className="col-12 col-md-6">
           <div className="program-details">
-              <h3 className="mb-3">India’s commitment to carbon neutrality</h3>
+              <h3 className="mb-3">How To Associate</h3>
               <p>UN Framework Convention on Climate Change raises awareness and builds knowledge to help mitigate climate change. 
                 The Paris Agreement within the UNFCCC aims at achieving greenhouse gas emissions mitigations. The agreement outlines the National Determined Contributions (NDCs), each member country should make in order to stay ‘well below’ the 2°C target. India is committed to its NDC and seeks to be carbon neutral by 2070</p>
                 <div className="pt-5">
-                <a className="btn btn-secondary">Read More</a>
+                <a href="/WaystoAssociate" className="btn btn-secondary">Read More</a>
                   <button className="btn btn-primary">Donate</button> 
                 </div>
             </div>          
@@ -397,11 +337,11 @@ function HomePage() {
           <div className="row">
             <div className="col-12 col-md-6">
             <div className="program-details">
-                <h3 className="mb-3">Lifestyle for Environment</h3>
+                <h3 className="mb-3">Where We Are</h3>
                 <p>India is promoting individual responsibility toward climate action through Mission LIFE “Lifestyle for Environment”. 
                   This movement aims to transform individuals into pro planet people by having them adopt sustainable lifestyles and minimize their carbon footprint</p>
                   <div className="pt-5">
-                  <a className="btn btn-secondary">Read More</a>
+                  <a href="/FootPrint" className="btn btn-secondary">Read More</a>
                     <button className="btn btn-primary">Donate</button> 
                 </div>
               </div>          
@@ -503,46 +443,25 @@ function HomePage() {
 
       {/* sdg */}
       <div className="project-bg ">
-        <Container>
-          <Row className="justify-content-between ptb50">
-            <h2 className="sub-title text-center mb30">
+        <Container className="ptb50">
+          <h2 className="sub-title text-center mb30 ">
               SDG Links
-            </h2>
-            <div className="col-lg-2 col-12 mb-lg-0 mb-3 discover-block">
-              <div className="positin-relative " >
+          </h2>
+          <Row className="justify-content-between ">            
+            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
                 <div className="discoverImg"><img src={sdg13} width="100%" /></div>
-                {/* <div className="discoverLink text-lg-start text-center"><span>Trust Positive </span></div> */}
-                {/* <a href="/trust-positive" className="stretched-link"></a> */}
-              </div>
             </div>
-            <div className="col-lg-2 col-12 mb-lg-0 mb-3 discover-block">
-              <div className="positin-relative" >
+            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
                 <div className="discoverImg"><img src={sdg15} width="100%" /></div>
-                {/* <div className="discoverLink text-lg-start text-center"><span>Planet Positive </span></div> */}
-                {/* <a href="/sustainability" className="stretched-link"></a> */}
-              </div>
             </div>
-            <div className="col-lg-2 col-12 discover-block">
-              <div className="positin-relative aos-init aos-animate" >
+            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
                 <div className="discoverImg"><img src={sdg8} width="100%" /></div>
-                {/* <div className="discoverLink text-lg-start text-center"><span>Discover Business Verticals </span></div> */}
-                {/* <a href="/our-business" className="stretched-link"></a> */}
-              </div>
-              <div className="clear"></div>
             </div>
-            <div className="col-lg-2 col-12 discover-block">
-              <div className="positin-relative aos-init aos-animate">
+            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
                 <div className="discoverImg"><img src={sdg14} width="100%" /></div>
-                {/* <div className="discoverLink text-lg-start text-center"><span>Discover Business Verticals </span></div> */}
-                {/* <a href="/our-business" className="stretched-link"></a> */}
-              </div>
             </div>
-            <div className="col-lg-2 col-12 discover-block">
-              <div className="positin-relative aos-init aos-animate">
+            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
                 <div className="discoverImg"><img src={sdg17} width="100%" /></div>
-                {/* <div className="discoverLink text-lg-start text-center"><span>Discover Business Verticals</span></div> */}
-                {/* <a href="/our-business" className="stretched-link"></a> */}
-              </div>
             </div>
             {/* <div className="col-4 ">
               <div className="bggreen projectdiv row">
