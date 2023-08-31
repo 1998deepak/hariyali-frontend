@@ -23,7 +23,7 @@ function OfflineDonationPay() {
       packageId: null,
       packageName: "",
       bouquetPrice: "",
-      NoOfBouquets: "",
+      noOfBouquets: "",
       // maintenanceCost: "",
       amount: "",
     },
@@ -31,7 +31,7 @@ function OfflineDonationPay() {
       packageId: null,
       packageName: "",
       bouquetPrice: "",
-      NoOfBouquets: "",
+      noOfBouquets: "",
       // maintenanceCost: "",
       amount: "",
     },
@@ -45,13 +45,13 @@ function OfflineDonationPay() {
 
 
 
-  // Function to handle changes in NoOfBouquets
+  // Function to handle changes in noOfBouquets
   // const handleNoBouquetChange = (index, value) => {
   //   if (value < 0) {
   //     value = 0;
   //   }
   //   const newData = [...packageData];
-  //   newData[index].NoOfBouquets = value;
+  //   newData[index].noOfBouquets = value;
   //   newData[index].amount =
   //     parseFloat(newData[index].bouquetPrice) * parseFloat(value) + parseFloat(newData[index].maintenanceCost);
   //     console.log(newData);
@@ -71,7 +71,7 @@ function OfflineDonationPay() {
   const totalAmountOfPackage = packageData.reduce(
     (total, item) =>
       total +
-      parseFloat(item.bouquetPrice) * parseFloat(item.NoOfBouquets) +
+      parseFloat(item.bouquetPrice) * parseFloat(item.noOfBouquets) +
       parseFloat(item.maintenanceCost),
     0
   );
@@ -138,7 +138,7 @@ function OfflineDonationPay() {
       paymentInfo: [
         {
           paymentMode: "",
-          bankname: "",
+          bankName: "",
           chqORddNo: "",
           chqORddDate: "",
           paymentDate: "",
@@ -146,7 +146,7 @@ function OfflineDonationPay() {
         },
         {
           paymentMode: "",
-          bankname: "",
+          bankName: "",
           chqORddNo: "",
           chqORddDate: "",
           paymentDate: "",
@@ -189,7 +189,7 @@ function OfflineDonationPay() {
     userPackageData[rowIndex][name] = value;
 
     const totalCost =
-      (row.bouquetPrice) * row.NoOfBouquets;
+      (row.bouquetPrice) * row.noOfBouquets;
     userPackageData[rowIndex]["amount"] = totalCost;
     setPackageData(userPackageData);
     calculateOverallTotal();
@@ -198,7 +198,7 @@ function OfflineDonationPay() {
   const calculateOverallTotal = () => {
     const totalAmountOfPackage = packageData.reduce(
       (accumulator, packageItem) => {
-        return accumulator + packageItem.bouquetPrice * packageItem.NoOfBouquets;
+        return accumulator + packageItem.bouquetPrice * packageItem.noOfBouquets;
       },
       0
     );
@@ -343,7 +343,7 @@ console.log(handleRecipientChange);
               packageId: packageItem.packageId,
               packageName: packageItem.packageName,
               bouquetPrice: packageItem.bouquetPrice,
-              NoOfBouquets: packageItem.NoOfBouquets,
+              noOfBouquets: packageItem.noOfBouquets,
               // maintenanceCost: packageItem.maintenanceCost,
               amount: packageItem.amount,
             };
@@ -397,10 +397,10 @@ const validate = () => {
             if (!payment.amount) {
               errors.amount = "Amount is required";
             }
-            if (!payment.bankname || payment.bankname.trim() === '') {
-              errors.bankname = "BankName is required";
-            } else if (!/^[A-Za-z]+$/.test(payment.bankname)) {
-              errors.bankname = "Bank Name is invalid";
+            if (!payment.bankName || payment.bankName.trim() === '') {
+              errors.bankName = "BankName is required";
+            } else if (!/^[A-Za-z]+$/.test(payment.bankName)) {
+              errors.bankName = "Bank Name is invalid";
             }
             if (!payment.chqORddNo) {
               errors.chqORddNo = "ChqORddNo is required";
@@ -658,8 +658,8 @@ console.log(donationData);
                               <td className="w18p">
                                 <input
                                   type="number"
-                                  name="NoOfBouquets"
-                                  value={item.NoOfBouquets}
+                                  name="noOfBouquets"
+                                  value={item.noOfBouquets}
                                   onChange={(event) => {
                                     if (event.target.value < 0) {
                                       event.target.value = 0;
@@ -974,14 +974,14 @@ console.log(donationData);
                           <div className="col-8 p0">
                           <input
         className="form-control-inside"
-        name="bankname" 
+        name="bankName" 
         placeholder="Bank Name"
         type="text"
-        value={donationData.paymentInfo[0]?.bankname || ""} 
+        value={donationData.paymentInfo[0]?.bankName || ""} 
         onChange={(event) => handlePaymentInfoChange(event, 0)}
       /> 
-      {errors?.bankname && ( 
-      <div className="error-message red-text">{errors?.bankname}</div>
+      {errors?.bankName && ( 
+      <div className="error-message red-text">{errors?.bankName}</div>
     )}
                           </div>
                         </div>
@@ -1109,10 +1109,10 @@ console.log(donationData);
                             <div className="col-8 p0">
                               <input
                                 className="form-control-inside"
-                                name="bankname"
+                                name="bankName"
                                 placeholder="Bank Name"
                                 type="text"
-                                value={donationData.paymentInfo[1]?.bankname || ""}
+                                value={donationData.paymentInfo[1]?.bankName || ""}
                                 onChange={(event) =>
                                   handlePaymentInfoChange(event, 1)
                                 }

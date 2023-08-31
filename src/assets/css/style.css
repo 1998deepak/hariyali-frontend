@@ -3481,3 +3481,7 @@ iframe{
   margin: 0px 5px;
   cursor: pointer;
 }
+
+.error-input-field {
+  border: 1px solid #ff0000 !important; /* Red border for error */
+}

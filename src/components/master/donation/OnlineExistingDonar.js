@@ -228,7 +228,7 @@ export default function OnlineExistingDonar() {
       if (!userData?.user?.prefix) {
         validationErrors.push({ field: "userData.user.prefix", message: "Prefix is required" });
       }
-      if (!userData?.user?.organisation) {
+      if (userData?.user?.donarType.toLocaleLowerCase() === "corporate" && !userData?.user?.organisation) {
         validationErrors.push({ field: "userData.user.organisation", message: "Organisation is required" });
       }
       if (!userData?.user?.panCard) {
@@ -404,7 +404,7 @@ export default function OnlineExistingDonar() {
     
         //if (isValid) {
         const updatedDonations = [...donations];
-        const filteredPackages = packageData.filter((pkg) => pkg.NoOfBouquets > 0);
+        const filteredPackages = packageData.filter((pkg) => pkg.noOfBouquets > 0);
         console.log(filteredPackages);
         updatedDonations[0].userPackage = filteredPackages;
     

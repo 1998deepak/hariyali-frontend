@@ -4,42 +4,40 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Tab, Tabs } from "react-bootstrap";
 import { DonationService } from "../../../../services/donationService/donation.service";
-import { SUCCESS } from "../../../constants/constants";
+import { SUCCESS, stateOptions } from "../../../constants/constants";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
 import SearchWithSuggestions from "../../../common/searchComponent/SearchWithSuggestions";
 
 function OfflineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
   const [donationType1, setDonationType1] = useState("Gift-Donate");
-  const [generalDonation, setGeneralDonation] = useState(null);
-  const [newEmail, setNewEmail] = useState(null);
 
   const initialPackageData = [
     {
       packageName: "",
       bouquetPrice: "",
-      NoOfBouquets: "",
+      noOfBouquets: "",
       maintenanceCost: "",
       amount: "",
     },
     {
       packageName: "",
       bouquetPrice: "",
-      NoOfBouquets: "",
+      noOfBouquets: "",
       maintenanceCost: "",
       amount: "",
     },
     {
       packageName: "",
       bouquetPrice: "",
-      NoOfBouquets: "",
+      noOfBouquets: "",
       maintenanceCost: "",
       amount: "",
     },
     {
       packageName: "",
       bouquetPrice: "",
-      NoOfBouquets: "",
+      noOfBouquets: "",
       // maintenanceCost: "",
       amount: "",
     },
@@ -160,15 +158,6 @@ function OfflineDonation() {
     },
   ];
 
-  const initialExistingUserData = {
-    user: {
-
-      emailId: "",
-      donorId: "",
-      donations: [],
-    },
-  };
-  const [existingUserData, setExistingUserData] = useState(initialExistingUserData);
   const [packageData, setPackageData] = useState(initialPackageData);
 
   const [userData, setUserData] = useState(initialUserData);
@@ -180,8 +169,6 @@ function OfflineDonation() {
   const [donationsGift, setDonationsGift] = useState(intialDonationsGift);
 
   const [recipient, setRecipient] = useState(initialRecipientData);
-
-  const [selectedDonarId, setSelectedDonarId] = useState(null);
 
   const [donarIdList, setDonarIdList] = useState([]);
 
@@ -392,7 +379,7 @@ function OfflineDonation() {
       console.log(donationType);
       let updatedUserPackage = [];
       packageData.map((item) => {
-        if (item.NoOfBouquets && item.amount) {
+        if (item.noOfBouquets && item.amount) {
           updatedUserPackage.push(item);
         }
       });
@@ -440,8 +427,6 @@ function OfflineDonation() {
       if (hasValues(address[0])) {
         formData.formData.user.address[0] = address[0];
       }
-      console.log(formData.formData.user.address);
-      console.log(hasValues(address[1]));
       if (hasValues(address[1])) {
 
         formData.formData.user.address[1] = address[1];
@@ -460,30 +445,15 @@ function OfflineDonation() {
 
       //setting recipent data
       if (recipient[0].address[0].state) {
-        console.log(recipient);
-        console.log("Reci");
         formData.formData.user.donations[0].recipient = recipient;
       } else {
-        console.log(recipient);
-        console.log("Not present");
         formData.formData.user.donations[0].recipient = [];
       }
 
-      // Send the form data as JSON
-      console.log(formData);
-      console.log(JSON.stringify(formData));
-
-      setNewEmail(formData.formData.user.emailId);
-
-      console.log(formData);
       const response = await DonationService.Adduser(formData);
       console.log(response);
       if (response?.status === SUCCESS) {
         toast.success(response?.message);
-
-        // setTimeout(() => {
-        //   // navigate("/ModelView");
-        // }, 2000);
         clearForm(e);
       } else {
         toast.error(response?.message);
@@ -503,7 +473,7 @@ function OfflineDonation() {
       console.log(packageData);
       const parsedData = JSON.parse(response.data);
 
-      let data = parsedData.map((item)=>({packageName:item.package_name,bouquetPrice: item.bouquet_price,NoOfBouquets:1,amount:item.bouquet_price}))
+      let data = parsedData.map((item)=>({packageName:item.package_name,bouquetPrice: item.bouquet_price,noOfBouquets:1,amount:item.bouquet_price}))
       
       setPackageData(data);
       calculateOverallTotal(data)
@@ -522,53 +492,12 @@ function OfflineDonation() {
     }
   };
 
-  const stateOptions = [
-    "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Bihar",
-    "Chhattisgarh",
-    "Goa",
-    "Gujarat",
-    "Haryana",
-    "Himachal Pradesh",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Odisha",
-    "Punjab",
-    "Rajasthan",
-    "Sikkim",
-    "Tamil Nadu",
-    "Telangana",
-    "Tripura",
-    "Uttar Pradesh",
-    "Uttarakhand",
-    "West Bengal",
-    "Andaman and Nicobar Islands",
-    "Chandigarh",
-    "Dadra and Nagar Haveli",
-    "Daman and Diu",
-    "Lakshadweep",
-    "Delhi",
-    "Puducherry",
-  ];
-
-
   const clearForm = (e) => {
     e.preventDefault();
-    setPackageData((current) => {
-      return current.map((item) => {
-        return { ...item, NoOfBouquets: "", amount: "" };
-      });
-    });
-
+    let packages = [...packageData];
+    packages.map((item) => ({ ...item, noOfBouquets: 1, amount: item.bouquetPrice }));
+    calculateOverallTotal(packages)
+    setPackageData(packages);
     setAddress(initialAddress);
     // setDonationType("");
     setDonations(intialDonations);
@@ -577,22 +506,18 @@ function OfflineDonation() {
 
   };
   const handleTabSelect = (eventKey) => {
-    // eventKey.preventDefault();
     console.log(eventKey);
     setDonationType(eventKey);
-    setPackageData((current) => {
-      return current.map((item) => {
-        return { ...item, NoOfBouquets: "", amount: "" };
-      });
-    });
-
-    setAddress(initialAddress);
-    // setDonationType("");
     setDonations(intialDonations);
     setRecipient(initialRecipientData);
     setUserData(initialUserData);
-
+    let packages = [...packageData];
+    packages.map((item) => ({ ...item, noOfBouquets: 1, amount: item.bouquetPrice }));
+    calculateOverallTotal(packages)
+    setPackageData(packages);
+    setAddress(initialAddress);
   };
+
   const handleChangeNumberOfBouquets = (e, row, rowIndex) => {
     let { name, value } = e.target;
     console.log({ name, value, rowIndex }, row);
@@ -600,7 +525,7 @@ function OfflineDonation() {
     userPackageData[rowIndex][name] = value;
 
     const totalCost =
-      (row.bouquetPrice) * row.NoOfBouquets;
+      (row.bouquetPrice) * row.noOfBouquets;
     userPackageData[rowIndex]["amount"] = totalCost;
     setPackageData(userPackageData);
     calculateOverallTotal(packageData);
@@ -613,7 +538,7 @@ function OfflineDonation() {
         return (
           accumulator +
           (packageItem.bouquetPrice) *
-          packageItem.NoOfBouquets
+          packageItem.noOfBouquets
         );
       },
       0
@@ -878,15 +803,6 @@ function OfflineDonation() {
     }
   };
 
-
-
-
-  console.log(address);
-  console.log(address[1]);
-  console.log(address[0]?.street1);
-  console.log(userData.user.emailId);
-
-
   //Donation for Self Donate
   const createDonationGift = async (e, userData) => {
     e.preventDefault();
@@ -897,7 +813,7 @@ function OfflineDonation() {
 
     //if (isValid) {
     const updatedDonations = [...donationsGift];
-    const filteredPackages = packageData.filter((pkg) => pkg.NoOfBouquets > 0);
+    const filteredPackages = packageData.filter((pkg) => pkg.noOfBouquets > 0);
     console.log(filteredPackages);
     updatedDonations[0].userPackage = filteredPackages;
 
@@ -953,7 +869,7 @@ function OfflineDonation() {
 
     //if (isValid) {
     const updatedDonations = [...donations];
-    const filteredPackages = packageData.filter((pkg) => pkg.NoOfBouquets > 0);
+    const filteredPackages = packageData.filter((pkg) => pkg.noOfBouquets > 0);
     console.log(filteredPackages);
     updatedDonations[0].userPackage = filteredPackages;
 
@@ -1017,12 +933,9 @@ function OfflineDonation() {
                     defaultActiveKey="Self-Donate"
                     id="uncontrolled-tab-example"
                     className="mb-3 selftGift-tab "
-                    //  onClick={() => handleTabSelect()}
                     activeKey={donationType} onSelect={handleTabSelect}
                   >
                     <Tab eventKey="Self-Donate" title="Plant a tree">
-                      {/* <h5>Self Planting</h5> */}
-
                       <form className="form-div contact-form-wrap">
                         <div className="actionheadingdiv">
                           Select Your Donation Plan
@@ -1040,7 +953,6 @@ function OfflineDonation() {
                             </thead>
                             <tbody>
                               {packageData.map((packageItem, index) => {
-                                console.log(index);
                                 return (
                                   <tr key={index}>
                                     <td>{packageItem.packageName}</td>
@@ -1049,8 +961,9 @@ function OfflineDonation() {
                                     <td>
                                       <input
                                         type="number"
-                                        name="NoOfBouquets"
-                                        value={packageItem.NoOfBouquets}
+                                        className="form-control-inside"
+                                        name="noOfBouquets"
+                                        value={packageItem.noOfBouquets}
                                         onChange={(event) => {
                                           if (event.target.value < 0) {
                                             event.target.value = 0;
@@ -1073,26 +986,7 @@ function OfflineDonation() {
                             Overall Total: {donations[0].totalAmount}
                           </div>
                         </div>
-                        {/* <div className="col-6 mt20">
-                          <div className="row select-label">
-                            <div className="col-4 "> General Donation</div>
-                            <div className="col-8 p0">
-                              <input
-                                placeholder=" General Donation"
-                                className="form-control-inside"
-                                type="number"
-                                name="generalDonation"
-                                value={generalDonation}
-                                onChange={(e) => {
-                                  if (e.target.value < 0) {
-                                    e.target.value = 0;
-                                  }
-                                  handleDonationChange(e, 0);
-                                }}
-                              />
-                            </div>
-                          </div>
-                        </div> */}
+                        <div className="clear"/>
                         <hr />
                         <div className="actionheadingdiv">Personal Details</div>
                         <div className="col-12 pr15 mt20">
@@ -1152,7 +1046,7 @@ function OfflineDonation() {
                                     value={userData?.user?.donarType}
                                     onChange={handleChange}
                                   >
-                                    <option disabled selected value="">Donar Type</option>
+                                    <option disabled selected value="">Donor Type</option>
                                     <option value="Corporate">Corporate</option>
                                     <option value="Individual">Individual</option>
                                   </select>
@@ -1281,39 +1175,6 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            {/* <div className="col-6">
-                              <div className="row select-label">
-                                <label className="col-4 ">I want to opt</label>
-                                <div className="col-8 p0">
-                                  <input
-                                    type="radio"
-                                    name="user.activityType"
-                                    value="CSR Activity"
-                                    onClick={handleChange}
-                                    className="radioinput"
-                                  />
-                                  <label className="radiospan" checked>
-                                    CSR Activity
-                                  </label>
-                                  <input
-                                    type="radio"
-                                    name="user.activityType"
-                                    value="NON-CSR Activity"
-                                    onClick={handleChange}
-                                    className="radioinput"
-                                  />
-                                  <label className="radiospan">
-                                    NON-CSR Activity
-                                  </label>
-                                </div>
-                                {errors.map((error, index) => {
-                                  if (error.field === 'userData.user.activityType') {
-                                    return <div key={index} className="error-message red-text">{error.message}</div>;
-                                  }
-                                  return null;
-                                })}
-                              </div>
-                            </div> */}
                             {
                               userData.user.donarType.toLowerCase() === "corporate" ?
                               <div className="col-6">
@@ -2027,8 +1888,8 @@ function OfflineDonation() {
                                     <td>
                                       <input
                                         type="number"
-                                        name="NoOfBouquets"
-                                        value={packageItem.NoOfBouquets}
+                                        name="noOfBouquets"
+                                        value={packageItem.noOfBouquets}
                                         onChange={(event) => {
                                           if (event.target.value < 0) {
                                             event.target.value = 0;
@@ -2049,23 +1910,8 @@ function OfflineDonation() {
                           </table>
                           <p>Overall Total: {donations[0].totalAmount}</p>
                         </div>
+                        <div className="clear"/>
                         <div className="col-6 mt20">
-                          {/* <div className="row select-label">
-                            <div className="col-4 "> General Donation</div>
-                            <input
-                              placeholder=" General Donation"
-                              className="col-8 form-control-inside"
-                              type="number"
-                              name="generalDonation"
-                              value={generalDonation}
-                              onChange={(e) => {
-                                if (e.target.value < 0) {
-                                  e.target.value = 0;
-                                }
-                                handleDonationChange(e, 0);
-                              }}
-                            />
-                          </div> */}
                         </div>
                         <hr />
                         <div className="actionheadingdiv">Personal Details</div>
@@ -2124,7 +1970,7 @@ function OfflineDonation() {
                                     value={userData.user.donarType}
                                     onChange={handleChange}
                                   >
-                                    <option disabled selected value="">Donar Type</option>
+                                    <option disabled selected value="">Donor Type</option>
                                     <option value="Corporate">Corporate</option>
                                     <option value="Individual">Individual</option>
                                   </select>
@@ -3102,21 +2948,9 @@ function OfflineDonation() {
                           <div className="row ">
                             <div className="col-6">
                               <div className="row select-label">
-                                <div className="col-4 ">Donar ID <span className="red-text">*</span></div>
+                                <div className="col-4 ">Donor ID <span className="red-text">*</span></div>
                                 <div className="col-8 p0">
                                   <SearchWithSuggestions data={donarIdList} onClickSearch={handleDonarId}/>
-                                  {/* <Select
-                                    options={donarIdList}
-                                   value={selectedDonarId}
-                                    onBlur={handleDonarIdBlur}
-                                    onChange={handleDonarIdChange}
-                                  /> */}
-                                  {/* <input
-                                    className="form-control-inside"
-                                    placeholder="Donar ID"
-                                    type="text"
-                                    onBlur={(e) => handleDonarIdBlur(e)}
-                                  /> */}
                                 </div>
                               </div>
                             </div>
@@ -3147,8 +2981,8 @@ function OfflineDonation() {
                                     <td>
                                       <input
                                         type="number"
-                                        name="NoOfBouquets"
-                                        value={packageItem.NoOfBouquets}
+                                        name="noOfBouquets"
+                                        value={packageItem.noOfBouquets}
                                         onChange={(event) => {
                                           if (event.target.value < 0) {
                                             event.target.value = 0;
@@ -3171,26 +3005,7 @@ function OfflineDonation() {
                             Overall Total: {donations[0].totalAmount}
                           </div>
                         </div>
-                        {/* <div className="col-6 mt20">
-                          <div className="row select-label">
-                            <div className="col-4 "> General Donation</div>
-                            <div className="col-8 p0">
-                              <input
-                                placeholder=" General Donation"
-                                className="form-control-inside"
-                                type="number"
-                                name="generalDonation"
-                                value={generalDonation}
-                                onChange={(e) => {
-                                  if (e.target.value < 0) {
-                                    e.target.value = 0;
-                                  }
-                                  handleDonationChange(e, 0);
-                                }}
-                              />
-                            </div>
-                          </div>
-                        </div> */}
+                        <div className="clear"/>
                         <hr />
                         <div className="actionheadingdiv">Personal Details</div>
                         <div className="col-12 pr15 mt20">
@@ -3252,7 +3067,7 @@ function OfflineDonation() {
                                     onChange={handleChange}
                                     disabled
                                   >
-                                    <option disabled selected value="">Donar Type</option>
+                                    <option disabled selected value="">Donor Type</option>
                                     <option value="Corporate">Corporate</option>
                                     <option value="Individual">Individual</option>
                                   </select>
@@ -4042,7 +3857,7 @@ function OfflineDonation() {
                           <div className="row ">
                             <div className="col-6">
                               <div className="row select-label">
-                                <div className="col-4 ">Donar ID <span className="red-text">*</span></div>
+                                <div className="col-4 ">Donor ID <span className="red-text">*</span></div>
                                 <div className="col-8 p0">
                                 <SearchWithSuggestions data={donarIdList} onClickSearch={handleDonarId}/>
                                 </div>
@@ -4109,8 +3924,9 @@ function OfflineDonation() {
                                     <td>
                                       <input
                                         type="number"
-                                        name="NoOfBouquets"
-                                        value={packageItem.NoOfBouquets}
+                                        name="noOfBouquets"
+                                        className="form-control-inside"
+                                        value={packageItem.noOfBouquets}
                                         onChange={(event) => {
                                           if (event.target.value < 0) {
                                             event.target.value = 0;
@@ -4131,24 +3947,7 @@ function OfflineDonation() {
                           </table>
                           <p>Overall Total: {donations[0].totalAmount}</p>
                         </div>
-                        <div className="col-6 mt20">
-                          {/* <div className="row select-label">
-                            <div className="col-4 "> General Donation</div>
-                            <input
-                              placeholder=" General Donation"
-                              className="col-8 form-control-inside"
-                              type="number"
-                              name="generalDonation"
-                              value={generalDonation}
-                              onChange={(e) => {
-                                if (e.target.value < 0) {
-                                  e.target.value = 0;
-                                }
-                                handleDonationChange(e, 0);
-                              }}
-                            />
-                          </div> */}
-                        </div>
+                        <div className="clear"/>
                         <hr />
                         <div className="actionheadingdiv">Personal Details</div>
                         <div className="col-12 pr15 mt20">
@@ -4211,7 +4010,7 @@ function OfflineDonation() {
                                     onChange={handleChange}
                                     disabled
                                   >
-                                    <option disabled selected value="">Donar Type</option>
+                                    <option disabled selected value="">Donor Type</option>
                                     <option value="Corporate">Corporate</option>
                                     <option value="Individual">Individual</option>
                                   </select>
@@ -4862,7 +4661,7 @@ function OfflineDonation() {
                                       handlePaymentInfoChangeGift(event, 0, 0)
                                     }
                                   >
-                                    <option disabled selected value="">Donar Type</option>
+                                    <option disabled selected value="">Select</option>
                                     <option value="Cheque">Cheque</option>
                                     <option value="Cash">Cash</option>
                                   </select>
@@ -5022,7 +4821,7 @@ function OfflineDonation() {
                                         handlePaymentInfoChangeGift(event, 0, 1)
                                       }
                                     >
-                                      <option selected>Donar Type</option>
+                                      <option selected>Select</option>
                                       <option value="Cheque">Cheque</option>
                                       <option value="Cash">Cash</option>
                                     </select>

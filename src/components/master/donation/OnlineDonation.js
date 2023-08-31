@@ -234,7 +234,7 @@ function OnlineDonation() {
         message: "Prefix is required",
       });
     }
-    if (!userData?.user?.organisation) {
+    if (userData?.user?.donarType.toLocaleLowerCase() === "corporate" && !userData?.user?.organisation) {
       validationErrors.push({
         field: "userData.user.organisation",
         message: "Organisation is required",

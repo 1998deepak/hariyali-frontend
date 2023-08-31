@@ -272,14 +272,11 @@ function DashboardWithHeaderAndFooter() {
 function UserDonationView({ userDetails, setAuthToken, authToken }) {
   return (
     <>
-     {/* <AdminHeader /> */}
      <AdminHeader />
       <div className="leftmenu-main">
       <UserLeftMenu />
-        <UserdonationView userDetails={userDetails.email} setAuthToken={setAuthToken} authToken={authToken} />
-       
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
-         
+        <div className="float-left" style={{ width: "100%" }}>
+        <UserdonationView userDetails={userDetails?.email} setAuthToken={setAuthToken} authToken={authToken} />
         </div>
       </div>
     </>
@@ -291,8 +288,8 @@ function UserSpecificDonation() {
     <>
        <AdminHeader />
       <div className="leftmenu-main">
-        {/* <AdminLeftMenu /> */}
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+      <UserLeftMenu />
+        <div className="float-left" style={{ width: "100%" }}>
       <UserSpecificDonationView />
       </div></div>
     </>
