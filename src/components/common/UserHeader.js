@@ -11,7 +11,7 @@ import { BsChevronBarLeft } from "react-icons/bs";
 import logo from "../../assets/img/logotrans.png";
 import donoteicon from "../../assets/img/donote.png";
 import { Link, useNavigate, useLocation} from "react-router-dom";
-import plantation from "../../assets/img/GIF's/output-onlinegiftools.gif";
+import plantation from "../../assets/img/GIF's/plant-img.gif";
 
 const Header = () => {
 

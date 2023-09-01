@@ -1,21 +1,48 @@
 import React from "react";
 import "animate.css/animate.min.css";
 import "react-image-gallery/styles/css/image-gallery.css";
-import footprintimg from "../../../assets/img/footprint.png";
+import logotree from "../../../assets/img/logotree.png";
+import footprintimg from "../../../assets/img/footprint2.png";
+// import Footo from "../../../assets/img/foot1.png";
 import { Container, Row } from "react-bootstrap";
 import { GoLocation } from "react-icons/go";
 import image from "../../../assets/img/bannerWherearewe.png";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { useState } from "react";
 
 function FootPrint() {
+  const [arakushow, setArakuShow] = useState(false);
+  const [shravastishow, setShravastiShow] = useState(false);
+  const [tarnshow, setTarnShow] = useState(false);
+  const [solanshow, setSolanShow] = useState(false);
+  const [taranshow, setTaranShow] = useState(false);
+  const [mogashow, setMogaShow] = useState(false);
+  const [wardhashow, setWardhaShow] = useState(false);
+
+  const ArakuClose = () => setArakuShow(false);
+  const Araku = () => setArakuShow(true);
+  const ShravastiClose = () => setShravastiShow(false);
+  const Shravasti = () => setShravastiShow(true);
+  const TarnClose = () => setTarnShow(false);
+  const Tarn = () => setTarnShow(true);
+  const SolanClose = () => setSolanShow(false);
+  const Solan = () => setSolanShow(true);
+  const TaranClose = () => setTaranShow(false);
+  const Taran = () => setTaranShow(true);
+  const MogaClose = () => setMogaShow(false);
+  const Moga = () => setMogaShow(true);
+  const WardhaClose = () => setWardhaShow(false);
+  const Wardha = () => setWardhaShow(true);
 
   return (
     <>
       {/* body */}
       <section className="banner banner-footprint">
-            <div className="title">
-                {/* <h1>Ways to Associate</h1> */}
-            </div>
-        </section>
+        <div className="title">
+          {/* <h1>Ways to Associate</h1> */}
+        </div>
+      </section>
       {/* <div>
             <img src = {image} className="imgwidth100"/>
           </div> */}
@@ -26,94 +53,108 @@ function FootPrint() {
             <Row className="justify-content-between  padding30tb contact-form-wrap">
               <div className="otherbotmborder"><div className="otherpages-heading text-center sub-title">Footprint </div>
               </div>
-              <div className="footprint-divimg">
-                <img src={footprintimg} alt="Footprint" />
-                <div className="footprint-divtext footprint-divtext1">
-                  <div className="tooltip-footprint footprint-tooltip-divtext"><GoLocation />Araku
-                    {/* <span className="tooltip-footprinttext">Monsoon plantation
-                    <br /> Months - June to September</span> */}
-                    <span className="tooltip-footprinttext">Araku, nestled in the north-west region of Andhra Pradesh, is dominated entirely by
-                      Scheduled Tribe farmers (over 90%) and has been characterized by poor infrastructure,
-                      dismal connectivity, low women’s literacy rates, high infant and maternal mortality and
-                      low agricultural productivity. The forest lands (accounting for nearly 60% of the total
-                      geographical area – Census 2011), which was the only source of income, were also
-                      degraded, reducing the overall efficiency of land. Certain Mandals such as Munchingputtu
-                      had nearly 28% of the total geographical area being barren and uncultivable land
-                      (Handbook of Statistics, Visakhapatnam).</span>
-                  </div></div>
-                <div className="footprint-divtext footprint-divtext2">
-                  <div className="tooltip-footprint footprint-tooltip-divtext"><GoLocation />Shravasti, Uttar Pradesh
-                    {/* <span className="tooltip-footprinttext">Monsoon plantation
-                    <br /> Months - June to September<br />
-                  Winter plantation
-                  <br /> Months - Nov to March</span> */}
-                    <span className="tooltip-footprinttext">Bhinga, the district headquarters of Shravasti, is approximately 175 kilometres away from
-                      the state capital, Lucknow. Shravasi, is the north-eastern Uttar Pradesh district near River
-                      Rapti.<br />
-                      According to the Government of India, it is among the 121 minority-concentrated districts in
-                      India.[1] It is the fourth most backward district in India, according to the 2018 Niti
-                      Aayog ranking.[2].</span>
-                  </div></div>
-                <div className="footprint-divtext footprint-divtext3">
-                  <div className="tooltip-footprint footprint-tooltip-divtext"><GoLocation />Tarn Taran
-                    {/* <span className="tooltip-footprinttext">Monsoon plantation
-                  <br /> Months - June to September
-                  <br />
-                  Winter plantation
-                  <br /> Months - Nov to March</span> */}
-                    <span className="tooltip-footprinttext">Bhinga, the district headquarters of Shravasti, is approximately 175 kilometres away from
-                      the state capital, Lucknow. Shravasi, is the north-eastern Uttar Pradesh district near River
-                      Rapti.<br />
-                      According to the Government of India, it is among the 121 minority-concentrated districts in
-                      India.[1] It is the fourth most backward district in India, according to the 2018 Niti
-                      Aayog ranking.[2].</span>
-                  </div></div>
-                <div className="footprint-divtext footprint-divtext4">
-                  <div className="tooltip-footprint footprint-tooltip-divtext"><GoLocation />Solan, Himachal Pradesh
-                    {/* <span className="tooltip-footprinttext">Monsoon plantation
-                  <br /> Months - June to September<br />
-                  Winter plantation
-                  <br /> Months - Nov to March</span> */}
-                    <span className="tooltip-footprinttext">The project is proposed to be located in Solan district, of Himachal Pradesh, located 46
-                      kilometres south of the state capital, Shimla. It is 70 kilometres from Chandigarh.
-                      Solan is a predominantly rural district with less than 20% of the population living in urban
-                      areas.<br />
-                      However, in recent years, these forest resources are experiencing severe stress with
-                      increasing pressure from the burgeoning population and rising impact of human
-                      commercial activities.</span>
-                  </div></div>
-                <div className="footprint-divtext footprint-divtext5">
-                  <div className="tooltip-footprint footprint-tooltip-divtext"><GoLocation />Moga Punjab
-                    {/* <span className="tooltip-footprinttext">Monsoon plantation
-                  <br /> Months - June to September</span> */}
-                    <span className="tooltip-footprinttext">Moga is in the Indian state of Punjab.<br />
-                      The total rural population is almost 80 percent whereas the urban population is
-                      about 20 percent.</span>
-                  </div></div>
-                {/* -------------------- */}
-                <div className="footprint-divtext footprint-divtext6">
-                  <div className="tooltip-footprint footprint-tooltip-divtext"><GoLocation />Tarn Taran, Punjab
-                    {/* <span className="tooltip-footprinttext">Winter plantation
-                  <br /> Months - Nov to March</span> */}
-                    <span className="tooltip-footprinttext">Tarn Taran Sahib is a city in the state of Punjab, in far northern India. The main
-                      occupation in this area is agriculture and agro industry with very few other
-                      industries.</span>
-                  </div></div>
-                <div className="footprint-divtext footprint-divtext7">
-                  <div className="tooltip-footprint footprint-tooltip-divtext"><GoLocation />Wardha, Maharashtra
-                    {/* <span className="tooltip-footprinttext">Winter plantation
-                  <br /> Months - Nov to March</span> */}
-                    <span className="tooltip-footprinttext">Wardha district is one of the 35 districts in Western India. It is an agricultural district and
-                      67% of the population is part of the rural belt.</span>
-                  </div></div>
+              <div className="logoTree">
+                <img src={logotree} alt="Logo tree" />
+              </div>
+
+              <div className="footprint-left">
+                {/* <div className="foot-1 foot-wooden">Araku</div>
+                <div className="foot-2 foot-wooden">SHRAVASTI, UTTAR PRADESH</div> */}
+                <div className="foot-3 foot-wooden" onClick={Wardha}>Wardha, Maharashtra</div>
+                <div className="foot-4 foot-wooden" onClick={Moga}>Moga Punjab</div>
+                <div className="foot-5 foot-wooden" onClick={Taran}>Tarn Taran, Punjab</div>
+                <div className="foot-6 foot-wooden" onClick={Solan}>Solan, Himacgal Pradesh</div>
+                <div className="foot-7 foot-wooden" onClick={Tarn}>Tarn Taran</div>
+                <div className="foot-8 foot-wooden" onClick={Shravasti}>Shravasti, Uttar Pradesh</div>
+                <div className="foot-9 foot-wooden" onClick={Araku}>Araku</div>
+                <img src={footprintimg} alt="FootprintLeft" />
               </div>
 
             </Row>
           </Container>
         </div>   </div>
-
-
-
+      <Modal show={arakushow} onHide={ArakuClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Araku</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div class="program-details" closeButton>
+            {/* <h3 class="mb-3">Araku</h3> */}
+            <p>Araku, Nestled In The North-West Region Of Andhra Pradesh, Is Dominated Entirely By Scheduled Tribe Farmers (Over 90%) And Has Been Characterized By Poor Infrastructure, Dismal Connectivity, Low Women’s Literacy Rates, High Infant And Maternal Mortality And Low Agricultural Productivity. 
+              <br/>The Forest Lands (Accounting For Nearly 60% Of The Total Geographical Area – Census 2011), Which Was The Only Source Of Income, Were Also Degraded, Reducing The Overall Efficiency Of Land. Certain Mandals Such As Munchingputtu Had Nearly 28% Of The Total Geographical Area Being Barren And Uncultivable Land (Handbook Of Statistics, Visakhapatnam).</p></div>
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button className="homesubmit-div" variant="primary" >Submit
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
+      <Modal show={shravastishow} onHide={ShravastiClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Shravasti, Uttar Pradesh</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div class="program-details" closeButton>
+            {/* <h3 class="mb-3">Araku</h3> */}
+            <p>Bhinga, The District Headquarters Of Shravasti, Is Approximately 175 Kilometres Away From The State Capital, Lucknow. Shravasi, Is The North-Eastern Uttar Pradesh District Near River Rapti.
+<br/>According To The Government Of India, It Is Among The 121 Minority-Concentrated Districts In India.[1] It Is The Fourth Most Backward District In India, According To The 2018 Niti Aayog Ranking.[2].</p></div>
+        </Modal.Body>
+      </Modal>
+      <Modal show={solanshow} onHide={SolanClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Solan, Himacgal Pradesh</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div class="program-details" closeButton>
+            {/* <h3 class="mb-3">Araku</h3> */}
+            <p>The Project Is Proposed To Be Located In Solan District, Of Himachal Pradesh, Located 46 Kilometres South Of The State Capital, Shimla. It Is 70 Kilometres From Chandigarh. Solan Is A Predominantly Rural District With Less Than 20% Of The Population Living In Urban Areas.
+              <br/>
+However, In Recent Years, These Forest Resources Are Experiencing Severe Stress With Increasing Pressure From The Burgeoning Population And Rising Impact Of Human Commercial Activities.</p></div>
+        </Modal.Body>
+      </Modal>
+      <Modal show={tarnshow} onHide={TarnClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Tarn Taran</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div class="program-details" closeButton>
+            {/* <h3 class="mb-3">Araku</h3> */}
+            <p>Bhinga, The District Headquarters Of Shravasti, Is Approximately 175 Kilometres Away From The State Capital, Lucknow. Shravasi, Is The North-Eastern Uttar Pradesh District Near River Rapti.
+<br/>According To The Government Of India, It Is Among The 121 Minority-Concentrated Districts In India.[1] It Is The Fourth Most Backward District In India, According To The 2018 Niti Aayog Ranking.[2].</p></div>
+        </Modal.Body>
+      </Modal>
+      <Modal show={taranshow} onHide={TaranClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Tarn Taran, Punjab</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div class="program-details" closeButton>
+            {/* <h3 class="mb-3">Araku</h3> */}
+            <p>Tarn Taran Sahib Is A City In The State Of Punjab, In Far Northern India. The Main Occupation In This Area Is Agriculture And Agro Industry With Very Few Other Industries.</p></div>
+        </Modal.Body>
+      </Modal>
+      <Modal show={mogashow} onHide={MogaClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Moga, Punjab</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div class="program-details" closeButton>
+            {/* <h3 class="mb-3">Araku</h3> */}
+            <p>Moga Is In The Indian State Of Punjab.
+The Total Rural Population Is Almost 80 Percent Whereas The Urban Population Is About 20 Percent.</p></div>
+        </Modal.Body>
+      </Modal>
+      <Modal show={wardhashow} onHide={WardhaClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Wardha, Maharashtra</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div class="program-details" closeButton>
+            {/* <h3 class="mb-3">Araku</h3> */}
+            <p>Wardha District Is One Of The 35 Districts In Western India. 
+              <br/>It Is An Agricultural District And 67% Of The Population Is Part Of The Rural Belt.</p></div>
+        </Modal.Body>
+      </Modal>
+   
       {/* body */}
     </>
   );

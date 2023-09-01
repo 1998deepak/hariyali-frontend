@@ -7,7 +7,7 @@ import {
   FaWhatsapp,
   FaYoutube,
 } from "react-icons/fa";
-import logo from "../../assets/img/logotrans.png";
+import logo from "../../assets/img/logotrans-white.png";
 
 const Header = () => {
 

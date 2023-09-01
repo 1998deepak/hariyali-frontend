@@ -12,7 +12,7 @@ import downslide from "../../../assets/img/slider/downslide.jpg";
 
 import image1 from "../../../assets/img/slider/banner1.png";
 import image2 from "../../../assets/img/slider/banner2.png";
-import image3 from "../../../assets/img/slider/banner3.png";
+import image3 from "../../../assets/img/slider/banner3.jpg";
 
 import impactFile1 from "../../../assets/files/ImpactAssessmentReportFY22.pdf";
 import impactFile2 from "../../../assets/files/ImpactAssessmentReportFY23.pdf";
