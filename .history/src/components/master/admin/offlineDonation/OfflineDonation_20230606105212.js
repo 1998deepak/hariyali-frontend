@@ -1093,7 +1093,7 @@ function OfflineDonation() {
                                   >
                                     <option disabled selected value="">Donar Type</option>
                                     <option value="Corporate">Corporate</option>
-                                    <option value="Retail">Retail</option>
+                                    <option value="Individual">Individual</option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (error.field === 'userData.user.donarType') {
@@ -2027,7 +2027,7 @@ function OfflineDonation() {
                                   >
                                     <option disabled selected value="">Donar Type</option>
                                     <option value="Corporate">Corporate</option>
-                                    <option value="Retail">Retail</option>
+                                    <option value="Individual">Individual</option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (error.field === 'userData.user.DonarType') {
@@ -3110,7 +3110,7 @@ function OfflineDonation() {
                                   >
                                     <option disabled selected value="">Donar Type</option>
                                     <option value="Corporate">Corporate</option>
-                                    <option value="Retail">Retail</option>
+                                    <option value="Individual">Individual</option>
                                   </select>
                                   {/* {errors.map((error, index) => {
                                     if (error.field === 'userData.user.donarType') {
@@ -4075,7 +4075,7 @@ function OfflineDonation() {
                                   >
                                     <option disabled selected value="">Donar Type</option>
                                     <option value="Corporate">Corporate</option>
-                                    <option value="Retail">Retail</option>
+                                    <option value="Individual">Individual</option>
                                   </select>
                                   {/* {errors.map((error, index) => {
                                     if (error.field === 'userData.user.DonarType') {

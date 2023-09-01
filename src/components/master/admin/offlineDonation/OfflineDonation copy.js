@@ -15,28 +15,28 @@ function OfflineDonation() {
     {
       packageName: '',
       bouquetPrice: '',
-      NoOfBouquets: '',
+      noOfBouquets: '',
       maintenanceCost: '',
       amount: '',
     },
     {
       packageName: '',
       bouquetPrice: '',
-      NoOfBouquets: '',
+      noOfBouquets: '',
       maintenanceCost: '',
       amount: '',
     },
     {
       packageName: '',
       bouquetPrice: '',
-      NoOfBouquets: '',
+      noOfBouquets: '',
       maintenanceCost: '',
       amount: '',
     },
     {
       packageName: '',
       bouquetPrice: '',
-      NoOfBouquets: '',
+      noOfBouquets: '',
       maintenanceCost: '',
       amount: '',
     },
@@ -119,7 +119,7 @@ function OfflineDonation() {
     console.log(donationType);
     let updatedUserPackage = [];
     packageData.map((item) => {
-      if (item.NoOfBouquets && item.amount) {
+      if (item.noOfBouquets && item.amount) {
         updatedUserPackage.push(item)
       }
     })
@@ -180,7 +180,7 @@ function OfflineDonation() {
       response.data.map((item, index) => {
         packageData[index].packageName = item.packageName;
         packageData[index].bouquetPrice = item.bouquetPrice;
-        packageData[index].NoOfBouquets = 0;
+        packageData[index].noOfBouquets = 0;
         packageData[index].maintenanceCost = item.maintenanceCost;
         packageData[index].amount = 0;
       })
@@ -235,7 +235,7 @@ function OfflineDonation() {
 
     setPackageData((current) => {
       return current.map((item) => {
-        return { ...item, NoOfBouquets: '', amount: '' }
+        return { ...item, noOfBouquets: '', amount: '' }
       })
     });
    
@@ -253,7 +253,7 @@ function OfflineDonation() {
     let userPackageData = packageData;
     userPackageData[rowIndex][name] = value;
 
-    const totalCost = (row.bouquetPrice + row.maintenanceCost) * row.NoOfBouquets;
+    const totalCost = (row.bouquetPrice + row.maintenanceCost) * row.noOfBouquets;
     userPackageData[rowIndex]["amount"] = totalCost;
     setPackageData(userPackageData);
     calculateOverallTotal();
@@ -262,7 +262,7 @@ function OfflineDonation() {
 
   const calculateOverallTotal = () => {
     const totalAmountOfPackage = packageData.reduce((accumulator, packageItem, index) => {
-      return accumulator + (packageItem.bouquetPrice + packageItem.maintenanceCost) * packageItem.NoOfBouquets;
+      return accumulator + (packageItem.bouquetPrice + packageItem.maintenanceCost) * packageItem.noOfBouquets;
     }, 0);
     const updatedDonations = [...donations];
     updatedDonations[0]["totalAmount"] = totalAmountOfPackage;
@@ -396,8 +396,8 @@ function OfflineDonation() {
                                   <td>
                                     <input
                                       type="number"
-                                      name="NoOfBouquets"
-                                      value={packageItem.NoOfBouquets}
+                                      name="noOfBouquets"
+                                      value={packageItem.noOfBouquets}
                                       onChange={(event) => {
                                         if (event.target.value < 0) {
                                           event.target.value = 0;
@@ -478,7 +478,7 @@ function OfflineDonation() {
                                     onChange={handleChange}>
                                     <option selected>Donar Type</option>
                                     <option value="Corporate">Corporate</option>
-                                    <option value="Retail">Retail</option>
+                                    <option value="Individual">Individual</option>
                                   </select>
                                 </div>
                               </div>
@@ -892,8 +892,8 @@ function OfflineDonation() {
                                   <td>
                                     <input
                                       type="number"
-                                      name="NoOfBouquets"
-                                      value={packageItem.NoOfBouquets}
+                                      name="noOfBouquets"
+                                      value={packageItem.noOfBouquets}
                                       onChange={(event) => {
                                         if (event.target.value < 0) {
                                           event.target.value = 0;
@@ -974,7 +974,7 @@ function OfflineDonation() {
                                     onChange={handleChange}>
                                     <option selected>Donar Type</option>
                                     <option value="Corporate">Corporate</option>
-                                    <option value="Retail">Retail</option>
+                                    <option value="Individual">Individual</option>
                                   </select>
                                 </div>
                               </div>
@@ -1691,7 +1691,7 @@ function OfflineDonation() {
                                   <select className=" form-control-inside form-select">
                                     <option selected>Donor Type</option>
                                     <option value="0">Corporate</option>
-                                    <option value="1">Retail</option>
+                                    <option value="1">Individual</option>
                                   </select>
                                 </div>
                               </div>
@@ -2158,7 +2158,7 @@ function OfflineDonation() {
                                   <select className=" form-control-inside form-select">
                                     <option selected>Donor Type</option>
                                     <option value="0">Corporate</option>
-                                    <option value="1">Retail</option>
+                                    <option value="1">Individual</option>
                                   </select>
                                 </div>
                               </div>

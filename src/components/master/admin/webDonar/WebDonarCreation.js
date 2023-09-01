@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
-import { AiFillEdit } from "react-icons/ai";
+import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
 import BootstrapTable from "react-bootstrap-table-next";
 import { FaRegEye } from "react-icons/fa";
+import { BsCheckCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { toast,ToastContainer } from "react-toastify";
 import { WebDonorCreationService } from
@@ -113,7 +114,7 @@ function WebDonarCreation() {
       formatter: function (dataField, row) {
         return (
           <span>
-            <button
+            {/* <button
               className="approve-button btn btn-danger"
               onClick={() => handleApproveAndReject(row, "approved")}
             // disabled={isApproved}
@@ -126,7 +127,12 @@ function WebDonarCreation() {
             // disabled={!isApproved}
             >
               Reject
-            </button>
+            </button> */}
+            <BsCheckCircleFill title="Approve" className="icon-btn approve-button"
+              onClick={() => handleApproveAndReject(row, "approved")}/>
+            <AiFillCloseCircle title="Reject" className="icon-btn reject-button"
+              onClick={() => handleApproveAndReject(row, "rejected")}/>
+            <Link to={`/DonarView/${row.emailId}`} className="view-icon icon-btn" ><FaRegEye /></Link>
           </span>
         );
       },
@@ -199,7 +205,7 @@ function WebDonarCreation() {
                 >
                   <option value="">All Donor Types</option>
                   <option value="Corporate">Corporate</option>
-                  <option value="Retail">Retail</option>
+                  <option value="Individual">Individual</option>
                 </select>
               </div>
             </div>

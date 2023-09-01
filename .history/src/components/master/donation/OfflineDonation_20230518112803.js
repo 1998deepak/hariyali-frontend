@@ -603,7 +603,7 @@ function OfflineDonation() {
                                     onChange={(e) => setDonarType(e.target.value)}>
                                     <option selected>Donar Type</option>
                                     <option value="Corporate">Corporate</option>
-                                    <option value="Retail">Retail</option>
+                                    <option value="Individual">Individual</option>
                                   </select>
                                 </div>
                               </div>
@@ -1172,7 +1172,7 @@ function OfflineDonation() {
                                     onChange={(e) => setDonarType(e.target.value)}>
                                     <option selected>Donar Type</option>
                                     <option value="Corporate">Corporate</option>
-                                    <option value="Retail">Retail</option>
+                                    <option value="Individual">Individual</option>
                                   </select>
                                 </div>
                               </div>
@@ -1962,7 +1962,7 @@ function OfflineDonation() {
                                   <select className=" form-control-inside form-select">
                                     <option selected>Donar Type</option>
                                     <option value="0">Corporate</option>
-                                    <option value="1">Retail</option>
+                                    <option value="1">Individual</option>
                                   </select>
                                 </div>
                               </div>
@@ -2453,7 +2453,7 @@ function OfflineDonation() {
                                   <select className=" form-control-inside form-select">
                                     <option selected>Donar Type</option>
                                     <option value="0">Corporate</option>
-                                    <option value="1">Retail</option>
+                                    <option value="1">Individual</option>
                                   </select>
                                 </div>
                               </div>

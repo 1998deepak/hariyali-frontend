@@ -19,28 +19,28 @@ function OnlineDonation() {
     {
       packageName: "",
       bouquetPrice: "",
-      NoOfBouquets: "",
+      noOfBouquets: "",
       maintenanceCost: "",
       amount: "",
     },
     {
       packageName: "",
       bouquetPrice: "",
-      NoOfBouquets: "",
+      noOfBouquets: "",
       maintenanceCost: "",
       amount: "",
     },
     {
       packageName: "",
       bouquetPrice: "",
-      NoOfBouquets: "",
+      noOfBouquets: "",
       maintenanceCost: "",
       amount: "",
     },
     {
       packageName: "",
       bouquetPrice: "",
-      NoOfBouquets: "",
+      noOfBouquets: "",
       maintenanceCost: "",
       amount: "",
     },
@@ -329,7 +329,7 @@ function OnlineDonation() {
       console.log(donationType);
       let updatedUserPackage = [];
       packageData.map((item) => {
-        if (item.NoOfBouquets && item.amount) {
+        if (item.noOfBouquets && item.amount) {
           updatedUserPackage.push(item);
         }
       });
@@ -438,7 +438,7 @@ function OnlineDonation() {
       response.data.map((item, index) => {
         packageData[index].packageName = item.packageName;
         packageData[index].bouquetPrice = item.bouquetPrice;
-        packageData[index].NoOfBouquets = 0;
+        packageData[index].noOfBouquets = 0;
         packageData[index].maintenanceCost = item.maintenanceCost;
         packageData[index].amount = 0;
       });
@@ -493,7 +493,7 @@ function OnlineDonation() {
     e.preventDefault();
     setPackageData((current) => {
       return current.map((item) => {
-        return { ...item, NoOfBouquets: "", amount: "" };
+        return { ...item, noOfBouquets: "", amount: "" };
       });
     });
 
@@ -510,7 +510,7 @@ function OnlineDonation() {
     setDonationType(eventKey);
     setPackageData((current) => {
       return current.map((item) => {
-        return { ...item, NoOfBouquets: "", amount: "" };
+        return { ...item, noOfBouquets: "", amount: "" };
       });
     });
 
@@ -528,7 +528,7 @@ function OnlineDonation() {
     userPackageData[rowIndex][name] = value;
 
     const totalCost =
-      (row.bouquetPrice + row.maintenanceCost) * row.NoOfBouquets;
+      (row.bouquetPrice + row.maintenanceCost) * row.noOfBouquets;
     userPackageData[rowIndex]["amount"] = totalCost;
     setPackageData(userPackageData);
     calculateOverallTotal();
@@ -541,7 +541,7 @@ function OnlineDonation() {
         return (
           accumulator +
           (packageItem.bouquetPrice + packageItem.maintenanceCost) *
-          packageItem.NoOfBouquets
+          packageItem.noOfBouquets
         );
       },
       0
@@ -808,7 +808,7 @@ function OnlineDonation() {
                         >
                           <option disabled selected value="">Donor Type</option>
                           <option value="Corporate" >Corporate</option>
-                          <option value="Retail">Retail</option>
+                          <option value="Individual">Individual</option>
                         </select>
                         {errors.map((error, index) => {
                           if (error.field === 'userData.user.donarType') {
@@ -961,8 +961,8 @@ function OnlineDonation() {
                                   <td>
                                     <input
                                       type="number"
-                                      name="NoOfBouquets"
-                                      value={packageItem.NoOfBouquets}
+                                      name="noOfBouquets"
+                                      value={packageItem.noOfBouquets}
                                       onChange={(event) => {
                                         if (event.target.value < 0) {
                                           event.target.value = 0;
@@ -1046,7 +1046,7 @@ function OnlineDonation() {
                                   >
                                     <option disabled selected value="">Donar Type</option>
                                     <option value="Corporate">Corporate</option>
-                                    <option value="Retail">Retail</option>
+                                    <option value="Individual">Individual</option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (error.field === 'userData.user.donarType') {
@@ -1641,8 +1641,8 @@ function OnlineDonation() {
                                 <td>
                                   <input
                                     type="number"
-                                    name="NoOfBouquets"
-                                    value={packageItem.NoOfBouquets}
+                                    name="noOfBouquets"
+                                    value={packageItem.noOfBouquets}
                                     onChange={(event) => {
                                       if (event.target.value < 0) {
                                         event.target.value = 0;
@@ -1740,7 +1740,7 @@ function OnlineDonation() {
                               >
                                 <option disabled selected value="">Donar Type</option>
                                 <option value="Corporate">Corporate</option>
-                                <option value="Retail">Retail</option>
+                                <option value="Individual">Individual</option>
                               </select>
                               {errors.map((error, index) => {
                                 if (error.field === 'userData.user.DonarType') {
