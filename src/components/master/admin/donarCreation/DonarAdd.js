@@ -17,14 +17,6 @@ function DonarAdd() {
   // DataField
   const columns = [
     {
-      dataField: "donorId",
-      text: "Donor ID",
-    },
-    {
-      dataField: "donarType",
-      text: "Donor Type",
-    },
-    {
       dataField: "fullName",
       text: "Name",
       formatter: (cell, row) => {
@@ -33,16 +25,29 @@ function DonarAdd() {
       },
     },
     {
-      dataField: "paymentDate",
-      text: "Last Payment Date",
+      dataField: "donorId",
+      text: "Donor ID",
     },
+    {
+      dataField: "donarType",
+      text: "Donor Type",
+    },
+   
+    // {
+    //   dataField: "paymentDate",
+    //   text: "Last Payment Date",
+    // },
     {
       dataField: "panCard",
-      text: "PAN",
+      text: "PAN No",
     },
     {
-      dataField: "emailId",
-      text: "Email",
+      dataField: "citizenship",
+      text: "citizenship",
+    },
+    {
+      dataField: "country",
+      text: "country",
     },
     {
       dataField: "",
@@ -73,6 +78,7 @@ function DonarAdd() {
     if (response?.data?.data) {
       const dataArray = JSON.parse(response.data.data);
       setData(dataArray);
+      console.log(dataArray);
     }
     if (response?.status === SUCCESS) {
       toast.success(response?.message);
