@@ -2571,6 +2571,9 @@ tr td input {
 .banner-about{
   background: url("../img/slider/extra.jpg") no-repeat;
 }
+.banner-contact{
+  background: url("../img/slider/Donateslid.jpg") no-repeat;
+}
 .banner-associate{
   background: url("../img/ways-to-associate.png") no-repeat;
   background-position: center;
@@ -2591,7 +2594,7 @@ tr td input {
   height: 50vh;
 }
 .banner-footprint{
-  background: url('../img/bannerWherearewe.png') no-repeat;
+  background: url('../img/slider/downslide.jpg') no-repeat;
   background-size: cover;
   background-position: center;
 }
