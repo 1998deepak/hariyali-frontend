@@ -395,13 +395,13 @@ input:disabled {
 .dropdown-toggle {
   background-color: #fff !important;
   border: 0 !important;
-  margin-top: -15px;
+  /* margin-top: -15px; */
   padding: 0;
 }
 .navbar-expand .navbar-nav .dropdown-menu {
   right: 10px;
   left: auto;
-  top: 40px;
+  top: 62px;
   width: 220px;
   padding: 0;
 }
@@ -426,16 +426,16 @@ input:disabled {
   background: #e9f9df;
 }
 .css-dip3t8 {
-  width: 60px;
-  position: fixed !important;
+  /* width: 60px; */
+  /* position: fixed !important; */
   height: 100vh;
 }
-.css-16jesut > .ps-menu-button {
+/* .css-16jesut > .ps-menu-button {
   height: 39px !important;
-}
-.css-16jkw2k > .ps-menu-button {
+} */
+/* .css-16jkw2k > .ps-menu-button {
   height: 39px !important;
-}
+} */
 .css-vj11vy.ps-menu-root {
   margin-top: 10px;
 }
@@ -1687,7 +1687,7 @@ tr td input {
   background: #f5f7fa;
 }
 .css-1wvake5 {
-  float: left;
+  /* float: left; */
 }
 .navbar-logo {
   padding: 6px 0;
@@ -1703,6 +1703,14 @@ tr td input {
 }
 .sidebar-leftli .hideshowmenu {
   display: none;
+}
+.sidebar-leftli .nav-link{
+  font-size: 1.125rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ccc;
+}
+.sidebar-leftli .nav-link svg{
+  margin: 0 10px;
 }
 .css-1cuxlhl {
   margin-right: 10px;
@@ -1723,6 +1731,9 @@ tr td input {
 .css-1wvake5.ps-collapsed .css-16jkw2k > .ps-menu-button {
   padding-right: 8px !important;
   padding-left: 7px !important;
+}
+.css-16jkw2k >.ps-menu-button{
+  padding: 0;
 }
 .css-um1o6k {
   display: none;
@@ -1757,8 +1768,8 @@ tr td input {
 }
 .css-1wvake5 {
   margin-top: 57px;
-  width: 60px !important;
-  min-width: 60px !important;
+  /* width: 60px !important;
+  min-width: 60px !important; */
   border-right: 0px solid #cbd0dd !important;
 }
 .page-scroll {
@@ -1808,15 +1819,15 @@ tr td input {
 .homemenu-icon .css-jn69v9 {
   display: none !important;
 }
-.css-16jkw2k > .ps-menu-button {
+/* .css-16jkw2k > .ps-menu-button {
   padding-right: 5px !important;
   padding-left: 5px !important;
-}
+} */
 .nav-link svg {
   font-size: 25px;
 }
 .css-12w9als {
-  height: 30px;
+  /* height: 30px; */
 }
 .nav-link {
   /* text-align: center;
@@ -2877,7 +2888,7 @@ iframe{
   border-radius: 15px;
 }
 .rounded-circle{
-  height: 150px;
+  /* height: 150px; */
 }
 .nav.nav-pills{
   /* display: inline-flex; */
@@ -3138,6 +3149,10 @@ iframe{
 .certificate-wrapper h4{
   font-size: 1.25rem;
   color: #000;
+}
+.confirmation-modal .modal-content{
+  max-width: 450px;
+  margin: 0 auto;
 }
 @media screen and (max-width:1440px){
   .nav-list .nav-item a.nav-link{

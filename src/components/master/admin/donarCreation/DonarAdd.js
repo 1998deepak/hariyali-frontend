@@ -138,7 +138,7 @@ function DonarAdd() {
                 keyField="id"
                 data={filteredData}
                 columns={columns}
-                pagination={paginationFactory(paginationOptions)} // Apply pagination
+                //pagination={paginationFactory(paginationOptions)} // Apply pagination
               />
             </div>
           </div>

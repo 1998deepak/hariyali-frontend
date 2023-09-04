@@ -216,21 +216,21 @@ function WebDonarCreation() {
                 keyField="webId"
                 data={filteredData}
                 columns={columns}
-                pagination={paginationFactory(paginationOptions)} // Apply pagination
+                //pagination={paginationFactory(paginationOptions)} // Apply pagination
               />
             </div>
           </div>
         </div>
       </div>
       {/* Confirmation Modal */}
-      <Modal show={showConfirmationModal} onHide={() => setShowConfirmationModal(false)}>
+      <Modal show={showConfirmationModal} onHide={() => setShowConfirmationModal(false)} className="confirmation-modal">
         <Modal.Header closeButton>
           <Modal.Title>Confirmation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
            <p>Are you sure you want to {formData?.formData?.status==="approved" ? "approve" : "reject"} this?</p> 
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="">
           <Button variant="primary" onClick={() => approveDonationWithWebId(formData)}>OK</Button>
           <Button variant="secondary"onClick={() => setShowConfirmationModal(false)}>Cancel</Button>
         </Modal.Footer>
