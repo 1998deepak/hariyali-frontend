@@ -4,12 +4,14 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link, useParams } from "react-router-dom";
 import { DonationService } from "../../../../services/donationService/donation.service";
 import { FaRegEye } from "react-icons/fa";
+import Loader from "../../../common/loader/Loader";
 function UserdonationView({ userDetails, setAuthToken, authToken }) {
   const id=useParams().id;
   console.log(id);
   const [data, setData] = useState([]);
   const[donorId,setDonorId]=useState("");
   const[donorName,setDonorName]=useState("");
+  const [loading, setLoading] = useState(false);
 
   const columns = [
     {
@@ -117,6 +119,7 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
   
   const getAllDonationOfUser = async (id) => {
     console.log(id);
+    setLoading(true);
     const response = await DonationService.getAllDonationOfUser(id);
     console.log(id);
     console.log(response?.data);
@@ -142,49 +145,19 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
         setDonorName(fullName);
         setDonorId(newData[0].donorId);
       }
+      setLoading(false);
     }
     
   };
 
   return (
     <>
+    {loading && <Loader/>}
       <div className="bggray">
         <div className="col-12 admin-maindiv">
           <div className=" justify-content-between bgwite borderform1 padding30 all-form-wrap">
             <div className="row">
-              <h5 className="col-9">Donation History</h5>
-            </div>
-            <div className="row">
-              <div className="col-6">
-                <div className="row select-label">
-                  <div className="col-4 "> Donor ID</div>
-                  <div className="col-8 p0">
-                    <input
-                      className="form-control-inside"
-                      type="text"
-                      name="donorId"
-                      value={donorId}
-                      onChange={(e) => setDonorId(e.target.value)}
-                      placeholder="Donar ID"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="col-6">
-                <div className="row select-label">
-                  <div className="col-4 "> Donor Name</div>
-                  <div className="col-8 p0">
-                    <input
-                      className="form-control-inside"
-                      type="text"
-                      name="donarName"
-                      value={donorName}
-                      onChange={(e) => setDonorName(e.target.value)}
-                      placeholder="Donar Name"
-                    />
-                  </div>
-                </div>
-              </div>
+              <h5 className="col-9">Your Donations</h5>
             </div>
             <div className="col-12 pr0">
               <BootstrapTable

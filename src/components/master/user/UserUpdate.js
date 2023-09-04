@@ -2,10 +2,9 @@ import React,{ useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { DonationService } from "../../../services/donationService/donation.service";
-import { Link } from "react-router-dom";
 import { SUCCESS, stateOptions } from "../../constants/constants";
 import { UserService } from "../../../services/userService/user.service";
-
+import Loader from "../../common/loader/Loader";
 
 function UserUpdate() {
 
@@ -38,6 +37,7 @@ function UserUpdate() {
   }];
 
 //states to store data
+const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState(initialUserData);
   const [errors, setErrors] = useState({});
   const [addressData, setAddressData] = useState(initialAddress);
@@ -46,13 +46,17 @@ function UserUpdate() {
   // getUser Details
   const getUserDetails = async (id) => {
     try {
+      setLoading(true)
       const response = await DonationService.getUserDetails(id);
       if (response?.data) {
         setUserData(response.data);
         setAddressData(response.data.address);
+        
       }
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -155,12 +159,15 @@ function UserUpdate() {
       };
   
       formData.formData.user.address = addressData;
+      setLoading(true);
       const response = await DonationService.updateUser(emailID, formData);
   
       if (response?.status === SUCCESS) {
         toast.success(response?.message);
+        setLoading(false);
       } else {
         toast.error(response?.message);
+        setLoading(false);
       }
     } catch (err) {
       if (err?.response?.data) {
@@ -168,6 +175,7 @@ function UserUpdate() {
       } else {
         console.log(err?.message);
       }
+      setLoading(false);
     }
   };
 
@@ -200,6 +208,7 @@ function UserUpdate() {
   return (
     <>
       <ToastContainer />
+      {loading && <Loader/>}
       <div className="bggray">
         <div className="col-12 admin-maindiv">
           <div className=" justify-content-between bgwite borderform1 padding30 all-form-wrap">

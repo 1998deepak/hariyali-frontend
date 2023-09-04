@@ -34,6 +34,10 @@ export const URLS = {
     GETPAYMENTINFO: "/searchPaymentByPaymentId/",
 
     //Contact Us Form
-    CONTACTUSFORM: "/saveContact"
+    CONTACTUSFORM: "/saveContact",
+
+    //receipts
+    GETALLRECEIPTSBYUSER:"/getAllReceiptByUser",
+    DOWNLOADRECEIPT:"/receipt/download/"
 
 };

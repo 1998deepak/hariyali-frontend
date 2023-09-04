@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import {  useRef, useState } from "react";
 import logo from "../../../assets/img/logotrans.png";
 import Captcha from "./Captcha";
 import ReactPasswordToggleIcon from "react-password-toggle-icon";
@@ -6,11 +6,12 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { SUCCESS, TOKEN, USER_DETAILS } from "../../constants/constants";
 import { AuthService } from "../../../services/auth/auth.service";
-import axios from "axios";
 import { toast,ToastContainer } from "react-toastify";
 import { UserService } from "../../../services/userService/user.service";
+import Loader from "../../common/loader/Loader";
 
 function Login() {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -18,7 +19,6 @@ function Login() {
   const inputRef = useRef(false);
   const [redirectFlag, setRedirectFlag] = useState(false);
   const [verified, setVerified] = useState(false);
-  const [email, setEmail] = useState("");
   const [errors, setErrors] = useState({
     userName: "",
     password: "",
@@ -26,34 +26,13 @@ function Login() {
     captcha: ""
   });
   const navigate = useNavigate();
-  const regexMail =
-    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-  // useEffect(() => {
-  //   if (localStorage.getItem(TOKEN) !== null) {
-  //     navigate("/Dashboard");
-  //   }
-  // }, []);
-
-  const checkEmail = (e) => {
-    if (regexMail.test(e) == false) {
-      setErrors({ ...errors, email: "Invalid email address" });
-    } else {
-      setErrors({ ...errors, email: "" });
-      return true;
-    }
-  };
 
   const handleValueChange = (event) => {
     const updatedValue = { ...formData };
     updatedValue[event?.target?.name] = event?.target?.value;
     setFormData(updatedValue);
     setErrors({ ...errors, [event?.target?.name]: "" });
-  };
-
-  const handleEmailChange = (event) => {
-    checkEmail(event.target.value);
-    setEmail(event.target.value);
   };
 
   const login = async (e) => {
@@ -66,6 +45,7 @@ function Login() {
     }else if(!verified){
       setErrors({ ...errors, captcha: "Please verify captcha" }); 
     } else if (errors.username == "" && errors.password == "" && errors.captcha == "") {
+      setLoading(true)
       const response = await AuthService.login(formData);
       console.log(response);
       if (response) {
@@ -75,17 +55,19 @@ function Login() {
           toast.success("OTP Send Successfully!")
           setIsHidden(!isHidden);
           setIsHide(!isHide);
+          setLoading(false)
         } else {
           toast.error(response?.message);
+          setLoading(false)
         }
       } else {
         toast.error("Invalid credentials ! Username or Password Incorrect");
+        setLoading(false)
       }
     }
   };
 
 
-  const [donarIdOrEmail, setDonarIdOrEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [verificationStatus, setVerificationStatus] = useState("");
   const [isHidden, setIsHidden] = useState(true);
@@ -97,7 +79,7 @@ function Login() {
       const response = await AuthService.verifyOtp( formData.username, otp)
       console.log("Response: " + JSON.stringify(response));
 
-      // console.log("Error Massage: "+response.data.message);
+      setLoading(true)
       if (response) {
         if (response?.status === SUCCESS) {
           //console.log(response?.data.token);
@@ -119,40 +101,41 @@ function Login() {
         } else {
           console.log("Response: " + response.status);
         }
+        setLoading(false)
       } else {
         //toast.error("Invalid credentials ! Username or Password Incorrect");
         console.log("Failed To Login");
+        setLoading(false)
       }
     } catch (error) {
       console.error(error);
       //console.log(error.response.data.message);
       toast.success("OTP verification failed");
       setVerificationStatus("OTP verification failed");
+      setLoading(false)
     }
   };
 
   const [donarID, setDonarID] = useState("");
   const sendEmail = async (e) => {
-    console.log("hii");
-
     e.preventDefault();
-
-    console.log(donarID);
-
     const formData = {
       formData: {
         donarID: donarID,
       },
     };
     console.log(formData);
+    setLoading(true)
     const response = await AuthService.sendForgetPasswordLink(formData);
     console.log(response);
     console.log(response?.status === SUCCESS);
     if (response?.status === SUCCESS) {
       toast.success("Email sent successfully!");
+      setLoading(false)
       navigate("/OtpId");
     } else {
       toast.error(response?.message);
+      setLoading(false)
     }
     //  }
   };
@@ -186,18 +169,7 @@ function Login() {
       }
     }
   };
-  const otpLink = (e) => {
-    e.preventDefault();
-    if (document.getElementById("otpDiv")) {
-      if (document.getElementById("otpDiv").style.display === "none") {
-        document.getElementById("otpDiv").style.display = "none";
-        document.getElementById("forgotDiv").style.display = "block";
-      } else {
-        document.getElementById("forgotDiv").style.display = "none";
-        document.getElementById("otpDiv").style.display = "block";
-      }
-    }
-  };
+ 
   //toggle password hide show
   const showIcon = () => <FaEyeSlash />;
   const hideIcon = () => <FaEye />;
@@ -207,6 +179,7 @@ function Login() {
   return (
     <>
     <ToastContainer/>
+    {loading && <Loader/>}
     <div className="logindiv bggray">
       <div className="col-6 mauto">
         <div

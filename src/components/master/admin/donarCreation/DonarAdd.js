@@ -9,11 +9,12 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { SUCCESS } from "../../../constants/constants";
 import { DonationService } from "../../../../services/donationService/donation.service";
+import Loader from "../../../common/loader/Loader";
 
 function DonarAdd() {
   const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState('');
-
+  const [loading, setLoading] = useState(false);
   // DataField
   const columns = [
     {
@@ -73,6 +74,7 @@ function DonarAdd() {
 
   // Get all user donation
   const getAllUserDonation = async () => {
+    setLoading(true);
     const response = await DonationService.getAllUserDonation();
 
     if (response?.data?.data) {
@@ -82,8 +84,10 @@ function DonarAdd() {
     }
     if (response?.status === SUCCESS) {
       toast.success(response?.message);
+      setLoading(false);
     } else {
       toast.error(response?.message);
+      setLoading(false);
     }
   };
 
@@ -116,6 +120,7 @@ function DonarAdd() {
 
   return (
     <>
+    {loading && <Loader/>}
       <div className="bggray">
         <div className="col-12 admin-maindiv">
           <div className="justify-content-between bgwite borderform1 padding30 all-form-wrap">

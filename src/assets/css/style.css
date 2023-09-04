@@ -3622,3 +3622,17 @@ iframe{
 .error-input-field {
   border: 1px solid #ff0000 !important; /* Red border for error */
 }
+
+.modal-90w{
+  max-width: 90vw !important;
+}
+.modal-70h{
+  height: 70vh !important;
+  overflow: auto;
+}
+.privacy-policy-link{
+  border: none;
+  background-color: #fff;
+  text-decoration: underline;
+  color: blue;
+}

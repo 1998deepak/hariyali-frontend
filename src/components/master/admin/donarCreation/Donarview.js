@@ -8,6 +8,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link, useParams } from "react-router-dom";
 import { AiFillEdit } from "react-icons/ai";
 import { DonationService } from "../../../../services/donationService/donation.service";
+import Loader from "../../../common/loader/Loader";
 
 function DonarView() {
   const id=useParams().id;
@@ -15,6 +16,8 @@ function DonarView() {
   const [data, setData] = useState([]);
   const[donorId,setDonorId]=useState("");
   const[donorName,setDonorName]=useState("");
+  const [loading, setLoading] = useState(false);
+  
 
   const columns = [
     {
@@ -122,6 +125,7 @@ function DonarView() {
   
   const getAllDonationOfUser = async (id) => {
     console.log(id);
+    setLoading(true);
     const response = await DonationService.getAllDonationOfUser(id);
     console.log(id);
     console.log(response?.data);
@@ -147,12 +151,14 @@ function DonarView() {
         setDonorName(fullName);
         setDonorId(newData[0].donorId);
       }
+      setLoading(false);
     }
     
   };
 
   return (
     <>
+    {loading && <Loader/>}
       <div className="bggray">
         <div className="col-12 admin-maindiv">
           <div className=" justify-content-between bgwite borderform1 padding30 all-form-wrap">

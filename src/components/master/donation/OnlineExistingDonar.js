@@ -7,22 +7,18 @@ import { SUCCESS } from "../../constants/constants";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
 import Captcha from "../user/Captcha";
 import CaptchaGift from "../user/CaptchaGift";
-import { Button, Container, Form, Modal, Row, Tab, Tabs } from "react-bootstrap";
+import { Container, Row, Tab, Tabs } from "react-bootstrap";
 import { UserService } from '../../../services/userService/user.service';
+import Loader from '../../common/loader/Loader';
 
 export default function OnlineExistingDonar() {
 
     const [donationType, setDonationType] = useState("Self-Donate");
-    const [generalDonation, setGeneralDonation] = useState(null);
-    const [newEmail, setNewEmail] = useState(null);
-    const [gatewayConfiguration, setGatewayConfiguration] = useState(null);
-  
+    const [loading, setLoading] = useState(false);
     const [donation, setDonation] = useState("");
   
     const [validatePopup, setValidatePopup] = useState({});
     const [show, setShow] = useState(false);
-    const [validSelfUser, setValidSelfUser] = useState(false);
-    const [validGiftUser, setValidGiftUser] = useState(false);
     
   
     const handleClose = () => setShow(false);
@@ -366,6 +362,7 @@ export default function OnlineExistingDonar() {
       const handleDonarIdBlur = async (e) => {
         e.preventDefault();
         const donorId = e.target.value;
+        setLoading(true)
         let response = await DonationService.getDetailsByDonorId(donorId);
         console.log("API Response:", response);
     
@@ -385,11 +382,14 @@ export default function OnlineExistingDonar() {
           });
     
           setAddress(address);
+          setLoading(false)
         } else if (response?.statusCode === 409) {
           toast.error(response?.message);
+          setLoading(false)
         }else{
           console.log(response);
           toast.error(response?.message);
+          setLoading(false)
         }
       };
   
@@ -432,15 +432,17 @@ export default function OnlineExistingDonar() {
           };
           console.log(userData);
     
-    
+          setLoading(true)
         const response = await DonationService.AddNewDonation(formData);
         console.log(response);
         if (response?.status === SUCCESS) {
           console.log("Create Donation: "+JSON.stringify(response))
           toast.success(response?.message);
           clearForm(e);
+          setLoading(false)
         } else {
           toast.error(response?.message);
+          setLoading(false)
         }
       
         console.log(donations);
@@ -471,21 +473,26 @@ export default function OnlineExistingDonar() {
     
   
     const getPaymentInformation = async (paymentId) => {
+      setLoading(true)
       const response = await DonationService.getPaymentInformation(paymentId);
       if (response?.status === 'Success') {
         console.log(response);
   
         if (response?.data?.paymentStatus == 'Success') {
           toast.success("Donation payment successful, payment reference no " + response?.data?.bankPaymentRefNo);
+          setLoading(false)
         } else {
           toast.error(response?.data?.remark);
+          setLoading(false)
         }
       } else {
         toast.error(response?.message);
+        setLoading(false)
       }
     }
   
     const getAllPackages = async () => {
+      setLoading(true)
       const response = await DonationService.getAllPackages();
       if (response?.status === 'Success') {
         console.log(response);
@@ -497,8 +504,10 @@ export default function OnlineExistingDonar() {
         let data = parsedData.map((item) => ({ packageName: item.package_name, bouquetPrice: item.bouquet_price, noOfBouquets: 0, amount: 0 }))
         console.log(data)
         setPackageData(data);
+        setLoading(false)
       } else {
         toast.error(response?.message);
+        setLoading(false)
       }
     };
   
@@ -746,6 +755,7 @@ export default function OnlineExistingDonar() {
     };
   
     const getUserInfo = async (email, type) => {
+      setLoading(true)
       let response = await DonationService.getExistingDetailsByEmailId(email);
       console.log(JSON.stringify(response))
       if (response?.status === "Success") {
@@ -775,8 +785,10 @@ export default function OnlineExistingDonar() {
         // } else {
         //   setValidGiftUser(true);
         // }
+        setLoading(false)
       } else if (response?.statusCode === 409) {
         toast.error(response?.message);
+        setLoading(false)
       } else {
         // if (type === "self") {
         //   setValidSelfUser(false);
@@ -785,7 +797,7 @@ export default function OnlineExistingDonar() {
         //   //setValidGiftUser(false);
         //   //setIsDivOpenGift(true);
         // }
-        
+        setLoading(false)
       }
     }
   
@@ -908,7 +920,7 @@ export default function OnlineExistingDonar() {
     <>
       <ToastContainer />
       {/* slider */}
-
+      {loading && <Loader/>}
       <div className="pt100"></div>
       <div className="section bggray ">
         {/* form */}

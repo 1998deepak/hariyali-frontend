@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -13,27 +12,35 @@ import {
 } from "react-bootstrap";
 import Captcha from "../user/Captcha";
 import CaptchaGift from "../user/CaptchaGift";
-import Donateslid from "../../../assets/img/slider/Donateslid.jpg";
-import DonationImg from "../../../assets/img/DonationImg.jpg";
 import { DonationService } from "../../../services/donationService/donation.service";
 import { SUCCESS } from "../../constants/constants";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
+import TermsConditionsPopup from "../../common/popup/TermsConditionsPopup";
+import Loader from "../../common/loader/Loader";
+import PrivacyPolicy from "../../common/PrivacyPolicy";
 
 function OnlineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
   const [generalDonation, setGeneralDonation] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [newEmail, setNewEmail] = useState(null);
   const [gatewayConfiguration, setGatewayConfiguration] = useState(null);
+  const [privacyPolicy, setPrivacyPolicy] = useState(false);
+  const [informationShare, setInformationShare] = useState("yes");
 
   const [donation, setDonation] = useState("");
 
   const [validatePopup, setValidatePopup] = useState({});
   const [show, setShow] = useState(false);
+  const [showConditons, setShowConditons] = useState(false);
   const [validSelfUser, setValidSelfUser] = useState(false);
   const [validGiftUser, setValidGiftUser] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleCloseConditions = () => setShowConditons(false);
+  const handleShowConditions = (e) =>{ e.preventDefault(); setShowConditons(true);};
 
   const initialPackageData = [
     {
@@ -177,7 +184,7 @@ function OnlineDonation() {
       });
     }
 
-    if(!captchaVerfied){
+    if (!captchaVerfied) {
       validationErrors.push({
         field: "captchaError",
         message: "Captcha not verified",
@@ -327,7 +334,7 @@ function OnlineDonation() {
           message:
             "Invalid Postal Code",
         });
-    }
+      }
     }
 
     // Validate recipient (only for "Gift Donate" donation type)
@@ -438,11 +445,24 @@ function OnlineDonation() {
     );
   }
 
-  const resetErrors = async() =>{
+  const resetErrors = async () => {
     setErrors([]);
+    setPackageData((current) => {
+      return current.map((item) => {
+        return { ...item, noOfBouquets: "", amount: "" };
+      });
+    });
+
+    setAddress(initialAddress);
+    // setDonationType("");
+    setDonations(intialDonations);
+    setRecipient(initialRecipientData);
+    setUserData(initialUserData);
+    setInformationShare("yes");
+    setPrivacyPolicy(false);
   }
 
-  const setCaptchaFlag = async (flag) =>{
+  const setCaptchaFlag = async (flag) => {
     setCaptchaVerfied(flag);
   }
 
@@ -452,6 +472,10 @@ function OnlineDonation() {
     console.log("isValid:", isValid);
 
     if (isValid) {
+      if(!privacyPolicy || informationShare === "no"){
+          toast.error("Accept Privacy Policy and consent");
+          return;
+      }
       let updatedUserPackage = [];
       packageData.map((item) => {
         if (item.noOfBouquets && item.amount) {
@@ -465,32 +489,32 @@ function OnlineDonation() {
         },
       };
 
-      if(donations[0].paymentInfo){
+      if (donations[0].paymentInfo) {
 
-      
-      let paymentArray = { ...donations[0] };
 
-      paymentArray.paymentInfo = [];
-      if (hasValues(donations[0].paymentInfo[0])) {
-        paymentArray.paymentInfo[0] = donations[0].paymentInfo[0];
+        let paymentArray = { ...donations[0] };
+
+        paymentArray.paymentInfo = [];
+        if (hasValues(donations[0].paymentInfo[0])) {
+          paymentArray.paymentInfo[0] = donations[0].paymentInfo[0];
+        }
+
+        if (hasValues(donations[0].paymentInfo[1])) {
+          paymentArray.paymentInfo[1] = donations[0].paymentInfo[1];
+        }
+
+        console.log(paymentArray);
+
+        formData.formData.user.donations[0] = paymentArray;
+        console.log(formData.formData.user.donations[0]);
       }
-
-      if (hasValues(donations[0].paymentInfo[1])) {
-        paymentArray.paymentInfo[1] = donations[0].paymentInfo[1];
-      }
-    
-      console.log(paymentArray);
-
-      formData.formData.user.donations[0] = paymentArray;
-      console.log(formData.formData.user.donations[0]);
-    }
 
       console.log(formData);
       //setting Donation event
 
       formData.formData.user.donations[0].donationType = donationType == "self" ? "self-donate" : "gift-donate";
 
-      formData.formData.user.emailId =  donationType == "self" ? userEmail : giftUserEmail;
+      formData.formData.user.emailId = donationType == "self" ? userEmail : giftUserEmail;
 
       //Setting Address array
       console.log(address.length);
@@ -542,6 +566,7 @@ function OnlineDonation() {
       setNewEmail(formData.formData.user.emailId);
 
       console.log(formData);
+      setLoading(true)
       const response = await DonationService.AddOnlineuser(formData);
       console.log(response);
       if (response?.status === SUCCESS) {
@@ -551,8 +576,10 @@ function OnlineDonation() {
           document.getElementById("gatewayForm").submit();
         }, 1000);
         clearForm(e);
+        setLoading(false)
       } else {
         toast.error(response?.message);
+        setLoading(false)
       }
     }
   };
@@ -567,6 +594,7 @@ function OnlineDonation() {
   }, []);
 
   const getPaymentInformation = async (paymentId) => {
+    setLoading(true)
     const response = await DonationService.getPaymentInformation(paymentId);
     if (response?.status === "Success") {
       console.log(response);
@@ -574,17 +602,20 @@ function OnlineDonation() {
       if (response?.data?.paymentStatus == "Success") {
         toast.success(
           "Donation payment successful, payment reference no " +
-            response?.data?.bankPaymentRefNo
+          response?.data?.bankPaymentRefNo
         );
       } else {
         toast.error(response?.data?.remark);
       }
+      setLoading(false)
     } else {
       toast.error(response?.message);
+      setLoading(false)
     }
   };
 
   const getAllPackages = async () => {
+    setLoading(true)
     const response = await DonationService.getAllPackages();
     if (response?.status === "Success") {
       console.log(response);
@@ -601,8 +632,10 @@ function OnlineDonation() {
       }));
       setPackageData(data);
       calculateOverallTotal(data);
+      setLoading(false)
     } else {
       toast.error(response?.message);
+      setLoading(false)
     }
   };
 
@@ -862,6 +895,7 @@ function OnlineDonation() {
   };
 
   const getUserInfo = async (emailId, type) => {
+    setLoading(true)
     let response = await DonationService.getDetailsByEmailId(emailId);
     if (response?.status === "Success") {
       toast.success(response?.message);
@@ -889,8 +923,10 @@ function OnlineDonation() {
       } else {
         setValidGiftUser(true);
       }
+      setLoading(false)
     } else if (response?.statusCode === 409) {
       toast.error(response?.message);
+      setLoading(false)
     } else {
       if (type === "self") {
         setValidSelfUser(false);
@@ -899,16 +935,19 @@ function OnlineDonation() {
         setValidGiftUser(false);
         setIsDivOpenGift(true);
       }
+      setLoading(false)
     }
   };
 
   const sendOtp = async (emailId) => {
     console.log(emailId);
+    setLoading(true)
     let response = await DonationService.sendOtp(emailId);
     if (response?.status === "Success") {
       toast.success(response?.message);
       handleShow();
     }
+    setLoading(false)
   };
 
   const verifyOtp = async (event, email, otp) => {
@@ -923,7 +962,7 @@ function OnlineDonation() {
       setValidatePopup(validate);
       return;
     }
-
+    setLoading(true)
     let response = await DonationService.verifiyOtp(email, otp);
     if (response?.status === "Success") {
       toast.success("User Verified Successfully");
@@ -934,6 +973,7 @@ function OnlineDonation() {
       }
       clearState();
       handleClose();
+      setLoading(false)
     }
   };
 
@@ -946,18 +986,18 @@ function OnlineDonation() {
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
-      const updatedFormData = { ...userData };
-      console.log(updatedFormData);
-      const keys = name.split(".");
-      console.log(keys);
-      let currentField = updatedFormData;
-      for (let i = 0; i < keys.length - 1; i++) {
-        currentField = currentField[keys[i]];
-      }
-      console.log(currentField);
-      currentField[keys[keys.length - 1]] = value;
-      console.log(updatedFormData);
-      setUserData(updatedFormData);
+    const updatedFormData = { ...userData };
+    console.log(updatedFormData);
+    const keys = name.split(".");
+    console.log(keys);
+    let currentField = updatedFormData;
+    for (let i = 0; i < keys.length - 1; i++) {
+      currentField = currentField[keys[i]];
+    }
+    console.log(currentField);
+    currentField[keys[keys.length - 1]] = value;
+    console.log(updatedFormData);
+    setUserData(updatedFormData);
     if (value === "Corporate") {
       setIsVisible(true);
     } else {
@@ -973,18 +1013,18 @@ function OnlineDonation() {
   };
   const changeHandlerGift = (e) => {
     const { name, value } = e.target;
-      const updatedFormData = { ...userData };
-      console.log(updatedFormData);
-      const keys = name.split(".");
-      console.log(keys);
-      let currentField = updatedFormData;
-      for (let i = 0; i < keys.length - 1; i++) {
-        currentField = currentField[keys[i]];
-      }
-      console.log(currentField);
-      currentField[keys[keys.length - 1]] = value;
-      console.log(updatedFormData);
-      setUserData(updatedFormData);
+    const updatedFormData = { ...userData };
+    console.log(updatedFormData);
+    const keys = name.split(".");
+    console.log(keys);
+    let currentField = updatedFormData;
+    for (let i = 0; i < keys.length - 1; i++) {
+      currentField = currentField[keys[i]];
+    }
+    console.log(currentField);
+    currentField[keys[keys.length - 1]] = value;
+    console.log(updatedFormData);
+    setUserData(updatedFormData);
     if (value === "Corporate") {
       setIsVisibleGift(true);
     } else {
@@ -996,20 +1036,6 @@ function OnlineDonation() {
       setIsCSRGift(true);
     } else {
       setIsCSRGift(false);
-    }
-  };
-
-  const handleInputFocusGift = () => {
-    setIsDivOpenGift(true);
-  };
-
-  //enter key login
-  const handleKeyPress = (event) => {
-    const { name, value } = event.target;
-    if (event.key === "Enter") {
-      if (value) {
-        getUserInfo(value, name);
-      }
     }
   };
 
@@ -1032,7 +1058,7 @@ function OnlineDonation() {
     <>
       <ToastContainer />
       {/* slider */}
-
+      {loading && <Loader />}
       {/* <div className="pt100"></div> */}
       <div className="section bggray ">
         {/* form */}
@@ -1084,12 +1110,12 @@ function OnlineDonation() {
                         </div>
                       </div>{" "}
                     </div>
-                  {isVisible ? (
+                    {isVisible ? (
                       <div className="col-6 mb10">
                         <div className="select-label">
                           {/* <div className="col-4 ">I want to opt</div> */}
-                        <div className="col-12 p0 field-wrapper">
-                          <label for="activity" class="form-label">Type of Corporate <span className="red-text">*</span></label>
+                          <div className="col-12 p0 field-wrapper">
+                            <label for="activity" class="form-label">Type of Corporate <span className="red-text">*</span></label>
                             <select
                               className=" form-control-inside form-select"
                               name="user.donarType"
@@ -1119,14 +1145,14 @@ function OnlineDonation() {
                           </div>
                         </div>
                       </div>
-                  ) : null}
+                    ) : null}
                   </div>
                   {isCSR ? (
                     <div>
                       {" "}
                       <p>
                         For CSR related enquireis please reach us at <b>Gangar
-                        Sunny</b>, <a href="mailto:GANGAR.SUNNY@mahindra.com">GANGAR.SUNNY@mahindra.com</a> 
+                          Sunny</b>, <a href="mailto:GANGAR.SUNNY@mahindra.com">GANGAR.SUNNY@mahindra.com</a>
                         <a href="tel:93224 56789">93224 56789</a>
                       </p>
                     </div>
@@ -1253,8 +1279,8 @@ function OnlineDonation() {
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Mobile No.</div> */}
-                                <div className="col-12 p0 field-wrapper">
-                                  <label for="mobileNo" class="form-label top-27">Mobile No. <span className="red-text">*</span></label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label for="mobileNo" class="form-label top-27">Mobile No. <span className="red-text">*</span></label>
                                     <input
                                       className="form-control-inside form-control"
                                       type="text"
@@ -1282,48 +1308,48 @@ function OnlineDonation() {
                                 </div>
                               </div>
                               {
-                              userData?.user?.donarType.toLocaleLowerCase() === "corporate" ?
-                              <div className="col-6">
-                              <div className="select-label">
-                                {/* <div className="col-4 "> Organisation</div> */}
-                              <div className="col-12 p0 field-wrapper">
-                                <label for='organisation' class="form-label top-27">Organisation <span className="red-text">*</span></label>
-                                  <input
-                                    className="form-control-inside form-control"
-                                    name="user.organisation"
-                                    placeholder="Organisation"
-                                    type="text"
-                                    value={userData?.user?.organisation}
-                                    onChange={handleChange}
-                                  />
+                                userData?.user?.donarType.toLocaleLowerCase() === "corporate" ?
+                                  <div className="col-6">
+                                    <div className="select-label">
+                                      {/* <div className="col-4 "> Organisation</div> */}
+                                      <div className="col-12 p0 field-wrapper">
+                                        <label for='organisation' class="form-label top-27">Organisation <span className="red-text">*</span></label>
+                                        <input
+                                          className="form-control-inside form-control"
+                                          name="user.organisation"
+                                          placeholder="Organisation"
+                                          type="text"
+                                          value={userData?.user?.organisation}
+                                          onChange={handleChange}
+                                        />
 
-                                  {errors.map((error, index) => {
-                                    if (
-                                      error.field ===
-                                      "userData.user.organisation red-text"
-                                    ) {
-                                      return (
-                                        <div
-                                          key={index}
-                                          className="error-message"
-                                        >
-                                          {error.message}
-                                        </div>
-                                      );
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            :<></>
+                                        {errors.map((error, index) => {
+                                          if (
+                                            error.field ===
+                                            "userData.user.organisation red-text"
+                                          ) {
+                                            return (
+                                              <div
+                                                key={index}
+                                                className="error-message"
+                                              >
+                                                {error.message}
+                                              </div>
+                                            );
+                                          }
+                                          return null;
+                                        })}
+                                      </div>
+                                    </div>
+                                  </div>
+                                  : <></>
                               }
-                              
+
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Prefix</div> */}
-                                <div className="col-12 p0 field-wrapper">
-                                  <label for ="prefix" class="form-label top-27">Prefix <span className="red-text">*</span></label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label for="prefix" class="form-label top-27">Prefix <span className="red-text">*</span></label>
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="user.prefix"
@@ -1358,8 +1384,8 @@ function OnlineDonation() {
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">First Name</div> */}
-                                <div className="col-12 p0 field-wrapper">
-                                  <label for="firstName" class="form-label top-27">First Name <span className="red-text">*</span></label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label for="firstName" class="form-label top-27">First Name <span className="red-text">*</span></label>
                                     <input
                                       className="form-control-inside form-control"
                                       type="text"
@@ -1390,8 +1416,8 @@ function OnlineDonation() {
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Last Name</div> */}
-                                <div className="col-12 p0 field-wrapper">
-                                  <label for="lastName" class="form-label top-27">Last Name <span className="red-text">*</span></label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label for="lastName" class="form-label top-27">Last Name <span className="red-text">*</span></label>
                                     <input
                                       className="form-control-inside form-control"
                                       type="text"
@@ -1422,8 +1448,8 @@ function OnlineDonation() {
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">PAN card</div> */}
-                                <div className="col-12 p0 field-wrapper">
-                                  <label for="panCard" class="form-label top-27">PAN Card <span className="red-text">*</span></label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label for="panCard" class="form-label top-27">PAN Card <span className="red-text">*</span></label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="user.panCard"
@@ -1467,8 +1493,8 @@ function OnlineDonation() {
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 "> Street 1</div> */}
-                                <div className="col-12 p0 field-wrapper">
-                                  <label class="form-label top-27">Street 1 <span className="red-text">*</span></label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">Street 1 <span className="red-text">*</span></label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="street1"
@@ -1500,8 +1526,8 @@ function OnlineDonation() {
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 "> Street 2</div> */}
-                                <div className="col-12 p0 field-wrapper">
-                                  <label class="form-label top-27">Street 2</label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">Street 2</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="street2"
@@ -1518,8 +1544,8 @@ function OnlineDonation() {
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 "> Street 3</div> */}
-                                <div className="col-12 p0 field-wrapper">
-                                  <label class="form-label top-27">Street 3</label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">Street 3</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="street3"
@@ -1536,8 +1562,8 @@ function OnlineDonation() {
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Country</div> */}
-                                <div className="col-12 p0 field-wrapper">
-                                  <label class="form-label top-27">Country <span className="red-text">*</span></label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">Country <span className="red-text">*</span></label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="country"
@@ -1569,8 +1595,8 @@ function OnlineDonation() {
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">State</div> */}
-                                <div className="col-12 p0 field-wrapper">
-                                <label class="form-label top-27">State <span className="red-text">*</span></label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">State <span className="red-text">*</span></label>
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="state"
@@ -1607,8 +1633,8 @@ function OnlineDonation() {
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">City</div> */}
-                                <div className="col-12 p0 field-wrapper">
-                                <label class="form-label top-27">City <span className="red-text">*</span></label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">City <span className="red-text">*</span></label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="city"
@@ -1638,8 +1664,8 @@ function OnlineDonation() {
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Postal Code</div> */}
-                                <div className="col-12 p0 field-wrapper">
-                                <label class="form-label top-27">Postal Code <span className="red-text">*</span></label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">Postal Code <span className="red-text">*</span></label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="postalCode"
@@ -1685,8 +1711,8 @@ function OnlineDonation() {
                                 <div className="col-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 "> Street 1</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                    <label class="form-label top-27">Street 1</label>
+                                    <div className="col-12 p0 field-wrapper">
+                                      <label class="form-label top-27">Street 1</label>
                                       <input
                                         className="form-control-inside form-control"
                                         name="street1"
@@ -1703,8 +1729,8 @@ function OnlineDonation() {
                                 <div className="col-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 "> Street 2</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                    <label class="form-label top-27">Street 2</label>
+                                    <div className="col-12 p0 field-wrapper">
+                                      <label class="form-label top-27">Street 2</label>
                                       <input
                                         className="form-control-inside form-control"
                                         name="street2"
@@ -1721,8 +1747,8 @@ function OnlineDonation() {
                                 <div className="col-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 "> Street 3</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                    <label class="form-label top-27">Street 3</label>
+                                    <div className="col-12 p0 field-wrapper">
+                                      <label class="form-label top-27">Street 3</label>
                                       <input
                                         className="form-control-inside form-control"
                                         name="street3"
@@ -1739,8 +1765,8 @@ function OnlineDonation() {
                                 <div className="col-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 ">Country</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                  <label class="form-label top-27">Country</label>
+                                    <div className="col-12 p0 field-wrapper">
+                                      <label class="form-label top-27">Country</label>
                                       <input
                                         className="form-control-inside form-control"
                                         name="country"
@@ -1757,8 +1783,8 @@ function OnlineDonation() {
                                 <div className="col-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 ">State</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                  <label class="form-label top-27">State</label>
+                                    <div className="col-12 p0 field-wrapper">
+                                      <label class="form-label top-27">State</label>
                                       <select
                                         className=" form-control-inside form-select  form-control"
                                         name="state"
@@ -1780,8 +1806,8 @@ function OnlineDonation() {
                                 <div className="col-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 ">City</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                  <label class="form-label top-27">City</label>
+                                    <div className="col-12 p0 field-wrapper">
+                                      <label class="form-label top-27">City</label>
                                       <input
                                         className="form-control-inside form-control"
                                         name="city"
@@ -1798,8 +1824,8 @@ function OnlineDonation() {
                                 <div className="col-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 ">Postal Code</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                  <label class="form-label top-27">Postal Code</label>
+                                    <div className="col-12 p0 field-wrapper">
+                                      <label class="form-label top-27">Postal Code</label>
                                       <input
                                         className="form-control-inside form-control"
                                         name="postalCode"
@@ -1821,37 +1847,29 @@ function OnlineDonation() {
                           <div className="col-6 mt20">
                             <Captcha
                               verified={false}
-                              setVerified={() => {setCaptchaFlag(true)}}
+                              setVerified={() => { setCaptchaFlag(true) }}
                               id="captcha1"
                             />
                           </div>
                           {errors.map((error, index) => {
-                                if (error.field === "captchaError") {
-                                  return (
-                                    <div
-                                      key={index}
-                                      className="error-message red-text"
-                                    >
-                                      {error.message}
-                                    </div>
-                                  );
-                                }
-                                return null;
-                              })}
+                            if (error.field === "captchaError") {
+                              return (
+                                <div
+                                  key={index}
+                                  className="error-message red-text"
+                                >
+                                  {error.message}
+                                </div>
+                              );
+                            }
+                            return null;
+                          })}
                           <hr />
-                          <div className="col-12 mt20 select-label">
-                            <input
-                              type="checkbox"
-                              name="Condition"
-                              value="Condition"
-                              className="checkboxinput"
-                            />{" "}
-                            Agree to the Terms And Condition
-                          </div>
+                          <PrivacyPolicy informationShare={informationShare} setInformationShare={setInformationShare} privacyPolicy={privacyPolicy} setPrivacyPolicy={setPrivacyPolicy} handleShowConditions={handleShowConditions}/>
                           <button
                             type="submit"
                             className="mt20 mr10 webform-button--submit"
-                            onClick={(e) =>userAdd(e,"self")}
+                            onClick={(e) => userAdd(e, "self")}
                           >
                             Donate
                           </button>
@@ -1882,11 +1900,11 @@ function OnlineDonation() {
                   >
                     <div className="col-12 ">
                       <div className="row">
-                      <div className="col-6">
+                        <div className="col-6">
                           <div className=" select-label">
                             {/* <div className="col-4 "> Donor Type</div> */}
                             <div className="col-12 p0 field-wrapper">
-                            <label className="form-label top-27">Donor Type <span className="red-text">*</span></label>
+                              <label className="form-label top-27">Donor Type <span className="red-text">*</span></label>
                               <select
                                 className=" form-control-inside form-select"
                                 name="user.donarType"
@@ -1966,9 +1984,9 @@ function OnlineDonation() {
                         <div className="row">
                           <div className="col-6 mb10">
                             <div className="select-label">
-                             {/* <div className="col-4 ">I want to opt</div> */}
-                            <div className="col-12 p0 field-wrapper">
-                              <label className="form-label top-27">Type of Corporate <span className="red-text">*</span></label>
+                              {/* <div className="col-4 ">I want to opt</div> */}
+                              <div className="col-12 p0 field-wrapper">
+                                <label className="form-label top-27">Type of Corporate <span className="red-text">*</span></label>
                                 <select
                                   className=" form-control-inside form-select"
                                   name="user.donarType"
@@ -2009,7 +2027,7 @@ function OnlineDonation() {
                           {" "}
                           <p>
                             For CSR related enquireis please reach us at <b>Gangar
-                            Sunny</b>, <a href="mailto:GANGAR.SUNNY@mahindra.com">GANGAR.SUNNY@mahindra.com</a> <a href="tel:93224 56789">93224 56789</a>
+                              Sunny</b>, <a href="mailto:GANGAR.SUNNY@mahindra.com">GANGAR.SUNNY@mahindra.com</a> <a href="tel:93224 56789">93224 56789</a>
                           </p>
                         </div>
                       ) : null}
@@ -2051,12 +2069,12 @@ function OnlineDonation() {
                                 onBlur={handleBlur}
                               />
                               {emailError ? (
-                              <div className="error-message red-text">
-                                {emailError}
-                              </div>
-                            ) : (
-                              <></>
-                            )}
+                                <div className="error-message red-text">
+                                  {emailError}
+                                </div>
+                              ) : (
+                                <></>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -2123,7 +2141,7 @@ function OnlineDonation() {
                           <p>Overall Total: {donations[0].totalAmount}</p>
                         </div>
                         {/* <div className="col-6 mt20"> */}
-                          {/* <div className="select-label">
+                        {/* <div className="select-label">
                             <div className="col-4 "> General Donation</div>
                             <input
                               placeholder=" General Donation"
@@ -2147,8 +2165,8 @@ function OnlineDonation() {
                             <div className="col-6">
                               <div className="select-label">
                                 {/* <div className="col-4 ">Mobile No.</div> */}
-                              <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">Mobile No.<span className="red-text">*</span></label>
+                                <div className="col-12 p0 field-wrapper">
+                                  <label className="form-label">Mobile No.<span className="red-text">*</span></label>
                                   <input
                                     className="form-control-inside form-control"
                                     type="text"
@@ -2178,8 +2196,8 @@ function OnlineDonation() {
                             <div className="col-6">
                               <div className="select-label">
                                 {/* <div className="col-4 "> Organisation</div> */}
-                              <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">Organisation <span className="red-text">*</span></label>
+                                <div className="col-12 p0 field-wrapper">
+                                  <label className="form-label">Organisation <span className="red-text">*</span></label>
                                   <input
                                     className="form-control-inside form-control"
                                     name="user.organisation"
@@ -2210,8 +2228,8 @@ function OnlineDonation() {
                             <div className="col-6">
                               <div className="select-label">
                                 {/* <div className="col-4 ">Prefix</div> */}
-                              <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">Prefix <span className="red-text">*</span></label>
+                                <div className="col-12 p0 field-wrapper">
+                                  <label className="form-label">Prefix <span className="red-text">*</span></label>
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.prefix"
@@ -2246,8 +2264,8 @@ function OnlineDonation() {
                             <div className="col-6">
                               <div className="select-label">
                                 {/* <div className="col-4 ">First Name</div> */}
-                              <div className="col-12 p0 field-wrapper">
-                              <label className="form-label">First Name <span className="red-text">*</span></label>
+                                <div className="col-12 p0 field-wrapper">
+                                  <label className="form-label">First Name <span className="red-text">*</span></label>
                                   <input
                                     className="form-control-inside form-control"
                                     type="text"
@@ -2277,8 +2295,8 @@ function OnlineDonation() {
                             <div className="col-6">
                               <div className="select-label">
                                 {/* <div className="col-4 ">Last Name</div> */}
-                              <div className="col-12 p0 field-wrapper">
-                              <label className="form-label">Last Name <span className="red-text">*</span></label>
+                                <div className="col-12 p0 field-wrapper">
+                                  <label className="form-label">Last Name <span className="red-text">*</span></label>
                                   <input
                                     className="form-control-inside form-control"
                                     type="text"
@@ -2309,8 +2327,8 @@ function OnlineDonation() {
                             <div className="col-6">
                               <div className="select-label">
                                 {/* <div className="col-4 ">PAN card</div> */}
-                              <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">PAN Card <span className="red-text">*</span></label>
+                                <div className="col-12 p0 field-wrapper">
+                                  <label className="form-label">PAN Card <span className="red-text">*</span></label>
                                   <input
                                     className="form-control-inside form-control"
                                     name="user.panCard"
@@ -2346,8 +2364,8 @@ function OnlineDonation() {
                             <div className="col-6">
                               <div className="select-label">
                                 {/* <div className="col-4 "> Street 1</div> */}
-                              <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">Street 1 <span className="red-text">*</span></label>
+                                <div className="col-12 p0 field-wrapper">
+                                  <label className="form-label">Street 1 <span className="red-text">*</span></label>
                                   <input
                                     className="form-control-inside form-control"
                                     name="street1"
@@ -2377,8 +2395,8 @@ function OnlineDonation() {
                             <div className="col-6">
                               <div className="select-label">
                                 {/* <div className="col-4 "> Street 2</div> */}
-                              <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">Street 2</label>
+                                <div className="col-12 p0 field-wrapper">
+                                  <label className="form-label">Street 2</label>
                                   <input
                                     className="form-control-inside form-control"
                                     name="street2"
@@ -2394,8 +2412,8 @@ function OnlineDonation() {
                             </div>
                             <div className="col-6">
                               <div className="select-label">
-                              <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">Street 3</label>
+                                <div className="col-12 p0 field-wrapper">
+                                  <label className="form-label">Street 3</label>
                                   <input
                                     className="form-control-inside form-control"
                                     name="street3"
@@ -2412,8 +2430,8 @@ function OnlineDonation() {
                             <div className="col-6">
                               <div className="select-label">
                                 {/* <div className="col-4 ">Country</div> */}
-                              <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">Country <span className="red-text">*</span></label>
+                                <div className="col-12 p0 field-wrapper">
+                                  <label className="form-label">Country <span className="red-text">*</span></label>
                                   <input
                                     className="form-control-inside form-control"
                                     name="country"
@@ -2443,8 +2461,8 @@ function OnlineDonation() {
                             <div className="col-6">
                               <div className="select-label">
                                 {/* <div className="col-4 ">State</div> */}
-                              <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">State <span className="red-text">*</span></label>
+                                <div className="col-12 p0 field-wrapper">
+                                  <label className="form-label">State <span className="red-text">*</span></label>
                                   <select
                                     className=" form-control-inside form-select form-control"
                                     name="state"
@@ -2480,8 +2498,8 @@ function OnlineDonation() {
                             </div>
                             <div className="col-6">
                               <div className="select-label">
-                              <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">City <span className="red-text">*</span></label>
+                                <div className="col-12 p0 field-wrapper">
+                                  <label className="form-label">City <span className="red-text">*</span></label>
                                   <input
                                     className="form-control-inside form-control"
                                     name="city"
@@ -2510,8 +2528,8 @@ function OnlineDonation() {
                             </div>
                             <div className="col-6">
                               <div className="select-label">
-                              <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">Postal Code <span className="red-text">*</span></label>
+                                <div className="col-12 p0 field-wrapper">
+                                  <label className="form-label">Postal Code <span className="red-text">*</span></label>
                                   <input
                                     className="form-control-inside form-control"
                                     name="postalCode"
@@ -2524,18 +2542,18 @@ function OnlineDonation() {
                                     }
                                   />
                                   {errors.map((error, index) => {
-                                      if (error.field === "address[0].postalCode") {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
+                                    if (error.field === "address[0].postalCode") {
+                                      return (
+                                        <div
+                                          key={index}
+                                          className="error-message red-text"
+                                        >
+                                          {error.message}
+                                        </div>
+                                      );
+                                    }
+                                    return null;
+                                  })}
                                 </div>
                               </div>
                             </div>
@@ -2547,11 +2565,11 @@ function OnlineDonation() {
                         </div>
                         <div className="col-12 pr15">
                           <div>
-                          <div className="row">
+                            <div className="row">
                               <div className="col-6">
                                 <div className="select-label">
-                                <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">First Name <span className="red-text">*</span></label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">First Name <span className="red-text">*</span></label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="firstName"
@@ -2582,8 +2600,8 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">Last Name <span className="red-text">*</span></label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">Last Name <span className="red-text">*</span></label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="lastName"
@@ -2614,8 +2632,8 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">Mobile No.</label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">Mobile No.</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="mobileNo"
@@ -2646,8 +2664,8 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">Email Id <span className="red-text">*</span></label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">Email Id <span className="red-text">*</span></label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="emailId"
@@ -2680,8 +2698,8 @@ function OnlineDonation() {
                             <div className="row">
                               <div className="col-6">
                                 <div className="select-label">
-                                <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">Street 1 </label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">Street 1 </label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="street1"
@@ -2714,8 +2732,8 @@ function OnlineDonation() {
 
                               <div className="col-6">
                                 <div className="select-label">
-                                <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">Street 2</label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">Street 2</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="street2"
@@ -2731,8 +2749,8 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">Street 3</label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">Street 3</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="street3"
@@ -2748,8 +2766,8 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">Country</label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">Country</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="country"
@@ -2781,9 +2799,9 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                {/* <div className="col-4 ">Statesss</div> */}
-                                <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">State</label>
+                                  {/* <div className="col-4 ">Statesss</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">State</label>
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="state"
@@ -2822,8 +2840,8 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">City</label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">City</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="city"
@@ -2855,8 +2873,8 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                <div className="col-12 p0 field-wrapper">
-                                <label className="form-label">Postal Code</label>
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">Postal Code</label>
                                     <input
                                       className="form-control-inside form-control"
                                       name="postalCode"
@@ -2872,7 +2890,7 @@ function OnlineDonation() {
                               </div>
                             </div>
 
-                            
+
                           </div>
                         </div>
 
@@ -2884,18 +2902,18 @@ function OnlineDonation() {
                             id="captcha2"
                           />
                           {errors.map((error, index) => {
-                                if (error.field === "captchaError") {
-                                  return (
-                                    <div
-                                      key={index}
-                                      className="error-message red-text"
-                                    >
-                                      {error.message}
-                                    </div>
-                                  );
-                                }
-                                return null;
-                              })}
+                            if (error.field === "captchaError") {
+                              return (
+                                <div
+                                  key={index}
+                                  className="error-message red-text"
+                                >
+                                  {error.message}
+                                </div>
+                              );
+                            }
+                            return null;
+                          })}
                           {validatePopup.captcha ? (
                             <div className="error-message red-text">
                               {validatePopup.captcha}
@@ -2905,19 +2923,11 @@ function OnlineDonation() {
                           )}
                         </div>
                         <hr />
-                        <div className="col-12 mt20 select-label">
-                          <input
-                            type="checkbox"
-                            name="Condition"
-                            value="Condition"
-                            className="checkboxinput"
-                          />{" "}
-                          Agree to the Terms And Condition
-                        </div>
+                        <PrivacyPolicy informationShare={informationShare} setInformationShare={setInformationShare} privacyPolicy={privacyPolicy} setPrivacyPolicy={setPrivacyPolicy} handleShowConditions={handleShowConditions}/>
                         <button
                           type="submit"
                           className="mt20 mr10 webform-button--submit"
-                          onClick={(e) =>userAdd(e,"gift")}
+                          onClick={(e) => userAdd(e, "gift")}
                         >
                           Donate
                         </button>
@@ -3011,6 +3021,7 @@ function OnlineDonation() {
               </Button>
             </Modal.Footer>
           </Modal>
+          <TermsConditionsPopup showConditons={showConditons} handleCloseConditions={handleCloseConditions} />
         </Container>
       </div>
       {gatewayConfiguration != null && (

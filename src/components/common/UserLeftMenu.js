@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import { FaHome, FaUserFriends } from "react-icons/fa";
 import { MdCreateNewFolder } from "react-icons/md";
+import { IoReceiptSharp } from "react-icons/io5";
 
 const LeftMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -79,6 +80,22 @@ const LeftMenu = () => {
                   className="homemenu-icon menu-icon"
                 >
                   <MenuItem className=" hideshowmenu">Donar  Creation</MenuItem>
+                </SubMenu>
+              </Link>
+            </MenuItem>
+          </Menu>
+          <Menu>
+            <MenuItem className="sidebar-leftli left-sp">
+              <Link
+                to="/user/receipts"
+                className="nav-link dropdown-indicator-left label-1"
+              > <IoReceiptSharp/>
+                <SubMenu
+                  onClick={toggleMenu}
+                  label="Reciepts"
+                  className="homemenu-icon menu-icon"
+                >
+                  <MenuItem className=" hideshowmenu">Receipts</MenuItem>
                 </SubMenu>
               </Link>
             </MenuItem>
