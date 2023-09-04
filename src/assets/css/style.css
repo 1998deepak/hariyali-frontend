@@ -1232,6 +1232,17 @@ textarea.form-control {
 .logindiv {
   height: 100vh;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 550px;
+  margin:0 auto;
+}
+.logindiv .login-wrapper{
+  box-shadow: 0 2px 7px 0 rgb(35 170 74 / 45%);
+  padding: 2rem 1rem;
+  min-width: 450px;
+  border-radius: 8px;
 }
 .contact-form-wrap h5 {
   /* font-family: "Georama-Regular", sans-serif; */
@@ -1305,7 +1316,7 @@ input:-internal-autofill-selected {
 .contact-form-wrap form .webform-button--submit {
   font-size: 1rem;
   font-weight: 50;
-  border-radius: 0;
+  /* border-radius: 0; */
   padding: 0.5rem 1rem;
   background: #23aa4a;
   color: #fff;
@@ -1317,7 +1328,7 @@ input:-internal-autofill-selected {
 .contact-form-wrap form .webform-button--cancel {
   font-size: 1rem;
   font-weight: 50;
-  border-radius: 0;
+  /* border-radius: 0; */
   padding: 0.5rem 1rem;
   background: #000;
   color: #fff;
@@ -1334,10 +1345,11 @@ input:-internal-autofill-selected {
 }
 .loginlogo {
   text-align: center;
-  padding: 27px 0 13px 0;
+  padding: 0;
 }
 .loginlogo img {
-  width: 20%;
+  width: 120px;
+  margin-bottom: 20px;
 }
 .loginpoli-text {
   font-size: 0.875rem;
@@ -1356,11 +1368,11 @@ input:-internal-autofill-selected {
   cursor: pointer;
 }
 .react-password-toggle-icon-wrapper {
-  position: relative !important;
+  /* position: relative !important;
   right: 13px !important;
   top: -32px !important;
   justify-content: right !important;
-  font-size: 25px !important;
+  font-size: 25px !important; */
 }
 .for-accdiv {
   position: relative;
@@ -1409,14 +1421,14 @@ input:-internal-autofill-selected {
   /* height: 39px; */
 }
 /* captcha */
-.captactcode {
+/* .captactcode {
   width: fit-content;
   float: left;
-}
+} */
 .capt-code {
-  width: 190px;
+  width: 150px;
   float: left;
-  font-size: 30px;
+  font-size: 26px;
   background-image: url(../img/chptcha.jpg);
   text-align: center;
   font-family: "QuantumRise-Bold";
@@ -3153,6 +3165,9 @@ iframe{
 .confirmation-modal .modal-content{
   max-width: 450px;
   margin: 0 auto;
+}
+.form-group{
+  position: relative;
 }
 @media screen and (max-width:1440px){
   .nav-list .nav-item a.nav-link{

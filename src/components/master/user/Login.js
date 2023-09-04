@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { SUCCESS, TOKEN, USER_DETAILS } from "../../constants/constants";
 import { AuthService } from "../../../services/auth/auth.service";
 import axios from "axios";
-import { toast,ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { UserService } from "../../../services/userService/user.service";
 
 function Login() {
@@ -23,7 +23,7 @@ function Login() {
     userName: "",
     password: "",
     email: "",
-    captcha: ""
+    captcha: "",
   });
   const navigate = useNavigate();
   const regexMail =
@@ -58,21 +58,25 @@ function Login() {
 
   const login = async (e) => {
     e.preventDefault();
-    setErrors({ ...errors, captcha: "" }); 
+    setErrors({ ...errors, captcha: "" });
     if (formData.username == "") {
       setErrors({ ...errors, username: "Enter the Username" });
     } else if (formData.password == "") {
       setErrors({ ...errors, password: "Enter the Password" });
-    }else if(!verified){
-      setErrors({ ...errors, captcha: "Please verify captcha" }); 
-    } else if (errors.username == "" && errors.password == "" && errors.captcha == "") {
+    } else if (!verified) {
+      setErrors({ ...errors, captcha: "Please verify captcha" });
+    } else if (
+      errors.username == "" &&
+      errors.password == "" &&
+      errors.captcha == ""
+    ) {
       const response = await AuthService.login(formData);
       console.log(response);
       if (response) {
         if (response?.status === SUCCESS) {
           console.log("Response: " + response);
           localStorage.setItem(USER_DETAILS, JSON.stringify(formData));
-          toast.success("OTP Send Successfully!")
+          toast.success("OTP Send Successfully!");
           setIsHidden(!isHidden);
           setIsHide(!isHide);
         } else {
@@ -84,7 +88,6 @@ function Login() {
     }
   };
 
-
   const [donarIdOrEmail, setDonarIdOrEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [verificationStatus, setVerificationStatus] = useState("");
@@ -94,7 +97,7 @@ function Login() {
   const verifyOtp = async (e) => {
     e.preventDefault();
     try {
-      const response = await AuthService.verifyOtp( formData.username, otp)
+      const response = await AuthService.verifyOtp(formData.username, otp);
       console.log("Response: " + JSON.stringify(response));
 
       // console.log("Error Massage: "+response.data.message);
@@ -104,13 +107,15 @@ function Login() {
           localStorage.setItem(TOKEN, response?.token);
           // Assuming the response contains a 'status' or 'message' field indicating the verification status
           setVerificationStatus(response.status);
-          const { roleId } = UserService.getUserDetailsFromToken(response?.token);
+          const { roleId } = UserService.getUserDetailsFromToken(
+            response?.token
+          );
           console.log(roleId);
           if (roleId === 1) {
             setTimeout(() => {
               navigate("/Dashboard");
             }, 2000);
-          }else{
+          } else {
             setTimeout(() => {
               navigate("/user/dashboard");
             }, 2000);
@@ -206,12 +211,11 @@ function Login() {
   };
   return (
     <>
-    <ToastContainer/>
-    <div className="logindiv bggray">
-      <div className="col-6 mauto">
+      <ToastContainer />
+      <div className="logindiv bggray">
         <div
           id="loginDiv"
-          className="row justify-content-between bgwite border1 padding30 contact-form-wrap"
+          className="row justify-content-between contact-form-wrap login-wrapper"
         >
           {/* <h5>THANKS FOR YOUR INTEREST IN HARIYALI</h5> */}
           {/* <p>
@@ -219,12 +223,12 @@ function Login() {
             better!
           </p> */}
           <div className="loginlogo">
-          <img src={logo} alt="Logo" />
-        </div>
-          <div className="col-12">
+            <img src={logo} alt="Logo" />
+          </div>
+          <div className="">
             <form className="form-div contact-form-wrap">
-              <label className="col-12">
-                <input
+             <div className="form-group mb-3">
+             <input
                   name="username"
                   type="text"
                   placeholder="Username"
@@ -232,8 +236,8 @@ function Login() {
                   value={formData.username}
                   onChange={(e) => handleValueChange(e)}
                 />
-              </label>
-              <label className="col-12">
+             </div>
+             <div className="form-group mb-3">  
                 <input
                   type="password"
                   placeholder="Password"
@@ -249,8 +253,9 @@ function Login() {
                   hideIcon={hideIcon}
                   showIcon={showIcon}
                 />
-              </label>
-              <div className="for-accdiv row justify-content-between">
+              </div>   
+                
+              <div className="row justify-content-between mb-3">
                 <div className="col-6 account-act">Account Activation</div>
                 <div
                   className="col-6 forgot-pass justify-content-end"
@@ -259,84 +264,86 @@ function Login() {
                   Forgot Password
                 </div>
               </div>
+              
               <Captcha verified={verified} setVerified={setVerified}></Captcha>
-              {errors.captcha != "" &&
-                                  (
-                                    <div
-                                      className="error-message red-text"
-                                    >
-                                     {errors.captcha}
-                                    </div>
-                                  )}
-                                <br/>
-              <div id="VerifyOTP">
-                <label className="col-12">
+              {errors.captcha != "" && (
+                <div className="error-message red-text">{errors.captcha}</div>
+              )}
+              <div id="VerifyOTP" className=" my-3">
+                {/* <label className="my-2"> */}
                   <input
                     name="verifyOTP"
-                    className={isHidden ? 'hide' : 'form-control'}
+                    className={isHidden ? "hide" : "form-control"}
                     type="text"
                     placeholder="Verify OTP"
                     value={otp}
                     onChange={(e) => setOtp(e.target.value)}
                   />
-                </label>
+                {/* </label> */}
               </div>
               <div className="text-center mb-4">
-              <button
-                onClick={login}
-                //className="webform-button--submit button button--primary js-form-submit form-submit"
-                className={isHide ? 'webform-button--submit button button--primary js-form-submit form-submit' : 'hide'}
-              >
-                Send OTP
-              </button>
+                <button
+                  onClick={login}
+                  //className="webform-button--submit button button--primary js-form-submit form-submit"
+                  className={
+                    isHide
+                      ? "btn webform-button--submit button button--primary js-form-submit form-submit"
+                      : "hide"
+                  }
+                >
+                  Send OTP
+                </button>
               </div>
               <div className="text-center mb-4">
-              <button
-                onClick={verifyOtp}
-                className={isHidden ? 'hide' : 'webform-button--submit button button--primary js-form-submit form-submit'}
-              >
-                Login
-              </button>
+                <button
+                  onClick={verifyOtp}
+                  className={
+                    isHidden
+                      ? "hide"
+                      : "btn webform-button--submit button button--primary js-form-submit form-submit"
+                  }
+                >
+                  Login
+                </button>
               </div>
             </form>
-            <div className="loginpoli-text pt10">
+            <div className="text-muted text-center">
               Your information is secured under our privacy policy.
             </div>
           </div>
         </div>
         <div
           id="forgotDiv"
-          className="hide row justify-content-between bgwite border1 padding30 contact-form-wrap"
+          className="hide row justify-content-between contact-form-wrap login-wrapper"
         >
-          <h5>Donor ID</h5>
+          <h5 className="text-center">Donor ID</h5>
           <p>Please Enter your Donor ID!</p>
-          <div className="col-12">
-            <form className="form-div contact-form-wrap">
-              <label className="col-12">
+          <div className="">
+            <form className="form-div contact-form-wrap">              
                 <input
                   type="text"
                   className="form-control"
                   value={donarID}
                   onChange={(e) => setDonarID(e.target.value)}
                 />
-              </label>
-              <button
-                className="mt20 mr10 webform-button--submit"
-                onClick={(e) => sendEmail(e)}
-              >
-                Next
-              </button>
-              <button
-                onClick={toggleDiv}
-                className="mt20 mr10 webform-button--cancel"
-              >
-                Back
-              </button>
+              <div className="text-center">
+                <button
+                  className="btn mt20 mr10 webform-button--submit"
+                  onClick={(e) => sendEmail(e)}
+                >
+                  Next
+                </button>
+                <button
+                  onClick={toggleDiv}
+                  className="btn mt20 mr10 webform-button--cancel"
+                >
+                  Back
+                </button>
+              </div>
             </form>
           </div>
         </div>
       </div>
-    </div>
     </>
   );
 }
