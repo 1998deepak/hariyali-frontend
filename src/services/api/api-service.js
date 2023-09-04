@@ -24,6 +24,9 @@ export class APIService extends Axios {
     this._axiosInstance.interceptors.response.use(
       res => res,
       err => {
+        if (err.message == "Network Error") {
+          toast.error(err.message);
+        }else
         if (err.response.status === 403 || err.response.status === 401) {
           // toast.error("Session Expired");
           // localStorage.removeItem(TOKEN);
