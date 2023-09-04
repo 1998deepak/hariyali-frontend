@@ -25,7 +25,7 @@ function AboutUs() {
           <div className="pv-75 pb-0">
             <div className="feature-description">
               <h2 className="sub-title">Who are we</h2>
-              <p>The project hariyali is a join initiative by mahindra foundation and nandi foundation. (<a href="#knowYourPatners">know more...</a>)</p>
+              <p>The project hariyali is a join initiative by mahindra foundation and nandi foundation. <a href="#knowYourPatners">know more...</a></p>
             </div>
           </div>
             <div className="row align-items-center pv-75">

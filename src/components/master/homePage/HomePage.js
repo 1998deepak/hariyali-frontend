@@ -58,7 +58,7 @@ import { BsBoxArrowUpRight } from "react-icons/bs";
 // import improving from "../../../assets/img/hariyali-img-4.jpg";
 import gallary2 from "../../../assets/img/gallary/gallary2.jpg";
 import gallary3 from "../../../assets/img/gallary/gallary3.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 // animation
 import { AnimationOnScroll } from "react-animation-on-scroll";
 //
@@ -124,7 +124,6 @@ const zoomOutProperties = {
   arrows: true,
 };
 
-
 const Slideshow = () => {
   return (
     // <div className="slide-container">
@@ -161,12 +160,12 @@ const Slideshow = () => {
 
               <div className="donate-btn-group">
                 <div className="d-flex flex-wrap justify-content-start">
-                  <a href="" className="btn banner-btn">
+                  <Link className="btn banner-btn"  to={`/OnlineDonation`}>
                     Plant A tree <img src={planttreeImg} />
-                  </a>
-                  <a href="" className="btn banner-btn">
+                  </Link>
+                  <Link className="btn banner-btn"  to={`/OnlineDonation`}>
                     Gift a Tree  <img src={gifttreeImg} />
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -194,6 +193,7 @@ function HomePage() {
   // const goToDonate = () => {
   //   navigate("/Donate");
   // };
+  // const navigate = useNavigate();
   useEffect(() => {
     window.addEventListener('error', e => {
       if (e.message === 'ResizeObserver loop limit exceeded') {
@@ -261,7 +261,7 @@ function HomePage() {
                 The project aims to plant 5 million trees per annum. Project Hariyali is part of nature-based solution that promotes Regenerative agriculture.</p>
               <div className="pt-5">
                 <a href="/AboutUs" className="btn btn-secondary">Know More</a>
-                <button className="btn btn-primary">Donate</button>
+                <Link className="btn btn-primary"  to={`/OnlineDonation`}>Donate</Link>
               </div>
             </div>
           </div>
@@ -284,7 +284,7 @@ function HomePage() {
               <p>Project Hariyali aims to increase the green cover, arrest the rising ecological imbalance, enhace biodiversity and in the process support the livelihood of marginalized farmers.</p>
               <div className="pt-5">
                 <a href="/WhatWeDo" className="btn btn-secondary">Know More</a>
-                <button className="btn btn-primary">Donate</button>
+                <Link className="btn btn-primary"  to={`/OnlineDonation`}>Donate</Link>
               </div>
             </div>
           </div>
@@ -301,7 +301,7 @@ function HomePage() {
 
                 <div className="pt-5">
                   <a href="/WhySupportUs" className="btn btn-secondary">Read More</a>
-                  <button className="btn btn-primary">Donate</button>
+                  <Link className="btn btn-primary"  to={`/OnlineDonation`}>Donate</Link>
                 </div>
               </div>
             </div>
@@ -327,7 +327,7 @@ function HomePage() {
                 The Paris Agreement within the UNFCCC aims at achieving greenhouse gas emissions mitigations. The agreement outlines the National Determined Contributions (NDCs), each member country should make in order to stay ‘well below’ the 2°C target. India is committed to its NDC and seeks to be carbon neutral by 2070</p>
               <div className="pt-5">
                 <a href="/WaystoAssociate" className="btn btn-secondary">Read More</a>
-                <button className="btn btn-primary">Donate</button>
+                <Link className="btn btn-primary"  to={`/OnlineDonation`}>Donate</Link>
               </div>
             </div>
           </div>
@@ -343,7 +343,7 @@ function HomePage() {
                   This movement aims to transform individuals into pro planet people by having them adopt sustainable lifestyles and minimize their carbon footprint</p>
                 <div className="pt-5">
                   <a href="/FootPrint" className="btn btn-secondary">Read More</a>
-                  <button className="btn btn-primary">Donate</button>
+                  <Link className="btn btn-primary"  to={`/OnlineDonation`}>Donate</Link>
                 </div>
               </div>
             </div>
@@ -355,93 +355,6 @@ function HomePage() {
           </div>
         </div>
       </section>
-      {/* <div className="container pt75 mb30">
-       
-      <div className="row">
-        <div className="col-12 col-md-6 col-lg-4 mb30">
-          <div className="card">
-            <img src={planting} className="card-img-top" alt="..."/>
-            <div className="card-body">
-              <h5 className="card-title">Regenerative Agriculture</h5>
-              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <div className="card-body">
-              <a href="#" className="card-link">Card link</a>
-            </div>
-          </div>
-        </div>
-        <div className="col-12 col-md-6 col-lg-4 mb30">
-          <div className="card">
-            <img src={program1} className="card-img-top" alt="..."/>
-            <div className="card-body">
-              <h5 className="card-title">Improving soil fertility</h5>
-              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <div className="card-body">
-              <a href="#" className="card-link">Card link</a>
-            </div>
-          </div>
-        </div>
-        <div className="col-12 col-md-6 col-lg-4 mb30">
-          <div className="card">
-            <img src={bio} className="card-img-top" alt="..."/>
-            <div className="card-body">
-              <h5 className="card-title">Enhancing Bio-Diversity</h5>
-              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <div className="card-body">
-              <a href="#" className="card-link">Card link</a>
-            </div>
-          </div>
-        </div>
-        <div className="col-12 col-md-6 col-lg-4 mb30">
-          <div className="card">
-            <img src={impro} className="card-img-top" alt="..."/>
-            <div className="card-body">
-              <h5 className="card-title">Improving livelihood</h5>
-              <p className="card-text">25,984 lives of farmer families impacted.</p>
-            </div>
-            <div className="card-body">
-              <a href="#" className="card-link">Card link</a>
-            </div>
-          </div>
-        </div>
-      </div>     
-      </div> */}
-      {/* about */}
-
-
-      {/* Hariyali program */}
-
-      {/* Hariyali program */}
-      {/* <div className="pt50">
-        <div className="section-header ">
-          <div className=" heading-red-medium text-center ">
-            ENHANCING BIO-DIVERSITY
-          </div>
-          <div className="subheading text-center ">
-                     </div>
-        </div>
-        <div className="col-12 ">
-          <img src={bio} alt="Program" className="imgwidth100" />
-        </div>
-      </div> */}
-      {/* Hariyali program */}
-      {/* <div className="pt50">
-        <div className="section-header ">
-          <div className=" heading-red-medium text-center ">
-            improving livelihood
-          </div>
-          <div className="subheading text-center ">
-            25,984 lives of farmer families impacted.
-          </div>
-        </div>
-        <div className="col-12 ">
-          <img src={impro} alt="Program" className="imgwidth100" />
-        </div>
-      </div> */}
-      {/* Hariyali program */}
-
       {/* sdg */}
       <div className="project-bg ">
         <Container className="ptb50">
@@ -464,102 +377,9 @@ function HomePage() {
             <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
               <div className="discoverImg"><img src={sdg17} width="100%" /></div>
             </div>
-            {/* <div className="col-4 ">
-              <div className="bggreen projectdiv row">
-                <div className="col-5 small-center">
-                  <img
-                    src={ourproject1}
-                    alt="Project"
-                    className="imgwidth100 imgwidth25"
-                  />
-                </div>
-                <div className="col-7 projectNumb ">01</div>
-                <div className="projectText">
-                  Biodiverse functional forests{" "}
-                </div>
-              </div>
-            </div>
-            <div className="col-4 ">
-              <div className="bggreen projectdiv row">
-                <div className="col-5 small-center">
-                  <img
-                    src={ourproject2}
-                    alt="Project"
-                    className="imgwidth100 imgwidth25"
-                  />
-                </div>
-                <div className="col-7 projectNumb ">02</div>
-                <div className="projectText">Skilled farmers </div>
-              </div>{" "}
-            </div>
-            <div className="col-4 ">
-              <div className="bggreen projectdiv row">
-                <div className="col-5 small-center">
-                  <img
-                    src={ourproject3}
-                    alt="Project"
-                    className="imgwidth100 imgwidth25"
-                  />
-                </div>
-                <div className="col-7 projectNumb ">03</div>
-                <div className="projectText">
-                  Individual farmer micro-nurseries
-                </div>
-              </div>
-            </div> */}
           </Row>
         </Container>
       </div>
-      {/* project */}
-      {/* Blogs and news */}
-      {/* <div className=" ">
-        <Container>
-          <Row className="justify-content-between ptb50 ">
-            <h2 className="sub-title text-center mb30">
-              Get in Touch
-            </h2>
-
-            <div className="col-12">
-              <div className=" row">
-                <div className="col-7 p0">
-                  <img src={blogs1} alt="Blogs" className="imgwidth100" />
-                </div>
-                <div className="col-5 bgblack">
-                  <div className="bloginheading blog-rightdiv">
-                    <h3>LEARN MORE</h3>
-                    <div className="btn-grp contact-usbtndiv" >
-                      <a className="btn inquire-now contact-usbtn" variant="primary" onClick={handleShow}>Contact Us</a>
-                    </div>
-                    <Modal show={show} onHide={handleClose}>
-                      <Modal.Header closeButton>
-                        <Modal.Title>Contact Us</Modal.Title>
-                      </Modal.Header>
-                      <Modal.Body>
-                        <div className="homeinput-div">
-                          <label for="name" className="form-label">Name</label>
-                          <input className="form-control form-text required" type="text" name="name" value="" placeholder="Name" required="required" />
-                        </div>
-                        <div className="homeinput-div">
-                          <label for="email" className="form-label">Email</label>
-                          <input className="form-control form-text required" type="text" name="email" value="" placeholder="Email" required="required" />
-                        </div><div className="homeinput-div">
-                        <label for="edit-query" className="form-label">Query</label>
-                          <textarea className="form-control form-textarea required" rows="4" cols="60" maxlength="2500" placeholder="Write you query here...." required="required" aria-required="true"></textarea>
-                        </div>
-                      </Modal.Body>
-                      <Modal.Footer>
-                        <Button className="homesubmit-div" variant="primary" >Submit
-                        </Button>
-                      </Modal.Footer>
-                    </Modal>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </Row>
-        </Container>
-      </div> */}
       {/* body */}
     </>
   );

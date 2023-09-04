@@ -209,25 +209,25 @@ function WhySupportUs() {
         <h3 className="sub-title text-center">Impact of Hariyali Project</h3>
         <div className="row justify-content-center mb30">
           <div className="col-12 col-md-4 text-center">
-            <div className="tree-features">
+            <div className="discoverImg">
               <h4>Number of trees planted since 2007</h4>
               <p>22.86 Millions</p>
             </div>
           </div>
           <div className="col-12 col-md-4 text-center">
-            <div className="tree-features">
+            <div className="discoverImg">
               <h4>Overall survival rate of plant since inspection</h4>
               <p>85% Plus</p>
             </div>
           </div>
           <div className="col-12 col-md-4 text-center">
-            <div className="tree-features">
+            <div className="discoverImg">
               <h4>Trees sequestered through the project Since inspection </h4>
               <p>400,000+ tonnes</p>
             </div>
           </div>
           <div className="col-12 col-md-4 text-center">
-            <div className="tree-features">
+            <div className="discoverImg">
               <h4>
                 Improment in soil quality in terms of <p>carbon, water </p>
                 holding capacity & <p> nutrients</p>
@@ -235,7 +235,7 @@ function WhySupportUs() {
             </div>
           </div>
           <div className="col-12 col-md-4 text-center">
-            <div className="tree-features">
+            <div className="discoverImg">
               <h4>
                 Significant positive change in <p>bio-diversity</p>
               </h4>
