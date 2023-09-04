@@ -30,13 +30,11 @@ function WhatWeDo() {
         {/* <img src={planting} alt="planting" className="imgwidth100" /> */}
         <div className="section bg-green">
           <Container className="pv-75">
-          <div className="pv-75">
             <div className="feature-description">
-              <h2 className="sub-title text-center">What we do</h2>
+              <h2 className="sub-title text-center">What We Do</h2>
               <p>Project Hariyali is a unique blend in the sphere of environmental sustainability and impacting livelihood.
 The project focusses on large scale tree plantation, natural resource management, global regenerative organic farming protocols to enrich agricultural eco-system and build functional forests as means to improve overall wellbeing of communities. The trees we plant strengthen the ecosystem and enhance ecological diversity.</p>
             </div>
-          </div>
             <Row className="justify-content-between align-items-center">
               <div className="col-12 feature-description">
               <h2 className="sub-title text-center">Approach</h2>

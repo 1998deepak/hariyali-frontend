@@ -135,8 +135,11 @@ function WhySupportUs() {
       {/* body */}
       <section className="banner banner-support"></section>
       <section>
-        <div className="container pv-75">
+        <div className="pv-75">
+        <div className="container ">
+        <div className="feature-description">
           <h2 className="sub-title text-center">Why Support Us</h2>
+          </div>
           <p className="text-center">
             The total forest and tree cover in India is 8,09,537 square
             kilometres i.e., 24.62 % of the total geographical area. But as per
@@ -151,7 +154,7 @@ function WhySupportUs() {
             and Environment’s (CSE) new report entitled ‘State of India’s
             Environment in Figures 2021’.
           </p>
-        </div>
+        </div></div>
       </section>
       <section className="container">
         <div className="row justify-content-center mt-5">
@@ -208,7 +211,33 @@ function WhySupportUs() {
       <div className="container pv-75">
         <h3 className="sub-title text-center">Impact of Hariyali Project</h3>
         <div className="row justify-content-center mb30">
-          <div className="col-12 col-md-4 text-center">
+          <div class="grid"> 
+          <Row className="justify-content-between ">
+            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
+					<figure class="effect-duke whysuimpact-effect"> <h4>Number of trees planted since 2007</h4>
+              <p>22.86 Millions</p>
+            </figure></div>
+            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
+            <figure class="effect-duke whysuimpact-effect"><h4>Overall survival rate of plant since inspection</h4>
+              <p>85% Plus</p></figure>
+            </div>
+            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
+            <figure class="effect-duke whysuimpact-effect"> <h4>Trees sequestered through the project Since inspection </h4>
+              <p>400,000+ tonnes</p></figure>
+            </div>
+            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
+            <figure class="effect-duke whysuimpact-effect"> <h4>
+                Improment in soil quality in terms of carbon, water 
+                <p>holding capacity & nutrients</p>
+              </h4></figure>
+            </div>
+            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
+            <figure class="effect-duke whysuimpact-effect"><h4>
+                Significant positive change in <p>bio-diversity</p>
+              </h4></figure>
+            </div>
+          </Row></div>
+          {/* <div className="col-12 col-md-4 text-center">
             <div className="discoverImg">
               <h4>Number of trees planted since 2007</h4>
               <p>22.86 Millions</p>
@@ -240,7 +269,7 @@ function WhySupportUs() {
                 Significant positive change in <p>bio-diversity</p>
               </h4>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="container">
@@ -348,7 +377,7 @@ function WhySupportUs() {
           <div className="col-12 col-md-6">
             <div className="feature-description">
               <h3 className="sub-title text-center">
-                Impact assessment report{" "}
+                Impact Assessment report{" "}
               </h3>
               <p>
                 <i>

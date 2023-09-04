@@ -121,16 +121,19 @@ function ContactUs() {
       </section>
       <ToastContainer/>
       <div className="">
-        <div className="section bggray pt100">
-            {/* <div className="otherbotmborder">
-              <div className="otherpages-heading">Contact Us</div>
-            </div> */}
+        <div className="">
+        <div className="pv-75 pb-0">
+            <div className="feature-description">
+              <h2 className="sub-title  text-center">Ask Us</h2>
+            </div>
+          </div>
+          <div className=" align-items-center pv-75">
             <div className="container">
               <div className="row">
                 <div className="col-12 col-md-4">
                   <address>
                   <h3>Mahindra Foundation</h3>
-                  <p>3rd Floor, Cecil Court, Shahid Bhagat Singh Marg, Colaba, Mumbai, Maharashtra 400005</p>
+                  <p>Cecil Court, MB Marg, near Regal Cinema, Apollo Bandar, Colaba, Mumbai, Maharashtra 400005</p>
                   <a href="tel:93224 56789"><i className="bi bi-phone"></i> 93224 56789</a><br/>
                   <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a>
                   </address>
@@ -265,7 +268,7 @@ function ContactUs() {
               </div>
               <div className=" col-lg-2"></div>
             </Row> */}
-        </div>
+        </div></div>
       </div>
       {/* body */}
     </>

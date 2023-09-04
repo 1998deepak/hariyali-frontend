@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import "animate.css/animate.min.css";
+import "../../../assets/css/footprint.css";
 import mahindraLogo from "../../../assets/img/mahindra-logo.png";
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
@@ -26,6 +27,7 @@ import ourproject2 from "../../../assets/img/project/ourproject2.png";
 import ourproject3 from "../../../assets/img/project/ourproject3.png";
 // projects
 // SDG Links
+import sdglinks from "../../../assets/img/SDG/sdglinks.png";
 import sdg13 from "../../../assets/img/SDG/sdg13.png";
 import sdg15 from "../../../assets/img/SDG/sdg15.png";
 import sdg8 from "../../../assets/img/SDG/sdg8.png";
@@ -90,7 +92,7 @@ const slides = [
   {
     image: image2,
     title: 'When you cut a tree you take a life and when you plant a tree you plant hope',
-    description: 'we are planting millions of trees across indian since 2007',
+    description: 'We are planting millions of trees across india since 2007',
   },
   {
     image: image1,
@@ -356,28 +358,65 @@ function HomePage() {
         </div>
       </section>
       {/* sdg */}
+      {/* <div className="container pv-75">
+        <div className="row">
+          <div className="col-12 col-md-6">
+            <div className="img-responsive feature-image">
+            <div class="grid"> <Row className="justify-content-between ">
+            <div className="col-6 col-md-4 col-lg-4 mb-lg-0 mb-3 discover-block">
+					<figure class="effect-duke"><img src={sdg13} width="70%" />
+            </figure></div>
+            <div className="col-6 col-md-4 col-lg-4 mb-lg-0 mb-3 discover-block">
+            <figure class="effect-duke"><img src={sdg15} width="70%" /></figure>
+            </div>
+            <div className="col-6 col-md-4 col-lg-4 mb-lg-0 mb-3 discover-block">
+            <figure class="effect-duke"><img src={sdg8} width="70%" /></figure>
+            </div>
+            <div className="col-6 col-md-4 col-lg-4 mb-lg-0 mb-3 discover-block">
+            <figure class="effect-duke"><img src={sdg14} width="70%" /></figure>
+            </div>
+            <div className="col-6 col-md-4 col-lg-4  mb-lg-0 mb-3 discover-block">
+            <figure class="effect-duke"><img src={sdg17} width="70%" /></figure>
+            </div>
+          </Row></div>
+            </div>
+          </div>
+          <div className="col-12 col-md-6">
+            <div className="program-details">
+              <h3 className="mb-3"> Alignemnet with United Nations Sustainable Development Goals</h3>
+              </div>
+          </div>
+        </div>
+      </div> */}
+
+      {/* -------------------------- */}
       <div className="project-bg ">
         <Container className="ptb50">
           <h2 className="sub-title text-center mb30 ">
-            UN SDG's Links
+          Alignemnet with United Nations Sustainable Development Goals
           </h2>
-          <Row className="justify-content-between ">
+         
+          <div class="grid"> <Row className="justify-content-between ">
             <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
-              <div className="discoverImg"><img src={sdg13} width="100%" /></div>
+					<figure class="effect-duke"><img src={sdg13} width="100%" />
+            </figure></div>
+            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
+            <figure class="effect-duke"><img src={sdg15} width="100%" /></figure>
             </div>
             <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
-              <div className="discoverImg"><img src={sdg15} width="100%" /></div>
+            <figure class="effect-duke"><img src={sdg8} width="100%" /></figure>
             </div>
             <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
-              <div className="discoverImg"><img src={sdg8} width="100%" /></div>
+            <figure class="effect-duke"><img src={sdg14} width="100%" /></figure>
             </div>
             <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
-              <div className="discoverImg"><img src={sdg14} width="100%" /></div>
+            <figure class="effect-duke"><img src={sdg17} width="100%" /></figure>
             </div>
-            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
-              <div className="discoverImg"><img src={sdg17} width="100%" /></div>
-            </div>
-          </Row>
+          </Row></div>
+          
+          {/* <div>
+          <img src={sdglinks} width="50%"  />
+          </div> */}
         </Container>
       </div>
       {/* body */}

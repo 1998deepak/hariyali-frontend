@@ -86,7 +86,8 @@ function WaystoAssociate() {
                         <h2 className="sub-title text-center mb-0">Way to associate</h2>
                     </div> */}
                     <div className="pv-75">
-                        <h2 className="sub-title text-center mb-0">Way to associate</h2>
+                    <div className="feature-description">
+                        <h2 className="sub-title text-center mb-0">How To Associate</h2></div>
                         <p className="text-center">There are two seasons for a plantation </p>
                         <div className="row justify-content-center mt-5">
                             <div className="col col-md-3">
@@ -397,7 +398,7 @@ function WaystoAssociate() {
                                         <p>Partner with Project Hariyali to develop cause-related marketing campaigns which highlight your organisation’s
                                             commitment towards Environment. Customised, co-branded campaigns can be conceptualised to help you build good will for your business,
                                             while ensuring environmental sustainability.</p>
-                                        <p>Options to associate with Project Hariyali.</p>
+                                        {/* <p>Options to associate with Project Hariyali.</p> */}
                                     </div>
                                 </div>
                                 <div className="col-12 col-md-6">

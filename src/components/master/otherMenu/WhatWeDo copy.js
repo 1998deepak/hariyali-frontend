@@ -65,7 +65,7 @@ For Monsoon plantation, this process starts in September of the previous financi
                   >
                     <h3 className="vertical-timeline-element-title">Identify Location</h3>
                     {/* <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4> */}
-                    <p>Based on the field team's assessment of farmer requirements, mandals were identified. 122 villages for finalised for 2020-21 planting.
+                    <p>Based on the field team's Assessment of farmer requirements, mandals were identified. 122 villages for finalised for 2020-21 planting.
                     </p>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement
@@ -79,7 +79,7 @@ For Monsoon plantation, this process starts in September of the previous financi
                     <h3 className="vertical-timeline-element-title">Farmer requirement</h3>
                     {/* <h4 className="vertical-timeline-element-subtitle">San Francisco, CA</h4> */}
                     <p>
-                      A need assessment survey was conducted to understand each farmer's requirement.
+                      A need Assessment survey was conducted to understand each farmer's requirement.
                     </p>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement

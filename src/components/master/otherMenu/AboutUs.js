@@ -22,17 +22,17 @@ function AboutUs() {
       <div className="">
         <div className="section bggray">
           <div className="container">
-          <div className="pv-75 pb-0">
+          <div className="pv-75">
             <div className="feature-description">
-              <h2 className="sub-title">Who are we</h2>
-              <p>The project hariyali is a join initiative by mahindra foundation and nandi foundation. <a href="#knowYourPatners">know more...</a></p>
+              <h2 className="sub-title  text-center">Who Are We</h2>
+              <p className="text-center">The project hariyali is a join initiative by mahindra foundation and nandi foundation. <a href="#knowYourPatners">know more...</a></p>
             </div>
           </div>
             <div className="row align-items-center pv-75">
               <div className="col-12">
               <div className="feature-description">
-                <h2 className="">Details about initiative</h2>
-                  <p>The project was launched on 2nd October 2007, as an afforestation initiative, with a target to plant a million trees every year. 
+                <h2 className="sub-title  text-center">Details about initiative</h2>
+                  <p className="text-center">The project was launched on 2nd October 2007, as an afforestation initiative, with a target to plant a million trees every year. 
                   Project Hariyali aims to increase the green cover, arrest the rising ecological imbalance to create environmentally conscious and aware citizenry.</p>
                   <p>We are currently active in three regions for large scale plantation:</p>
                   <div className="row">
@@ -51,7 +51,7 @@ function AboutUs() {
                           <div className="card-body text-center">
                               <h5 className="card-title">Northern India</h5>
                               <p className="card-text">The project <b className="colorgreen">Shravasti in Uttar Pradesh</b>,
-                              <b className="colorgreen">Tarn Taran & Moga in Punjab</b> and <b className="colorgreen">Solan in Himachal Pradesh</b> in 2010</p>
+                              <b className="colorgreen">Tarn Taran & Moga in Punjab</b> and <b className="colorgreen">Solan in Himachal Pradesh</b> in 2021</p>
                               {/* <a href="#" className="btn btn-primary">Button</a> */}
                           </div>
                         </div>
@@ -61,7 +61,7 @@ function AboutUs() {
                           <img src={wardhaImg} className="img-fluid rounded-start" alt="..."/>
                           <div className="card-body text-center">
                             <h5 className="card-title">Western India</h5>
-                            <p className="card-text">The project is being currently replicated in <b className="colorgreen">Wardha, Maharashtra</b></p>
+                            <p className="card-text">The project is being currently replicated in <b className="colorgreen">Wardha, Maharashtra</b> in 2023</p>
                             {/* <a href="#" className="btn btn-primary">Button</a> */}
                           </div>
                       </div>
@@ -93,8 +93,8 @@ function AboutUs() {
             <div className="row pv-75">              
               <div className="col-12">
                   <div className="feature-description">
-                  <h2 className="">Know your Partners</h2>
-                  <p>
+                  <h2 className="sub-title  text-center">Know your Partners</h2>
+                  <p className="text-center">
                     <b>Mahindra Foundation</b> is a public charitable trust incorporated in 1969 and registered under Maharashtra Public Trust Act.
 
                     Mahindra Foundation operates with a vision to carry out public charitable objects and purposes wide enough for the extension of the benefit thereof to all irrespective of caste, community, creed, or religion through its public charitable activities. Mahindra Foundation has provided medical relief and donation of medical equipment for the treatment of underprivileged. During national calamities like floods in Uttarakhand and Bihar, COVID etc Mahindra Foundation has mobilized resources for the relief of poor. The Foundation has constructed toilets under Swachh Bharat Swachh Vidyalaya project of Govt of India. Mahindra Foundation has implemented environmental protection projects like Vijay Vidarbha, Solar lighting and Hariyali project in Kashmir.

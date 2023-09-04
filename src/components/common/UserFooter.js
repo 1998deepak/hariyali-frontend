@@ -76,7 +76,7 @@ const Header = () => {
                 <div className="footer-divheading">Contact Us </div>
                   <address>
                   <h5>Mahindra Foundation</h5>
-                  <p>3rd Floor, Cecil Court, Shahid Bhagat Singh Marg, Colaba, Mumbai, Maharashtra 400005</p>
+                  <p>Cecil Court, MB Marg, near Regal Cinema, Apollo Bandar, Colaba, Mumbai, Maharashtra 400005</p>
                   <a href="tel:93224 56789"><i className="bi bi-phone"></i> 93224 56789</a><br/>
                   <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a> <br/>
                   </address>
@@ -97,7 +97,7 @@ const Header = () => {
           </Row>
         </Container>
         <div className="copyright">          
-         Copyrights © 2023 <span><a className="colorgreen" href="Hariyali.org.in">Hariyali.org.in</a></span> | All rights reserved | Photo credit by Nandi Foundation | We are available at
+         Copyrights © 2023 <span><a className="colorgreen" href="Hariyali.org.in">Hariyali.org.in</a></span> | All rights reserved | Photo credit Naandi Foundation | We are available at
           <span className="colorgreen"> <a className="colorgreen" href="1t.org">1t.org</a></span>
         </div>
       </div>

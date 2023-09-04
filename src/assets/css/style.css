@@ -337,11 +337,7 @@ ul {
 input:disabled {
   background-color: #dddddd !important;
 }
-.btn-secondary {
-  /* background-color: #fff !important; */
-  /* color: #9f9e9e; */
-  border: 0 !important;
-}
+
 .learnmore a {
   color: #dd052b;
   font-size: 16px;
@@ -1077,6 +1073,7 @@ textarea.form-control {
   width: 800px;
   border-radius: 40px;
 }
+
 /* Subscribe */
 .Subscribe-bg {
   background-color: #23aa4a;
@@ -2329,6 +2326,17 @@ tr td input {
   background: #fff;
   color: #23aa4a;
 }
+.btn-secondary{
+  background-color: #5c636a;
+  border-color: #5c636a;
+  color: #fff;
+}
+.btn-secondary:hover,
+.btn-secondary:focus{
+  border-color: #5c636a;
+  background: #fff;
+  color: #5c636a;
+}
 .carousel-dark .carousel-control-next-icon, .carousel-dark .carousel-control-prev-icon{
   filter: none;
   display: inline-block;
@@ -2345,7 +2353,20 @@ tr td input {
 .banner-btn{    font-size: 1rem !important; background-color: #fff;border-radius: 15px !important;
   font-weight: 600;
   line-height: 1.5;}
-.slide-content,
+.slide-content{
+  position: absolute;
+  left: 5% !important;
+  top: 18%;
+  width: 100%;
+  left: auto;    height: 645px;
+  /* right: auto; */
+  /* background: rgb(233 37 52/ 90% ); */
+  /* background: rgb(250 175 5 / 80%); */
+  color: #fff;
+  padding: 2.5rem;
+  border-radius: 4rem 0 4rem 0;
+}
+.slide-content h2{ width: 50%;}
 .slide-location{
   position: absolute;
   left: 5% !important;
@@ -2366,8 +2387,14 @@ tr td input {
   margin-bottom: 3rem;
 }
 .slide-location p{
-  font-size: 1.125rem;
+  font-size: 1.3rem;
   margin-bottom: 0;
+  font-weight: 700;
+  background: #fff4;
+  padding: 10px;
+  width: fit-content;
+  right: 0;
+  float: right;
 }
 .slide-location i{
   display: inline-block;
@@ -2377,16 +2404,28 @@ tr td input {
   display: none;
 }
 .slide-location{
-  background: #23aa4a;
+  /* background: #23aa4a; */
   margin-top: 20px;
-  left: 0 !important;
-  position: relative;
-  right: auto;
+  left: auto !important;
+  position: absolute;
+  right: 10% !important;
   padding: 15px;
   border-radius: 30px;
-  width: 300px;
-  text-align: center;
+  /* width: 300px; */
+  text-align: right;
+  width: 100% !important;
+  bottom: 22%;
+  top: auto;
 }
+@media screen and (max-width:1548px){
+.slide-location {
+  bottom: 28%;}
+  .react-slideshow-fadezoom-wrapper div[data-index="0"] .slide-location{ bottom: 28% !important;}
+}
+@media screen and (max-width:1493px){
+  .slide-location {
+    bottom: 35%;}.react-slideshow-fadezoom-wrapper div[data-index="0"] .slide-location{ bottom: 39% !important;}
+  }
 .certificate-tile{
   width: 250px;
 }
@@ -2504,7 +2543,7 @@ tr td input {
   /* Additional styling for the sticky header */
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
   /* background-color: rgb(220 53 69/90%); */
-  z-index: 1000;
+  z-index: 10000;
   animation: all 0.5ms ease-in 0.5ms;
 }
 .headermenu.sticky .nav-sublist{
@@ -2793,16 +2832,17 @@ address a:hover{
 }
 .award-wrapper{
   position: relative;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 2rem 2.5rem;
-  min-height: 130px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  box-shadow: 0px 1px 6px 2px #ccc;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 2rem 2.5rem;
+    min-height: 169px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0px 1px 6px 2px #ccc;
+    width: 383px;
 }
 .award-wrapper:before,
 .award-wrapper:after{
@@ -3045,11 +3085,23 @@ iframe{
   /* display: none; */
   background: transparent;
   font-size: 20px;
-  width: auto;
+  width: auto;    top: 100%;
   text-align: left;    padding-left: 0;
+
+  width: 100% !important;
+  bottom: 22%;
+  top: auto;
 }
 .react-slideshow-fadezoom-wrapper div[data-index="0"] p{
-  font-size: 2rem;    font-weight: 700; text-align: center;
+  font-weight: 700; text-align: right;
+  font-size: 1.3rem;
+  margin-bottom: 0;
+  font-weight: 700;
+  background: #fff4;
+  padding: 10px;
+  width: fit-content;
+  right: 0;
+  float: right;
 }
 .react-slideshow-fadezoom-wrapper div[data-index="0"] i {
   display: none;
@@ -3104,7 +3156,7 @@ iframe{
     bottom: 40%;
   }
   .slide-content{
-    width: 50%;
+    width: 100%;
   }
   .slide-location{
     width:300px;
@@ -3132,6 +3184,13 @@ iframe{
     padding-bottom: 35px;
   }
   
+}
+@media only screen and (max-width: 1188px) {
+  .react-slideshow-fadezoom-wrapper {
+    height: 74vh;
+}.slide-content {
+  height: 556px;
+}
 }
 /* .nav-list .nav-item a.nav-link */
 @media only screen and (max-width: 1017px) {

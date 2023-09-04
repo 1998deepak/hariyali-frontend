@@ -46,10 +46,10 @@ function FootPrint() {
         </div>
       </section>
       <div className="">
-        <div className="section-footprint bggray">
-          <Container className="pt30">
+        <div >
+          <Container className="pv-75">
             <Row className="justify-content-between  padding30tb contact-form-wrap">
-              <div className="otherbotmborder"><div className="otherpages-heading text-center sub-title">Footprint </div>
+              <div className="otherbotmborder"><div className="otherpages-heading text-center sub-title">Where Are We </div>
               </div>
               <div class="grid">
                 <figure class="effect-apollo" onClick={Wardha}>
