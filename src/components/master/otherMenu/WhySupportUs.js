@@ -140,7 +140,7 @@ function WhySupportUs() {
         <div className="container ">
         <div className="feature-description">
           <h2 className="sub-title text-center">Why Support Us</h2>
-          </div>
+          
           <p className="text-center">
             The total forest and tree cover in India is 8,09,537 square
             kilometres i.e., 24.62 % of the total geographical area. But as per
@@ -155,6 +155,7 @@ function WhySupportUs() {
             and Environment’s (CSE) new report entitled ‘State of India’s
             Environment in Figures 2021’.
           </p>
+          </div>
         </div></div>
       </section>
       <section className="container">

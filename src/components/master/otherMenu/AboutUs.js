@@ -23,12 +23,12 @@ function AboutUs() {
         <div className="section bggray">
           <div className="container">
           <div className="pv-75">
-            <div className="feature-description">
+            <div className="feature-description pb-0">
               <h2 className="sub-title  text-center">Who Are We</h2>
               <p className="text-center">The project hariyali is a join initiative by mahindra foundation and nandi foundation. <a href="#knowYourPatners">know more...</a></p>
             </div>
           </div>
-            <div className="row align-items-center pv-75">
+            <div className="row align-items-center pv-75 pt-0">
               <div className="col-12">
               <div className="feature-description">
                 <h2 className="sub-title  text-center">Details about initiative</h2>
