@@ -156,7 +156,7 @@ const Slideshow = () => {
       <Zoom {...zoomOutProperties}>
         {slides.map((each, index) => (
           <>
-            <img key={index} style={{ width: "100%", height:"700px" }} src={each.image} />
+            <img key={index} style={{ width: "100%", height:"650px" }} src={each.image} />
             <div className="slide-content">
               <h2>{each.title}</h2>
 

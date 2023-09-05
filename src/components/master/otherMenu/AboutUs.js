@@ -4,12 +4,13 @@ import "animate.css/animate.min.css";
 // import "react-image-gallery/styles/css/image-gallery.css";
 import goalimg from "../../../assets/img/goal.jpg";
 import projectimg from "../../../assets/img/associate.jpg";
-import ventureimg from "../../../assets/img/environment.jpg";
+import mahindralogo from "../../../assets/img/mahindra-logo.png";
 
 import arakuImg from "../../../assets/img/slider/araku.jpg";
-import tarnImg  from "../../../assets/img/slider/tarn.jpg";
+import tarnImg from "../../../assets/img/slider/tarn.jpg";
 import wardhaImg from "../../../assets/img/slider/wardha.png";
-
+import monsoonImg from "../../../assets/img/plant-that-is-growing-dirt.jpg";
+import winterImg from "../../../assets/img/winter.jpg";
 function AboutUs() {
 
   return (
@@ -17,53 +18,53 @@ function AboutUs() {
       {/* body */}
       <section className="banner banner-about">
         <div className="title">
-        </div>          
+        </div>
       </section>
       <div className="">
         <div className="section bggray">
           <div className="container">
-          <div className="pv-75">
-            <div className="feature-description">
-              <h2 className="sub-title  text-center">Who Are We</h2>
-              <p className="text-center">The project hariyali is a join initiative by mahindra foundation and nandi foundation. <a href="#knowYourPatners">know more...</a></p>
+            <div className="pv-75">
+              <div className="feature-description">
+                <h2 className="sub-title  text-center">Who Are We</h2>
+                <p className="text-center">Project Hariyali is a joint initiative by Mahindra Foundation and Naandi Foundation. One million trees have been planted each year since 2007 across India. The project is part of nature-based solution that focuses on natural resource management and global organic farming protocols to improve the eco-system. Going forward, the project aims to plant 5 million trees per annum. Hariyali project is part of nuture base solution. To <a href="#knowYourPatners">know more</a> about foundation </p>
+              </div>
             </div>
-          </div>
             <div className="row align-items-center pv-75">
               <div className="col-12">
-              <div className="feature-description">
-                <h2 className="sub-title  text-center">Details about initiative</h2>
-                  <p className="text-center">The project was launched on 2nd October 2007, as an afforestation initiative, with a target to plant a million trees every year. 
-                  Project Hariyali aims to increase the green cover, arrest the rising ecological imbalance to create environmentally conscious and aware citizenry.</p>
+                <div className="feature-description">
+                  <h2 className="sub-title  text-center">Details about initiative</h2>
+                  <p className="text-center">The project was launched on 2nd October 2007, as an afforestation initiative, with a target to plant a million trees every year.
+                    Project Hariyali aims to increase the green cover, arrest the rising ecological imbalance to create environmentally conscious and aware citizenry.</p>
                   <p>We are currently active in three regions for large scale plantation:</p>
                   <div className="row">
                     <div className="col-12 col-md-6 col-lg-4 mb-4">
                       <div className="card h-100">
-                        <img src={arakuImg} className="img-fluid rounded-start" alt="..."/>
+                        <img src={arakuImg} className="img-fluid rounded-start" alt="..." />
                         <div className="card-body text-center">
                           <h5 className="card-title">Southern India</h5>
-                          <p className="card-text">The project started in <b className="colorgreen">Araku Valley</b>, <b className="colorgreen">Visakhapatnam</b>, <b className="colorgreen">Andhra Pradesh</b> in 2010</p>                          
+                          <p className="card-text">The project started in <b className="colorgreen">Araku Valley</b>, <b className="colorgreen">Visakhapatnam</b>, <b className="colorgreen">Andhra Pradesh</b> started in 2010</p>
                         </div>
                       </div>
                     </div>
                     <div className="col-12 col-md-6 col-lg-4 mb-4">
                       <div className="card h-100">
-                          <img src={tarnImg} className="img-fluid rounded-start" alt="..."/>
-                          <div className="card-body text-center">
-                              <h5 className="card-title">Northern India</h5>
-                              <p className="card-text">The project <b className="colorgreen">Shravasti in Uttar Pradesh</b>,
-                              <b className="colorgreen">Tarn Taran & Moga in Punjab</b> and <b className="colorgreen">Solan in Himachal Pradesh</b> in 2021</p>
-                              {/* <a href="#" className="btn btn-primary">Button</a> */}
-                          </div>
+                        <img src={tarnImg} className="img-fluid rounded-start" alt="..." />
+                        <div className="card-body text-center">
+                          <h5 className="card-title">Northern India</h5>
+                          <p className="card-text">The project <b className="colorgreen">Shravasti in Uttar Pradesh</b>,
+                            <b className="colorgreen">Tarn Taran & Moga in Punjab</b> and <b className="colorgreen">Solan in Himachal Pradesh</b> started in 2021</p>
+                          {/* <a href="#" className="btn btn-primary">Button</a> */}
                         </div>
+                      </div>
                     </div>
                     <div className="col-12 col-md-6 col-lg-4 mb-4">
                       <div className="card h-100">
-                          <img src={wardhaImg} className="img-fluid rounded-start" alt="..."/>
-                          <div className="card-body text-center">
-                            <h5 className="card-title">Western India</h5>
-                            <p className="card-text">The project is being currently replicated in <b className="colorgreen">Wardha, Maharashtra</b> in 2023</p>
-                            {/* <a href="#" className="btn btn-primary">Button</a> */}
-                          </div>
+                        <img src={wardhaImg} className="img-fluid rounded-start" alt="..." />
+                        <div className="card-body text-center">
+                          <h5 className="card-title">Western India</h5>
+                          <p className="card-text">The project is being currently replicated in <b className="colorgreen">Wardha, Maharashtra</b> started in 2023</p>
+                          {/* <a href="#" className="btn btn-primary">Button</a> */}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -73,42 +74,80 @@ function AboutUs() {
           </div>
           <section className="bg-tree">
             <div className="container">
-            <div className="row align-items-center pv-75">
-                  <div className="col-12 col-md-6 col-lg-5">
-                    <div className="feature-image">
-                      <img src={goalimg} alt=""/>
-                    </div>              
+              <div className="row align-items-center pv-75">
+                <div className="col-12 col-md-6 col-lg-5">
+                  <div className="feature-image">
+                    <img src={goalimg} alt="" />
                   </div>
-                  <div className="col-12 col-md-6 col-lg-7">
-                      <div className="feature-description">
-                          <h2 className="text-capitalize">Goal</h2>
-                          <p className=""><quote><b className="colorgreen">Planting 5 million trees</b> per annum through partnerships with like-minded organizations and people and in the process support livelihood of marginalized farmer communities.</quote></p>                      
-                      </div>
+                </div>
+                <div className="col-12 col-md-6 col-lg-7">
+                  <div className="feature-description">
+                    <h2 className="text-capitalize">Goal</h2>
+                    <p className=""><quote><b className="colorgreen">Planting 5 million trees</b> per annum through partnerships with like-minded organizations and people and in the process support livelihood of marginalized farmer communities.</quote></p>
                   </div>
+                </div>
               </div>
             </div>
           </section>
           <section id="knowYourPatners" className="bg-venture">
-          <div className="container">
-            <div className="row pv-75">              
-              <div className="col-12">
+            <div className="container">
+              <div className="row pv-75">
+                <div className="col-12">
                   <div className="feature-description">
-                  <h2 className="sub-title  text-center">Know your Partners</h2>
-                  <p className="text-center">
-                    <b>Mahindra Foundation</b> is a public charitable trust incorporated in 1969 and registered under Maharashtra Public Trust Act.
+                    <h2 className="sub-title  text-center">Know your Partners</h2>
+                    <div className="text-center"><img src={mahindralogo} alt="mahindralogo" /></div>
+                    <p className="text-center">
+                      <b>Mahindra Foundation</b> is a public charitable trust incorporated in 1969 and registered under Maharashtra Public Trust Act.
 
-                    Mahindra Foundation operates with a vision to carry out public charitable objects and purposes wide enough for the extension of the benefit thereof to all irrespective of caste, community, creed, or religion through its public charitable activities. Mahindra Foundation has provided medical relief and donation of medical equipment for the treatment of underprivileged. During national calamities like floods in Uttarakhand and Bihar, COVID etc Mahindra Foundation has mobilized resources for the relief of poor. The Foundation has constructed toilets under Swachh Bharat Swachh Vidyalaya project of Govt of India. Mahindra Foundation has implemented environmental protection projects like Vijay Vidarbha, Solar lighting and Hariyali project in Kashmir.
+                      Mahindra Foundation operates with a vision to carry out public charitable objects and purposes wide enough for the extension of the benefit thereof to all irrespective of caste, community, creed, or religion through its public charitable activities. Mahindra Foundation has provided medical relief and donation of medical equipment for the treatment of underprivileged. During national calamities like floods in Uttarakhand and Bihar, COVID etc Mahindra Foundation has mobilized resources for the relief of poor. The Foundation has constructed toilets under Swachh Bharat Swachh Vidyalaya project of Govt of India. Mahindra Foundation has implemented environmental protection projects like Vijay Vidarbha, Solar lighting and Hariyali project in Kashmir.
 
-                    The Trust is also registered u/s 12AB of Income Tax Act and has registration u/s 80G of Income Tax Act, 1961.
+                      The Trust is also registered u/s 12AB of Income Tax Act and has registration u/s 80G of Income Tax Act, 1961.
+                    </p><div class="grid">
+                    <div className="row justify-content-center mt-5">
+                      <div className="col-12 col-md-4">
+                        <div className="trustee-box">
+                          {/* <div className="text-center">
+                            <img src={monsoonImg} className="foundation-img-top" alt="..." />
+                          </div> */}
+                          {/* <div className="text-center card-body">
+                                <h5 className="card-title">Anand Mahindra</h5>
+                                <p>Chairman</p>
+                              </div> */}
+                          <figure class="effect-layla">
+                            
+                            <div className="text-center card-body">
+                            <img src={monsoonImg} className="foundation-img-top" alt="..." />
+                              <div className="trustee-title">Anand Mahindra</div>
+                              <div  className="trustee-text">Chairman</div>
+                            </div>
+                            <figcaption>
+                              
+                              <a href="#">View more</a>
+                            </figcaption>
+                          </figure>
+                        </div>
+                      </div>
+                      <div className="col-12 col-md-4">
+                        <div className="trustee-box">
+                          <div className="text-center">
+                            <img src={monsoonImg} className="foundation-img-top" alt="..." />
+                          </div>
+                          <div className="text-center card-body">
+                            <h5 className="card-title">Bharat Doshi</h5>
+                            <p>Trustee</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>  </div>
+                    <p>
+                      <br /> <br />
+                      <b>Naandi Foundation </b>is an apolitical, autonomous public charitable trust and a not-for-profit organisation having registration under section 12AB of income-tax Act, 1961 is tax exempt and is recognised by tax authorities. Born out of the idea of creating a professionally run organization managed by eminent business leaders as Trustees, Naandi serves as a new experiment in the socio-development sector of India. Its foot print has expanded year on year across 17 states touching the lives of more than 6 million underserved people so far.
+                      Naandi Foundation is one of the largest and fastest growing social sector organisations in India working to make poverty history.
+                    </p>
 
-                    <br /> <br />
-                    <b>Naandi Foundation </b>is an apolitical, autonomous public charitable trust and a not-for-profit organisation having registration under section 12AB of income-tax Act, 1961 is tax exempt and is recognised by tax authorities. Born out of the idea of creating a professionally run organization managed by eminent business leaders as Trustees, Naandi serves as a new experiment in the socio-development sector of India. Its foot print has expanded year on year across 17 states touching the lives of more than 6 million underserved people so far.
-                    Naandi Foundation is one of the largest and fastest growing social sector organisations in India working to make poverty history.
-                  </p> 
-                  
                   </div>
-              </div>
-              {/* <div className="col-12 col-md-5">
+                </div>
+                {/* <div className="col-12 col-md-5">
                 <div className="feature-image">
                   <img src={ventureimg} alt=""/>
                 </div>              
@@ -118,9 +157,9 @@ function AboutUs() {
                   <img src={ventureimg} alt=""/>
                 </div>              
               </div> */}
-              
+
+              </div>
             </div>
-          </div>
           </section>
           {/* <Container className="pt30">
             <Row className="justify-content-between  padding30tb contact-form-wrap">              
