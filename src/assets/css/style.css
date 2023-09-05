@@ -3301,7 +3301,7 @@ figure.effect-layla:hover img {
 }
 
 .testimonial-slider {
-  margin: 0 0 50px 0;
+  margin: 2rem 0 50px 0;
   padding: 0;
 }
 
@@ -3362,7 +3362,7 @@ figure.effect-layla:hover img {
 
 .support-content p {
   font-size: 1.125rem;
-  padding: 0 3rem;
+  /* padding: 0 3rem; */
 }
 
 .support-content img {
@@ -3378,7 +3378,7 @@ figure.effect-layla:hover img {
 }
 
 .testimonial-slider .react-slideshow-fadezoom-wrapper {
-  height: 650px;
+  height: 450px;
 }
 
 .awards-slider .react-slideshow-fadezoom-wrapper {
@@ -3388,6 +3388,7 @@ figure.effect-layla:hover img {
 .testimonial-slider .react-slideshow-container+ul.indicators {
   display: flex;
   margin: 0 auto;
+  padding-bottom: 2rem;
 }
 
 .carousel-caption h5 {
@@ -4014,7 +4015,15 @@ iframe {
   background-size: cover;
   background-position: center;
 }
-
+.pdf-wrapper .pdf-tile i{
+  position: absolute;
+  top: 0;
+  right: 28px;
+  z-index: 2;
+  width: 0.5rem;
+  font-size: 2rem;
+  color: #e92534;
+}
 .pdf-wrapper .pdf-tile:hover span:nth-child(2) {
   transform: translateY(0%);
 }
@@ -4048,25 +4057,30 @@ iframe {
   /* display: none; */
   background: transparent;
   font-size: 20px;
-  width: auto;
+  width: fit-content;
   top: 100%;
-  text-align: left;
+  /* text-align: left; */
   padding-left: 0;
-
-  width: 100% !important;
+  /* width: 100%; */
   top: 400px;
 }
 
 .home-page-slider .react-slideshow-fadezoom-wrapper div[data-index="0"] .slide-location {
-  left: 0;
-  right: 0;
+  text-align: center;
+  left: 50%;
+  top: auto;
+  bottom: 15%;
+  transform: translate(-50%,0%);
 }
 
-.home-page-slider .slide-location {
-  left: auto;
-  right: 5%;
+.home-page-slider .react-slideshow-fadezoom-wrapper .slide-location {
+  top:auto;
+  right: 10px;
+  bottom: 15%;
+  /* left: 50%;
   top: auto;
-  bottom: 16%;
+  bottom: 25%;
+  transform: translate(-50%,0%); */
 }
 
 .react-slideshow-fadezoom-wrapper div[data-index="0"] p {
@@ -4077,9 +4091,9 @@ iframe {
   font-weight: 700;
   background: #fff4;
   padding: 10px;
-  width: fit-content;
+  /* width: fit-content;
   right: 0;
-  float: right;
+  float: right; */
 }
 
 .testimonial-slider .react-slideshow-fadezoom-wrapper div[data-index="0"] p {
@@ -4088,7 +4102,7 @@ iframe {
   font-size: 1.125rem !important;
 }
 
-.react-slideshow-fadezoom-wrapper div[data-index="0"] i {
+.home-page-slider .react-slideshow-fadezoom-wrapper div[data-index="0"] i {
   display: none;
 }
 
