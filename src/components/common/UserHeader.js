@@ -66,23 +66,23 @@ const Header = () => {
                 <Nav className="justify-content-end  nav-list" activeKey={location.pathname}>
                   <Nav.Item >
                     <Nav.Link href="/AboutUs" className={`${activeTab === 'AboutUs' ? 'active' : ''}`}
-        onClick={() => setActiveTab('AboutUs')} eventKey="/AboutUs">Who are we</Nav.Link>
+        onClick={() => setActiveTab('AboutUs')} eventKey="/AboutUs">Who Are We</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="/WhatWeDo" className={`${activeTab === 'WhatWeDo' ? 'active' : ''}`}
-        onClick={() => setActiveTab('WhatWeDo')} eventKey="/WhatWeDo">What we do</Nav.Link>
+        onClick={() => setActiveTab('WhatWeDo')} eventKey="/WhatWeDo">What We Do</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="/WhySupportUs" className={`${activeTab === 'WhySupportUs' ? 'active' : ''}`}
-        onClick={() => setActiveTab('WhySupportUs')} eventKey="/WhySupportUs">Why support us</Nav.Link>
+        onClick={() => setActiveTab('WhySupportUs')} eventKey="/WhySupportUs">Why Support Us</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="/WaystoAssociate" className={`${activeTab === 'WaystoAssociate' ? 'active' : ''}`}
-        onClick={() => setActiveTab('WaystoAssociate')} eventKey="/WaystoAssociate">How to associate</Nav.Link>
+        onClick={() => setActiveTab('WaystoAssociate')} eventKey="/WaystoAssociate">How To Associate</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="/FootPrint" className={`${activeTab === 'FootPrint' ? 'active' : ''}`}
-        onClick={() => setActiveTab('FootPrint')} eventKey="/FootPrint">Where are we</Nav.Link>
+        onClick={() => setActiveTab('FootPrint')} eventKey="/FootPrint">Where Are We</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="/ContactUs" className={`${activeTab === 'ContactUs' ? 'active' : ''}`}

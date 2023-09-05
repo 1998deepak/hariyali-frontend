@@ -42,58 +42,42 @@ const LeftMenu = () => {
               <Link
                 to="/Dashboard"
                 className="nav-link dropdown-indicator-left label-1"
+                onClick={toggleMenu}
               >
                 <FaHome />
-                <SubMenu
-                  onClick={toggleMenu}
-                  label="Home"
-                  className="homemenu-icon menu-icon"
-                >
-                  <MenuItem className=" hideshowmenu">Home</MenuItem>
-                </SubMenu>
+                Home
               </Link>
             </MenuItem>
-          </Menu>
-          <div className="clear"></div>
-        </div>
-        <div>
-          <Menu>
             <MenuItem className="sidebar-leftli left-sp">
               <Link
                 to="/WebDonarCreation"
-                className="nav-link dropdown-indicator-left label-1"
+                className="nav-link dropdown-indicator-left label-1" onClick={toggleMenu}
               > <FaUserFriends />
-                <SubMenu
-                  onClick={toggleMenu}
-                  label="Web Donar"
-                  className="homemenu-icon menu-icon"
-                >
-                  <MenuItem className=" hideshowmenu">Web Donar Creation</MenuItem>
-                </SubMenu>
+              Web Donar              
               </Link>
             </MenuItem>
-          </Menu>
-          <div className="clear"></div>
-        </div>
-        <div>
-          <Menu>
             <MenuItem className="sidebar-leftli left-sp">
               <Link
                 to="/DonarCreation"
-                className="nav-link dropdown-indicator-left label-1"
+                className="nav-link dropdown-indicator-left label-1"  onClick={toggleMenu}
               > <MdCreateNewFolder />
-                <SubMenu
-                  onClick={toggleMenu}
-                  label="Donar  Creation"
-                  className="homemenu-icon menu-icon"
-                >
-                  <MenuItem className=" hideshowmenu">Donar  Creation</MenuItem>
-                </SubMenu>
+              Approved Donor
+                
               </Link>
             </MenuItem>
+            <MenuItem className="sidebar-leftli left-sp">
+              <Link
+                to=""
+                className="nav-link dropdown-indicator-left label-1" 
+              > <MdCreateNewFolder />
+              Plantation & Commitment
+                
+              </Link>
+            </MenuItem>
+            
           </Menu>
-          <div className="clear"></div>
         </div>
+        
         {/* <div>
           <Menu>
             <MenuItem className="sidebar-leftli">

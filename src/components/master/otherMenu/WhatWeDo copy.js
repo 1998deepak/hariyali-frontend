@@ -46,7 +46,7 @@ For Monsoon plantation, this process starts in September of the previous financi
 <div className="whatwe-approachicon"><FaCogs /></div>
  </div>
   </Row> */}
-   <img src={whatwe1} alt="what we do" />
+   <img src={whatwe1} alt="What We Do" />
 </div>
 
                 <p>

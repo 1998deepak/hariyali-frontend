@@ -78,10 +78,10 @@ const Header = () => {
             <Nav.Link href="/home">About Us</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="link-1">What we do</Nav.Link>
+            <Nav.Link eventKey="link-1">What We Do</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="link-2">Why support us</Nav.Link>
+            <Nav.Link eventKey="link-2">Why Support Us</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link eventKey="link-1">Project</Nav.Link>
@@ -104,10 +104,10 @@ const Header = () => {
                 <Nav.Link href="/home">About Us</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="link-1">What we do</Nav.Link>
+                <Nav.Link eventKey="link-1">What We Do</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="link-2">Why support us</Nav.Link>
+                <Nav.Link eventKey="link-2">Why Support Us</Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="link-1">Project</Nav.Link>
