@@ -115,6 +115,7 @@ const slides = [
     title: 'A farmer does not only grow crops but creates a healthy environment',
     description: 'Wardha, Maharashtra',
   },
+  
   // Add more slides here
 ];
 
@@ -170,11 +171,10 @@ const Slideshow = () => {
                     Gift a Tree  <img src={gifttreeImg} />
                   </Link>
                 </div>
-              </div>
-
-              <div className="slide-location">
+              </div>              
+            </div>
+            <div className="slide-location">
                 <p><i className="bi-bi bi-geo-alt"></i>{each.description}</p>
-              </div>
             </div>
           </>
         ))}

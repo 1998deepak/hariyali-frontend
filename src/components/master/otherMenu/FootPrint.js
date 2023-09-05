@@ -50,13 +50,14 @@ function FootPrint() {
           <Container className="pv-75">
             <Row className="justify-content-between  padding30tb contact-form-wrap">
               <div className="otherbotmborder"><div className="otherpages-heading text-center sub-title">Where Are We </div>
+              <p className="text-center">We are currently present in five states – Andhra Pradesh, Uttar Pradesh, Punjab, Himachal Pradesh and Maharashtra.</p>
               </div>
               <div class="grid">
               <figure class="effect-apollo" onClick={Araku}>
                   <img src={Arakuimg} alt="Araku" />
                   <figcaption>
                     <h2> <span>Araku</span>,<br /> Andhra Pradesh</h2>
-                    <p>Araku, Nestled In The North-West Region Of Andhra Pradesh</p>
+                    <p>Araku, Nestled in the North-West Region of Andhra Pradesh</p>
                     <a onClick={Araku}>View more</a>
                   </figcaption>
                 </figure>
@@ -65,7 +66,7 @@ function FootPrint() {
                   <img src={Mogaimg} alt="Mogaimg" />
                   <figcaption>
                     <h2> <span>Moga</span>,<br /> Punjab</h2>
-                    <p>Moga Is In The Indian State Of Punjab.</p>
+                    <p>Moga is in the Indian State Of Punjab.</p>
                     <a onClick={Moga}>View more</a>
                   </figcaption>
                 </figure>
@@ -73,7 +74,7 @@ function FootPrint() {
                   <img src={Taranimg} alt="Taranimg" />
                   <figcaption>
                     <h2> <span>Tarn Taran</span>,<br /> Punjab</h2>
-                    <p>Tarn Taran Sahib Is A City In The State Of Punjab</p>
+                    <p>Tarn Taran Sahib is a City in the state Of Punjab</p>
                     <a onClick={Taran}>View more</a>
                   </figcaption>
                 </figure>
@@ -81,7 +82,7 @@ function FootPrint() {
                   <img src={Solanimg} alt="Solanimg" />
                   <figcaption>
                     <h2> <span>Solan</span>,<br /> Punjab</h2>
-                    <p>The Project Is Proposed To Be Located In Solan District</p>
+                    <p>The Project ss proposed to be located in Solan district</p>
                     <a onClick={Solan}>View more</a>
                   </figcaption>
                 </figure>
@@ -89,7 +90,7 @@ function FootPrint() {
                   <img src={Shravastiimg} alt="Shravastiimg" />
                   <figcaption>
                     <h2> <span>Shravasti</span>,<br /> Uttar Pradesh</h2>
-                    <p>Bhinga, The District Headquarters Of Shravasti</p>
+                    <p>Bhinga, the district headquarters of Shravasti</p>
                     <a onClick={Shravasti}>View more</a>
                   </figcaption>
                 </figure>
@@ -97,7 +98,7 @@ function FootPrint() {
                   <img src={Wardhaimg} alt="Wardhaimg" />
                   <figcaption>
                     <h2> <span>Wardha</span>,<br /> Maharashtra</h2>
-                    <p>Wardha District Is One Of The 35 Districts In Western India.</p>
+                    <p>Wardha district is one Of the 35 districts in Western India.</p>
                     <a onClick={Wardha}>View more</a>
                   </figcaption>
                 </figure>
