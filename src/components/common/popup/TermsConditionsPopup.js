@@ -304,13 +304,11 @@ const TermsConditionsPopup = ({ showConditons, handleCloseConditions }) => {
             concerning the processing of your personal data to:
           </p>
           <p>
-            2<br />
-            Mahindra Foundation
-            <br />
-            Gateway Building, <br />
+            Cecil Court,<br />
+            MB Marg, <br />
+            near Regal Cinema,<br />
             Apollo Bunder, Colaba, <br />
-            Mumbai 400 001, <br />
-            Maharashtra, India <br />
+            Mumbai, Maharashtra 400005 <br />
             support@hariyali.org.in
           </p>
           <p>10. Changes to the Privacy Policy</p>
