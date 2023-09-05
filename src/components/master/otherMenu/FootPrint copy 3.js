@@ -95,7 +95,7 @@ function FootPrint() {
         <Modal.Body>
           <div class="program-details" closeButton>
             {/* <h3 class="mb-3">Araku</h3> */}
-            <p>Bhinga, The District Headquarters Of Shravasti, Is Approximately 175 Kilometres Away From The State Capital, Lucknow. Shravasi, Is The North-Eastern Uttar Pradesh District Near River Rapti.
+            <p>Bhinga, The District Headquarters Of Shravasti, Is Approximately 175 Kilometres Away From The State Capital, Lucknow. Shravasi, Is The North-Eastern Uttar Pradesh District NearRiver Rapti.
 <br/>According To The Government Of India, It Is Among The 121 Minority-Concentrated Districts In India.[1] It Is The Fourth Most Backward District In India, According To The 2018 Niti Aayog Ranking.[2].</p></div>
         </Modal.Body>
       </Modal>
@@ -118,7 +118,7 @@ However, In Recent Years, These Forest Resources Are Experiencing Severe Stress 
         <Modal.Body>
           <div class="program-details" closeButton>
             {/* <h3 class="mb-3">Araku</h3> */}
-            <p>Bhinga, The District Headquarters Of Shravasti, Is Approximately 175 Kilometres Away From The State Capital, Lucknow. Shravasi, Is The North-Eastern Uttar Pradesh District Near River Rapti.
+            <p>Bhinga, The District Headquarters Of Shravasti, Is Approximately 175 Kilometres Away From The State Capital, Lucknow. Shravasi, Is The North-Eastern Uttar Pradesh District NearRiver Rapti.
 <br/>According To The Government Of India, It Is Among The 121 Minority-Concentrated Districts In India.[1] It Is The Fourth Most Backward District In India, According To The 2018 Niti Aayog Ranking.[2].</p></div>
         </Modal.Body>
       </Modal>

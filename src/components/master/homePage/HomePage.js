@@ -17,6 +17,7 @@ import program1 from "../../../assets/img/regenarate.png";
 import program2 from "../../../assets/img/biodiversity.jpg";
 import program3 from "../../../assets/img/co2.jpg";
 import program4 from "../../../assets/img/lifestyle.jpg";
+import program5 from "../../../assets/img/featurewhere.png";
 import planting from "../../../assets/img/about/hariyali-img-4.jpg";
 import bio from "../../../assets/img/program/hariyali-img-2.jpg";
 import impro from "../../../assets/img/program/hariyali-img-3.jpg";
@@ -91,13 +92,13 @@ import Modal from 'react-bootstrap/Modal';
 const slides = [
   {
     image: image2,
-    title: 'When you cut a tree you take a life and when you plant a tree you plant hope',
-    description: 'We are planting millions of trees across india since 2007',
+    title: 'When you cut a tree you take a life and when you plant a tree you plant HOPE',
+    description: 'We are planting millions of trees across India since 2007',
   },
   {
     image: image1,
     title: 'Trees need people as much as people need trees',
-    description: 'Araku Valley, Vishakhapatnam, Andhra Pradesh',
+    description: 'Araku Valley, Andhra Pradesh',
   },
   {
     image: image3,
@@ -152,7 +153,7 @@ const Slideshow = () => {
     //   </Zoom>
     // </div>
 
-    <div className="slide-container">
+    <div className="slide-container home-page-slider">
       <Zoom {...zoomOutProperties}>
         {slides.map((each, index) => (
           <>
@@ -258,9 +259,10 @@ function HomePage() {
 
           <div className="col-12 col-md-6">
             <div className="program-details">
-              <h3 className="mb-3">Who are we</h3>
-              <p>The project hariyali is a joint initiative by Mahindra Foundation and Nandi Foundation.
-                The project aims to plant 5 million trees per annum. Project Hariyali is part of nature-based solution that promotes Regenerative agriculture.</p>
+              <h3 className="mb-3">Who Are We</h3>
+              <p>Project Hariyali is a joint initiative by Mahindra Foundation and Naandi Foundation. One million trees have been planted 
+                each year since 2007 across India. The project is part of nature-based solution that focuses on natural resource management and global organic 
+                farming protocols to improve the eco-system. Going forward, the project aims to plant 5 million trees per annum.</p>
               <div className="pt-5">
                 <a href="/AboutUs" className="btn btn-secondary">Know More</a>
                 <Link className="btn btn-primary"  to={`/OnlineDonation`}>Donate</Link>
@@ -282,8 +284,8 @@ function HomePage() {
           </div>
           <div className="col-12 col-md-6">
             <div className="program-details">
-              <h3 className="mb-3">What we do</h3>
-              <p>Project Hariyali aims to increase the green cover, arrest the rising ecological imbalance, enhace biodiversity and in the process support the livelihood of marginalized farmers.</p>
+              <h3 className="mb-3">What We Do</h3>
+              <p>Project Hariyali aims to increase the green cover, arrest the rising ecological imbalance, enhance biodiversity and in the process support the livelihood of marginalized farmers.</p>
               <div className="pt-5">
                 <a href="/WhatWeDo" className="btn btn-secondary">Know More</a>
                 <Link className="btn btn-primary"  to={`/OnlineDonation`}>Donate</Link>
@@ -298,8 +300,15 @@ function HomePage() {
             <div className="col-12 col-md-6">
               <div className="program-details">
                 <h3 className="mb-3">Why Support Us</h3>
-                <p>India is the 7th most vulnerable country with respect to climate extremes. The total forest and tree cover in India is 24.62 % as opposed to the minimum 33% to maintain ecological stability. Project Hariyali has increased the green cover and is in alignment with LIFE "Lifestyle for Environment" initiative by the government of India.
-                  Project Hariyali has been conferred multiple awards by national and international bodies.</p>
+                <p>
+                India is the 7th most vulnerable country with respect to climate extremes. The total forest cover needs to increase for ecological stability.
+                </p>
+                <p>
+                India is promoting individual responsibility toward climate action through Mission LiFE "Lifestyle for Environment". 
+                Hariyali Project has increased the green cover and is in alignment with LiFE "Lifestyle for Environment".
+                </p>
+                <p>Hariyali Project has been conferred with multiple awards by national and international bodies.
+                </p>
 
                 <div className="pt-5">
                   <a href="/WhySupportUs" className="btn btn-secondary">Read More</a>
@@ -309,7 +318,7 @@ function HomePage() {
             </div>
             <div className="col-12 col-md-6">
               <div className="img-responsive feature-image">
-                <img src={program2} alt="Program" className="imgwidth100" />
+                <img src={program4} alt="Program" className="imgwidth100" />
               </div>
             </div>
           </div>
@@ -319,14 +328,14 @@ function HomePage() {
         <div className="row">
           <div className="col-12 col-md-6">
             <div className="img-responsive feature-image">
-              <img src={program3} alt="Program" className="imgwidth100" />
+              <img src={program2} alt="Program" className="imgwidth100" />
             </div>
           </div>
           <div className="col-12 col-md-6">
             <div className="program-details">
               <h3 className="mb-3">How To Associate</h3>
-              <p>UN Framework Convention on Climate Change raises awareness and builds knowledge to help mitigate climate change.
-                The Paris Agreement within the UNFCCC aims at achieving greenhouse gas emissions mitigations. The agreement outlines the National Determined Contributions (NDCs), each member country should make in order to stay ‘well below’ the 2°C target. India is committed to its NDC and seeks to be carbon neutral by 2070</p>
+              <p>There are two seasons for plantation - Monsoon and Winter. You can choose to plant in any of these seasons or both with one time investment of ₹ 450/- per plant. The sapling takes 3 years of nurturing and monitoring to be self – dependent. 
+                We provide support to the plant for these 3 years and in case if the plant doesn't survive, we replace it with a new sapling.</p>
               <div className="pt-5">
                 <a href="/WaystoAssociate" className="btn btn-secondary">Read More</a>
                 <Link className="btn btn-primary"  to={`/OnlineDonation`}>Donate</Link>
@@ -340,9 +349,8 @@ function HomePage() {
           <div className="row">
             <div className="col-12 col-md-6">
               <div className="program-details">
-                <h3 className="mb-3">Where We Are</h3>
-                <p>India is promoting individual responsibility toward climate action through Mission LIFE “Lifestyle for Environment”.
-                  This movement aims to transform individuals into pro planet people by having them adopt sustainable lifestyles and minimize their carbon footprint</p>
+                <h3 className="mb-3">Where Are We</h3>
+                <p>We are currently present in five states – Andhra Pradesh, Uttar Pradesh, Punjab, Himachal Pradesh and Maharashtra.</p>
                 <div className="pt-5">
                   <a href="/FootPrint" className="btn btn-secondary">Read More</a>
                   <Link className="btn btn-primary"  to={`/OnlineDonation`}>Donate</Link>
@@ -351,7 +359,7 @@ function HomePage() {
             </div>
             <div className="col-12 col-md-6">
               <div className="img-responsive feature-image">
-                <img src={program4} alt="Program" className="imgwidth100" />
+                <img src={program5} alt="Program" className="imgwidth100" />
               </div>
             </div>
           </div>
@@ -393,7 +401,7 @@ function HomePage() {
       <div className="project-bg ">
         <Container className="ptb50">
           <h2 className="sub-title text-center mb30 ">
-          Alignemnet with United Nations Sustainable Development Goals
+          Alignment with United Nations Sustainable Development Goals
           </h2>
          
           <div class="grid"> <Row className="justify-content-between ">

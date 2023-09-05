@@ -59,7 +59,7 @@ const Header = () => {
                     <li>
                     <a href="/WhatWeDo"> What We Do</a></li>
                     <li><a href="/WhySupportUs"> Why Support Us</a></li>
-                    <li><a href="/WaystoAssociate"> How to Associate</a></li>
+                    <li><a href="/WaystoAssociate"> How To Associate</a></li>
                     <li><a href="/FootPrint"> Where Are We</a></li>                    
                     <li><a href="/ContactUs"> Ask Us</a></li>
                   </ul>
@@ -75,8 +75,8 @@ const Header = () => {
                 <div className="col-12 col-md-6 col-lg-4 footer-div">
                 <div className="footer-divheading">Contact Us </div>
                   <address>
-                  <h5>Mahindra Foundation</h5>
-                  <p>Cecil Court, MB Marg, near Regal Cinema, Apollo Bandar, Colaba, Mumbai, Maharashtra 400005</p>
+                  <h5 className="mb-0">Mahindra Foundation</h5>
+                  <p>Cecil Court, MB Marg, NearRegal Cinema, Apollo Bandar, Colaba, Mumbai, Maharashtra 400005</p>
                   <a href="tel:93224 56789"><i className="bi bi-phone"></i> 93224 56789</a><br/>
                   <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a> <br/>
                   </address>

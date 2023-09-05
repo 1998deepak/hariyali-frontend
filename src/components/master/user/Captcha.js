@@ -70,21 +70,24 @@ function Captcha({ verified, setVerified }) {
   return (
     <>
       <div className="row">
-        <div className="captactcode">
-          <div className="capt-code" id="captcha">
-            {captcha}
-          </div>
+        <div className="col">
+          <div className="captactcode ">
+            <div className="capt-code" id="captcha">
+              {captcha}
+            </div>
 
-          <button
-            onClick={handleCaptchaRefresh}
-            type="reset"
-            className="capt-refresh"
-            disabled={verified === true}
-          >
-            <FiRefreshCcw />
-          </button>
+            <button
+              onClick={handleCaptchaRefresh}
+              type="reset"
+              className="capt-refresh"
+              disabled={verified === true}
+            >
+              <FiRefreshCcw />
+            </button>
+          </div>
         </div>
-        <div className="col-6 captcha-wrapper">
+        
+        <div className="col captcha-wrapper">
           <input
             type="text"
             id="inputType"

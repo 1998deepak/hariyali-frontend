@@ -12,7 +12,6 @@ import wardhaImg from "../../../assets/img/slider/wardha.png";
 import monsoonImg from "../../../assets/img/plant-that-is-growing-dirt.jpg";
 import winterImg from "../../../assets/img/winter.jpg";
 function AboutUs() {
-
   return (
     <>
       {/* body */}
@@ -53,7 +52,6 @@ function AboutUs() {
                           <h5 className="card-title">Northern India</h5>
                           <p className="card-text">The project <b className="colorgreen">Shravasti in Uttar Pradesh</b>,
                             <b className="colorgreen">Tarn Taran & Moga in Punjab</b> and <b className="colorgreen">Solan in Himachal Pradesh</b> started in 2021</p>
-                          {/* <a href="#" className="btn btn-primary">Button</a> */}
                         </div>
                       </div>
                     </div>
@@ -63,7 +61,6 @@ function AboutUs() {
                         <div className="card-body text-center">
                           <h5 className="card-title">Western India</h5>
                           <p className="card-text">The project is being currently replicated in <b className="colorgreen">Wardha, Maharashtra</b> started in 2023</p>
-                          {/* <a href="#" className="btn btn-primary">Button</a> */}
                         </div>
                       </div>
                     </div>
@@ -102,43 +99,7 @@ function AboutUs() {
                       Mahindra Foundation operates with a vision to carry out public charitable objects and purposes wide enough for the extension of the benefit thereof to all irrespective of caste, community, creed, or religion through its public charitable activities. Mahindra Foundation has provided medical relief and donation of medical equipment for the treatment of underprivileged. During national calamities like floods in Uttarakhand and Bihar, COVID etc Mahindra Foundation has mobilized resources for the relief of poor. The Foundation has constructed toilets under Swachh Bharat Swachh Vidyalaya project of Govt of India. Mahindra Foundation has implemented environmental protection projects like Vijay Vidarbha, Solar lighting and Hariyali project in Kashmir.
 
                       The Trust is also registered u/s 12AB of Income Tax Act and has registration u/s 80G of Income Tax Act, 1961.
-                    </p><div class="grid">
-                    <div className="row justify-content-center mt-5">
-                      <div className="col-12 col-md-4">
-                        <div className="trustee-box">
-                          {/* <div className="text-center">
-                            <img src={monsoonImg} className="foundation-img-top" alt="..." />
-                          </div> */}
-                          {/* <div className="text-center card-body">
-                                <h5 className="card-title">Anand Mahindra</h5>
-                                <p>Chairman</p>
-                              </div> */}
-                          <figure class="effect-layla">
-                            
-                            <div className="text-center card-body">
-                            <img src={monsoonImg} className="foundation-img-top" alt="..." />
-                              <div className="trustee-title">Anand Mahindra</div>
-                              <div  className="trustee-text">Chairman</div>
-                            </div>
-                            <figcaption>
-                              
-                              <a href="#">View more</a>
-                            </figcaption>
-                          </figure>
-                        </div>
-                      </div>
-                      <div className="col-12 col-md-4">
-                        <div className="trustee-box">
-                          <div className="text-center">
-                            <img src={monsoonImg} className="foundation-img-top" alt="..." />
-                          </div>
-                          <div className="text-center card-body">
-                            <h5 className="card-title">Bharat Doshi</h5>
-                            <p>Trustee</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>  </div>
+                    </p>
                     <p>
                       <br /> <br />
                       <b>Naandi Foundation </b>is an apolitical, autonomous public charitable trust and a not-for-profit organisation having registration under section 12AB of income-tax Act, 1961 is tax exempt and is recognised by tax authorities. Born out of the idea of creating a professionally run organization managed by eminent business leaders as Trustees, Naandi serves as a new experiment in the socio-development sector of India. Its foot print has expanded year on year across 17 states touching the lives of more than 6 million underserved people so far.
@@ -147,53 +108,10 @@ function AboutUs() {
 
                   </div>
                 </div>
-                {/* <div className="col-12 col-md-5">
-                <div className="feature-image">
-                  <img src={ventureimg} alt=""/>
-                </div>              
-              </div>
-              <div className="col-12 col-md-12">
-                <div className="feature-image">
-                  <img src={ventureimg} alt=""/>
-                </div>              
-              </div> */}
 
               </div>
             </div>
           </section>
-          {/* <Container className="pt30">
-            <Row className="justify-content-between  padding30tb contact-form-wrap">              
-              <div className="col-12">
-                <div>
-                  <div className="otherpages-subheading textupp">HOW DID THE PROJECT START?</div>
-                  <p>
-                    Launched on 2nd October 2007, as an afforestation initiative, with a target to plant a million trees every year.
-                    Project Hariyali aims to increase the green cover, arrest the rising ecological imbalance to create environmentally conscious and aware citizenry.
-                  </p></div>
-                <div className="otherpages-subheading"> In 2010, the project was further extended to <span className="colorgreen">Araku</span>,  <span className="colorgreen">Visakhapatnam</span>,  <span className="colorgreen">Andhra Pradesh</span></div>
-                <div className="otherpagesulli mb-2r">
-                  <ul><li>To Restore the Ecosystem</li><li>
-                    To Create a Functional</li><li>
-                      Ensure Nutritional / Economic security of the small & Marginalized Farmers
-                    </li></ul>
-                </div>
-                <div className="otherpages-subheading ">The project was replicated in Northern India in 2021</div>
-                <div className="otherpages-subheading mt25 textupp"> What is the goal?</div>
-                <p>Planting 5 million trees per annum through partnerships with like-minded organizations and people an in the process support livelihood of marginalized farmer communities.
-                </p>
-                <div className="otherpages-subheading textupp">Project is a joint venture with Mahindra Foundation and Naandi Foundation.</div>
-                <p>
-                  <b>Mahindra Foundation</b> is a public charitable trust incorporated in 1969 and registered under Maharashtra Public Trust Act.
-
-                  Mahindra Foundation operates with a vision to carry out public charitable objects and purposes wide enough for the extension of the benefit thereof to all irrespective of caste, community, creed, or religion through its public charitable activities. Mahindra Foundation has provided medical relief and donation of medical equipment for the treatment of underprivileged. During national calamities like floods in Uttarakhand and Bihar, COVID etc Mahindra Foundation has mobilized resources for the relief of poor. The Foundation has constructed toilets under Swachh Bharat Swachh Vidyalaya project of Govt of India. Mahindra Foundation has implemented environmental protection projects like Vijay Vidarbha, Solar lighting and Hariyali project in Kashmir.
-
-                  The Trust is also registered u/s 12AB of Income Tax Act and has registration u/s 80G of Income Tax Act, 1961.
-
-                  <br /> <br />
-                  <b>Naandi Foundation </b>is an apolitical, autonomous public charitable trust and a not-for-profit organisation having registration under section 12AB of income-tax Act, 1961 is tax exempt and is recognised by tax authorities. Born out of the idea of creating a professionally run organization managed by eminent business leaders as Trustees, Naandi serves as a new experiment in the socio-development sector of India. Its foot print has expanded year on year across 17 states touching the lives of more than 6 million underserved people so far.
-                  Naandi Foundation is one of the largest and fastest growing social sector organisations in India working to make poverty history.
-                </p>          </div>
-            </Row></Container> */}
         </div>
       </div>
       {/* body */}

@@ -21,7 +21,7 @@ import sdg17 from "../../../assets/img/SDG/sdg17.png";
 
 import indImg1 from "../../../assets/img/ind1.avif";
 import indImg2 from "../../../assets/img/ind2.avif";
-// import indImg3 from "../../../assets/img/ind2.avif";
+import indImg3 from "../../../assets/img/slider/banner2.png";
 
 import monsoonImg from "../../../assets/img/plant-that-is-growing-dirt.jpg";
 import winterImg from "../../../assets/img/winter.jpg";
@@ -165,7 +165,7 @@ function WaystoAssociate() {
                                             </div>
                                             <div className="col-12 col-md-3 donation-card-div">
                                                 <div className="card h-100" >
-                                                    <img src={indImg2} className="card-img-top" alt="..." />
+                                                    <img src={indImg3} className="card-img-top" alt="..." />
                                                     <div className="card-body tree-features1">
                                                         <h5 className="card-title">Gift a tree</h5>
                                                         {/* <p className="card-text">Get your family, friends and colleagues together for some fun activities by throwing a high-tea party or a kitty party, lunch / dinner get-togethers, movie screenings, book readings, theatre shows, or anything else you can think of, and raise funds for Hariyali.</p> */}

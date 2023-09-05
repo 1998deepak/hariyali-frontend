@@ -52,14 +52,15 @@ function FootPrint() {
               <div className="otherbotmborder"><div className="otherpages-heading text-center sub-title">Where Are We </div>
               </div>
               <div class="grid">
-                <figure class="effect-apollo" onClick={Wardha}>
-                  <img src={Wardhaimg} alt="Wardhaimg" />
+              <figure class="effect-apollo" onClick={Araku}>
+                  <img src={Arakuimg} alt="Araku" />
                   <figcaption>
-                    <h2> <span>Wardha</span>,<br /> Maharashtra</h2>
-                    <p>Wardha District Is One Of The 35 Districts In Western India.</p>
-                    <a onClick={Wardha}>View more</a>
+                    <h2> <span>Araku</span>,<br /> Andhra Pradesh</h2>
+                    <p>Araku, Nestled In The North-West Region Of Andhra Pradesh</p>
+                    <a onClick={Araku}>View more</a>
                   </figcaption>
                 </figure>
+                
                 <figure class="effect-apollo" onClick={Moga}>
                   <img src={Mogaimg} alt="Mogaimg" />
                   <figcaption>
@@ -92,12 +93,12 @@ function FootPrint() {
                     <a onClick={Shravasti}>View more</a>
                   </figcaption>
                 </figure>
-                <figure class="effect-apollo" onClick={Araku}>
-                  <img src={Arakuimg} alt="Araku" />
+                <figure class="effect-apollo" onClick={Wardha}>
+                  <img src={Wardhaimg} alt="Wardhaimg" />
                   <figcaption>
-                    <h2> <span>Araku</span></h2>
-                    <p>Araku, Nestled In The North-West Region Of Andhra Pradesh</p>
-                    <a onClick={Araku}>View more</a>
+                    <h2> <span>Wardha</span>,<br /> Maharashtra</h2>
+                    <p>Wardha District Is One Of The 35 Districts In Western India.</p>
+                    <a onClick={Wardha}>View more</a>
                   </figcaption>
                 </figure>
               </div>
@@ -111,8 +112,8 @@ function FootPrint() {
         <Modal.Body>
           <div class="program-details" closeButton>
             <img src={Arakuimg} alt="Arakuimg" className="footpop-img" />
-            <p className="footpop-p" >Araku, Nestled In The North-West Region Of Andhra Pradesh, Is Dominated Entirely By Scheduled Tribe Farmers (Over 90%) And Has Been Characterized By Poor Infrastructure, Dismal Connectivity, Low Women’s Literacy Rates, High Infant And Maternal Mortality And Low Agricultural Productivity.
-              <br />The Forest Lands (Accounting For Nearly 60% Of The Total Geographical Area – Census 2011), Which Was The Only Source Of Income, Were Also Degraded, Reducing The Overall Efficiency Of Land. Certain Mandals Such As Munchingputtu Had Nearly 28% Of The Total Geographical Area Being Barren And Uncultivable Land (Handbook Of Statistics, Visakhapatnam).</p></div>
+            <p className="footpop-p" >Araku Valley is located in the tribal region which is under the 
+            jurisdiction of the ITDA Paderu (Integrated Tribal Development Agency) Paderu falling in Alluri Sitharama Raju district, Andhra Pradesh. We are working in 723 villages spread across 5 mandals impacting over 1,20,000 farmer families. As of 2023, 14.90 million trees have been planted. (Plantation Season – Monsoon)</p></div>
         </Modal.Body>
       </Modal>
       <Modal show={shravastishow} onHide={ShravastiClose}>
@@ -122,8 +123,7 @@ function FootPrint() {
         <Modal.Body>
           <div class="program-details" closeButton>
             <img src={Shravastiimg} alt="Shravastiimg" className="footpop-img" />
-            <p className="footpop-p" >Bhinga, The District Headquarters Of Shravasti, Is Approximately 175 Kilometres Away From The State Capital, Lucknow. Shravasi, Is The North-Eastern Uttar Pradesh District Near River Rapti.
-              <br />According To The Government Of India, It Is Among The 121 Minority-Concentrated Districts In India.[1] It Is The Fourth Most Backward District In India, According To The 2018 Niti Aayog Ranking.[2].</p></div>
+            <p className="footpop-p" >Shravasti is situated 175 kms from state capital Lucknow. According to the Government of India, it is among the 121 minority- concentrated district in India. The 2018 Niti Aayog Ranking puts it at fourth most backward district in India. We are currently working in 65 villages in Sirsia block. As of 2023, 1.71 lakh trees have been planted. (Plantation Season – Monsoon, Winter)</p></div>
         </Modal.Body>
       </Modal>
       <Modal show={solanshow} onHide={SolanClose}>
@@ -133,9 +133,8 @@ function FootPrint() {
         <Modal.Body>
           <div class="program-details" closeButton>
             <img src={Solanimg} alt="Solanimg" className="footpop-img" />
-            <p className="footpop-p" >The Project Is Proposed To Be Located In Solan District, Of Himachal Pradesh, Located 46 Kilometres South Of The State Capital, Shimla. It Is 70 Kilometres From Chandigarh. Solan Is A Predominantly Rural District With Less Than 20% Of The Population Living In Urban Areas.
-              <br />
-              However, In Recent Years, These Forest Resources Are Experiencing Severe Stress With Increasing Pressure From The Burgeoning Population And Rising Impact Of Human Commercial Activities.</p></div>
+            <p className="footpop-p" >Solan district falls in Himachal Pradesh, Northern India. Solan is a predominantly rural district with less than 20% of the population living in urban areas. The forest resources are experiencing severe stress with increasing pressure from the burgeoning population and rising impact of human commercial activities. As of 2023, 70 K trees have been planted. (Plantation Season – Winter)
+</p></div>
         </Modal.Body>
       </Modal>
       <Modal show={taranshow} onHide={TaranClose}>
@@ -145,7 +144,7 @@ function FootPrint() {
         <Modal.Body>
           <div class="program-details" closeButton>
             <img src={Taranimg} alt="Taranimg" className="footpop-img" />
-            <p className="footpop-p" >Tarn Taran Sahib Is A City In The State Of Punjab, In Far Northern India. The Main Occupation In This Area Is Agriculture And Agro Industry With Very Few Other Industries.</p></div>
+            <p className="footpop-p" >Tarn Taran Sahib is a city in the state of Punjab, Northern India. The main occupation in this area is agriculture and agro industry with very few other industries. We are currently working in 50 villages in 5 districts. In Tarn Taran, 60% farmers belong to affirmative action category and 32% farmers belong to other backward classes. As of 2023, 1.67 lakh trees have been planted. (Plantation Season – Monsoon, Winter)</p></div>
         </Modal.Body>
       </Modal>
       <Modal show={mogashow} onHide={MogaClose}>
@@ -155,8 +154,7 @@ function FootPrint() {
         <Modal.Body>
           <div class="program-details" closeButton>
             <img src={Mogaimg} alt="Mogaimg" className="footpop-img" />
-            <p className="footpop-p" >Moga Is In The Indian State Of Punjab.
-              The Total Rural Population Is Almost 80 Percent Whereas The Urban Population Is About 20 Percent.</p></div>
+            <p className="footpop-p" >Moga lies in the state of Punjab. The total rural population is almost 80 percent, 20% being the urban population. We are currently working in 50 villages in 3 districts. In Moga, 60% farmers belong to affirmative action category and 32% farmers belong to other backward classes. As of 2023, 1.84 lakh trees have been planted. (Plantation Season – Monsoon, Winter)</p></div>
         </Modal.Body>
       </Modal>
       <Modal show={wardhashow} onHide={WardhaClose}>
@@ -166,8 +164,7 @@ function FootPrint() {
         <Modal.Body>
           <div class="program-details" closeButton>
             <img src={Wardhaimg} alt="Wardha" className="footpop-img" />
-            <p className="footpop-p" >Wardha District Is One Of The 35 Districts In Western India.
-              <br />It Is An Agricultural District And 67% Of The Population Is Part Of The Rural Belt.</p></div>
+            <p className="footpop-p" >Wardha district is located in the Vidarbha region of the State of Maharashtra. 74% is residing in rural area and 26% is residing in urban area. We are currently working in 22 villages across 4 Tehsils. Plantation is in progress. (Plantation Season – Monsoon)</p></div>
         </Modal.Body>
       </Modal>
       {/* body */}

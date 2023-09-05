@@ -23,7 +23,7 @@ function WhatWeDo() {
     <>
       <section className="banner banner-wedo">
         <div className="title">
-          {/* <h1>What we do</h1> */}
+          {/* <h1>What We Do</h1> */}
         </div>
       </section>
       <div className="">
