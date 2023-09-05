@@ -22,7 +22,7 @@ import sdg17 from "../../../assets/img/SDG/sdg17.png";
 import indImg1 from "../../../assets/img/ind1.avif";
 import indImg2 from "../../../assets/img/ind2.avif";
 
-import monsoonImg from "../../../assets/img/monsoon.jpg";
+import monsoonImg from "../../../assets/img/plant-that-is-growing-dirt.jpg";
 import winterImg from "../../../assets/img/winter.jpg";
 import associateImg from "../../../assets/img/funnel.png";
 import freeshImage from "../../../assets/img/fresh-growth-green-plant-nature-beauty-generated-by-ai.jpg";

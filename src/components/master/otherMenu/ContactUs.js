@@ -114,7 +114,7 @@ function ContactUs() {
   return (
     <>
       {/* body */}
-      <section className="banner banner-contact banner-about">
+      <section className="banner banner-contact">
         <div className="title">
           {/* <h1>Conatct Us</h1> */}
         </div>          

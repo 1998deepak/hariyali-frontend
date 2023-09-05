@@ -4,7 +4,6 @@ import { Container, Row } from "react-bootstrap";
 import "animate.css/animate.min.css";
 // import "react-image-gallery/styles/css/image-gallery.css";
 import { Zoom } from "react-slideshow-image";
-
 // program
 import planting from "../../../assets/img/about/hariyali-img-4.jpg";
 import Donateslid from "../../../assets/img/slider/Donateslid.jpg";
@@ -96,8 +95,7 @@ function WhySupportUs() {
     {
       image: testimonialImg,
       name: "Koppula Srinivas and Karramma",
-      quote:
-        "Our farm yields 894 kgs of crimson red cherries which we have given to the co-operative thereby earning 6 times of what we earned two years ago.Koppula Srinivas and Karramma from Gondhi Rapa village (Hukumpeta mandal), Araku.The family has been a part of Hariyali since 2018",
+      quote:"Our farm yields 894 kgs of crimson red cherries which we have given to the co-operative thereby earning 6 times of what we earned two years ago.Koppula Srinivas and Karramma from Gondhi Rapa village (Hukumpeta mandal), Araku.The family has been a part of Hariyali since 2018",
     },
     {
       image: image3,
@@ -129,7 +127,10 @@ function WhySupportUs() {
     scale: 0.4,
     arrows: true,
   };
-
+  const opts = {
+    height: '315', // Set the height of the video player
+    width: '560',  // Set the width of the video player
+  };
   return (
     <>
       {/* body */}
@@ -413,7 +414,7 @@ function WhySupportUs() {
           </div>
         </div>
       </div>
-      <div className="container">
+      {/* <div className="container">
       <h3 className="text-center sub-title">Testimonials</h3>
         <div className="row">
           <div className="col-12 col-md-6 text-center">
@@ -438,15 +439,16 @@ function WhySupportUs() {
               allowfullscreen
             ></iframe>
           </div>
-        </div>
-      </div>
+        </div> 
+      </div>*/}
       <section className="bg-green">
+      <h3 className="text-center sub-title">Testimonials</h3>
         <div className="container">
           {/* <Slideshow /> */}
         <div className="testimonial-slider">
           <Zoom {...zoomOutProperties}>
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="slide-content support-content my-5">
+              <div key={index} className="slide-content-whysupport support-content my-5">
                 <div className="row">
                   <div className="offset-md-1 col-12 col-md-3">
                     <img src={testimonial.image} alt="avatar" className="mb-5" />
@@ -456,12 +458,40 @@ function WhySupportUs() {
                     <p className="">
                       <i className="bi bi-quote pe-2"></i>
                       {testimonial.quote}
-                    </p>    
+                    </p>  
+                    <div>  </div>
                   </div>
                 </div>
               </div>
             ))}
-          </Zoom>
+             
+                <div className="slide-content-whysupport support-content my-5">
+                  <div className="row">
+                  <div className="col-12 col-md-6 text-center">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/h5JfhFJG3vQ"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div className="col-12 col-md-6 text-center">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/YnhmRcQ4q6M"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+                  </div>
+                </div>
+                </Zoom>
         </div>
         </div>
       </section>  

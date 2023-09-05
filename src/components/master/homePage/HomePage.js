@@ -245,7 +245,7 @@ function HomePage() {
             <div className="tree-features">
               {/* <i className="icon-carbon"></i> */}
               <h4>Carbon sequestered</h4>
-              <p>0.4 milion tCO<sub>2</sub>e</p>
+              <p>0.4 mtCO<sub>2</sub>e</p>
             </div>
           </div>
         </div>

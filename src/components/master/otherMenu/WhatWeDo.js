@@ -13,7 +13,7 @@ import step3Img from "../../../assets/img/pr-step3.png";
 import step4Img from "../../../assets/img/pr-step4.png";
 import step5Img from "../../../assets/img/pr-step5.png";
 
-import monsoonImg from "../../../assets/img/monsoon.jpg";
+import monsoonImg from "../../../assets/img/plant-that-is-growing-dirt.jpg";
 import winterImg from "../../../assets/img/winter.jpg";
  
 
