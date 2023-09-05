@@ -6,6 +6,7 @@ import { DonationService } from "../../../../services/donationService/donation.s
 import { useParams, useNavigate } from "react-router-dom";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
 import { stateOptions } from "../../../constants/constants";
+import Loader from "../../../common/loader/Loader";
 
 function UserSpecificDonationView() {
 
@@ -90,6 +91,7 @@ function UserSpecificDonationView() {
   const [userData, setUserData] = useState(initialUserData);
   const [donationData, setDonationData] = useState(intialDonations[0]);
   const [recipient, setRecipient] = useState(initialRecipientData[0]);
+  const [loading, setLoading] = useState(false);
   
   useEffect(() => {
     if (id) {
@@ -99,6 +101,7 @@ function UserSpecificDonationView() {
 
   const getDonationById = async (id) => {
     try {
+      setLoading(true);
       const response = await DonationService.getDonationById(id);
       if (response?.data) {
         const data = JSON.parse(response.data);
@@ -140,9 +143,11 @@ function UserSpecificDonationView() {
         } else {
           setPackageData([]); // Set an empty array if userPackage is null or empty
         }
+        setLoading(false);
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -154,7 +159,7 @@ function UserSpecificDonationView() {
   return (
     <>
       <ToastContainer />
-
+      {loading && <Loader/>}
       {/* slide info */}
       <div className="bggray">
         <div className="col-12 admin-maindiv">

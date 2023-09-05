@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { SUCCESS } from "../../../constants/constants";
 import { DonationService } from "../../../../services/donationService/donation.service";
 import { useParams, Link } from "react-router-dom";
+import Loader from "../../../common/loader/Loader";
 
 
 function OfflineDonationEdit() {
@@ -43,11 +44,13 @@ function OfflineDonationEdit() {
   const id = useParams().id;
   const [data, setData] = useState([]);
   const [emailData, setEmailData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   // getUser Details
   const getUserDetails = async (id) => {
     try {
       console.log(id);
+      setLoading(true);
       const response = await DonationService.getUserDetails(id);
       console.log(id);
       console.log(response?.data?.donorId);
@@ -61,10 +64,12 @@ function OfflineDonationEdit() {
         setAddressData(response.data.address);
       
         setEmailData(response.data.emailId);
-
+        
       }
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -212,21 +217,25 @@ console.log(addressErrors);
   
       console.log(addressData);
       console.log(formData);
-  
+      setLoading(true);
       const response = await DonationService.updateUser(emailID, formData);
       console.log(response);
       
       if (response?.status === "Data Update Successfully") {
         toast.success(response?.message);
+        setLoading(false);
       } else {
         toast.error(response?.message);
+        setLoading(false);
       }
     } catch (err) {
       if (err?.response?.data) {
         console.log(err.response.data);
+        
       } else {
         console.log(err?.message);
       }
+      setLoading(false);
     }
   };
   
@@ -310,6 +319,7 @@ console.log(addressErrors);
   return (
     <>
       <ToastContainer />
+      {loading && <Loader/>}
       <div className="bggray">
         <div className="col-12 admin-maindiv">
           <div className=" justify-content-between bgwite borderform1 padding30 all-form-wrap">

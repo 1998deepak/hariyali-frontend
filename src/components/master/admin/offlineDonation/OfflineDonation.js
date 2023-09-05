@@ -7,6 +7,7 @@ import { DonationService } from "../../../../services/donationService/donation.s
 import { SUCCESS, stateOptions } from "../../../constants/constants";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
 import SearchWithSuggestions from "../../../common/searchComponent/SearchWithSuggestions";
+import Loader from "../../../common/loader/Loader";
 
 function OfflineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
@@ -172,7 +173,7 @@ function OfflineDonation() {
 
   const [donarIdList, setDonarIdList] = useState([]);
 
-
+  const [loading, setLoading] = useState(false);
 
 
   function hasValues(obj) {
@@ -449,14 +450,16 @@ function OfflineDonation() {
       } else {
         formData.formData.user.donations[0].recipient = [];
       }
-
+      setLoading(true);
       const response = await DonationService.Adduser(formData);
       console.log(response);
       if (response?.status === SUCCESS) {
         toast.success(response?.message);
         clearForm(e);
+        setLoading(false);
       } else {
         toast.error(response?.message);
+        setLoading(false);
       }
     }
   };
@@ -466,6 +469,7 @@ function OfflineDonation() {
     getDonarIdList();
   }, []);
   const getAllPackages = async () => {
+    setLoading(true);
     const response = await DonationService.getAllPackages();
     if (response?.status === SUCCESS) {
       console.log(response);
@@ -477,18 +481,23 @@ function OfflineDonation() {
       
       setPackageData(data);
       calculateOverallTotal(data)
+      setLoading(false);
     } else {
       toast.error(response?.message);
+      setLoading(false);
     }
   };
 
   const getDonarIdList = async () => {
+    setLoading(true);
     const response = await DonationService.getAllDonarId();
     if (response?.status === 200) {
       // let data = response.data.map((item)=> ({ label: item, value: item }))
       setDonarIdList(response.data);
+      setLoading(false);
     } else {
       toast.error(response?.message);
+      setLoading(false);
     }
   };
 
@@ -698,6 +707,7 @@ function OfflineDonation() {
     e.preventDefault();
     console.log(e.target.value);
     const emailId = e.target.value;
+    setLoading(true);
     let response = await DonationService.getDetailsByEmailId(emailId);
 
     console.log(response);
@@ -736,8 +746,10 @@ function OfflineDonation() {
       setTimeout(() => {
         // navigate("/ModelView");
       }, 2000);
+      setLoading(false);
     } else if (response?.statusCode === 409) {
       toast.error(response?.message);
+      setLoading(false);
     }
     // Call your function here or perform any desired actions
   };
@@ -747,6 +759,7 @@ function OfflineDonation() {
   const handleDonarIdBlur = async (e) => {
     e.preventDefault();
     const donorId = e.target.value;
+    setLoading(true);
     let response = await DonationService.getDetailsByDonorId(donorId);
     console.log("API Response:", response);
 
@@ -766,16 +779,20 @@ function OfflineDonation() {
       });
 
       setAddress(address);
+      setLoading(false);
     } else if (response?.statusCode === 409) {
       toast.error(response?.message);
+      setLoading(false);
     }else{
       console.log(response);
       toast.error(response?.message);
+      setLoading(false);
     }
   };
 
   // get Detail by donar ID
   const handleDonarId = async (donorId) => {
+    setLoading(true);
     let response = await DonationService.getDetailsByDonorId(donorId);
     console.log("API Response:", response);
 
@@ -795,11 +812,14 @@ function OfflineDonation() {
       });
 
       setAddress(address);
+      setLoading(false);
     } else if (response?.statusCode === 409) {
       toast.error(response?.message);
+      setLoading(false);
     }else{
       console.log(response);
       toast.error(response?.message);
+      setLoading(false);
     }
   };
 
@@ -840,15 +860,17 @@ function OfflineDonation() {
       },
     };
 
-
+    setLoading(true);
     const response = await DonationService.AddNewDonation(formData);
     console.log(response);
     if (response?.status === SUCCESS) {
       console.log("Create Donation: "+JSON.stringify(response))
       toast.success(response?.message);
       clearForm(e);
+      setLoading(false);
     } else {
       toast.error(response?.message);
+      setLoading(false);
     }
   
     console.log(donations);
@@ -896,15 +918,17 @@ function OfflineDonation() {
         },
       };
 
-
+      setLoading(true);
     const response = await DonationService.AddNewDonation(formData);
     console.log(response);
     if (response?.status === SUCCESS) {
       console.log("Create Donation: "+JSON.stringify(response))
       toast.success(response?.message);
       clearForm(e);
+      setLoading(false);
     } else {
       toast.error(response?.message);
+      setLoading(false);
     }
   
     console.log(donations);
@@ -919,6 +943,7 @@ function OfflineDonation() {
   return (
     <>
       <ToastContainer />
+      {loading && <Loader/>}
       <Tabs
         defaultActiveKey="NewDonor"
         id="uncontrolled-tab-example"

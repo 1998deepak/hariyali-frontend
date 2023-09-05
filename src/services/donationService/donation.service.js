@@ -333,6 +333,35 @@ export const DonationService = {
       URLS.VERIFYOTPONLINE+`?donarIdOrEmail=${userId}&otp=${otp}`,
     );
     return response?.data;
-  }
+  },
+  getAllReceiptByUser: async (UserId) => {
+    try {
+       const response = await APIService.Instance.get(
+        URLS.GETALLRECEIPTSBYUSER+`?emailId=${UserId}`
+      );
+      return response?.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      }else{
+      toast.error(err?.message);
+       }
+    }
+  },
+  downloadReceipt: async (receiptId) => {
+    try {
+       const response = await APIService.Instance.get(
+        URLS.DOWNLOADRECEIPT+receiptId,
+        {responseType: "blob"}
+      );
+      return response;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      }else{
+      toast.error(err?.message);
+       }
+    }
+  },
 
 }

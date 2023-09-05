@@ -7,7 +7,7 @@ import {
   FaUser,
   FaYoutube,
 } from "react-icons/fa";
-import { BsChevronBarLeft } from "react-icons/bs";
+import { AiOutlineBars } from "react-icons/ai";
 import logo from "../../assets/img/logotrans.png";
 import donoteicon from "../../assets/img/donote.png";
 import { Link, useNavigate, useLocation} from "react-router-dom";
@@ -57,7 +57,7 @@ const Header = () => {
           <div className="">
             <Navbar expand="lg" expanded={expanded} className="pb-0">
               <Navbar.Toggle onClick={handleToggle} aria-controls="responsive-navbar-nav" >
-                <BsChevronBarLeft />
+                <AiOutlineBars />
 
               </Navbar.Toggle >
 
@@ -97,16 +97,17 @@ const Header = () => {
             activeKey="/home"
             onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
           >
-            <Nav.Item>
-              <div className="menu-button-wrapper" onClick={goToDonate}>
-                <Button className="menu-button-donet"><img src={plantation} alt="Donote" className="donoteicon" />Plant A Tree </Button>
-              </div>
-            </Nav.Item>
             <Nav.Item className="text-center small-non">
               <div className="topmenu-icon" onClick={goToLogin}>
                 <FaUser style={{ color: "#23aa4a"}} />
               </div>
             </Nav.Item>
+            <Nav.Item>
+              <div className="menu-button-wrapper" onClick={goToDonate}>
+                <Button className="menu-button-donet"><img src={plantation} alt="Donote" className="donoteicon" />Plant A Tree </Button>
+              </div>
+            </Nav.Item>
+            
             {/* <Nav.Item className="text-center small-non">
               <div className="topmenu-icon">
                 <FaFacebookF />

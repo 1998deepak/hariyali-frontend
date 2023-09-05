@@ -9,6 +9,7 @@ import { DonationService } from "../../../../services/donationService/donation.s
 import { SUCCESS } from "../../../constants/constants";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
+import Loader from "../../../common/loader/Loader";
 // nyn
 function OfflineDonationPay() {
 
@@ -179,7 +180,7 @@ function OfflineDonationPay() {
   const [userData, setUserData] = useState(initialUserData);
   const [donationData, setDonationData] = useState(intialDonations[0]);
   const [recipient, setRecipient] = useState(initialRecipientData[0]);
-
+  const [loading, setLoading] = useState(false);
 
 
   const handleChangeNumberOfBouquets = (e, row, rowIndex) => {
@@ -293,6 +294,7 @@ console.log(handleRecipientChange);
 
   const getDonationById = async (id) => {
     try {
+      setLoading(true);
       const response = await DonationService.getDonationById(id);
       console.log(response.data);
       if (response?.data) {
@@ -360,11 +362,13 @@ console.log(handleRecipientChange);
 
         console.log(packageData);
         console.log(userData);
-
+        setLoading(false);
 
       }
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
   console.log(recipient);
@@ -504,17 +508,21 @@ const updateDonation = async (e) => {
     console.log(updatedFormData);
 
     try {
+      setLoading(true);
       // Make the API call
       const response = await DonationService.updateDonation(updatedFormData);
       console.log(response);
       // Process the API response as needed
       if (response?.status) {
         toast.success(response?.message);
+        setLoading(false);
       } else {
         toast.error(response?.message);
+        setLoading(false);
       }
     } catch (error) {
       console.error(error);
+      setLoading(false);
       // Handle any errors from the API call
     }
   } else {
@@ -558,7 +566,7 @@ console.log(donationData);
   return (
     <>
       <ToastContainer />
-
+      {loading && <Loader/>}
       {/* slide info */}
       <div className="bggray">
         <div className="col-12 admin-maindiv">

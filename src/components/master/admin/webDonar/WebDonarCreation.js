@@ -11,6 +11,7 @@ import { WebDonorCreationService } from
 import { SUCCESS } from "../../../constants/constants";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { Modal, Button } from "react-bootstrap";
+import Loader from "../../../common/loader/Loader.js";
 
 function WebDonarCreation() {
   const [data, setData] = useState([]);
@@ -18,7 +19,7 @@ function WebDonarCreation() {
   const [donorTypeFilter, setDonorTypeFilter] = useState("");
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [formData, setformData] = useState([]);
-
+  const [loading, setLoading] = useState(false);
 
   //Calling Function
   useEffect(() => {
@@ -27,6 +28,7 @@ function WebDonarCreation() {
 
   // Get all user donation
   const getAllUserWithWebID = async () => {
+    setLoading(true);
     const response = await WebDonorCreationService.getAllUserWithWebID();
 
     if (response?.data) {
@@ -35,8 +37,10 @@ function WebDonarCreation() {
 
       if (response?.status === SUCCESS) {
         // toast.success(response?.message);
+        setLoading(false);
       } else {
         toast.error(response?.message);
+        setLoading(false);
       }
     }
   };
@@ -60,13 +64,16 @@ function WebDonarCreation() {
   //Approve donation with webid
   const approveDonationWithWebId = async (data) => {
     console.log(data);
+    setLoading(true)
     const response = await WebDonorCreationService.approveDonation(data);
    console.log(response);
    getAllUserWithWebID();
       if (response?.status === SUCCESS) {
         toast.success(response?.message);
+        setLoading(false)
       } else {
         toast.error(response?.message);
+        setLoading(false)
       }
     
     // Close the confirmation modal
@@ -183,6 +190,7 @@ function WebDonarCreation() {
   return (
     <>
     <ToastContainer />
+    {loading && <Loader/>}
       <div className="bggray">
         <div className="col-12 admin-maindiv">
           <div className=" justify-content-between bgwite borderform1 padding30 all-form-wrap">

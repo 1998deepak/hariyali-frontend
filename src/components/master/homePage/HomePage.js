@@ -156,7 +156,7 @@ const Slideshow = () => {
       <Zoom {...zoomOutProperties}>
         {slides.map((each, index) => (
           <>
-            <img key={index} style={{ width: "100%" }} src={each.image} />
+            <img key={index} style={{ width: "100%", height:"700px" }} src={each.image} />
             <div className="slide-content">
               <h2>{each.title}</h2>
 
@@ -196,24 +196,24 @@ function HomePage() {
   //   navigate("/Donate");
   // };
   // const navigate = useNavigate();
-  useEffect(() => {
-    window.addEventListener('error', e => {
-      if (e.message === 'ResizeObserver loop limit exceeded') {
-        const resizeObserverErrDiv = document.getElementById(
-          'webpack-dev-server-client-overlay-div'
-        );
-        const resizeObserverErr = document.getElementById(
-          'webpack-dev-server-client-overlay'
-        );
-        if (resizeObserverErr) {
-          resizeObserverErr.setAttribute('style', 'display: none');
-        }
-        if (resizeObserverErrDiv) {
-          resizeObserverErrDiv.setAttribute('style', 'display: none');
-        }
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener('error', e => {
+  //     if (e.message === 'ResizeObserver loop limit exceeded') {
+  //       const resizeObserverErrDiv = document.getElementById(
+  //         'webpack-dev-server-client-overlay-div'
+  //       );
+  //       const resizeObserverErr = document.getElementById(
+  //         'webpack-dev-server-client-overlay'
+  //       );
+  //       if (resizeObserverErr) {
+  //         resizeObserverErr.setAttribute('style', 'display: none');
+  //       }
+  //       if (resizeObserverErrDiv) {
+  //         resizeObserverErrDiv.setAttribute('style', 'display: none');
+  //       }
+  //     }
+  //   });
+  // }, []);
   return (
     <>
       {/* body */}
@@ -245,7 +245,7 @@ function HomePage() {
             <div className="tree-features">
               {/* <i className="icon-carbon"></i> */}
               <h4>Carbon sequestered</h4>
-              <p>0.4 milion tCO<sub>2</sub>e</p>
+              <p>0.4 mtCO<sub>2</sub>e</p>
             </div>
           </div>
         </div>

@@ -37,6 +37,7 @@ import UserdonationView from "./components/master/admin/donarCreation/Userdonati
 import { UserService } from "./services/userService/user.service";
 import UserSpecificDonationView from "./components/master/admin/donarCreation/UserSpecificDonationView";
 import UserDashboard from "./components/master/user/UserDashboard";
+import UserReceipts from "./components/master/user/UserReceipts";
 
 
 function HomeWithHeaderAndFooter() {
@@ -152,6 +153,19 @@ function UpdateUserWithHeaderFooter() {
         <UserLeftMenu />
         <div className="float-left page-scroll remove-top-margin" style={{ width: "100%" }}>
         <UserUpdate />
+        </div>
+      </div>
+    </>
+  );
+}
+function UserReceiptsWithHeaderFooter() {
+  return (
+    <>
+    <AdminHeader />
+    <div className="leftmenu-main">
+        <UserLeftMenu />
+        <div className="float-left page-scroll remove-top-margin" style={{ width: "100%" }}>
+        <UserReceipts />
         </div>
       </div>
     </>
@@ -332,6 +346,9 @@ function App() {
                   </ProtectedRoutes>}/>
                   <Route path="/user/update" element = {<ProtectedRoutes user={authority.user}>
                     <UpdateUserWithHeaderFooter/>
+                  </ProtectedRoutes>}/>
+                  <Route path="/user/receipts" element = {<ProtectedRoutes user={authority.user}>
+                    <UserReceiptsWithHeaderFooter />
                   </ProtectedRoutes>}/>
 
 
