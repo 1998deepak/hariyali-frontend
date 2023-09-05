@@ -3831,7 +3831,7 @@ iframe {
 .group-content {
   background: #ccc;
   padding: 3rem 1rem 5rem;
-  border-radius: 15px;
+  border-radius: 15px;margin-top: 46px;
 }
 
 .donation-card-group {
