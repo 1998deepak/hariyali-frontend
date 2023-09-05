@@ -3175,7 +3175,6 @@ iframe{
     width:300px;
   }
   .react-slideshow-fadezoom-images-wrap img{
-    height: 650px;
     object-fit: cover;
   }
   .slide-content h2{
