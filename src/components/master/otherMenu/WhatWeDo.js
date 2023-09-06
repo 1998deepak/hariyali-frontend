@@ -37,8 +37,7 @@ function WhatWeDo() {
             <Row className="justify-content-between align-items-center">
               <div className="col-12 feature-description">
               <h2 className="sub-title text-center">Approach</h2>
-              <p className="text-center">[22:34] Nitin Tile
-
+              <p className="text-center">
 We have two seasons for plantation Monsoon and Winter. Each Year, we follow a systematic plantation process so that survival rate is high.</p>
               <div className="row justify-content-center mt-5">
                       <div className="col-12 col-md-6">
