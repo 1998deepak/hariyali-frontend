@@ -21,7 +21,7 @@ body {
   width: 7px;
   height: 7px;
 }
-
+.marginall-pad-0{margin: 0; padding: 0;}
 /* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
@@ -62,7 +62,10 @@ p {
 .form-control:focus {
   box-shadow: none;
 }
-
+.col-lg-2-extra{flex: 0 0 auto;
+  width: 20%; border: 1px solid #fff;
+}
+.m-auto{margin: auto;}
 /* ul {
   font-family: "Georama-Regular", sans-serif;
 } */
@@ -2844,11 +2847,10 @@ tr td input {
 .impact-wrapper {
   box-shadow: 0 0 4px #ccc;
   padding: 1rem 0;
-  margin-top: -2rem;
+  margin-top: -4rem;
   z-index: 99;
   position: relative;
   background: #fff;
-  margin-top: -2rem;
   padding: 1.5rem 0;
 }
 
@@ -3206,7 +3208,7 @@ figure.effect-layla:hover img {
 }
 
 .slide-location p {
-  font-size: 1.3rem;
+  font-size: 1rem;
   margin-bottom: 0;
   font-weight: 700;
   background: #fff4;
@@ -4069,14 +4071,14 @@ iframe {
   text-align: center;
   left: 50%;
   top: auto;
-  bottom: 15%;
+  bottom: 5%;
   transform: translate(-50%,0%);
 }
 
 .home-page-slider .react-slideshow-fadezoom-wrapper .slide-location {
   top:auto;
   right: 10px;
-  bottom: 15%;
+  bottom: 5%;
   /* left: 50%;
   top: auto;
   bottom: 25%;
@@ -4086,7 +4088,7 @@ iframe {
 .react-slideshow-fadezoom-wrapper div[data-index="0"] p {
   font-weight: 700;
   text-align: right;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   margin-bottom: 0;
   font-weight: 700;
   background: #fff4;

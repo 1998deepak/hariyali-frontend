@@ -404,23 +404,23 @@ function HomePage() {
           Alignment with United Nations Sustainable Development Goals
           </h2>
          
-          <div class="grid"> <Row className="justify-content-between ">
-            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
-					<figure class="effect-duke"><img src={sdg13} width="100%" />
+          <div class="grid"> <div className="col-8 m-auto"><Row className="justify-content-between ">
+            <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+					<figure className="effect-duke"><img src={sdg13} width="100%" />
             </figure></div>
-            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
-            <figure class="effect-duke"><img src={sdg15} width="100%" /></figure>
+            <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+            <figure className="effect-duke"><img src={sdg15} width="100%" /></figure>
             </div>
-            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
-            <figure class="effect-duke"><img src={sdg8} width="100%" /></figure>
+            <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+            <figure className="effect-duke"><img src={sdg8} width="100%" /></figure>
             </div>
-            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
-            <figure class="effect-duke"><img src={sdg14} width="100%" /></figure>
+            <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+            <figure className="effect-duke"><img src={sdg14} width="100%" /></figure>
             </div>
-            <div className="col-6 col-md-4 col-lg-2 mb-lg-0 mb-3 discover-block">
-            <figure class="effect-duke"><img src={sdg17} width="100%" /></figure>
+            <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+            <figure className="effect-duke"><img src={sdg17} width="100%" /></figure>
             </div>
-          </Row></div>
+          </Row></div></div>
           
           {/* <div>
           <img src={sdglinks} width="50%"  />
