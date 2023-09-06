@@ -151,7 +151,7 @@ function WhySupportUs() {
       {/* body */}
       <section className="banner banner-support"></section>
       <section>
-        <div className="pv-75">
+        <div className="pv-75 pb-0">
           <div className="container ">
             <div className="feature-description">
               <h2 className="sub-title text-center">Why Support Us</h2>
@@ -175,7 +175,7 @@ function WhySupportUs() {
         </div>
       </section>
       <section className="container">
-        <div className="row justify-content-center mt-5">
+        <div className="row justify-content-center">
           <div className="col-12 col-md-5">
             <div className="card plantation-card h-100">
               <img
@@ -237,7 +237,7 @@ function WhySupportUs() {
       <div className="container pv-75">
         <h3 className="sub-title text-center">Impact of Hariyali Project</h3>
         <p className="text-center">Project Hariyali is a unique blend in the sphere of environmental
-          sustainability and impacting livelihood.</p>
+          sustainability and impacting livelihood. Project hariyali is already contrubting towards mission LiFE & Indias commitement toward carbon neutrality</p>
         <div className="row justify-content-center mb30">
           <h4 className="text-center">Quantitative Impact</h4>
           <Row className="justify-content-center mb-4">
@@ -317,23 +317,6 @@ function WhySupportUs() {
             </div>
           </div> */}
         </div>
-      </div>
-      <div className="container">
-        <p className="text-center">
-          
-          Project Hariyali on large scale{" "}
-          <span className="colorgreen">
-            tree planting, natural resource management, Global regenerative
-            organic farming
-          </span>{" "}
-          protocols to enrich agricultural eco-system and build functional
-          forests as means to increase communities' income for an overall
-          wellbeing of the community and mother earth.
-          <br />
-          <br />
-          {/* We are available at
-          <span className="colorgreen"> <a className="colorgreen" href="1t.org">1t.org</a></span> */}
-        </p>
       </div>
       <div className="container pv-75">
         <h3 className="text-center sub-title mb-0">Awards Won</h3>
@@ -421,7 +404,7 @@ function WhySupportUs() {
           <div className="col-12 col-md-6">
             <div className="feature-description">
               <h3 className="sub-title text-center">
-                Impact Assessment report{" "}
+                Impact Assessment Report{" "}
               </h3>
               <p>
                 <i>
@@ -486,7 +469,7 @@ function WhySupportUs() {
           </div>
         </div> 
       </div>*/}
-      <section className="bg-green">
+      <section className="bg-green pt-3">
         <h3 className="text-center sub-title">Testimonials</h3>
         <div className="container">
         <div className="slide-content-whysupport support-content my-5">

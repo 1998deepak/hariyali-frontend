@@ -4151,7 +4151,9 @@ iframe {
 .form-group {
   position: relative;
 }
-
+.program-details em{
+  font-size: 1rem;
+}
 @media screen and (max-width:1440px) {
   .nav-list .nav-item a.nav-link {
     font-size: 1rem;

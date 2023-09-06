@@ -301,7 +301,7 @@ function HomePage() {
               <div className="program-details">
                 <h3 className="mb-3">Why Support Us</h3>
                 <p>
-                India is the 7th most vulnerable country with respect to climate extremes. The total forest cover needs to increase for ecological stability.
+                India is the 7th most vulnerable country with respect to climate extremes <em>(CRI, 2021)</em>. The total forest cover needs to increase for ecological stability.
                 </p>
                 <p>
                 India is promoting individual responsibility toward climate action through Mission LiFE "Lifestyle for Environment". 
