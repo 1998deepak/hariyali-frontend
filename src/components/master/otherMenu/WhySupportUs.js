@@ -85,7 +85,7 @@ function WhySupportUs() {
         image: csrCertificate1,
       },
     ],
-    [       
+    [
       {
         quote: "Runner Up under Private Sector Category 2",
         //image :
@@ -97,7 +97,7 @@ function WhySupportUs() {
       },
       { quote: "Limca book of Awards - Indian Record", image: limcaAward1 },
     ],
-    [      
+    [
       { quote: "Limca book of Awards - National Record", image: limcaAward },
     ]
     // Add more item groups as needed
@@ -113,17 +113,17 @@ function WhySupportUs() {
     {
       image: testimonial2,
       name: "Woman Farmer from Shravasti.",
-      quote:"I live in Purva village Shravasti dist. After joining the program, I got 91 fruit saplings of Guava, Jackfruit, Lemon etc. and was provided with training on how to plant, maintaining the distance between saplings, use of spray machine for application of bio inputs etc. I nurture, love and care for them as a mother does for her child. Under the guidance of the team, I am making Bio inputs too. From third year the trees will start bearing fruits which will be good to consume by my family and from the 5th year the produce would be enough for commercial purposes.",
+      quote: "I live in Purva village Shravasti dist. After joining the program, I got 91 fruit saplings of Guava, Jackfruit, Lemon etc. and was provided with training on how to plant, maintaining the distance between saplings, use of spray machine for application of bio inputs etc. I nurture, love and care for them as a mother does for her child. Under the guidance of the team, I am making Bio inputs too. From third year the trees will start bearing fruits which will be good to consume by my family and from the 5th year the produce would be enough for commercial purposes.",
     },
     {
       image: testimonial3,
       name: "Woman farmer from Chabeet village, Solan.",
-      quote:"I have been engaged in usual form of farming, but the yield wasn't great. After getting to know about Project Hariyali I didn't think twice to become part of it. I was given 42 fruit saplings mostly Plum and Apple varieties. I follow all the organic farming practices in letter and in spirit. This is my bit for the climate change and to make Himachal Pradesh Clean and Green. I am sure my family will benefit from this initiative in near future.",
+      quote: "I have been engaged in usual form of farming, but the yield wasn't great. After getting to know about Project Hariyali I didn't think twice to become part of it. I was given 42 fruit saplings mostly Plum and Apple varieties. I follow all the organic farming practices in letter and in spirit. This is my bit for the climate change and to make Himachal Pradesh Clean and Green. I am sure my family will benefit from this initiative in near future.",
     },
     {
       image: testimonial4,
       name: "Woman farmer from Kokri Kalan village, Moga, Punjab.",
-      quote:"I have been making a living with great difficulties. I had a liking for plants and agriculture in general. Through project Hariyali , I learnt efficient farming practices. I am confident with these practices I will reap benefit in future. I have received 31 fruit saplings of Guava, mango, Orange & Peach. I know these will add nutritional diversity for my family as well as bring additional income in future.",
+      quote: "I have been making a living with great difficulties. I had a liking for plants and agriculture in general. Through project Hariyali , I learnt efficient farming practices. I am confident with these practices I will reap benefit in future. I have received 31 fruit saplings of Guava, mango, Orange & Peach. I know these will add nutritional diversity for my family as well as bring additional income in future.",
     },
     // Add other testimonials
   ];
@@ -181,7 +181,7 @@ function WhySupportUs() {
           </div>
         </div>
       </section>
-      <section className="container">
+      <section className="bg-green"><div className="pv-75">
         <div className="row justify-content-center mt-5">
           <div className="col-12 col-md-5">
             <div className="card plantation-card h-100">
@@ -215,7 +215,7 @@ function WhySupportUs() {
               />
               <div className="card-body">
                 <h5 className="card-title text-center">
-                  Mission LiFE : <br/>
+                  Mission LiFE : <br />
                   Lifestyle for Environment
                 </h5>
                 <p>
@@ -229,7 +229,7 @@ function WhySupportUs() {
               {/* <i className="icon-monsoon"></i> */}
             </div>
           </div>
-        </div>
+        </div></div>
       </section>
       {/* <div className="container pv-75">
         <div className="row mb30 impact-wrapper">
@@ -249,11 +249,11 @@ function WhySupportUs() {
           <h4 className="text-center">Quantitative Impact</h4>
           <Row className="justify-content-center mb-4">
             <div className="col-6 col-md-4 col-lg-3 mb-lg-0 mb-3 discover-block">
-                <figure class="effect-duke whysuimpact-effect">
-                  {" "}
-                  <h4>Number of trees planted since 2007</h4>
-                  <p>22.86 Millions</p>
-                </figure>
+              <figure class="effect-duke whysuimpact-effect">
+                {" "}
+                <h4>Number of trees planted since 2007</h4>
+                <p>22.86 Millions</p>
+              </figure>
             </div>
             <div className="col-6 col-md-4 col-lg-3 mb-lg-0 mb-3 discover-block">
               <figure class="effect-duke whysuimpact-effect">
@@ -272,24 +272,24 @@ function WhySupportUs() {
             </div>
           </Row>
           <h4 className="text-center">Qualitative Impact</h4>
-            <Row className="justify-content-center">
+          <Row className="justify-content-center">
             <div className="col-6 col-md-4 col-lg-3 mb-lg-0 mb-3 discover-block">
-                <figure class="effect-duke whysuimpact-effect">
-                  {" "}
-                  <h4>
-                    Improment in soil quality in terms of carbon, water holding capacity & nutrients
-                    <p>Soil Health</p>
-                  </h4>
-                </figure>
-              </div>
-              <div className="col-6 col-md-4 col-lg-3 mb-lg-0 mb-3 discover-block">
-                <figure class="effect-duke whysuimpact-effect">
-                  <h4>
-                    Significant positive change in <p>bio-diversity</p>
-                  </h4>
-                </figure>
-              </div>
-            </Row>
+              <figure class="effect-duke whysuimpact-effect">
+                {" "}
+                <h4>
+                  Improment in soil quality in terms of carbon, water holding capacity & nutrients
+                  <p>Soil Health</p>
+                </h4>
+              </figure>
+            </div>
+            <div className="col-6 col-md-4 col-lg-3 mb-lg-0 mb-3 discover-block">
+              <figure class="effect-duke whysuimpact-effect">
+                <h4>
+                  Significant positive change in <p>bio-diversity</p>
+                </h4>
+              </figure>
+            </div>
+          </Row>
           {/* <div className="col-12 col-md-4 text-center">
             <div className="discoverImg">
               <h4>Number of trees planted since 2007</h4>
@@ -327,7 +327,7 @@ function WhySupportUs() {
       </div>
       <div className="container">
         <p className="text-center">
-          
+
           Project Hariyali on large scale{" "}
           <span className="colorgreen">
             tree planting, natural resource management, Global regenerative
@@ -342,21 +342,12 @@ function WhySupportUs() {
           <span className="colorgreen"> <a className="colorgreen" href="1t.org">1t.org</a></span> */}
         </p>
       </div>
+      <section className="bg-green">
       <div className="container pv-75">
-        <h3 className="text-center sub-title mb-0">Awards Won</h3>
-        {/* <Zoom scope={0.4}>
-          {awards.quotes.map((contant, index) => (
-            <div className="row justify-content-center my-5 overflow-x">
-              <div className="col-12 col-md-6 mb-3"></div>
-              <div key={index} className="slide-content">
-                <div className="award-wrapper">
-                  <h4>{contant.quote}</h4>
-                </div>
-              </div>
-            </div>
-            
-          ))}
-        </Zoom> */}
+
+      <div className="feature-description">
+                  <h2 className="sub-title  text-center">Awards Won</h2>
+
         <div className="awards-slider">
           <Carousel indicators={true}>
             {items.map((item, index) => (
@@ -421,8 +412,8 @@ function WhySupportUs() {
               <h4>Limca book of Awards.</h4>
             </div>
           </div>
-        </div> */}
-      </div>
+        </div> */}</div>
+      </div></section>
       <div className="container">
         <div className="row align-items-center pv-75">
           <div className="col-12 col-md-6">
@@ -466,62 +457,37 @@ function WhySupportUs() {
           </div>
         </div>
       </div>
-      {/* <div className="container">
-      <h3 className="text-center sub-title">Testimonials</h3>
-        <div className="row">
-          <div className="col-12 col-md-6 text-center">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/h5JfhFJG3vQ"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div className="col-12 col-md-6 text-center">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/YnhmRcQ4q6M"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div> 
-      </div>*/}
+     
       <section className="bg-green">
+      <div className="pv-75"> <div className="container">
         <h3 className="text-center sub-title">Testimonials</h3>
-        <div className="container">
-        <div className="slide-content-whysupport support-content my-5">
-                <div className="row">
-                  <div className="col-12 col-md-6 text-center">
-                    <iframe
-                      width="560"
-                      height="315"
-                      src="https://www.youtube.com/embed/h5JfhFJG3vQ"
-                      title="YouTube video player"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen
-                    ></iframe>
-                  </div>
-                  <div className="col-12 col-md-6 text-center">
-                    <iframe
-                      width="560"
-                      height="315"
-                      src="https://www.youtube.com/embed/YnhmRcQ4q6M"
-                      title="YouTube video player"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen
-                    ></iframe>
-                  </div>
-                </div>
+       
+          <div className="slide-content-whysupport support-content my-5">
+            <div className="row">
+              <div className="col-12 col-md-6 text-center">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/h5JfhFJG3vQ"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
               </div>
+              <div className="col-12 col-md-6 text-center">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/YnhmRcQ4q6M"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
           {/* <Slideshow /> */}
           <div className="testimonial-slider">
             <Zoom {...zoomOutProperties}>
@@ -550,11 +516,10 @@ function WhySupportUs() {
                 </div>
               ))}
 
-              
+
             </Zoom>
           </div>
-        </div>
-      </section>
+        </div>     </div>     </section>
 
       {/* modal popup for awards */}
 

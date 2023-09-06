@@ -55,7 +55,7 @@ function WaystoAssociate() {
             document.getElementById("plantTree").style.display = "block";
         }
     };
-    const items = [
+    const Individualsitems = [
         [
             { quote: "Diwali", img: "limcaAward" },
             { quote: "Christmas", img: "limcaAward" },
@@ -66,6 +66,22 @@ function WaystoAssociate() {
         [
             { quote: "Wedding / Work anniversary", img: "limcaAward" },
             { quote: "Baby Shower", img: "limcaAward" },
+            { quote: "Achievement", img: "limcaAward" },
+            { quote: "Condolence", img: "limcaAward" },
+        ],
+        // Add more item groups as needed
+    ];
+    const Corporatesitems = [
+        [
+            { quote: "Diwali", img: "limcaAward" },
+            { quote: "Christmas", img: "limcaAward" },
+            { quote: "Birthday", img: "limcaAward" },
+            { quote: "New Year", img: "limcaAward" },
+            { quote: "EID", img: "limcaAward" },
+        ],
+        [
+            { quote: "Work anniversary", img: "limcaAward" },
+            { quote: "Retirement", img: "limcaAward" },
             { quote: "Achievement", img: "limcaAward" },
             { quote: "Condolence", img: "limcaAward" },
         ],
@@ -201,20 +217,20 @@ function WaystoAssociate() {
                                             <p >Partner with Project Hariyali to develop cause-related marketing campaigns which highlight your organisation’s commitment towards Environment. Customised, co-branded campaigns can be conceptualised to help you build goodwill for your business, while ensuring environmental sustainability.<br />
                                             </p>
                                         </div>
-                                        <div className="row justify-content-center group-content">   
-                                        <div className="col-12 col-md-3 donation-card-div">
-                                            <div className="card h-100">
-                                                <img src={freeshImage1} className="card-img-top" alt="..." />
-                                                <div className="card-body tree-features1">
-                                                    <h5 className="card-title ">Campaign with employees</h5>
-                                                    {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
+                                        <div className="row justify-content-center group-content">
+                                            <div className="col-12 col-md-3 donation-card-div">
+                                                <div className="card h-100">
+                                                    <img src={freeshImage1} className="card-img-top" alt="..." />
+                                                    <div className="card-body tree-features1">
+                                                        <h5 className="card-title ">Campaign with employees</h5>
+                                                        {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
 
-                                                </div>
-                                                {/* <div className="card-footer">
+                                                    </div>
+                                                    {/* <div className="card-footer">
                                                     <a href="#" className="btn btn-primary">Plant a Tree</a>
                                                 </div> */}
+                                                </div>
                                             </div>
-                                        </div>
                                             <div className="col-12 col-md-3 donation-card-div">
                                                 <div className="card h-100">
                                                     <img src={freeshImage2} className="card-img-top" alt="..." />
@@ -262,38 +278,41 @@ function WaystoAssociate() {
                     </div>
                 </section>
 
-                <section className="bg-green pv-75">
-                <h3 class="text-center my-5 sub-title">Following commemorative artworks are available to choose from</h3>
-                    <div id="plantTree" className="container" style={{ display: "block" }}>
-                        <div className="certificate-slider">
-                            <Carousel indicators={true}>
-                                {items.map((item, index) => (
-                                    <Carousel.Item key={index}>
-                                        <div className="d-flex justify-content-center">
-                                            {item.map((subItem, subIndex) => (
-                                                <>
-                                                    <div className="certificate-tile">
-                                                        {/* <div key={index} className="col-12 col-md-6 mb-3"></div> */}
-                                                        <div
-                                                            key={index}
-                                                            className="slide-content2"
-                                                        >
-                                                            <div className="certificate-wrapper">
-                                                                <img src={subItem.img} alt="" />
-                                                                <h4>{subItem.quote}</h4>
+                <section className=" pv-75">
+
+                    <div id="plantTree" style={{ display: "block" }}>
+                        <div className="bg-green"><div className="container pv-75">
+                            <h3 class="text-center my-5 sub-title">Following commemorative artworks are available to choose from</h3>
+                            <div className="certificate-slider">
+                                <Carousel indicators={true}>
+                                    {Individualsitems.map((item, index) => (
+                                        <Carousel.Item key={index}>
+                                            <div className="d-flex justify-content-center">
+                                                {item.map((subItem, subIndex) => (
+                                                    <>
+                                                        <div className="certificate-tile">
+                                                            {/* <div key={index} className="col-12 col-md-6 mb-3"></div> */}
+                                                            <div
+                                                                key={index}
+                                                                className="slide-content2"
+                                                            >
+                                                                <div className="certificate-wrapper">
+                                                                    <img src={subItem.img} alt="" />
+                                                                    <h4>{subItem.quote}</h4>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </>
-                                            ))}
-                                        </div>
-                                    </Carousel.Item>
-                                ))}
-                            </Carousel>
+                                                    </>
+                                                ))}
+                                            </div>
+                                        </Carousel.Item>
+                                    ))}
+                                </Carousel>
+                            </div></div>
                         </div>
-
+                        <div className="container">
                         <div className="row support-content1">
-                        <h3 class="text-center my-5 sub-title">Fund raising strategies</h3>
+                            <h3 class="text-center my-5 sub-title">Fund raising strategies</h3>
                             <div className="col-12 col-md-4">
                                 <div className="text-center h-101">
                                     <div className="card-img-top">
@@ -328,132 +347,83 @@ function WaystoAssociate() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div></div>
                 </section>
-                <section style={{ display: "none" }} id="associate" className="bg-green">
-                    <div className="container">
-                        <div className="certificate-slider">
-                            <Carousel indicators={true}>
-                                {items.map((item, index) => (
-                                    <Carousel.Item key={index}>
-                                        <div className="d-flex justify-content-center">
-                                            {item.map((subItem, subIndex) => (
-                                                <>
-                                                    <div className="certificate-tile">
-                                                        {/* <div key={index} className="col-12 col-md-6 mb-3"></div> */}
-                                                        <div
-                                                            key={index}
-                                                            className="slide-content2"
-                                                        >
-                                                            <div className="certificate-wrapper">
-                                                                <img src={subItem.img} alt="" />
-                                                                <h4>{subItem.quote}</h4>
+                <section style={{ display: "none" }} id="associate">
+                    <div className="bg-green">
+                        <div className="container pv-75">
+                            <h3 class="text-center my-5 sub-title">Following commemorative artworks are available to choose from</h3>
+                            <div className="certificate-slider">
+                                <Carousel indicators={true}>
+                                    {Corporatesitems.map((item, index) => (
+                                        <Carousel.Item key={index}>
+                                            <div className="d-flex justify-content-center">
+                                                {item.map((subItem, subIndex) => (
+                                                    <>
+                                                        <div className="certificate-tile">
+                                                            {/* <div key={index} className="col-12 col-md-6 mb-3"></div> */}
+                                                            <div
+                                                                key={index}
+                                                                className="slide-content2"
+                                                            >
+                                                                <div className="certificate-wrapper">
+                                                                    <img src={subItem.img} alt="" />
+                                                                    <h4>{subItem.quote}</h4>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </>
-                                            ))}
-                                        </div>
-                                    </Carousel.Item>
-                                ))}
-                            </Carousel>
-                        </div>
-                        {/* <div className="pv-75" >
-                            <h2 className="sub-title mb30">
-                                B. Corporate Social Responsibility
-                            </h2>
-                            <p className="">Become a Corporate Partner for Project Hariyali and contribute towards making our nation Carbon Neutral by 2070. Project Hariyali aligns with Schedule VII of the Companies Act 2013 (India) under (iv) ensuring environmental sustainability, ecological balance, protection of flora and fauna, animal welfare, agroforestry, conservation of natural resources and maintaining quality of soil, air and water . Our implementation expertise,
-                                ability to map project milestones and outcomes, as well as a comprehensive monitoring and reporting framework makes Project Hariyali a preferred CSR partner.</p>
-                            <div className="row justify-content-between py-3">
-                                <div className="col-lg-2 col-12 mb-lg-0 mb-3 discover-block">
-                                    <div className="positin-relative " >
-                                    <div className="discoverImg"><img src={sdg13} width="100%" /></div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-2 col-12 mb-lg-0 mb-3 discover-block">
-                                    <div className="positin-relative" >
-                                    <div className="discoverImg"><img src={sdg15} width="100%" /></div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-2 col-12 discover-block">
-                                    <div className="positin-relative aos-init aos-animate" >
-                                    <div className="discoverImg"><img src={sdg8} width="100%" /></div>
-                                   
-                                    </div>
-                                    <div className="clear"></div>
-                                </div>
-                                <div className="col-lg-2 col-12 discover-block">
-                                    <div className="positin-relative aos-init aos-animate">
-                                    <div className="discoverImg"><img src={sdg14} width="100%" /></div>
-                                   
-                                    </div>
-                                </div>
-                                <div className="col-lg-2 col-12 discover-block">
-                                    <div className="positin-relative aos-init aos-animate">
-                                    <div className="discoverImg"><img src={sdg17} width="100%" /></div>
-                                   
-                                    </div>
-                                </div>
-                            </div>
-                        </div> */}
-                        <div className="project-bg ">
-                            <Container className="ptb50">
-                                <div className="feature-description">
-                                    <h2 className="text-capitalize">
-                                        B. Corporate Social Responsibility
-                                    </h2>
-                                    <p>
-                                        Become a Corporate Partner for Project Hariyali and contribute towards making our nation Carbon Neutral by 2070. Project Hariyali aligns with Schedule VII of the Companies Act 2013 (India) under (iv) ensuring environmental sustainability, ecological balance, protection of flora and fauna, animal welfare, agroforestry, conservation of natural resources and maintaining quality of soil, air and water . Our implementation expertise, ability to map project milestones and outcomes, as well as a comprehensive monitoring and reporting framework makes Project Hariyali a preferred CSR partner.
-                                   <br/>
-                                   </p>
-                                  <p>
-                                   <address> For CSR Queries Contact "Sunny Gangar" <a href="tel:93224 56789"><i className="bi bi-envelope-fill"></i> csr@hariyali.org.in</a> | <a href="tel:93224 56789">
-                                    <i className="bi bi-phone"></i> 93224 56789</a> | <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a></address>
-                                   </p></div>
-                                <div className="feature-description ">
-                                    <h2 className="sub-title  text-center">
-                                        Alignment with United Nations Sustainable Development Goals
-                                    </h2>
-                                    <div class="grid"><div className="col-8 m-auto"> <Row className="justify-content-between ">
-                                        <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-                                            <figure class="effect-duke"><img src={sdg13} width="100%" />
-                                            </figure></div>
-                                        <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-                                            <figure class="effect-duke"><img src={sdg15} width="100%" /></figure>
-                                        </div>
-                                        <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-                                            <figure class="effect-duke"><img src={sdg8} width="100%" /></figure>
-                                        </div>
-                                        <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-                                            <figure class="effect-duke"><img src={sdg14} width="100%" /></figure>
-                                        </div>
-                                        <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-                                            <figure class="effect-duke"><img src={sdg17} width="100%" /></figure>
-                                        </div>
-                                    </Row></div></div></div>
+                                                    </>
+                                                ))}
+                                            </div>
+                                        </Carousel.Item>
+                                    ))}
+                                </Carousel>
+                            </div></div>
+                    </div>
+                    <div className="project-bg ">
+                        <Container className="ptb50">
+                            <div className="feature-description">
+                                <h2 className="text-capitalize">
+                                    B. Corporate Social Responsibility
+                                </h2>
+                                <p>
+                                    Become a Corporate Partner for Project Hariyali and contribute towards making our nation Carbon Neutral by 2070. Project Hariyali aligns with Schedule VII of the Companies Act 2013 (India) under (iv) ensuring environmental sustainability, ecological balance, protection of flora and fauna, animal welfare, agroforestry, conservation of natural resources and maintaining quality of soil, air and water . Our implementation expertise, ability to map project milestones and outcomes, as well as a comprehensive monitoring and reporting framework makes Project Hariyali a preferred CSR partner.
+                                    <br />
+                                </p>
+                                <p>
+                                    <address> For CSR Queries Contact "Sunny Gangar" <a href="tel:93224 56789"><i className="bi bi-envelope-fill"></i> csr@hariyali.org.in</a> | <a href="tel:93224 56789">
+                                        <i className="bi bi-phone"></i> 93224 56789</a> | <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a></address>
+                                </p></div>
+                                
 
-                                {/* <div>
+                            {/* <div>
           <img src={sdglinks} width="50%"  />
           </div> */}
-                            </Container>
-                        </div>
-                        {/* <div className="pv-75">
-                            <div className="row mt-5">
-                                <div className="col-12 col-md-6">
-                                    <div className="feature-description">
-                                        <h2 className="text-capitalize">Cause Related Marketing</h2>
-                                        <p>Partner with Project Hariyali to develop cause-related marketing campaigns which highlight your organisation’s
-                                            commitment towards Environment. Customised, co-branded campaigns can be conceptualised to help you build good will for your business,
-                                            while ensuring environmental sustainability.</p>
+                        </Container>
+                        <div className="bg-green">
+                        <div className="container pv-75">
+                            <div className="feature-description ">
+                                <h2 className="sub-title  text-center">
+                                    Alignment with United Nations Sustainable Development Goals
+                                </h2>
+                                <div class="grid"><div className="col-8 m-auto"> <Row className="justify-content-between ">
+                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                        <figure class="effect-duke boxshaow-0"><img src={sdg13} width="100%" />
+                                        </figure></div>
+                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                        <figure class="effect-duke boxshaow-0"><img src={sdg15} width="100%" /></figure>
                                     </div>
-                                </div>
-                                <div className="col-12 col-md-6">
-                                    <div className="feature-image br-0">
-                                        <img src={associateImg} alt="Image " width={500} />
+                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                        <figure class="effect-duke boxshaow-0"><img src={sdg8} width="100%" /></figure>
                                     </div>
-                                </div>
-                            </div>
-                        </div> */}
+                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                        <figure class="effect-duke boxshaow-0"><img src={sdg14} width="100%" /></figure>
+                                    </div>
+                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                        <figure class="effect-duke boxshaow-0"><img src={sdg17} width="100%" /></figure>
+                                    </div>
+                                </Row></div></div></div>
+                                </div></div>
                     </div>
                 </section>
                 {/* <section className="bg-green">
