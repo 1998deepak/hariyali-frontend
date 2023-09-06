@@ -90,16 +90,9 @@ function WhySupportUs() {
         quote: "Runner Up under Private Sector Category 2",
         //image :
       },
-      {
-        quote:
-          "The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category",
-        image: csrCertificate1,
-      },
       { quote: "Limca book of Awards - Indian Record", image: limcaAward1 },
-    ],
-    [      
       { quote: "Limca book of Awards - National Record", image: limcaAward },
-    ]
+    ],
     // Add more item groups as needed
   ];
 
@@ -265,7 +258,7 @@ function WhySupportUs() {
               <figure class="effect-duke whysuimpact-effect">
                 {" "}
                 <h4>
-                  Trees sequestered through the project Since inception{" "}
+                  CO<sub>2</sub> sequestered through the project Since inception{" "}
                 </h4>
                 <p>400,000+ tonnes</p>
               </figure>
@@ -277,7 +270,7 @@ function WhySupportUs() {
                 <figure class="effect-duke whysuimpact-effect">
                   {" "}
                   <h4>
-                    Improment in soil quality in terms of carbon, water holding capacity & nutrients
+                    Improvement in soil quality in terms of carbon, water holding capacity & nutrients
                     <p>Soil Health</p>
                   </h4>
                 </figure>
