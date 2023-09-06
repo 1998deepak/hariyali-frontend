@@ -3805,7 +3805,7 @@ iframe {
 .nav.nav-pills {
   /* display: inline-flex; */
   width: 100%;
-  max-width: 235px;
+  max-width: 300px;
   margin: 0 auto 6rem;
   background: #ecefec;
   border: 2px solid #ecefec;
@@ -3814,6 +3814,8 @@ iframe {
 }
 
 .nav-pills .nav-link {
+  width: 50%;
+  text-align: center;
   font-weight: 600;
   background: #ecefec;
   color: #3f6341;
@@ -4147,7 +4149,9 @@ iframe {
 .form-group {
   position: relative;
 }
-
+.program-details em{
+  font-size: 1rem;
+}
 @media screen and (max-width:1440px) {
   .nav-list .nav-item a.nav-link {
     font-size: 1rem;

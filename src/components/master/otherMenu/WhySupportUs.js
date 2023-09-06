@@ -90,16 +90,11 @@ function WhySupportUs() {
         quote: "Runner Up under Private Sector Category 2",
         //image :
       },
-      {
-        quote:
-          "The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category",
-        image: csrCertificate1,
-      },
       { quote: "Limca book of Awards - Indian Record", image: limcaAward1 },
     ],
     [
       { quote: "Limca book of Awards - National Record", image: limcaAward },
-    ]
+    ],
     // Add more item groups as needed
   ];
 
@@ -158,7 +153,7 @@ function WhySupportUs() {
       {/* body */}
       <section className="banner banner-support"></section>
       <section>
-        <div className="pv-75">
+        <div className="pv-75 pb-0">
           <div className="container ">
             <div className="feature-description">
               <h2 className="sub-title text-center">Why Support Us</h2>
@@ -181,7 +176,7 @@ function WhySupportUs() {
           </div>
         </div>
       </section>
-      <section className="bg-green"><div className="pv-75">
+      <section className="container">
         <div className="row justify-content-center mt-5">
           <div className="col-12 col-md-5">
             <div className="card plantation-card h-100">
@@ -229,7 +224,7 @@ function WhySupportUs() {
               {/* <i className="icon-monsoon"></i> */}
             </div>
           </div>
-        </div></div>
+        </div>
       </section>
       {/* <div className="container pv-75">
         <div className="row mb30 impact-wrapper">
@@ -244,7 +239,7 @@ function WhySupportUs() {
       <div className="container pv-75">
         <h3 className="sub-title text-center">Impact of Hariyali Project</h3>
         <p className="text-center">Project Hariyali is a unique blend in the sphere of environmental
-          sustainability and impacting livelihood.</p>
+          sustainability and impacting livelihood. Project hariyali is already contrubting towards mission LiFE & Indias commitement toward carbon neutrality</p>
         <div className="row justify-content-center mb30">
           <h4 className="text-center">Quantitative Impact</h4>
           <Row className="justify-content-center mb-4">
@@ -265,7 +260,7 @@ function WhySupportUs() {
               <figure class="effect-duke whysuimpact-effect">
                 {" "}
                 <h4>
-                  Trees sequestered through the project Since inception{" "}
+                  CO<sub>2</sub> sequestered through the project Since inception{" "}
                 </h4>
                 <p>400,000+ tonnes</p>
               </figure>
@@ -277,7 +272,7 @@ function WhySupportUs() {
               <figure class="effect-duke whysuimpact-effect">
                 {" "}
                 <h4>
-                  Improment in soil quality in terms of carbon, water holding capacity & nutrients
+                  Improvement in soil quality in terms of carbon, water holding capacity & nutrients
                   <p>Soil Health</p>
                 </h4>
               </figure>
@@ -342,46 +337,45 @@ function WhySupportUs() {
           <span className="colorgreen"> <a className="colorgreen" href="1t.org">1t.org</a></span> */}
         </p>
       </div>
-      <section className="bg-green">
       <div className="container pv-75">
 
-      <div className="feature-description">
-                  <h2 className="sub-title  text-center">Awards Won</h2>
+        <div className="feature-description">
+          <h2 className="sub-title  text-center">Awards Won</h2>
 
-        <div className="awards-slider">
-          <Carousel indicators={true}>
-            {items.map((item, index) => (
-              <Carousel.Item key={index}>
-                <div className="d-flex justify-content-center">
-                  {item.map((subItem, subIndex) => (
-                    <>
-                      <div className="award-tile">
-                        {/* <div key={index} className="col-12 col-md-6 mb-3"></div> */}
-                        <div
-                          key={index}
-                          className="slide-content2"
-                          onClick={() => openModal(subItem.image)}
-                        >
-                          <div className="award-wrapper">
-                            <h4>{subItem.quote}</h4>
+          <div className="awards-slider">
+            <Carousel indicators={true}>
+              {items.map((item, index) => (
+                <Carousel.Item key={index}>
+                  <div className="d-flex justify-content-center">
+                    {item.map((subItem, subIndex) => (
+                      <>
+                        <div className="award-tile">
+                          {/* <div key={index} className="col-12 col-md-6 mb-3"></div> */}
+                          <div
+                            key={index}
+                            className="slide-content2"
+                            onClick={() => openModal(subItem.image)}
+                          >
+                            <div className="award-wrapper">
+                              <h4>{subItem.quote}</h4>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </>
-                  ))}
-                </div>
-              </Carousel.Item>
-            ))}
-          </Carousel>
-        </div>
-        <Modal show={showModal} onHide={closeModal}>
-          <Modal.Body>
-            {selectedImage && (
-              <img src={selectedImage} alt="Modal" className="img-fluid" />
-            )}
-          </Modal.Body>
-        </Modal>
-        {/* <div className="row justify-content-center my-5 overflow-x">
+                      </>
+                    ))}
+                  </div>
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          </div>
+          <Modal show={showModal} onHide={closeModal}>
+            <Modal.Body>
+              {selectedImage && (
+                <img src={selectedImage} alt="Modal" className="img-fluid" />
+              )}
+            </Modal.Body>
+          </Modal>
+          {/* <div className="row justify-content-center my-5 overflow-x">
           <div className="col-12 col-md-6 mb-3">
                 <div className="award-wrapper">
                   <h4>FICCI CSR Awards – In Skill Development & Livelihood Category</h4>
@@ -413,13 +407,13 @@ function WhySupportUs() {
             </div>
           </div>
         </div> */}</div>
-      </div></section>
+      </div>
       <div className="container">
         <div className="row align-items-center pv-75">
           <div className="col-12 col-md-6">
             <div className="feature-description">
               <h3 className="sub-title text-center">
-                Impact Assessment report{" "}
+                Impact Assessment Report{" "}
               </h3>
               <p>
                 <i>
@@ -457,69 +451,94 @@ function WhySupportUs() {
           </div>
         </div>
       </div>
-     
+      {/* <div className="container">
+      <h3 className="text-center sub-title">Testimonials</h3>
+        <div className="row">
+          <div className="col-12 col-md-6 text-center">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/h5JfhFJG3vQ"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div className="col-12 col-md-6 text-center">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/YnhmRcQ4q6M"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div> 
+      </div>*/}
       <section className="bg-green">
-      <div className="pv-75"> <div className="container">
         <h3 className="text-center sub-title">Testimonials</h3>
-       
-          <div className="slide-content-whysupport support-content my-5">
-            <div className="row">
-              <div className="col-12 col-md-6 text-center">
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/h5JfhFJG3vQ"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
-              <div className="col-12 col-md-6 text-center">
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/YnhmRcQ4q6M"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
+
+        <div className="slide-content-whysupport support-content my-5">
+          <div className="row">
+            <div className="col-12 col-md-6 text-center">
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/h5JfhFJG3vQ"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div className="col-12 col-md-6 text-center">
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/YnhmRcQ4q6M"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
             </div>
           </div>
-          {/* <Slideshow /> */}
-          <div className="testimonial-slider">
-            <Zoom {...zoomOutProperties}>
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className="slide-content-whysupport support-content my-5"
-                >
-                  <div className="row">
-                    <div className="offset-md-1 col-12 col-md-3">
-                      <img
-                        src={testimonial.image}
-                        alt="avatar"
-                        className="mb-5"
-                      />
-                    </div>
-                    <div className="col-12 col-md-7">
-                      <h3 className="mb-3">{testimonial.name}</h3>
-                      <p className="">
-                        <i className="bi bi-quote pe-2"></i>
-                        {testimonial.quote}
-                      </p>
-                      <div> </div>
-                    </div>
+        </div>
+        {/* <Slideshow /> */}
+        <div className="testimonial-slider">
+          <Zoom {...zoomOutProperties}>
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className="slide-content-whysupport support-content my-5"
+              >
+                <div className="row">
+                  <div className="offset-md-1 col-12 col-md-3">
+                    <img
+                      src={testimonial.image}
+                      alt="avatar"
+                      className="mb-5"
+                    />
+                  </div>
+                  <div className="col-12 col-md-7">
+                    <h3 className="mb-3">{testimonial.name}</h3>
+                    <p className="">
+                      <i className="bi bi-quote pe-2"></i>
+                      {testimonial.quote}
+                    </p>
+                    <div> </div>
                   </div>
                 </div>
-              ))}
+              </div>
+            ))}
 
 
-            </Zoom>
-          </div>
-        </div>     </div>     </section>
+          </Zoom>
+        </div>
+      </section>
 
       {/* modal popup for awards */}
 

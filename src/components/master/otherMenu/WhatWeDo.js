@@ -32,7 +32,7 @@ function WhatWeDo() {
           <Container className="pv-75">
             <div className="feature-description">
               <h2 className="sub-title text-center">What We Do</h2>
-              <p>Project Hariyali aims to increase the green cover, arrest the rising ecological imbalance, enhace biodiversity and in the process support the livelihood of marginalized farmers. The trees we plant strengthen the ecosystem and enhance ecological diversity.</p>
+              <p>Project Hariyali aims to increase green cover, arrest the rising ecological imbalance, enhance biodiversity, restore the functional forest, and in the process support livelihoods of marginalized farmers. The trees we plant strengthen the ecosystem and enhance ecological diversity.</p>
             </div>
           </Container>
           <section className="bg-green"> <div className="container">
