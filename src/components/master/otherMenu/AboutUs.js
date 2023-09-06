@@ -6,6 +6,7 @@ import "../../../assets/css/abouthover-effect.css";
 import goalimg from "../../../assets/img/goal.jpg";
 import projectimg from "../../../assets/img/associate.jpg";
 import mahindralogo from "../../../assets/img/mahindra-logo.png";
+import naandilogo from "../../../assets/img/naandilogo.jpg";
 import arakuImg from "../../../assets/img/slider/araku.jpg";
 import tarnImg from "../../../assets/img/slider/tarn.jpg";
 import wardhaImg from "../../../assets/img/slider/wardha.png";
@@ -202,9 +203,9 @@ function AboutUs() {
                           </div>
                         </div>
                       </section>
-                    </div>
+                    </div> 
+                    <div className="text-center naandilogo"><img src={naandilogo} alt="naandilogo" /></div>
                     <p>
-                      <br /> <br />
                       <b>Naandi Foundation </b>is an apolitical, autonomous public charitable trust and a not-for-profit organisation having registration under section 12AB of income-tax Act, 1961 is tax exempt and is recognised by tax authorities. Born out of the idea of creating a professionally run organization managed by eminent business leaders as Trustees, Naandi serves as a new experiment in the socio-development sector of India. Its foot print has expanded year on year across 17 states touching the lives of more than 6 million underserved people so far.
                       Naandi Foundation is one of the largest and fastest growing social sector organisations in India working to make poverty history.
                     </p>
