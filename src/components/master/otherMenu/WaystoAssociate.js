@@ -128,8 +128,8 @@ function WaystoAssociate() {
                             Donor receipts <br /><small>(Tax exemption under 80G)</small></li>
                         <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-certificate"></span>Certificate</li>
                         <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-report"></span> Plantation Reports</li>
-                        <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-follow"></span>Follow on report for year 1</li>
-                        <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-follow"></span>Follow on report for year 2</li>
+                        <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-follow"></span>Follow on reports for year 1</li>
+                        <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-follow"></span>Follow on reports for year 2</li>
                     </ul>
                 </div>
                 <section className="">
@@ -301,7 +301,7 @@ function WaystoAssociate() {
                                     </div>
                                     <div className="card-body tree-features1">
                                         <h5 className="card-title">Runs, walks & cyclothons</h5>
-                                        <p>Runs, walks & cyclothons -Whether you're planning to run a 5K or go for a full marathon, you can set up a ‘pledge’ page and invite your family, friends and colleagues to support your efforts by contributing to Hariyali.</p>
+                                        <p>Runs, walks & cyclothons -Whether you're planning to run a 5K or go for a full marathon, you can set up a ‘pledge’ page and invite your family, friends and colleagues to support your efforts by contributing to project Hariyali.</p>
                                     </div>
                                 </div>
                             </div>
@@ -312,7 +312,7 @@ function WaystoAssociate() {
                                     </div>
                                     <div className="card-body tree-features1">
                                         <h5 className="card-title">Organise your own fundraiser</h5>
-                                        <p>Organise your own fundraiser - Get your family, friends and colleagues together for some fun activities by throwing a high-tea party or a kitty party, lunch / dinner get-togethers, movie screenings, book readings, theatre shows, or anything else you can think of, and raise funds for Hariyali.</p>
+                                        <p>Organise your own fundraiser - Get your family, friends and colleagues together for some fun activities by throwing a high-tea party or a kitty party, lunch / dinner get-togethers, movie screenings, book readings, theatre shows, or anything else you can think of, and raise funds for project Hariyali.</p>
                                     </div>
                                 </div>
                             </div>
@@ -407,7 +407,7 @@ function WaystoAssociate() {
                                    <br/>
                                    </p>
                                   <p>
-                                   <address> For CSR Queries Contact "Sunny Gangar" <a href="tel:93224 56789"><i className="bi bi-envelope-fill"></i> csr@hariyali.org.in</a> | <a href="tel:93224 56789">
+                                   <address> For CSR Queries Contact Sunny Gangar  <a href="tel:93224 56789"><i className="bi bi-envelope-fill"></i> csr@hariyali.org.in</a> | <a href="tel:93224 56789">
                                     <i className="bi bi-phone"></i> 93224 56789</a> | <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a></address>
                                    </p></div>
                                 <div className="feature-description ">
