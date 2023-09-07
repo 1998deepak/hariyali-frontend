@@ -63,7 +63,7 @@ p {
   box-shadow: none;
 }
 .col-lg-2-extra{flex: 0 0 auto;
-  width: 20%; border: 1px solid #f6f7f9;
+  width: 20%; border: 1px solid #fff;
 }
 .m-auto{margin: auto;}
 /* ul {
@@ -2883,13 +2883,20 @@ tr td input {
 
 .bg-green {
   background: #f6f7f9;
-  /* background: #0d3b97; */
   position: relative;
 }
-.bg-green .card {
-  background: #fff;
-  /* background: #0d3b97; */
-}
+
+/* .bg-green:before,
+.bg-green:after{
+  background: url("../img/folha04.png") no-repeat top left;
+  position: absolute;
+  content: "";
+  top: -96px;
+  left: 0;
+  background-size: 100%;
+  width: 288px;
+  height: 50%;
+} */
 .bg-green:after {
   right: 0;
   left: auto;
@@ -3201,15 +3208,14 @@ figure.effect-layla:hover img {
 }
 
 .slide-location p {
-  font-size: 0.7rem;
+  font-size: 1rem;
   margin-bottom: 0;
   font-weight: 700;
-  background: #ffffff7a;
+  background: #fff4;
   padding: 10px;
   /* width: fit-content; */
   right: 0;
   /* float: right; */
-  color: #000;
 }
 
 .slide-location i {
@@ -3247,9 +3253,9 @@ figure.effect-layla:hover img {
     top: 400px;
   }
 
-  /* .react-slideshow-fadezoom-wrapper div[data-index="0"] .slide-location {
+  .react-slideshow-fadezoom-wrapper div[data-index="0"] .slide-location {
     top: 400px !important;
-  } */
+  }
 }
 
 /* @media screen and (max-width:1493px){
@@ -3341,12 +3347,13 @@ figure.effect-layla:hover img {
 .awards-slider .carousel-control-next {
   right: -5%;
 }
-.award-tile{width: 22%;
-  flex: auto; }
+
 .awards-slider .carousel-inner {
+  height: 300px;
   display: flex;
   align-items: center;
 }
+
 .awards-slider .carousel-indicators {
   display: none;
 }
@@ -3424,16 +3431,15 @@ figure.effect-layla:hover img {
   max-width: 90%;
   margin: 0 auto;
   object-fit: cover;
- 
   display: flex;
 }
 
 .banner-about {
-  background: url("../img/slider/downslide.jpg") no-repeat; background-position: center;
+  background: url("../img/slider/downslide.jpg") no-repeat;
 }
 
 .banner-contact {
-  background: url("../img/slider/Donateslid.jpg") no-repeat; background-position: center;
+  background: url("../img/slider/Donateslid.jpg") no-repeat;
 }
 
 .banner-associate {
@@ -3752,17 +3758,17 @@ address a:hover {
 
 .award-wrapper {
   position: relative;
-  background-color: #f6f7f9;
+  background-color: #fff;
   border-radius: 10px;
   padding: 2rem 2.5rem;
   min-height: 169px;
-  height: 200px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   box-shadow: 0px 1px 6px 2px #ccc;
-  /* width: 383px; */
+  width: 383px;
 }
 
 .award-wrapper:before,
@@ -3805,7 +3811,7 @@ iframe {
 .nav.nav-pills {
   /* display: inline-flex; */
   width: 100%;
-  max-width: 300px;
+  max-width: 235px;
   margin: 0 auto 6rem;
   background: #ecefec;
   border: 2px solid #ecefec;
@@ -3814,8 +3820,6 @@ iframe {
 }
 
 .nav-pills .nav-link {
-  width: 50%;
-  text-align: center;
   font-weight: 600;
   background: #ecefec;
   color: #3f6341;
@@ -4068,7 +4072,7 @@ iframe {
   left: 50%;
   top: auto;
   bottom: 5%;
-  transform: translate(-50%,0%);width: max-content;
+  transform: translate(-50%,0%);
 }
 
 .home-page-slider .react-slideshow-fadezoom-wrapper .slide-location {
@@ -4092,11 +4096,7 @@ iframe {
   /* width: fit-content;
   right: 0;
   float: right; */
-  color: #fff;
 }
-
-
-
 
 .testimonial-slider .react-slideshow-fadezoom-wrapper div[data-index="0"] p {
   font-weight: 300 !important;
@@ -4149,9 +4149,7 @@ iframe {
 .form-group {
   position: relative;
 }
-.program-details em{
-  font-size: 1rem;
-}
+
 @media screen and (max-width:1440px) {
   .nav-list .nav-item a.nav-link {
     font-size: 1rem;
@@ -4182,7 +4180,7 @@ iframe {
   }
 
   .slide-location {
-    width: fit-content;
+    width: 300px;
   }
 
   .react-slideshow-fadezoom-images-wrap img {
@@ -4196,7 +4194,7 @@ iframe {
 
 @media screen and (max-width:1280px) {
   .nav-list .nav-item a.nav-link {
-    font-size: 0.859rem;
+    font-size: 0.975rem;
   }
 
   .nav-list .nav-item+.nav-item {

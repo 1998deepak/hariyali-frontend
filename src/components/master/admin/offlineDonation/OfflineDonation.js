@@ -451,7 +451,7 @@ function OfflineDonation() {
         formData.formData.user.donations[0].recipient = [];
       }
       setLoading(true);
-      const response = await DonationService.Adduser(formData);
+      const response = await DonationService.Adduser(formData.formData.user);
       console.log(response);
       if (response?.status === SUCCESS) {
         toast.success(response?.message);

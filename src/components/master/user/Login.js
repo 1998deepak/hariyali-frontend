@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { SUCCESS, TOKEN, USER_DETAILS } from "../../constants/constants";
 import { AuthService } from "../../../services/auth/auth.service";
 import { toast,ToastContainer } from "react-toastify";
+import { EncryptionService } from "../../../services/encryption.service";
 import { UserService } from "../../../services/userService/user.service";
 import Loader from "../../common/loader/Loader";
 
@@ -51,8 +52,9 @@ function Login() {
       if (response) {
         if (response?.status === SUCCESS) {
           console.log("Response: " + response);
-          localStorage.setItem(USER_DETAILS, JSON.stringify(formData));
-          toast.success("OTP Send Successfully!");
+          let userDetails = await EncryptionService.encrypt(JSON.stringify(formData));
+          localStorage.setItem(USER_DETAILS, userDetails);
+          toast.success("OTP Send Successfully!")
           setIsHidden(!isHidden);
           setIsHide(!isHide);
           setLoading(false)
@@ -67,6 +69,8 @@ function Login() {
     }
   };
 
+
+  const [donarIdOrEmail, setDonarIdOrEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [verificationStatus, setVerificationStatus] = useState("");
   const [isHidden, setIsHidden] = useState(true);
@@ -121,9 +125,7 @@ function Login() {
   const sendEmail = async (e) => {
     e.preventDefault();
     const formData = {
-      formData: {
-        donarID: donarID,
-      },
+        donorId: donarID,
     };
     console.log(formData);
     setLoading(true)

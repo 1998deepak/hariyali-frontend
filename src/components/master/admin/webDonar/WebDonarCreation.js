@@ -65,7 +65,7 @@ function WebDonarCreation() {
   const approveDonationWithWebId = async (data) => {
     console.log(data);
     setLoading(true)
-    const response = await WebDonorCreationService.approveDonation(data);
+    const response = await WebDonorCreationService.approveDonation(data.formData);
    console.log(response);
    getAllUserWithWebID();
       if (response?.status === SUCCESS) {

@@ -1,6 +1,7 @@
 import { URLS } from "../../components/constants/urls";
 import { APIService } from "../api/api-service";
 import { toast } from "react-toastify";
+import { EncryptionService } from "../encryption.service";
 
 
 
@@ -82,6 +83,7 @@ export const DonationService = {
 
   getDetailsByEmailId: async (emailId) => {
     console.log(emailId);
+    emailId = (await EncryptionService.encrypt(emailId)).toString();
     const response = await APIService.Instance.get(
       URLS.GETBYEMAILID + emailId
     );
@@ -115,6 +117,7 @@ export const DonationService = {
     
       getPaymentInformation: async (paymentId) => {
         try {
+          paymentId = (await EncryptionService.encrypt(paymentId)).toString();
            const response = await APIService.Instance.get(
             URLS.GETPAYMENTINFO+paymentId
           );
@@ -151,6 +154,7 @@ export const DonationService = {
 
   getAllDonationOfUser: async (emailId) => {
     console.log(emailId);
+    emailId = (await EncryptionService.encrypt(emailId)).toString();
     const response = await APIService.Instance.get(
       URLS.GETALLDONATIONOFUSER + emailId
     );
@@ -160,7 +164,7 @@ export const DonationService = {
   },
 
   getDonationById: async (donationId) => {
-    console.log(donationId);
+    donationId = (await EncryptionService.encrypt(donationId)).toString();
     const response = await APIService.Instance.get(
       URLS.GETDONATIONBYID + donationId
     );
@@ -170,7 +174,7 @@ export const DonationService = {
   },
 
   getUserDetails: async (emailId) => {
-    console.log(emailId);
+    emailId = (await EncryptionService.encrypt(emailId)).toString();
     const response = await APIService.Instance.get(
       URLS.GETUSERDETAILS + emailId
     );
@@ -221,6 +225,8 @@ export const DonationService = {
       // get user details by donor id
       getDetailsByDonorId: async (donorId) => {
         console.log(donorId);
+        donorId = (await EncryptionService.encrypt(donorId)).toString();
+        donorId = encodeURI(donorId);
         const response = await APIService.Instance.get(
           URLS.GETUSERDETAILSBYDONORID+donorId
         );
@@ -275,6 +281,7 @@ export const DonationService = {
   // get user details by donor id
   getDetailsByDonorId: async (donorId) => {
     console.log(donorId);
+    donorId = (await EncryptionService.encrypt(donorId)).toString();
     const response = await APIService.Instance.get(
       URLS.GETUSERDETAILSBYDONORID + donorId
     );
@@ -329,6 +336,8 @@ export const DonationService = {
 
   verifiyOtp: async (userId,otp) => {
     console.log(userId);
+    userId = (await EncryptionService.encrypt(userId)).toString();
+    otp = (await EncryptionService.encrypt(otp)).toString();
     const response = await APIService.Instance.post(
       URLS.VERIFYOTPONLINE+`?donarIdOrEmail=${userId}&otp=${otp}`,
     );

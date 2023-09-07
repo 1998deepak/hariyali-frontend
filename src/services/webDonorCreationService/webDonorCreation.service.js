@@ -26,9 +26,13 @@ export const WebDonorCreationService = {
         try{
           const response = await APIService.Instance.post(
             URLS.APPROVEDONATION,data
-          );
-          return response.data;
+          ).catch(error =>{
+            console.log(error);
+            throw error;
+          });
+          return response?.data;
         } catch(err){
+          console.log(err);
           if (err?.response?.data) {
             return err?.response?.data;
           }else{

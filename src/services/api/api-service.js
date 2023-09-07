@@ -1,6 +1,7 @@
 import { TOKEN ,USER_DETAILS } from "../../components/constants/constants";
 import { Axios } from "./axios-class";
 import { toast } from "react-toastify";
+import { EncryptionService } from "../../../src/services/encryption.service";
 export class APIService extends Axios {
   static _instance = null;
 
@@ -24,19 +25,18 @@ export class APIService extends Axios {
     this._axiosInstance.interceptors.response.use(
       res => res,
       err => {
-        if (err.message == "Network Error") {
-          toast.error(err.message);
-        }else
-        if (err.response.status === 403 || err.response.status === 401) {
-          // toast.error("Session Expired");
-          // localStorage.removeItem(TOKEN);
-          // localStorage.removeItem(USER_DETAILS);
-          // localStorage.clear();
-          // window.location.href = "/";
-        }
-        // else if(err.response.data.message){
-        //   toast.error(err.response.data.message)
-        // }
+        throw err;
+      //   console.log(err);
+      //   if (err.response.status === 403 || err.response.status === 401) {
+      //     // toast.error("Session Expired");
+      //     // localStorage.removeItem(TOKEN);
+      //     // localStorage.removeItem(USER_DETAILS);
+      //     // localStorage.clear();
+      //     // window.location.href = "/";
+      //   }
+      //   // else if(err.response.data.message){
+      //   //   toast.error(err.response.data.message)
+      //   // }
       }
     )
    }
@@ -77,7 +77,8 @@ export class APIService extends Axios {
   };
 
   getUserName = () => {
-    const userInfo = localStorage.getItem(USER_DETAILS);
+    
+    let userInfo = EncryptionService.decrypt(localStorage.getItem(USER_DETAILS));   
     const info = APIService.checkNested(userInfo, "name");
     if (info !== null && info !== undefined && !info.includes("undefined")) {
       return info;
