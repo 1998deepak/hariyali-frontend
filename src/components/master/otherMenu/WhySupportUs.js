@@ -280,7 +280,7 @@ function WhySupportUs() {
               <div className="col-6 col-md-4 discover-block">
                 <figure class="effect-duke whysuimpact-effect">
                   <h4>
-                    Significant positive change in <p>bio-diversity</p>
+                    Significant positive change in <p>Bio-diversity</p>
                   </h4>
                 </figure>
               </div>
