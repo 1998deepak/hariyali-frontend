@@ -91,9 +91,7 @@ function WhySupportUs() {
         //image :
       },
       { quote: "Limca book of Awards - Indian Record", image: limcaAward1 },
-    ],
-    [
-      { quote: "Limca book of Awards - National Record", image: limcaAward },
+         { quote: "Limca book of Awards - National Record", image: limcaAward },
     ],
     // Add more item groups as needed
   ];
