@@ -90,11 +90,12 @@ p {
   transition: all 0.3s ease-in-out;
   height: 40px;
 }
-
+.nd{font-size: 14px;}
 .homesubmit-div:hover {
   background: #dd052b;
 }
-
+.askheading{    font-size: 1.3rem;}
+.ask-p{font-size: 0.99rem;}
 .contact-usbtn {
   /* font-family: "Georama", sans-serif; */
   font-weight: 500;
@@ -2661,6 +2662,15 @@ tr td input {
 
 /* footprint */
 /* About us */
+.team-card img{ width: 87px;}
+.team-card{box-shadow: 0px 0px 5px 0px #5f5f5f; padding: 15px; min-height: 330px;}
+.team-card ul li{ margin: 0rem 0 0rem 1.9rem !important; }
+.team-card h5 {
+  color: #3f6341;font-weight:700;
+  /* color: #23aa4a; */
+  font-weight: 500;font-size: 1.5rem;
+  margin: 10px 0;
+}
 .about-furthertext {
   position: absolute;
   bottom: 33px;
@@ -2866,7 +2876,18 @@ tr td input {
 .icon-block:hover:before {
   transform: scale(1.1);
 }
-
+.About-feature-image {
+  width: 100%;
+  height: 375px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.About-feature-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
 .feature-image {
   width: 100%;
   height: 450px;
@@ -4478,6 +4499,9 @@ iframe {
   }
 
   .feature-image {
+    height: auto;
+  }
+  .About-feature-image{
     height: auto;
   }
 

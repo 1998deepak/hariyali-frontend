@@ -391,7 +391,7 @@ function WaystoAssociate() {
                                     <br />
                                 </p>
                                 <p>
-                                    <address> For CSR Queries Contact "Sunny Gangar" <a href="tel:93224 56789"><i className="bi bi-envelope-fill"></i> csr@hariyali.org.in</a> | <a href="tel:93224 56789">
+                                    <address> For CSR Queries Contact Sunny Gangar <a href="tel:93224 56789"><i className="bi bi-envelope-fill"></i> csr@hariyali.org.in</a> | <a href="tel:93224 56789">
                                         <i className="bi bi-phone"></i> 93224 56789</a> | <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a></address>
                                 </p></div>
                                 

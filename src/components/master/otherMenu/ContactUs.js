@@ -132,16 +132,16 @@ function ContactUs() {
               <div className="row">
                 <div className="col-12 col-md-4">
                   <address>
-                  <h4 className="mb-0">Mahindra Foundation</h4>
-                  <p>Cecil Court, MB Marg, NearRegal Cinema, Apollo Bandar, Colaba, Mumbai, Maharashtra 400005</p>
-                  <a href="tel:93224 56789"><i className="bi bi-phone"></i> 93224 56789</a><br/>
-                  <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a>
+                  <h4 className="mb-0 askheading">Mahindra Foundation</h4>
+                  <p className="ask-p">Cecil Court, MB Marg, NearRegal Cinema, Apollo Bandar, Colaba, Mumbai, Maharashtra 400005</p>
+                  <a href="tel:93224 56789"  className="ask-p"><i className="bi bi-phone"></i> 93224 56789</a><br/>
+                  <a href="tel:022 22021031"  className="ask-p"><i className="bi bi-telephone-fill"></i> 022 22021031</a>
                   </address>
                 </div>
                 <div className="col-12 col-md-8">
                   <div className="">
                     {" "}
-                    <h4>Send us a message</h4>
+                    <h4 className="askheading">Send us a message</h4>
                   </div>
                   <form className="contact-form-wrap">
                     <div className="">
