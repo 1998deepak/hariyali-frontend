@@ -144,8 +144,8 @@ function WaystoAssociate() {
                             Donor receipts <br /><small>(Tax exemption under 80G)</small></li>
                         <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-certificate"></span>Certificate</li>
                         <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-report"></span> Plantation Reports</li>
-                        <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-follow"></span>Follow on reports for year 1</li>
-                        <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-follow"></span>Follow on reports for year 2</li>
+                        <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-report"></span>Follow on reports for year 1</li>
+                        <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-report"></span>Follow on reports for year 2</li>
                     </ul>
                 </div>
                 <section className="">

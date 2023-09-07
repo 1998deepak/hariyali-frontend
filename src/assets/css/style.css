@@ -3930,7 +3930,8 @@ iframe {
 .bg-follow:before {
   background: url('../img/follow-us.gif') no-repeat;
 }
-
+.quantitative-card .discover-block{height: 200px; margin-bottom: 25px;}
+.quantitative-card .discover-block:hover{height: 200px;}
 .steps-nav {
   display: flex;
   flex-direction: column;
