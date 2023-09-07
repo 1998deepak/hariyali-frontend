@@ -236,12 +236,12 @@ function WhySupportUs() {
         </div> */}
       <div className="container pv-75">
         <h3 className="sub-title text-center">Impact of Hariyali Project</h3>
-        {/* <p className="text-center">Project Hariyali is a unique blend in the sphere of environmental
-          sustainability and impacting livelihood. Project hariyali is already contrubting towards mission LiFE & Indias commitement toward carbon neutrality</p> */}
+        <p className="text-center">Project Hariyali is a unique blend in the sphere of environmental
+          sustainability and impacting livelihood. Project hariyali is already contrubting towards mission LiFE & Indias commitement toward carbon neutrality</p>
         <div className="row justify-content-center">
           <h4 className="text-center">Quantitative Impact</h4>
           <div className="col-md-8">
-            <Row className="justify-content-center mb-4 quantitative-card">
+            <Row className="justify-content-center quantitative-card">
               <div className="col-6 col-md-4  discover-block">
                 <figure class="effect-duke whysuimpact-effect">
                   {" "}
@@ -266,7 +266,7 @@ function WhySupportUs() {
               </div>
 
               {/* </Row> */}
-              {/* <h4 className="text-center">Qualitative Impact</h4> */}
+              <h4 className="text-center">Qualitative Impact</h4>
               {/* <Row className="justify-content-center mb-4 quantitative-card"> */}
               <div className="col-6 col-md-4 discover-block">
                 <figure class="effect-duke whysuimpact-effect">
@@ -320,7 +320,7 @@ function WhySupportUs() {
           </div> */}
         </div>
       </div>
-      <div className="container">
+      {/* <div className="container">
         <p className="text-center">
 
           Project Hariyali on large scale{" "}
@@ -334,7 +334,7 @@ function WhySupportUs() {
           <br />
           <br />
         </p>
-      </div>
+      </div> */}
       <div className="container">
 
         <div className="feature-description">
