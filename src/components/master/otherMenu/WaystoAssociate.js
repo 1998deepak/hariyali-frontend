@@ -117,7 +117,7 @@ function WaystoAssociate() {
                     <div className="pv-75">
                         <div className="feature-description">
                             <h2 className="sub-title text-center mb-0">How To Associate</h2>
-                        <p className="text-center">There are two seasons for plantation </p></div>
+                            <p className="text-center">There are two seasons for plantation </p></div>
                         <div className="row justify-content-center">
                             <div className="col col-md-3">
                                 <div className="card plantation-card">
@@ -324,43 +324,43 @@ function WaystoAssociate() {
                             </div></div>
                         </div>
                         <div className="container">
-                        <div className="row support-content1">
-                            <h3 class="text-center my-5 sub-title">Fund raising strategies</h3>
-                            <div className="col-12 col-md-4">
-                                <div className="text-center h-101">
-                                    <div className="card-img-top">
-                                        <img src={ind1} className="" alt="..." />
+                            <div className="row support-content1">
+                                <h3 class="text-center my-5 sub-title">Fund raising strategies</h3>
+                                <div className="col-12 col-md-4">
+                                    <div className="text-center h-101">
+                                        <div className="card-img-top">
+                                            <img src={ind1} className="" alt="..." />
+                                        </div>
+                                        <div className="card-body tree-features1">
+                                            <h5 className="card-title">Runs, walks & cyclothons</h5>
+                                            <p>Runs, walks & cyclothons -Whether you're planning to run a 5K or go for a full marathon, you can set up a ‘pledge’ page and invite your family, friends and colleagues to support your efforts by contributing to project Hariyali.</p>
+                                        </div>
                                     </div>
-                                    <div className="card-body tree-features1">
-                                        <h5 className="card-title">Runs, walks & cyclothons</h5>
-                                        <p>Runs, walks & cyclothons -Whether you're planning to run a 5K or go for a full marathon, you can set up a ‘pledge’ page and invite your family, friends and colleagues to support your efforts by contributing to project Hariyali.</p>
+                                </div>
+                                <div className="col-12 col-md-4">
+                                    <div className="text-center h-101">
+                                        <div className="card-img-top">
+                                            <img src={ind3} className="" alt="..." />
+                                        </div>
+                                        <div className="card-body tree-features1">
+                                            <h5 className="card-title">Organise your own fundraiser</h5>
+                                            <p>Organise your own fundraiser - Get your family, friends and colleagues together for some fun activities by throwing a high-tea party or a kitty party, lunch / dinner get-togethers, movie screenings, book readings, theatre shows, or anything else you can think of, and raise funds for project Hariyali.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-12 col-md-4">
+                                    <div className="text-center h-101">
+                                        <div className="card-img-top">
+                                            <img src={ind2} className="" alt="..." />
+                                        </div>
+                                        <div className="card-body tree-features1">
+                                            <h5 className="card-title">Fundraise at your personal celebrations</h5>
+                                            <p>Fundraise at your personal celebrations – Make your special celebration an occasion to contribute towards greening the planet.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-12 col-md-4">
-                                <div className="text-center h-101">
-                                    <div className="card-img-top">
-                                        <img src={ind3} className="" alt="..." />
-                                    </div>
-                                    <div className="card-body tree-features1">
-                                        <h5 className="card-title">Organise your own fundraiser</h5>
-                                        <p>Organise your own fundraiser - Get your family, friends and colleagues together for some fun activities by throwing a high-tea party or a kitty party, lunch / dinner get-togethers, movie screenings, book readings, theatre shows, or anything else you can think of, and raise funds for project Hariyali.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-12 col-md-4">
-                                <div className="text-center h-101">
-                                    <div className="card-img-top">
-                                        <img src={ind2} className="" alt="..." />
-                                    </div>
-                                    <div className="card-body tree-features1">
-                                        <h5 className="card-title">Fundraise at your personal celebrations</h5>
-                                        <p>Fundraise at your personal celebrations – Make your special celebration an occasion to contribute towards greening the planet.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div></div>
+                        </div></div>
                 </section>
                 <section style={{ display: "none" }} id="associate">
                     <div className="bg-green">
@@ -396,7 +396,7 @@ function WaystoAssociate() {
                     </div>
                     <div className="project-bg ">
                         <Container className="ptb50">
-                            <div className="feature-description">
+                            <div className="feature-description feature-description-other">
                                 <h2 className="text-capitalize">
                                     B. Corporate Social Responsibility
                                 </h2>
@@ -405,39 +405,39 @@ function WaystoAssociate() {
                                     <br />
                                 </p>
                                 <p>
-             <address>  CSR Queries contact Sunny Gangar <a href="tel:93224 56789"><i className="bi bi-envelope-fill"></i> csr@hariyali.org.in</a> | <a href="tel:93224 56789">
+                                    <address>  CSR Queries contact Sunny Gangar <a href="tel:93224 56789"><i className="bi bi-envelope-fill"></i> csr@hariyali.org.in</a> | <a href="tel:93224 56789">
                                         <i className="bi bi-phone"></i> 93224 56789</a> | <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a></address>
                                 </p></div>
-                                
+
 
                             {/* <div>
           <img src={sdglinks} width="50%"  />
           </div> */}
                         </Container>
                         <div className="bg-green">
-                        <div className="container pv-75">
-                            <div className="feature-description ">
-                                <h2 className="sub-title  text-center">
-                                    Alignment with United Nations Sustainable Development Goals
-                                </h2>
-                                <div class="grid"><div className="col-8 m-auto"> <Row className="justify-content-between ">
-                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-                                        <figure class="effect-duke boxshaow-0"><img src={sdg13} width="100%" />
-                                        </figure></div>
-                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-                                        <figure class="effect-duke boxshaow-0"><img src={sdg15} width="100%" /></figure>
-                                    </div>
-                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-                                        <figure class="effect-duke boxshaow-0"><img src={sdg8} width="100%" /></figure>
-                                    </div>
-                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-                                        <figure class="effect-duke boxshaow-0"><img src={sdg14} width="100%" /></figure>
-                                    </div>
-                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-                                        <figure class="effect-duke boxshaow-0"><img src={sdg17} width="100%" /></figure>
-                                    </div>
-                                </Row></div></div></div>
-                                </div></div>
+                            <div className="container pv-75">
+                                <div className="feature-description ">
+                                    <h2 className="sub-title  text-center">
+                                        Alignment with United Nations Sustainable Development Goals
+                                    </h2>
+                                    <div class="grid"><div className="col-8 m-auto"> <Row className="justify-content-between ">
+                                        <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                            <figure class="effect-duke boxshaow-0"><img src={sdg13} width="100%" />
+                                            </figure></div>
+                                        <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                            <figure class="effect-duke boxshaow-0"><img src={sdg15} width="100%" /></figure>
+                                        </div>
+                                        <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                            <figure class="effect-duke boxshaow-0"><img src={sdg8} width="100%" /></figure>
+                                        </div>
+                                        <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                            <figure class="effect-duke boxshaow-0"><img src={sdg14} width="100%" /></figure>
+                                        </div>
+                                        <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                            <figure class="effect-duke boxshaow-0"><img src={sdg17} width="100%" /></figure>
+                                        </div>
+                                    </Row></div></div></div>
+                            </div></div>
                     </div>
                 </section>
                 {/* <section className="bg-green">

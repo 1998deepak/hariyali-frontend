@@ -204,6 +204,7 @@ p {
   margin-bottom: 30px;
 }
 
+
 .abc {
   display: block;
   border: solid 1px #ccc;
@@ -3391,7 +3392,8 @@ figure.effect-layla:hover img {
 .testimonial-slider .react-slideshow-fadezoom-wrapper,
 .awards-slider .react-slideshow-fadezoom-wrapper {
   height: 650px;
-  margin: 0 0 2rem 0;
+  /* margin: 0 0 2rem 0; */
+  margin: 0 ;
 }
 
 .testimonial-slider .react-slideshow-fadezoom-wrapper {
@@ -3509,11 +3511,16 @@ figure.effect-layla:hover img {
 
 .feature-description {
   height: 100%;
-  padding: 2.75rem;
+  padding:2.75rem;
   /* background: rgb(35 170 74 / 30%);
   border-radius: 160px 0 160px 0; */
 }
-
+.feature-description-other {
+  padding:2.75rem 2.75rem 0rem 2.75rem !important;
+}
+.contact-description-other{
+  padding:2.75rem 0rem 0rem 0rem !important;
+}
 .feature-description h2,
 .program-details h3,
 .sub-title {

@@ -189,32 +189,6 @@ function HomePage() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
-  // const goToLogin = () => {
-  //   navigate("/Login");
-  // };
-  // const goToDonate = () => {
-  //   navigate("/Donate");
-  // };
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   window.addEventListener('error', e => {
-  //     if (e.message === 'ResizeObserver loop limit exceeded') {
-  //       const resizeObserverErrDiv = document.getElementById(
-  //         'webpack-dev-server-client-overlay-div'
-  //       );
-  //       const resizeObserverErr = document.getElementById(
-  //         'webpack-dev-server-client-overlay'
-  //       );
-  //       if (resizeObserverErr) {
-  //         resizeObserverErr.setAttribute('style', 'display: none');
-  //       }
-  //       if (resizeObserverErrDiv) {
-  //         resizeObserverErrDiv.setAttribute('style', 'display: none');
-  //       }
-  //     }
-  //   });
-  // }, []);
   return (
     <>
       {/* body */}
@@ -227,7 +201,7 @@ function HomePage() {
 
       <div className="container pv-75">
 
-        <div className="row mb30 impact-wrapper">
+        <div className="row mb10 impact-wrapper">
           <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
               {/* <i className="icon-tree"></i> */}
@@ -252,34 +226,34 @@ function HomePage() {
         </div>
 
       </div>
-<section className="bg-green">
-      <div className="container pv-75">
+      <section className="bg-green">
+        <div className="container pv-75">
 
-        <div className="row">
+          <div className="row">
 
-          <div className="col-12 col-md-6">
-            <div className="program-details">
-              <h3 className="mb-3">Who Are We</h3>
-              <p>Project Hariyali is a joint initiative by Mahindra Foundation and Naandi Foundation. One million trees have been planted
-                each year since 2007 across India. The project is part of nature-based solution that focuses on natural resource management and global organic
-                farming protocols to improve the eco-system. Going forward, the project aims to plant 5 million trees per annum.</p>
-              <div className="pt-5">
-                <a href="/AboutUs" className="btn btn-secondary">Know More</a>
-                <Link className="btn btn-primary" to={`/OnlineDonation`}>Donate</Link>
+            <div className="col-12 col-md-6">
+              <div className="program-details">
+                <h3 className="mb-3">Who Are We</h3>
+                <p>Project Hariyali is a joint initiative by Mahindra Foundation and Naandi Foundation. One million trees have been planted
+                  each year since 2007 across India. The project is part of nature-based solution that focuses on natural resource management and global organic
+                  farming protocols to improve the eco-system. Going forward, the project aims to plant 5 million trees per annum.</p>
+                <div className="pt-5">
+                  <a href="/AboutUs" className="btn btn-secondary">Know More</a>
+                  <Link className="btn btn-primary" to={`/OnlineDonation`}>Donate</Link>
+                </div>
+              </div>
+            </div>
+            <div className="col-12 col-md-6">
+              <div className="img-responsive feature-image">
+                <img src={program1} alt="planting" className="imgwidth100" />
               </div>
             </div>
           </div>
-          <div className="col-12 col-md-6">
-            <div className="img-responsive feature-image">
-              <img src={program1} alt="planting" className="imgwidth100" />
-            </div>
-          </div>
-        </div>
 
-       
-      </div>
+
+        </div>
       </section>  <div className="container pv-75">
-      <div className="row pv-75">
+        <div className="row pv-75">
           <div className="col-12 col-md-6">
             <div className="img-responsive feature-image">
               <img src={program3} alt="planting" className="imgwidth100" />
@@ -299,10 +273,10 @@ function HomePage() {
         <div className="container pv-75">
           <div className="row">
             <div className="col-12 col-md-6">
-              <div className="program-details">
+              <div className="program-details feature-description-other">
                 <h3 className="mb-3">Why Support Us</h3>
                 <p>
-                India is the 7th most vulnerable country with respect to climate extremes <em>(CRI, 2021)</em>. The total forest cover needs to increase for ecological stability.
+                  India is the 7th most vulnerable country with respect to climate extremes <em>(CRI, 2021)</em>. The total forest cover needs to increase for ecological stability.
                 </p>
                 <p>
                   India is promoting individual responsibility toward climate action through Mission LiFE "Lifestyle for Environment".
@@ -324,7 +298,7 @@ function HomePage() {
             </div>
           </div>
         </div>
-     </section>
+      </section>
       <div className="container pv-75">
         <div className="row">
           <div className="col-12 col-md-6">
@@ -365,7 +339,7 @@ function HomePage() {
             </div>
           </div>
         </div>
-        </section>
+      </section>
       {/* sdg */}
       {/* <div className="container pv-75">
         <div className="row">

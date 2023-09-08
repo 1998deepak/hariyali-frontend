@@ -100,7 +100,7 @@ function AboutUs() {
         <div className="section bggray">
           <div className="container">
             <div className="pv-75">
-              <div className="feature-description">
+              <div className="feature-description feature-description-other">
                 <h2 className="sub-title  text-center">Who Are We</h2>
                 <p className="text-center">
                 Project Hariyali is a joint initiative by Mahindra Foundation and Naandi Foundation.
@@ -109,10 +109,11 @@ function AboutUs() {
                 </p>
               </div>
             </div>
-          </div><section className="bg-green"><div className="container">
+          </div>
+          <section className="bg-green"><div className="container">
             <div className="row align-items-center pv-75">
               <div className="col-12">
-                <div className="feature-description">
+                <div className="feature-description feature-description-other">
                   <h2 className="sub-title  text-center">Details about initiative</h2>
                   <p className="text-center">
                     The project was launched on 2<sup>nd</sup> October 2007, as an afforestation initiative, with a target to plant a million trees every year. Project Hariyali aims to increase green cover, arrest the rising ecological imbalance to create environmentally conscious and aware citizenry. Project Hariyali is an excellent example of nature-based solutions that focuses on natural resource management and global organic farming protocols to improve the eco-system.</p>
@@ -173,7 +174,7 @@ function AboutUs() {
             <div className="container">
               <div className="row pv-75">
                 <div className="col-12">
-                  <div className="feature-description">
+                  <div className="feature-description feature-description-other">
                     <h2 className="sub-title  text-center">Know your Partners</h2>
                     <div className="text-center"><img src={mahindralogo} alt="mahindralogo" /></div>
                     <p className="text-center">

@@ -232,13 +232,14 @@ function WhySupportUs() {
             </div>
           </div>
           </div>
-        </div> */}
-      <div className="container pv-75">
+        </div> */}<section className="bg-green">
+      <div className="container">
+        <div className="feature-description">
         <h3 className="sub-title text-center">Impact of Hariyali Project</h3>
         <p className="text-center">Project Hariyali is a unique blend in the sphere of environmental
           sustainability and impacting livelihood. Project hariyali is already contrubting towards mission LiFE & Indias commitement toward carbon neutrality</p>
         <div className="row justify-content-center">
-          <h4 className="text-center">Quantitative Impact</h4>
+          {/* <h4 className="text-center">Quantitative Impact</h4> */}
           <div className="col-md-8">
             <Row className="justify-content-center quantitative-card">
               <div className="col-6 col-md-4  discover-block">
@@ -265,7 +266,7 @@ function WhySupportUs() {
               </div>
 
               {/* </Row> */}
-              <h4 className="text-center">Qualitative Impact</h4>
+              {/* <h4 className="text-center">Qualitative Impact</h4> */}
               {/* <Row className="justify-content-center mb-4 quantitative-card"> */}
               <div className="col-6 col-md-4 discover-block">
                 <figure class="effect-duke whysuimpact-effect">
@@ -285,7 +286,7 @@ function WhySupportUs() {
               </div>
             </Row></div>
         </div>
-      </div>
+      </div></div></section>
       <div className="container">
 
         <div className="feature-description">
@@ -326,10 +327,11 @@ function WhySupportUs() {
           </Modal>
         </div>
       </div>
+      <section className="bg-green">
       <div className="container">
         <div className="row align-items-center pv-75">
           <div className="col-12 col-md-6">
-            <div className="feature-description">
+            <div className="feature-description feature-description-other">
               <h3 className="sub-title text-center">
                 Impact Assessment Report{" "}
               </h3>
@@ -368,9 +370,9 @@ function WhySupportUs() {
             </div>
           </div>
         </div>
-      </div>
-      <section className="bg-green">
-        <div className="container">
+      </div></section>
+      
+        <div className="container"> <div className="feature-description feature-description-other">
           <h3 className="text-center sub-title">Testimonials</h3>
 <div className="testimonial-slider">
             <Zoom {...zoomOutProperties}>
@@ -430,7 +432,7 @@ function WhySupportUs() {
           </div>
           {/* <Slideshow /> */}
           </div>
-      </section>
+      
 
       {/* modal popup for awards */}
 
@@ -471,6 +473,7 @@ function WhySupportUs() {
         </div>
       </div>
       {/* body */}
+   </div>
     </>
   );
 }
