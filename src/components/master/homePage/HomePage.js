@@ -93,7 +93,7 @@ const slides = [
   {
     image: image2,
     title: 'When you cut a tree you take a life and when you plant a tree you plant HOPE',
-    description: 'We have planted more than 22 million trees since 2007',
+    description: 'We have planted more than 24 million trees since 2007',
   },
   {
     image: image1,
@@ -288,7 +288,7 @@ function HomePage() {
           <div className="col-12 col-md-6">
             <div className="program-details">
               <h3 className="mb-3">What We Do</h3>
-              <p>Project Hariyali aims to increase the green cover, arrest the rising ecological imbalance, enhance biodiversity and in the process support the livelihood of marginalized farmers.</p>
+              <p>Project Hariyali aims to increase green cover, arrest the rising ecological imbalance, enhance biodiversity, restore the functional forest, and in the process support the livelihood of marginalized farmers.</p>
               <div className="pt-5">
                 <a href="/WhatWeDo" className="btn btn-secondary">Know More</a>
                 <Link className="btn btn-primary" to={`/OnlineDonation`}>Donate</Link>

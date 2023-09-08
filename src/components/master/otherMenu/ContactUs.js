@@ -123,9 +123,9 @@ function ContactUs() {
       <div className="">
         <div className="">
         <div className="pv-75 pb-0">
-            <div className="feature-description pb-0">
+            <div className="feature-description pb-0"><div className="container">
               <h2 className="sub-title text-center mb-0">Ask Us</h2>
-            </div>
+            </div></div>
           </div>
           <div className="pv-75">
             <div className="container">
@@ -133,7 +133,7 @@ function ContactUs() {
                 <div className="col-12 col-md-4">
                   <address>
                   <h4 className="mb-0 askheading">Mahindra Foundation</h4>
-                  <p className="ask-p">Cecil Court, MB Marg, NearRegal Cinema, Apollo Bandar, Colaba, Mumbai, Maharashtra 400005</p>
+                  <p className="ask-p">Cecil Court, MB Marg, Near Regal Cinema, Apollo Bandar, Colaba, Mumbai, Maharashtra 400005</p>
                   <a href="tel:93224 56789"  className="ask-p"><i className="bi bi-phone"></i> 93224 56789</a><br/>
                   <a href="tel:022 22021031"  className="ask-p"><i className="bi bi-telephone-fill"></i> 022 22021031</a>
                   </address>

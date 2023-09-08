@@ -102,7 +102,11 @@ function AboutUs() {
             <div className="pv-75">
               <div className="feature-description">
                 <h2 className="sub-title  text-center">Who Are We</h2>
-                <p className="text-center">Project Hariyali is a joint initiative by Mahindra Foundation and Naandi Foundation. One million trees have been planted each year since 2007 across India. The project is part of nature-based solution that focuses on natural resource management and global organic farming protocols to improve the eco-system. Going forward, the project aims to plant 5 million trees per annum. Hariyali project is part of nuture base solution. To <a href="#knowYourPatners">know more</a> about foundation </p>
+                <p className="text-center">
+                Project Hariyali is a joint initiative by Mahindra Foundation and Naandi Foundation.
+                <div className="whowe-knowtext"><a href="#knowYourPatners">know more</a> about these Foundations</div>
+                 {/* Click here to <a href="#knowYourPatners">know more</a>  about these Foundations */}
+                </p>
               </div>
             </div>
           </div><section className="bg-green"><div className="container">
@@ -110,8 +114,8 @@ function AboutUs() {
               <div className="col-12">
                 <div className="feature-description">
                   <h2 className="sub-title  text-center">Details about initiative</h2>
-                  <p className="text-center">The project was launched on 2<span className="nd">nd</span> October 2007, as an afforestation initiative, with a target to plant a million trees every year.
-                    Project Hariyali aims to increase the green cover, arrest the rising ecological imbalance to create environmentally conscious and aware citizenry.</p>
+                  <p className="text-center">
+                    The project was launched on 2<sup>nd</sup> October 2007, as an afforestation initiative, with a target to plant a million trees every year. Project Hariyali aims to increase green cover, arrest the rising ecological imbalance to create environmentally conscious and aware citizenry. Project Hariyali is an excellent example of nature-based solutions that focuses on natural resource management and global organic farming protocols to improve the eco-system.</p>
                   <p>We are currently active in three regions for large scale plantation:</p>
                   <div className="row">
                     <div className="col-12 col-md-6 col-lg-4 mb-4">
@@ -157,7 +161,10 @@ function AboutUs() {
               <div className="col-12 col-md-6 col-lg-7">
                 <div className="feature-description">
                   <h2 className="text-capitalize">Goal</h2>
-                  <p className=""><quote><b className="colorgreen">Planting 5 million trees</b> per annum through partnerships with like-minded organizations and people and in the process support livelihood of marginalized farmer communities.</quote></p>
+                  <p className="">
+                    <quote><b className="colorgreen">Planting 5 million trees</b>
+                  per annum through partnerships with like-minded organizations and people, and in the process support the livelihood of marginalized farmer communities.
+                    </quote></p>
                 </div>
               </div>
             </div>
@@ -333,36 +340,37 @@ function AboutUs() {
                       <div className="text-center"><img src={resourceimg} alt="resourceimg" /></div>
                       <h5 class="text-center">Resource Mobilization Team</h5>
                       <div><ul><li>
-                      Swati Srivastava, Mahindra Foundation</li><li>
-                      Sunny Gangar, Mahindra Foundation</li></ul>
+                        Swati Srivastava, Mahindra Foundation</li><li>
+                          Sunny Gangar, Mahindra Foundation</li></ul>
                       </div></div>
                     </div>
                     <div className="col-12 col-md-6 mb-4 "><div className="team-card">
                       <div className="text-center"><img src={programmeimg} alt="programmeimg" /></div>
                       <h5 class="text-center">Programme Team</h5>
                       <div><ul><li>
-                      Rohini Mukherjee, Naandi Foundation</li><li>
-                      Dr David Hogg, Naandi Foundation</li><li>
-                      Anupama Sreeramaneni, Naandi Foundation</li>
-                      <li>
-                      Daljit Singh, Naandi Foundation</li>
-                      <li>Swati Srivastava, Mahindra Foundation</li>
-                      <li>Sunny Gangar, Mahindra Foundation</li></ul>
+                        Rohini Mukherjee, Naandi Foundation</li><li>
+                          Dr David Hogg, Naandi Foundation</li><li>
+                          Anupama Sreeramaneni, Naandi Foundation</li>
+                        <li>
+                          Daljit Singh, Naandi Foundation</li>
+                        <li>Swati Srivastava, Mahindra Foundation</li>
+                        <li>Sunny Gangar, Mahindra Foundation</li></ul>
                       </div>
                     </div></div>
                     <div className="col-12 col-md-6 mb-4"><div className="team-card">
                       <div className="text-center"><img src={financeimg} alt="financeimg" /></div>
                       <h5 class="text-center">Finance Team</h5>
                       <div><ul><li>
-                      Phanendra J, Naandi Foundation</li><li>
-                      Pramod Chinchkar, Mahindra Foundation
+                        Phanendra J, Naandi Foundation</li><li>
+                          Pramod Chinchkar, Mahindra Foundation
 
-</li><li>
+                        </li><li>
                           Naandi Foundation</li></ul>
                       </div>
                     </div></div>
 
                   </div>
+                  
                   <div></div></div></div></div></div>
           {/* popup */}
           <Modal show={anandMahindrashow} onHide={AnandMahindraClose}>

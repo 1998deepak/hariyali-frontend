@@ -76,7 +76,7 @@ const Header = () => {
                 <div className="footer-divheading">Contact Us </div>
                   <address>
                   <h5 className="mb-0">Mahindra Foundation</h5>
-                  <p>Cecil Court, MB Marg, NearRegal Cinema, Apollo Bandar, Colaba, Mumbai, Maharashtra 400005</p>
+                  <p>Cecil Court, MB Marg, Near Regal Cinema, Apollo Bandar, Colaba, Mumbai, Maharashtra 400005</p>
                   <a href="tel:93224 56789"><i className="bi bi-phone"></i> 93224 56789</a><br/>
                   <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a> <br/>
                   </address>

@@ -10,7 +10,7 @@ import Shravastiimg from "../../../assets/img/footprint/shravast.jpg";
 import Arakuimg from "../../../assets/img/footprint/araku.jpg";
 // import Footo from "../../../assets/img/foot1.png";
 import { Container, Row } from "react-bootstrap";
-import { GoLocation } from "react-icons/go";
+import { FiArrowRightCircle } from "react-icons/fi";
 import image from "../../../assets/img/bannerWherearewe.png";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -50,23 +50,32 @@ function FootPrint() {
           <Container className="pv-75">
             <Row className="justify-content-between  padding30tb contact-form-wrap">
               <div className="otherbotmborder"><div className="otherpages-heading text-center sub-title">Where Are We </div>
-              <p className="text-center">We are currently present in five states – Andhra Pradesh, Uttar Pradesh, Punjab, Himachal Pradesh and Maharashtra.</p>
+                <p className="text-center">
+                We are currently active in three regions for large scale plantations – Southern, Northern and Western India. We have projects in the states of Andhra Pradesh, Uttar Pradesh, Punjab, Himachal Pradesh and Maharashtra.
+                </p>
               </div>
               <div class="grid">
-              <figure class="effect-apollo" onClick={Araku}>
+                <figure class="effect-apollo" onClick={Araku}>
                   <img src={Arakuimg} alt="Araku" />
                   <figcaption>
-                    <h2> <span>Araku</span>,<br /> Andhra Pradesh</h2>
-                    <p>Araku, Nestled in the North-West Region of Andhra Pradesh</p>
+                    <h2> <span>Araku Valley</span>,<br /> Andhra Pradesh</h2>
+                    <p className="arrowright-foot"><FiArrowRightCircle /></p>
                     <a onClick={Araku}>View more</a>
                   </figcaption>
                 </figure>
-                
+                <figure class="effect-apollo" onClick={Shravasti}>
+                  <img src={Shravastiimg} alt="Shravastiimg" />
+                  <figcaption>
+                    <h2> <span>Shravasti</span>,<br /> Uttar Pradesh</h2>
+                    <p className="arrowright-foot"><FiArrowRightCircle /></p>
+                    <a onClick={Shravasti}>View more</a>
+                  </figcaption>
+                </figure>
                 <figure class="effect-apollo" onClick={Moga}>
                   <img src={Mogaimg} alt="Mogaimg" />
                   <figcaption>
                     <h2> <span>Moga</span>,<br /> Punjab</h2>
-                    <p>Moga is in the Indian State Of Punjab.</p>
+                    <p className="arrowright-foot"><FiArrowRightCircle /></p>
                     <a onClick={Moga}>View more</a>
                   </figcaption>
                 </figure>
@@ -74,31 +83,23 @@ function FootPrint() {
                   <img src={Taranimg} alt="Taranimg" />
                   <figcaption>
                     <h2> <span>Tarn Taran</span>,<br /> Punjab</h2>
-                    <p>Tarn Taran Sahib is a City in the state Of Punjab</p>
+                    <p className="arrowright-foot"><FiArrowRightCircle /></p>
                     <a onClick={Taran}>View more</a>
                   </figcaption>
                 </figure>
                 <figure class="effect-apollo" onClick={Solan}>
                   <img src={Solanimg} alt="Solanimg" />
                   <figcaption>
-                    <h2> <span>Solan</span>,<br /> Punjab</h2>
-                    <p>The Project ss proposed to be located in Solan district</p>
+                    <h2> <span>Solan</span>,<br /> Himachal Pradesh</h2>
+                    <p className="arrowright-foot"><FiArrowRightCircle /></p>
                     <a onClick={Solan}>View more</a>
-                  </figcaption>
-                </figure>
-                <figure class="effect-apollo" onClick={Shravasti}>
-                  <img src={Shravastiimg} alt="Shravastiimg" />
-                  <figcaption>
-                    <h2> <span>Shravasti</span>,<br /> Uttar Pradesh</h2>
-                    <p>Bhinga, the district headquarters of Shravasti</p>
-                    <a onClick={Shravasti}>View more</a>
                   </figcaption>
                 </figure>
                 <figure class="effect-apollo" onClick={Wardha}>
                   <img src={Wardhaimg} alt="Wardhaimg" />
                   <figcaption>
                     <h2> <span>Wardha</span>,<br /> Maharashtra</h2>
-                    <p>Wardha district is one Of the 35 districts in Western India.</p>
+                    <p className="arrowright-foot"><FiArrowRightCircle /></p>
                     <a onClick={Wardha}>View more</a>
                   </figcaption>
                 </figure>
@@ -113,8 +114,8 @@ function FootPrint() {
         <Modal.Body>
           <div class="program-details" closeButton>
             <img src={Arakuimg} alt="Arakuimg" className="footpop-img" />
-            <p className="footpop-p" >Araku Valley is located in the tribal region which is under the 
-            jurisdiction of the ITDA Paderu (Integrated Tribal Development Agency) Paderu falling in Alluri Sitharama Raju district, Andhra Pradesh. We are working in 723 villages spread across 5 mandals impacting over 1,20,000 farmer families. As of 2023, 14.90 million trees have been planted. (Plantation Season – Monsoon)</p></div>
+            <p className="footpop-p" >Araku Valley is located in the tribal region which is under the
+              jurisdiction of the ITDA Paderu (Integrated Tribal Development Agency) Paderu falling in Alluri Sitharama Raju district, Andhra Pradesh. We are working in 723 villages spread across 5 mandals impacting over 1,20,000 farmer families. As of 2023, 14.90 million trees have been planted. (Plantation Season – Monsoon)</p></div>
         </Modal.Body>
       </Modal>
       <Modal show={shravastishow} onHide={ShravastiClose}>
@@ -135,7 +136,7 @@ function FootPrint() {
           <div class="program-details" closeButton>
             <img src={Solanimg} alt="Solanimg" className="footpop-img" />
             <p className="footpop-p" >Solan district falls in Himachal Pradesh, Northern India. Solan is a predominantly rural district with less than 20% of the population living in urban areas. The forest resources are experiencing severe stress with increasing pressure from the burgeoning population and rising impact of human commercial activities. As of 2023, 70 K trees have been planted. (Plantation Season – Winter)
-</p></div>
+            </p></div>
         </Modal.Body>
       </Modal>
       <Modal show={taranshow} onHide={TaranClose}>

@@ -57,34 +57,46 @@ function WaystoAssociate() {
     };
     const Individualsitems = [
         [
-            { quote: "Diwali", img: "limcaAward" },
-            { quote: "Christmas", img: "limcaAward" },
-            { quote: "Birthday", img: "limcaAward" },
-            { quote: "New Year", img: "limcaAward" },
-            { quote: "EID", img: "limcaAward" },
+            { quote: "Festivals", img: "limcaAward" },
+            { quote: "Special Days", img: "limcaAward" },
+            { quote: "Achievements", img: "limcaAward" },
+            { quote: "Condolences", img: "limcaAward" },
         ],
-        [
-            { quote: "Wedding / Work anniversary", img: "limcaAward" },
-            { quote: "Baby Shower", img: "limcaAward" },
-            { quote: "Achievement", img: "limcaAward" },
-            { quote: "Condolence", img: "limcaAward" },
-        ],
+        // [
+        //     { quote: "Diwali", img: "limcaAward" },
+        //     { quote: "Christmas", img: "limcaAward" },
+        //     { quote: "Birthday", img: "limcaAward" },
+        //     { quote: "New Year", img: "limcaAward" },
+        //     { quote: "EID", img: "limcaAward" },
+        // ],
+        // [
+        //     { quote: "Wedding / Work anniversary", img: "limcaAward" },
+        //     { quote: "Baby Shower", img: "limcaAward" },
+        //     { quote: "Achievement", img: "limcaAward" },
+        //     { quote: "Condolence", img: "limcaAward" },
+        // ],
         // Add more item groups as needed
     ];
     const Corporatesitems = [
         [
-            { quote: "Diwali", img: "limcaAward" },
-            { quote: "Christmas", img: "limcaAward" },
-            { quote: "Birthday", img: "limcaAward" },
-            { quote: "New Year", img: "limcaAward" },
-            { quote: "EID", img: "limcaAward" },
+            { quote: "Festivals", img: "limcaAward" },
+            { quote: "Special Days", img: "limcaAward" },
+            { quote: "Achievements", img: "limcaAward" },
+            { quote: "Condolences", img: "limcaAward" },
         ],
-        [
-            { quote: "Work anniversary", img: "limcaAward" },
-            { quote: "Retirement", img: "limcaAward" },
-            { quote: "Achievement", img: "limcaAward" },
-            { quote: "Condolence", img: "limcaAward" },
-        ],
+        // [
+        //     { quote: "Diwali", img: "limcaAward" },
+        //     { quote: "Christmas", img: "limcaAward" },
+        //     { quote: "Birthday", img: "limcaAward" },
+        //     { quote: "New Year", img: "limcaAward" },
+        //     { quote: "EID", img: "limcaAward" },
+        // ],
+        // [
+        //     { quote: "Work anniversary", img: "limcaAward" },
+        //     { quote: "Retirement", img: "limcaAward" },
+        //     { quote: "Achievement", img: "limcaAward" },
+        //     { quote: "Condolence", img: "limcaAward" },
+        // ],
         // Add more item groups as needed
     ];
 
@@ -104,9 +116,9 @@ function WaystoAssociate() {
                     </div> */}
                     <div className="pv-75">
                         <div className="feature-description">
-                            <h2 className="sub-title text-center mb-0">How To Associate</h2></div>
-                        <p className="text-center">There are two seasons for plantation </p>
-                        <div className="row justify-content-center mt-5">
+                            <h2 className="sub-title text-center mb-0">How To Associate</h2>
+                        <p className="text-center">There are two seasons for plantation </p></div>
+                        <div className="row justify-content-center">
                             <div className="col col-md-3">
                                 <div className="card plantation-card">
                                     <img src={monsoonImg} className="card-img-top" alt="..." />
@@ -150,7 +162,7 @@ function WaystoAssociate() {
                 </div>
                 <section className="">
                     <div className="container">
-                        <div className="pv-75">
+                        <div>
                             <ul className="nav nav-pills justify-content-center pb-75">
                                 <a className={`nav-link ${activeTab === 'individual' ? 'active' : ''}`}
                                     onClick={() => handleTabClick('individual')}>Individual</a>
@@ -282,7 +294,8 @@ function WaystoAssociate() {
 
                     <div id="plantTree" style={{ display: "block" }}>
                         <div className="bg-green"><div className="container pv-75">
-                            <h3 class="text-center my-5 sub-title">Following commemorative artworks are available to choose from</h3>
+                            {/* <h3 class="text-center my-5 sub-title">Following commemorative artworks are available to choose from</h3> */}
+                            <h3 class="text-center my-5 sub-title">Gifting and Commemoration can include following events</h3>
                             <div className="certificate-slider">
                                 <Carousel indicators={true}>
                                     {Individualsitems.map((item, index) => (
@@ -352,7 +365,8 @@ function WaystoAssociate() {
                 <section style={{ display: "none" }} id="associate">
                     <div className="bg-green">
                         <div className="container pv-75">
-                            <h3 class="text-center my-5 sub-title">Following commemorative artworks are available to choose from</h3>
+                            {/* <h3 class="text-center my-5 sub-title">Following commemorative artworks are available to choose from</h3> */}
+                            <h3 class="text-center my-5 sub-title">Gifting and Commemoration can include following events</h3>
                             <div className="certificate-slider">
                                 <Carousel indicators={true}>
                                     {Corporatesitems.map((item, index) => (
@@ -391,7 +405,7 @@ function WaystoAssociate() {
                                     <br />
                                 </p>
                                 <p>
-                                    <address> For CSR Queries Contact Sunny Gangar <a href="tel:93224 56789"><i className="bi bi-envelope-fill"></i> csr@hariyali.org.in</a> | <a href="tel:93224 56789">
+             <address>  CSR Queries contact Sunny Gangar <a href="tel:93224 56789"><i className="bi bi-envelope-fill"></i> csr@hariyali.org.in</a> | <a href="tel:93224 56789">
                                         <i className="bi bi-phone"></i> 93224 56789</a> | <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a></address>
                                 </p></div>
                                 

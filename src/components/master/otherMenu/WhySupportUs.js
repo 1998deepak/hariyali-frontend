@@ -71,27 +71,26 @@ function WhySupportUs() {
   const items = [
     [
       {
-        quote: "FICCI CSR Awards – In Skill Development & Livelihood Category",
+        quote: "FICCI CSR Awards – In Skill Development & Livelihood Category to be replaced with FICCI CSR Awards – In Skill Development & Livelihood Category,2021",
         image: limcaAward,
       },
       {
         quote:
-          "Food Vision 2050 Prize by Rockefeller Foundation to Naandi Foundation",
+          " Food Vision 2050 Prize by Rockefeller Foundation to Naandi Foundation text to be replaced with – Food System Vision Prize by Rockefeller Foundation to Naandi Foundation, 2020",
         image: csrCertificate,
       },
       {
         quote:
-          "The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category",
+          " The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category to be replaced with - The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category,2020",
         image: csrCertificate1,
       },
     ],
     [
       {
-        quote: "Runner Up under Private Sector Category 2",
+        quote: "Runner Up under Private Sector Category 2 to be replaced with – AIMA Runner- up CSR Award, 2023",
         //image :
       },
-      { quote: "Limca book of Awards - Indian Record", image: limcaAward1 },
-         { quote: "Limca book of Awards - National Record", image: limcaAward },
+         { quote: "Limca book of Awards - National Record, 2016", image: limcaAward },
     ],
     // Add more item groups as needed
   ];
@@ -175,7 +174,7 @@ function WhySupportUs() {
         </div>
       </section>
       <section className="container">
-        <div className="row justify-content-center mt-5">
+        <div className="row justify-content-center">
           <div className="col-12 col-md-5">
             <div className="card plantation-card h-100">
               <img
@@ -246,7 +245,7 @@ function WhySupportUs() {
                 <figure class="effect-duke whysuimpact-effect">
                   {" "}
                   <h4>Number of trees planted since 2007</h4>
-                  <p>22.86 Millions</p>
+                  <p>24.86 Millions</p>
                 </figure>
               </div>
               <div className="col-6 col-md-4  discover-block">
@@ -285,56 +284,8 @@ function WhySupportUs() {
                 </figure>
               </div>
             </Row></div>
-          {/* <div className="col-12 col-md-4 text-center">
-            <div className="discoverImg">
-              <h4>Number of trees planted since 2007</h4>
-              <p>22.86 Millions</p>
-            </div>
-          </div>
-          <div className="col-12 col-md-4 text-center">
-            <div className="discoverImg">
-              <h4>Overall survival rate of plant since inspection</h4>
-              <p>85% Plus</p>
-            </div>
-          </div>
-          <div className="col-12 col-md-4 text-center">
-            <div className="discoverImg">
-              <h4>Trees sequestered through the project Since inspection </h4>
-              <p>400,000+ tonnes</p>
-            </div>
-          </div>
-          <div className="col-12 col-md-4 text-center">
-            <div className="discoverImg">
-              <h4>
-                Improment in soil quality in terms of <p>carbon, water </p>
-                holding capacity & <p> nutrients</p>
-              </h4>
-            </div>
-          </div>
-          <div className="col-12 col-md-4 text-center">
-            <div className="discoverImg">
-              <h4>
-                Significant positive change in <p>bio-diversity</p>
-              </h4>
-            </div>
-          </div> */}
         </div>
       </div>
-      {/* <div className="container">
-        <p className="text-center">
-
-          Project Hariyali on large scale{" "}
-          <span className="colorgreen">
-            tree planting, natural resource management, Global regenerative
-            organic farming
-          </span>{" "}
-          protocols to enrich agricultural eco-system and build functional
-          forests as means to increase communities' income for an overall
-          wellbeing of the community and mother earth.
-          <br />
-          <br />
-        </p>
-      </div> */}
       <div className="container">
 
         <div className="feature-description">
@@ -421,40 +372,12 @@ function WhySupportUs() {
       <section className="bg-green">
         <div className="container">
           <h3 className="text-center sub-title">Testimonials</h3>
-
-          <div className="slide-content-whysupport support-content my-5">
-            <div className="row">
-              <div className="col-12 col-md-6 text-center">
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/h5JfhFJG3vQ"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
-              <div className="col-12 col-md-6 text-center">
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/YnhmRcQ4q6M"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            </div>
-          </div>
-          {/* <Slideshow /> */}
-          <div className="testimonial-slider">
+<div className="testimonial-slider">
             <Zoom {...zoomOutProperties}>
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="slide-content-whysupport support-content my-5"
+                  className="slide-content-whysupport support-content"
                 >
                   <div className="row">
                     <div className="offset-md-1 col-12 col-md-3">
@@ -478,7 +401,35 @@ function WhySupportUs() {
 
 
             </Zoom>
-          </div></div>
+          </div>
+          <div className="slide-content-whysupport support-content">
+            <div className="row  d-flex justify-content-center">
+              <div className="col-12 col-md-6 text-center mb-5">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/h5JfhFJG3vQ"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              {/* <div className="col-12 col-md-6 text-center">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/YnhmRcQ4q6M"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div> */}
+            </div>
+          </div>
+          {/* <Slideshow /> */}
+          </div>
       </section>
 
       {/* modal popup for awards */}
