@@ -71,23 +71,23 @@ function WhySupportUs() {
   const items = [
     [
       {
-        quote: "FICCI CSR Awards – In Skill Development & Livelihood Category to be replaced with FICCI CSR Awards – In Skill Development & Livelihood Category,2021",
+        quote: "FICCI CSR Awards – In Skill Development & Livelihood Category,2021",
         image: limcaAward,
       },
       {
         quote:
-          " Food Vision 2050 Prize by Rockefeller Foundation to Naandi Foundation text to be replaced with – Food System Vision Prize by Rockefeller Foundation to Naandi Foundation, 2020",
+          "Food System Vision Prize by Rockefeller Foundation to Naandi Foundation, 2020",
         image: csrCertificate,
       },
       {
         quote:
-          " The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category to be replaced with - The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category,2020",
+          "The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category,2020",
         image: csrCertificate1,
       },
     ],
     [
       {
-        quote: "Runner Up under Private Sector Category 2 to be replaced with – AIMA Runner- up CSR Award, 2023",
+        quote: "AIMA Runner- up CSR Award, 2023",
         //image :
       },
          { quote: "Limca book of Awards - National Record, 2016", image: limcaAward },

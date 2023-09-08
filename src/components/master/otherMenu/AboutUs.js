@@ -163,8 +163,7 @@ function AboutUs() {
                 <div className="feature-description">
                   <h2 className="text-capitalize">Goal</h2>
                   <p className="">
-                    <quote><b className="colorgreen">Planting 5 million trees</b>
-                  per annum through partnerships with like-minded organizations and people, and in the process support the livelihood of marginalized farmer communities.
+                    <quote><b className="colorgreen">Planting 5 million trees</b> per annum through partnerships with like-minded organizations and people, and in the process support the livelihood of marginalized farmer communities.
                     </quote></p>
                 </div>
               </div>

@@ -308,7 +308,7 @@ const TermsConditionsPopup = ({ showConditons, handleCloseConditions }) => {
             MB Marg, <br />
             near Regal Cinema,<br />
             Apollo Bunder, Colaba, <br />
-            Mumbai, Maharashtra 400005 <br />
+            Mumbai, Maharashtra 400001 <br />
             support@hariyali.org.in
           </p>
           <p>10. Changes to the Privacy Policy</p>

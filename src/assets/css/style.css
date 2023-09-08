@@ -199,11 +199,11 @@ p {
 .pb50 {
   padding-bottom: 50px;
 }
-
+.mtop-5{margin-top: 3rem!important;}
 .mb30 {
   margin-bottom: 30px;
 }
-
+.pd-le-r-15{padding-left: 15px; padding-right: 15px;}
 
 .abc {
   display: block;
@@ -3375,7 +3375,7 @@ figure.effect-layla:hover img {
 }
 
 .awards-slider .slide-content2 {
-  padding: 0 1.5rem;
+  padding:0 0.5rem;
 }
 
 .support-content p {
@@ -3784,8 +3784,8 @@ address a:hover {
   background-color: #f6f7f9;
   border-radius: 10px;
   padding: 2rem 2.5rem;
-  min-height: 169px;
-  height: 220px;
+  min-height: 150px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3818,7 +3818,7 @@ address a:hover {
 }
 
 .award-wrapper h4 {
-  font-size: 1.125rem;
+  font-size: 1.20rem;
   font-weight: 600;
   color: #3f6341;
 }
@@ -3930,7 +3930,9 @@ iframe {
 .bg-receipt:before {
   background: url('../img/bill.gif') no-repeat;
 }
-
+.bg-plantationreport:before {
+  background: url('../img/PlantationReports.gif') no-repeat;
+}
 .bg-report:before {
   background: url('../img/report.gif') no-repeat;
 }
@@ -3938,6 +3940,7 @@ iframe {
 .bg-follow:before {
   background: url('../img/follow-us.gif') no-repeat;
 }
+.ourpartner{ box-shadow:  0 0 7px 0 #888;}
 .quantitative-card .discover-block{height: 200px; margin-bottom: 25px;}
 .quantitative-card .discover-block:hover{height: 200px;}
 .steps-nav {

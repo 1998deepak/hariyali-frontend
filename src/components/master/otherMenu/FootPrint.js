@@ -109,7 +109,7 @@ function FootPrint() {
         </div>   </div>
       <Modal show={arakushow} onHide={ArakuClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Araku</Modal.Title>
+          <Modal.Title>Araku Valley</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div class="program-details" closeButton>

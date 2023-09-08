@@ -35,10 +35,15 @@ import freeshImage4 from "../../../assets/img/one-man-holding-freshly-planted-se
 import ind1 from "../../../assets/img/ind1.gif";
 import ind2 from "../../../assets/img/ind2.gif";
 import ind3 from "../../../assets/img/ind3.gif";
+// partner
+import bristlecone from "../../../assets/img/partner/bristlecone.jpg";
+import mahindrafinance from "../../../assets/img/partner/mahindrafinance.jpg";
+import mahindrarice from "../../../assets/img/partner/mahindrarice.jpg";
 
-
-import limcaAward from "../../../assets/img/Limca Records 2015_page-0001.jpg";
-import limcaAward1 from "../../../assets/img/Limca Records 2020_pages-to-jpg-0001.jpg";
+import Festivals from "../../../assets/img/certificate/Festivals.jpg";
+import specialday from "../../../assets/img/certificate/specialday.jpg";
+import Achievements from "../../../assets/img/certificate/Achievements.jpg";
+import MemorialTribute from "../../../assets/img/certificate/MemorialTribute.jpg";
 
 function WaystoAssociate() {
 
@@ -57,10 +62,10 @@ function WaystoAssociate() {
     };
     const Individualsitems = [
         [
-            { quote: "Festivals", img: "limcaAward" },
-            { quote: "Special Days", img: "limcaAward" },
-            { quote: "Achievements", img: "limcaAward" },
-            { quote: "Condolences", img: "limcaAward" },
+            { img: Festivals, quote: "Festivals", },
+            { img: specialday, quote: "specialday", },
+            { quote: "Achievements", img: Achievements},
+            { quote: "Memorial Tribute", img: MemorialTribute },
         ],
         // [
         //     { quote: "Diwali", img: "limcaAward" },
@@ -79,10 +84,10 @@ function WaystoAssociate() {
     ];
     const Corporatesitems = [
         [
-            { quote: "Festivals", img: "limcaAward" },
-            { quote: "Special Days", img: "limcaAward" },
-            { quote: "Achievements", img: "limcaAward" },
-            { quote: "Condolences", img: "limcaAward" },
+            { img: Festivals, quote: "Festivals", },
+            { img: specialday, quote: "specialday", },
+            { quote: "Achievements", img: Achievements },
+            { quote: "Memorial Tribute", img: MemorialTribute},
         ],
         // [
         //     { quote: "Diwali", img: "limcaAward" },
@@ -144,18 +149,17 @@ function WaystoAssociate() {
                             <p className="text-center"> You can chose to plant in any of the above seasons or both @ ₹ 450/-* per plant.</p>
                             <p className="text-center">The sapling takes 3 years of nurturing and monitoring to be self – dependent. We provide support to the plant for these 3 years and in case the plant doesn’t survive, we replace it with a new sapling.
                             </p>
-                            <br />
                             <i className="text-center">* Each donation supports maintenance of plant and hand-holding of the farmers for additonal two years .</i>
                         </div>
                     </div>
                 </div>
-                <div className="container pv-75">
-                    <h3 className="text-center my-5 sub-title">On successful donation, every donor<br /> will receive a donation receipt and plantation reports</h3>
+                <div className="container">
+                    <h3 className="text-center mtop-5 sub-title">On successful donation, every donor<br /> will receive a donation receipt and plantation reports</h3>
                     <ul className="row donor-benefits">
                         <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-receipt"></span>
                             Donor receipts <br /><small>(Tax exemption under 80G)</small></li>
                         <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-certificate"></span>Certificate</li>
-                        <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-report"></span> Plantation Reports</li>
+                        <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-plantationreport"></span> Plantation Reports</li>
                         <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-report"></span>Follow on reports for year 1</li>
                         <li className="col-12 col-sm-6 col-md-3 col-lg-2"><span className="bg-report"></span>Follow on reports for year 2</li>
                     </ul>
@@ -310,7 +314,8 @@ function WaystoAssociate() {
                                                                 className="slide-content2"
                                                             >
                                                                 <div className="certificate-wrapper">
-                                                                    <img src={subItem.img} alt="" />
+                                                                    <img src={subItem.img} alt=""  />
+                                                                   
                                                                     <h4>{subItem.quote}</h4>
                                                                 </div>
                                                             </div>
@@ -395,7 +400,7 @@ function WaystoAssociate() {
                             </div></div>
                     </div>
                     <div className="project-bg ">
-                        <Container className="ptb50">
+                        <Container>
                             <div className="feature-description feature-description-other">
                                 <h2 className="text-capitalize">
                                     B. Corporate Social Responsibility
@@ -404,9 +409,32 @@ function WaystoAssociate() {
                                     Become a Corporate Partner for Project Hariyali and contribute towards making our nation Carbon Neutral by 2070. Project Hariyali aligns with Schedule VII of the Companies Act 2013 (India) under (iv) ensuring environmental sustainability, ecological balance, protection of flora and fauna, animal welfare, agroforestry, conservation of natural resources and maintaining quality of soil, air and water . Our implementation expertise, ability to map project milestones and outcomes, as well as a comprehensive monitoring and reporting framework makes Project Hariyali a preferred CSR partner.
                                     <br />
                                 </p>
+                                {/* <h2 className="sub-title  text-center">
+                                        Alignment with United Nations Sustainable Development Goals
+                                    </h2> */}
+                                <p >Project Hariyali is aligned with United Nations Sustainable Goals</p>
+
+                                <div className="col-3 pd-le-r-15"> <Row className="justify-content-between ">
+                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                        <img src={sdg13} width="100%" />
+                                    </div>
+                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                        <img src={sdg15} width="100%" />
+                                    </div>
+                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                        <img src={sdg8} width="100%" />
+                                    </div>
+                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                        <img src={sdg14} width="100%" />
+                                    </div>
+                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                        <img src={sdg17} width="100%" />
+                                    </div>
+                                </Row></div>
+                                <br />
                                 <p>
-                                    <address>  CSR Queries contact Sunny Gangar <a href="tel:93224 56789"><i className="bi bi-envelope-fill"></i> csr@hariyali.org.in</a> | <a href="tel:93224 56789">
-                                        <i className="bi bi-phone"></i> 93224 56789</a> | <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a></address>
+                                    <address>  CSR Queries contact Sunny Gangar <a href="mail:csr@hariyali.org.in"><i className="bi bi-envelope-fill"></i> csr@hariyali.org.in</a> | <a href="tel:93224 56789 ">
+                                        <i className="bi bi-phone"></i> 93224 56789 </a> | <a href="tel: 022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a></address>
                                 </p></div>
 
 
@@ -414,35 +442,36 @@ function WaystoAssociate() {
           <img src={sdglinks} width="50%"  />
           </div> */}
                         </Container>
-                        <div className="bg-green">
-                            <div className="container pv-75">
-                                <div className="feature-description ">
-                                    <h2 className="sub-title  text-center">
-                                        Alignment with United Nations Sustainable Development Goals
-                                    </h2>
-                                    <div class="grid"><div className="col-8 m-auto"> <Row className="justify-content-between ">
-                                        <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-                                            <figure class="effect-duke boxshaow-0"><img src={sdg13} width="100%" />
-                                            </figure></div>
-                                        <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-                                            <figure class="effect-duke boxshaow-0"><img src={sdg15} width="100%" /></figure>
-                                        </div>
-                                        <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-                                            <figure class="effect-duke boxshaow-0"><img src={sdg8} width="100%" /></figure>
-                                        </div>
-                                        <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-                                            <figure class="effect-duke boxshaow-0"><img src={sdg14} width="100%" /></figure>
-                                        </div>
-                                        <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-                                            <figure class="effect-duke boxshaow-0"><img src={sdg17} width="100%" /></figure>
-                                        </div>
-                                    </Row></div></div></div>
-                            </div></div>
+
                     </div>
                 </section>
-                {/* <section className="bg-green">
-                    
-                </section> */}
+                <div className="project-bg ">
+                    <Container >
+                        <div className=" feature-description-other">
+                        <h3 class="text-center sub-title"> Our Partner</h3>
+                            <div className="col-9  m-auto"> 
+                            <Row className="justify-content-between ourpartner">
+                                <div className="col-6 col-md-4 mb-lg-0 mb-3 marginall-pad-0 text-center">
+                                    <img src={bristlecone} width="80%" />
+                                </div>
+                                <div className="col-6 col-md-4 mb-lg-0 mb-3 marginall-pad-0 text-center" >
+                                    <img src={mahindrafinance} width="80%" />
+                                </div>
+                                <div className="col-6 col-md-4 mb-lg-0 mb-3 marginall-pad-0 text-center">
+                                    <img src={mahindrarice} width="80%" />
+                                </div>
+
+                            </Row></div>
+                            <br />
+                        </div>
+
+
+                        {/* <div>
+          <img src={sdglinks} width="50%"  />
+          </div> */}
+                    </Container>
+
+                </div>
 
             </div>
             {/* body */}
