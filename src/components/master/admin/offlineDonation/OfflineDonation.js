@@ -716,9 +716,6 @@ function OfflineDonation() {
       console.log(response?.data);
       // console.log(formData.formData.user.address);
 
-
-
-
       let addr = [...initialAddress];
       if (hasValues(response.data.address[0])) {
         addr[0] = response.data.address[0];
@@ -747,10 +744,13 @@ function OfflineDonation() {
         // navigate("/ModelView");
       }, 2000);
       setLoading(false);
-    } else if (response?.statusCode === 409) {
+    } 
+    else if (response?.statusCode === 409) {
       toast.error(response?.message);
       setLoading(false);
     }
+    
+
     // Call your function here or perform any desired actions
   };
 
@@ -764,6 +764,7 @@ function OfflineDonation() {
     console.log("API Response:", response);
 
     if (response?.status === "Success") {
+      console.log(response.status);
       toast.success(response?.message);
       const { data } = response;
       const { address = [], ...userDataWithoutAddress } = data;
@@ -793,9 +794,10 @@ function OfflineDonation() {
   // get Detail by donar ID
   const handleDonarId = async (donorId) => {
     setLoading(true);
+
     let response = await DonationService.getDetailsByDonorId(donorId);
     console.log("API Response:", response);
-
+    // console.log(response.status);
     if (response?.status === "Success") {
       toast.success(response?.message);
       const { data } = response;
@@ -813,11 +815,14 @@ function OfflineDonation() {
 
       setAddress(address);
       setLoading(false);
-    } else if (response?.statusCode === 409) {
+    } 
+    else if (response?.statusCode === 409) {
       toast.error(response?.message);
       setLoading(false);
-    }else{
+    }
+    else{
       console.log(response);
+      toast.error("Invalid Donor Id ! Please Try Again");
       toast.error(response?.message);
       setLoading(false);
     }
@@ -964,6 +969,7 @@ function OfflineDonation() {
                       <form className="form-div contact-form-wrap">
                         <div className="actionheadingdiv">
                           Select Your Donation Plan
+       
                         </div>
                         <div className="mt20">
                           <table>

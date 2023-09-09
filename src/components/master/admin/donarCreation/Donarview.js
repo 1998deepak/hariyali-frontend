@@ -203,7 +203,7 @@ function DonarView() {
                 keyField="donationId"
                 data={data}
                 columns={columns}
-                pagination={paginationFactory()}
+                // pagination={paginationFactory()}
               />
             </div>
           </div>
