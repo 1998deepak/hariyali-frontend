@@ -206,7 +206,7 @@ function HomePage() {
             <div className="tree-features">
               {/* <i className="icon-tree"></i> */}
               <h4>Trees planted so far</h4>
-              <p>248,00,000</p>
+              <p>2,48,61,288</p>
             </div>
           </div>
           <div className="col-12 col-md-4 text-center">
