@@ -1369,6 +1369,11 @@ textarea.form-control {
 }
 
 /* whatwedo */
+.plantdiv{border-radius: 10px;height: 232px; text-align: center;margin:40px 10px 38px 10px; background-color: #ddf0de;
+  width: 225px; padding: 15px; background-image: url(../img/plantName/plant-bg.jpg); background-repeat: no-repeat;background-position:top}
+.plantdiv:hover{ box-shadow: 0 0 3px 0 #000; cursor: pointer;}
+.plantimg{ width: 180px; margin-top: -35px;}
+.plant-text{font-size: 1.2rem; margin-top: 30px; color: #fff;}
 .vertical-timeline-element-content p {
   font-size: 16px !important;
   line-height: 20px !important;
@@ -4127,9 +4132,6 @@ iframe {
   float: right; */
   color: #fff;
 }
-
-
-
 
 .testimonial-slider .react-slideshow-fadezoom-wrapper div[data-index="0"] p {
   font-weight: 300 !important;
