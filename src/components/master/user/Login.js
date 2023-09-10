@@ -20,10 +20,11 @@ function Login() {
   const [redirectFlag, setRedirectFlag] = useState(false);
   const [verified, setVerified] = useState(false);
   const [errors, setErrors] = useState({
-    userName: "",
+    username: "",
     password: "",
     email: "",
     captcha: "",
+    donarID:"",
   });
   const navigate = useNavigate();
 
@@ -118,8 +119,14 @@ function Login() {
   };
 
   const [donarID, setDonarID] = useState("");
+
   const sendEmail = async (e) => {
     e.preventDefault();
+    if (!donarID) {
+      // If donorID is empty, set an error message
+      setErrors({ ...errors, donarID: "Please enter Donor Id" }); 
+      return;
+    }
     const formData = {
       formData: {
         donarID: donarID,
@@ -135,8 +142,10 @@ function Login() {
       setLoading(false)
       navigate("/OtpId");
     } else {
-      toast.error(response?.message);
+      toast.error("Invalid Donor Id ! Please Try Again");
       setLoading(false)
+      setDonarID('');
+    
     }
     //  }
   };
@@ -206,6 +215,9 @@ function Login() {
                   value={formData.username}
                   onChange={(e) => handleValueChange(e)}
                 />
+                  {errors.username !== "" && (
+        <div className="error-message red-text">{errors.username}</div>
+      )}
              </div>
              <div className="form-group mb-3">  
                 <input
@@ -217,12 +229,16 @@ function Login() {
                   onChange={(e) => handleValueChange(e)}
                   ref={inputRef}
                 />
+
                 <ReactPasswordToggleIcon
                   className="logineye"
                   inputRef={inputRef}
                   hideIcon={hideIcon}
                   showIcon={showIcon}
                 />
+                 {errors.password !== "" && (
+        <div className="error-message red-text">{errors.password}</div>
+      )}
               </div>   
                 
               <div className="row justify-content-between mb-3">
@@ -296,6 +312,9 @@ function Login() {
                   value={donarID}
                   onChange={(e) => setDonarID(e.target.value)}
                 />
+                  {errors.donarID !== "" && (
+        <div className="error-message red-text">{errors.donarID}</div>
+      )}
               <div className="text-center">
                 <button
                   className="btn mt20 mr10 webform-button--submit"
