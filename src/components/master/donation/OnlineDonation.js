@@ -848,7 +848,6 @@ function OnlineDonation() {
   };
 
   const addgiftpaymenticon = () => {
-    console.log("Hiiiiiii");
     if (document.getElementById("addgiftpaymentDiv")) {
       if (
         document.getElementById("addgiftpaymentDiv").style.display === "none"
@@ -895,6 +894,7 @@ function OnlineDonation() {
   const getUserInfo = async (emailId, type) => {
     setLoading(true);
     let response = await DonationService.getDetailsByEmailId(emailId);
+    console.log(response);
     if (response?.status === "Success") {
       toast.success(response?.message);
       let addr = [...initialAddress];
@@ -922,8 +922,10 @@ function OnlineDonation() {
         setValidGiftUser(true);
       }
       setLoading(false);
-    } else if (response?.statusCode === 409) {
+    } else if (response?.statusCode === 409 || response?.status == 'INTERNAL_SERVER_ERROR') {
       toast.error(response?.message);
+      setIsDivOpen(false);
+      setIsDivOpenGift(false);
       setLoading(false);
     } else {
       if (type === "self") {

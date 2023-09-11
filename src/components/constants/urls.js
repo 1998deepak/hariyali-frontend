@@ -38,6 +38,8 @@ export const URLS = {
 
     //receipts
     GETALLRECEIPTSBYUSER:"/getAllReceiptByUser",
-    DOWNLOADRECEIPT:"/receipt/download/"
+    DOWNLOADRECEIPT:"/receipt/download/",
+    GET_ALL_ACTIVE_BANK_ACCOUNT:"/findAllActiveAccount",
+    GET_USER_DONATIONS:"/getUserDonations"
 
 };
