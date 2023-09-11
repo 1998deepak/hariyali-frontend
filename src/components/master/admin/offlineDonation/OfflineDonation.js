@@ -175,6 +175,7 @@ function OfflineDonation() {
 
   const [loading, setLoading] = useState(false);
 
+  const [accountList, setAccountList] = useState([]);
 
   function hasValues(obj) {
     for (let key in obj) {
@@ -467,6 +468,7 @@ function OfflineDonation() {
   useEffect(() => {
     getAllPackages();
     getDonarIdList();
+    getAllActiveBankAccounts();
   }, []);
   const getAllPackages = async () => {
     setLoading(true);
@@ -481,6 +483,17 @@ function OfflineDonation() {
       
       setPackageData(data);
       calculateOverallTotal(data)
+      setLoading(false);
+    } else {
+      toast.error(response?.message);
+      setLoading(false);
+    }
+  };
+  const getAllActiveBankAccounts = async () => {
+    setLoading(true);
+    const response = await DonationService.getAllActiveAccount();
+    if (response?.status === SUCCESS) {
+      setAccountList(response.data);
       setLoading(false);
     } else {
       toast.error(response?.message);
@@ -2665,8 +2678,11 @@ function OfflineDonation() {
                                     }
                                   >
                                     <option disabled selected value="">Select</option>
+                                    <option value="Bank_Transfer">Bank Transfer</option>
+                                    <option value="Credit_Card">Credit Card</option>
                                     <option value="Cheque">Cheque</option>
-                                    <option value="Cash">Cash</option>
+                                    <option value="Demand_Draft">Demand Draft</option>
+                                    <option value="Online">Online</option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (error.field === 'donations[0].paymentInfo[0].paymentMode') {
@@ -2824,9 +2840,12 @@ function OfflineDonation() {
                                         handlePaymentInfoChange(event, 0, 1)
                                       }
                                     >
-                                      <option selected>Select</option>
-                                      <option value="Cheque">Cheque</option>
-                                      <option value="Cash">Cash</option>
+                                    <option disabled selected value="">Select</option>
+                                    <option value="Bank_Transfer">Bank Transfer</option>
+                                    <option value="Credit_Card">Credit Card</option>
+                                    <option value="Cheque">Cheque</option>
+                                    <option value="Demand_Draft">Demand Draft</option>
+                                    <option value="Online">Online</option>
                                     </select>
                                   </div>
                                 </div>
