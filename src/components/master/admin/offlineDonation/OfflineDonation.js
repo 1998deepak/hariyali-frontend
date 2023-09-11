@@ -818,6 +818,7 @@ function OfflineDonation() {
       setLoading(false);
     }else{
       console.log(response);
+      toast.error("Invalid Donor Id ! Please Try Again");
       toast.error(response?.message);
       setLoading(false);
     }
@@ -1459,7 +1460,7 @@ function OfflineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">Country</div>
+                                  <div className="col-4 ">Country <span className="red-text">*</span></div>
                                   <div className="col-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -1476,7 +1477,7 @@ function OfflineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">State</div>
+                                  <div className="col-4 ">State<span className="red-text">*</span></div>
                                   <div className="col-8 p0">
                                     <select
                                       className=" form-control-inside form-select"
@@ -2402,7 +2403,7 @@ function OfflineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">Mobile No.</div>
+                                  <div className="col-4 ">Mobile No.<span className="red-text">*</span></div>
                                   <div className="col-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -2453,6 +2454,7 @@ function OfflineDonation() {
                                   <div className="col-4 ">
                                     {" "}
                                     Street 1
+                                    <span className="red-text">*</span>
                                   </div>
                                   <div className="col-8 p0">
                                     <input
@@ -2526,7 +2528,7 @@ function OfflineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">Country</div>
+                                  <div className="col-4 ">Country <span className="red-text"> *</span></div>
                                   <div className="col-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -2552,7 +2554,7 @@ function OfflineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">State</div>
+                                  <div className="col-4 ">State<span className="red-text">*</span></div>
                                   <div className="col-8 p0">
                                     <select
                                       className=" form-control-inside form-select"
@@ -3503,7 +3505,7 @@ function OfflineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">State</div>
+                                  <div className="col-4 ">State <span className="red-text">*</span></div>
                                   <div className="col-8 p0">
                                     <select
                                       className=" form-control-inside form-select"
@@ -4427,7 +4429,7 @@ function OfflineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">Mobile No.</div>
+                                  <div className="col-4 ">Mobile No.<span className="red-text">*</span></div>
                                   <div className="col-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -4552,7 +4554,7 @@ function OfflineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">Country</div>
+                                  <div className="col-4 ">Country<span className="red-text">*</span></div>
                                   <div className="col-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -4578,7 +4580,7 @@ function OfflineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">State</div>
+                                  <div className="col-4 ">State<span className="red-text">*</span></div>
                                   <div className="col-8 p0">
                                     <select
                                       className=" form-control-inside form-select"
