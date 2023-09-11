@@ -1369,6 +1369,7 @@ textarea.form-control {
 }
 
 /* whatwedo */
+.approchimg img{width: 100%;}
 .plantdiv{border-radius: 10px;height: 232px; text-align: center;margin:40px 10px 38px 10px; background-color: #ddf0de;
   width: 225px; padding: 15px; background-image: url(../img/plantName/plant-bg.jpg); background-repeat: no-repeat;background-position:top}
 .plantdiv:hover{ box-shadow: 0 0 3px 0 #000; cursor: pointer;}

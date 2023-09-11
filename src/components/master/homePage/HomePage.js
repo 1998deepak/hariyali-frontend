@@ -61,7 +61,7 @@ import { BsBoxArrowUpRight } from "react-icons/bs";
 // import improving from "../../../assets/img/hariyali-img-4.jpg";
 import gallary2 from "../../../assets/img/gallary/gallary2.jpg";
 import gallary3 from "../../../assets/img/gallary/gallary3.jpg";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // animation
 import { AnimationOnScroll } from "react-animation-on-scroll";
 //
@@ -93,7 +93,7 @@ const slides = [
   {
     image: image2,
     title: 'When you cut a tree you take a life and when you plant a tree you plant HOPE',
-    description: 'We are planting millions of trees across India since 2007',
+    description: 'We have planted more than 24 million trees since 2007',
   },
   {
     image: image1,
@@ -102,20 +102,20 @@ const slides = [
   },
   {
     image: image3,
-    title: 'A hectare of tropical forest absorbs 50-100 tonnes of CO2 per annum. Come sow a better future',
+    title: 'A hectare of tropical forest absorbs 50-100 tonnes of CO2 per annum. Come plant a better future',
     description: 'Tarn Taran, Punjab',
   },
   {
     image: image4,
-    title: 'Take your first step towards a green future',
+    title: 'Take your first step towards a green future for all',
     description: 'Shravasti, Uttar Pradesh',
   },
   {
     image: image5,
-    title: 'A farmer does not only grow crops but creates a healthy environment',
+    title: 'A farmer does not only grow crops but also creates a healthy environment',
     description: 'Wardha, Maharashtra',
   },
-  
+
   // Add more slides here
 ];
 
@@ -158,23 +158,23 @@ const Slideshow = () => {
       <Zoom {...zoomOutProperties}>
         {slides.map((each, index) => (
           <>
-            <img key={index} style={{ width: "100%", height:"650px" }} src={each.image} />
+            <img key={index} style={{ width: "100%", height: "650px" }} src={each.image} />
             <div className="slide-content">
               <h2>{each.title}</h2>
 
               <div className="donate-btn-group">
                 <div className="d-flex flex-wrap justify-content-start">
-                  <Link className="btn banner-btn"  to={`/OnlineDonation`}>
+                  <Link className="btn banner-btn" to={`/OnlineDonation`}>
                     Plant A tree <img src={planttreeImg} />
                   </Link>
-                  <Link className="btn banner-btn"  to={`/OnlineDonation`}>
+                  <Link className="btn banner-btn" to={`/OnlineDonation`}>
                     Gift a Tree  <img src={gifttreeImg} />
                   </Link>
                 </div>
-              </div>              
+              </div>
             </div>
             <div className="slide-location">
-                <p><i className="bi-bi bi-geo-alt"></i>{each.description}</p>
+              <p><i className="bi-bi bi-geo-alt"></i>{each.description}</p>
             </div>
           </>
         ))}
@@ -189,32 +189,6 @@ function HomePage() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
-  // const goToLogin = () => {
-  //   navigate("/Login");
-  // };
-  // const goToDonate = () => {
-  //   navigate("/Donate");
-  // };
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   window.addEventListener('error', e => {
-  //     if (e.message === 'ResizeObserver loop limit exceeded') {
-  //       const resizeObserverErrDiv = document.getElementById(
-  //         'webpack-dev-server-client-overlay-div'
-  //       );
-  //       const resizeObserverErr = document.getElementById(
-  //         'webpack-dev-server-client-overlay'
-  //       );
-  //       if (resizeObserverErr) {
-  //         resizeObserverErr.setAttribute('style', 'display: none');
-  //       }
-  //       if (resizeObserverErrDiv) {
-  //         resizeObserverErrDiv.setAttribute('style', 'display: none');
-  //       }
-  //     }
-  //   });
-  // }, []);
   return (
     <>
       {/* body */}
@@ -227,12 +201,12 @@ function HomePage() {
 
       <div className="container pv-75">
 
-        <div className="row mb30 impact-wrapper">
+        <div className="row mb10 impact-wrapper">
           <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
               {/* <i className="icon-tree"></i> */}
               <h4>Trees planted so far</h4>
-              <p>228,61,288</p>
+              <p>2,48,61,288</p>
             </div>
           </div>
           <div className="col-12 col-md-4 text-center">
@@ -252,30 +226,33 @@ function HomePage() {
         </div>
 
       </div>
+      <section className="bg-green">
+        <div className="container pv-75">
 
-      <div className="container pv-75">
+          <div className="row">
 
-        <div className="row">
-
-          <div className="col-12 col-md-6">
-            <div className="program-details">
-              <h3 className="mb-3">Who Are We</h3>
-              <p>Project Hariyali is a joint initiative by Mahindra Foundation and Naandi Foundation. One million trees have been planted 
-                each year since 2007 across India. The project is part of nature-based solution that focuses on natural resource management and global organic 
-                farming protocols to improve the eco-system. Going forward, the project aims to plant 5 million trees per annum.</p>
-              <div className="pt-5">
-                <a href="/AboutUs" className="btn btn-secondary">Know More</a>
-                <Link className="btn btn-primary"  to={`/OnlineDonation`}>Donate</Link>
+            <div className="col-12 col-md-6">
+              <div className="program-details">
+                <h3 className="mb-3">Who Are We</h3>
+                <p>Project Hariyali is a joint initiative by Mahindra Foundation and Naandi Foundation. One million trees have been planted
+                  each year since 2007 across India. The project is part of nature-based solution that focuses on natural resource management and global organic
+                  farming protocols to improve the eco-system. Going forward, the project aims to plant 5 million trees per annum.</p>
+                <div className="pt-5">
+                  <a href="/AboutUs" className="btn btn-secondary">Know More</a>
+                  <Link className="btn btn-primary" to={`/OnlineDonation`}>Donate</Link>
+                </div>
+              </div>
+            </div>
+            <div className="col-12 col-md-6">
+              <div className="img-responsive feature-image">
+                <img src={program1} alt="planting" className="imgwidth100" />
               </div>
             </div>
           </div>
-          <div className="col-12 col-md-6">
-            <div className="img-responsive feature-image">
-              <img src={program1} alt="planting" className="imgwidth100" />
-            </div>
-          </div>
-        </div>
 
+
+        </div>
+      </section>  <div className="container pv-75">
         <div className="row pv-75">
           <div className="col-12 col-md-6">
             <div className="img-responsive feature-image">
@@ -285,34 +262,32 @@ function HomePage() {
           <div className="col-12 col-md-6">
             <div className="program-details">
               <h3 className="mb-3">What We Do</h3>
-              <p>Project Hariyali aims to increase the green cover, arrest the rising ecological imbalance, enhance biodiversity and in the process support the livelihood of marginalized farmers.</p>
+              <p>Project Hariyali aims to increase green cover, arrest the rising ecological imbalance, enhance biodiversity, restore the functional forest, and in the process support the livelihood of marginalized farmers.</p>
               <div className="pt-5">
                 <a href="/WhatWeDo" className="btn btn-secondary">Know More</a>
-                <Link className="btn btn-primary"  to={`/OnlineDonation`}>Donate</Link>
+                <Link className="btn btn-primary" to={`/OnlineDonation`}>Donate</Link>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <section className="bg-green">
+        </div></div> <section className="bg-green">
         <div className="container pv-75">
           <div className="row">
             <div className="col-12 col-md-6">
-              <div className="program-details">
+              <div className="program-details feature-description-other">
                 <h3 className="mb-3">Why Support Us</h3>
                 <p>
-                India is the 7th most vulnerable country with respect to climate extremes. The total forest cover needs to increase for ecological stability.
+                  India is the 7th most vulnerable country with respect to climate extremes <em>(CRI, 2021)</em>. The total forest cover needs to increase for ecological stability.
                 </p>
                 <p>
-                India is promoting individual responsibility toward climate action through Mission LiFE "Lifestyle for Environment". 
-                Hariyali Project has increased the green cover and is in alignment with LiFE "Lifestyle for Environment".
+                  India is promoting individual responsibility toward climate action through Mission LiFE "Lifestyle for Environment".
+                  Hariyali Project has increased the green cover and is in alignment with LiFE "Lifestyle for Environment".
                 </p>
                 <p>Hariyali Project has been conferred with multiple awards by national and international bodies.
                 </p>
 
                 <div className="pt-5">
                   <a href="/WhySupportUs" className="btn btn-secondary">Read More</a>
-                  <Link className="btn btn-primary"  to={`/OnlineDonation`}>Donate</Link>
+                  <Link className="btn btn-primary" to={`/OnlineDonation`}>Donate</Link>
                 </div>
               </div>
             </div>
@@ -334,11 +309,11 @@ function HomePage() {
           <div className="col-12 col-md-6">
             <div className="program-details">
               <h3 className="mb-3">How To Associate</h3>
-              <p>There are two seasons for plantation - Monsoon and Winter. You can choose to plant in any of these seasons or both with one time investment of ₹ 450/- per plant. The sapling takes 3 years of nurturing and monitoring to be self – dependent. 
+              <p>There are two seasons for plantation - Monsoon and Winter. You can choose to plant in any of these seasons or both with one time investment of ₹ 450/- per plant. The sapling takes 3 years of nurturing and monitoring to be self – dependent.
                 We provide support to the plant for these 3 years and in case if the plant doesn't survive, we replace it with a new sapling.</p>
               <div className="pt-5">
                 <a href="/WaystoAssociate" className="btn btn-secondary">Read More</a>
-                <Link className="btn btn-primary"  to={`/OnlineDonation`}>Donate</Link>
+                <Link className="btn btn-primary" to={`/OnlineDonation`}>Donate</Link>
               </div>
             </div>
           </div>
@@ -353,7 +328,7 @@ function HomePage() {
                 <p>We are currently present in five states – Andhra Pradesh, Uttar Pradesh, Punjab, Himachal Pradesh and Maharashtra.</p>
                 <div className="pt-5">
                   <a href="/FootPrint" className="btn btn-secondary">Read More</a>
-                  <Link className="btn btn-primary"  to={`/OnlineDonation`}>Donate</Link>
+                  <Link className="btn btn-primary" to={`/OnlineDonation`}>Donate</Link>
                 </div>
               </div>
             </div>
@@ -401,27 +376,27 @@ function HomePage() {
       <div className="project-bg ">
         <Container className="ptb50">
           <h2 className="sub-title text-center mb30 ">
-          Alignment with United Nations Sustainable Development Goals
+            Alignment with United Nations Sustainable Development Goals
           </h2>
-         
+
           <div class="grid"> <div className="col-8 m-auto"><Row className="justify-content-between ">
             <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-					<figure className="effect-duke"><img src={sdg13} width="100%" />
-            </figure></div>
+              <figure className="effect-duke boxshaow-0"><img src={sdg13} width="100%" />
+              </figure></div>
             <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-            <figure className="effect-duke"><img src={sdg15} width="100%" /></figure>
+              <figure className="effect-duke boxshaow-0"><img src={sdg15} width="100%" /></figure>
             </div>
             <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-            <figure className="effect-duke"><img src={sdg8} width="100%" /></figure>
+              <figure className="effect-duke boxshaow-0"><img src={sdg8} width="100%" /></figure>
             </div>
             <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-            <figure className="effect-duke"><img src={sdg14} width="100%" /></figure>
+              <figure className="effect-duke boxshaow-0"><img src={sdg14} width="100%" /></figure>
             </div>
             <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
-            <figure className="effect-duke"><img src={sdg17} width="100%" /></figure>
+              <figure className="effect-duke boxshaow-0"><img src={sdg17} width="100%" /></figure>
             </div>
           </Row></div></div>
-          
+
           {/* <div>
           <img src={sdglinks} width="50%"  />
           </div> */}

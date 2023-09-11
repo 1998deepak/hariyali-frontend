@@ -87,7 +87,7 @@ function PolicyPayment() {
                                 </div>
                                 <p>As far as this is necessary for the purposes set out above, we will transfer your personal data to the following recipients:</p>
                                 <div className="otherpagesulli mb-2r">
-                                    <ul><li>Mahindra Foundation, Address: K. C. Mahindra Education Trust, Cecil Court, NearRegal Cinema, Mahakavi Bhushan Marg, Mumbai 400 001, India
+                                    <ul><li>Mahindra Foundation, Address: K. C. Mahindra Education Trust, Cecil Court, Near Regal Cinema, Mahakavi Bhushan Marg, Mumbai 400 001, India
                                     </li><li>IT service providers</li>
                                         <li>Public authorities (e.g. Income Tax Dept of India)</li>
                                     </ul></div>
@@ -136,7 +136,7 @@ function PolicyPayment() {
                                     <br />
 
                                     K. C. Mahindra Education Trust, <br/>
-                                    Cecil Court, NearRegal Cinema,<br/> 
+                                    Cecil Court, Near Regal Cinema,<br/> 
                                     Mahakavi Bhushan Marg, <br/>
                                     Mumbai 400 001, India<br />
                                     <span className="colorgreen"> support@mahindrafoundation.org</span>

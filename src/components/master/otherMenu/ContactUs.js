@@ -123,25 +123,25 @@ function ContactUs() {
       <div className="">
         <div className="">
         <div className="pv-75 pb-0">
-            <div className="feature-description pb-0">
+            <div className="feature-description pb-0"><div className="container">
               <h2 className="sub-title text-center mb-0">Ask Us</h2>
-            </div>
+            </div></div>
           </div>
-          <div className="pv-75">
+          <div className="">
             <div className="container">
               <div className="row">
                 <div className="col-12 col-md-4">
                   <address>
-                  <h4 className="mb-0">Mahindra Foundation</h4>
-                  <p>Cecil Court, MB Marg, NearRegal Cinema, Apollo Bandar, Colaba, Mumbai, Maharashtra 400005</p>
-                  <a href="tel:93224 56789"><i className="bi bi-phone"></i> 93224 56789</a><br/>
-                  <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a>
+                  <h4 className="mb-0 askheading">Mahindra Foundation</h4>
+                  <p className="ask-p">Cecil Court, MB Marg, Near Regal Cinema, Apollo Bandar, Colaba, Mumbai, Maharashtra 400001</p>
+                  <a href="tel:93224 56789"  className="ask-p"><i className="bi bi-phone"></i> 93224 56789</a><br/>
+                  <a href="tel:022 22021031"  className="ask-p"><i className="bi bi-telephone-fill"></i> 022 22021031</a>
                   </address>
                 </div>
                 <div className="col-12 col-md-8">
                   <div className="">
                     {" "}
-                    <h4>Send us a message</h4>
+                    <h4 className="askheading">Send us a message</h4>
                   </div>
                   <form className="contact-form-wrap">
                     <div className="">
@@ -255,12 +255,12 @@ function ContactUs() {
                     </div>
                   </form>
                 </div>
-              </div>
-              <div className="my-5">
+              </div> 
+            </div><div className="contact-description-other"> <section className="bg-green"> <div className="container ">
+              <div className="pv-75">
               <iframe width="100%" height="500px" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.180251338984!2d72.83045697599867!3d18.923414056743518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7d1daffffffff%3A0x10104990a52ce0ed!2sKc%20Mahindra%20Education%20Trust!5e0!3m2!1sen!2sin!4v1692557952647!5m2!1sen!2sin" 
-              ></iframe>
-              </div>
-            </div>
+              ></iframe></div>
+              </div></section></div>
             {/* <Row className="justify-content-between  padding30tb contact-form-wrap">
               <div className=" col-lg-2"></div>
               <div className="pt30 col-lg-8 ">

@@ -6,7 +6,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import { FaSearchLocation, FaEdit, FaCalendarAlt, FaWpforms, FaRegUserCircle, FaStar, FaTree, FaUsers, FaCogs, FaCannabis } from "react-icons/fa";
-import whatwe1 from "../../../assets/img/whatwe1.jpg";
+// import whatwe1 from "../../../assets/img/whatwe1.jpg";
 import whatwe2 from "../../../assets/img/whatwe2.jpg";
 import processImg from "../../../assets/img/process.jpg";
 import step2Img from "../../../assets/img/pr-step2.png";
@@ -43,7 +43,7 @@ import Mulberry from "../../../assets/img/plantName/Mulberry.png";
 import Coffee from "../../../assets/img/plantName/Coffee.png"; 
 // import Nectarine from "../../../assets/img/plantName/Nectarine.png"; 
 // import Nectarine from "../../../assets/img/plantName/Nectarine.png"; 
-// import Nectarine from "../../../assets/img/plantName/Nectarine.png"; 
+import Approach from "../../../assets/img/approch.png"; 
 
 function WhatWeDo() {
   const plantname = [
@@ -112,6 +112,7 @@ function WhatWeDo() {
               <h2 className="sub-title text-center">Approach</h2>
               <p className="text-center">
                 We have two seasons for plantation Monsoon and Winter. Each Year, we follow a systematic plantation process so that survival rate is high.</p>
+             <div className="col-8 m-auto approchimg"> <img src={Approach} alt="Approach"  /></div>
               <div className="row justify-content-center mt-5">
                 <div className="col-12 col-md-6">
                   <div className="card plantation-card h-100">
@@ -163,7 +164,7 @@ function WhatWeDo() {
 {/* ----------plant name */}
 <div className="bg-green"><div className="container pv-75">
                             {/* <h3 class="text-center my-5 sub-title">Following commemorative artworks are available to choose from</h3> */}
-                            <h3 class="text-center sub-title">Gifting and Commemoration can include following events</h3>
+                            <h3 class="text-center sub-title">Name of tree list</h3>
                             <div className="certificate-slider">
                                 <Carousel indicators={true}>
                                     {plantname.map((item, index) => (
