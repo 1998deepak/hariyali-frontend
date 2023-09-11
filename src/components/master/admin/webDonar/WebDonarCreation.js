@@ -111,10 +111,11 @@ function WebDonarCreation() {
 
   //Handle Approval
   const handleApproveAndReject = (row, msg) => {
+    let data = JSON.parse(JSON.stringify(row));
     setInvalidRemark(false);
     setRemark("");
-    row.approvalStatus = msg;
-    setFormData(row);
+    data.approvalStatus = msg;
+    setFormData(data);
     setShowConfirmationModal(true);
   };
 
@@ -219,7 +220,7 @@ function WebDonarCreation() {
             <div className="row">
               {totalRecords > 0 &&
                 <div className="col-12 pr0">
-                  <span className="red-text">{totalRecords} records found!</span>
+                  <span>{totalRecords} records found!</span>
                 </div>
               }
               <div className="col-12 pr0">
@@ -296,8 +297,8 @@ function WebDonarCreation() {
           <Modal.Title>Confirmation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Are you sure you want to {formData?.formData?.status === "Approved" ? "approve" : "reject"} this?</p>
-          {formData?.formData?.status == 'Rejected' &&
+          <p>Are you sure you want to {formData?.approvalStatus === "Approved" ? "approve" : "reject"} this?</p>
+          {formData?.approvalStatus == 'Rejected' &&
             <form>
               <div className="row">
                 <div className="col-12">

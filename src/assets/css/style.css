@@ -4886,3 +4886,28 @@ iframe {
 .pagination .next{
   margin-left: 10px;
 }
+
+.transaction-modal .card-icon{
+  min-height: 100px;
+  text-align: center;
+}
+
+.transaction-modal .card-icon svg{
+  font-size: 100px;
+  color: #104d21;
+}
+
+.transaction-modal .card-text{
+  padding: 30px;
+  text-align: center;
+  color: #444444;
+}
+
+
+.transaction-modal .modal-footer{
+  justify-content: center;
+}
+
+.transaction-modal .modal-dialog{
+  width: 500px !important;
+}
