@@ -92,7 +92,7 @@ For Monsoon plantation, this process starts in September of the previous financi
                   >
                     <h3 className="vertical-timeline-element-title">Planting Plan </h3>
                     {/* <h4 className="vertical-timeline-element-subtitle">Los Angeles, CA</h4> */}
-                    <p>Araku farmers and our in-house experts came together to create a suitable plan and finalise type of species, feasibility, etc.
+                    <p>Araku Valley farmers and our in-house experts came together to create a suitable plan and finalise type of species, feasibility, etc.
                     </p>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement

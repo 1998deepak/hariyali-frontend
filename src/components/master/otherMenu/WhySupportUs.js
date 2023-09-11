@@ -71,35 +71,27 @@ function WhySupportUs() {
   const items = [
     [
       {
-        quote: "FICCI CSR Awards – In Skill Development & Livelihood Category",
+        quote: "FICCI CSR Awards – In Skill Development & Livelihood Category,2021",
         image: limcaAward,
       },
       {
         quote:
-          "Food Vision 2050 Prize by Rockefeller Foundation to Naandi Foundation",
+          "Food System Vision Prize by Rockefeller Foundation to Naandi Foundation, 2020",
         image: csrCertificate,
       },
       {
         quote:
-          "The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category",
+          "The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category,2020",
         image: csrCertificate1,
       },
     ],
-    [       
+    [
       {
-        quote: "Runner Up under Private Sector Category 2",
+        quote: "AIMA Runner- up CSR Award, 2023",
         //image :
       },
-      {
-        quote:
-          "The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category",
-        image: csrCertificate1,
-      },
-      { quote: "Limca book of Awards - Indian Record", image: limcaAward1 },
+         { quote: "Limca book of Awards - National Record, 2016", image: limcaAward },
     ],
-    [      
-      { quote: "Limca book of Awards - National Record", image: limcaAward },
-    ]
     // Add more item groups as needed
   ];
 
@@ -113,17 +105,17 @@ function WhySupportUs() {
     {
       image: testimonial2,
       name: "Woman Farmer from Shravasti.",
-      quote:"I live in Purva village Shravasti dist. After joining the program, I got 91 fruit saplings of Guava, Jackfruit, Lemon etc. and was provided with training on how to plant, maintaining the distance between saplings, use of spray machine for application of bio inputs etc. I nurture, love and care for them as a mother does for her child. Under the guidance of the team, I am making Bio inputs too. From third year the trees will start bearing fruits which will be good to consume by my family and from the 5th year the produce would be enough for commercial purposes.",
+      quote: "I live in Purva village Shravasti dist. After joining the program, I got 91 fruit saplings of Guava, Jackfruit, Lemon etc. and was provided with training on how to plant, maintaining the distance between saplings, use of spray machine for application of bio inputs etc. I nurture, love and care for them as a mother does for her child. Under the guidance of the team, I am making Bio inputs too. From third year the trees will start bearing fruits which will be good to consume by my family and from the 5th year the produce would be enough for commercial purposes.",
     },
     {
       image: testimonial3,
       name: "Woman farmer from Chabeet village, Solan.",
-      quote:"I have been engaged in usual form of farming, but the yield wasn't great. After getting to know about Project Hariyali I didn't think twice to become part of it. I was given 42 fruit saplings mostly Plum and Apple varieties. I follow all the organic farming practices in letter and in spirit. This is my bit for the climate change and to make Himachal Pradesh Clean and Green. I am sure my family will benefit from this initiative in near future.",
+      quote: "I have been engaged in usual form of farming, but the yield wasn't great. After getting to know about Project Hariyali I didn't think twice to become part of it. I was given 42 fruit saplings mostly Plum and Apple varieties. I follow all the organic farming practices in letter and in spirit. This is my bit for the climate change and to make Himachal Pradesh Clean and Green. I am sure my family will benefit from this initiative in near future.",
     },
     {
       image: testimonial4,
       name: "Woman farmer from Kokri Kalan village, Moga, Punjab.",
-      quote:"I have been making a living with great difficulties. I had a liking for plants and agriculture in general. Through project Hariyali , I learnt efficient farming practices. I am confident with these practices I will reap benefit in future. I have received 31 fruit saplings of Guava, mango, Orange & Peach. I know these will add nutritional diversity for my family as well as bring additional income in future.",
+      quote: "I have been making a living with great difficulties. I had a liking for plants and agriculture in general. Through project Hariyali , I learnt efficient farming practices. I am confident with these practices I will reap benefit in future. I have received 31 fruit saplings of Guava, mango, Orange & Peach. I know these will add nutritional diversity for my family as well as bring additional income in future.",
     },
     // Add other testimonials
   ];
@@ -158,7 +150,7 @@ function WhySupportUs() {
       {/* body */}
       <section className="banner banner-support"></section>
       <section>
-        <div className="pv-75">
+        <div className="pv-75 pb-0">
           <div className="container ">
             <div className="feature-description">
               <h2 className="sub-title text-center">Why Support Us</h2>
@@ -182,7 +174,7 @@ function WhySupportUs() {
         </div>
       </section>
       <section className="container">
-        <div className="row justify-content-center mt-5">
+        <div className="row justify-content-center">
           <div className="col-12 col-md-5">
             <div className="card plantation-card h-100">
               <img
@@ -215,7 +207,7 @@ function WhySupportUs() {
               />
               <div className="card-body">
                 <h5 className="card-title text-center">
-                  Mission LiFE : <br/>
+                  Mission LiFE : <br />
                   Lifestyle for Environment
                 </h5>
                 <p>
@@ -240,195 +232,108 @@ function WhySupportUs() {
             </div>
           </div>
           </div>
-        </div> */}
-      <div className="container pv-75">
+        </div> */}<section className="bg-green">
+      <div className="container">
+        <div className="feature-description">
         <h3 className="sub-title text-center">Impact of Hariyali Project</h3>
         <p className="text-center">Project Hariyali is a unique blend in the sphere of environmental
-          sustainability and impacting livelihood.</p>
-        <div className="row justify-content-center mb30">
-          <h4 className="text-center">Quantitative Impact</h4>
-          <Row className="justify-content-center mb-4">
-            <div className="col-6 col-md-4 col-lg-3 mb-lg-0 mb-3 discover-block">
+          sustainability and impacting livelihood. Project hariyali is already contrubting towards mission LiFE & Indias commitement toward carbon neutrality</p>
+        <div className="row justify-content-center">
+          {/* <h4 className="text-center">Quantitative Impact</h4> */}
+          <div className="col-md-8">
+            <Row className="justify-content-center quantitative-card">
+              <div className="col-6 col-md-4  discover-block">
                 <figure class="effect-duke whysuimpact-effect">
                   {" "}
                   <h4>Number of trees planted since 2007</h4>
-                  <p>22.86 Millions</p>
+                  <p>24.86 Millions</p>
                 </figure>
-            </div>
-            <div className="col-6 col-md-4 col-lg-3 mb-lg-0 mb-3 discover-block">
-              <figure class="effect-duke whysuimpact-effect">
-                <h4>Overall survival rate of plant since inception</h4>
-                <p>85% Plus</p>
-              </figure>
-            </div>
-            <div className="col-6 col-md-4 col-lg-3 mb-lg-0 mb-3 discover-block">
-              <figure class="effect-duke whysuimpact-effect">
-                {" "}
-                <h4>
-                  Trees sequestered through the project Since inception{" "}
-                </h4>
-                <p>400,000+ tonnes</p>
-              </figure>
-            </div>
-          </Row>
-          <h4 className="text-center">Qualitative Impact</h4>
-            <Row className="justify-content-center">
-            <div className="col-6 col-md-4 col-lg-3 mb-lg-0 mb-3 discover-block">
+              </div>
+              <div className="col-6 col-md-4  discover-block">
+                <figure class="effect-duke whysuimpact-effect">
+                  <h4>Overall survival rate of plant since inception</h4>
+                  <p>85% Plus</p>
+                </figure>
+              </div>
+              <div className="col-6 col-md-4 discover-block">
                 <figure class="effect-duke whysuimpact-effect">
                   {" "}
                   <h4>
-                    Improment in soil quality in terms of carbon, water holding capacity & nutrients
+                    CO<sub>2</sub> sequestered through the project Since inception{" "}
+                  </h4>
+                  <p>400,000+ tonnes</p>
+                </figure>
+              </div>
+
+              {/* </Row> */}
+              {/* <h4 className="text-center">Qualitative Impact</h4> */}
+              {/* <Row className="justify-content-center mb-4 quantitative-card"> */}
+              <div className="col-6 col-md-4 discover-block">
+                <figure class="effect-duke whysuimpact-effect">
+                  {" "}
+                  <h4>
+                    Improvement in soil quality in terms of carbon, water holding capacity & nutrients
                     <p>Soil Health</p>
                   </h4>
                 </figure>
               </div>
-              <div className="col-6 col-md-4 col-lg-3 mb-lg-0 mb-3 discover-block">
+              <div className="col-6 col-md-4 discover-block">
                 <figure class="effect-duke whysuimpact-effect">
                   <h4>
-                    Significant positive change in <p>bio-diversity</p>
+                    Significant positive change in <p>Bio-diversity</p>
                   </h4>
                 </figure>
               </div>
-            </Row>
-          {/* <div className="col-12 col-md-4 text-center">
-            <div className="discoverImg">
-              <h4>Number of trees planted since 2007</h4>
-              <p>22.86 Millions</p>
-            </div>
-          </div>
-          <div className="col-12 col-md-4 text-center">
-            <div className="discoverImg">
-              <h4>Overall survival rate of plant since inspection</h4>
-              <p>85% Plus</p>
-            </div>
-          </div>
-          <div className="col-12 col-md-4 text-center">
-            <div className="discoverImg">
-              <h4>Trees sequestered through the project Since inspection </h4>
-              <p>400,000+ tonnes</p>
-            </div>
-          </div>
-          <div className="col-12 col-md-4 text-center">
-            <div className="discoverImg">
-              <h4>
-                Improment in soil quality in terms of <p>carbon, water </p>
-                holding capacity & <p> nutrients</p>
-              </h4>
-            </div>
-          </div>
-          <div className="col-12 col-md-4 text-center">
-            <div className="discoverImg">
-              <h4>
-                Significant positive change in <p>bio-diversity</p>
-              </h4>
-            </div>
-          </div> */}
+            </Row></div>
         </div>
-      </div>
+      </div></div></section>
       <div className="container">
-        <p className="text-center">
-          
-          Project Hariyali on large scale{" "}
-          <span className="colorgreen">
-            tree planting, natural resource management, Global regenerative
-            organic farming
-          </span>{" "}
-          protocols to enrich agricultural eco-system and build functional
-          forests as means to increase communities' income for an overall
-          wellbeing of the community and mother earth.
-          <br />
-          <br />
-          {/* We are available at
-          <span className="colorgreen"> <a className="colorgreen" href="1t.org">1t.org</a></span> */}
-        </p>
-      </div>
-      <div className="container pv-75">
-        <h3 className="text-center sub-title mb-0">Awards Won</h3>
-        {/* <Zoom scope={0.4}>
-          {awards.quotes.map((contant, index) => (
-            <div className="row justify-content-center my-5 overflow-x">
-              <div className="col-12 col-md-6 mb-3"></div>
-              <div key={index} className="slide-content">
-                <div className="award-wrapper">
-                  <h4>{contant.quote}</h4>
-                </div>
-              </div>
-            </div>
-            
-          ))}
-        </Zoom> */}
-        <div className="awards-slider">
-          <Carousel indicators={true}>
-            {items.map((item, index) => (
-              <Carousel.Item key={index}>
-                <div className="d-flex justify-content-center">
-                  {item.map((subItem, subIndex) => (
-                    <>
-                      <div className="award-tile">
-                        {/* <div key={index} className="col-12 col-md-6 mb-3"></div> */}
-                        <div
-                          key={index}
-                          className="slide-content2"
-                          onClick={() => openModal(subItem.image)}
-                        >
-                          <div className="award-wrapper">
-                            <h4>{subItem.quote}</h4>
+
+        <div className="feature-description">
+          <h2 className="sub-title  text-center">Awards Won</h2>
+
+          <div className="awards-slider">
+            <Carousel indicators={true}>
+              {items.map((item, index) => (
+                <Carousel.Item key={index}>
+                  <div className="d-flex justify-content-center">
+                    {item.map((subItem, subIndex) => (
+                      <>
+                        <div className="award-tile">
+                          {/* <div key={index} className="col-12 col-md-6 mb-3"></div> */}
+                          <div
+                            key={index}
+                            className="slide-content2"
+                            onClick={() => openModal(subItem.image)}
+                          >
+                            <div className="award-wrapper">
+                              <h4>{subItem.quote}</h4>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </>
-                  ))}
-                </div>
-              </Carousel.Item>
-            ))}
-          </Carousel>
+                      </>
+                    ))}
+                  </div>
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          </div>
+          <Modal show={showModal} onHide={closeModal}>
+            <Modal.Body>
+              {selectedImage && (
+                <img src={selectedImage} alt="Modal" className="img-fluid" />
+              )}
+            </Modal.Body>
+          </Modal>
         </div>
-        <Modal show={showModal} onHide={closeModal}>
-          <Modal.Body>
-            {selectedImage && (
-              <img src={selectedImage} alt="Modal" className="img-fluid" />
-            )}
-          </Modal.Body>
-        </Modal>
-        {/* <div className="row justify-content-center my-5 overflow-x">
-          <div className="col-12 col-md-6 mb-3">
-                <div className="award-wrapper">
-                  <h4>FICCI CSR Awards – In Skill Development & Livelihood Category</h4>
-                </div>   
-            </div>
-            <div className="col-12 col-md-6 mb-3">
-                <div className="award-wrapper">
-                  <h4>FICCI CSR Awards – In Skill Development & Livelihood Category</h4>
-                </div>   
-            </div>
-          <div className="col-12 col-md-4 mb-3">
-            <div className="award-wrapper">
-              <h4>FICCI CSR Awards – In Skill Development & Livelihood Category</h4>
-            </div>
-          </div>
-          <div className="col-12 col-md-4 mb-3">
-            <div className="award-wrapper">
-              <h4>The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category</h4>
-            </div>
-          </div>
-          <div className="col-12 col-md-4 mb-3">
-            <div className="award-wrapper">
-              <h4>Food Vision 2050 Prize by Rockefeller Foundation to Naandi Foundation</h4>
-            </div>
-          </div>
-          <div className="col-12 col-md-4 mb-3">
-            <div className="award-wrapper">
-              <h4>Limca book of Awards.</h4>
-            </div>
-          </div>
-        </div> */}
       </div>
+      <section className="bg-green">
       <div className="container">
         <div className="row align-items-center pv-75">
           <div className="col-12 col-md-6">
-            <div className="feature-description">
+            <div className="feature-description feature-description-other">
               <h3 className="sub-title text-center">
-                Impact Assessment report{" "}
+                Impact Assessment Report{" "}
               </h3>
               <p>
                 <i>
@@ -465,70 +370,16 @@ function WhySupportUs() {
             </div>
           </div>
         </div>
-      </div>
-      {/* <div className="container">
-      <h3 className="text-center sub-title">Testimonials</h3>
-        <div className="row">
-          <div className="col-12 col-md-6 text-center">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/h5JfhFJG3vQ"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div className="col-12 col-md-6 text-center">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/YnhmRcQ4q6M"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div> 
-      </div>*/}
-      <section className="bg-green">
-        <h3 className="text-center sub-title">Testimonials</h3>
-        <div className="container">
-        <div className="slide-content-whysupport support-content my-5">
-                <div className="row">
-                  <div className="col-12 col-md-6 text-center">
-                    <iframe
-                      width="560"
-                      height="315"
-                      src="https://www.youtube.com/embed/h5JfhFJG3vQ"
-                      title="YouTube video player"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen
-                    ></iframe>
-                  </div>
-                  <div className="col-12 col-md-6 text-center">
-                    <iframe
-                      width="560"
-                      height="315"
-                      src="https://www.youtube.com/embed/YnhmRcQ4q6M"
-                      title="YouTube video player"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen
-                    ></iframe>
-                  </div>
-                </div>
-              </div>
-          {/* <Slideshow /> */}
-          <div className="testimonial-slider">
+      </div></section>
+      
+        <div className="container"> <div className="feature-description feature-description-other">
+          <h3 className="text-center sub-title">Testimonials</h3>
+<div className="testimonial-slider">
             <Zoom {...zoomOutProperties}>
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="slide-content-whysupport support-content my-5"
+                  className="slide-content-whysupport support-content"
                 >
                   <div className="row">
                     <div className="offset-md-1 col-12 col-md-3">
@@ -550,11 +401,38 @@ function WhySupportUs() {
                 </div>
               ))}
 
-              
+
             </Zoom>
           </div>
-        </div>
-      </section>
+          <div className="slide-content-whysupport support-content">
+            <div className="row  d-flex justify-content-center">
+              <div className="col-12 col-md-6 text-center mb-5">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/h5JfhFJG3vQ"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              {/* <div className="col-12 col-md-6 text-center">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/YnhmRcQ4q6M"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div> */}
+            </div>
+          </div>
+          {/* <Slideshow /> */}
+          </div>
+      
 
       {/* modal popup for awards */}
 
@@ -595,6 +473,7 @@ function WhySupportUs() {
         </div>
       </div>
       {/* body */}
+   </div>
     </>
   );
 }

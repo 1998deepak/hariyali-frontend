@@ -3,7 +3,7 @@
 }
 
 .hi-icon-wrap {
-  height: 215px;
+  height: 245px;
   text-align: center;
   margin: 0 auto;
   background: #fff;
@@ -30,6 +30,7 @@
   position: relative;
   z-index: 1;
   color: #000;
+  text-decoration: none;
 }
 .hi-icon:after {
   margin: 20px 30px;
