@@ -259,6 +259,14 @@ function OnlineDonation() {
         message: "PAN card is required",
       });
     }
+    else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard))
+    {
+      validationErrors.push({
+        field: "userData.user.panCard",
+        message: "PAN card No is Invalid",
+      });
+    }
+    
     // if (userData?.user?.activityType === null) {
     //   validationErrors.push({ field: "userData.user.activityType", message: "Activity Type is required" });
     // }
@@ -333,7 +341,7 @@ function OnlineDonation() {
           field: "address[" + i + "].postalCode",
           message: "postalCode is required",
         });
-      } else if (!/^\d*$/.test(addr?.postalCode)) {
+      } else if (!/^\d{6}$/.test(addr?.postalCode)) {
         validationErrors.push({
           field: "address[" + i + "].postalCode",
           message: "Invalid Postal Code",
@@ -767,6 +775,11 @@ function OnlineDonation() {
     const updatedDonations = [...donations];
     if (name === "donationEvent") {
       console.log(name);
+      if (value === 'other') {
+        setShowOtherInput(true);
+      } else {
+        setShowOtherInput(false);
+      }
       updatedDonations[index][name] = value;
     }
     if (name === "generalDonation") {
@@ -1052,6 +1065,21 @@ function OnlineDonation() {
     setOtp("");
   };
 
+  function validateInput(value) {
+    const hasDecimalAfterDigits = value.includes('.') && value.split('.')[1].length > 0;
+    const errorMessage = hasDecimalAfterDigits
+      ? 'Decimal points are not allowed after digits.'
+      : '';
+  
+    return { hasError: hasDecimalAfterDigits, errorMessage };
+  }
+  const [errors1, setErrors1] = useState(Array(packageData.length).fill({ hasError: false, errorMessage: '' }));
+ 
+  const [showOtherInput, setShowOtherInput] = useState(false);
+
+  
+
+ 
   return (
     <>
       <ToastContainer />
@@ -1245,37 +1273,53 @@ function OnlineDonation() {
                                   <th>Planting Season</th>
                                   <th>Cost per Sapling</th>
                                   {/* <th></th> */}
-                                  <th className="w200">No. Sapling</th>
+                                  <th className="w200">No. Saplings</th>
                                   <th>Total Cost</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 {packageData?.map((packageItem, index) => {
+                                   const value = String(packageItem.noOfBouquets).replace(/[^0-9.]/g, '');
+                                   const { hasError, errorMessage } = validateInput(value);
+                         
                                   return (
                                     <tr key={index}>
-                                      <td>{packageItem.packageName}</td>
-                                      <td>{packageItem.bouquetPrice}</td>
-                                      {/* <td>{packageItem.maintenanceCost}</td> */}
-                                      <td>
-                                        <input
-                                          type="number"
-                                          name="noOfBouquets"
-                                          className="form-control"
-                                          value={packageItem.noOfBouquets}
-                                          onChange={(event) => {
-                                            if (event.target.value < 0) {
-                                              event.target.value = 0;
-                                            }
+                                    <td>{packageItem.packageName}</td>
+                                    <td>{packageItem.bouquetPrice}</td>
+                                    <td>
+                                      <input
+                                        type="text"
+                                        name="noOfBouquets"
+                                        className="form-control"
+                                        value={value}
+                                        onChange={(event) => {
+                                          const inputValue = event.target.value;
+                                          const { hasError, errorMessage } = validateInput(inputValue);
+                                          setErrors1((prevErrors) => {
+                                            const newErrors = [...prevErrors];
+                                            newErrors[index] = { hasError, errorMessage };
+                                            return newErrors;
+                                          });
+                      
+                                          // Only update the input value if no error
+                                          if (!hasError) {
                                             handleChangeNumberOfBouquets(
-                                              event,
+                                              { target: { name: event.target.name, value: inputValue } },
                                               packageItem,
                                               index
                                             );
-                                          }}
-                                        />
-                                      </td>
-                                      <td>{packageItem.amount}</td>
-                                    </tr>
+                                          }
+                                        }}
+                                      />
+                                      {hasError && (
+                                        <div className="error-message" style={{ color: 'red', fontSize: '12px' }}>
+                                          {errorMessage}
+                                        </div>
+                                      )}
+                                    </td>
+                                    <td>{packageItem.amount}</td>
+                                  </tr>
+                      
                                   );
                                 })}
                               </tbody>
@@ -1304,7 +1348,7 @@ function OnlineDonation() {
                                     </label>
                                     <input
                                       className="form-control-inside form-control"
-                                      type="text"
+                                      type="number"
                                       name="user.mobileNo"
                                       placeholder="Mobile No."
                                       value={userData?.user?.mobileNo}
@@ -1395,6 +1439,7 @@ function OnlineDonation() {
                                       <option value="Mr.">Mr.</option>
                                       <option value="Mrs.">Mrs.</option>
                                       <option value="Ms.">Ms.</option>
+                                      <option value="Ms.">Miss.</option>
                                     </select>
                                     {errors.map((error, index) => {
                                       if (
@@ -1739,7 +1784,7 @@ function OnlineDonation() {
                                       name="postalCode"
                                       maxLength={6}
                                       placeholder="Postal Code"
-                                      type="number"
+                                      type="text"
                                       value={address[0]?.postalCode}
                                       onChange={(event) =>
                                         handleAddressChange(event, 0)
@@ -2046,19 +2091,29 @@ function OnlineDonation() {
                                 onChange={(e) => handleDonationChange(e, 0)}
                               >
                                 <option disabled selected value="">
-                                  Occasion
-                                </option>
-                                <option value="Birthday">Birthday</option>
+                              </option>
+                                <option value="Birthday"> Happy Birthday</option>
+                                <option value="New Year"> New Year</option>
+                                <option value="Deepawali"> Deepawali</option>
+                                <option value=" EID">  EID</option>
+                                <option value="Christmas"> Christmas</option>
                                 <option value="Wedding">Wedding</option>
-                                <option value="Anniversary">Anniversary</option>
+                                <option value="Anniversary">Work anniversary</option>
                                 <option value="Achievement">Achievement</option>
-                                <option value="Festival">Festival</option>
-                                <option value="Memorial Tribute">
-                                  Memorial Tribute
+                                <option value="Retirement">Retirement</option>
+                                <option value="Condolence">  Condolence
                                 </option>
                                 <option value="other">Others: </option>
                                 <input type="text" className="form-control" />
                               </select>
+
+                              {showOtherInput && (
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Specify other event"
+        />
+      )}
                               {/* <div id="otherOption">
                                 <label for="otherText">Enter other option:</label>
                                 <input type="text" id="otherText"/>
@@ -2212,7 +2267,7 @@ function OnlineDonation() {
                                 <th>Planting Season</th>
                                 <th>Cost per Sapling</th>
                                 {/* <th>Maintenance Cost</th> */}
-                                <th className="w200">No. Sapling</th>
+                                <th className="w200">No. Saplings</th>
                                 <th>Total Cost</th>
                               </tr>
                             </thead>
@@ -2670,13 +2725,15 @@ function OnlineDonation() {
                                   <input
                                     className="form-control-inside form-control"
                                     name="postalCode"
+                                    type="text"
                                     maxLength={6}
                                     placeholder="Postal Code"
-                                    type="number"
+                                
                                     value={address[0]?.postalCode}
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
                                     }
+                                    
                                   />
                                   {errors.map((error, index) => {
                                     if (
