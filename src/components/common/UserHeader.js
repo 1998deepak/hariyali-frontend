@@ -85,6 +85,10 @@ const Header = () => {
         onClick={() => setActiveTab('FootPrint')} eventKey="/FootPrint">Where Are We</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
+                    <Nav.Link href="/Faq" className={`${activeTab === 'Faq' ? 'active' : ''}`}
+        onClick={() => setActiveTab('Faq')} eventKey="/Faq">FAQ</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
                     <Nav.Link href="/ContactUs" className={`${activeTab === 'ContactUs' ? 'active' : ''}`}
         onClick={() => setActiveTab('ContactUs')} eventKey="/ContactUs">Ask Us</Nav.Link>
                   </Nav.Item>
