@@ -15,9 +15,11 @@ import CaptchaGift from "../user/CaptchaGift";
 import { DonationService } from "../../../services/donationService/donation.service";
 import { SUCCESS } from "../../constants/constants";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
+import { BsEmojiSmile } from "react-icons/bs";
 import TermsConditionsPopup from "../../common/popup/TermsConditionsPopup";
 import Loader from "../../common/loader/Loader";
 import PrivacyPolicy from "../../common/PrivacyPolicy";
+import Card from 'react-bootstrap/Card';
 
 function OnlineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
@@ -40,6 +42,10 @@ function OnlineDonation() {
   const handleShow = () => setShow(true);
 
   const handleCloseConditions = () => setShowConditons(false);
+  
+  const [showDonationModal, setShowDonationModal] = useState(false);
+  const [transactionMessage, setTransactionMessage] = useState("");
+
   const handleShowConditions = (e) => {
     e.preventDefault();
     setShowConditons(true);
@@ -162,7 +168,7 @@ function OnlineDonation() {
   const [otp, setOtp] = useState(null);
 
   const [captchaVerfied, setCaptchaVerfied] = useState(false);
-
+  const [message, setMessage] = useState("");
   function hasValues(obj) {
     for (let key in obj) {
       console.log(obj.hasOwnProperty(key));
@@ -259,14 +265,13 @@ function OnlineDonation() {
         message: "PAN card is required",
       });
     }
-    else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard))
-    {
+    else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
       validationErrors.push({
         field: "userData.user.panCard",
         message: "PAN card No is Invalid",
       });
     }
-    
+
     // if (userData?.user?.activityType === null) {
     //   validationErrors.push({ field: "userData.user.activityType", message: "Activity Type is required" });
     // }
@@ -456,6 +461,7 @@ function OnlineDonation() {
       </p>
     );
   }
+  const handleDonationModalClose = () => setShowDonationModal(false);
 
   const resetErrors = async () => {
     setErrors([]);
@@ -512,16 +518,16 @@ function OnlineDonation() {
 
         console.log(paymentArray);
 
-      user.donations[0] = paymentArray;
-      console.log(user.donations[0]);
-    }
+        user.donations[0] = paymentArray;
+        console.log(user.donations[0]);
+      }
 
       console.log(user);
       //setting Donation event
 
       user.donations[0].donationType = donationType == "self" ? "self-donate" : "gift-donate";
 
-      user.emailId =  donationType == "self" ? userEmail : giftUserEmail;
+      user.emailId = donationType == "self" ? userEmail : giftUserEmail;
 
       //Setting Address array
       console.log(address.length);
@@ -606,10 +612,9 @@ function OnlineDonation() {
       console.log(response);
 
       if (response?.data?.paymentStatus == "Success") {
-        toast.success(
-          "Donation payment successful, payment reference no " +
-            response?.data?.bankPaymentRefNo
-        );
+        let message = "Thank you for your donation. <b>" + response?.data?.bankPaymentRefNo + "</b> is the transaction ID for your reference. The team will revert in 3-5 business working days.";
+        setTransactionMessage(message);
+        setShowDonationModal(true);
       } else {
         toast.error(response?.data?.remark);
       }
@@ -861,7 +866,6 @@ function OnlineDonation() {
   };
 
   const addgiftpaymenticon = () => {
-    console.log("Hiiiiiii");
     if (document.getElementById("addgiftpaymentDiv")) {
       if (
         document.getElementById("addgiftpaymentDiv").style.display === "none"
@@ -908,6 +912,7 @@ function OnlineDonation() {
   const getUserInfo = async (emailId, type) => {
     setLoading(true);
     let response = await DonationService.getDetailsByEmailId(emailId);
+    console.log(response);
     if (response?.status === "Success") {
       toast.success(response?.message);
       let addr = [...initialAddress];
@@ -935,8 +940,14 @@ function OnlineDonation() {
         setValidGiftUser(true);
       }
       setLoading(false);
-    } else if (response?.statusCode === 409) {
-      toast.error(response?.message);
+    } else if (response?.statusCode === 409 || response?.status == 'INTERNAL_SERVER_ERROR') {
+      if (response?.message.indexOf("click here")) {
+        setMessage(response?.message?.replace("click here", '<a href="/Login">click here</a>'));
+      } else {
+        toast.error(response?.message);
+      }
+      setIsDivOpen(false);
+      setIsDivOpenGift(false);
       setLoading(false);
     } else {
       if (type === "self") {
@@ -1070,16 +1081,16 @@ function OnlineDonation() {
     const errorMessage = hasDecimalAfterDigits
       ? 'Decimal points are not allowed after digits.'
       : '';
-  
+
     return { hasError: hasDecimalAfterDigits, errorMessage };
   }
   const [errors1, setErrors1] = useState(Array(packageData.length).fill({ hasError: false, errorMessage: '' }));
- 
+
   const [showOtherInput, setShowOtherInput] = useState(false);
 
-  
 
- 
+
+
   return (
     <>
       <ToastContainer />
@@ -1123,8 +1134,8 @@ function OnlineDonation() {
                             <option disabled selected value="">
                               Donor Type
                             </option>
-                            <option value="Corporate">Corporate</option>
                             <option value="Individual">Individual</option>
+                            <option value="Corporate">Corporate</option>
                           </select>
                           {errors.map((error, index) => {
                             if (error.field === "userData.user.donarType") {
@@ -1190,7 +1201,7 @@ function OnlineDonation() {
                         <b>Gangar Sunny</b>,{" "}
                         <a href="mailto:GANGAR.SUNNY@mahindra.com">
                           GANGAR.SUNNY@mahindra.com
-                        </a>
+                        </a>&nbsp; | &nbsp;
                         <a href="tel:93224 56789">93224 56789</a>
                       </p>
                     </div>
@@ -1258,6 +1269,7 @@ function OnlineDonation() {
                         </Button>
                       </div>
                     </div>{" "}
+                    <div dangerouslySetInnerHTML={{ __html: message }}></div>
                   </div>
                   <div>
                     {isDivOpen && (
@@ -1279,47 +1291,47 @@ function OnlineDonation() {
                               </thead>
                               <tbody>
                                 {packageData?.map((packageItem, index) => {
-                                   const value = String(packageItem.noOfBouquets).replace(/[^0-9.]/g, '');
-                                   const { hasError, errorMessage } = validateInput(value);
-                         
+                                  const value = String(packageItem.noOfBouquets).replace(/[^0-9.]/g, '');
+                                  const { hasError, errorMessage } = validateInput(value);
+
                                   return (
                                     <tr key={index}>
-                                    <td>{packageItem.packageName}</td>
-                                    <td>{packageItem.bouquetPrice}</td>
-                                    <td>
-                                      <input
-                                        type="text"
-                                        name="noOfBouquets"
-                                        className="form-control"
-                                        value={value}
-                                        onChange={(event) => {
-                                          const inputValue = event.target.value;
-                                          const { hasError, errorMessage } = validateInput(inputValue);
-                                          setErrors1((prevErrors) => {
-                                            const newErrors = [...prevErrors];
-                                            newErrors[index] = { hasError, errorMessage };
-                                            return newErrors;
-                                          });
-                      
-                                          // Only update the input value if no error
-                                          if (!hasError) {
-                                            handleChangeNumberOfBouquets(
-                                              { target: { name: event.target.name, value: inputValue } },
-                                              packageItem,
-                                              index
-                                            );
-                                          }
-                                        }}
-                                      />
-                                      {hasError && (
-                                        <div className="error-message" style={{ color: 'red', fontSize: '12px' }}>
-                                          {errorMessage}
-                                        </div>
-                                      )}
-                                    </td>
-                                    <td>{packageItem.amount}</td>
-                                  </tr>
-                      
+                                      <td>{packageItem.packageName}</td>
+                                      <td>{packageItem.bouquetPrice}</td>
+                                      <td>
+                                        <input
+                                          type="text"
+                                          name="noOfBouquets"
+                                          className="form-control"
+                                          value={value}
+                                          onChange={(event) => {
+                                            const inputValue = event.target.value;
+                                            const { hasError, errorMessage } = validateInput(inputValue);
+                                            setErrors1((prevErrors) => {
+                                              const newErrors = [...prevErrors];
+                                              newErrors[index] = { hasError, errorMessage };
+                                              return newErrors;
+                                            });
+
+                                            // Only update the input value if no error
+                                            if (!hasError) {
+                                              handleChangeNumberOfBouquets(
+                                                { target: { name: event.target.name, value: inputValue } },
+                                                packageItem,
+                                                index
+                                              );
+                                            }
+                                          }}
+                                        />
+                                        {hasError && (
+                                          <div className="error-message" style={{ color: 'red', fontSize: '12px' }}>
+                                            {errorMessage}
+                                          </div>
+                                        )}
+                                      </td>
+                                      <td>{packageItem.amount}</td>
+                                    </tr>
+
                                   );
                                 })}
                               </tbody>
@@ -1373,7 +1385,7 @@ function OnlineDonation() {
                                 </div>
                               </div>
                               {userData?.user?.donarType.toLocaleLowerCase() ===
-                              "corporate" ? (
+                                "corporate" ? (
                                 <div className="col-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 "> Organisation</div> */}
@@ -2058,8 +2070,8 @@ function OnlineDonation() {
                                 <option disabled selected value="">
                                   Donor Type
                                 </option>
-                                <option value="Corporate">Corporate</option>
                                 <option value="Individual">Individual</option>
+                                <option value="Corporate">Corporate</option>
                               </select>
                               {errors.map((error, index) => {
                                 if (error.field === "userData.user.donarType") {
@@ -2091,7 +2103,7 @@ function OnlineDonation() {
                                 onChange={(e) => handleDonationChange(e, 0)}
                               >
                                 <option disabled selected value="">
-                              </option>
+                                </option>
                                 <option value="Birthday"> Happy Birthday</option>
                                 <option value="New Year"> New Year</option>
                                 <option value="Deepawali"> Deepawali</option>
@@ -2108,12 +2120,12 @@ function OnlineDonation() {
                               </select>
 
                               {showOtherInput && (
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Specify other event"
-        />
-      )}
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  placeholder="Specify other event"
+                                />
+                              )}
                               {/* <div id="otherOption">
                                 <label for="otherText">Enter other option:</label>
                                 <input type="text" id="otherText"/>
@@ -2186,7 +2198,7 @@ function OnlineDonation() {
                             <b>Gangar Sunny</b>,{" "}
                             <a href="mailto:GANGAR.SUNNY@mahindra.com">
                               GANGAR.SUNNY@mahindra.com
-                            </a>{" "}
+                            </a>{" "}&nbsp; | &nbsp;
                             <a href="tel:93224 56789">93224 56789</a>
                           </p>
                         </div>
@@ -2254,6 +2266,7 @@ function OnlineDonation() {
                           </Button>
                         </div>
                       </div>{" "}
+                      <div dangerouslySetInnerHTML={{ __html: message }}></div>
                     </div>
                     {isDivOpenGift && (
                       <div>
@@ -2728,12 +2741,12 @@ function OnlineDonation() {
                                     type="text"
                                     maxLength={6}
                                     placeholder="Postal Code"
-                                
+
                                     value={address[0]?.postalCode}
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
                                     }
-                                    
+
                                   />
                                   {errors.map((error, index) => {
                                     if (
@@ -3270,6 +3283,36 @@ function OnlineDonation() {
         </form>
       )}
       {/* body */}
+      <Modal
+        className="transaction-modal"
+        show={showDonationModal}
+        onHide={handleDonationModalClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Body>
+          <div className="row">
+            <div className="col-12">
+              <Card >
+                <Card.Body>
+                  <div className="card-icon">
+                    <BsEmojiSmile />
+                  </div>
+                  <Card.Text dangerouslySetInnerHTML={{ __html: transactionMessage }}> 
+                  
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
+          </div>
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleDonationModalClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

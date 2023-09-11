@@ -38,6 +38,7 @@ import { UserService } from "./services/userService/user.service";
 import UserSpecificDonationView from "./components/master/admin/donarCreation/UserSpecificDonationView";
 import UserDashboard from "./components/master/user/UserDashboard";
 import UserReceipts from "./components/master/user/UserReceipts";
+import Faq from "./components/master/otherMenu/Faq";
 
 
 function HomeWithHeaderAndFooter() {
@@ -108,6 +109,15 @@ function GalleryAwardsWithHeaderAndFooter() {
     <>
       <UserHeader />
       <GalleryAwards />
+      <UserFooter />
+    </>
+  );
+}
+function FaqWithHeaderAndFooter() {
+  return (
+    <>
+      <UserHeader />
+      <Faq />
       <UserFooter />
     </>
   );
@@ -331,6 +341,7 @@ function App() {
         <Route path="/WhySupportUs" element={<WhySupportUsWithHeaderAndFooter />} />
         <Route path="/FootPrint" element={<FootPrintWithHeaderAndFooter />} />
         <Route path="/GalleryAwards" element={<GalleryAwardsWithHeaderAndFooter />} />
+        <Route path="/Faq" element={<FaqWithHeaderAndFooter />} />
         <Route path="/ContactUs" element={<ContactUsWithHeaderAndFooter />} />
         <Route path="/Login" element={<LoginWithHeaderAndFooter />} />
         <Route path="/OtpId" element={<OtpId />} />
