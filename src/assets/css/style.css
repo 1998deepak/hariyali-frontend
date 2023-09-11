@@ -63,7 +63,7 @@ p {
   box-shadow: none;
 }
 .col-lg-2-extra{flex: 0 0 auto;
-  width: 20%; border: 1px solid #fff;
+  width: 20%; border: 1px solid #f6f7f9;
 }
 .m-auto{margin: auto;}
 /* ul {
@@ -90,11 +90,12 @@ p {
   transition: all 0.3s ease-in-out;
   height: 40px;
 }
-
+.nd{font-size: 14px;}
 .homesubmit-div:hover {
   background: #dd052b;
 }
-
+.askheading{    font-size: 1.3rem;}
+.ask-p{font-size: 0.99rem;}
 .contact-usbtn {
   /* font-family: "Georama", sans-serif; */
   font-weight: 500;
@@ -198,10 +199,11 @@ p {
 .pb50 {
   padding-bottom: 50px;
 }
-
+.mtop-5{margin-top: 3rem!important;}
 .mb30 {
   margin-bottom: 30px;
 }
+.pd-le-r-15{padding-left: 15px; padding-right: 15px;}
 
 .abc {
   display: block;
@@ -1040,6 +1042,7 @@ input:disabled {
 /* social */
 
 /* about */
+.whowe-knowtext{font-style: italic; font-size: 15px;}
 .aboutbg-img {
   position: absolute;
   right: 0;
@@ -1366,6 +1369,11 @@ textarea.form-control {
 }
 
 /* whatwedo */
+.plantdiv{border-radius: 10px;height: 232px; text-align: center;margin:40px 10px 38px 10px; background-color: #ddf0de;
+  width: 225px; padding: 15px; background-image: url(../img/plantName/plant-bg.jpg); background-repeat: no-repeat;background-position:top}
+.plantdiv:hover{ box-shadow: 0 0 3px 0 #000; cursor: pointer;}
+.plantimg{ width: 180px; margin-top: -35px;}
+.plant-text{font-size: 1.2rem; margin-top: 30px; color: #fff;}
 .vertical-timeline-element-content p {
   font-size: 16px !important;
   line-height: 20px !important;
@@ -2663,6 +2671,15 @@ tr td input {
 
 /* footprint */
 /* About us */
+.team-card img{ width: 87px;}
+.team-card{box-shadow: 0px 0px 5px 0px #5f5f5f; padding: 15px; min-height: 330px;}
+.team-card ul li{ margin: 0rem 0 0rem 5.9rem !important; }
+.team-card h5 {
+  color: #3f6341;font-weight:700;
+  /* color: #23aa4a; */
+  font-weight: 500;font-size: 1.5rem;
+  margin: 10px 0;
+}
 .about-furthertext {
   position: absolute;
   bottom: 33px;
@@ -2868,7 +2885,18 @@ tr td input {
 .icon-block:hover:before {
   transform: scale(1.1);
 }
-
+.About-feature-image {
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.About-feature-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
 .feature-image {
   width: 100%;
   height: 450px;
@@ -2885,20 +2913,13 @@ tr td input {
 
 .bg-green {
   background: #f6f7f9;
+  /* background: #0d3b97; */
   position: relative;
 }
-
-/* .bg-green:before,
-.bg-green:after{
-  background: url("../img/folha04.png") no-repeat top left;
-  position: absolute;
-  content: "";
-  top: -96px;
-  left: 0;
-  background-size: 100%;
-  width: 288px;
-  height: 50%;
-} */
+.bg-green .card {
+  background: #fff;
+  /* background: #0d3b97; */
+}
 .bg-green:after {
   right: 0;
   left: auto;
@@ -3210,14 +3231,15 @@ figure.effect-layla:hover img {
 }
 
 .slide-location p {
-  font-size: 1rem;
+  font-size: 0.7rem;
   margin-bottom: 0;
   font-weight: 700;
-  background: #fff4;
+  background: #ffffff7a;
   padding: 10px;
   /* width: fit-content; */
   right: 0;
   /* float: right; */
+  color: #000;
 }
 
 .slide-location i {
@@ -3255,9 +3277,9 @@ figure.effect-layla:hover img {
     top: 400px;
   }
 
-  .react-slideshow-fadezoom-wrapper div[data-index="0"] .slide-location {
+  /* .react-slideshow-fadezoom-wrapper div[data-index="0"] .slide-location {
     top: 400px !important;
-  }
+  } */
 }
 
 /* @media screen and (max-width:1493px){
@@ -3268,9 +3290,9 @@ figure.effect-layla:hover img {
   width: 250px;
 }
 
-.certificate-slider {
+/* .certificate-slider {
   padding: 3rem 0;
-}
+} */
 
 .certificate-slider .carousel-inner {
   min-height: 260px;
@@ -3349,19 +3371,18 @@ figure.effect-layla:hover img {
 .awards-slider .carousel-control-next {
   right: -5%;
 }
-
+.award-tile{width: 22%;
+  flex: auto; }
 .awards-slider .carousel-inner {
-  height: 300px;
   display: flex;
   align-items: center;
 }
-
 .awards-slider .carousel-indicators {
   display: none;
 }
 
 .awards-slider .slide-content2 {
-  padding: 0 1.5rem;
+  padding:0 0.5rem;
 }
 
 .support-content p {
@@ -3378,11 +3399,12 @@ figure.effect-layla:hover img {
 .testimonial-slider .react-slideshow-fadezoom-wrapper,
 .awards-slider .react-slideshow-fadezoom-wrapper {
   height: 650px;
-  margin: 0 0 2rem 0;
+  /* margin: 0 0 2rem 0; */
+  margin: 0 ;
 }
 
 .testimonial-slider .react-slideshow-fadezoom-wrapper {
-  height: 450px;
+  height: fit-content;
 }
 
 .awards-slider .react-slideshow-fadezoom-wrapper {
@@ -3433,15 +3455,16 @@ figure.effect-layla:hover img {
   max-width: 90%;
   margin: 0 auto;
   object-fit: cover;
+ 
   display: flex;
 }
 
 .banner-about {
-  background: url("../img/slider/downslide.jpg") no-repeat;
+  background: url("../img/slider/downslide.jpg") no-repeat; background-position: center;
 }
 
 .banner-contact {
-  background: url("../img/slider/Donateslid.jpg") no-repeat;
+  background: url("../img/slider/Donateslid.jpg") no-repeat; background-position: center;
 }
 
 .banner-associate {
@@ -3495,11 +3518,16 @@ figure.effect-layla:hover img {
 
 .feature-description {
   height: 100%;
-  padding: 2.75rem;
+  padding:2.75rem;
   /* background: rgb(35 170 74 / 30%);
   border-radius: 160px 0 160px 0; */
 }
-
+.feature-description-other {
+  padding:2.75rem 2.75rem 0rem 2.75rem !important;
+}
+.contact-description-other{
+  padding:2.75rem 0rem 0rem 0rem !important;
+}
 .feature-description h2,
 .program-details h3,
 .sub-title {
@@ -3760,17 +3788,17 @@ address a:hover {
 
 .award-wrapper {
   position: relative;
-  background-color: #fff;
+  background-color: #f6f7f9;
   border-radius: 10px;
   padding: 2rem 2.5rem;
-  min-height: 169px;
-  height: 100%;
+  min-height: 150px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   box-shadow: 0px 1px 6px 2px #ccc;
-  width: 383px;
+  /* width: 383px; */
 }
 
 .award-wrapper:before,
@@ -3797,7 +3825,7 @@ address a:hover {
 }
 
 .award-wrapper h4 {
-  font-size: 1.125rem;
+  font-size: 1.20rem;
   font-weight: 600;
   color: #3f6341;
 }
@@ -3813,7 +3841,7 @@ iframe {
 .nav.nav-pills {
   /* display: inline-flex; */
   width: 100%;
-  max-width: 235px;
+  max-width: 300px;
   margin: 0 auto 6rem;
   background: #ecefec;
   border: 2px solid #ecefec;
@@ -3822,6 +3850,8 @@ iframe {
 }
 
 .nav-pills .nav-link {
+  width: 50%;
+  text-align: center;
   font-weight: 600;
   background: #ecefec;
   color: #3f6341;
@@ -3907,7 +3937,9 @@ iframe {
 .bg-receipt:before {
   background: url('../img/bill.gif') no-repeat;
 }
-
+.bg-plantationreport:before {
+  background: url('../img/PlantationReports.gif') no-repeat;
+}
 .bg-report:before {
   background: url('../img/report.gif') no-repeat;
 }
@@ -3915,7 +3947,9 @@ iframe {
 .bg-follow:before {
   background: url('../img/follow-us.gif') no-repeat;
 }
-
+.ourpartner{ box-shadow:  0 0 7px 0 #888;}
+.quantitative-card .discover-block{height: 200px; margin-bottom: 25px;}
+.quantitative-card .discover-block:hover{height: 200px;}
 .steps-nav {
   display: flex;
   flex-direction: column;
@@ -4074,7 +4108,7 @@ iframe {
   left: 50%;
   top: auto;
   bottom: 5%;
-  transform: translate(-50%,0%);
+  transform: translate(-50%,0%);width: max-content;
 }
 
 .home-page-slider .react-slideshow-fadezoom-wrapper .slide-location {
@@ -4098,12 +4132,13 @@ iframe {
   /* width: fit-content;
   right: 0;
   float: right; */
+  color: #fff;
 }
 
 .testimonial-slider .react-slideshow-fadezoom-wrapper div[data-index="0"] p {
   font-weight: 300 !important;
   text-align: left !important;
-  font-size: 1.125rem !important;
+  font-size: 1.125rem !important;color:#000
 }
 
 .home-page-slider .react-slideshow-fadezoom-wrapper div[data-index="0"] i {
@@ -4151,7 +4186,9 @@ iframe {
 .form-group {
   position: relative;
 }
-
+.program-details em{
+  font-size: 1rem;
+}
 @media screen and (max-width:1440px) {
   .nav-list .nav-item a.nav-link {
     font-size: 1rem;
@@ -4182,7 +4219,7 @@ iframe {
   }
 
   .slide-location {
-    width: 300px;
+    width: fit-content;
   }
 
   .react-slideshow-fadezoom-images-wrap img {
@@ -4196,7 +4233,7 @@ iframe {
 
 @media screen and (max-width:1280px) {
   .nav-list .nav-item a.nav-link {
-    font-size: 0.975rem;
+    font-size: 0.859rem;
   }
 
   .nav-list .nav-item+.nav-item {
@@ -4478,6 +4515,9 @@ iframe {
   }
 
   .feature-image {
+    height: auto;
+  }
+  .About-feature-image{
     height: auto;
   }
 

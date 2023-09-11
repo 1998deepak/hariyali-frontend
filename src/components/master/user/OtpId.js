@@ -55,7 +55,7 @@ function OtpId() {
         </div>
         <div className="row justify-content-between bgwite border1 padding30 contact-form-wrap">
           <h5>Conform Your OTP</h5>
-          <p>Please Enter your Otp!</p>
+          <p>Please Enter your OTP!</p>
           <div className="col-12">
             <form className="form-div contact-form-wrap" >
               <label className="col-12">
