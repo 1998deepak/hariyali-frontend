@@ -112,7 +112,7 @@ function WhatWeDo() {
               <h2 className="sub-title text-center">Approach</h2>
               <p className="text-center">
                 We have two seasons for plantation Monsoon and Winter. Each Year, we follow a systematic plantation process so that survival rate is high.</p>
-             <div className="col-8 m-auto approchimg"> <img src={Approach} alt="Approach"  /></div>
+             <div className="col-10 m-auto approchimg"> <img src={Approach} alt="Approach"  /></div>
               <div className="row justify-content-center mt-5">
                 <div className="col-12 col-md-6">
                   <div className="card plantation-card h-100">
@@ -164,7 +164,7 @@ function WhatWeDo() {
 {/* ----------plant name */}
 <div className="bg-green"><div className="container pv-75">
                             {/* <h3 class="text-center my-5 sub-title">Following commemorative artworks are available to choose from</h3> */}
-                            <h3 class="text-center sub-title">Name of tree list</h3>
+                            <h3 class="text-center sub-title">Trees we plant</h3>
                             <div className="certificate-slider">
                                 <Carousel indicators={true}>
                                     {plantname.map((item, index) => (
@@ -441,7 +441,7 @@ function WhatWeDo() {
           </div>
         </div> */}
         {/* Percentage */}
-        <div className="container">
+        {/* <div className="container">
 
         
         <div className="feature-description feature-description-other">
@@ -470,19 +470,13 @@ function WhatWeDo() {
                                   <div className="percentname">Administration</div>
                                 </div></a>
                             </div>
-                            {/* <div className="col-6 col-md-3 ">
-                              <a className="hi-icon hi-icondiv">
-                                <div className="percent-div">
-                                  <div className="hi-iconimg">100%</div>
-                                  <div className="trsteename">Anand Mahindra
-                                    <div className="trsteename-desc">Chairman</div></div>
-                                </div></a>
-                            </div> */}
                           </div>
                         </div>
                       </section>
                   </div>
-      </div></div>
+      </div> */}
+      
+      </div>
     </>
   );
 }
