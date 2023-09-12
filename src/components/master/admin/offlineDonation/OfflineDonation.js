@@ -720,17 +720,14 @@ function OfflineDonation() {
     e.preventDefault();
     console.log(e.target.value);
     const emailId = e.target.value;
-    setLoading(true);
+    if(emailId.length > 2){
+      setLoading(true);
     let response = await DonationService.getDetailsByEmailId(emailId);
-
     console.log(response);
     if (response?.status === "Success") {
       toast.success(response?.message);
       console.log(response?.data);
       // console.log(formData.formData.user.address);
-
-
-
 
       let addr = [...initialAddress];
       if (hasValues(response.data.address[0])) {
@@ -760,10 +757,11 @@ function OfflineDonation() {
         // navigate("/ModelView");
       }, 2000);
       setLoading(false);
-    } else if (response?.statusCode === 409) {
-      toast.error(response?.message);
+    } else if (response?.statusCode === 409 || response?.status == "NOT_FOUND" ) {
+      //toast.error(response?.message);
       setLoading(false);
     }
+  }
     // Call your function here or perform any desired actions
   };
 
@@ -2678,11 +2676,8 @@ function OfflineDonation() {
                                     }
                                   >
                                     <option disabled selected value="">Select</option>
-                                    <option value="Bank_Transfer">Bank Transfer</option>
-                                    <option value="Credit_Card">Credit Card</option>
                                     <option value="Cheque">Cheque</option>
-                                    <option value="Demand_Draft">Demand Draft</option>
-                                    <option value="Online">Online</option>
+                                    <option value="Cash">Cash</option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (error.field === 'donations[0].paymentInfo[0].paymentMode') {
@@ -2841,11 +2836,8 @@ function OfflineDonation() {
                                       }
                                     >
                                     <option disabled selected value="">Select</option>
-                                    <option value="Bank_Transfer">Bank Transfer</option>
-                                    <option value="Credit_Card">Credit Card</option>
                                     <option value="Cheque">Cheque</option>
-                                    <option value="Demand_Draft">Demand Draft</option>
-                                    <option value="Online">Online</option>
+                                    <option value="Cash">Cash</option>
                                     </select>
                                   </div>
                                 </div>
