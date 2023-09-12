@@ -18,7 +18,7 @@ import ReactPaginate from 'react-paginate';
 function WebDonarCreation() {
   const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState('');
-  const [donorTypeFilter, setDonorTypeFilter] = useState("Corporate");
+  const [donorTypeFilter, setDonorTypeFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("Pending");
   const [status, setStatus] = useState("Pending");
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
