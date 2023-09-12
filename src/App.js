@@ -39,6 +39,7 @@ import UserSpecificDonationView from "./components/master/admin/donarCreation/Us
 import UserDashboard from "./components/master/user/UserDashboard";
 import UserReceipts from "./components/master/user/UserReceipts";
 import Faq from "./components/master/otherMenu/Faq";
+import DashboardTable from "./components/master/Dashboard/DashboardTable";
 
 
 function HomeWithHeaderAndFooter() {
@@ -293,6 +294,19 @@ function DashboardWithHeaderAndFooter() {
     </>
   );
 }
+function PlantingWithHeaderAndFooter() {
+  return (
+    <>
+       <AdminHeader />
+      <div className="leftmenu-main">
+        <AdminLeftMenu />
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <DashboardTable />
+      </div>
+      </div>
+    </>
+  );
+}
 function UserDonationView({ userDetails, setAuthToken, authToken }) {
   return (
     <>
@@ -459,6 +473,13 @@ function App() {
                 element={
                   <ProtectedRoutes admin={authority.admin} >
                     <DashboardWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
+                  </ProtectedRoutes>
+                } />
+
+        <Route path="/Plantation"
+                element={
+                  <ProtectedRoutes >
+                    <PlantingWithHeaderAndFooter />
                   </ProtectedRoutes>
                 } />
       </Routes>

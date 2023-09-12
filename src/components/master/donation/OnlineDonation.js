@@ -28,7 +28,7 @@ function OnlineDonation() {
   const [newEmail, setNewEmail] = useState(null);
   const [gatewayConfiguration, setGatewayConfiguration] = useState(null);
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
-  const [informationShare, setInformationShare] = useState("yes");
+  const [informationShare, setInformationShare] = useState(false);
 
   const [donation, setDonation] = useState("");
 
@@ -492,6 +492,11 @@ function OnlineDonation() {
     if (isValid) {
       if (!privacyPolicy) {
         toast.error("Please Accept Privacy Policy");
+        return;
+      }
+      console.log(informationShare)
+      if(!informationShare){
+        toast.error("Please Accept Information Share Details");
         return;
       }
       let updatedUserPackage = [];
@@ -2020,7 +2025,7 @@ function OnlineDonation() {
                             className="mt20 mr10 webform-button--submit"
                             onClick={(e) => userAdd(e, "self")}
                           >
-                            Donate
+                            Process to pay
                           </button>
                           <button
                             type="submit"
@@ -3163,7 +3168,7 @@ function OnlineDonation() {
                           className="mt20 mr10 webform-button--submit"
                           onClick={(e) => userAdd(e, "gift")}
                         >
-                          Donate
+                          Process to pay
                         </button>
                         <button
                           type="submit"
