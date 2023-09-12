@@ -478,8 +478,8 @@ function App() {
 
         <Route path="/Plantation"
                 element={
-                  <ProtectedRoutes >
-                    <PlantingWithHeaderAndFooter />
+                  <ProtectedRoutes admin={authority.admin} >
+                    <PlantingWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
                   </ProtectedRoutes>
                 } />
       </Routes>

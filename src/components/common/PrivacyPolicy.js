@@ -32,7 +32,13 @@ const PrivacyPolicy = ({
             I withdraw my consent.
           </li>
           <li>
-            I understand that I am free to withdraw my consent to the processing
+          <input
+              type="checkbox"
+              name="Condition"
+              value={privacyPolicy}
+              onChange={() => setPrivacyPolicy(!privacyPolicy)}
+              className="checkboxinput"
+            />I understand that I am free to withdraw my consent to the processing
             of my personal data, at any time, by writing to
             support@hariyali.org,in.
           </li>
@@ -43,7 +49,7 @@ const PrivacyPolicy = ({
         value={informationShare}
         onChange={(e) => setInformationShare(e.target.value)}
       >
-        <input type="radio" name="consent" value="yes" checked={informationShare ==="yes"} />
+        <input type="radio" name="consent" value="no" checked={informationShare ==="no"} />
         {"  "}
         Yes, I consent to receive campaign related correspondences regarding
         Project Hariyali.

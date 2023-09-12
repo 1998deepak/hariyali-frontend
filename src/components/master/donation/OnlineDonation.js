@@ -3132,7 +3132,7 @@ function OnlineDonation() {
                           <CaptchaGift
                             verified={false}
                             setVerified={() => setCaptchaFlag(true)}
-                            id="captcha2"
+                            id="captcha1"
                           />
                           {errors.map((error, index) => {
                             if (error.field === "captchaError") {
