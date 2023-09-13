@@ -5093,3 +5093,13 @@ iframe {
 .transaction-modal .modal-dialog{
   width: 500px !important;
 }
+.fab-button{
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #23aa4a;
+  color:#ffffff ;
+  bottom: 40px;
+  right: 40px;
+}

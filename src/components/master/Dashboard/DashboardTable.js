@@ -55,12 +55,6 @@ const DashboardTable = () => {
     }
   };
 
-  const getPlantationData = async () => {
-        const response = await PlantationService.UploadExcel(formData);
-          console.log(response);
-          toast.success(response.Message);
-  };
-
   //Select season type value
   const handleSeasonChange = (e) => {
     setSelectedSeason(e.target.value);

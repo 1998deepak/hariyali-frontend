@@ -47,7 +47,12 @@ const Header = () => {
   }, []);
 
   const location = useLocation();
-  console.log(JSON.stringify(location))
+  console.log(JSON.stringify(location.search))
+
+  const queryParameters = new URLSearchParams(window.location.search)
+  const type = queryParameters.get("meconnectId")
+  const name = queryParameters.get("source")
+
 
   return (
     <>

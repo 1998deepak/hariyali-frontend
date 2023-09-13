@@ -2170,7 +2170,8 @@ function OnlineDonation() {
                             <a href="tel:93224 56789">93224 56789</a>
                           </p>
                         </div>
-                      ) : null}
+                      ) : null}                        
+                        
                     </div>
                     <div>
                       <div className="row">
@@ -2220,6 +2221,19 @@ function OnlineDonation() {
                               ) : (
                                 <></>
                               )}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-6">
+                        <div className=" select-label">
+                            {/* <div className="col-4 ">Occasion</div> */}
+                            <div className="col-12 p0 field-wrapper">
+                              <label className="form-label">
+                                Content <span className="red-text">*</span>
+                              </label>
+                                <textarea className="form-control" placeholder="Enter your content">
+
+                                </textarea>
                             </div>
                           </div>
                         </div>
@@ -3146,6 +3160,28 @@ function OnlineDonation() {
                         >
                           Clear
                         </button>
+                        <button className="fab-button">
+                          Preview
+                        </button>
+                        <div
+                              className="modal show"
+                              style={{ display: 'block', position: 'initial' }}
+                            >
+                              <Modal.Dialog>
+                                <Modal.Header closeButton>
+                                  <Modal.Title>Modal title</Modal.Title>
+                                </Modal.Header>
+
+                                <Modal.Body>
+                                  <p>Modal body text goes here.</p>
+                                </Modal.Body>
+
+                                <Modal.Footer>
+                                  <Button variant="secondary">Close</Button>
+                                  <Button variant="primary">Save changes</Button>
+                                </Modal.Footer>
+                              </Modal.Dialog>
+                            </div>
                       </div>
                     )}
                   </form>
