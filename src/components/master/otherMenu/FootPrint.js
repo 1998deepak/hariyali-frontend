@@ -409,7 +409,7 @@ function FootPrint() {
             </div>
           </div> */}
 
-          <div>
+          <div className="my-5">
             <Accordion>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
