@@ -272,39 +272,7 @@ function OnlineDonation() {
       });
     }
 
-    // if (userData?.user?.activityType === null) {
-    //   validationErrors.push({ field: "userData.user.activityType", message: "Activity Type is required" });
-    // }
 
-    // // Validate payment info
-    // if (donations && donations[0]?.paymentInfo) {
-    //   for (let i = 0; i < donations[0].paymentInfo.length; i++) {
-    //     if (i === 1) {
-    //       // Skip validation for paymentInfo[1]
-    //       continue;
-    //     }
-    //     const payment = donations[0].paymentInfo[i];
-
-    //     if (!payment.paymentMode) {
-    //       validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].paymentMode", message: "Payment Mode is required" });
-    //     }
-    //     if (!payment.chqORddDate) {
-    //       validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].chqORddDate", message: "ChqORddDate is required" });
-    //     }
-    //     if (!payment.paymentDate) {
-    //       validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].paymentDate", message: "Payment Date is required" });
-    //     }
-    //     if (!payment.amount) {
-    //       validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].amount", message: "Amount is required" });
-    //     }
-    //     if (!payment.bankName || payment.bankName.trim() === "") {
-    //       validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].bankName", message: "Bank Name is required" });
-    //     }
-    //     if (!payment.chqORddNo) {
-    //       validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].chqORddNo", message: "ChqORddNo is required" });
-    //     }
-    //   }
-    // }
 
     // Validate addresses
     for (let i = 0; i < address.length; i++) {
@@ -492,11 +460,6 @@ function OnlineDonation() {
     if (isValid) {
       if (!privacyPolicy) {
         toast.error("Please Accept Privacy Policy");
-        return;
-      }
-      console.log(informationShare)
-      if(!informationShare){
-        toast.error("Please Accept Information Share Details");
         return;
       }
       let updatedUserPackage = [];

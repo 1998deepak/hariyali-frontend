@@ -15,6 +15,11 @@ import image from "../../../assets/img/bannerWherearewe.png";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function FootPrint() {
   const [arakushow, setArakuShow] = useState(false);
@@ -163,7 +168,7 @@ function FootPrint() {
                   </div>
                 </div>
               </div> */}
-          <div class="accordion my-5" id="accordionExample">
+          {/* <div class="accordion my-5" id="accordionExample">
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button
@@ -402,7 +407,173 @@ function FootPrint() {
                 </div>
               </div>
             </div>
+          </div> */}
+
+          <div>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>How do I see and get info about my tree once I’ve bought it?</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                  When you buy trees from EcoTree, we add them to your online
+                    account. You’ll be able to track their progress and
+                    geolocate them using aerial maps and photos of the forest.
+                    <br /> You will also have access to a CO2 absorption meter
+                    as well as a recovery meter over time. We send all customers
+                    a regular email newsletter to help you keep up to date with
+                    special offers and information about our forests.
+                    <br /> Every year, we send you our detailed annual report
+                    for you to learn about the work we’ve done in our forests,
+                    our progress as a company and plans for the future. Read our
+                    latest annual report now. Finally, most of our forests are
+                    open. That means you can come and visit the forest where
+                    your trees grow at any time. Just check our list of forests
+                    to see if your forest is labelled ‘open to the public’.
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+              >
+                <Typography>How does it work?</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                <p>Why do we need to plant trees anyway? 1. Absorb CO2.</p>
+                  <ol>
+                    <li>Purify the air.</li>
+                    <li>Help ensure the preservation of biodiversity.</li>
+                    <li>Are a source of raw materials.</li>
+                    <li>Create jobs.</li>
+                    <li>Aid the renewal of damaged land.</li>
+                    <li>Filter water.</li>
+                    <li> Have agricultural benefits.</li>
+                    <li>Provide resources for medicine. </li>
+                  </ol>
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel3a-content"
+                id="panel3a-header"
+              >
+                <Typography>Are the trees I buy already planted or will they be planted in the future?</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                    At EcoTree, we work in harmony with the seasons and only
+                    plant new tree saplings in the winter. This means we need to
+                    anticipate demand for our trees ahead of time. So if you are
+                    buying a sapling, it might not be planted for a little
+                    while. If it’s listed as a mature tree at purchase, then
+                    it’s obviously growing away nicely already.
+                    <br />
+                    If demand for our trees is higher than we expected, we have
+                    a pre-sale system set up to ensure that everyone can still
+                    buy trees and contribute over the long term to the vital
+                    work our planet’s forests do in capturing carbon.
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>Do I get a certificate or other proof that I own my trees?</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                    As a tree owner with EcoTree, you get a certificate of
+                    ownership. Our IT Department stores all records of
+                    ownership, hosted on servers outside EcoTree.
+                    <br />
+                    On top of this, we provide proof that we are maintaining a
+                    properly accounted register annually to the financial
+                    authorities (The AMF - Autorité des Marchés Financiers) in
+                    France.
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>Does the price of my tree include all taxes and fees?</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                    Once your trees have been paid for, you will never have to
+                    pay more costs or taxes. Your initial payment covers the
+                    vital work we do to maintain a vibrant, sustainable forest
+                    (such as pruning, thinning and mushroom treatments). It also
+                    covers all the costs involved in the notary deeds, property
+                    taxes and maps or surveys of the forest where your trees are
+                    planted (cadastral fees).
+                    <br />
+                    Under current French tax law, any capital gain is
+                    non-taxable if it relates to the sale of trees worth less
+                    than €5,000 after 22 years or more of tree ownership.
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>How long do trees take to reach maturity?</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                    Every tree species we offer is different, in terms of how
+                    long it takes to reach maturity, but we’re talking decades
+                    for all of them!
+                    <br />
+                    Not all the trees we offer are new planted saplings. Some
+                    have been growing a number of years already.
+                    <br />
+                    You can see how old a tree is when you buy it and how many
+                    years we expect it to grow before we cut it, on the tree’s
+                    product information card.
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography> Why is tree ownership good for the planet?</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                    Writer George Monbiot and biologist Garret Hardin have
+                    highlighted how vital our connection to nature is in its
+                    conservation. That’s why we’re going beyond donations.
+                    <br />
+                    Our tree owners (like you!) have a lifetime of reasons to
+                    stay engaged and passionate about protecting forests.
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
           </div>
+
         </div>
       </div>{" "}
       <Modal show={arakushow} onHide={ArakuClose}>
