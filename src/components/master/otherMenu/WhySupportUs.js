@@ -100,22 +100,22 @@ function WhySupportUs() {
       image: testimonialImg,
       name: "Farmer family from Gondhi Rapa village (Hukumpeta mandal), Araku.",
       quote:
-        "Our farm yields 894 kgs of crimson red cherries which we have given to the cooperative thereby earning 6 times of what we earned two years ago - farmer family from Gondhi Rapa village (Hukumpeta mandal), Araku.",
+        "We are from Gondhi Rapa village in Hukumpeta mandal of the Araku region. Our farm yields 894 kgs of crimson red coffee cherries which we have given to the cooperative thereby earning 6 times of what we earned two years.",
     },
     {
       image: testimonial2,
-      name: "Woman Farmer from Shravasti.",
-      quote: "I live in Purva village Shravasti dist. After joining the program, I got 91 fruit saplings of Guava, Jackfruit, Lemon etc. and was provided with training on how to plant, maintaining the distance between saplings, use of spray machine for application of bio inputs etc. I nurture, love and care for them as a mother does for her child. Under the guidance of the team, I am making Bio inputs too. From third year the trees will start bearing fruits which will be good to consume by my family and from the 5th year the produce would be enough for commercial purposes.",
+      name: "I care for my saplings just like a mother cares for her child",
+      quote: "I live in Purva village of Shravasti district. After joining Hariyali I got 91 fruit saplings including guava, jackfruit and lemon. I also received training on how to dig the pit for sapling planting, how much distance to maintain between saplings, how and when to spray bio inputs etc. I nurture, love and care for these saplings as a mother does for her child. Under the guidance of the Naandi team, I am making bio inputs too. In three years these will become trees and start bearing fruits which my family can consume. And from the fifth year they will bear enough fruits for me to go to the market and sell them and make a living.",
     },
     {
       image: testimonial3,
-      name: "Woman farmer from Chabeet village, Solan.",
-      quote: "I have been engaged in usual form of farming, but the yield wasn't great. After getting to know about Project Hariyali I didn't think twice to become part of it. I was given 42 fruit saplings mostly Plum and Apple varieties. I follow all the organic farming practices in letter and in spirit. This is my bit for the climate change and to make Himachal Pradesh Clean and Green. I am sure my family will benefit from this initiative in near future.",
+      name: "This is my small contribution towards reversing climate change",
+      quote: "I live in Chabeet village of Solan district. I have been doing the usual kind of farming, but the yield was never very good. When I heard about Project Hariyali I immediately came forward to join it.  I was given 42 fruit saplings - mostly plum and apple. I follow all the organic regenerative farming practices faithfully. This is my small contribution towards reversing climate change and making Himachal Pradesh clean and green. In the future, my family will reap the benefits. ",
     },
     {
       image: testimonial4,
-      name: "Woman farmer from Kokri Kalan village, Moga, Punjab.",
-      quote: "I have been making a living with great difficulties. I had a liking for plants and agriculture in general. Through project Hariyali , I learnt efficient farming practices. I am confident with these practices I will reap benefit in future. I have received 31 fruit saplings of Guava, mango, Orange & Peach. I know these will add nutritional diversity for my family as well as bring additional income in future.",
+      name: "These will add nutritional diversity for my family",
+      quote: "I live in Kokri Kalan village of Moga district. We struggle to make a reasonable livelihood. I always had a liking for plants and agriculture in general. Through Project Hariyali, I have learnt efficient farming practices. I am confident that with these practices I will reap benefits in future. I have received 31 fruit saplings which include guava, mango, orange and peach. I know these will add nutritional diversity for my family as well as bring additional income in future.",
     },
     // Add other testimonials
   ];

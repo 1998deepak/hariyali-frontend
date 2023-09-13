@@ -8,7 +8,7 @@ import 'react-vertical-timeline-component/style.min.css';
 import { FaSearchLocation, FaEdit, FaCalendarAlt, FaWpforms, FaRegUserCircle, FaStar, FaTree, FaUsers, FaCogs, FaCannabis } from "react-icons/fa";
 // import whatwe1 from "../../../assets/img/whatwe1.jpg";
 import whatwe2 from "../../../assets/img/whatwe2.jpg";
-import processImg from "../../../assets/img/process.jpg";
+import processImg from "../../../assets/img/calender.png";
 import step2Img from "../../../assets/img/pr-step2.png";
 
 import step4Img from "../../../assets/img/pr-step4.png";
@@ -109,10 +109,10 @@ function WhatWeDo() {
         <section className="bg-green"> <div className="container">
           <Row className="justify-content-between align-items-center">
             <div className="col-12 feature-description">
-              <h2 className="sub-title text-center">Approach</h2>
-              <p className="text-center">
-                We have two seasons for plantation Monsoon and Winter. Each Year, we follow a systematic plantation process so that survival rate is high.</p>
+              <h2 className="sub-title text-center">Approach</h2>              
              <div className="col-10 m-auto approchimg"> <img src={Approach} alt="Approach"  /></div>
+             <h5 className="text-center mt-5">
+                We have two seasons for plantation Monsoon and Winter. Each Year, we follow a systematic plantation process so that survival rate is high.</h5>
               <div className="row justify-content-center mt-5">
                 <div className="col-12 col-md-6">
                   <div className="card plantation-card h-100">
@@ -149,6 +149,7 @@ function WhatWeDo() {
                   </div>
                 </div>
               </div>
+              
             </div>
             <div className="col-12 col-md-5">
               <div className="">
