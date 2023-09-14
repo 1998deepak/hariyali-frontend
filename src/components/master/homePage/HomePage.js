@@ -190,57 +190,64 @@ function HomePage() {
   const handleShow = () => setShow(true);
 
 
-//First Part
-  function animateValue1(obj1, start, end, duration) {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      obj1.innerHTML = Math.floor(progress * (end - start) + start);
-      if (progress < 1) {
+      // //First Part
+        function animateValue1(obj1, start, end, duration) {
+          let startTimestamp = null;
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          const value1 = Math.floor(progress * (end - start) + start);
+          obj1.textContent = value1;
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          }
+        };
         window.requestAnimationFrame(step);
       }
-    };
-    window.requestAnimationFrame(step);
-  }
-  
-  const obj1 = document.getElementById("value1");
-  animateValue1(obj1, 0, 24861288, 5000);
+        
+      useEffect(() => {
+        const obj1 = document.getElementById("value1");
+        animateValue1(obj1, 0, 22861288, 5000);
+      }, []);
 
-  //Second Part
-  function animateValue2(obj2, start, end, duration) {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      obj2.innerHTML = Math.floor(progress * (end - start) + start);
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
+     //Second Part
+      function animateValue2(obj2, start, end, duration) {
+        let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj2.textContent = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
       }
-    };
-    window.requestAnimationFrame(step);
-  }
   
-  const obj2 = document.getElementById("value2");
-  animateValue2(obj2, 0, 85, 5000);
+      useEffect(() => {
+      const obj2 = document.getElementById("value2");
+      animateValue2(obj2, 0, 85, 5000);
+    }, []);
 
-  //Thirdt part
-  function animateValue3(obj3, start, end, duration) {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      const value = start + progress * (end - start);
-      obj3.innerHTML = value.toFixed(1); // Display one decimal place
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      }
+      //Thirdt part
+      const animateValue3 = (obj3, start, end, duration) => {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const value = start + progress * (end - start);
+            obj3.textContent = value.toFixed(1); // Display one decimal place
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            }
+        };
+        requestAnimationFrame(step);
     };
-    window.requestAnimationFrame(step);
-  }
-  
-  const obj3 = document.getElementById("value3");
-  animateValue3(obj3, 0, 0.4, 5000);
+
+    useEffect(() => {
+      const obj3 = document.getElementById("value3");
+      animateValue3(obj3, 0, 0.4, 5000);
+    }, []);
   
 
   return (
