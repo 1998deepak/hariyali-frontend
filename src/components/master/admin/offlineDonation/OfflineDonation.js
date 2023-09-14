@@ -4,10 +4,11 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Tab, Tabs } from "react-bootstrap";
 import { DonationService } from "../../../../services/donationService/donation.service";
-import { SUCCESS, stateOptions } from "../../../constants/constants";
+import { BANK_TRANSFER, CHEQUE, PAYMENT_MODES, SUCCESS, stateOptions } from "../../../constants/constants";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
 import SearchWithSuggestions from "../../../common/searchComponent/SearchWithSuggestions";
 import Loader from "../../../common/loader/Loader";
+import PaymentDetails from "../../../common/PaymentDetails";
 
 function OfflineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
@@ -92,12 +93,44 @@ function OfflineDonation() {
       recipient: [],
       paymentInfo: [
         {
-          paymentMode: "",
-          bankName: "",
-          chqORddNo: "",
-          chqORddDate: "",
-          paymentDate: "",
-          amount: 0,
+          paymentInfoId: '',
+  paymentMode: '',
+  bankName: '',
+  chqORddNo: '',
+  chqORddDate: '',
+  paymentDate: '',
+  amount: '',
+  donation: '',
+  createdDate: '',
+  createdBy: '',
+  modifiedDate: '',
+  modifiedBy: '',
+  remark: '',
+  isDeleted: '',
+  paymentTrackingId: '',
+  bankPaymentRefNo: '',
+  cardName: '',
+  currency: '',
+  paymentStatus: '',
+  orderId: '',
+  accountId: '',
+  receiptDate: '',
+  receivedAmount: '',
+  bankCharge: '',
+  documentNumber: '',
+  bankAddress: '',
+  depositNumber: '',
+  depositDate: '',
+  receiptNumber: '',
+  realizationDate: '',
+  creditCardNumber: '',
+  cardExpiry: '',
+  cardHolderName: '',
+  chequeNumber: '',
+  chequeDate: '',
+  demandDraftNumber: '',
+  demandDraftDate: '',
+  totalAmount: ''
         },
         {
           paymentMode: "",
@@ -176,6 +209,7 @@ function OfflineDonation() {
   const [loading, setLoading] = useState(false);
 
   const [accountList, setAccountList] = useState([]);
+  const [bankList, setBankList] = useState([]);
 
   function hasValues(obj) {
     for (let key in obj) {
@@ -258,8 +292,24 @@ function OfflineDonation() {
         if (!payment.amount) {
           validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].amount", message: "Amount is required" });
         }
-        if (!payment.bankName || payment.bankName.trim() === "") {
-          validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].bankName", message: "Bank Name is required" });
+        if (!payment.totalAmount) {
+          validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].totalAmount", message: "Total Amount is required" });
+        }
+        if (!payment.paymentStatus) {
+          validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].paymentStatus", message: "Payment Status is required" });
+        }
+        if (!payment.receiptDate) {
+          validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].receiptDate", message: "Receipt Date is required" });
+        }
+        
+        if (!payment.accountId || payment.accountId.trim() === "") {
+          validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].accountId", message: "Bank Account is required" });
+        }
+        if (donations[0]?.paymentInfo[i].paymentMode === BANK_TRANSFER || donations[0]?.paymentInfo[i].paymentMode === CHEQUE) {
+          if (!payment.receivedAmount) {
+            validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].receivedAmount", message: "Received Date is required" });
+          }
+          
         }
       }
     }
@@ -469,6 +519,7 @@ function OfflineDonation() {
     getAllPackages();
     getDonarIdList();
     getAllActiveBankAccounts();
+    getAllActiveBanks();
   }, []);
   const getAllPackages = async () => {
     setLoading(true);
@@ -501,6 +552,20 @@ function OfflineDonation() {
     }
   };
 
+  const getAllActiveBanks = async () => {
+    setLoading(true);
+    const response = await DonationService.getAllActiveBanks();
+    console.log(response);
+    if (response?.status === SUCCESS) {
+      console.log(response.data);
+      setBankList(response.data);
+      setLoading(false);
+    } else {
+      toast.error(response?.message);
+      setLoading(false);
+    }
+  };
+
   const getDonarIdList = async () => {
     setLoading(true);
     const response = await DonationService.getAllDonarId();
@@ -525,6 +590,7 @@ function OfflineDonation() {
     setDonations(intialDonations);
     setRecipient(initialRecipientData);
     setUserData(initialUserData);
+    
 
   };
   const handleTabSelect = (eventKey) => {
@@ -861,7 +927,7 @@ function OfflineDonation() {
             if (donation.donationType === "Self-Donate") {
               donationData.recipient = []; // Exclude recipient data
             } else if (donation.donationType === "Gift-Donate") {
-              donationData.recipient = recipient
+              donationData.recipient = recipient;
             }
 
             return donationData;
@@ -1552,157 +1618,7 @@ function OfflineDonation() {
                           >
                             <FaPlusSquare />
                           </div></div>
-                        <div className="col-12 pr15 mt20">
-                          <div className="row">
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 "> Select Mode <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <select
-                                    name="paymentMode"
-                                    className=" form-control-inside form-select"
-                                    value={donations[0]?.paymentInfo[0].paymentMode}
-                                    onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
-                                    }
-                                  >
-                                    <option disabled selected value="">Select</option>
-                                    <option value="Cheque">Cheque</option>
-                                    <option value="Cash">Cash</option>
-                                  </select>
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].paymentMode') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 "> Bank Name <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="bankName"
-                                    placeholder="Bank Name"
-                                    type="text"
-                                    value={donations[0]?.paymentInfo[0].bankName}
-                                    onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].bankName') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 "> Chq/DD No.</div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="chqORddNo"
-                                    placeholder="Chq/DD No."
-                                    type="text"
-                                    value={donations[0]?.paymentInfo[0]?.chqORddNo}
-                                    onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].chqORddNo') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 ">Chq/DD Date</div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="chqORddDate"
-                                    placeholder="Chq/DD Date"
-                                    type="date"
-                                    value={
-                                      donations[0]?.paymentInfo[0].chqORddDate
-                                    }
-                                    onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].chqORddDate') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 ">Payment Date <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="paymentDate"
-                                    placeholder="Payment Date"
-                                    type="date"
-                                    value={
-                                      donations[0]?.paymentInfo[0].paymentDate
-                                    }
-                                    onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].paymentDate') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 ">Amount <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="amount"
-                                    placeholder="Amount"
-                                    type="number"
-                                    value={donations[0]?.paymentInfo[0].amount}
-                                    onChange={(event) => {
-                                      if (event.target.value < 0) {
-                                        event.target.value = 0;
-                                      }
-                                      handlePaymentInfoChange(event, 0, 0);
-                                    }}
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].amount') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                        <PaymentDetails donations={donations} errors={errors} bankList={bankList} handlePaymentInfoChange={handlePaymentInfoChange} index={0}/>
                         <div id="addpaymentDiv" className="hide">
                           <hr />
                           <div className="actionheadingdiv">Mode of Payment
@@ -2654,157 +2570,7 @@ function OfflineDonation() {
                           >
                             <FaPlusSquare />
                           </div></div>
-                        <div className="col-12 pr15 mt20">
-                          <div className="row">
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 "> Select Mode <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <select
-                                    name="paymentMode"
-                                    className=" form-control-inside form-select"
-                                    value={donations[0]?.paymentInfo[0].paymentMode}
-                                    onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
-                                    }
-                                  >
-                                    <option disabled selected value="">Select</option>
-                                    <option value="Cheque">Cheque</option>
-                                    <option value="Cash">Cash</option>
-                                  </select>
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].paymentMode') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 "> Bank Name <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="bankName"
-                                    placeholder="Bank Name"
-                                    type="text"
-                                    value={donations[0]?.paymentInfo[0].bankName}
-                                    onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].bankName') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 "> Chq/DD No.</div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="chqORddNo"
-                                    placeholder="Chq/DD No."
-                                    type="text"
-                                    value={donations[0]?.paymentInfo[0]?.chqORddNo}
-                                    onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].chqORddNo') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 ">Chq/DD Date</div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="chqORddDate"
-                                    placeholder="Chq/DD Date"
-                                    type="date"
-                                    value={
-                                      donations[0]?.paymentInfo[0].chqORddDate
-                                    }
-                                    onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].chqORddDate') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 ">Payment Date <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="paymentDate"
-                                    placeholder="Payment Date"
-                                    type="date"
-                                    value={
-                                      donations[0]?.paymentInfo[0].paymentDate
-                                    }
-                                    onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].paymentDate') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 ">Amount <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="amount"
-                                    placeholder="Amount"
-                                    type="number"
-                                    value={donations[0]?.paymentInfo[0].amount}
-                                    onChange={(event) => {
-                                      if (event.target.value < 0) {
-                                        event.target.value = 0;
-                                      }
-                                      handlePaymentInfoChange(event, 0, 0);
-                                    }}
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].amount') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                        <PaymentDetails donations={donations} errors={errors} bankList={bankList} handlePaymentInfoChange={handlePaymentInfoChange} index={0}/>
                         <div id="addgiftpaymentDiv" className="hide">
                           <hr />
                           <div className="actionheadingdiv">Mode of Payment
@@ -2814,121 +2580,7 @@ function OfflineDonation() {
                             >
                               <FaMinusSquare />
                             </div></div>
-                          <div className="col-12 pr15 mt20">
-                            <div className="row">
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 "> Select Mode </div>
-                                  <div className="col-8 p0">
-                                    <select
-                                      name="paymentMode"
-                                      className=" form-control-inside form-select"
-                                      value={donations[0].paymentInfo[1].paymentMode}
-                                      onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
-                                      }
-                                    >
-                                    <option disabled selected value="">Select</option>
-                                    <option value="Cheque">Cheque</option>
-                                    <option value="Cash">Cash</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 "> Bank Name</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="bankName"
-                                      placeholder="Bank Name"
-                                      type="text"
-                                      value={donations[0]?.paymentInfo[1].bankName}
-                                      onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 "> Chq/DD No.</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="chqORddNo"
-                                      placeholder="Chq/DD No."
-                                      type="text"
-                                      value={donations[0]?.paymentInfo[1].chqORddNo}
-                                      onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">Chq/DD Date</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="chqORddDate"
-                                      placeholder="Chq/DD Date"
-                                      type="date"
-                                      value={
-                                        donations[0]?.paymentInfo[1].chqORddDate
-                                      }
-                                      onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">Payment Date</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="paymentDate"
-                                      placeholder="Payment Date"
-                                      type="date"
-                                      value={
-                                        donations[0]?.paymentInfo[1].paymentDate
-                                      }
-                                      onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">Amount</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="amount"
-                                      placeholder="Amount"
-                                      type="number"
-                                      value={donations[0]?.paymentInfo[1].amount}
-                                      onChange={(event) => {
-                                        if (event.target.value < 0) {
-                                          event.target.value = 0;
-                                        }
-                                        handlePaymentInfoChange(event, 0, 1);
-                                      }}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                            <PaymentDetails donations={donations} errors={errors} bankList={bankList} handlePaymentInfoChange={handlePaymentInfoChange} index={1}/>
                         </div>
                         <button
                           type="submit"
@@ -3580,157 +3232,7 @@ function OfflineDonation() {
                           >
                             <FaPlusSquare />
                           </div></div>
-                        <div className="col-12 pr15 mt20">
-                          <div className="row">
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 "> Select Mode <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <select
-                                    name="paymentMode"
-                                    className=" form-control-inside form-select"
-                                    value={donations[0]?.paymentInfo[0].paymentMode}
-                                    onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
-                                    }
-                                  >
-                                    <option disabled selected value="">Select</option>
-                                    <option value="Cheque">Cheque</option>
-                                    <option value="Cash">Cash</option>
-                                  </select>
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].paymentMode') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 "> Bank Name <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="bankName"
-                                    placeholder="Bank Name"
-                                    type="text"
-                                    value={donations[0]?.paymentInfo[0].bankName}
-                                    onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].bankName') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 "> Chq/DD No.</div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="chqORddNo"
-                                    placeholder="Chq/DD No."
-                                    type="text"
-                                    value={donations[0]?.paymentInfo[0]?.chqORddNo}
-                                    onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].chqORddNo') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 ">Chq/DD Date</div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="chqORddDate"
-                                    placeholder="Chq/DD Date"
-                                    type="date"
-                                    value={
-                                      donations[0]?.paymentInfo[0].chqORddDate
-                                    }
-                                    onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].chqORddDate') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 ">Payment Date <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="paymentDate"
-                                    placeholder="Payment Date"
-                                    type="date"
-                                    value={
-                                      donations[0]?.paymentInfo[0].paymentDate
-                                    }
-                                    onChange={(event) =>
-                                      handlePaymentInfoChange(event, 0, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].paymentDate') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 ">Amount <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="amount"
-                                    placeholder="Amount"
-                                    type="number"
-                                    value={donations[0]?.paymentInfo[0].amount}
-                                    onChange={(event) => {
-                                      if (event.target.value < 0) {
-                                        event.target.value = 0;
-                                      }
-                                      handlePaymentInfoChange(event, 0, 0);
-                                    }}
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donations[0].paymentInfo[0].amount') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                          <PaymentDetails donations={donations} errors={errors} bankList={bankList} handlePaymentInfoChange={handlePaymentInfoChange} index={0}/>
                         <div id="addpaymentDiv" className="hide">
                           <hr />
                           <div className="actionheadingdiv">Mode of Payment
@@ -3740,121 +3242,7 @@ function OfflineDonation() {
                             >
                               <FaMinusSquare />
                             </div></div>
-                          <div className="col-12 pr15 mt20">
-                            <div className="row">
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 "> Select Mode</div>
-                                  <div className="col-8 p0">
-                                    <select
-                                      name="paymentMode"
-                                      className=" form-control-inside form-select"
-                                      value={donations[0].paymentInfo[1].paymentMode}
-                                      onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
-                                      }
-                                    >
-                                      <option selected>Select</option>
-                                      <option value="Cheque">Cheque</option>
-                                      <option value="Cash">Cash</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 "> Bank Name</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="bankName"
-                                      placeholder="Bank Name"
-                                      type="text"
-                                      value={donations[0]?.paymentInfo[1].bankName}
-                                      onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 "> Chq/DD No.</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="chqORddNo"
-                                      placeholder="Chq/DD No."
-                                      type="text"
-                                      value={donations[0]?.paymentInfo[1].chqORddNo}
-                                      onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">Chq/DD Date</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="chqORddDate"
-                                      placeholder="Chq/DD Date"
-                                      type="date"
-                                      value={
-                                        donations[0]?.paymentInfo[1].chqORddDate
-                                      }
-                                      onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">Payment Date</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="paymentDate"
-                                      placeholder="Payment Date"
-                                      type="date"
-                                      value={
-                                        donations[0]?.paymentInfo[1].paymentDate
-                                      }
-                                      onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">Amount</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="amount"
-                                      placeholder="Amount"
-                                      type="number"
-                                      value={donations[0]?.paymentInfo[1].amount}
-                                      onChange={(event) => {
-                                        if (event.target.value < 0) {
-                                          event.target.value = 0;
-                                        }
-                                        handlePaymentInfoChange(event, 0, 1);
-                                      }}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                            <PaymentDetails donations={donations} errors={errors} bankList={bankList} handlePaymentInfoChange={handlePaymentInfoChange} index={1}/>
                         </div>
                         <button
                           className="mt20 mr10 webform-button--submit"
@@ -4678,157 +4066,7 @@ function OfflineDonation() {
                           >
                             <FaPlusSquare />
                           </div></div>
-                        <div className="col-12 pr15 mt20">
-                          <div className="row">
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 "> Select Mode <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <select
-                                    name="paymentMode"
-                                    className=" form-control-inside form-select"
-                                    value={donationsGift[0]?.paymentInfo[0].paymentMode}
-                                    onChange={(event) =>
-                                      handlePaymentInfoChangeGift(event, 0, 0)
-                                    }
-                                  >
-                                    <option disabled selected value="">Select</option>
-                                    <option value="Cheque">Cheque</option>
-                                    <option value="Cash">Cash</option>
-                                  </select>
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donationGift[0].paymentInfo[0].paymentMode') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 "> Bank Name <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="bankName"
-                                    placeholder="Bank Name"
-                                    type="text"
-                                    value={donationsGift[0]?.paymentInfo[0].bankName}
-                                    onChange={(event) =>
-                                      handlePaymentInfoChangeGift(event, 0, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donationGift[0].paymentInfo[0].bankName') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 "> Chq/DD No.</div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="chqORddNo"
-                                    placeholder="Chq/DD No."
-                                    type="text"
-                                    value={donationsGift[0]?.paymentInfo[0]?.chqORddNo}
-                                    onChange={(event) =>
-                                      handlePaymentInfoChangeGift(event, 0, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donationGift[0].paymentInfo[0].chqORddNo') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 ">Chq/DD Date</div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="chqORddDate"
-                                    placeholder="Chq/DD Date"
-                                    type="date"
-                                    value={
-                                      donationsGift[0]?.paymentInfo[0].chqORddDate
-                                    }
-                                    onChange={(event) =>
-                                      handlePaymentInfoChangeGift(event, 0, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donationGift[0].paymentInfo[0].chqORddDate') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 ">Payment Date <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="paymentDate"
-                                    placeholder="Payment Date"
-                                    type="date"
-                                    value={
-                                      donationsGift[0]?.paymentInfo[0].paymentDate
-                                    }
-                                    onChange={(event) =>
-                                      handlePaymentInfoChangeGift(event, 0, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donationGift[0].paymentInfo[0].paymentDate') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 ">Amount <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="amount"
-                                    placeholder="Amount"
-                                    type="number"
-                                    value={donationsGift[0]?.paymentInfo[0].amount}
-                                    onChange={(event) => {
-                                      if (event.target.value < 0) {
-                                        event.target.value = 0;
-                                      }
-                                      handlePaymentInfoChangeGift(event, 0, 0);
-                                    }}
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'donationsGift[0].paymentInfo[0].amount') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                          <PaymentDetails donations={donations} errors={errors} bankList={bankList} handlePaymentInfoChange={handlePaymentInfoChange} index={0}/>
                         <div id="addgiftpaymentDiv" className="hide">
                           <hr />
                           <div className="actionheadingdiv">Mode of Payment
@@ -4838,121 +4076,7 @@ function OfflineDonation() {
                             >
                               <FaMinusSquare />
                             </div></div>
-                          <div className="col-12 pr15 mt20">
-                            <div className="row">
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 "> Select Mode</div>
-                                  <div className="col-8 p0">
-                                    <select
-                                      name="paymentMode"
-                                      className=" form-control-inside form-select"
-                                      value={donationsGift[0].paymentInfo[1].paymentMode}
-                                      onChange={(event) =>
-                                        handlePaymentInfoChangeGift(event, 0, 1)
-                                      }
-                                    >
-                                      <option selected>Select</option>
-                                      <option value="Cheque">Cheque</option>
-                                      <option value="Cash">Cash</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 "> Bank Name</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="bankName"
-                                      placeholder="Bank Name"
-                                      type="text"
-                                      value={donationsGift[0]?.paymentInfo[1].bankName}
-                                      onChange={(event) =>
-                                        handlePaymentInfoChangeGift(event, 0, 1)
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 "> Chq/DD No.</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="chqORddNo"
-                                      placeholder="Chq/DD No."
-                                      type="text"
-                                      value={donationsGift[0]?.paymentInfo[1].chqORddNo}
-                                      onChange={(event) =>
-                                        handlePaymentInfoChangeGift(event, 0, 1)
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">Chq/DD Date</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="chqORddDate"
-                                      placeholder="Chq/DD Date"
-                                      type="date"
-                                      value={
-                                        donationsGift[0]?.paymentInfo[1].chqORddDate
-                                      }
-                                      onChange={(event) =>
-                                        handlePaymentInfoChangeGift(event, 0, 1)
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">Payment Date</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="paymentDate"
-                                      placeholder="Payment Date"
-                                      type="date"
-                                      value={
-                                        donationsGift[0]?.paymentInfo[1].paymentDate
-                                      }
-                                      onChange={(event) =>
-                                        handlePaymentInfoChangeGift(event, 0, 1)
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">Amount</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="amount"
-                                      placeholder="Amount"
-                                      type="number"
-                                      value={donationsGift[0]?.paymentInfo[1].amount}
-                                      onChange={(event) => {
-                                        if (event.target.value < 0) {
-                                          event.target.value = 0;
-                                        }
-                                        handlePaymentInfoChangeGift(event, 0, 1);
-                                      }}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                            <PaymentDetails donations={donations} errors={errors} bankList={bankList} handlePaymentInfoChange={handlePaymentInfoChange} index={1}/>
                         </div>
                         <button
                           type="submit"

@@ -40,6 +40,7 @@ export const URLS = {
     GETALLRECEIPTSBYUSER:"/getAllReceiptByUser",
     DOWNLOADRECEIPT:"/receipt/download/",
     GET_ALL_ACTIVE_BANK_ACCOUNT:"/findAllActiveAccount",
+    GET_ALL_ACTIVE_BANKS:"/bank/findAllActiveBank",
     GET_USER_DONATIONS:"/getUserDonations",
 
     //Upload Excel Plantation
