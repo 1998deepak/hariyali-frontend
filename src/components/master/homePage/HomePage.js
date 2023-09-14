@@ -261,32 +261,26 @@ function HomePage() {
       {/* slide info */}
 
       <div className="container pv-75">
-
-        <div className="row mb10 impact-wrapper">
-          <div className="col-12 col-md-4 text-center">
-            <div className="tree-features" >
+        <div className="mb10 impact-wrapper">          
+            <div className="tree-features">
+              {/* <i className="icon-tree"></i> */}
               <h4>Trees planted so far</h4>
               <p id="value1">0</p>
             </div>
-          </div>
-          <div className="col-12 col-md-4 text-center">
+          
             <div className="tree-features">
               <h4>Survival rate of trees</h4>
-              <div className="d-flex">
+              <div className="d-flex align-items-center">
                 <p id="value2">0</p><span>%</span>
               </div>
             </div>
-          </div>
-          <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
               <h4>Carbon sequestered</h4>
-              <div className="d-flex">
-                <p id="value3">0</p><span>mtCO 2 e</span>
+              <div className="d-flex align-items-center">
+                <p id="value3">0</p><span>mtCO<sub>2</sub>e</span>
               </div>
             </div>
-          </div>
         </div>
-
       </div>
       <section className="bg-green">
         <div className="container pv-75">

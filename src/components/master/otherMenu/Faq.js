@@ -8,7 +8,30 @@ import CaptchaContact from "../user/CaptchaContact";
 import { ContactUsService } from "../../../services/ContactUsService/contactUs.service";
 import { toast, ToastContainer } from "react-toastify";
 
+import { useRef } from 'react';
+import jsPDF from 'jspdf';
+// eslint-disable-next-line no-unused-vars
+import PDF from '../otherMenu/pdf';
+
 function Faq() {
+    const reportTemplateRef = useRef(null);
+    const handleGeneratePdf = () => {
+		const doc = new jsPDF({
+			format: 'letter',
+			unit: 'pt',
+            orientation: 'p',
+		});
+
+		// Adding the fonts.
+		doc.setFont('Inter-Regular', 'normal');
+        doc.setFontSize(14);
+
+		doc.html(reportTemplateRef.current, {
+			async callback(doc) {
+				await doc.save('document');
+			},
+		});
+	};
   return (
     <>
       {/* body */}
@@ -24,6 +47,16 @@ function Faq() {
                 <h2 className="sub-title text-center mb-0">FAQ</h2>
               </div>
             </div>
+            
+            <div>
+			<button className="button" onClick={handleGeneratePdf}>
+				Generate PDF
+			</button>
+                <div ref={reportTemplateRef}>
+                    <PDF />
+                </div>
+            </div>
+           
 
             <div className="container">
               <div className="row">
