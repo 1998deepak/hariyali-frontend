@@ -162,7 +162,7 @@ function UpdateUserWithHeaderFooter() {
     <AdminHeader />
     <div className="leftmenu-main">
         <UserLeftMenu />
-        <div className="float-left page-scroll remove-top-margin" style={{ width: "100%" }}>
+        <div className="float-left page-scroll " style={{ width: "100%" }}>
         <UserUpdate />
         </div>
       </div>
@@ -175,7 +175,7 @@ function UserReceiptsWithHeaderFooter() {
     <AdminHeader />
     <div className="leftmenu-main">
         <UserLeftMenu />
-        <div className="float-left page-scroll remove-top-margin" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
         <UserReceipts />
         </div>
       </div>
@@ -189,7 +189,7 @@ function UserDashboardWithHeaderFooter() {
     <AdminHeader />
     <div className="leftmenu-main">
         <UserLeftMenu />
-        <div className="float-left page-scroll remove-top-margin" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
         <UserDashboard />
         </div>
       </div>
@@ -313,7 +313,7 @@ function UserDonationView({ userDetails, setAuthToken, authToken }) {
      <AdminHeader />
       <div className="leftmenu-main">
       <UserLeftMenu />
-        <div className="float-left" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
         <UserdonationView userDetails={userDetails?.email} setAuthToken={setAuthToken} authToken={authToken} />
         </div>
       </div>
@@ -327,7 +327,7 @@ function UserSpecificDonation() {
        <AdminHeader />
       <div className="leftmenu-main">
       <UserLeftMenu />
-        <div className="float-left" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
       <UserSpecificDonationView />
       </div></div>
     </>
