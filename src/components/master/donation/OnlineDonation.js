@@ -3286,37 +3286,6 @@ function OnlineDonation() {
           />
         </form>
       )}
-      {/* body */}
-      <Modal
-        className="transaction-modal"
-        show={showDonationModal}
-        onHide={handleDonationModalClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Body>
-          <div className="row">
-            <div className="col-12">
-              <Card >
-                <Card.Body>
-                  <div className="card-icon">
-                    <BsEmojiSmile />
-                  </div>
-                  <Card.Text dangerouslySetInnerHTML={{ __html: transactionMessage }}> 
-                  
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </div>
-          </div>
-
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleDonationModalClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </>
   );
 }
