@@ -45,6 +45,15 @@ function OnlineDonation() {
   
   const [showDonationModal, setShowDonationModal] = useState(false);
   const [transactionMessage, setTransactionMessage] = useState("");
+  const queryParameters = new URLSearchParams(window.location.search)
+  const meconnectId = queryParameters.get("meconnectId")
+  const source = queryParameters.get("source")
+
+//   const handleDecodeClick = () => {
+//     const decodedSource = atob(source);
+//     const decodedMeConnect = atob(meconnectId)
+//     setdecodedString(decodedSource);
+// }
 
   const handleShowConditions = (e) => {
     e.preventDefault();
@@ -80,6 +89,8 @@ function OnlineDonation() {
       isTaxBenefit: false,
       panCard: "",
       activityType: null,
+      meconnectId: "MQ==",
+      source: "TWVDb25uZWN0",
       address: [],
       donations: [],
     },
@@ -3131,6 +3142,7 @@ function OnlineDonation() {
                           ) : (
                             <></>
                           )}
+
                         <hr />
                         <PrivacyPolicy
                           informationShare={informationShare}
