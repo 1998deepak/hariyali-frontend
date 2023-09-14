@@ -15,6 +15,11 @@ import image from "../../../assets/img/bannerWherearewe.png";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function FootPrint() {
   const [arakushow, setArakuShow] = useState(false);
@@ -163,28 +168,18 @@ function FootPrint() {
                   </div>
                 </div>
               </div> */}
-          <div class="accordion my-5" id="accordionExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button
-                  class="accordion-button"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  How do I see and get info about my tree once I’ve bought it?
-                </button>
-              </h2>
-              <div
-                id="collapseOne"
-                class="accordion-c ollapse collapse show"
-                data-bs-parent="#accordionExample"
+          <div className="my-5">
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
               >
-                <div class="accordion-body">
-                  <p>
-                    When you buy trees from EcoTree, we add them to your online
+                <Typography>How do I see and get info about my tree once I’ve bought it?</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                  When you buy trees from EcoTree, we add them to your online
                     account. You’ll be able to track their progress and
                     geolocate them using aerial maps and photos of the forest.
                     <br /> You will also have access to a CO2 absorption meter
@@ -198,30 +193,20 @@ function FootPrint() {
                     open. That means you can come and visit the forest where
                     your trees grow at any time. Just check our list of forests
                     to see if your forest is labelled ‘open to the public’.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button
-                  class="accordion-button collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  How does it work?
-                </button>
-              </h2>
-              <div
-                id="collapseTwo"
-                class="accordion-collapse collapse "
-                data-bs-parent="#accordionExample"
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
               >
-                <div class="accordion-body">
-                  <p>Why do we need to plant trees anyway? 1. Absorb CO2.</p>
+                <Typography>How does it work?</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                <p>Why do we need to plant trees anyway? 1. Absorb CO2.</p>
                   <ol>
                     <li>Purify the air.</li>
                     <li>Help ensure the preservation of biodiversity.</li>
@@ -232,30 +217,19 @@ function FootPrint() {
                     <li> Have agricultural benefits.</li>
                     <li>Provide resources for medicine. </li>
                   </ol>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button
-                  class="accordion-button collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  Are the trees I buy already planted or will they be planted in
-                  the future?
-                </button>
-              </h2>
-              <div
-                id="collapseThree"
-                class="accordion-collapse collapse "
-                data-bs-parent="#accordionExample"
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel3a-content"
+                id="panel3a-header"
               >
-                <div class="accordion-body">
-                  <p>
+                <Typography>Are the trees I buy already planted or will they be planted in the future?</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
                     At EcoTree, we work in harmony with the seasons and only
                     plant new tree saplings in the winter. This means we need to
                     anticipate demand for our trees ahead of time. So if you are
@@ -267,30 +241,19 @@ function FootPrint() {
                     a pre-sale system set up to ensure that everyone can still
                     buy trees and contribute over the long term to the vital
                     work our planet’s forests do in capturing carbon.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button
-                  class="accordion-button collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  Do I get a certificate or other proof that I own my trees?
-                </button>
-              </h2>
-              <div
-                id="collapseFour"
-                class="accordion-collapse collapse "
-                data-bs-parent="#accordionExample"
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
               >
-                <div class="accordion-body">
-                  <p>
+                <Typography>Do I get a certificate or other proof that I own my trees?</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
                     As a tree owner with EcoTree, you get a certificate of
                     ownership. Our IT Department stores all records of
                     ownership, hosted on servers outside EcoTree.
@@ -298,31 +261,20 @@ function FootPrint() {
                     On top of this, we provide proof that we are maintaining a
                     properly accounted register annually to the financial
                     authorities (The AMF - Autorité des Marchés Financiers) in
-                    France.{" "}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button
-                  class="accordion-button collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseFive"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  Does the price of my tree include all taxes and fees?{" "}
-                </button>
-              </h2>
-              <div
-                id="collapseFive"
-                class="accordion-collapse collapse "
-                data-bs-parent="#accordionExample"
+                    France.
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
               >
-                <div class="accordion-body">
-                  <p>
+                <Typography>Does the price of my tree include all taxes and fees?</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
                     Once your trees have been paid for, you will never have to
                     pay more costs or taxes. Your initial payment covers the
                     vital work we do to maintain a vibrant, sustainable forest
@@ -334,30 +286,19 @@ function FootPrint() {
                     Under current French tax law, any capital gain is
                     non-taxable if it relates to the sale of trees worth less
                     than €5,000 after 22 years or more of tree ownership.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button
-                  class="accordion-button collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseSix"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  How long do trees take to reach maturity?{" "}
-                </button>
-              </h2>
-              <div
-                id="collapseSix"
-                class="accordion-collapse collapse "
-                data-bs-parent="#accordionExample"
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
               >
-                <div class="accordion-body">
-                  <p>
+                <Typography>How long do trees take to reach maturity?</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
                     Every tree species we offer is different, in terms of how
                     long it takes to reach maturity, but we’re talking decades
                     for all of them!
@@ -368,40 +309,28 @@ function FootPrint() {
                     You can see how old a tree is when you buy it and how many
                     years we expect it to grow before we cut it, on the tree’s
                     product information card.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button
-                  class="accordion-button collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseSeven"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  Why is tree ownership good for the planet?
-                </button>
-              </h2>
-              <div
-                id="collapseSeven"
-                class="accordion-collapse collapse "
-                data-bs-parent="#accordionExample"
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
               >
-                <div class="accordion-body">
-                  <p>
+                <Typography> Why is tree ownership good for the planet?</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
                     Writer George Monbiot and biologist Garret Hardin have
                     highlighted how vital our connection to nature is in its
                     conservation. That’s why we’re going beyond donations.
                     <br />
                     Our tree owners (like you!) have a lifetime of reasons to
                     stay engaged and passionate about protecting forests.
-                  </p>
-                </div>
-              </div>
-            </div>
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
           </div>
         </div>
       </div>{" "}

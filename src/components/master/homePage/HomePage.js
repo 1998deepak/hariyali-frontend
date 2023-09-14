@@ -189,6 +189,67 @@ function HomePage() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+
+      // //First Part
+        function animateValue1(obj1, start, end, duration) {
+          let startTimestamp = null;
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          const value1 = Math.floor(progress * (end - start) + start);
+          obj1.textContent = value1;
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          }
+        };
+        window.requestAnimationFrame(step);
+      }
+        
+      useEffect(() => {
+        const obj1 = document.getElementById("value1");
+        animateValue1(obj1, 0, 22861288, 5000);
+      }, []);
+
+     //Second Part
+      function animateValue2(obj2, start, end, duration) {
+        let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj2.textContent = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+      }
+  
+      useEffect(() => {
+      const obj2 = document.getElementById("value2");
+      animateValue2(obj2, 0, 85, 5000);
+    }, []);
+
+      //Thirdt part
+      const animateValue3 = (obj3, start, end, duration) => {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const value = start + progress * (end - start);
+            obj3.textContent = value.toFixed(1); // Display one decimal place
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            }
+        };
+        requestAnimationFrame(step);
+    };
+
+    useEffect(() => {
+      const obj3 = document.getElementById("value3");
+      animateValue3(obj3, 0, 0.4, 5000);
+    }, []);
+  
+
   return (
     <>
       {/* body */}
@@ -203,24 +264,25 @@ function HomePage() {
 
         <div className="row mb10 impact-wrapper">
           <div className="col-12 col-md-4 text-center">
-            <div className="tree-features">
-              {/* <i className="icon-tree"></i> */}
+            <div className="tree-features" >
               <h4>Trees planted so far</h4>
-              <p>2,48,61,288</p>
+              <p id="value1">0</p>
             </div>
           </div>
           <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
-              {/* <i className="icon-survival"></i> */}
               <h4>Survival rate of trees</h4>
-              <p>85%</p>
+              <div className="d-flex">
+                <p id="value2">0</p><span>%</span>
+              </div>
             </div>
           </div>
           <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
-              {/* <i className="icon-carbon"></i> */}
               <h4>Carbon sequestered</h4>
-              <p>0.4 mtCO<sub>2</sub>e</p>
+              <div className="d-flex">
+                <p id="value3">0</p><span>mtCO 2 e</span>
+              </div>
             </div>
           </div>
         </div>

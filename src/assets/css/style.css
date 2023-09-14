@@ -5093,3 +5093,40 @@ iframe {
 .transaction-modal .modal-dialog{
   width: 500px !important;
 }
+.fab-button{
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #23aa4a;
+  color:#ffffff ;
+  bottom: 40px;
+  right: 40px;
+}
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root{
+  border:1px solid #ccc;
+  font-family: 'Montserrat', sans-serif;
+}
+.css-ahj2mt-MuiTypography-root{
+  font-family: 'Montserrat', sans-serif !important;
+}
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root:first-of-type{
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.css-15v22id-MuiAccordionDetails-root{
+  font-size: 1.125rem !important;
+  padding: 2rem !important;
+}
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root.Mui-expanded{
+  margin: 0 !important;
+}
+
+.css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded{
+  background: #23aa4a;
+  color: #fff !important;
+}
+.css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded .css-ahj2mt-MuiTypography-root{
+  font-size: 1.125rem;
+  font-weight: 600;
+}
