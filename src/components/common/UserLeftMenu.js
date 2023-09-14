@@ -2,17 +2,17 @@
 import React, { useState } from "react";
 import {
   Sidebar,
-  Menu,
-  MenuItem,
-  SubMenu,
 } from "react-pro-sidebar";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaHome, FaUserFriends } from "react-icons/fa";
 import { MdCreateNewFolder } from "react-icons/md";
 import { IoReceiptSharp } from "react-icons/io5";
+import { Accordion } from "react-bootstrap";
 
 const LeftMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  console.log(location);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -20,7 +20,7 @@ const LeftMenu = () => {
 
   return (
     <>
-      <button
+    <button
         className=" baricon  btn navbar-toggler navbar-toggler-humburger-icon hover-bg-transparent"
         type="button"
         onClick={toggleMenu}
@@ -29,79 +29,57 @@ const LeftMenu = () => {
           <span className="toggle-line"></span>
         </span>
       </button>
-      <Sidebar className={isOpen ? "show remove-top-margin" : ""}>
-        <div>
-          <Menu>
-            <MenuItem className="sidebar-leftli left-sp">
-              <Link
-                to="/user/dashboard"
-                className="nav-link dropdown-indicator-left label-1"
-              >
-                <FaHome />
-                <SubMenu
-                  onClick={toggleMenu}
-                  label="Home"
-                  className="homemenu-icon menu-icon"
+      <Sidebar className={isOpen ? "show" : ""}>
+        <div className="adminLetNav">
+          <Accordion defaultActiveKey='0'>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header className={location.pathname === '/user/dashboard'? 'active disabled' : 'disabled'} >
+                <Link
+                  to="/user/dashboard"
+                  className="nav-link dropdown-indicator-left label-1"
                 >
-                  <MenuItem className=" hideshowmenu">Home</MenuItem>
-                </SubMenu>
-              </Link>
-            </MenuItem>
-          </Menu>
-          <div className="clear"></div>
-        </div>
-        <div>
-          <Menu>
-            <MenuItem className="sidebar-leftli left-sp">
+                  <FaHome />
+                  Home
+                </Link>
+              </Accordion.Header>
+
+            </Accordion.Item>
+            <Accordion.Item eventKey="1" >
+              <Accordion.Header className={location.pathname ==='/user/update'? 'disabled active' : 'disabled'} >
               <Link
                 to="/user/update"
                 className="nav-link dropdown-indicator-left label-1"
-              > <FaUserFriends />
-                <SubMenu
-                  onClick={toggleMenu}
-                  label="Web Donar"
-                  className="homemenu-icon menu-icon"
-                >
-                  <MenuItem className=" hideshowmenu">Profile</MenuItem>
-                </SubMenu>
+              > <FaUserFriends />Profile
               </Link>
-            </MenuItem>
-          </Menu>
+              </Accordion.Header>
 
-          <Menu>
-            <MenuItem className="sidebar-leftli left-sp">
+            </Accordion.Item>
+            <Accordion.Item eventKey="2">
+              <Accordion.Header className={location.pathname ==='/UserDonation'? 'disabled active' : 'disabled'} >
               <Link
                 to="/UserDonation"
                 className="nav-link dropdown-indicator-left label-1"
               > <MdCreateNewFolder />
-                <SubMenu
-                  onClick={toggleMenu}
-                  label="Donar  Creation"
-                  className="homemenu-icon menu-icon"
-                >
-                  <MenuItem className=" hideshowmenu">Donar  Creation</MenuItem>
-                </SubMenu>
+                My Donations
               </Link>
-            </MenuItem>
-          </Menu>
-          <Menu>
-            <MenuItem className="sidebar-leftli left-sp">
+              </Accordion.Header>
+
+            </Accordion.Item>
+            <Accordion.Item eventKey="3">
+              <Accordion.Header className={location.pathname ==='/user/receipts'? 'disabled active' : 'disabled'}>
               <Link
                 to="/user/receipts"
                 className="nav-link dropdown-indicator-left label-1"
               > <IoReceiptSharp/>
-                <SubMenu
-                  onClick={toggleMenu}
-                  label="Reciepts"
-                  className="homemenu-icon menu-icon"
-                >
-                  <MenuItem className=" hideshowmenu">Receipts</MenuItem>
-                </SubMenu>
+                Receipts
               </Link>
-            </MenuItem>
-          </Menu>
-          <div className="clear"></div>
+              </Accordion.Header>
+
+            </Accordion.Item>
+          </Accordion>
         </div>
+
+        
       </Sidebar>
     </>
   );
