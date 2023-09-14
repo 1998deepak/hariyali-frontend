@@ -321,7 +321,7 @@ function AboutUs() {
               </div>
             </div>
           </section>
-          <div className="container">
+          {/* <div className="container">
             <div className=" pv-75">
               <div className="col-12">
                 <div className="feature-description">
@@ -367,11 +367,12 @@ function AboutUs() {
                         </li><li>
                           Naandi Foundation</li></ul>
                       </div>
-                    </div></div>
+                    </div>
+                    </div>
 
                   </div>
                   
-                  <div></div></div></div></div></div>
+                  <div></div></div></div></div></div> */}
           {/* popup */}
           <Modal show={anandMahindrashow} onHide={AnandMahindraClose}>
             <Modal.Header closeButton>
@@ -508,7 +509,7 @@ function AboutUs() {
               </div>
             </Modal.Body>
           </Modal>
-          <Modal show={gopalakrishnanshow} onHide={GopalakrishnanClose}>
+          {/* <Modal show={gopalakrishnanshow} onHide={GopalakrishnanClose}>
             <Modal.Header closeButton>
               <Modal.Title>Senapathy “Kris” Gopalakrishnan</Modal.Title>
             </Modal.Header>
@@ -530,7 +531,7 @@ function AboutUs() {
                   </p></div>
               </div>
             </Modal.Body>
-          </Modal>
+          </Modal> */}
           <Modal show={gopalakrishnanshow} onHide={GopalakrishnanClose}>
             <Modal.Header closeButton>
               <Modal.Title>Senapathy “Kris” Gopalakrishnan</Modal.Title>
