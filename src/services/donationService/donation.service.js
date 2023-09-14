@@ -391,4 +391,19 @@ export const DonationService = {
     }
   },
 
+  getAllActiveBanks: async () => {
+    try {
+      const response = await APIService.Instance.get(
+        URLS.GET_ALL_ACTIVE_BANKS
+      );
+      return response.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+        toast.error(err?.message);
+      }
+    }
+  },
+
 }
