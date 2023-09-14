@@ -153,8 +153,25 @@ const DashboardTable = () => {
               </tr>
             </thead>
             <tbody>
+            <tr>
+                <td>Reed Ramsey</td>
+                <td>arcu@</td>
+                <td>1-624-968-2863</td>
+                <td>Dec 1, 2015</td>
+                <td>Reed Ramsey</td>
+                <td>arcu@</td>
+                <td>1-624-968-2863</td>
+                <td>Dec 1, 2015</td>
+              </tr>
               <tr>
-                  
+                <td>Arthur Blackwell</td>
+                <td>sodales.</td>
+                <td>1-837-</td>
+                <td>Mar 21, 2017</td>
+                <td>Reed Ramsey</td>
+                <td>arcu</td>
+                <td>1-624-968-2863</td>
+                <td>Dec 1, 2015</td>
               </tr>
               {/* Add more rows as needed */}
             </tbody>

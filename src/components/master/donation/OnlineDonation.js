@@ -3105,7 +3105,7 @@ function OnlineDonation() {
                         </div>
 
                         <hr />
-                        <div className="col-6 mt20">
+                        
                           <CaptchaGift
                             verified={false}
                             setVerified={() => setCaptchaFlag(true)}
@@ -3131,7 +3131,6 @@ function OnlineDonation() {
                           ) : (
                             <></>
                           )}
-                        </div>
                         <hr />
                         <PrivacyPolicy
                           informationShare={informationShare}
@@ -3160,28 +3159,9 @@ function OnlineDonation() {
                         >
                           Clear
                         </button>
-                        <button className="fab-button">
+                        {/* <button className="fab-button">
                           Preview
-                        </button>
-                        <div
-                              className="modal show"
-                              style={{ display: 'block', position: 'initial' }}
-                            >
-                              <Modal.Dialog>
-                                <Modal.Header closeButton>
-                                  <Modal.Title>Modal title</Modal.Title>
-                                </Modal.Header>
-
-                                <Modal.Body>
-                                  <p>Modal body text goes here.</p>
-                                </Modal.Body>
-
-                                <Modal.Footer>
-                                  <Button variant="secondary">Close</Button>
-                                  <Button variant="primary">Save changes</Button>
-                                </Modal.Footer>
-                              </Modal.Dialog>
-                            </div>
+                        </button> */}
                       </div>
                     )}
                   </form>
@@ -3286,37 +3266,6 @@ function OnlineDonation() {
           />
         </form>
       )}
-      {/* body */}
-      <Modal
-        className="transaction-modal"
-        show={showDonationModal}
-        onHide={handleDonationModalClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Body>
-          <div className="row">
-            <div className="col-12">
-              <Card >
-                <Card.Body>
-                  <div className="card-icon">
-                    <BsEmojiSmile />
-                  </div>
-                  <Card.Text dangerouslySetInnerHTML={{ __html: transactionMessage }}> 
-                  
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </div>
-          </div>
-
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleDonationModalClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </>
   );
 }
