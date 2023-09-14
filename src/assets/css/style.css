@@ -1838,7 +1838,7 @@ input:-internal-autofill-selected {
   float: left;
 } */
 .capt-code {
-  width: 150px;
+  width: 180px;
   float: left;
   font-size: 26px;
   background-image: url(../img/chptcha.jpg);

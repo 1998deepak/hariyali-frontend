@@ -3105,7 +3105,7 @@ function OnlineDonation() {
                         </div>
 
                         <hr />
-                        <div className="col-6 mt20">
+                        
                           <CaptchaGift
                             verified={false}
                             setVerified={() => setCaptchaFlag(true)}
@@ -3131,7 +3131,6 @@ function OnlineDonation() {
                           ) : (
                             <></>
                           )}
-                        </div>
                         <hr />
                         <PrivacyPolicy
                           informationShare={informationShare}
@@ -3160,28 +3159,9 @@ function OnlineDonation() {
                         >
                           Clear
                         </button>
-                        <button className="fab-button">
+                        {/* <button className="fab-button">
                           Preview
-                        </button>
-                        <div
-                              className="modal show"
-                              style={{ display: 'block', position: 'initial' }}
-                            >
-                              <Modal.Dialog>
-                                <Modal.Header closeButton>
-                                  <Modal.Title>Modal title</Modal.Title>
-                                </Modal.Header>
-
-                                <Modal.Body>
-                                  <p>Modal body text goes here.</p>
-                                </Modal.Body>
-
-                                <Modal.Footer>
-                                  <Button variant="secondary">Close</Button>
-                                  <Button variant="primary">Save changes</Button>
-                                </Modal.Footer>
-                              </Modal.Dialog>
-                            </div>
+                        </button> */}
                       </div>
                     )}
                   </form>
