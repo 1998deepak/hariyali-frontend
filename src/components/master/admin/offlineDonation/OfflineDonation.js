@@ -850,8 +850,6 @@ function OfflineDonation() {
     updatedDonations[0].userPackage = filteredPackages;
 
     const formData = {
-      formData: {
-        user: {
           emailId: userData?.user?.emailId,
           donorId: userData?.user?.donorId,
           donations: updatedDonations.map((donation) => {
@@ -863,14 +861,13 @@ function OfflineDonation() {
             if (donation.donationType === "Self-Donate") {
               donationData.recipient = []; // Exclude recipient data
             } else if (donation.donationType === "Gift-Donate") {
-              donationData.recipient = recipient;
+              donationData.recipient = recipient
             }
 
             return donationData;
           }),
-        },
-      },
-    };
+        }
+
 
     setLoading(true);
     const response = await DonationService.AddNewDonation(formData);
@@ -908,8 +905,6 @@ function OfflineDonation() {
     updatedDonations[0].userPackage = filteredPackages;
 
       const formData = {
-        formData: {
-          user: {
             emailId: userData?.user?.emailId,
             donorId: userData?.user?.donorId,
             donations: updatedDonations.map((donation) => {
@@ -926,9 +921,7 @@ function OfflineDonation() {
 
               return donationData;
             }),
-          },
-        },
-      };
+          }
 
       setLoading(true);
     const response = await DonationService.AddNewDonation(formData);
