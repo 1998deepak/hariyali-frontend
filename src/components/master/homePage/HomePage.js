@@ -275,7 +275,7 @@ function HomePage() {
               </div>
             </div>
             <div className="tree-features">
-              <h4>Carbon sequestered</h4>
+              <h4>Estimated Carbon Sequestered</h4>
               <div className="d-flex align-items-center">
                 <p id="value3">0</p><span>mtCO<sub>2</sub>e</span>
               </div>
