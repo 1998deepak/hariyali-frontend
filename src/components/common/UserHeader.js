@@ -71,7 +71,7 @@ const Header = () => {
                 <Nav className="justify-content-end  nav-list" activeKey={location.pathname}>
                   <Nav.Item >
                     <Nav.Link href="/AboutUs" className={`${activeTab === 'AboutUs' ? 'active' : ''}`}
-        onClick={() => setActiveTab('AboutUs')} eventKey="/AboutUs">Who Are We</Nav.Link>
+        onClick={() => setActiveTab('AboutUs')} eventKey="/AboutUs">Who We Are</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="/WhatWeDo" className={`${activeTab === 'WhatWeDo' ? 'active' : ''}`}
