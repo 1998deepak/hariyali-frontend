@@ -68,7 +68,8 @@ function FootPrint() {
                 <figcaption>
                   <h2>
                     {" "}
-                    <span>Araku Valley</span>,<br /> Andhra Pradesh
+                    <span>Araku Valley</span>,<br /> 
+                    <span>nestled in the North-West Region of Andhra Pradesh</span>
                   </h2>
                   <p className="arrowright-foot">
                     <FiArrowRightCircle />
@@ -81,7 +82,8 @@ function FootPrint() {
                 <figcaption>
                   <h2>
                     {" "}
-                    <span>Shravasti</span>,<br /> Uttar Pradesh
+                    <span>Shravasti Uttar Pradesh</span>,<br /> 
+                    <span>Bhinga, the district headquarters of Shravasti</span>
                   </h2>
                   <p className="arrowright-foot">
                     <FiArrowRightCircle />
@@ -94,7 +96,8 @@ function FootPrint() {
                 <figcaption>
                   <h2>
                     {" "}
-                    <span>Moga</span>,<br /> Punjab
+                    <span>Moga Punjab</span>,<br /> 
+                    <span>Moga is in the Indian State Of Punjab</span>
                   </h2>
                   <p className="arrowright-foot">
                     <FiArrowRightCircle />
@@ -107,7 +110,8 @@ function FootPrint() {
                 <figcaption>
                   <h2>
                     {" "}
-                    <span>Tarn Taran</span>,<br /> Punjab
+                    <span>Tarn Taran Punjab</span>,<br /> 
+                    <span>Tarn Taran Sahib is a City in the State of Punjab</span>
                   </h2>
                   <p className="arrowright-foot">
                     <FiArrowRightCircle />
@@ -120,7 +124,8 @@ function FootPrint() {
                 <figcaption>
                   <h2>
                     {" "}
-                    <span>Solan</span>,<br /> Himachal Pradesh
+                    <span>Solan Himachal Pradesh</span>,<br /> 
+                    <span>The Project ss proposed to be located in Solan District</span>
                   </h2>
                   <p className="arrowright-foot">
                     <FiArrowRightCircle />
@@ -133,7 +138,8 @@ function FootPrint() {
                 <figcaption>
                   <h2>
                     {" "}
-                    <span>Wardha</span>,<br /> Maharashtra
+                    <span>Wardha Maharashtra</span>,<br />
+                    <span>Wardha district is One Of the 35 districts in Western India</span>
                   </h2>
                   <p className="arrowright-foot">
                     <FiArrowRightCircle />
