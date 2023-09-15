@@ -133,9 +133,10 @@ function ContactUs() {
                 <div className="col-12 col-md-4">
                   <address>
                   <h4 className="mb-0 askheading">Mahindra Foundation</h4>
-                  <p className="ask-p">Cecil Court, MB Marg, Near Regal Cinema, Apollo Bandar, Colaba, Mumbai, Maharashtra 400001</p>
+                  <p className="ask-p">3rd Floor, Cecil Court Mahakavi Bhushan Marg Near Regal Cinema, Colaba Mumbai, Maharashtra - 400001</p>
                   <a href="tel:93224 56789"  className="ask-p"><i className="bi bi-phone"></i> 93224 56789</a><br/>
-                  <a href="tel:022 22021031"  className="ask-p"><i className="bi bi-telephone-fill"></i> 022 22021031</a>
+                  <a href="tel:022 22021031"  className="ask-p"><i className="bi bi-telephone-fill"></i> 022 22021031</a><br/>
+                  <a href="mailto:support@hariyali.org.in" className="ask-p"><i className="bi bi-envelope-fill"></i> support@hariyali.org.in</a>
                   </address>
                 </div>
                 <div className="col-12 col-md-8">
