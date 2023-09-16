@@ -40,6 +40,7 @@ function UserSpecificDonationView() {
   };
   const intialDonations = [
     {
+      donationcode:"",
       donationType: "",
       donationMode: "offline",
       donationEvent: "",
@@ -126,6 +127,7 @@ function UserSpecificDonationView() {
         const data = JSON.parse(response.data);
         setUserData(data.user);
         const donations = data.user.donations[0];
+      console.log(donations);
         const updatedDonationData = { ...intialDonations[0], ...donations };
         setDonationData(updatedDonationData);
         if (
@@ -169,7 +171,7 @@ function UserSpecificDonationView() {
       setLoading(false);
     }
   };
-
+console.log(donationData);
   const handleBack = () => {
     navigate(`/UserDonation/${userData.emailId}`);
   };
@@ -206,14 +208,14 @@ function UserSpecificDonationView() {
                     </div>
                     <div className="col-6">
                       <div className="row select-label">
-                        <div className="col-4 ">Donation ID</div>
+                        <div className="col-4 ">Donation Code</div>
                         <div className="col-8 p0">
                           <input
                             className="form-control-inside"
                             type="text"
-                            name="donationId"
-                            value={donationData.donationId}
-                            placeholder="Donation ID"
+                            name="donationCode"
+                            value={donationData.donationCode}
+                            placeholder="Donation Code"
                             disabled
                           />
                         </div>
