@@ -5138,6 +5138,29 @@ iframe {
   font-size: 1.125rem;
   font-weight: 600;
 }
+
+.plantation .card {
+  top: 4px;
+}
+
+.plantation .p-multiselect {
+  height: 40px;
+  line-height: 13px;
+  position: relative;
+}
+
+.top-30{
+  top:30px;
+}
+
+.fileUploadModal .modal-header{
+  background-color: rgb(35, 170, 74);
+  color: #fff;
+}
+
+.fileUploadModal .modal-dialog{
+  width: 40% !important;
+}
 .quantitative-card{
   display: flex;
   flex-wrap: wrap;
