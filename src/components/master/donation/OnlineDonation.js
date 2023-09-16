@@ -20,6 +20,7 @@ import TermsConditionsPopup from "../../common/popup/TermsConditionsPopup";
 import Loader from "../../common/loader/Loader";
 import PrivacyPolicy from "../../common/PrivacyPolicy";
 import Card from 'react-bootstrap/Card';
+import PackageDetails from "../../common/PackageDetails";
 
 function OnlineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
@@ -62,19 +63,10 @@ function OnlineDonation() {
 
   const initialPackageData = [
     {
-      packageName: "",
       bouquetPrice: "",
       noOfBouquets: "",
-      // maintenanceCost: "",
       amount: "",
-    },
-    {
-      packageName: "",
-      bouquetPrice: "",
-      noOfBouquets: "",
-      // maintenanceCost: "",
-      amount: "",
-    },
+    }
   ];
 
   const initialUserData = {
@@ -86,11 +78,13 @@ function OnlineDonation() {
       donarType: "",
       prefix: "",
       organisation: "",
+      citizenship : "",
       isTaxBenefit: false,
       panCard: "",
+      passport:"",
       activityType: null,
-      meconnectId: "MQ==",
-      source: "TWVDb25uZWN0",
+      meconnectId: "",
+      source: "",
       address: [],
       donations: [],
     },
@@ -615,7 +609,6 @@ function OnlineDonation() {
       const parsedData = JSON.parse(response.data);
 
       let data = parsedData.map((item) => ({
-        packageName: item.package_name,
         bouquetPrice: item.bouquet_price,
         noOfBouquets: 1,
         amount: item.bouquet_price,
@@ -734,8 +727,15 @@ function OnlineDonation() {
       currentField = currentField[keys[i]];
     }
     console.log(currentField);
-    currentField[keys[keys.length - 1]] = value;
-    console.log(updatedFormData);
+    if(name == "user.panCard" || name == "user.firstName" || name == "user.lastName"){
+      currentField[keys[keys.length - 1]] = value.toUpperCase();
+    }else{
+      currentField[keys[keys.length - 1]] = value;
+    }if(userData?.user?.panCard == ""){
+      document.getElementById("addharId").style.display("block");
+    }else{
+      document.getElementById("addharId").style.display("none");
+    }
     setUserData(updatedFormData);
   };
   //Handle address change
@@ -1043,12 +1043,12 @@ function OnlineDonation() {
   //enter key login
   const onChangeUserEmail = (event) => {
     const { value } = event.target;
-    setUserEmail(value);
+    setUserEmail(value.toUpperCase());
   };
 
   const onChangeGiftUserEmail = (event) => {
     const { value } = event.target;
-    setGiftUserEmail(value);
+    setGiftUserEmail(value.toUpperCase());
   };
 
   const clearState = () => {
@@ -1138,7 +1138,7 @@ function OnlineDonation() {
                           {/* <div className="col-4 ">I want to opt</div> */}
                           <div className="col-12 p0 field-wrapper">
                             <label for="activity" class="form-label">
-                              Type of Corporate{" "}
+                              Organisation{" "}
                               <span className="red-text">*</span>
                             </label>
                             <select
@@ -1197,7 +1197,9 @@ function OnlineDonation() {
                             </label>
                             <select
                               className=" form-control-inside form-select"
-                              name="user.donarType"
+                              name="user.citizenship"
+                              value={userData?.user?.citizenship}
+                              onChange={handleChange}
                             >
                               <option disabled selected value="">
                                 Select Country
@@ -1206,6 +1208,22 @@ function OnlineDonation() {
                               <option value="India">India</option>
                               <option value="USA">USA</option>
                             </select>
+                            {errors.map((error, index) => {
+                                      if (
+                                        error.field ===
+                                        "userData.user.citizenship"
+                                      ) {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
                           </div>
                         </div>
                       </div>
@@ -1254,76 +1272,25 @@ function OnlineDonation() {
                     {isDivOpen && (
                       <div>
                         <form className="form-div contact-form-wrap">
-                          <div className="actionheadingdiv">
-                            Select Your Donation Plan
-                          </div>
-                          <div className="mt20">
-                            <table>
-                              <thead>
-                                <tr>
-                                  <th>Planting Season</th>
-                                  <th>Cost per Sapling</th>
-                                  {/* <th></th> */}
-                                  <th className="w200">No. Saplings</th>
-                                  <th>Total Cost</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {packageData?.map((packageItem, index) => {
-                                  const value = String(packageItem.noOfBouquets).replace(/[^0-9.]/g, '');
-                                  const { hasError, errorMessage } = validateInput(value);
-
-                                  return (
-                                    <tr key={index}>
-                                      <td>{packageItem.packageName}</td>
-                                      <td>{packageItem.bouquetPrice}</td>
-                                      <td>
-                                        <input
-                                          type="text"
-                                          name="noOfBouquets"
-                                          className="form-control"
-                                          value={value}
-                                          onChange={(event) => {
-                                            const inputValue = event.target.value;
-                                            const { hasError, errorMessage } = validateInput(inputValue);
-                                            setErrors1((prevErrors) => {
-                                              const newErrors = [...prevErrors];
-                                              newErrors[index] = { hasError, errorMessage };
-                                              return newErrors;
-                                            });
-
-                                            // Only update the input value if no error
-                                            if (!hasError) {
-                                              handleChangeNumberOfBouquets(
-                                                { target: { name: event.target.name, value: inputValue } },
-                                                packageItem,
-                                                index
-                                              );
-                                            }
-                                          }}
-                                        />
-                                        {hasError && (
-                                          <div className="error-message" style={{ color: 'red', fontSize: '12px' }}>
-                                            {errorMessage}
-                                          </div>
-                                        )}
-                                      </td>
-                                      <td>{packageItem.amount}</td>
-                                    </tr>
-
-                                  );
-                                })}
-                              </tbody>
-                            </table>
-                            <div className="overalltotal">
-                              Overall Total: {donations[0].totalAmount}
-                            </div>
-                          </div>
+                        <PackageDetails
+                          packageData={packageData}
+                          setPackageData={setPackageData}
+                          setLoading={setLoading}
+                          initialPackageData={initialPackageData}
+                          donations={donations}
+                          calculateOverallTotal={calculateOverallTotal}
+                        />
                           <div className="clear"></div>
                           <hr />
-                          <div className="actionheadingdiv">
-                            Personal Details
-                          </div>
+                          {userData?.user?.donarType ===
+                                "Corporate" ? (
+                                  <div className="actionheadingdiv">
+                                  Point Of Contact
+                                  </div>) : 
+                                  (<div className="actionheadingdiv">
+                                    Personal Details
+                                  </div>)
+                          }
                           <div className="col-12 pr15">
                             <div className="row">
                               <div className="col-6">
@@ -1525,8 +1492,49 @@ function OnlineDonation() {
                                   </div>
                                 </div>{" "}
                               </div>
-
                               <div className="col-6">
+                                <div className="select-label">
+                                  {/* <div className="col-4 ">Prefix</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label
+                                      for="residance"
+                                      class="form-label top-27"
+                                    >
+                                      Residance <span className="red-text">*</span>
+                                    </label>
+                                    <select
+                                      className=" form-control-inside form-select form-control"
+                                      name="user.residance"
+                                      value={userData?.user?.residance}
+                                      onChange={handleChange}
+                                    >
+                                      <option disabled selected value="">
+                                        residance
+                                      </option>
+                                      
+                                    </select>
+                                    {errors.map((error, index) => {
+                                      if (
+                                        error.field === "userData.user.residance"
+                                      ) {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                </div>
+                              </div>
+                              {userData?.user?.citizenship ===
+                                "India" ? (
+                                  <>
+                                  <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">PAN card</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -1545,6 +1553,7 @@ function OnlineDonation() {
                                       value={userData?.user?.panCard}
                                       onChange={handleChange}
                                     />
+                                    <small className="text-muted">Disclaimer: Please ensure that you have entered the correct PAN details to avoid non-deduction u/s 80G of the Income Tax Act,1961</small>
                                     {errors.map((error, index) => {
                                       if (
                                         error.field === "userData.user.panCard"
@@ -1563,11 +1572,87 @@ function OnlineDonation() {
                                   </div>
                                 </div>
                               </div>
+                              <div id = "addharId" className="col-6" style={{display : "none"}}>
+                                <div className="select-label">
+                                  {/* <div className="col-4 ">PAN card</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label
+                                      for="panCard"
+                                      class="form-label top-27"
+                                    >
+                                      Addhar Card{" "}
+                                      <span className="red-text">*</span>
+                                    </label>
+                                    <input
+                                      className="form-control-inside form-control"
+                                      name="user.addharCard"
+                                      placeholder="Addhar card No."
+                                      type="text"
+                                      maxLength={16}
+                                      value={userData?.user?.addharCard}
+                                      onChange={handleChange}
+                                    />
+                                    {errors.map((error, index) => {
+                                      if (
+                                        error.field === "userData.user.addharCard"
+                                      ) {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                </div>
+                              </div>
+                                  </>) : 
+                                  (<></>)
+                          }
+                              
+                              <div className="col-6">
+                              <div className="select-label">
+                                {/* <div className="col-4 ">PAN card</div> */}
+                                <div className="col-12 p0 field-wrapper">
+                                  <label className="form-label">
+                                    Passport <span className="red-text">*</span>
+                                  </label>
+                                  <input
+                                    className="form-control-inside form-control"
+                                    name="user.passport"
+                                    placeholder="Enter the passport"
+                                    type="text"
+                                    value={userData.user.passport}
+                                    onChange={handleChange}
+                                  />
+                                  <small className="text-muted">Disclaimer: Passport copy is mandatory requirement to verify current citizenship of Indian citizen residing in foreign countries and foreign citizens residing in India</small>
+                                  {errors.map((error, index) => {
+                                    if (
+                                      error.field === "userData.user.passport"
+                                    ) {
+                                      return (
+                                        <div
+                                          key={index}
+                                          className="error-message red-text"
+                                        >
+                                          {error.message}
+                                        </div>
+                                      );
+                                    }
+                                    return null;
+                                  })}
+                                </div>
+                              </div>
+                            </div>
                             </div>
                           </div>
                           <hr />
                           <div className="actionheadingdiv">
-                            Address
+                          Orgnization Address
                             <div
                               className="float-right addminicon"
                               onClick={addaddressicon}
@@ -2133,7 +2218,7 @@ function OnlineDonation() {
                               {/* <div className="col-4 ">I want to opt</div> */}
                               <div className="col-12 p0 field-wrapper">
                                 <label className="form-label top-27">
-                                  Type of Corporate{" "}
+                                  Organisation{" "}
                                   <span className="red-text">*</span>
                                 </label>
                                 <select
@@ -2196,7 +2281,7 @@ function OnlineDonation() {
                               </label>
                               <select
                                 className=" form-control-inside form-select"
-                                name="user.donarType"
+                                name="user.citizenship"
                               >
                                 <option disabled selected value="">
                                   Select Country
@@ -2263,74 +2348,25 @@ function OnlineDonation() {
                     </div>
                     {isDivOpenGift && (
                       <div>
-                        <div className="actionheadingdiv">
-                          Select Your Donation Plan
-                        </div>
-                        <div className="mt20">
-                          <table>
-                            <thead>
-                              <tr>
-                                <th>Planting Season</th>
-                                <th>Cost per Sapling</th>
-                                {/* <th>Maintenance Cost</th> */}
-                                <th className="w200">No. Saplings</th>
-                                <th>Total Cost</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {packageData?.map((packageItem, index) => {
-                                console.log(index);
-                                return (
-                                  <tr key={index}>
-                                    <td>{packageItem.packageName}</td>
-                                    <td>{packageItem.bouquetPrice}</td>
-                                    {/* <td>{packageItem.maintenanceCost}</td> */}
-                                    <td>
-                                      <input
-                                        type="number"
-                                        name="noOfBouquets"
-                                        className="form-control"
-                                        value={packageItem.noOfBouquets}
-                                        onChange={(event) => {
-                                          if (event.target.value < 0) {
-                                            event.target.value = 0;
-                                          }
-                                          handleChangeNumberOfBouquets(
-                                            event,
-                                            packageItem,
-                                            index
-                                          );
-                                        }}
-                                      />
-                                    </td>
-                                    <td>{packageItem.amount}</td>
-                                  </tr>
-                                );
-                              })}
-                            </tbody>
-                          </table>
-                          <p>Overall Total: {donations[0].totalAmount}</p>
-                        </div>
-                        {/* <div className="col-6 mt20"> */}
-                        {/* <div className="select-label">
-                            <div className="col-4 "> General Donation</div>
-                            <input
-                              placeholder=" General Donation"
-                              className="col-8 form-control-inside"
-                              type="number"
-                              name="generalDonation"
-                              value={generalDonation}
-                              onChange={(e) => {
-                                if (e.target.value < 0) {
-                                  e.target.value = 0;
-                                }
-                                handleDonationChange(e, 0);
-                              }}
-                            />
-                          </div> */}
-                        {/* </div> */}
+                      <form className="form-div contact-form-wrap">
+                      <PackageDetails
+                          packageData={packageData}
+                          setPackageData={setPackageData}
+                          setLoading={setLoading}
+                          initialPackageData={initialPackageData}
+                          donations={donations}
+                          calculateOverallTotal={calculateOverallTotal}
+                        />
                         <hr />
-                        <div className="actionheadingdiv">Personal Details</div>
+                        {userData?.user?.donarType ===
+                                "Corporate" ? (
+                                  <div className="actionheadingdiv">
+                                  Point Of Contact
+                                  </div>) : 
+                                  (<div className="actionheadingdiv">
+                                    Personal Details
+                                  </div>)
+                          }
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-6">
@@ -2508,7 +2544,45 @@ function OnlineDonation() {
                                 </div>
                               </div>{" "}
                             </div>
-
+                            <div className="col-6">
+                                <div className="select-label">
+                                  {/* <div className="col-4 ">Prefix</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label
+                                      for="residance"
+                                      class="form-label top-27"
+                                    >
+                                      Residance <span className="red-text">*</span>
+                                    </label>
+                                    <select
+                                      className=" form-control-inside form-select form-control"
+                                      name="user.residance"
+                                      value={userData?.user?.residance}
+                                      onChange={handleChange}
+                                    >
+                                      <option disabled selected value="">
+                                        residance
+                                      </option>
+                                      
+                                    </select>
+                                    {errors.map((error, index) => {
+                                      if (
+                                        error.field === "userData.user.residance"
+                                      ) {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                </div>
+                              </div>
                             <div className="col-6">
                               <div className="select-label">
                                 {/* <div className="col-4 ">PAN card</div> */}
@@ -2542,10 +2616,86 @@ function OnlineDonation() {
                                 </div>
                               </div>
                             </div>
+                            {userData?.user?.panCard ===
+                                null ? (
+                                  <div className="col-6">
+                                <div className="select-label">
+                                  {/* <div className="col-4 ">PAN card</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label
+                                      for="panCard"
+                                      class="form-label top-27"
+                                    >
+                                      Addhar Card{" "}
+                                      <span className="red-text">*</span>
+                                    </label>
+                                    <input
+                                      className="form-control-inside form-control"
+                                      name="user.addharCard"
+                                      placeholder="Addhar card No."
+                                      type="text"
+                                      maxLength={16}
+                                      value={userData?.user?.addharCard}
+                                      onChange={handleChange}
+                                    />
+                                    {errors.map((error, index) => {
+                                      if (
+                                        error.field === "userData.user.addharCard"
+                                      ) {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                </div>
+                              </div> ): (
+                                <></>
+                              )
+                          }
+                          <div className="col-6">
+                              <div className="select-label">
+                                {/* <div className="col-4 ">PAN card</div> */}
+                                <div className="col-12 p0 field-wrapper">
+                                  <label className="form-label">
+                                    Passport <span className="red-text">*</span>
+                                  </label>
+                                  <input
+                                    className="form-control-inside form-control"
+                                    name="user.passport"
+                                    placeholder="Enter the passport"
+                                    type="text"
+                                    value={userData.user.passport}
+                                    onChange={handleChange}
+                                  />
+                                  {errors.map((error, index) => {
+                                    if (
+                                      error.field === "userData.user.passport"
+                                    ) {
+                                      return (
+                                        <div
+                                          key={index}
+                                          className="error-message red-text"
+                                        >
+                                          {error.message}
+                                        </div>
+                                      );
+                                    }
+                                    return null;
+                                  })}
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                         <hr />
-                        <div className="actionheadingdiv">Address</div>
+                        <div className="actionheadingdiv">Orgnization Address</div>
                         <div className="col-12 pr15">
                           <div className="row">
                             <div className="col-6">
@@ -3174,7 +3324,7 @@ function OnlineDonation() {
                         {/* <button className="fab-button">
                           Preview
                         </button> */}
-                      </div>
+                      </form></div>
                     )}
                   </form>
                 </Tab>
