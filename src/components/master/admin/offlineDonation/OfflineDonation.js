@@ -221,7 +221,7 @@ function OfflineDonation() {
 
   const [recipient, setRecipient] = useState(initialRecipientData);
 
-  const [donarIdList, setDonarIdList] = useState([]);
+  const [userIdList, setUserIdList] = useState([]);
 
   const [loading, setLoading] = useState(false);
 
@@ -664,7 +664,7 @@ function OfflineDonation() {
 
   useEffect(() => {
     getAllPackages();
-    getDonarIdList();
+    getUserIdList();
   }, []);
 
   const getAllPackages = async () => {
@@ -694,12 +694,12 @@ function OfflineDonation() {
 
   
 
-  const getDonarIdList = async () => {
+  const getUserIdList = async () => {
     setLoading(true);
-    const response = await DonationService.getAllDonarId();
+    const response = await DonationService.getAllUserId();
     if (response?.status === 200) {
       // let data = response.data.map((item)=> ({ label: item, value: item }))
-      setDonarIdList(response.data);
+      setUserIdList(response.data);
       setLoading(false);
     } else {
       toast.error(response?.message);
@@ -977,9 +977,9 @@ function OfflineDonation() {
   };
 
   // get Detail by donar ID
-  const handleDonarId = async (donorId) => {
+  const handleSearchId = async (donorId) => {
     setLoading(true);
-    let response = await DonationService.getDetailsByDonorId(donorId);
+    let response = await DonationService.getDetailsByEmailIdOrDonorId(donorId);
     console.log("API Response:", response);
 
     if (response?.status === "Success") {
@@ -3026,8 +3026,8 @@ function OfflineDonation() {
                                 </div>
                                 <div className="col-8 p0">
                                   <SearchWithSuggestions
-                                    data={donarIdList}
-                                    onClickSearch={handleDonarId}
+                                    data={userIdList}
+                                    onClickSearch={handleSearchId}
                                   />
                                 </div>
                               </div>
@@ -3744,8 +3744,8 @@ function OfflineDonation() {
                                 </div>
                                 <div className="col-8 p0">
                                   <SearchWithSuggestions
-                                    data={donarIdList}
-                                    onClickSearch={handleDonarId}
+                                    data={userIdList}
+                                    onClickSearch={handleSearchId}
                                   />
                                 </div>
                               </div>

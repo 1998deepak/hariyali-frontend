@@ -14,6 +14,7 @@ export const URLS = {
 
     // GET USER DETAILS BY DONOR ID
     GETUSERDETAILSBYDONORID: "/getUserDetailsByDonorId/",
+    GETUSERDETAILSBYDONORIDOREMAILID: "/getUserDetailsByDonorId/",
     ADDNEWDONATIONS: "/newDonation",
 
     //opt
@@ -28,6 +29,7 @@ export const URLS = {
     UPDATEUSER: "/updateUser",
     UPDATEDONATIONOFUSER: "/updateDonation",
     GETDONARIDLIST: "/getAllDonarId",
+    GETALLUSERIDLIST: "/getAllUserId",
 
     // Web donor
     GETALLUSERWITHWEBID: "/getAlluserWithWebId",
