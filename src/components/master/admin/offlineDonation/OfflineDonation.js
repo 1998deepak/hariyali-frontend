@@ -13,6 +13,7 @@ import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
 import SearchWithSuggestions from "../../../common/searchComponent/SearchWithSuggestions";
 import Loader from "../../../common/loader/Loader";
 import PaymentDetails from "../../../common/PaymentDetails";
+import PackageDetails from "../../../common/PackageDetails";
 
 function OfflineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
@@ -300,6 +301,19 @@ function OfflineDonation() {
       validationErrors.push({
         field: "userData.user.emailId",
         message: "Invalid Email ID",
+      });
+    }
+
+    if (!userData?.user?.panCard) {
+      validationErrors.push({
+        field: "userData.user.panCard",
+        message: "PAN card is required",
+      });
+    }
+    else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
+      validationErrors.push({
+        field: "userData.user.panCard",
+        message: "PAN card No is Invalid",
       });
     }
 
@@ -777,8 +791,11 @@ function OfflineDonation() {
       currentField = currentField[keys[i]];
     }
     console.log(currentField);
-    currentField[keys[keys.length - 1]] = value;
-    console.log(updatedFormData);
+    if(name == "user.panCard" || name == "user.firstName" || name == "user.lastName"){
+      currentField[keys[keys.length - 1]] = value.toUpperCase();
+    }else{
+      currentField[keys[keys.length - 1]] = value;
+    }
     setUserData(updatedFormData);
   };
   //Handle address change
@@ -1139,56 +1156,15 @@ function OfflineDonation() {
                   >
                     <Tab eventKey="Self-Donate" title="Plant a tree">
                       <form className="form-div contact-form-wrap">
-                        <div className="actionheadingdiv">
-                          Select Your Donation Plan
-                        </div>
-                        <div className="mt20">
-                          <table>
-                            <thead>
-                              <tr>
-                                <th>Planning Season</th>
-                                <th>Cost per Sapling</th>
-                                {/* <th>Maintenance Cost</th> */}
-                                <th className="w200">No. of Sapling</th>
-                                <th>Total Cost</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {packageData.map((packageItem, index) => {
-                                return (
-                                  <tr key={index}>
-                                    <td>{packageItem.packageName}</td>
-                                    <td>{packageItem.bouquetPrice}</td>
-                                    {/* <td>{packageItem.maintenanceCost}</td> */}
-                                    <td>
-                                      <input
-                                        type="number"
-                                        className="form-control-inside"
-                                        name="noOfBouquets"
-                                        value={packageItem.noOfBouquets}
-                                        onChange={(event) => {
-                                          if (event.target.value < 0) {
-                                            event.target.value = 0;
-                                          }
-                                          handleChangeNumberOfBouquets(
-                                            event,
-                                            packageItem,
-                                            index
-                                          );
-                                        }}
-                                      />
-                                    </td>
-                                    <td>{packageItem.amount}</td>
-                                  </tr>
-                                );
-                              })}
-                            </tbody>
-                          </table>
-                          <div className="overalltotal">
-                            Overall Total: {donations[0].totalAmount}
-                          </div>
-                        </div>
-                        <div className="clear" />
+                      <PackageDetails
+                          packageData={packageData}
+                          setPackageData={setPackageData}
+                          setLoading={setLoading}
+                          initialPackageData={initialPackageData}
+                          donations={donations}
+                          calculateOverallTotal={calculateOverallTotal}
+                        />
+                        <div className="clear"/>
                         <hr />
                         <div className="actionheadingdiv">Personal Details</div>
                         <div className="col-12 pr15 mt20">
@@ -1457,51 +1433,10 @@ function OfflineDonation() {
                                     value={userData?.user?.panCard}
                                     onChange={handleChange}
                                   />
-                                  {errors.map((error, index) => {
-                                    if (
-                                      error.field === "userData.user.panCard"
-                                    ) {
-                                      return (
-                                        <div
-                                          key={index}
-                                          className="error-message red-text"
-                                        >
-                                          {error.message}
-                                        </div>
-                                      );
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                            {userData.user.donarType.toLowerCase() ===
-                            "corporate" ? (
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">
-                                    Type of Corporate{" "}
-                                    <span className="red-text">*</span>
-                                  </div>
-                                  <div className="col-8 p0">
-                                    <select
-                                      className=" form-control-inside form-select"
-                                      name="user.donarType"
-                                      value={userData?.user?.activityType}
-                                      onChange={handleChange}
-                                    >
-                                      <option disabled selected value="">
-                                        Select
-                                      </option>
-                                      <option value="Corporate">CSR</option>
-                                      <option value="Individual">
-                                        Non-CSR
-                                      </option>
-                                    </select>
+                                  <small className="text-muted">Disclaimer: Please ensure that you have entered the correct PAN details to avoid non-deduction u/s 80G of the Income Tax Act,1961</small>
                                     {errors.map((error, index) => {
                                       if (
-                                        error.field ===
-                                        "userData.user.donarType"
+                                        error.field === "userData.user.panCard"
                                       ) {
                                         return (
                                           <div
@@ -1514,8 +1449,33 @@ function OfflineDonation() {
                                       }
                                       return null;
                                     })}
-                                  </div>
                                 </div>
+                              </div>
+                            </div>
+                            {userData.user.donarType.toLowerCase() ===
+                            "corporate" ? (
+                              <div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 ">Organisation<span className="red-text">*</span></div>
+                                <div className="col-8 p0">
+                                  <select
+                                    className=" form-control-inside form-select"
+                                    name="user.donarType"
+                                    value={userData?.user?.activityType}
+                                    onChange={handleChange}
+                                  >
+                                    <option disabled selected value="">Select</option>
+                                    <option value="Corporate">CSR</option>
+                                    <option value="Individual">Non-CSR</option>
+                                  </select>
+                                  {errors.map((error, index) => {
+                                    if (error.field === 'userData.user.donarType') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
+                                </div>
+                              </div>
                               </div>
                             ) : (
                               <></>
@@ -1524,7 +1484,7 @@ function OfflineDonation() {
                         </div>
                         <hr />
                         <div className="actionheadingdiv">
-                          Address
+                        Orgnization Address
                           <div
                             className="float-right addminicon"
                             onClick={addaddressicon}
@@ -1973,56 +1933,18 @@ function OfflineDonation() {
                             </div>
                           </div>
                         </div>
-
-                        <div className="actionheadingdiv">
-                          Select Your Donation Plan
+                        
+                        <PackageDetails
+                          packageData={packageData}
+                          setPackageData={setPackageData}
+                          setLoading={setLoading}
+                          initialPackageData={initialPackageData}
+                          donations={donations}
+                          calculateOverallTotal={calculateOverallTotal}
+                        />
+                        <div className="clear"/>
+                        <div className="col-6 mt20">
                         </div>
-                        <div className="mt20">
-                          <table>
-                            <thead>
-                              <tr>
-                                <th>Planting Season</th>
-                                <th>Cost per Sapling</th>
-                                {/* <th>Maintenance Cost</th> */}
-                                <th className="w200">No. Sapling</th>
-                                <th>Total Cost</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {packageData.map((packageItem, index) => {
-                                console.log(index);
-                                return (
-                                  <tr key={index}>
-                                    <td>{packageItem.packageName}</td>
-                                    <td>{packageItem.bouquetPrice}</td>
-                                    {/* <td>{packageItem.maintenanceCost}</td> */}
-                                    <td>
-                                      <input
-                                        type="number"
-                                        name="noOfBouquets"
-                                        value={packageItem.noOfBouquets}
-                                        onChange={(event) => {
-                                          if (event.target.value < 0) {
-                                            event.target.value = 0;
-                                          }
-                                          handleChangeNumberOfBouquets(
-                                            event,
-                                            packageItem,
-                                            index
-                                          );
-                                        }}
-                                      />
-                                    </td>
-                                    <td>{packageItem.amount}</td>
-                                  </tr>
-                                );
-                              })}
-                            </tbody>
-                          </table>
-                          <p>Overall Total: {donations[0].totalAmount}</p>
-                        </div>
-                        <div className="clear" />
-                        <div className="col-6 mt20"></div>
                         <hr />
                         <div className="actionheadingdiv">Personal Details</div>
                         <div className="col-12 pr15 mt20">
@@ -2289,21 +2211,22 @@ function OfflineDonation() {
                                     value={userData.user.panCard}
                                     onChange={handleChange}
                                   />
-                                  {errors.map((error, index) => {
-                                    if (
-                                      error.field === "userData.user.panCard"
-                                    ) {
-                                      return (
-                                        <div
-                                          key={index}
-                                          className="error-message red-text"
-                                        >
-                                          {error.message}
-                                        </div>
-                                      );
-                                    }
-                                    return null;
-                                  })}
+                                  <small className="text-muted">Disclaimer: Please ensure that you have entered the correct PAN details to avoid non-deduction u/s 80G of the Income Tax Act,1961</small>
+                                    {errors.map((error, index) => {
+                                      if (
+                                        error.field === "userData.user.panCard"
+                                      ) {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
                                 </div>
                               </div>
                             </div>
@@ -2340,47 +2263,29 @@ function OfflineDonation() {
                                 })}
                               </div>
                             </div> */}
-                            {userData.user.donarType.toLowerCase() ===
-                            "corporate" ? (
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">
-                                    Type of Corporate{" "}
-                                    <span className="red-text">*</span>
-                                  </div>
-                                  <div className="col-8 p0">
-                                    <select
-                                      className=" form-control-inside form-select"
-                                      name="user.donarType"
-                                      value={userData?.user?.activityType}
-                                      onChange={handleChange}
-                                    >
-                                      <option disabled selected value="">
-                                        Select
-                                      </option>
-                                      <option value="Corporate">CSR</option>
-                                      <option value="Individual">
-                                        Non-CSR
-                                      </option>
-                                    </select>
-                                    {errors.map((error, index) => {
-                                      if (
-                                        error.field ===
-                                        "userData.user.donarType"
-                                      ) {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
-                                  </div>
+                            {userData.user.donarType.toLowerCase() === "corporate" ?
+                            (<div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 ">Organisation <span className="red-text">*</span></div>
+                                <div className="col-8 p0">
+                                  <select
+                                    className=" form-control-inside form-select"
+                                    name="user.donarType"
+                                    value={userData?.user?.activityType}
+                                    onChange={handleChange}
+                                  >
+                                    <option disabled selected value="">Select</option>
+                                    <option value="Corporate">CSR</option>
+                                    <option value="Individual">Non-CSR</option>
+                                  </select>
+                                  {errors.map((error, index) => {
+                                    if (error.field === 'userData.user.donarType') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
                                 </div>
+                              </div>
                               </div>
                             ) : (
                               <></>
@@ -2388,7 +2293,9 @@ function OfflineDonation() {
                           </div>
                         </div>
                         <hr />
-                        <div className="actionheadingdiv">Address</div>
+                        <div className="actionheadingdiv">
+                        Orgnization Address
+                        </div>
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-6">
@@ -3022,56 +2929,15 @@ function OfflineDonation() {
                             </div>
                           </div>
                         </div>
-                        <div className="actionheadingdiv">
-                          Select Your Donation Plan
-                        </div>
-                        <div className="mt20">
-                          <table>
-                            <thead>
-                              <tr>
-                                <th>Planting Season</th>
-                                <th>Cost per Sapling</th>
-                                {/* <th>Maintenance Cost</th> */}
-                                <th className="w200">No. Sapling</th>
-                                <th>Total Cost</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {packageData.map((packageItem, index) => {
-                                console.log(index);
-                                return (
-                                  <tr key={index}>
-                                    <td>{packageItem.packageName}</td>
-                                    <td>{packageItem.bouquetPrice}</td>
-                                    {/* <td>{packageItem.maintenanceCost}</td> */}
-                                    <td>
-                                      <input
-                                        type="number"
-                                        name="noOfBouquets"
-                                        value={packageItem.noOfBouquets}
-                                        onChange={(event) => {
-                                          if (event.target.value < 0) {
-                                            event.target.value = 0;
-                                          }
-                                          handleChangeNumberOfBouquets(
-                                            event,
-                                            packageItem,
-                                            index
-                                          );
-                                        }}
-                                      />
-                                    </td>
-                                    <td>{packageItem.amount}</td>
-                                  </tr>
-                                );
-                              })}
-                            </tbody>
-                          </table>
-                          <div className="overalltotal">
-                            Overall Total: {donations[0].totalAmount}
-                          </div>
-                        </div>
-                        <div className="clear" />
+                        <PackageDetails
+                          packageData={packageData}
+                          setPackageData={setPackageData}
+                          setLoading={setLoading}
+                          initialPackageData={initialPackageData}
+                          donations={donations}
+                          calculateOverallTotal={calculateOverallTotal}
+                        />
+                        <div className="clear"/>
                         <hr />
                         <div className="actionheadingdiv">Personal Details</div>
                         <div className="col-12 pr15 mt20">
@@ -3291,47 +3157,29 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            {userData.user.donarType.toLowerCase() ===
-                            "corporate" ? (
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">
-                                    Type of Corporate{" "}
-                                    <span className="red-text">*</span>
-                                  </div>
-                                  <div className="col-8 p0">
-                                    <select
-                                      className=" form-control-inside form-select"
-                                      name="user.donarType"
-                                      value={userData?.user?.activityType}
-                                      onChange={handleChange}
-                                    >
-                                      <option disabled selected value="">
-                                        Select
-                                      </option>
-                                      <option value="Corporate">CSR</option>
-                                      <option value="Individual">
-                                        Non-CSR
-                                      </option>
-                                    </select>
-                                    {errors.map((error, index) => {
-                                      if (
-                                        error.field ===
-                                        "userData.user.donarType"
-                                      ) {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
-                                  </div>
+                            {userData.user.donarType.toLowerCase() === "corporate" ?
+                            (<div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 ">Organisation <span className="red-text">*</span></div>
+                                <div className="col-8 p0">
+                                  <select
+                                    className=" form-control-inside form-select"
+                                    name="user.donarType"
+                                    value={userData?.user?.activityType}
+                                    onChange={handleChange}
+                                  >
+                                    <option disabled selected value="">Select</option>
+                                    <option value="Corporate">CSR</option>
+                                    <option value="Individual">Non-CSR</option>
+                                  </select>
+                                  {errors.map((error, index) => {
+                                    if (error.field === 'userData.user.donarType') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
                                 </div>
+                              </div>
                               </div>
                             ) : (
                               <></>
@@ -3340,7 +3188,7 @@ function OfflineDonation() {
                         </div>
                         <hr />
                         <div className="actionheadingdiv">
-                          Address
+                        Orgnization Address
                           <div
                             className="float-right addminicon"
                             onClick={addaddressicon}
@@ -3781,55 +3629,15 @@ function OfflineDonation() {
                           </div>
                         </div>
 
-                        <div className="actionheadingdiv">
-                          Select Your Donation Plan
-                        </div>
-                        <div className="mt20">
-                          <table>
-                            <thead>
-                              <tr>
-                                <th>Planning Season</th>
-                                <th>Cost per Sapling</th>
-                                {/* <th>Maintenance Cost</th> */}
-                                <th className="w200">No. of Sapling</th>
-                                <th>Total Cost</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {packageData.map((packageItem, index) => {
-                                console.log(index);
-                                return (
-                                  <tr key={index}>
-                                    <td>{packageItem.packageName}</td>
-                                    <td>{packageItem.bouquetPrice}</td>
-                                    {/* <td>{packageItem.maintenanceCost}</td> */}
-                                    <td>
-                                      <input
-                                        type="number"
-                                        name="noOfBouquets"
-                                        className="form-control-inside"
-                                        value={packageItem.noOfBouquets}
-                                        onChange={(event) => {
-                                          if (event.target.value < 0) {
-                                            event.target.value = 0;
-                                          }
-                                          handleChangeNumberOfBouquets(
-                                            event,
-                                            packageItem,
-                                            index
-                                          );
-                                        }}
-                                      />
-                                    </td>
-                                    <td>{packageItem.amount}</td>
-                                  </tr>
-                                );
-                              })}
-                            </tbody>
-                          </table>
-                          <p>Overall Total: {donations[0].totalAmount}</p>
-                        </div>
-                        <div className="clear" />
+                        <PackageDetails
+                          packageData={packageData}
+                          setPackageData={setPackageData}
+                          setLoading={setLoading}
+                          initialPackageData={initialPackageData}
+                          donations={donations}
+                          calculateOverallTotal={calculateOverallTotal}
+                        />
+                        <div className="clear"/>
                         <hr />
                         <div className="actionheadingdiv">Personal Details</div>
                         <div className="col-12 pr15 mt20">
@@ -4056,47 +3864,29 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            {userData.user.donarType.toLowerCase() ===
-                            "corporate" ? (
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">
-                                    Type of Corporate{" "}
-                                    <span className="red-text">*</span>
-                                  </div>
-                                  <div className="col-8 p0">
-                                    <select
-                                      className=" form-control-inside form-select"
-                                      name="user.donarType"
-                                      value={userData?.user?.activityType}
-                                      onChange={handleChange}
-                                    >
-                                      <option disabled selected value="">
-                                        Select
-                                      </option>
-                                      <option value="Corporate">CSR</option>
-                                      <option value="Individual">
-                                        Non-CSR
-                                      </option>
-                                    </select>
-                                    {errors.map((error, index) => {
-                                      if (
-                                        error.field ===
-                                        "userData.user.donarType"
-                                      ) {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
-                                  </div>
+                            {userData.user.donarType.toLowerCase() === "corporate" ?
+                            (<div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 ">Organisation <span className="red-text">*</span></div>
+                                <div className="col-8 p0">
+                                  <select
+                                    className=" form-control-inside form-select"
+                                    name="user.donarType"
+                                    value={userData?.user?.activityType}
+                                    onChange={handleChange}
+                                  >
+                                    <option disabled selected value="">Select</option>
+                                    <option value="Corporate">CSR</option>
+                                    <option value="Individual">Non-CSR</option>
+                                  </select>
+                                  {errors.map((error, index) => {
+                                    if (error.field === 'userData.user.donarType') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
                                 </div>
+                              </div>
                               </div>
                             ) : (
                               <></>
@@ -4104,7 +3894,9 @@ function OfflineDonation() {
                           </div>
                         </div>
                         <hr />
-                        <div className="actionheadingdiv">Address</div>
+                        <div className="actionheadingdiv">
+                        Orgnization Address
+                        </div>
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-6">

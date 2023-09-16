@@ -2292,7 +2292,7 @@ tbody tr {
 
 tr td input {
   border: 1px solid #8b8b8b !important;
-  margin: 10px;
+  margin: 10px 0px;
   padding: 3px 5px;
 }
 
@@ -2540,7 +2540,7 @@ tr td input {
   /* margin: 10px 0; */
   float: right;
   margin-top: 10px;
-  margin-right: 90px;
+  margin-right: 283px;
 }
 
 .edit-icon {

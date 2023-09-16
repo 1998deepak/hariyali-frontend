@@ -6,6 +6,7 @@ const PrivacyPolicy = ({
   informationShare,
   setInformationShare,
   handleShowConditions,
+  isDisabled
 }) => {
   return (
     <>
@@ -18,6 +19,7 @@ const PrivacyPolicy = ({
               value={privacyPolicy}
               onChange={() => setPrivacyPolicy(!privacyPolicy)}
               className="checkboxinput"
+              disabled = {isDisabled}
             />
             By checking this box, I confirm that I have read, understood and
             agree to the Terms of Use and{" "}
@@ -38,6 +40,7 @@ const PrivacyPolicy = ({
               value={privacyPolicy}
               onChange={() => setPrivacyPolicy(!privacyPolicy)}
               className="checkboxinput"
+              disabled = {isDisabled}
             />I understand that I am free to withdraw my consent to the processing
             of my personal data, at any time, by writing to
             support@hariyali.org,in.

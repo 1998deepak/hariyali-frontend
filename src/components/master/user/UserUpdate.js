@@ -5,9 +5,13 @@ import { DonationService } from "../../../services/donationService/donation.serv
 import { SUCCESS, stateOptions } from "../../constants/constants";
 import { UserService } from "../../../services/userService/user.service";
 import Loader from "../../common/loader/Loader";
+import PrivacyPolicy from "../../common/PrivacyPolicy";
 
 function UserUpdate() {
 
+  const [privacyPolicy, setPrivacyPolicy] = useState(false);
+  const [informationShare, setInformationShare] = useState(false);
+  const [showConditons, setShowConditons] = useState(false);
   // Initial Data for user
   const initialUserData = {
     user: {
@@ -203,6 +207,11 @@ const [loading, setLoading] = useState(false);
     }
     currentField[keys[keys.length - 1]] = value;
     setUserData(updatedFormData);
+  };
+
+  const handleShowConditions = (e) => {
+    e.preventDefault();
+    setShowConditons(true);
   };
 
   return (
@@ -500,6 +509,15 @@ const [loading, setLoading] = useState(false);
                               </div>
                             </div>
                           </div>
+                          <hr />
+                        <PrivacyPolicy
+                          informationShare={informationShare}
+                          setInformationShare={setInformationShare}
+                          privacyPolicy={privacyPolicy}
+                          setPrivacyPolicy={setPrivacyPolicy}
+                          handleShowConditions={handleShowConditions}
+                          isDisabled
+                        />
                         </div>
                       })
                     }
