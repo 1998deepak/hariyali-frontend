@@ -22,6 +22,7 @@ import {
 } from "react-icons/fa";
 // import whatwe1 from "../../../assets/img/whatwe1.jpg";
 import whatwe2 from "../../../assets/img/whatwe2.jpg";
+import processImg1 from "../../../assets/img/process.jpg";
 import processImg from "../../../assets/img/calender.png";
 import step2Img from "../../../assets/img/pr-step2.png";
 
@@ -192,7 +193,18 @@ function WhatWeDo() {
         <div className="container mt-5">
           <h2 className="sub-title text-center">Planting Process</h2>
           <p className="text-center">We follow a systematic process which enables us to get a very high survival rate.</p>
+          <div className="process-image">
+            <img src={processImg1} alt="" />
+          </div>
           <h3 className="text-center">Sample Monsoon Plantation Calendar</h3>
+          <div className="row">
+            <div className="col-12 col-md-6">
+              <h4 className="text-center">Year 1</h4>
+            </div>
+            <div className="col-12 col-md-6">
+            <h4 className="text-center">Year 2</h4>
+            </div>
+          </div>
           <div className="process-image">
             <img src={processImg} alt="" />
           </div>

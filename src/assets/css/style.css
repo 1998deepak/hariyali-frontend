@@ -3496,7 +3496,12 @@ figure.effect-layla:hover img {
 .testimonial-slider .react-slideshow-container+ul.indicators li {
   margin: 0 0.25rem;
 }
-
+.testimonial-legend{
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-style: italic;
+  text-align: right;
+}
 .awards-slider .carousel-control-prev,
 .awards-slider .carousel-control-next {
   width: 50px;
@@ -4383,6 +4388,13 @@ iframe {
 .accordion-button:focus{
   box-shadow: none;
   border-color: #23aa4a;
+}
+.nested-ul{
+  margin-left: 1rem;
+  list-style-type:lower-alpha;
+}
+.nested-ul li{
+  list-style-type: disc;
 }
 @media screen and (max-width:1440px) {
   .nav-list .nav-item a.nav-link {

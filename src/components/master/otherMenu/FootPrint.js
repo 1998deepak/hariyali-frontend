@@ -15,11 +15,7 @@ import image from "../../../assets/img/bannerWherearewe.png";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 function FootPrint() {
   const [arakushow, setArakuShow] = useState(false);
@@ -150,30 +146,8 @@ function FootPrint() {
             </div>
           </Row>
         </Container>
-        <div className="container">
+        {/* <div className="container">
           <h2 className="sub-title text-center mb-0">FAQ</h2>
-          {/* <div className="row">
-                <div className="col-12 col-md-4">
-                  <div className="faqpercent-div">
-                    <div className="faqpercent-no">70%</div>
-                    <div className="faqpercentname">Direct Programme</div>
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="faqpercent-div">
-                    <div className="faqpercent-no">20%</div>
-                    <div className="faqpercentname">
-                      Project Management & Monitoring
-                    </div>
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="faqpercent-div">
-                    <div className="faqpercent-no">10%</div>
-                    <div className="faqpercentname">Administration</div>
-                  </div>
-                </div>
-              </div> */}
           <div className="my-5">
             <Accordion>
               <AccordionSummary
@@ -338,7 +312,7 @@ function FootPrint() {
               </AccordionDetails>
             </Accordion>
           </div>
-        </div>
+        </div> */}
       </div>{" "}
       <Modal show={arakushow} onHide={ArakuClose}>
         <Modal.Header closeButton>

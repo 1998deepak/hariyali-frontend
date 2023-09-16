@@ -69,6 +69,13 @@ const Header = () => {
                   <ul>
                     <li><a href="">Privacy Policy</a></li>
                     <li><a href="">Terms & Conditions</a></li>
+                    <li><a href="">Legal Documents</a>
+                        <ul className="nested-ul">
+                          <li><a href="">Registration Certificate </a></li>
+                          <li><a href="">80 G Certificate </a></li>
+                          <li><a href="">Pan Card </a></li>
+                        </ul>
+                    </li>
                    
                   </ul>
                 </div>
