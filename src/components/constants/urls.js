@@ -47,7 +47,12 @@ export const URLS = {
     GET_USER_DONATIONS:"/getUserDonations",
 
     //Upload Excel Plantation
-    UPLOADPLANTATIONEXCEL : "/uploadPlantationExcel",
-    EXPORTEXCEL : "/excelExportUserPlant"
+    PLANTATION_YEARS:"/plantation/years",
+    PLANTATION_SEASONS:"/plantation/seasons",
+    PLANTATION_DISTRICTS:"/plantation/districts",
+    PLANTATION_CITIES:"/plantation/cities",
+    PLANTATION_UPLOAD:"/plantation/upload",
+    PLANTATION_FINDALLBYFILTER:"/plantation/findAllByFilter",
+    PLANTATION_EXPORTREPORT:"/plantation/exportReport",
 
 };
