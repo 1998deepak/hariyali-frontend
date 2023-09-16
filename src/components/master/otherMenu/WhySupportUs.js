@@ -259,59 +259,69 @@ function WhySupportUs() {
               contributing towards mission LiFE & India’s commitment toward
               carbon neutrality.
             </p>
-            <div class=""></div>
-            <div className="row justify-content-center">
-              {/* <h4 className="text-center">Quantitative Impact</h4> */}
-              <div className="col-md-8">
-                <Row className="justify-content-center quantitative-card">
-                  <div className="col-6 col-md-4  discover-block">
-                    <figure class="effect-duke whysuimpact-effect">
-                      {" "}
-                      <h4>Number of trees planted since 2007</h4>
-                      <p>24.86 Millions</p>
-                    </figure>
-                  </div>
-                  <div className="col-6 col-md-4  discover-block">
-                    <figure class="effect-duke whysuimpact-effect">
-                      <h4>Overall survival rate of plant since inception</h4>
-                      <p>85% Plus</p>
-                    </figure>
-                  </div>
-                  <div className="col-6 col-md-4 discover-block">
-                    <figure class="effect-duke whysuimpact-effect">
-                      {" "}
-                      <h4>
-                        CO<sub>2</sub> sequestered through the project Since
-                        inception{" "}
-                      </h4>
-                      <p>400,000+ tonnes</p>
-                    </figure>
-                  </div>
-
-                  {/* </Row> */}
-                  {/* <h4 className="text-center">Qualitative Impact</h4> */}
-                  {/* <Row className="justify-content-center mb-4 quantitative-card"> */}
-                  <div className="col-6 col-md-4 discover-block">
-                    <figure class="effect-duke whysuimpact-effect">
-                      {" "}
-                      <h4>
-                        Improvement in soil quality in terms of carbon, water
-                        holding capacity & nutrients
-                        <p>Soil Health</p>
-                      </h4>
-                    </figure>
-                  </div>
-                  <div className="col-6 col-md-4 discover-block">
-                    <figure class="effect-duke whysuimpact-effect">
-                      <h4>
-                        Significant positive change in <p>Bio-diversity</p>
-                      </h4>
-                    </figure>
-                  </div>
-                </Row>
-              </div>
-            </div>
           </div>
+          <div className="justify-content-center quantitative-card">
+            <div className="discover-block">
+                <div class="card h-100"> 
+                  <div class="card-header">
+                  Trees planted
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Number of trees planted since 2007</h5>
+                    <p class="card-text">24.86 Millions</p>
+                  </div>
+                </div>
+            </div>
+            <div className="discover-block">
+                <div class="card h-100">
+                  <div class="card-header">
+                  Survival Rate of Plant
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Overall survival rate of plant since inception</h5>
+                    <p class="card-text">85% Plus</p>
+                  </div>
+                </div>
+            </div>
+            <div className="discover-block">
+                <div class="card h-100">
+                  <div class="card-header">
+                    CO<sub>2</sub> sequestered
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">CO<sub>2</sub> sequestered through the project Since
+                    inception{" "}</h5>
+                    <p class="card-text">400,000+ tonnes</p>
+                  </div>
+                </div>
+              </div>
+            {/* </Row> */}
+            {/* <h4 className="text-center">Qualitative Impact</h4> */}
+            {/* <Row className="justify-content-center mb-4 quantitative-card"> */}
+            <div className="discover-block">
+              <div class="card h-100">
+                  <div class="card-header">
+                  Soil Quality
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Improvement in soil quality in terms of carbon, water
+                  holding capacity & nutrients</h5>
+                    <p class="card-text">Soil Health</p>
+                  </div>
+                </div>
+            </div>
+            <div className="discover-block">
+              <div class="card h-100">
+                  <div class="card-header">
+                  Bio-diversity
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Significant positive change in</h5>
+                    <p class="card-text">Bio-diversity</p>
+                  </div>
+                </div>                    
+            </div>
+          </div>          
         </div>
       </section>
       <div className="container">
