@@ -672,6 +672,9 @@ function OfflineDonation() {
     if (name === "donationEvent") {
       console.log(name);
       updatedDonations[index][name] = value;
+      console.log(updatedDonations[0].donationEvent);
+      console.log(updatedDonations[index]);
+      // setDonationsGift(updatedDonations[0])
     }
     if (name === "generalDonation") {
       let gnrlDonation = parseInt(value);
@@ -682,6 +685,9 @@ function OfflineDonation() {
     }
     setDonations(updatedDonations);
   };
+console.log(donationsGift);
+  console.log(donations);
+
   const handleRecipentChange = (event, index) => {
     const { name, value } = event.target;
     console.log(name);
@@ -901,45 +907,99 @@ function OfflineDonation() {
     }
   };
 
-  //Donation for Self Donate
+  //Donation for gift Donate
+  // const createDonationGift = async (e, userData) => {
+  //   e.preventDefault();
+
+  // //   const isValid = validate();
+  // //   console.log("isValid:", isValid);
+
+
+  //   //if (isValid) {
+  //   const updatedDonations = [...donationsGift];
+  //   const filteredPackages = packageData.filter((pkg) => pkg.noOfBouquets > 0);
+  //   console.log(filteredPackages);
+  //   updatedDonations[0].userPackage = filteredPackages;
+
+  //   const formData = {
+  //         emailId: userData?.user?.emailId,
+  //         donorId: userData?.user?.donorId,
+  //         donations: updatedDonations.map((donation) => {
+  //           const donationData = {
+  //             ...donation,
+  //             paymentInfo: donation.paymentInfo.slice(0, 1), // Keep only the first payment info record
+  //           };
+  //           console.log(donation.donationType);
+  //           if (donation.donationType === "Self-Donate") {
+  //             donationData.recipient = []; // Exclude recipient data
+  //           } else if (donation.donationType === "Gift-Donate") {
+  //             donationData.recipient = recipient;
+  //           }
+
+  //           return donationData;
+  //         }),
+  //       }
+
+
+  //   setLoading(true);
+  //   const response = await DonationService.AddNewDonation(formData);
+  //   console.log(response);
+  //   if (response?.status === SUCCESS) {
+  //     console.log("Create Donation: "+JSON.stringify(response))
+  //     toast.success(response?.message);
+  //     clearForm(e);
+  //     setLoading(false);
+  //   } else {
+  //     toast.error(response?.message);
+  //     setLoading(false);
+  //   }
+  
+  //   console.log(donations);
+  //   console.log(formData);
+  //   console.log(updatedDonations);
+  //   console.log();
+  // //}
+  // console.log("Not Working !")
+  // };
+
+
   const createDonationGift = async (e, userData) => {
-    e.preventDefault();
-
-  //   const isValid = validate();
-  //   console.log("isValid:", isValid);
-
-
-    //if (isValid) {
-    const updatedDonations = [...donationsGift];
+  e.preventDefault();
+  console.log(donations);
+    const updatedDonations = [...donations];
     const filteredPackages = packageData.filter((pkg) => pkg.noOfBouquets > 0);
-    console.log(filteredPackages);
-    updatedDonations[0].userPackage = filteredPackages;
-
+    console.log(updatedDonations)
+    // Create the formData object
     const formData = {
-          emailId: userData?.user?.emailId,
-          donorId: userData?.user?.donorId,
-          donations: updatedDonations.map((donation) => {
-            const donationData = {
-              ...donation,
-              paymentInfo: donation.paymentInfo.slice(0, 1), // Keep only the first payment info record
-            };
-            console.log(donation.donationType);
-            if (donation.donationType === "Self-Donate") {
-              donationData.recipient = []; // Exclude recipient data
-            } else if (donation.donationType === "Gift-Donate") {
-              donationData.recipient = recipient;
-            }
-
-            return donationData;
-          }),
+      emailId: userData?.user?.emailId,
+      donorId: userData?.user?.donorId,
+     
+      donations: updatedDonations.map((donation) => {
+        const donationData = {
+          ...donation,
+          paymentInfo: donation.paymentInfo.slice(0, 1),
+         
+        };
+  console.log(donation);
+        if (donation.donationType === "Self-Donate") {
+          donationData.recipient = [];
+        } else if (donation.donationType === "Gift-Donate") {
+          console.log(donation);
+          donationData.donationEvent = donation.donationEvent;
+          donationData.recipient = recipient;
         }
-
-
+        console.log(updatedDonations);
+        console.log(donationData);
+        return donationData;
+      }),
+    };
+  
+    // Set the 'donations' property in formData
+    // formData.donations = updatedDonations;
+  
     setLoading(true);
     const response = await DonationService.AddNewDonation(formData);
-    console.log(response);
     if (response?.status === SUCCESS) {
-      console.log("Create Donation: "+JSON.stringify(response))
       toast.success(response?.message);
       clearForm(e);
       setLoading(false);
@@ -951,10 +1011,9 @@ function OfflineDonation() {
     console.log(donations);
     console.log(formData);
     console.log(updatedDonations);
-    console.log();
-  //}
-  console.log("Not Working !")
   };
+  
+
 
   //Donation for Self Donate
   const createDonation = async (e, userData) => {
@@ -1784,18 +1843,12 @@ function OfflineDonation() {
                                     onChange={(e) => handleDonationChange(e, 0)}
                                   >
                                     <option disabled selected value="">select occasion</option>
-                                    <option value="Birthday">Birthday</option>
-                                    <option value="Wedding">Wedding</option>
-                                    <option value="Anniversary">
-                                      Anniversary
-                                    </option>
-                                    <option value="Achievement">
-                                      Achievement
-                                    </option>
-                                    <option value="Festival">Festival</option>
-                                    <option value="Memorial Tribute">
-                                      Memorial Tribute
-                                    </option>
+                                  
+                                <option value="Festivals">Festivals</option>
+                                <option value="Special day"> Special Day</option>
+                                <option value="Achievements"> Achievements</option>
+                                <option value=" Memorial Tribute">  Memorial Tribute</option>
+                                <option value="Simple Donation"> Simple Donation</option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (error.field === 'donations.donationEvent') {
@@ -3293,18 +3346,12 @@ function OfflineDonation() {
                                     onChange={(e) => handleDonationChange(e, 0)}
                                   >
                                     <option disabled selected value="">Select occasion</option>
-                                    <option value="Birthday">Birthday</option>
-                                    <option value="Wedding">Wedding</option>
-                                    <option value="Anniversary">
-                                      Anniversary
-                                    </option>
-                                    <option value="Achievement">
-                                      Achievement
-                                    </option>
-                                    <option value="Festival">Festival</option>
-                                    <option value="Memorial Tribute">
-                                      Memorial Tribute
-                                    </option>
+                                
+                                <option value="Festivals">Festivals</option>
+                                <option value="Special day"> Special Day</option>
+                                <option value="Achievements"> Achievements</option>
+                                <option value=" Memorial Tribute">  Memorial Tribute</option>
+                                <option value="Simple Donation"> Simple Donation</option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (error.field === 'donations.donationEvent') {

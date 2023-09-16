@@ -129,6 +129,7 @@ function OfflineDonationPay() {
   };
   const intialDonations = [
     {
+      donationCode:"",
       donationType: "",
       donationMode: "offline",
       donationEvent: "",
@@ -594,14 +595,14 @@ console.log(donationData);
                     </div>
                     <div className="col-6">
                       <div className="row select-label">
-                        <div className="col-4 ">Donation ID</div>
+                        <div className="col-4 ">Donation Code</div>
                         <div className="col-8 p0">
                           <input
                             className="form-control-inside"
                             type="text"
                             name="donationId"
-                            value={donationData.donationId}
-                            placeholder="Donation ID"
+                            value={donationData.donationCode}
+                            placeholder="Donation Code"
                             disabled
                           />
                         </div>

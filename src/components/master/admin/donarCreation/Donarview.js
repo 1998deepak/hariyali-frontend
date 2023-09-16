@@ -21,8 +21,8 @@ function DonarView() {
 
   const columns = [
     {
-      dataField: "donationId",
-      text: "Donation ID",
+      dataField: "donationCode",
+      text: "Donation Code",
     },
     {
       dataField: "paymentDate",
@@ -137,6 +137,7 @@ function DonarView() {
       const newData = donorData.map((donor) => ({
         donorId:donor.donorId,
         donationId: donor.donationId,
+        donationCode:donor.donationCode,
         firstName: donor.firstName,
         lastName: donor.lastName,
         paymentDate: donor.paymentInfo.paymentDate,
@@ -203,7 +204,7 @@ function DonarView() {
                 keyField="donationId"
                 data={data}
                 columns={columns}
-                pagination={paginationFactory()}
+                 pagination={paginationFactory()}
               />
             </div>
           </div>
