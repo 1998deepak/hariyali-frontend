@@ -24,7 +24,7 @@ function OfflineDonation() {
       bouquetPrice: "",
       noOfBouquets: "",
       amount: "",
-    }
+    },
   ];
 
   const initialUserData = {
@@ -36,7 +36,7 @@ function OfflineDonation() {
       donarType: "",
       prefix: "",
       organisation: "",
-      citizenship : "",
+      citizenship: "",
       isTaxBenefit: false,
       panCard: "",
       activityType: "",
@@ -76,44 +76,44 @@ function OfflineDonation() {
       recipient: [],
       paymentInfo: [
         {
-          paymentInfoId: '',
-          paymentMode: '',
-          bankName: '',
-          chqORddNo: '',
+          paymentInfoId: "",
+          paymentMode: "",
+          bankName: "",
+          chqORddNo: "",
           chqORddDate: null,
           paymentDate: null,
-          amount: '',
-          donation: '',
+          amount: "",
+          donation: "",
           createdDate: null,
-          createdBy: '',
-          modifiedDate: '',
-          modifiedBy: '',
-          remark: '',
-          isDeleted: '',
-          paymentTrackingId: '',
-          bankPaymentRefNo: '',
-          cardName: '',
-          currency: '',
-          paymentStatus: '',
-          orderId: '',
-          accountId: '',
+          createdBy: "",
+          modifiedDate: "",
+          modifiedBy: "",
+          remark: "",
+          isDeleted: "",
+          paymentTrackingId: "",
+          bankPaymentRefNo: "",
+          cardName: "",
+          currency: "",
+          paymentStatus: "",
+          orderId: "",
+          accountId: "",
           receiptDate: null,
-          receivedAmount: '',
-          bankCharge: '',
+          receivedAmount: "",
+          bankCharge: "",
           documentNumber: null,
           bankAddress: null,
           depositNumber: null,
           depositDate: null,
           receiptNumber: null,
           realizationDate: null,
-          creditCardNumber: '',
-          cardExpiry: '',
-          cardHolderName: '',
-          chequeNumber: '',
+          creditCardNumber: "",
+          cardExpiry: "",
+          cardHolderName: "",
+          chequeNumber: "",
           chequeDate: null,
-          demandDraftNumber: '',
+          demandDraftNumber: "",
           demandDraftDate: null,
-          totalAmount: ''
+          totalAmount: "",
         },
         {
           paymentMode: "",
@@ -236,34 +236,63 @@ function OfflineDonation() {
 
     // Validate user data fields
     if (!userData?.user?.firstName) {
-      validationErrors.push({ field: "userData.user.firstName", message: "First Name is required" });
+      validationErrors.push({
+        field: "userData.user.firstName",
+        message: "First Name is required",
+      });
       document.getElementById("firstName").focus();
     } else if (/\d/.test(userData.user.firstName)) {
-      validationErrors.push({ field: "userData.user.firstName", message: "First Name should only contain alphabets" });
+      validationErrors.push({
+        field: "userData.user.firstName",
+        message: "First Name should only contain alphabets",
+      });
       document.getElementById("firstName").focus();
     }
 
     if (!userData?.user?.lastName) {
-      validationErrors.push({ field: "userData.user.lastName", message: "Last Name is required" });
+      validationErrors.push({
+        field: "userData.user.lastName",
+        message: "Last Name is required",
+      });
       document.getElementById("lastName").focus();
     } else if (/\d/.test(userData.user.lastName)) {
-      validationErrors.push({ field: "userData.user.lastName", message: "Last Name should only contain alphabets" });
+      validationErrors.push({
+        field: "userData.user.lastName",
+        message: "Last Name should only contain alphabets",
+      });
       document.getElementById("lastName").focus();
     }
 
     if (!userData?.user?.mobileNo) {
-      validationErrors.push({ field: "userData.user.mobileNo", message: "Mobile Number is required" });
+      validationErrors.push({
+        field: "userData.user.mobileNo",
+        message: "Mobile Number is required",
+      });
       document.getElementById("mobileNo").focus();
     } else if (!/^(?!.*[a-zA-Z])\d{10}$/.test(userData.user.mobileNo)) {
-      validationErrors.push({ field: "userData.user.mobileNo", message: "Mobile Number must contain exactly 10 digits and no alphabetic characters" });
+      validationErrors.push({
+        field: "userData.user.mobileNo",
+        message:
+          "Mobile Number must contain exactly 10 digits and no alphabetic characters",
+      });
       document.getElementById("mobileNo").focus();
     }
 
     if (!userData?.user?.emailId) {
-      validationErrors.push({ field: "userData.user.emailId", message: "Email ID is required" });
+      validationErrors.push({
+        field: "userData.user.emailId",
+        message: "Email ID is required",
+      });
       document.getElementById("emailId").focus();
-    } else if (!/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(userData.user.emailId)) {
-      validationErrors.push({ field: "userData.user.emailId", message: "Invalid Email ID" });
+    } else if (
+      !/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(
+        userData.user.emailId
+      )
+    ) {
+      validationErrors.push({
+        field: "userData.user.emailId",
+        message: "Invalid Email ID",
+      });
       document.getElementById("emailId").focus();
     }
 
@@ -273,8 +302,7 @@ function OfflineDonation() {
         message: "PAN card is required",
       });
       document.getElementById("panCard").focus();
-    }
-    else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
+    } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
       validationErrors.push({
         field: "userData.user.panCard",
         message: "PAN card No is Invalid",
@@ -289,7 +317,10 @@ function OfflineDonation() {
       });
     }
     if (!userData?.user?.prefix) {
-      validationErrors.push({ field: "userData.user.prefix", message: "Prefix is required" });
+      validationErrors.push({
+        field: "userData.user.prefix",
+        message: "Prefix is required",
+      });
       document.getElementById("prefix").focus();
     }
     if (
@@ -301,8 +332,14 @@ function OfflineDonation() {
         message: "Organisation is required",
       });
     }
-    if (userData?.user?.donarType.toLocaleLowerCase() === "corporate" && userData?.user?.activityType === null) {
-      validationErrors.push({ field: "userData.user.activityType", message: "Activity Type is required" });
+    if (
+      userData?.user?.donarType.toLocaleLowerCase() === "corporate" &&
+      userData?.user?.activityType === null
+    ) {
+      validationErrors.push({
+        field: "userData.user.activityType",
+        message: "Activity Type is required",
+      });
     }
 
     // Validate payment info
@@ -383,31 +420,52 @@ function OfflineDonation() {
       console.log(addr);
       console.log(address[i]);
       if (!addr?.street1) {
-        validationErrors.push({ field: "address[" + i + "].street1", message: "Street is required" });
+        validationErrors.push({
+          field: "address[" + i + "].street1",
+          message: "Street is required",
+        });
         document.getElementById("street1").focus();
       }
       if (!addr?.country) {
-        validationErrors.push({ field: "address[" + i + "].country", message: "Country is required" });
+        validationErrors.push({
+          field: "address[" + i + "].country",
+          message: "Country is required",
+        });
         document.getElementById("country").focus();
-      }else if (/\d/.test(userData.user.lastName)) {
-        validationErrors.push({ field: "address[" + i + "].country", message: "Country should only contain alphabets" });
+      } else if (/\d/.test(userData.user.lastName)) {
+        validationErrors.push({
+          field: "address[" + i + "].country",
+          message: "Country should only contain alphabets",
+        });
         document.getElementById("country").focus();
       }
       if (!addr?.state) {
-        validationErrors.push({ field: "address[" + i + "].state", message: "State is required" });
+        validationErrors.push({
+          field: "address[" + i + "].state",
+          message: "State is required",
+        });
         document.getElementById("state").focus();
       }
 
       if (!addr?.city) {
-        validationErrors.push({ field: "address[" + i + "].city", message: "City is required" });
+        validationErrors.push({
+          field: "address[" + i + "].city",
+          message: "City is required",
+        });
         document.getElementById("city").focus();
-      }else if (/\d/.test(addr?.city)) {
-        validationErrors.push({ field: "address[" + i + "].city", message: "City should only contain alphabets" });
+      } else if (/\d/.test(addr?.city)) {
+        validationErrors.push({
+          field: "address[" + i + "].city",
+          message: "City should only contain alphabets",
+        });
         document.getElementById("city").focus();
       }
 
-       if ((addr?.postalCode).length > 6) {
-        validationErrors.push({ field: "address[" + i + "].postalCode", message: "Postal Code should only contain six numbers" });
+      if ((addr?.postalCode).length > 6) {
+        validationErrors.push({
+          field: "address[" + i + "].postalCode",
+          message: "Postal Code should only contain six numbers",
+        });
         document.getElementById("postalCode").focus();
       }
     }
@@ -727,9 +785,14 @@ function OfflineDonation() {
       currentField = currentField[keys[i]];
     }
     console.log(currentField);
-    if(name == "user.panCard" || name == "user.firstName" || name == "user.lastName" || name == "user.emailId"){
+    if (
+      name == "user.panCard" ||
+      name == "user.firstName" ||
+      name == "user.lastName" ||
+      name == "user.emailId"
+    ) {
       currentField[keys[keys.length - 1]] = value.toUpperCase();
-    }else{
+    } else {
       currentField[keys[keys.length - 1]] = value;
     }
     setUserData(updatedFormData);
@@ -769,7 +832,7 @@ function OfflineDonation() {
     }
     setDonations(updatedDonations);
   };
-console.log(donationsGift);
+  console.log(donationsGift);
   console.log(donations);
 
   const handleRecipentChange = (event, index) => {
@@ -976,7 +1039,6 @@ console.log(donationsGift);
   // //   const isValid = validate();
   // //   console.log("isValid:", isValid);
 
-
   //   //if (isValid) {
   //   const updatedDonations = [...donationsGift];
   //   const filteredPackages = packageData.filter((pkg) => pkg.noOfBouquets > 0);
@@ -1002,7 +1064,6 @@ console.log(donationsGift);
   //         }),
   //       }
 
-
   //   setLoading(true);
   //   const response = await DonationService.AddNewDonation(formData);
   //   console.log(response);
@@ -1015,7 +1076,7 @@ console.log(donationsGift);
   //     toast.error(response?.message);
   //     setLoading(false);
   //   }
-  
+
   //   console.log(donations);
   //   console.log(formData);
   //   console.log(updatedDonations);
@@ -1024,25 +1085,23 @@ console.log(donationsGift);
   // console.log("Not Working !")
   // };
 
-
   const createDonationGift = async (e, userData) => {
-  e.preventDefault();
-  console.log(donations);
+    e.preventDefault();
+    console.log(donations);
     const updatedDonations = [...donations];
     const filteredPackages = packageData.filter((pkg) => pkg.noOfBouquets > 0);
-    console.log(updatedDonations)
+    console.log(updatedDonations);
     // Create the formData object
     const formData = {
       emailId: userData?.user?.emailId,
       donorId: userData?.user?.donorId,
-     
+
       donations: updatedDonations.map((donation) => {
         const donationData = {
           ...donation,
           paymentInfo: donation.paymentInfo.slice(0, 1),
-         
         };
-  console.log(donation);
+        console.log(donation);
         if (donation.donationType === "Self-Donate") {
           donationData.recipient = [];
         } else if (donation.donationType === "Gift-Donate") {
@@ -1055,10 +1114,10 @@ console.log(donationsGift);
         return donationData;
       }),
     };
-  
+
     // Set the 'donations' property in formData
     // formData.donations = updatedDonations;
-  
+
     setLoading(true);
     const response = await DonationService.AddNewDonation(formData);
     if (response?.status === SUCCESS) {
@@ -1074,8 +1133,6 @@ console.log(donationsGift);
     console.log(formData);
     console.log(updatedDonations);
   };
-  
-
 
   //Donation for Self Donate
   const createDonation = async (e, userData) => {
@@ -1153,7 +1210,7 @@ console.log(donationsGift);
                   >
                     <Tab eventKey="Self-Donate" title="Plant a tree">
                       <form className="form-div contact-form-wrap">
-                      <PackageDetails
+                        <PackageDetails
                           packageData={packageData}
                           setPackageData={setPackageData}
                           setLoading={setLoading}
@@ -1161,7 +1218,7 @@ console.log(donationsGift);
                           donations={donations}
                           calculateOverallTotal={calculateOverallTotal}
                         />
-                        <div className="clear"/>
+                        <div className="clear" />
                         <hr />
                         <div className="actionheadingdiv">Personal Details</div>
                         <div className="col-12 pr15 mt20">
@@ -1435,25 +1492,31 @@ console.log(donationsGift);
                                     value={userData?.user?.panCard}
                                     onChange={handleChange}
                                   />
-                                  <small className="text-muted">Disclaimer: Please ensure that you have entered the correct PAN details to avoid non-deduction u/s 80G of the Income Tax Act,1961</small>
-                                    {errors.map((error, index) => {
-                                      if (
-                                        error.field === "userData.user.panCard"
-                                      ) {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
+                                  <small className="text-muted">
+                                    Disclaimer: Please ensure that you have
+                                    entered the correct PAN details to avoid
+                                    non-deduction u/s 80G of the Income Tax
+                                    Act,1961
+                                  </small>
+                                  {errors.map((error, index) => {
+                                    if (
+                                      error.field === "userData.user.panCard"
+                                    ) {
+                                      return (
+                                        <div
+                                          key={index}
+                                          className="error-message red-text"
+                                        >
+                                          {error.message}
+                                        </div>
+                                      );
+                                    }
+                                    return null;
+                                  })}
                                 </div>
                               </div>
                             </div>
+                            
                             {userData.user.donarType.toLowerCase() ===
                             "corporate" ? (
                               <div className="col-6">
@@ -1486,7 +1549,7 @@ console.log(donationsGift);
                         </div>
                         <hr />
                         <div className="actionheadingdiv">
-                        Orgnization Address
+                          Orgnization Address
                           <div
                             className="float-right addminicon"
                             onClick={addaddressicon}
@@ -1693,8 +1756,9 @@ console.log(donationsGift);
                             </div>
                           </div>
                         </div>
-                        <hr /><div id="addaddressDiv" className="hide">
-                          <div className="actionheadingdiv" >
+                        <hr />
+                        <div id="addaddressDiv" className="hide">
+                          <div className="actionheadingdiv">
                             Organisation Address
                             <div
                               className="float-right addminicon"
@@ -1908,13 +1972,27 @@ console.log(donationsGift);
                                     value={donations[0].donationEvent}
                                     onChange={(e) => handleDonationChange(e, 0)}
                                   >
-                                    <option disabled selected value="">select occasion</option>
-                                  
-                                <option value="Festivals">Festivals</option>
-                                <option value="Special day"> Special Day</option>
-                                <option value="Achievements"> Achievements</option>
-                                <option value=" Memorial Tribute">  Memorial Tribute</option>
-                                <option value="Simple Donation"> Simple Donation</option>
+                                    <option disabled selected value="">
+                                      select occasion
+                                    </option>
+
+                                    <option value="Festivals">Festivals</option>
+                                    <option value="Special day">
+                                      {" "}
+                                      Special Day
+                                    </option>
+                                    <option value="Achievements">
+                                      {" "}
+                                      Achievements
+                                    </option>
+                                    <option value=" Memorial Tribute">
+                                      {" "}
+                                      Memorial Tribute
+                                    </option>
+                                    <option value="Simple Donation">
+                                      {" "}
+                                      Simple Donation
+                                    </option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (
@@ -1936,7 +2014,7 @@ console.log(donationsGift);
                             </div>
                           </div>
                         </div>
-                        
+
                         <PackageDetails
                           packageData={packageData}
                           setPackageData={setPackageData}
@@ -1945,9 +2023,8 @@ console.log(donationsGift);
                           donations={donations}
                           calculateOverallTotal={calculateOverallTotal}
                         />
-                        <div className="clear"/>
-                        <div className="col-6 mt20">
-                        </div>
+                        <div className="clear" />
+                        <div className="col-6 mt20"></div>
                         <hr />
                         <div className="actionheadingdiv">Personal Details</div>
                         <div className="col-12 pr15 mt20">
@@ -2217,7 +2294,8 @@ console.log(donationsGift);
                                   <small className="text-muted">Disclaimer: Please ensure that you have entered the correct PAN details to avoid non-deduction u/s 80G of the Income Tax Act,1961</small>
                                     {errors.map((error, index) => {
                                       if (
-                                        error.field === "userData.user.panCard"
+                                        error.field ===
+                                        "userData.user.organisation"
                                       ) {
                                         return (
                                           <div
@@ -2230,60 +2308,42 @@ console.log(donationsGift);
                                       }
                                       return null;
                                     })}
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                            {/* <div className="col-6">
-                              <div className="row select-label">
-                                <label className="col-4 ">I want to opt</label>
-                                <div className="col-8 p0">
-                                  <input
-                                    type="radio"
-                                    name="user.activityType"
-                                    value="CSR Activity"
-                                    onClick={handleChange}
-                                    className="radioinput"
-                                  />
-                                  <label className="radiospan" checked>
-                                    CSR Activity
-                                  </label>
-                                  <input
-                                    type="radio"
-                                    name="user.activityType"
-                                    value="NON-CSR Activity"
-                                    onClick={handleChange}
-                                    className="radioinput"
-                                  />
-                                  <label className="radiospan">
-                                    NON-CSR Activity
-                                  </label>
-                                </div>
-                                {errors.map((error, index) => {
-                                  if (error.field === 'userData.user.activityType') {
-                                    return <div key={index} className="error-message red-text">{error.message}</div>;
-                                  }
-                                  return null;
-                                })}
-                              </div>
-                            </div> */}
                             {userData.user.donarType.toLowerCase() === "corporate" ?
                             (<div className="col-6">
                               <div className="row select-label">
-                                <div className="col-4 ">Organisation <span className="red-text">*</span></div>
+                                <div className="col-4 ">
+                                  Prefix <span className="red-text">*</span>
+                                </div>
                                 <div className="col-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
-                                    name="user.donarType"
-                                    value={userData?.user?.activityType}
+                                    name="user.prefix"
+                                    value={userData.user.prefix}
                                     onChange={handleChange}
                                   >
-                                    <option disabled selected value="">Select</option>
-                                    <option value="Corporate">CSR</option>
-                                    <option value="Individual">Non-CSR</option>
+                                    <option disabled selected value="">
+                                      Prefix
+                                    </option>
+                                    <option value="Mr.">Mr.</option>
+                                    <option value="Mrs.">Mrs.</option>
+                                    <option value="Ms.">Ms.</option>
                                   </select>
                                   {errors.map((error, index) => {
-                                    if (error.field === 'userData.user.donarType') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    if (
+                                      error.field === "userData.user.prefix"
+                                    ) {
+                                      return (
+                                        <div
+                                          key={index}
+                                          className="error-message red-text"
+                                        >
+                                          {error.message}
+                                        </div>
+                                      );
                                     }
                                     return null;
                                   })}
@@ -2293,11 +2353,10 @@ console.log(donationsGift);
                             ) : (
                               <></>
                             )}
-                          </div>
                         </div>
                         <hr />
                         <div className="actionheadingdiv">
-                        Orgnization Address
+                          Orgnization Address
                         </div>
                         <div className="col-12 pr15 mt20">
                           <div className="row">
@@ -2940,7 +2999,7 @@ console.log(donationsGift);
                           donations={donations}
                           calculateOverallTotal={calculateOverallTotal}
                         />
-                        <div className="clear"/>
+                        <div className="clear" />
                         <hr />
                         <div className="actionheadingdiv">Personal Details</div>
                         <div className="col-12 pr15 mt20">
@@ -3191,7 +3250,7 @@ console.log(donationsGift);
                         </div>
                         <hr />
                         <div className="actionheadingdiv">
-                        Orgnization Address
+                          Orgnization Address
                           <div
                             className="float-right addminicon"
                             onClick={addaddressicon}
@@ -3595,13 +3654,26 @@ console.log(donationsGift);
                                     value={donations[0].donationEvent}
                                     onChange={(e) => handleDonationChange(e, 0)}
                                   >
-                                    <option disabled selected value="">Select occasion</option>
-                                
-                                <option value="Festivals">Festivals</option>
-                                <option value="Special day"> Special Day</option>
-                                <option value="Achievements"> Achievements</option>
-                                <option value=" Memorial Tribute">  Memorial Tribute</option>
-                                <option value="Simple Donation"> Simple Donation</option>
+                                    <option disabled selected value="">
+                                      Select occasion
+                                    </option>
+                                    <option value="Festivals">Festivals</option>
+                                    <option value="Special day">
+                                      {" "}
+                                      Special Day
+                                    </option>
+                                    <option value="Achievements">
+                                      {" "}
+                                      Achievements
+                                    </option>
+                                    <option value=" Memorial Tribute">
+                                      {" "}
+                                      Memorial Tribute
+                                    </option>
+                                    <option value="Simple Donation">
+                                      {" "}
+                                      Simple Donation
+                                    </option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (
@@ -3632,7 +3704,7 @@ console.log(donationsGift);
                           donations={donations}
                           calculateOverallTotal={calculateOverallTotal}
                         />
-                        <div className="clear"/>
+                        <div className="clear" />
                         <hr />
                         <div className="actionheadingdiv">Personal Details</div>
                         <div className="col-12 pr15 mt20">
@@ -3890,7 +3962,7 @@ console.log(donationsGift);
                         </div>
                         <hr />
                         <div className="actionheadingdiv">
-                        Orgnization Address
+                          Orgnization Address
                         </div>
                         <div className="col-12 pr15 mt20">
                           <div className="row">
