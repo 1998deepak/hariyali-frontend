@@ -1,0 +1,102 @@
+import React, { useEffect } from "react";
+import { DonationService } from "../../services/donationService/donation.service";
+import { SUCCESS } from "../constants/constants";
+import { toast } from "react-toastify";
+
+const PackageDetails = ({
+  packageData,
+  setPackageData,
+  calculateOverallTotal,
+  initialPackageData,
+  donations,
+  setLoading
+}) => {
+
+    useEffect(() => {
+        getAllPackages();
+      }, []);
+    
+      const getAllPackages = async () => {
+        setLoading(true);
+        const response = await DonationService.getAllPackages();
+        if (response?.status === SUCCESS) {
+          console.log(response);
+          let packageData = [...initialPackageData];
+          console.log(packageData);
+          const parsedData = JSON.parse(response.data);
+          let data = parsedData.map((item) => ({
+            packageName: item.package_name,
+            bouquetPrice: item.bouquet_price,
+            noOfBouquets: 1,
+            amount: item.bouquet_price,
+          }));
+          setPackageData(data);
+          calculateOverallTotal(data);
+          setLoading(false);
+        } else {
+          toast.error(response?.message);
+          setLoading(false);
+        }
+      };
+
+    const handleChangeNumberOfBouquets = (e, row, rowIndex) => {
+        let { name, value } = e.target;
+        console.log({ name, value, rowIndex }, row);
+        let userPackageData = packageData;
+        userPackageData[rowIndex][name] = value;
+        const totalCost = row.bouquetPrice * row.noOfBouquets;
+        userPackageData[rowIndex]["amount"] = totalCost;
+        setPackageData(userPackageData);
+        calculateOverallTotal(packageData);
+        console.log(userPackageData);
+      };
+
+  return (
+    <>
+      <div className="actionheadingdiv">Select Your Donation Plan</div>
+      <div className="mt20">
+        <table>
+          <thead>
+            <tr>
+              <th>Planting Season</th>
+              <th>Cost per Sapling</th>
+              <th className="w200">No. Sapling</th>
+              <th>Total Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            {packageData.map((packageItem, index) => {
+              return (
+                <tr key={index}>
+                  <td>{packageItem.packageName}</td>
+                  <td>{packageItem.bouquetPrice}</td>
+                  {/* <td>{packageItem.maintenanceCost}</td> */}
+                  <td>
+                    <input
+                      type="number"
+                      name="noOfBouquets"
+                      className="form-control-inside"
+                      value={packageItem.noOfBouquets}
+                      onChange={(event) => {
+                        if (event.target.value < 0) {
+                          event.target.value = 0;
+                        }
+                        handleChangeNumberOfBouquets(event, packageItem, index);
+                      }}
+                    />
+                  </td>
+                  <td>{packageItem.amount}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        <div className="overalltotal">
+          Overall Total: {donations[0].totalAmount}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default PackageDetails;

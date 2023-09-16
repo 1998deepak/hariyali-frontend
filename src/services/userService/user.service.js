@@ -2,12 +2,14 @@
 import jwt_decode from "jwt-decode";
 import { toast } from "react-toastify";
 import { APIService } from "../api/api-service";
+import { EncryptionService } from "../encryption.service";
 
 
 
 export const UserService = {
     userDetails:()=> {
         const token = APIService.Instance.getToken();
+        console.log(token);
         if (token) {
         const decoded = jwt_decode(token);
         console.log(decoded);

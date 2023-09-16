@@ -8,6 +8,7 @@ export const URLS = {
     USERADD: "/userAddOffline",
     USERONLINEADD: "/userAddOnline",
     GETBYEMAILID: "/getuser/",
+    GETDONORIDBYEMAILID:'/getUserDonarId/',
     GETBYEXISTINGEMAILID: "/getExistingUser/",
     GETALLPACKAGE: "/getAllPackages",
 

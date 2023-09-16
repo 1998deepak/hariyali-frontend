@@ -95,6 +95,20 @@ export const DonationService = {
     }
   },
 
+  getDonorIdByEmailId: async (emailId) => {
+    console.log(emailId);
+    emailId = (await EncryptionService.encrypt(emailId)).toString();
+    try {
+      const response = await APIService.Instance.get(
+        URLS.GETDONORIDBYEMAILID + emailId
+      );
+      console.log(response);
+      return response?.data;
+    } catch (error) {
+      return error.response.data;
+    }
+  },
+
   getExistingDetailsByEmailId: async (emailId) => {
     console.log(emailId);
     const response = await APIService.Instance.get(
