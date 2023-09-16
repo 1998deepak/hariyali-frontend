@@ -32,7 +32,7 @@ const LeftMenu = () => {
       <Sidebar className={isOpen ? "show" : ""}>
         <div className="adminLetNav">
           <Accordion defaultActiveKey='0'>
-            <Accordion.Item eventKey="0">
+            {/* <Accordion.Item eventKey="0">
               <Accordion.Header className={location.pathname === '/user/dashboard'? 'active disabled' : 'disabled'} >
                 <Link
                   to="/user/dashboard"
@@ -43,7 +43,7 @@ const LeftMenu = () => {
                 </Link>
               </Accordion.Header>
 
-            </Accordion.Item>
+            </Accordion.Item> */}
             <Accordion.Item eventKey="1" >
               <Accordion.Header className={location.pathname ==='/user/update'? 'disabled active' : 'disabled'} >
               <Link
