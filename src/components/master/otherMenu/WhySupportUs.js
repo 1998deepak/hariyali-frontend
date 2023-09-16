@@ -104,24 +104,28 @@ function WhySupportUs() {
       name: "Farmer family from Gondhi Rapa village (Hukumpeta mandal), Araku.",
       quote:
         "We are from Gondhi Rapa village in Hukumpeta mandal of the Araku region. Our farm yields 894 kgs of crimson red coffee cherries which we have given to the cooperative thereby earning 6 times of what we earned two years.",
+        legend: 'From Araku, Andhra Pradesh',
     },
     {
       image: testimonial2,
       name: "I care for my saplings just like a mother cares for her child",
       quote:
         "I live in Purva village of Shravasti district. After joining Hariyali I got 91 fruit saplings including guava, jackfruit and lemon. I also received training on how to dig the pit for sapling planting, how much distance to maintain between saplings, how and when to spray bio inputs etc. I nurture, love and care for these saplings as a mother does for her child. Under the guidance of the Naandi team, I am making bio inputs too. In three years these will become trees and start bearing fruits which my family can consume. And from the fifth year they will bear enough fruits for me to go to the market and sell them and make a living.",
+        legend: "From Shravasti, Uttar Pradesh",
     },
     {
       image: testimonial3,
       name: "This is my small contribution towards reversing climate change",
       quote:
         "I live in Chabeet village of Solan district. I have been doing the usual kind of farming, but the yield was never very good. When I heard about Project Hariyali I immediately came forward to join it.  I was given 42 fruit saplings - mostly plum and apple. I follow all the organic regenerative farming practices faithfully. This is my small contribution towards reversing climate change and making Himachal Pradesh clean and green. In the future, my family will reap the benefits. ",
+      legend: "From Solan, Himachal Pradesh",
     },
     {
       image: testimonial4,
       name: "These will add nutritional diversity for my family",
       quote:
         "I live in Kokri Kalan village of Moga district. We struggle to make a reasonable livelihood. I always had a liking for plants and agriculture in general. Through Project Hariyali, I have learnt efficient farming practices. I am confident that with these practices I will reap benefits in future. I have received 31 fruit saplings which include guava, mango, orange and peach. I know these will add nutritional diversity for my family as well as bring additional income in future.",
+      legend: "From Moga, Punjab",
     },
     // Add other testimonials
   ];
@@ -360,17 +364,13 @@ function WhySupportUs() {
                 <p>
                   <i>
                     {" "}
-                    An Annual third - party tree audits have been conducted
-                    since 2012 by Unique Agroforestry and Land use, Germany
-                    which is a globally recognized company specializing in
-                    forestry consulting, climate, forest investments,
-                    agriculture and rural developments. Since FY22, Impact
-                    Assessment as part of CSR guidelines have been conducted by
-                    third party organizations. In the last Impact Assessment
-                    carried out for plantations done in FY21, the survival rate
-                    has been reported at 94.67%. Project Hariyali was awarded
-                    “Platinum” category performance of CSR Activity by an NABCB
-                    accredited “Type A” Inspection Body.
+                    Annual third - party audits have been conducted since 2012 by Unique forestry and land use GmbH.
+                  </i>
+                </p>
+                <p>
+                  <i>
+                    {" "}
+                    Since FY22, Impact Assessment as part of CSR guidelines have been conducted by third party organizations. In the last Impact Assessment conducted for plantations done in FY21, the survival rate has been reported at 94.67%. Project Hariyali has been awarded “Platinum” category performance of CSR Activity by an NABCB accredited “Type A” Inspection Body.
                   </i>
                 </p>
               </div>
@@ -420,7 +420,7 @@ function WhySupportUs() {
                         <i className="bi bi-quote pe-2"></i>
                         {testimonial.quote}
                       </p>
-                      <div> </div>
+                      <div className="testimonial-legend">{testimonial.legend} </div>
                     </div>
                   </div>
                 </div>
