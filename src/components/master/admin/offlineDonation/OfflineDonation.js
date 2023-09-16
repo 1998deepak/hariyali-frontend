@@ -186,14 +186,6 @@ function OfflineDonation() {
           demandDraftDate: "",
           totalAmount: "",
         },
-        {
-          paymentMode: "",
-          bankName: "",
-          chqORddNo: "",
-          chqORddDate: "",
-          paymentDate: "",
-          amount: 0,
-        },
       ],
     },
   ];
@@ -232,8 +224,6 @@ function OfflineDonation() {
   const [donarIdList, setDonarIdList] = useState([]);
 
   const [loading, setLoading] = useState(false);
-
-  const [bankList, setBankList] = useState([]);
 
   function hasValues(obj) {
     for (let key in obj) {
@@ -675,7 +665,6 @@ function OfflineDonation() {
   useEffect(() => {
     getAllPackages();
     getDonarIdList();
-    getAllActiveBanks();
   }, []);
 
   const getAllPackages = async () => {
@@ -703,19 +692,7 @@ function OfflineDonation() {
     }
   };
 
-  const getAllActiveBanks = async () => {
-    setLoading(true);
-    const response = await DonationService.getAllActiveBanks();
-    console.log(response);
-    if (response?.status === SUCCESS) {
-      console.log(response.data);
-      setBankList(response.data);
-      setLoading(false);
-    } else {
-      toast.error(response?.message);
-      setLoading(false);
-    }
-  };
+  
 
   const getDonarIdList = async () => {
     setLoading(true);
@@ -898,13 +875,7 @@ function OfflineDonation() {
       }
     }
   };
-  const minpaymentDiv = () => {
-    if (document.getElementById("addpaymentDiv")) {
-      if (document.getElementById("addpaymentDiv").style.display === "block") {
-        document.getElementById("addpaymentDiv").style.display = "none";
-      }
-    }
-  };
+
 
   const addgiftpaymenticon = () => {
     if (document.getElementById("addgiftpaymentDiv")) {
@@ -914,15 +885,6 @@ function OfflineDonation() {
         document.getElementById("addgiftpaymentDiv").style.display = "block";
       } else {
         document.getElementById("addgiftpaymentDiv").style.display = "block";
-      }
-    }
-  };
-  const mingiftpaymentDiv = () => {
-    if (document.getElementById("addgiftpaymentDiv")) {
-      if (
-        document.getElementById("addgiftpaymentDiv").style.display === "block"
-      ) {
-        document.getElementById("addgiftpaymentDiv").style.display = "none";
       }
     }
   };
@@ -1936,7 +1898,7 @@ function OfflineDonation() {
                         <PaymentDetails
                           donations={donations}
                           errors={errors}
-                          bankList={bankList}
+                          setLoading={setLoading}
                           handlePaymentInfoChange={handlePaymentInfoChange}
                           index={0}
                         />
@@ -3004,7 +2966,7 @@ function OfflineDonation() {
                         <PaymentDetails
                           donations={donations}
                           errors={errors}
-                          bankList={bankList}
+                          setLoading={setLoading}
                           handlePaymentInfoChange={handlePaymentInfoChange}
                           index={0}
                         />
@@ -3741,7 +3703,7 @@ function OfflineDonation() {
                         <PaymentDetails
                           donations={donations}
                           errors={errors}
-                          bankList={bankList}
+                          setLoading={setLoading}
                           handlePaymentInfoChange={handlePaymentInfoChange}
                           index={0}
                         />
@@ -4700,7 +4662,7 @@ function OfflineDonation() {
                         <PaymentDetails
                           donations={donations}
                           errors={errors}
-                          bankList={bankList}
+                          setLoading={setLoading}
                           handlePaymentInfoChange={handlePaymentInfoChange}
                           index={0}
                         />
