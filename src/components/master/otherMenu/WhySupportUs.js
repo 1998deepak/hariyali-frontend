@@ -104,24 +104,28 @@ function WhySupportUs() {
       name: "Farmer family from Gondhi Rapa village (Hukumpeta mandal), Araku.",
       quote:
         "We are from Gondhi Rapa village in Hukumpeta mandal of the Araku region. Our farm yields 894 kgs of crimson red coffee cherries which we have given to the cooperative thereby earning 6 times of what we earned two years.",
+        legend: 'From Araku, Andhra Pradesh',
     },
     {
       image: testimonial2,
       name: "I care for my saplings just like a mother cares for her child",
       quote:
         "I live in Purva village of Shravasti district. After joining Hariyali I got 91 fruit saplings including guava, jackfruit and lemon. I also received training on how to dig the pit for sapling planting, how much distance to maintain between saplings, how and when to spray bio inputs etc. I nurture, love and care for these saplings as a mother does for her child. Under the guidance of the Naandi team, I am making bio inputs too. In three years these will become trees and start bearing fruits which my family can consume. And from the fifth year they will bear enough fruits for me to go to the market and sell them and make a living.",
+        legend: "From Shravasti, Uttar Pradesh",
     },
     {
       image: testimonial3,
       name: "This is my small contribution towards reversing climate change",
       quote:
         "I live in Chabeet village of Solan district. I have been doing the usual kind of farming, but the yield was never very good. When I heard about Project Hariyali I immediately came forward to join it.  I was given 42 fruit saplings - mostly plum and apple. I follow all the organic regenerative farming practices faithfully. This is my small contribution towards reversing climate change and making Himachal Pradesh clean and green. In the future, my family will reap the benefits. ",
+      legend: "From Solan, Himachal Pradesh",
     },
     {
       image: testimonial4,
       name: "These will add nutritional diversity for my family",
       quote:
         "I live in Kokri Kalan village of Moga district. We struggle to make a reasonable livelihood. I always had a liking for plants and agriculture in general. Through Project Hariyali, I have learnt efficient farming practices. I am confident that with these practices I will reap benefits in future. I have received 31 fruit saplings which include guava, mango, orange and peach. I know these will add nutritional diversity for my family as well as bring additional income in future.",
+      legend: "From Moga, Punjab",
     },
     // Add other testimonials
   ];
@@ -255,59 +259,69 @@ function WhySupportUs() {
               contributing towards mission LiFE & India’s commitment toward
               carbon neutrality.
             </p>
-            <div class=""></div>
-            <div className="row justify-content-center">
-              {/* <h4 className="text-center">Quantitative Impact</h4> */}
-              <div className="col-md-8">
-                <Row className="justify-content-center quantitative-card">
-                  <div className="col-6 col-md-4  discover-block">
-                    <figure class="effect-duke whysuimpact-effect">
-                      {" "}
-                      <h4>Number of trees planted since 2007</h4>
-                      <p>24.86 Millions</p>
-                    </figure>
-                  </div>
-                  <div className="col-6 col-md-4  discover-block">
-                    <figure class="effect-duke whysuimpact-effect">
-                      <h4>Overall survival rate of plant since inception</h4>
-                      <p>85% Plus</p>
-                    </figure>
-                  </div>
-                  <div className="col-6 col-md-4 discover-block">
-                    <figure class="effect-duke whysuimpact-effect">
-                      {" "}
-                      <h4>
-                        CO<sub>2</sub> sequestered through the project Since
-                        inception{" "}
-                      </h4>
-                      <p>400,000+ tonnes</p>
-                    </figure>
-                  </div>
-
-                  {/* </Row> */}
-                  {/* <h4 className="text-center">Qualitative Impact</h4> */}
-                  {/* <Row className="justify-content-center mb-4 quantitative-card"> */}
-                  <div className="col-6 col-md-4 discover-block">
-                    <figure class="effect-duke whysuimpact-effect">
-                      {" "}
-                      <h4>
-                        Improvement in soil quality in terms of carbon, water
-                        holding capacity & nutrients
-                        <p>Soil Health</p>
-                      </h4>
-                    </figure>
-                  </div>
-                  <div className="col-6 col-md-4 discover-block">
-                    <figure class="effect-duke whysuimpact-effect">
-                      <h4>
-                        Significant positive change in <p>Bio-diversity</p>
-                      </h4>
-                    </figure>
-                  </div>
-                </Row>
-              </div>
-            </div>
           </div>
+          <div className="justify-content-center quantitative-card">
+            <div className="discover-block">
+                <div class="card h-100"> 
+                  <div class="card-header">
+                  Trees planted
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Number of trees planted since 2007</h5>
+                    <p class="card-text">24.86 Millions</p>
+                  </div>
+                </div>
+            </div>
+            <div className="discover-block">
+                <div class="card h-100">
+                  <div class="card-header">
+                  Survival Rate of Plant
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Overall survival rate of plant since inception</h5>
+                    <p class="card-text">85% Plus</p>
+                  </div>
+                </div>
+            </div>
+            <div className="discover-block">
+                <div class="card h-100">
+                  <div class="card-header">
+                    CO<sub>2</sub> sequestered
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">CO<sub>2</sub> sequestered through the project Since
+                    inception{" "}</h5>
+                    <p class="card-text">400,000+ tonnes</p>
+                  </div>
+                </div>
+              </div>
+            {/* </Row> */}
+            {/* <h4 className="text-center">Qualitative Impact</h4> */}
+            {/* <Row className="justify-content-center mb-4 quantitative-card"> */}
+            <div className="discover-block">
+              <div class="card h-100">
+                  <div class="card-header">
+                  Soil Quality
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Improvement in soil quality in terms of carbon, water
+                  holding capacity & nutrients</h5>
+                    <p class="card-text">Soil Health</p>
+                  </div>
+                </div>
+            </div>
+            <div className="discover-block">
+              <div class="card h-100">
+                  <div class="card-header">
+                  Bio-diversity
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Significant positive change in</h5>
+                    <p class="card-text">Bio-diversity</p>
+                  </div>
+                </div>                    
+            </div>
+          </div>          
         </div>
       </section>
       <div className="container">
@@ -360,17 +374,13 @@ function WhySupportUs() {
                 <p>
                   <i>
                     {" "}
-                    An Annual third - party tree audits have been conducted
-                    since 2012 by Unique Agroforestry and Land use, Germany
-                    which is a globally recognized company specializing in
-                    forestry consulting, climate, forest investments,
-                    agriculture and rural developments. Since FY22, Impact
-                    Assessment as part of CSR guidelines have been conducted by
-                    third party organizations. In the last Impact Assessment
-                    carried out for plantations done in FY21, the survival rate
-                    has been reported at 94.67%. Project Hariyali was awarded
-                    “Platinum” category performance of CSR Activity by an NABCB
-                    accredited “Type A” Inspection Body.
+                    Annual third - party audits have been conducted since 2012 by Unique forestry and land use GmbH.
+                  </i>
+                </p>
+                <p>
+                  <i>
+                    {" "}
+                    Since FY22, Impact Assessment as part of CSR guidelines have been conducted by third party organizations. In the last Impact Assessment conducted for plantations done in FY21, the survival rate has been reported at 94.67%. Project Hariyali has been awarded “Platinum” category performance of CSR Activity by an NABCB accredited “Type A” Inspection Body.
                   </i>
                 </p>
               </div>
@@ -420,7 +430,7 @@ function WhySupportUs() {
                         <i className="bi bi-quote pe-2"></i>
                         {testimonial.quote}
                       </p>
-                      <div> </div>
+                      <div className="testimonial-legend">{testimonial.legend} </div>
                     </div>
                   </div>
                 </div>

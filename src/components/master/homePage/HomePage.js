@@ -246,7 +246,7 @@ function HomePage() {
 
     useEffect(() => {
       const obj3 = document.getElementById("value3");
-      animateValue3(obj3, 0, 81110, 5000);
+      animateValue3(obj3, 0, 153 , 5000);
     }, []);
   
 
@@ -275,9 +275,9 @@ function HomePage() {
               </div>
             </div>
             <div className="tree-features">
-              <h4>Carbon sequestered</h4>
+              <h4>Estimated Carbon Sequestered</h4>
               <div className="d-flex align-items-center">
-                <p id="value3">0</p><span>mtCO<sub>2</sub>e</span>
+                <p id="value3">0</p><span>ktonne CO<sub>2</sub>e</span>
               </div>
             </div>
         </div>

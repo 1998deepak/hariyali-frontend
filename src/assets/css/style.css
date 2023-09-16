@@ -3496,7 +3496,12 @@ figure.effect-layla:hover img {
 .testimonial-slider .react-slideshow-container+ul.indicators li {
   margin: 0 0.25rem;
 }
-
+.testimonial-legend{
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-style: italic;
+  text-align: right;
+}
 .awards-slider .carousel-control-prev,
 .awards-slider .carousel-control-next {
   width: 50px;
@@ -4117,12 +4122,12 @@ iframe {
 }
 
 .quantitative-card .discover-block {
-  height: 200px;
-  margin-bottom: 25px;
+  /* height: 200px;
+  margin-bottom: 25px; */
 }
 
 .quantitative-card .discover-block:hover {
-  height: 200px;
+  /* height: 200px; */
 }
 
 .steps-nav {
@@ -4383,6 +4388,13 @@ iframe {
 .accordion-button:focus{
   box-shadow: none;
   border-color: #23aa4a;
+}
+.nested-ul{
+  margin-left: 1rem;
+  list-style-type:lower-alpha;
+}
+.nested-ul li{
+  list-style-type: disc;
 }
 @media screen and (max-width:1440px) {
   .nav-list .nav-item a.nav-link {
@@ -5125,4 +5137,35 @@ iframe {
 .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded .css-ahj2mt-MuiTypography-root{
   font-size: 1.125rem;
   font-weight: 600;
+}
+.quantitative-card{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 100%;
+}
+.discover-block{
+  width: 30%;
+  height: 100%;
+  margin: 0 1rem 1rem;
+  min-height: 206px;
+}
+.discover-block .card-header{
+  font-size: 1.25rem;
+  font-weight: 600;
+  background-color: #23aa4a;
+  color: #fff;
+  text-align: center;
+}
+.discover-block .card-text{
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  color: #23aa4a;
+  margin: 1rem 0;
+}
+.discover-block .card-body{
+  height: 100%;
+  text-align: center;
 }
