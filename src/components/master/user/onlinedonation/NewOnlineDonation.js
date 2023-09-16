@@ -97,32 +97,16 @@ function NewOnlineDonation() {
   const [errors, setErrors] = useState([]);
   const { email } = UserService.userDetails();
 
-  // getUser Details
-  const getUserDonorId = async (id) => {
-    try {
-      setLoading(true);
-      const response = await DonationService.getDonorIdByEmailId(id);
-      if (response?.data) {
-        console.log(response.data);
-        getdetailsByDonarId(response?.data);
-      }
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
-
   //calling api
   useEffect(() => {
     if (email) {
-      getUserDonorId(email);
+      getdetailsByEmailId(email);
     }
   }, [email]);
 
-  const getdetailsByDonarId = async (donorId) => {
+  const getdetailsByEmailId = async (email) => {
     setLoading(true);
-    let response = await DonationService.getDetailsByDonorId(donorId);
+    let response = await DonationService.getUserDetails(email);
     console.log("API Response:", response);
 
     if (response?.status === "Success") {
@@ -144,7 +128,7 @@ function NewOnlineDonation() {
       setLoading(false);
     } else {
       console.log(response);
-      toast.error("Invalid Donor Id ! Please Try Again");
+      toast.error("Invalid Email Id ! Please Try Again");
       toast.error(response?.message);
       setLoading(false);
     }
