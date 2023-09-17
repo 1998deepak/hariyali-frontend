@@ -951,7 +951,7 @@ function OnlineDonation() {
         },
       };
       if (response.data.donations) {
-        if (response.data.donations[0]) {
+        if (response.data.donations[0].userPackage) {
           setPackageData(formData.formData.user.donations[0].userPackage);
         }
         setDonations(response.data.donations);
@@ -1118,11 +1118,11 @@ function OnlineDonation() {
 
     return { hasError: hasDecimalAfterDigits, errorMessage };
   }
-  const [errors1, setErrors1] = useState(
-    Array(packageData.length).fill({ hasError: false, errorMessage: "" })
-  );
+  // const [errors1, setErrors1] = useState(
+  //   Array(packageData.length).fill({ hasError: false, errorMessage: "" })
+  // );
 
-  const [showOtherInput, setShowOtherInput] = useState(false);
+  // const [showOtherInput, setShowOtherInput] = useState(false);
 
   return (
     <>
