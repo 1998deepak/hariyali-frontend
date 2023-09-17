@@ -63,6 +63,7 @@ function OnlineDonation() {
 
   const initialPackageData = [
     {
+      packageName: "",
       bouquetPrice: "",
       noOfBouquets: "",
       amount: "",
@@ -211,11 +212,13 @@ function OnlineDonation() {
         field: "userData.user.firstName",
         message: "First Name is required",
       });
+      document.getElementById("firstName").focus();
     } else if (/\d/.test(userData.user.firstName)) {
       validationErrors.push({
         field: "userData.user.firstName",
         message: "First Name should only contain alphabets",
       });
+      document.getElementById("firstName").focus();
     }
 
     if (!userData?.user?.lastName) {
@@ -223,11 +226,13 @@ function OnlineDonation() {
         field: "userData.user.lastName",
         message: "Last Name is required",
       });
+      document.getElementById("lastName").focus();
     } else if (/\d/.test(userData.user.lastName)) {
       validationErrors.push({
         field: "userData.user.lastName",
         message: "Last Name should only contain alphabets",
       });
+      document.getElementById("lastName").focus();
     }
 
     if (!userData?.user?.mobileNo) {
@@ -235,12 +240,14 @@ function OnlineDonation() {
         field: "userData.user.mobileNo",
         message: "Mobile Number is required",
       });
+      document.getElementById("mobileNo").focus();
     } else if (!/^(?!.*[a-zA-Z])\d{10}$/.test(userData.user.mobileNo)) {
       validationErrors.push({
         field: "userData.user.mobileNo",
         message:
           "Mobile Number must contain exactly 10 digits and no alphabetic characters",
       });
+      document.getElementById("mobileNo").focus();
     }
 
     if (!userData?.user?.donarType) {
@@ -254,6 +261,7 @@ function OnlineDonation() {
         field: "userData.user.prefix",
         message: "Prefix is required",
       });
+      document.getElementById("prefix").focus();
     }
     if (
       userData?.user?.donarType.toLocaleLowerCase() === "corporate" &&
@@ -269,13 +277,29 @@ function OnlineDonation() {
         field: "userData.user.panCard",
         message: "PAN card is required",
       });
+      document.getElementById("panCard").focus();
     }
     else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
       validationErrors.push({
         field: "userData.user.panCard",
         message: "PAN card No is Invalid",
       });
+      document.getElementById("panCard").focus();
     }
+    // if (!userData?.user?.passport) {
+    //   validationErrors.push({
+    //     field: "userData.user.passport",
+    //     message: "Passport is required",
+    //   });
+    //   document.getElementById("passport").focus();
+    // }
+    // else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.passport)) {
+    //   validationErrors.push({
+    //     field: "userData.user.passport",
+    //     message: "PAN card No is Invalid",
+    //   });
+    //   document.getElementById("passport").focus();
+    // }
 
 
 
@@ -295,35 +319,41 @@ function OnlineDonation() {
           field: "address[" + i + "].street1",
           message: "Street is required",
         });
+        document.getElementById("street1").focus();
       }
       if (!addr?.country) {
         validationErrors.push({
           field: "address[" + i + "].country",
           message: "Country is required",
         });
+        document.getElementById("country").focus();
       }
       if (!addr?.state) {
         validationErrors.push({
           field: "address[" + i + "].state",
           message: "State is required",
         });
+        document.getElementById("state").focus();
       }
       if (!addr?.city) {
         validationErrors.push({
           field: "address[" + i + "].city",
           message: "City is required",
         });
+        document.getElementById("city").focus();
       }
       if (!addr?.postalCode) {
         validationErrors.push({
           field: "address[" + i + "].postalCode",
           message: "postalCode is required",
         });
+        document.getElementById("postalCode").focus();
       } else if (!/^\d{6}$/.test(addr?.postalCode)) {
         validationErrors.push({
           field: "address[" + i + "].postalCode",
           message: "Invalid Postal Code",
         });
+        document.getElementById("postalCode").focus();
       }
     }
 
@@ -346,11 +376,13 @@ function OnlineDonation() {
             field: "recipient[" + i + "].firstName",
             message: "First Name is required",
           });
+          document.getElementById("recFirstName").focus();
         } else if (/\d/.test(rec.firstName)) {
           validationErrors.push({
             field: "recipient[" + i + "].firstName",
             message: "First Name should only contain alphabets",
           });
+          document.getElementById("recFirstName").focus();
         }
         if (!rec?.lastName) {
           validationErrors.push({
@@ -575,7 +607,7 @@ function OnlineDonation() {
     if (orderId) {
       getPaymentInformation(orderId);
     }
-    getAllPackages();
+    //getAllPackages();
   }, []);
 
   const getPaymentInformation = async (paymentId) => {
@@ -598,29 +630,29 @@ function OnlineDonation() {
     }
   };
 
-  const getAllPackages = async () => {
-    setLoading(true);
-    const response = await DonationService.getAllPackages();
-    if (response?.status === "Success") {
-      console.log(response);
-      let packageData = [...initialPackageData];
-      console.log(packageData);
+  // const getAllPackages = async () => {
+  //   setLoading(true);
+  //   const response = await DonationService.getAllPackages();
+  //   if (response?.status === "Success") {
+  //     console.log(response);
+  //     let packageData = [...initialPackageData];
+  //     console.log(packageData);
 
-      const parsedData = JSON.parse(response.data);
+  //     const parsedData = JSON.parse(response.data);
 
-      let data = parsedData.map((item) => ({
-        bouquetPrice: item.bouquet_price,
-        noOfBouquets: 1,
-        amount: item.bouquet_price,
-      }));
-      setPackageData(data);
-      calculateOverallTotal(data);
-      setLoading(false);
-    } else {
-      toast.error(response?.message);
-      setLoading(false);
-    }
-  };
+  //     let data = parsedData.map((item) => ({
+  //       bouquetPrice: item.bouquet_price,
+  //       noOfBouquets: 1,
+  //       amount: item.bouquet_price,
+  //     }));
+  //     setPackageData(data);
+  //     calculateOverallTotal(data);
+  //     setLoading(false);
+  //   } else {
+  //     toast.error(response?.message);
+  //     setLoading(false);
+  //   }
+  // };
 
   const stateOptions = [
     "Andhra Pradesh",
@@ -707,7 +739,7 @@ function OnlineDonation() {
     const totalAmountOfPackage = packageData.reduce(
       (accumulator, packageItem, index) => {
         return (
-          accumulator + packageItem.bouquetPrice * packageItem.noOfBouquets
+          450 + packageItem.bouquetPrice * packageItem.noOfBouquets
         );
       },
       0
@@ -731,10 +763,6 @@ function OnlineDonation() {
       currentField[keys[keys.length - 1]] = value.toUpperCase();
     }else{
       currentField[keys[keys.length - 1]] = value;
-    }if(userData?.user?.panCard == ""){
-      document.getElementById("addharId").style.display("block");
-    }else{
-      document.getElementById("addharId").style.display("none");
     }
     setUserData(updatedFormData);
   };
@@ -1105,6 +1133,7 @@ function OnlineDonation() {
                           </label>
                           <select
                             className=" form-control-inside form-select"
+                            id="donarType"
                             name="user.donarType"
                             value={userData?.user?.donarType}
                             // onChange={handleChange}
@@ -1198,6 +1227,7 @@ function OnlineDonation() {
                             <select
                               className=" form-control-inside form-select"
                               name="user.citizenship"
+                              id="citizenship"
                               value={userData?.user?.citizenship}
                               onChange={handleChange}
                             >
@@ -1238,6 +1268,7 @@ function OnlineDonation() {
                               type="text"
                               placeholder="Enter Email Id"
                               name="self"
+                              id="emailId"
                               value={userEmail}
                               onChange={onChangeUserEmail}
                               className="form-control"
@@ -1307,6 +1338,7 @@ function OnlineDonation() {
                                     <input
                                       className="form-control-inside form-control"
                                       type="number"
+                                      id="mobileNo"
                                       name="user.mobileNo"
                                       placeholder="Mobile No."
                                       value={userData?.user?.mobileNo}
@@ -1388,6 +1420,7 @@ function OnlineDonation() {
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="user.prefix"
+                                      id="prefix"
                                       value={userData?.user?.prefix}
                                       onChange={handleChange}
                                     >
@@ -1431,6 +1464,7 @@ function OnlineDonation() {
                                     <input
                                       className="form-control-inside form-control"
                                       type="text"
+                                      id="firstName"
                                       name="user.firstName"
                                       placeholder="First Name"
                                       value={userData?.user?.firstName}
@@ -1470,6 +1504,7 @@ function OnlineDonation() {
                                       className="form-control-inside form-control"
                                       type="text"
                                       name="user.lastName"
+                                      id="lastName"
                                       placeholder="Last Name"
                                       value={userData?.user?.lastName}
                                       onChange={handleChange}
@@ -1548,6 +1583,7 @@ function OnlineDonation() {
                                     <input
                                       className="form-control-inside form-control"
                                       name="user.panCard"
+                                      id="panCard"
                                       placeholder="PAN card No."
                                       type="text"
                                       value={userData?.user?.panCard}
@@ -1577,7 +1613,7 @@ function OnlineDonation() {
                                   {/* <div className="col-4 ">PAN card</div> */}
                                   <div className="col-12 p0 field-wrapper">
                                     <label
-                                      for="panCard"
+                                      for="addharCard"
                                       class="form-label top-27"
                                     >
                                       Addhar Card{" "}
@@ -1586,6 +1622,7 @@ function OnlineDonation() {
                                     <input
                                       className="form-control-inside form-control"
                                       name="user.addharCard"
+                                      id="addharCard"
                                       placeholder="Addhar card No."
                                       type="text"
                                       maxLength={16}
@@ -1611,10 +1648,8 @@ function OnlineDonation() {
                                 </div>
                               </div>
                                   </>) : 
-                                  (<></>)
-                          }
-                              
-                              <div className="col-6">
+                                  (<>
+                                    <div className="col-6">
                               <div className="select-label">
                                 {/* <div className="col-4 ">PAN card</div> */}
                                 <div className="col-12 p0 field-wrapper">
@@ -1624,6 +1659,7 @@ function OnlineDonation() {
                                   <input
                                     className="form-control-inside form-control"
                                     name="user.passport"
+                                    id="passport"
                                     placeholder="Enter the passport"
                                     type="text"
                                     value={userData.user.passport}
@@ -1648,6 +1684,9 @@ function OnlineDonation() {
                                 </div>
                               </div>
                             </div>
+                                  </>)
+                          }
+                              
                             </div>
                           </div>
                           <hr />
@@ -1673,6 +1712,7 @@ function OnlineDonation() {
                                     <input
                                       className="form-control-inside form-control"
                                       name="street1"
+                                      id="street1"
                                       placeholder=" Street 1"
                                       type="text"
                                       value={address[0]?.street1}
@@ -1749,6 +1789,7 @@ function OnlineDonation() {
                                     <input
                                       className="form-control-inside form-control"
                                       name="country"
+                                      id="country"
                                       placeholder="Country"
                                       type="text"
                                       value={address[0]?.country}
@@ -1784,6 +1825,7 @@ function OnlineDonation() {
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="state"
+                                      id="state"
                                       value={address[0]?.state}
                                       onChange={(event) =>
                                         handleAddressChange(event, 0)
@@ -1824,6 +1866,7 @@ function OnlineDonation() {
                                     <input
                                       className="form-control-inside form-control"
                                       name="city"
+                                      id="city"
                                       placeholder="City"
                                       type="text"
                                       value={address[0]?.city}
@@ -1858,6 +1901,7 @@ function OnlineDonation() {
                                     <input
                                       className="form-control-inside form-control"
                                       name="postalCode"
+                                      id="postalCode"
                                       maxLength={6}
                                       placeholder="Postal Code"
                                       type="text"
@@ -2282,6 +2326,8 @@ function OnlineDonation() {
                               <select
                                 className=" form-control-inside form-select"
                                 name="user.citizenship"
+                                value={userData?.user?.citizenship}
+                                onChange={handleChange}
                               >
                                 <option disabled selected value="">
                                   Select Country
@@ -2583,42 +2629,48 @@ function OnlineDonation() {
                                   </div>
                                 </div>
                               </div>
-                            <div className="col-6">
-                              <div className="select-label">
-                                {/* <div className="col-4 ">PAN card</div> */}
-                                <div className="col-12 p0 field-wrapper">
-                                  <label className="form-label">
-                                    PAN Card <span className="red-text">*</span>
-                                  </label>
-                                  <input
-                                    className="form-control-inside form-control"
-                                    name="user.panCard"
-                                    placeholder="PAN card No."
-                                    type="text"
-                                    value={userData.user.panCard}
-                                    onChange={handleChange}
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (
-                                      error.field === "userData.user.panCard"
-                                    ) {
-                                      return (
-                                        <div
-                                          key={index}
-                                          className="error-message red-text"
-                                        >
-                                          {error.message}
-                                        </div>
-                                      );
-                                    }
-                                    return null;
-                                  })}
+                              {userData?.user?.citizenship ===
+                                "India" ? (
+                                  <>
+                                  <div className="col-6">
+                                <div className="select-label">
+                                  {/* <div className="col-4 ">PAN card</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label
+                                      for="panCard"
+                                      class="form-label top-27"
+                                    >
+                                      PAN Card{" "}
+                                      <span className="red-text">*</span>
+                                    </label>
+                                    <input
+                                      className="form-control-inside form-control"
+                                      name="user.panCard"
+                                      placeholder="PAN card No."
+                                      type="text"
+                                      value={userData?.user?.panCard}
+                                      onChange={handleChange}
+                                    />
+                                    <small className="text-muted">Disclaimer: Please ensure that you have entered the correct PAN details to avoid non-deduction u/s 80G of the Income Tax Act,1961</small>
+                                    {errors.map((error, index) => {
+                                      if (
+                                        error.field === "userData.user.panCard"
+                                      ) {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            {userData?.user?.panCard ===
-                                null ? (
-                                  <div className="col-6">
+                              <div id = "addharId" className="col-6" style={{display : "none"}}>
                                 <div className="select-label">
                                   {/* <div className="col-4 ">PAN card</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -2655,11 +2707,10 @@ function OnlineDonation() {
                                     })}
                                   </div>
                                 </div>
-                              </div> ): (
-                                <></>
-                              )
-                          }
-                          <div className="col-6">
+                              </div>
+                                  </>) : 
+                                  (<>
+                                    <div className="col-6">
                               <div className="select-label">
                                 {/* <div className="col-4 ">PAN card</div> */}
                                 <div className="col-12 p0 field-wrapper">
@@ -2674,6 +2725,7 @@ function OnlineDonation() {
                                     value={userData.user.passport}
                                     onChange={handleChange}
                                   />
+                                  <small className="text-muted">Disclaimer: Passport copy is mandatory requirement to verify current citizenship of Indian citizen residing in foreign countries and foreign citizens residing in India</small>
                                   {errors.map((error, index) => {
                                     if (
                                       error.field === "userData.user.passport"
@@ -2692,6 +2744,9 @@ function OnlineDonation() {
                                 </div>
                               </div>
                             </div>
+                                  </>)
+                          }
+
                           </div>
                         </div>
                         <hr />
@@ -2927,7 +2982,8 @@ function OnlineDonation() {
                                     </label>
                                     <input
                                       className="form-control-inside form-control"
-                                      name="firstName"
+                                      name="recipient[0].firstName"
+                                      id="recFirstName"
                                       placeholder="First Name"
                                       type="text"
                                       value={recipient[0].firstName}

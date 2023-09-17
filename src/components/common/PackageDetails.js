@@ -25,7 +25,6 @@ const PackageDetails = ({
           console.log(packageData);
           const parsedData = JSON.parse(response.data);
           let data = parsedData.map((item) => ({
-            packageName: item.package_name,
             bouquetPrice: item.bouquet_price,
             noOfBouquets: 1,
             amount: item.bouquet_price,
@@ -56,11 +55,15 @@ const PackageDetails = ({
       <div className="actionheadingdiv">Select Your Donation Plan</div>
       <div className="mt20">
         <table>
+          <colgroup>
+            <col width="40%" />
+            <col width="30%" />
+            <col width="30%" />
+          </colgroup>
           <thead>
             <tr>
-              <th>Planting Season</th>
               <th>Cost per Sapling</th>
-              <th className="w200">No. Sapling</th>
+              <th >No. Sapling</th>
               <th>Total Cost</th>
             </tr>
           </thead>
@@ -68,9 +71,7 @@ const PackageDetails = ({
             {packageData.map((packageItem, index) => {
               return (
                 <tr key={index}>
-                  <td>{packageItem.packageName}</td>
                   <td>{packageItem.bouquetPrice}</td>
-                  {/* <td>{packageItem.maintenanceCost}</td> */}
                   <td>
                     <input
                       type="number"
@@ -92,7 +93,7 @@ const PackageDetails = ({
           </tbody>
         </table>
         <div className="overalltotal">
-          Overall Total: {donations[0].totalAmount}
+          Overall Total : {donations[0].totalAmount}
         </div>
       </div>
     </>
