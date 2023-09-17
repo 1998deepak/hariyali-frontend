@@ -39,6 +39,7 @@ function OnlineDonation() {
   const [showConditons, setShowConditons] = useState(false);
   const [validSelfUser, setValidSelfUser] = useState(false);
   const [validGiftUser, setValidGiftUser] = useState(false);
+  const [checkRadio, setCheckRadio] = useState("yes");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -56,6 +57,10 @@ function OnlineDonation() {
 //     const decodedMeConnect = atob(meconnectId)
 //     setdecodedString(decodedSource);
 // }
+
+const checkAddharCard = (e) =>{
+  console.log(e.target.value);
+}
 
   const handleShowConditions = (e) => {
     e.preventDefault();
@@ -1165,59 +1170,7 @@ function OnlineDonation() {
                         </div>
                       </div>{" "}
                     </div>
-                    {isVisible ? (
-                      <div className="col-6 mb10">
-                        <div className="select-label">
-                          {/* <div className="col-4 ">I want to opt</div> */}
-                          <div className="col-12 p0 field-wrapper">
-                            <label for="activity" class="form-label">
-                              Organisation{" "}
-                              <span className="red-text">*</span>
-                            </label>
-                            <select
-                              className=" form-control-inside form-select"
-                              name="user.donarType"
-                              // value={userData?.user?.donarType}
-                              // onChange={handleChange}
-                              onChange={changeActiveHandler}
-                            >
-                              <option disabled selected value="">
-                                Select Activity
-                              </option>
-                              <option value="csr">CSR</option>
-                              <option value="noncsr">NON-CSR</option>
-                            </select>
-                            {errors.map((error, index) => {
-                              if (error.field === "userData.user.donarType") {
-                                return (
-                                  <div
-                                    key={index}
-                                    className="error-message red-text"
-                                  >
-                                    {error.message}
-                                  </div>
-                                );
-                              }
-                              return null;
-                            })}
-                          </div>
-                        </div>
-                      </div>
-                    ) : null}
                   </div>
-                  {/* {isCSR ? (
-                    <div>
-                      {" "}
-                      <p>
-                        For CSR related enquireis please reach us at{" "}
-                        <b>Gangar Sunny</b>,{" "}
-                        <a href="mailto:GANGAR.SUNNY@mahindra.com">
-                          GANGAR.SUNNY@mahindra.com
-                        </a>&nbsp; | &nbsp;
-                        <a href="tel:93224 56789">93224 56789</a>
-                      </p>
-                    </div>
-                  ) : null} */}
                   <div>
                     <div className="row">
                       <div className="col-6">
@@ -1612,7 +1565,26 @@ function OnlineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div id = "addharId" className="col-6" style={{display : "none"}}>
+                              <div className="col-6">
+                                <div className="select-label">
+                                  {/* <div className="col-4 ">PAN card</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    
+                                    <div class="radio-container" >
+                                        <label>Do you have pan card ?</label>{" "}
+                                        <label>
+                                            <input type="radio" checked={checkRadio === "yes"} name="agree" value="yes" onChange={checkAddharCard}/>{" "}
+                                            Yes
+                                        </label>{" "}
+                                        <label>
+                                            <input type="radio" checked={checkRadio === "yes"} name="agree" value="no" onChange={checkAddharCard}/>{" "}
+                                            No
+                                        </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div id = "addharId" className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">PAN card</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -1784,23 +1756,29 @@ function OnlineDonation() {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  {/* <div className="col-4 ">Country</div> */}
+                                  {/* <div className="col-4 ">State</div> */}
                                   <div className="col-12 p0 field-wrapper">
                                     <label class="form-label top-27">
-                                      Country{" "}
-                                      <span className="red-text">*</span>
+                                      Country <span className="red-text">*</span>
                                     </label>
-                                    <input
-                                      className="form-control-inside form-control"
+                                    <select
+                                      className=" form-control-inside form-select form-control"
                                       name="country"
                                       id="country"
-                                      placeholder="Country"
-                                      type="text"
                                       value={address[0]?.country}
                                       onChange={(event) =>
                                         handleAddressChange(event, 0)
                                       }
-                                    />
+                                    >
+                                      <option disabled selected value="">
+                                        Select Country
+                                      </option>
+                                      {stateOptions.map((state) => (
+                                        <option key={state} value={state}>
+                                          {state}
+                                        </option>
+                                      ))}
+                                    </select>
                                     {errors.map((error, index) => {
                                       if (
                                         error.field === "address[0].country"
@@ -2814,38 +2792,48 @@ function OnlineDonation() {
                               </div>
                             </div>
                             <div className="col-6">
-                              <div className="select-label">
-                                {/* <div className="col-4 ">Country</div> */}
-                                <div className="col-12 p0 field-wrapper">
-                                  <label className="form-label">
-                                    Country <span className="red-text">*</span>
-                                  </label>
-                                  <input
-                                    className="form-control-inside form-control"
-                                    name="country"
-                                    placeholder="Country"
-                                    type="text"
-                                    value={address[0]?.country}
-                                    onChange={(event) =>
-                                      handleAddressChange(event, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === "address[0].country") {
-                                      return (
-                                        <div
-                                          key={index}
-                                          className="error-message red-text"
-                                        >
-                                          {error.message}
-                                        </div>
-                                      );
-                                    }
-                                    return null;
-                                  })}
+                                <div className="select-label">
+                                  {/* <div className="col-4 ">State</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">
+                                      Country <span className="red-text">*</span>
+                                    </label>
+                                    <select
+                                      className=" form-control-inside form-select form-control"
+                                      name="country"
+                                      id="country"
+                                      value={address[0]?.country}
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 0)
+                                      }
+                                    >
+                                      <option disabled selected value="">
+                                        Select Country
+                                      </option>
+                                      {stateOptions.map((state) => (
+                                        <option key={state} value={state}>
+                                          {state}
+                                        </option>
+                                      ))}
+                                    </select>
+                                    {errors.map((error, index) => {
+                                      if (
+                                        error.field === "address[0].country"
+                                      ) {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
                                 </div>
                               </div>
-                            </div>
                             <div className="col-6">
                               <div className="select-label">
                                 {/* <div className="col-4 ">State</div> */}
