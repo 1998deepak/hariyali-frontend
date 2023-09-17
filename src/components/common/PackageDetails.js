@@ -13,7 +13,7 @@ const PackageDetails = ({
 }) => {
 
     useEffect(() => {
-        getAllPackages();
+        //getAllPackages();
       }, []);
     
       const getAllPackages = async () => {
@@ -38,16 +38,18 @@ const PackageDetails = ({
         }
       };
 
+      
+
     const handleChangeNumberOfBouquets = (e, row, rowIndex) => {
         let { name, value } = e.target;
         console.log({ name, value, rowIndex }, row);
         let userPackageData = packageData;
         userPackageData[rowIndex][name] = value;
-        const totalCost = row.bouquetPrice * row.noOfBouquets;
+        const totalCost = 450 * row.noOfBouquets;
         userPackageData[rowIndex]["amount"] = totalCost;
         setPackageData(userPackageData);
         calculateOverallTotal(packageData);
-        console.log(userPackageData);
+        console.log(userPackageData[0].amount);
       };
 
   return (
@@ -71,7 +73,8 @@ const PackageDetails = ({
             {packageData.map((packageItem, index) => {
               return (
                 <tr key={index}>
-                  <td>{packageItem.bouquetPrice}</td>
+                  <td>450</td>
+                  {/* <td>{packageItem.maintenanceCost}</td> */}
                   <td>
                     <input
                       type="number"
@@ -93,7 +96,7 @@ const PackageDetails = ({
           </tbody>
         </table>
         <div className="overalltotal">
-          Overall Total : {donations[0].totalAmount}
+          Overall Total : {packageData[0].amount}
         </div>
       </div>
     </>
