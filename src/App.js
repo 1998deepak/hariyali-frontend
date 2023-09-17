@@ -40,6 +40,7 @@ import UserDashboard from "./components/master/user/UserDashboard";
 import UserReceipts from "./components/master/user/UserReceipts";
 import Faq from "./components/master/otherMenu/Faq";
 import DashboardTable from "./components/master/Dashboard/DashboardTable";
+import NewOnlineDonation from "./components/master/user/onlinedonation/NewOnlineDonation";
 import Commitment from "./components/master/Dashboard/Commitment";
 
 
@@ -165,6 +166,19 @@ function UpdateUserWithHeaderFooter() {
         <UserLeftMenu />
         <div className="float-left page-scroll " style={{ width: "100%" }}>
         <UserUpdate />
+        </div>
+      </div>
+    </>
+  );
+}
+function UserDonationWithHeaderFooter() {
+  return (
+    <>
+    <AdminHeader />
+    <div className="leftmenu-main">
+        <UserLeftMenu />
+        <div className="float-left page-scroll " style={{ width: "100%" }}>
+        <NewOnlineDonation />
         </div>
       </div>
     </>
@@ -388,6 +402,9 @@ function App() {
                   </ProtectedRoutes>}/>
                   <Route path="/user/receipts" element = {<ProtectedRoutes user={authority.user}>
                     <UserReceiptsWithHeaderFooter />
+                  </ProtectedRoutes>}/>
+                  <Route path="/user/donation" element = {<ProtectedRoutes user={authority.user}>
+                    <UserDonationWithHeaderFooter/>
                   </ProtectedRoutes>}/>
 
 
