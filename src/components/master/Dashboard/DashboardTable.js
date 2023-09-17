@@ -392,8 +392,8 @@ const DashboardTable = () => {
                   <th>District</th>
                   <th>No of Plant Planted</th>
                   <th>Plantation Date</th>
-                  <th>Latitude</th>
-                  <th>Longitude</th>
+                  {/* <th>Latitude</th>
+                  <th>Longitude</th> */}
                   <th>Status</th>
                 </tr>
               </thead>
@@ -406,8 +406,8 @@ const DashboardTable = () => {
                       <td>{plantation.district}</td>
                       <td>{plantation.noOfPlantsPlanted}</td>
                       <td>{plantation.plantationDateString}</td>
-                      <td>{plantation.latitude}</td>
-                      <td>{plantation.longitude}</td>
+                      {/* <td>{plantation.latitude}</td>
+                      <td>{plantation.longitude}</td> */}
                       <td>{plantation.status}</td>
                     </tr>
                   )

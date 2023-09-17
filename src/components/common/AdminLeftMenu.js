@@ -136,13 +136,25 @@ const LeftMenu = () => {
                 to="/Plantation"
                 className="nav-link dropdown-indicator-left label-1"
               > <PiPottedPlantDuotone />
-                <span className="link-text">Plantation & Commitment </span>
+                <span className="link-text">Plantation </span>
 
               </Link>
               </Accordion.Header>
 
             </Accordion.Item>
             <Accordion.Item eventKey="3">
+              <Accordion.Header className={activeHead =='plantation'? 'disabled active' : 'disabled'} onClick={()=>activeHeadTag('commitment')}>
+              <Link
+                to="/Commitment"
+                className="nav-link dropdown-indicator-left label-1"
+              > <PiPottedPlantDuotone />
+                <span className="link-text">Commitment </span>
+
+              </Link>
+              </Accordion.Header>
+
+            </Accordion.Item>
+            <Accordion.Item eventKey="4">
               <Accordion.Header className={activeHead =='reports'? 'disabled active' : 'disabled'} onClick={()=>activeHeadTag('reports')}>
               <Link
                 to=""
@@ -154,7 +166,7 @@ const LeftMenu = () => {
               </Accordion.Header>
 
             </Accordion.Item>
-            <Accordion.Item eventKey="4">
+            <Accordion.Item eventKey="5">
               <Accordion.Header className={activeHead =='masters'? 'disabled active' : 'disabled'} onClick={()=>activeHeadTag('masters')}>
               <Link
                 to=""

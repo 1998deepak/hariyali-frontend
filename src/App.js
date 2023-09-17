@@ -40,6 +40,7 @@ import UserDashboard from "./components/master/user/UserDashboard";
 import UserReceipts from "./components/master/user/UserReceipts";
 import Faq from "./components/master/otherMenu/Faq";
 import DashboardTable from "./components/master/Dashboard/DashboardTable";
+import Commitment from "./components/master/Dashboard/Commitment";
 
 
 function HomeWithHeaderAndFooter() {
@@ -307,6 +308,19 @@ function PlantingWithHeaderAndFooter() {
     </>
   );
 }
+function CommitmentWithHeaderAndFooter() {
+  return (
+    <>
+       <AdminHeader />
+      <div className="leftmenu-main">
+        <AdminLeftMenu />
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <Commitment />
+      </div>
+      </div>
+    </>
+  );
+}
 function UserDonationView({ userDetails, setAuthToken, authToken }) {
   return (
     <>
@@ -480,6 +494,13 @@ function App() {
                 element={
                   <ProtectedRoutes admin={authority.admin} >
                     <PlantingWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
+                  </ProtectedRoutes>
+                } />
+
+        <Route path="/Commitment"
+                element={
+                  <ProtectedRoutes admin={authority.admin} >
+                    <CommitmentWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
                   </ProtectedRoutes>
                 } />
       </Routes>
