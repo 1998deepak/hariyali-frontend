@@ -2228,17 +2228,6 @@ function OnlineDonation() {
                                 {/* <input type="text" className="form-control" /> */}
                               </select>
 
-                              {/* {showOtherInput && (
-                                <input
-                                  type="text"
-                                  className="form-control"
-                                  placeholder="Specify other event"
-                                />
-                              )} */}
-                              {/* <div id="otherOption">
-                                <label for="otherText">Enter other option:</label>
-                                <input type="text" id="otherText"/>
-                              </div> */}
                               {errors.map((error, index) => {
                                 if (error.field === "donations.donationEvent") {
                                   return (
@@ -2351,6 +2340,7 @@ function OnlineDonation() {
                                 type="text"
                                 name="gift"
                                 value={giftUserEmail}
+                                id="emailId"
                                 onChange={onChangeGiftUserEmail}
                                 placeholder="Enter Email Id"
                                 className="form-control"
@@ -2427,26 +2417,27 @@ function OnlineDonation() {
                                   <input
                                     className="form-control-inside form-control"
                                     type="text"
+                                    id="mobileNo"
                                     name="user.mobileNo"
                                     placeholder="Mobile No."
                                     value={userData.user.mobileNo}
                                     onChange={handleChange}
                                   />
                                   {errors.map((error, index) => {
-                                    if (
-                                      error.field === "userData.user.mobileNo"
-                                    ) {
-                                      return (
-                                        <div
-                                          key={index}
-                                          className="error-message red-text"
-                                        >
-                                          {error.message}
-                                        </div>
-                                      );
-                                    }
-                                    return null;
-                                  })}
+                                      if (
+                                        error.field === "userData.user.mobileNo"
+                                      ) {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
                                 </div>
                               </div>
                             </div>
@@ -3053,6 +3044,7 @@ function OnlineDonation() {
                                     </label>
                                     <input
                                       className="form-control-inside form-control"
+                                      id="mobileNo"
                                       name="mobileNo"
                                       placeholder="Mobile No."
                                       type="text"
