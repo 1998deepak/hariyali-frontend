@@ -1515,10 +1515,10 @@ console.log(donationsGift);
                                       }
                                   >
                                     <option disabled selected value="">Select Country</option>
-                                        <option >INDIA</option>
-                                        <option >ICELAND</option>
-                                        <option >JORDAN</option>
-                                        <option >LITHUANIA</option>
+                                    <option value="INDIA">INDIA</option>
+                                        <option value="ICELAND">ICELAND</option>
+                                        <option value="JORDAN">JORDAN</option>
+                                        <option value="LITHUANIA">LITHUANIA</option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (error.field === 'address[0].country') {
@@ -1559,29 +1559,27 @@ console.log(donationsGift);
                               </div>
                             </div>
                             <div className="col-6">
-                              <div className="row select-label">
-                                <div className="col-4 ">City <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="city"
-                                    id="city"
-                                    placeholder="City"
-                                    type="text"
-                                    value={address[0]?.city}
-                                    onChange={(event) =>
-                                      handleAddressChange(event, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === 'address[0].city') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })}
+                                <div className="row select-label">
+                                  <div className="col-4 ">City<span className="red-text">*</span></div>
+                                  <div className="col-8 p0">
+                                    <select
+                                      className=" form-control-inside form-select"
+                                      name="city"
+                                      id="city"
+                                      value={address[0]?.city}
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 0)
+                                      }
+                                    >
+                                      <option value="">Select City</option>
+                                      <option value="UDHNA">UDHNA</option>
+                                      <option value="VADALI">VADALI</option>
+                                      <option value="SARDHAR">SARDHAR</option>
+                                      <option value="SHEHERA">SHEHERA</option>
+                                    </select>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
                             <div className="col-6">
                               <div className="row select-label">
                                 <div className="col-4 ">Postal Code <span className="red-text">*</span></div>
@@ -1746,6 +1744,28 @@ console.log(donationsGift);
                                           {state}
                                         </option>
                                       ))}
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="col-6">
+                                <div className="row select-label">
+                                  <div className="col-4 ">City<span className="red-text">*</span></div>
+                                  <div className="col-8 p0">
+                                    <select
+                                      className=" form-control-inside form-select"
+                                      name="city"
+                                      id="city"
+                                      value={address[1]?.city}
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 1)
+                                      }
+                                    >
+                                      <option value="">Select City</option>
+                                      <option value="UDHNA">UDHNA</option>
+                                      <option value="VADALI">VADALI</option>
+                                      <option value="SARDHAR">SARDHAR</option>
+                                      <option value="SHEHERA">SHEHERA</option>
                                     </select>
                                   </div>
                                 </div>
@@ -2428,16 +2448,21 @@ console.log(donationsGift);
                               <div className="row select-label">
                                 <div className="col-4 ">City <span className="red-text">*</span></div>
                                 <div className="col-8 p0">
-                                  <input
-                                    className="form-control-inside"
+                                  <select
+                                    className=" form-control-inside form-select"
                                     name="city"
-                                    placeholder="City"
-                                    type="text"
-                                    value={address[0]?.city}
-                                    onChange={(event) =>
-                                      handleAddressChange(event, 0)
-                                    }
-                                  />
+                                      id="city"
+                                      value={address[0]?.city}
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 0)
+                                      }
+                                  >
+                                    <option disabled selected value="">Select city</option>
+                                    <option value="UDHNA">UDHNA</option>
+                                      <option value="VADALI">VADALI</option>
+                                      <option value="SARDHAR">SARDHAR</option>
+                                      <option value="SHEHERA">SHEHERA</option>
+                                  </select>
                                   {errors.map((error, index) => {
                                     if (error.field === 'address[0].city') {
                                       return <div key={index} className="error-message red-text">{error.message}</div>;
@@ -2668,10 +2693,10 @@ console.log(donationsGift);
                                       <option disabled selected value="">
                                         Select Country
                                       </option>
-                                      <option >INDIA</option>
-                                        <option >ICELAND</option>
-                                        <option >JORDAN</option>
-                                        <option >LITHUANIA</option>
+                                      <option value="INDIA">INDIA</option>
+                                        <option value="ICELAND">ICELAND</option>
+                                        <option value="JORDAN">JORDAN</option>
+                                        <option value="LITHUANIA">LITHUANIA</option>
                                     </select>
                                     {errors.map((error, index) => {
                                       if (error.field === 'recipient[0].address[0].country') {
@@ -2720,13 +2745,12 @@ console.log(donationsGift);
                               </div>
                               <div className="col-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">City</div>
+                                  <div className="col-4 ">City<span className="red-text">*</span></div>
                                   <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
+                                    <select
+                                      className=" form-control-inside form-select"
                                       name="city"
-                                      placeholder="City"
-                                      type="text"
+                                      id="city"
                                       value={recipient[0].address[0].city}
                                       onChange={(e) =>
                                         handleRecipentAddressChange(
@@ -2734,7 +2758,15 @@ console.log(donationsGift);
                                           0
                                         )
                                       }
-                                    />
+                                    >
+                                      <option disabled selected value="">
+                                        Select City
+                                      </option>
+                                      <option value="UDHNA">UDHNA</option>
+                                      <option value="VADALI">VADALI</option>
+                                      <option value="SARDHAR">SARDHAR</option>
+                                      <option value="SHEHERA">SHEHERA</option>
+                                    </select>
                                     {errors.map((error, index) => {
                                       if (error.field === 'recipient[0].address[0].city') {
                                         return <div key={index} className="error-message red-text">{error.message}</div>;
@@ -3307,10 +3339,10 @@ console.log(donationsGift);
                                       <option disabled selected value="">
                                         Select Country
                                       </option>
-                                      <option >INDIA</option>
-                                        <option >ICELAND</option>
-                                        <option >JORDAN</option>
-                                        <option >LITHUANIA</option>
+                                      <option value="INDIA">INDIA</option>
+                                        <option value="ICELAND">ICELAND</option>
+                                        <option value="JORDAN">JORDAN</option>
+                                        <option value="LITHUANIA">LITHUANIA</option>
                                     </select>
                                     {errors.map((error, index) => {
                                       if (
@@ -4089,10 +4121,10 @@ console.log(donationsGift);
                                       <option disabled selected value="">
                                         Select Country
                                       </option>
-                                      <option >INDIA</option>
-                                        <option >ICELAND</option>
-                                        <option >JORDAN</option>
-                                        <option >LITHUANIA</option>
+                                      <option value="INDIA">INDIA</option>
+                                        <option value="ICELAND">ICELAND</option>
+                                        <option value="JORDAN">JORDAN</option>
+                                        <option value="LITHUANIA">LITHUANIA</option>
                                     </select>
                                     {errors.map((error, index) => {
                                       if (error.field === 'recipient[0].address[0].country') {

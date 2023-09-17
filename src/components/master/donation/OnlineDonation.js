@@ -1772,10 +1772,10 @@ const handleRadioChange = (event) => {
                                       <option disabled selected value="">
                                         Select Country
                                       </option>
-                                        <option >INDIA</option>
-                                        <option >ICELAND</option>
-                                        <option >JORDAN</option>
-                                        <option >LITHUANIA</option>
+                                      <option value="INDIA">INDIA</option>
+                                        <option value="ICELAND">ICELAND</option>
+                                        <option value="JORDAN">JORDAN</option>
+                                        <option value="LITHUANIA">LITHUANIA</option>
                                     </select>
                                     {errors.map((error, index) => {
                                       if (
@@ -1822,6 +1822,46 @@ const handleRadioChange = (event) => {
                                     </select>
                                     {errors.map((error, index) => {
                                       if (error.field === "address[0].state") {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="col-6">
+                                <div className="select-label">
+                                  {/* <div className="col-4 ">State</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">
+                                      City <span className="red-text">*</span>
+                                    </label>
+                                    <select
+                                      className=" form-control-inside form-select form-control"
+                                      name="city"
+                                      id="city"
+                                      value={address[0]?.city}
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 0)
+                                      }
+                                    >
+                                      <option disabled selected value="">
+                                        Select City
+                                      </option>
+                                      <option>UDHNA</option>
+                                      <option>VADALI</option>
+                                      <option>SARDHAR</option>
+                                      <option>SHEHERA</option>
+                                    </select>
+                                    {errors.map((error, index) => {
+                                      if (error.field === "address[0].city") {
                                         return (
                                           <div
                                             key={index}
@@ -2793,10 +2833,10 @@ const handleRadioChange = (event) => {
                                       <option disabled selected value="">
                                         Select Country
                                       </option>
-                                        <option >INDIA</option>
-                                        <option >ICELAND</option>
-                                        <option >JORDAN</option>
-                                        <option >LITHUANIA</option>
+                                      <option value="INDIA">INDIA</option>
+                                        <option value="ICELAND">ICELAND</option>
+                                        <option value="JORDAN">JORDAN</option>
+                                        <option value="LITHUANIA">LITHUANIA</option>
                                     </select>
                                     {errors.map((error, index) => {
                                       if (
@@ -2826,6 +2866,7 @@ const handleRadioChange = (event) => {
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="state"
+                                      id="state"
                                       value={address[0]?.state}
                                       onChange={(event) =>
                                         handleAddressChange(event, 0)
@@ -2842,6 +2883,46 @@ const handleRadioChange = (event) => {
                                     </select>
                                     {errors.map((error, index) => {
                                       if (error.field === "address[0].state") {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="col-6">
+                                <div className="select-label">
+                                  {/* <div className="col-4 ">State</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">
+                                      City <span className="red-text">*</span>
+                                    </label>
+                                    <select
+                                      className=" form-control-inside form-select form-control"
+                                      name="city"
+                                      id="city"
+                                      value={address[0]?.city}
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 0)
+                                      }
+                                    >
+                                      <option disabled selected value="">
+                                        Select City
+                                      </option>
+                                      <option>UDHNA</option>
+                                      <option>VADALI</option>
+                                      <option>SARDHAR</option>
+                                      <option>SHEHERA</option>
+                                    </select>
+                                    {errors.map((error, index) => {
+                                      if (error.field === "address[0].city") {
                                         return (
                                           <div
                                             key={index}
