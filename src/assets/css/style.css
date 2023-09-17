@@ -5029,7 +5029,6 @@ iframe {
 }
 
 .adminLetNav .link-text{
-  position: absolute;
   line-height: inherit;
   top: 6px;
 }
@@ -5138,11 +5137,6 @@ iframe {
   font-size: 1.125rem;
   font-weight: 600;
 }
-
-/* .donation-table th:nth-child(2),
-.donation-table td:nth-child(2){
-  width: 120px;
-} */
 
 .plantation .card {
   top: 4px;

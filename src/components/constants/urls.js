@@ -8,11 +8,13 @@ export const URLS = {
     USERADD: "/userAddOffline",
     USERONLINEADD: "/userAddOnline",
     GETBYEMAILID: "/getuser/",
+    GETDONORIDBYEMAILID:'/getUserDonarId/',
     GETBYEXISTINGEMAILID: "/getExistingUser/",
     GETALLPACKAGE: "/getAllPackages",
 
     // GET USER DETAILS BY DONOR ID
     GETUSERDETAILSBYDONORID: "/getUserDetailsByDonorId/",
+    GETUSERDETAILSBYDONORIDOREMAILID: "/getUserPersonalDetailsbyEmailOrDonorId",
     ADDNEWDONATIONS: "/newDonation",
 
     //opt
@@ -27,6 +29,7 @@ export const URLS = {
     UPDATEUSER: "/updateUser",
     UPDATEDONATIONOFUSER: "/updateDonation",
     GETDONARIDLIST: "/getAllDonarId",
+    GETALLUSERIDLIST: "/getAllUserId",
 
     // Web donor
     GETALLUSERWITHWEBID: "/getAlluserWithWebId",
@@ -43,7 +46,7 @@ export const URLS = {
     GET_ALL_ACTIVE_BANKS:"/bank/findAllActiveBank",
     GET_USER_DONATIONS:"/getUserDonations",
 
-    //Upload Excel Plantation
+    //Plantation service
     PLANTATION_YEARS:"/plantation/years",
     PLANTATION_SEASONS:"/plantation/seasons",
     PLANTATION_DISTRICTS:"/plantation/districts",
@@ -52,4 +55,6 @@ export const URLS = {
     PLANTATION_FINDALLBYFILTER:"/plantation/findAllByFilter",
     PLANTATION_EXPORTREPORT:"/plantation/exportReport",
 
+    //commitment service
+    COMMITMENT_FINDALLBYFILTER:"/commitment/findByFilter"
 };

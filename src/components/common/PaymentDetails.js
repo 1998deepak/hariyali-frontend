@@ -1,8 +1,45 @@
 import React from "react";
-import { BANK_TRANSFER, CHEQUE, CREDIT_CARD, DEMAND_DRAFT, ONLINE, PAYMENT_MODES, PAYMENT_STATUS } from "../constants/constants";
+import { BANK_TRANSFER, CHEQUE, CREDIT_CARD, DEMAND_DRAFT, ONLINE, PAYMENT_MODES, PAYMENT_STATUS, SUCCESS } from "../constants/constants";
+import { useState } from "react";
+import { DonationService } from "../../services/donationService/donation.service";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 
-const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,index }) => {
-    console.log(donations[0]?.paymentInfo[index]);
+const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,index ,isDisabled }) => {
+    const [bankList, setBankList] = useState([]);
+    const [accountList, setAccountList] = useState([])
+
+    const getAllActiveBanks = async () => {
+      setLoading(true);
+      const response = await DonationService.getAllActiveBanks();
+      console.log(response);
+      if (response?.status === SUCCESS) {
+        console.log(response.data);
+        setBankList(response.data);
+        setLoading(false);
+      } else {
+        toast.error(response?.message);
+        setLoading(false);
+      }
+    };
+    const getAllActiveBankAccounts = async () => {
+      setLoading(true);
+      const response = await DonationService.getAllActiveAccount();
+      if (response?.status === SUCCESS) {
+        setAccountList(response.data);
+        setLoading(false);
+      } else {
+        toast.error(response?.message);
+        setLoading(false);
+      }
+    };
+
+    useEffect(() => {
+      getAllActiveBanks();
+      getAllActiveBankAccounts();
+    }, [])
+    
+
   return (
     <>
       <div className="col-12 pr15 mt20">
@@ -17,8 +54,9 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                 <select
                   name="paymentMode"
                   className=" form-control-inside form-select"
-                  value={donations[0]?.paymentInfo[index].paymentMode}
+                  value={donations[0]?.paymentInfo[index]?.paymentMode}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 >
                   <option disabled selected value="">
                     Select
@@ -31,7 +69,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                     );
                   })}
                 </select>
-                {errors.map((error, index) => {
+                {errors && errors.map((error, index) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].paymentMode`
                   ) {
@@ -53,15 +91,25 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                 Bank Account <span className="red-text">*</span>
               </div>
               <div className="col-8 p0">
-                <input
-                  className="form-control-inside"
-                  name="accountId"
-                  placeholder="Bank Account"
-                  type="text"
-                  value={donations[0]?.paymentInfo[index].accountId}
-                  onChange={(event) => handlePaymentInfoChange(event, 0, index)}
-                />
-                {errors.map((error, index) => {
+              <select
+                name="accountId"
+                className=" form-control-inside form-select"
+                value={donations[0]?.paymentInfo[index]?.accountId}
+                onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                disabled={isDisabled}
+              >
+                <option disabled selected value="">
+                  Select
+                </option>
+                {accountList.map((mode) => {
+                  return (
+                    <option key={mode.id} value={mode.bankName}>
+                      {mode.bankName}
+                    </option>
+                  );
+                })}
+              </select>
+                {errors && errors.map((error, index) => {
                   if (error.field === `donations[0].paymentInfo[${index}].accountId`) {
                     return (
                       <div key={index} className="error-message red-text">
@@ -85,15 +133,16 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="amount"
                   placeholder="Amount"
                   type="number"
-                  value={donations[0]?.paymentInfo[index].amount}
+                  value={donations[0]?.paymentInfo[index]?.amount}
                   onChange={(event) => {
                     if (event.target.value < 0) {
                       event.target.value = 0;
                     }
                     handlePaymentInfoChange(event, 0, index);
                   }}
+                  disabled={isDisabled}
                 />
-                {errors.map((error, index) => {
+                {errors && errors.map((error, index) => {
                   if (error.field === `donations[0].paymentInfo[${index}].amount`) {
                     return (
                       <div key={index} className="error-message red-text">
@@ -117,10 +166,11 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="paymentDate"
                   placeholder="Payment Date"
                   type="date"
-                  value={donations[0]?.paymentInfo[index].paymentDate}
+                  value={donations[0]?.paymentInfo[index]?.paymentDate}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
-                {errors.map((error, index) => {
+                {errors && errors.map((error, index) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].paymentDate`
                   ) {
@@ -146,10 +196,11 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="totalAmount"
                   placeholder="Total Amount"
                   type="Number"
-                  value={donations[0]?.paymentInfo[index].totalAmount}
+                  value={donations[0]?.paymentInfo[index]?.totalAmount}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
-                {errors.map((error, index) => {
+                {errors && errors.map((error, index) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].paymentDate`
                   ) {
@@ -174,8 +225,9 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                 <select
                   name="paymentStatus"
                   className=" form-control-inside form-select"
-                  value={donations[0]?.paymentInfo[index].paymentStatus}
+                  value={donations[0]?.paymentInfo[index]?.paymentStatus}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 >
                   <option disabled selected value="">
                     Select
@@ -188,7 +240,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                     );
                   })}
                 </select>
-                {errors.map((error, index) => {
+                {errors && errors.map((error, index) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].paymentStatus`
                   ) {
@@ -214,10 +266,11 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="receiptDate"
                   placeholder="Receipt Date"
                   type="date"
-                  value={donations[0]?.paymentInfo[index].receiptDate}
+                  value={donations[0]?.paymentInfo[index]?.receiptDate}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
-                {errors.map((error, index) => {
+                {errors && errors.map((error, index) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].receiptDate`
                   ) {
@@ -233,7 +286,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
             </div>
           </div>
           {
-           donations[0]?.paymentInfo[index].paymentMode === BANK_TRANSFER || donations[0]?.paymentInfo[index].paymentMode === CHEQUE ? 
+           donations[0]?.paymentInfo[index]?.paymentMode === BANK_TRANSFER || donations[0]?.paymentInfo[index]?.paymentMode === CHEQUE ? 
           <>
           <div className="col-6">
             <div className="row select-label">
@@ -246,10 +299,11 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="receivedAmount"
                   placeholder="Received Amount"
                   type="Number"
-                  value={donations[0]?.paymentInfo[index].receivedAmount}
+                  value={donations[0]?.paymentInfo[index]?.receivedAmount}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
-                {errors.map((error, index) => {
+                {errors && errors.map((error, index) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].receivedAmount`
                   ) {
@@ -272,7 +326,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
           {/* optional fields */}
 
           {
-           donations[0]?.paymentInfo[index].paymentMode === BANK_TRANSFER ? 
+           donations[0]?.paymentInfo[index]?.paymentMode === BANK_TRANSFER ? 
           <>
           <div className="col-6">
             <div className="row select-label">
@@ -285,8 +339,9 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="bankCharge"
                   placeholder="Bank Charge"
                   type="Number"
-                  value={donations[0]?.paymentInfo[index].bankCharge}
+                  value={donations[0]?.paymentInfo[index]?.bankCharge}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
                 
               </div>
@@ -303,21 +358,11 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="documentNumber"
                   placeholder="Document Number"
                   type="text"
-                  value={donations[0]?.paymentInfo[index].documentNumber}
+                  value={donations[0]?.paymentInfo[index]?.documentNumber}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
-                {errors.map((error, index) => {
-                  if (
-                    error.field === "donations[0].paymentInfo[index].documentNumber"
-                  ) {
-                    return (
-                      <div key={index} className="error-message red-text">
-                        {error.message}
-                      </div>
-                    );
-                  }
-                  return null;
-                })}
+    
               </div>
             </div>
           </div>
@@ -329,7 +374,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
          
 
           {
-           donations[0]?.paymentInfo[index].paymentMode ===  DEMAND_DRAFT || donations[0]?.paymentInfo[index].paymentMode === BANK_TRANSFER || donations[0]?.paymentInfo[index].paymentMode === CHEQUE  ? 
+           donations[0]?.paymentInfo[index]?.paymentMode ===  DEMAND_DRAFT || donations[0]?.paymentInfo[index]?.paymentMode === BANK_TRANSFER || donations[0]?.paymentInfo[index]?.paymentMode === CHEQUE  ? 
           <><div className="col-6">   
           <div className="row select-label">
             <div className="col-4 ">
@@ -340,8 +385,9 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
               <select
                 name="bankName"
                 className=" form-control-inside form-select"
-                value={donations[0]?.paymentInfo[index].bankName}
+                value={donations[0]?.paymentInfo[index]?.bankName}
                 onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                disabled={isDisabled}
               >
                 <option disabled selected value="">
                   Select
@@ -368,8 +414,9 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                 name="bankAddress"
                 placeholder="Received Amount"
                 type="text"
-                value={donations[0]?.paymentInfo[index].bankAddress}
+                value={donations[0]?.paymentInfo[index]?.bankAddress}
                 onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                disabled={isDisabled}
               />
             </div>
           </div>
@@ -378,7 +425,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
         }
 
         {
-           donations[0]?.paymentInfo[index].paymentMode === (BANK_TRANSFER || ONLINE) ? 
+           donations[0]?.paymentInfo[index]?.paymentMode === (BANK_TRANSFER || ONLINE) ? 
           <>
            <div className="col-6">
             <div className="row select-label">
@@ -391,8 +438,9 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="orderId"
                   placeholder="Transaction Number"
                   type="text"
-                  value={donations[0]?.paymentInfo[index].orderId}
+                  value={donations[0]?.paymentInfo[index]?.orderId}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
               </div>
             </div>
@@ -403,12 +451,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
 
          {/* cheque */}
          {
-           donations[0]?.paymentInfo[index].paymentMode === CHEQUE ? 
+           donations[0]?.paymentInfo[index]?.paymentMode === CHEQUE ? 
           <>
           <div className="col-6">
             <div className="row select-label">
               <div className="col-4 ">
-              cheque number
+              Cheque Number
               </div>
               <div className="col-8 p0">
                 <input
@@ -416,8 +464,9 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="chequeNumber"
                   placeholder="Cheque Number"
                   type="text"
-                  value={donations[0]?.paymentInfo[index].chequeNumber}
+                  value={donations[0]?.paymentInfo[index]?.chequeNumber}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
               
               </div>
@@ -426,7 +475,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
           <div className="col-6">
             <div className="row select-label">
               <div className="col-4 ">
-              cheque date
+              Cheque Date
               </div>
               <div className="col-8 p0">
                 <input
@@ -434,8 +483,9 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="chequeDate"
                   placeholder="Cheque Date"
                   type="Date"
-                  value={donations[0]?.paymentInfo[index].chequeDate}
+                  value={donations[0]?.paymentInfo[index]?.chequeDate}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
                 
               </div>
@@ -447,7 +497,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
 
         {/* Demand Draft */}
         {
-           donations[0]?.paymentInfo[index].paymentMode === DEMAND_DRAFT ? 
+           donations[0]?.paymentInfo[index]?.paymentMode === DEMAND_DRAFT ? 
           <>
           <div className="col-6">
             <div className="row select-label">
@@ -460,8 +510,9 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="demandDraftNumber"
                   placeholder="DD Number"
                   type="text"
-                  value={donations[0]?.paymentInfo[index].demandDraftNumber}
+                  value={donations[0]?.paymentInfo[index]?.demandDraftNumber}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
                 
               </div>
@@ -478,8 +529,9 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="demandDraftDate"
                   placeholder="Demand Draft Date"
                   type="Number"
-                  value={donations[0]?.paymentInfo[index].demandDraftDate}
+                  value={donations[0]?.paymentInfo[index]?.demandDraftDate}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
                 
               </div>
@@ -491,12 +543,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
 
         {/* creditCard */}
         {
-           donations[0]?.paymentInfo[index].paymentMode === CREDIT_CARD ? 
+           donations[0]?.paymentInfo[index]?.paymentMode === CREDIT_CARD ? 
           <>
           <div className="col-6">
             <div className="row select-label">
               <div className="col-4 ">
-              credit card number
+              Credit Card Number
               </div>
               <div className="col-8 p0">
                 <input
@@ -504,8 +556,9 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="creditCardNumber"
                   placeholder="Credit Card Number"
                   type="text"
-                  value={donations[0]?.paymentInfo[index].creditCardNumber}
+                  value={donations[0]?.paymentInfo[index]?.creditCardNumber}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
                 
               </div>
@@ -514,7 +567,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
           <div className="col-6">
             <div className="row select-label">
               <div className="col-4 ">
-              expiry
+              Expiry
               </div>
               <div className="col-8 p0">
                 <input
@@ -522,8 +575,9 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="cardExpiry"
                   placeholder="Expiry"
                   type="text"
-                  value={donations[0]?.paymentInfo[index].cardExpiry}
+                  value={donations[0]?.paymentInfo[index]?.cardExpiry}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
               </div>
             </div>
@@ -531,16 +585,17 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
           <div className="col-6">
             <div className="row select-label">
               <div className="col-4 ">
-              name on card
+              Name On Card
               </div>
               <div className="col-8 p0">
                 <input
                   className="form-control-inside"
                   name="cardHolderName"
                   placeholder="Name on Card"
-                  type="Number"
-                  value={donations[0]?.paymentInfo[index].cardHolderName}
+                  type="text"
+                  value={donations[0]?.paymentInfo[index]?.cardHolderName}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
                 
               </div>
@@ -561,21 +616,10 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="depositNumber"
                   placeholder="Deposit Number"
                   type="text"
-                  value={donations[0]?.paymentInfo[index].depositNumber}
+                  value={donations[0]?.paymentInfo[index]?.depositNumber}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
-                {errors.map((error, index) => {
-                  if (
-                    error.field === "donations[0].paymentInfo[index].depositNumber"
-                  ) {
-                    return (
-                      <div key={index} className="error-message red-text">
-                        {error.message}
-                      </div>
-                    );
-                  }
-                  return null;
-                })}
               </div>
             </div>
           </div> 
@@ -590,21 +634,10 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="depositDate"
                   placeholder="Deposit Date"
                   type="date"
-                  value={donations[0]?.paymentInfo[index].depositDate}
+                  value={donations[0]?.paymentInfo[index]?.depositDate}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
-                {errors.map((error, index) => {
-                  if (
-                    error.field === "donations[0].paymentInfo[index].depositDate"
-                  ) {
-                    return (
-                      <div key={index} className="error-message red-text">
-                        {error.message}
-                      </div>
-                    );
-                  }
-                  return null;
-                })}
               </div>
             </div>
           </div> 
@@ -619,8 +652,9 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="receiptNumber"
                   placeholder="Receipt Number"
                   type="text"
-                  value={donations[0]?.paymentInfo[index].receiptNumber}
+                  value={donations[0]?.paymentInfo[index]?.receiptNumber}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
               </div>
             </div>
@@ -628,7 +662,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
           <div className="col-6">
             <div className="row select-label">
               <div className="col-4 ">
-              realization date
+              Realization Date
               </div>
               <div className="col-8 p0">
                 <input
@@ -636,8 +670,9 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,bankList,in
                   name="realizationDate"
                   placeholder="realizationDate"
                   type="date"
-                  value={donations[0]?.paymentInfo[index].realizationDate}
+                  value={donations[0]?.paymentInfo[index]?.realizationDate}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
+                  disabled={isDisabled}
                 />
               </div>
             </div>

@@ -19,7 +19,7 @@ import { BsEmojiSmile } from "react-icons/bs";
 import TermsConditionsPopup from "../../common/popup/TermsConditionsPopup";
 import Loader from "../../common/loader/Loader";
 import PrivacyPolicy from "../../common/PrivacyPolicy";
-import Card from 'react-bootstrap/Card';
+import Card from "react-bootstrap/Card";
 import PackageDetails from "../../common/PackageDetails";
 
 function OnlineDonation() {
@@ -45,7 +45,7 @@ function OnlineDonation() {
   const handleShow = () => setShow(true);
 
   const handleCloseConditions = () => setShowConditons(false);
-  
+
   const [showDonationModal, setShowDonationModal] = useState(false);
   const [transactionMessage, setTransactionMessage] = useState("");
   const queryParameters = new URLSearchParams(window.location.search)
@@ -63,6 +63,19 @@ const [hasAadharCard, setHasAadharCard] = useState(false);
 const handleRadioChange = (event) => {
   setHasAadharCard(event.target.value === 'yes');
 };
+  const queryParameters = new URLSearchParams(window.location.search);
+  const meconnectId = queryParameters.get("meconnectId");
+  //const source = queryParameters.get("source")
+
+  //   const handleDecodeClick = () => {
+  //     const decodedSource = atob(source);
+  //     const decodedMeConnect = atob(meconnectId)
+  //     setdecodedString(decodedSource);
+  // }
+
+  const checkAddharCard = (e) => {
+    console.log(e.target.value);
+  };
 
   const handleShowConditions = (e) => {
     e.preventDefault();
@@ -75,7 +88,7 @@ const handleRadioChange = (event) => {
       bouquetPrice: "",
       noOfBouquets: "",
       amount: "",
-    }
+    },
   ];
 
   const initialUserData = {
@@ -87,14 +100,13 @@ const handleRadioChange = (event) => {
       donarType: "",
       prefix: "",
       organisation: "",
-      citizenship : "",
+      citizenship: "",
       isTaxBenefit: false,
       panCard: "",
       passport:"",
       addharCard:"",
       activityType: null,
-      meconnectId: "",
-      source: "",
+      meconnectId: meconnectId,
       address: [],
       donations: [],
     },
@@ -296,8 +308,7 @@ const handleRadioChange = (event) => {
         message: "PAN card is required",
       });
       document.getElementById("panCard").focus();
-    }
-    else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
+    } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
       validationErrors.push({
         field: "userData.user.panCard",
         message: "PAN card No is Invalid",
@@ -318,8 +329,6 @@ const handleRadioChange = (event) => {
     //   });
     //   document.getElementById("passport").focus();
     // }
-
-
 
     // Validate addresses
     for (let i = 0; i < address.length; i++) {
@@ -513,7 +522,6 @@ const handleRadioChange = (event) => {
     const isValid = validate();
     console.log("isValid:", isValid);
     if (!privacyPolicy1 || !privacyPolicy2) {
-    
       setPrivacyPolicymessage("Please Accept Privacy Policy");
     } else if (isValid) {
       setPrivacyPolicymessage("");
@@ -525,7 +533,6 @@ const handleRadioChange = (event) => {
       });
       console.log(updatedUserPackage);
       const user = userData?.user;
-
 
       if (donations[0].paymentInfo) {
         let paymentArray = { ...donations[0] };
@@ -548,7 +555,8 @@ const handleRadioChange = (event) => {
       console.log(user);
       //setting Donation event
 
-      user.donations[0].donationType = donationType == "self" ? "self-donate" : "gift-donate";
+      user.donations[0].donationType =
+        donationType == "self" ? "self-donate" : "gift-donate";
 
       user.emailId = donationType == "self" ? userEmail : giftUserEmail;
 
@@ -635,7 +643,10 @@ const handleRadioChange = (event) => {
       console.log(response);
 
       if (response?.data?.paymentStatus == "Success") {
-        let message = "Thank you for your donation. <b>" + response?.data?.bankPaymentRefNo + "</b> is the transaction ID for your reference. The team will revert in 3-5 business working days.";
+        let message =
+          "Thank you for your donation. <b>" +
+          response?.data?.bankPaymentRefNo +
+          "</b> is the transaction ID for your reference. The team will revert in 3-5 business working days.";
         setTransactionMessage(message);
         setShowDonationModal(true);
       } else {
@@ -756,9 +767,7 @@ const handleRadioChange = (event) => {
   const calculateOverallTotal = (packageData) => {
     const totalAmountOfPackage = packageData.reduce(
       (accumulator, packageItem, index) => {
-        return (
-          450 + packageItem.bouquetPrice * packageItem.noOfBouquets
-        );
+        return 450 + packageItem.bouquetPrice * packageItem.noOfBouquets;
       },
       0
     );
@@ -777,9 +786,13 @@ const handleRadioChange = (event) => {
       currentField = currentField[keys[i]];
     }
     console.log(currentField);
-    if(name == "user.panCard" || name == "user.firstName" || name == "user.lastName"){
+    if (
+      name == "user.panCard" ||
+      name == "user.firstName" ||
+      name == "user.lastName"
+    ) {
       currentField[keys[keys.length - 1]] = value.toUpperCase();
-    }else{
+    } else {
       currentField[keys[keys.length - 1]] = value;
     }
     setUserData(updatedFormData);
@@ -942,22 +955,31 @@ const handleRadioChange = (event) => {
     console.log(response);
     if (response?.status === "Success") {
       toast.success(response?.message);
-      let addr = [...initialAddress];
-      if (hasValues(response.data.address[0])) {
-        addr[0] = response.data.address[0];
+      if (response.data.address) {
+        let addr = [...initialAddress];
+        if (response.data.address[0]) {
+          if (hasValues(response.data.address[0])) {
+            addr[0] = response.data.address[0];
+          }
+        }
+        if (response.data.address[1]) {
+          if (hasValues(response.data.address[1])) {
+            addr[1] = response.data.address[1];
+          }
+        }
       }
-      if (hasValues(response.data.address[1])) {
-        addr[1] = response.data.address[1];
-      }
-      setAddress(addr);
+
       const formData = {
         formData: {
           user: response?.data,
         },
       };
-      console.log(response.data.donations[0]);
-      setPackageData(formData.formData.user.donations[0].userPackage);
-      setDonations(response.data.donations);
+      if (response.data.donations) {
+        if (response.data.donations[0].userPackage) {
+          setPackageData(formData.formData.user.donations[0].userPackage);
+        }
+        setDonations(response.data.donations);
+      }
       setUserData(formData.formData);
       clearState();
       setDonation(type);
@@ -967,9 +989,17 @@ const handleRadioChange = (event) => {
         setValidGiftUser(true);
       }
       setLoading(false);
-    } else if (response?.statusCode === 409 || response?.status == 'INTERNAL_SERVER_ERROR') {
+    } else if (
+      response?.statusCode === 409 ||
+      response?.status == "INTERNAL_SERVER_ERROR"
+    ) {
       if (response?.message.indexOf("click here")) {
-        setMessage(response?.message?.replace("click here", '<a href="/Login">click here</a>'));
+        setMessage(
+          response?.message?.replace(
+            "click here",
+            '<a href="/Login">click here</a>'
+          )
+        );
       } else {
         toast.error(response?.message);
       }
@@ -1104,19 +1134,19 @@ const handleRadioChange = (event) => {
   };
 
   function validateInput(value) {
-    const hasDecimalAfterDigits = value.includes('.') && value.split('.')[1].length > 0;
+    const hasDecimalAfterDigits =
+      value.includes(".") && value.split(".")[1].length > 0;
     const errorMessage = hasDecimalAfterDigits
-      ? 'Decimal points are not allowed after digits.'
-      : '';
+      ? "Decimal points are not allowed after digits."
+      : "";
 
     return { hasError: hasDecimalAfterDigits, errorMessage };
   }
-  const [errors1, setErrors1] = useState(Array(packageData.length).fill({ hasError: false, errorMessage: '' }));
+  // const [errors1, setErrors1] = useState(
+  //   Array(packageData.length).fill({ hasError: false, errorMessage: "" })
+  // );
 
-  const [showOtherInput, setShowOtherInput] = useState(false);
-
-
-
+  // const [showOtherInput, setShowOtherInput] = useState(false);
 
   return (
     <>
@@ -1613,6 +1643,46 @@ const handleRadioChange = (event) => {
                                       </div>
                                     </div>
                                   </div>)}
+                                  <div id="addharId" className="col-6">
+                                    <div className="select-label">
+                                      {/* <div className="col-4 ">PAN card</div> */}
+                                      <div className="col-12 p0 field-wrapper">
+                                        <label
+                                          for="addharCard"
+                                          class="form-label top-27"
+                                        >
+                                          Addhar Card{" "}
+                                          <span className="red-text">*</span>
+                                        </label>
+                                        <input
+                                          className="form-control-inside form-control"
+                                          name="user.addharCard"
+                                          id="addharCard"
+                                          placeholder="Addhar card No."
+                                          type="text"
+                                          maxLength={16}
+                                          value={userData?.user?.addharCard}
+                                          onChange={handleChange}
+                                        />
+                                        {errors.map((error, index) => {
+                                          if (
+                                            error.field ===
+                                            "userData.user.addharCard"
+                                          ) {
+                                            return (
+                                              <div
+                                                key={index}
+                                                className="error-message red-text"
+                                              >
+                                                {error.message}
+                                              </div>
+                                            );
+                                          }
+                                          return null;
+                                        })}
+                                      </div>
+                                    </div>
+                                  </div>
                                 </>
                               ) : (
                                 <>
@@ -2275,7 +2345,6 @@ const handleRadioChange = (event) => {
                           </div>
                         </div>
                       </div>
-                 
                     </div>
                     <div>
                       <div className="row">
@@ -2416,6 +2485,7 @@ const handleRadioChange = (event) => {
                                   </div>
                                 </div>
                               </div>
+
                               {isVisibleGift &&
                               <div className="col-6">
                                 <div className="select-label">
@@ -2451,7 +2521,9 @@ const handleRadioChange = (event) => {
                                     })}
                                   </div>
                                 </div>
+
                               </div>}
+                              </div>
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Prefix</div> */}
@@ -2525,6 +2597,7 @@ const handleRadioChange = (event) => {
                                   </div>
                                 </div>
                               </div>
+
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Last Name</div> */}
@@ -2744,10 +2817,19 @@ const handleRadioChange = (event) => {
                                   <div className="col-12 p0 field-wrapper">
                                     <label className="form-label">
                                       Street 1{" "}
+
+                              <div className="col-6">
+                                <div className="select-label">
+                                  {/* <div className="col-4 ">Last Name</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">
+                                      Last Name{" "}
+
                                       <span className="red-text">*</span>
                                     </label>
                                     <input
                                       className="form-control-inside form-control"
+
                                       name="street1"
                                       placeholder=" Street 1"
                                       type="text"
@@ -2759,6 +2841,17 @@ const handleRadioChange = (event) => {
                                     {errors.map((error, index) => {
                                       if (
                                         error.field === "address[0].street1"
+
+                                      type="text"
+                                      name="user.lastName"
+                                      placeholder="Last Name"
+                                      value={userData.user.lastName}
+                                      onChange={handleChange}
+                                    />
+                                    {errors.map((error, index) => {
+                                      if (
+                                        error.field === "userData.user.lastName"
+
                                       ) {
                                         return (
                                           <div
@@ -2772,10 +2865,11 @@ const handleRadioChange = (event) => {
                                       return null;
                                     })}
                                   </div>
-                                </div>
+                                </div>{" "}
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
+
                                   {/* <div className="col-4 "> Street 2</div> */}
                                   <div className="col-12 p0 field-wrapper">
                                     <label className="form-label">
@@ -2868,6 +2962,204 @@ const handleRadioChange = (event) => {
                                       name="state"
                                       id="state"
                                       value={address[0]?.state}
+
+                                  {/* <div className="col-4 ">Prefix</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label
+                                      for="residance"
+                                      class="form-label top-27"
+                                    >
+                                      Residance{" "}
+                                      <span className="red-text">*</span>
+                                    </label>
+                                    <select
+                                      className=" form-control-inside form-select form-control"
+                                      name="user.residance"
+                                      value={userData?.user?.residance}
+                                      onChange={handleChange}
+                                    >
+                                      <option disabled selected value="">
+                                        residance
+                                      </option>
+                                    </select>
+                                    {errors.map((error, index) => {
+                                      if (
+                                        error.field ===
+                                        "userData.user.residance"
+                                      ) {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                </div>
+                              </div>
+                              {userData?.user?.citizenship === "India" ? (
+                                <>
+                                  <div className="col-6">
+                                    <div className="select-label">
+                                      {/* <div className="col-4 ">PAN card</div> */}
+                                      <div className="col-12 p0 field-wrapper">
+                                        <label
+                                          for="panCard"
+                                          class="form-label top-27"
+                                        >
+                                          PAN Card{" "}
+                                          <span className="red-text">*</span>
+                                        </label>
+                                        <input
+                                          className="form-control-inside form-control"
+                                          name="user.panCard"
+                                          placeholder="PAN card No."
+                                          type="text"
+                                          value={userData?.user?.panCard}
+                                          onChange={handleChange}
+                                        />
+                                        <small className="text-muted">
+                                          Disclaimer: Please ensure that you
+                                          have entered the correct PAN details
+                                          to avoid non-deduction u/s 80G of the
+                                          Income Tax Act,1961
+                                        </small>
+                                        {errors.map((error, index) => {
+                                          if (
+                                            error.field ===
+                                            "userData.user.panCard"
+                                          ) {
+                                            return (
+                                              <div
+                                                key={index}
+                                                className="error-message red-text"
+                                              >
+                                                {error.message}
+                                              </div>
+                                            );
+                                          }
+                                          return null;
+                                        })}
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    id="addharId"
+                                    className="col-6"
+                                    style={{ display: "none" }}
+                                  >
+                                    <div className="select-label">
+                                      {/* <div className="col-4 ">PAN card</div> */}
+                                      <div className="col-12 p0 field-wrapper">
+                                        <label
+                                          for="panCard"
+                                          class="form-label top-27"
+                                        >
+                                          Addhar Card{" "}
+                                          <span className="red-text">*</span>
+                                        </label>
+                                        <input
+                                          className="form-control-inside form-control"
+                                          name="user.addharCard"
+                                          placeholder="Addhar card No."
+                                          type="text"
+                                          maxLength={16}
+                                          value={userData?.user?.addharCard}
+                                          onChange={handleChange}
+                                        />
+                                        {errors.map((error, index) => {
+                                          if (
+                                            error.field ===
+                                            "userData.user.addharCard"
+                                          ) {
+                                            return (
+                                              <div
+                                                key={index}
+                                                className="error-message red-text"
+                                              >
+                                                {error.message}
+                                              </div>
+                                            );
+                                          }
+                                          return null;
+                                        })}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </>
+                              ) : (
+                                <>
+                                  <div className="col-6">
+                                    <div className="select-label">
+                                      {/* <div className="col-4 ">PAN card</div> */}
+                                      <div className="col-12 p0 field-wrapper">
+                                        <label className="form-label">
+                                          Passport{" "}
+                                          <span className="red-text">*</span>
+                                        </label>
+                                        <input
+                                          className="form-control-inside form-control"
+                                          name="user.passport"
+                                          placeholder="Enter the passport"
+                                          type="text"
+                                          value={userData.user.passport}
+                                          onChange={handleChange}
+                                        />
+                                        <small className="text-muted">
+                                          Disclaimer: Passport copy is mandatory
+                                          requirement to verify current
+                                          citizenship of Indian citizen residing
+                                          in foreign countries and foreign
+                                          citizens residing in India
+                                        </small>
+                                        {errors.map((error, index) => {
+                                          if (
+                                            error.field ===
+                                            "userData.user.passport"
+                                          ) {
+                                            return (
+                                              <div
+                                                key={index}
+                                                className="error-message red-text"
+                                              >
+                                                {error.message}
+                                              </div>
+                                            );
+                                          }
+                                          return null;
+                                        })}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                          <hr />
+                          <div className="actionheadingdiv">
+                            Orgnization Address
+                          </div>
+                          <div className="col-12 pr15">
+                            <div className="row">
+                              <div className="col-6">
+                                <div className="select-label">
+                                  {/* <div className="col-4 "> Street 1</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">
+                                      Street 1{" "}
+                                      <span className="red-text">*</span>
+                                    </label>
+                                    <input
+                                      className="form-control-inside form-control"
+                                      name="street1"
+                                      placeholder=" Street 1"
+                                      type="text"
+                                      value={address[0]?.street1}
+
                                       onChange={(event) =>
                                         handleAddressChange(event, 0)
                                       }
@@ -2882,7 +3174,13 @@ const handleRadioChange = (event) => {
                                       ))}
                                     </select>
                                     {errors.map((error, index) => {
+
                                       if (error.field === "address[0].state") {
+
+                                      if (
+                                        error.field === "address[0].street1"
+                                      ) {
+
                                         return (
                                           <div
                                             key={index}
@@ -2899,6 +3197,7 @@ const handleRadioChange = (event) => {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
+
                                   {/* <div className="col-4 ">State</div> */}
                                   <div className="col-12 p0 field-wrapper">
                                     <label className="form-label">
@@ -2909,11 +3208,64 @@ const handleRadioChange = (event) => {
                                       name="city"
                                       id="city"
                                       value={address[0]?.city}
+
+                                  {/* <div className="col-4 "> Street 2</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">
+                                      Street 2
+                                    </label>
+                                    <input
+                                      className="form-control-inside form-control"
+                                      name="street2"
+                                      placeholder="Street 2"
+                                      type="text"
+                                      value={address[0]?.street2}
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 0)
+                                      }
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="col-6">
+                                <div className="select-label">
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">
+                                      Street 3
+                                    </label>
+                                    <input
+                                      className="form-control-inside form-control"
+                                      name="street3"
+                                      placeholder="Street 3"
+                                      type="text"
+                                      value={address[0]?.street3}
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 0)
+                                      }
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="col-6">
+                                <div className="select-label">
+                                  {/* <div className="col-4 ">State</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">
+                                      Country{" "}
+                                      <span className="red-text">*</span>
+                                    </label>
+                                    <select
+                                      className=" form-control-inside form-select form-control"
+                                      name="country"
+                                      id="country"
+                                      value={address[0]?.country}
+
                                       onChange={(event) =>
                                         handleAddressChange(event, 0)
                                       }
                                     >
                                       <option disabled selected value="">
+
                                         Select City
                                       </option>
                                       <option>UDHNA</option>
@@ -2923,6 +3275,66 @@ const handleRadioChange = (event) => {
                                     </select>
                                     {errors.map((error, index) => {
                                       if (error.field === "address[0].city") {
+
+                                        Select Country
+                                      </option>
+                                      {stateOptions.map((state) => (
+                                        <option key={state} value={state}>
+                                          {state}
+                                        </option>
+                                      ))}
+                                    </select>
+                                    {errors.map((error, index) => {
+                                      if (
+                                        error.field === "address[0].country"
+                                      ) {
+
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="col-6">
+                                <div className="select-label">
+
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">
+                                      City <span className="red-text">*</span>
+                                    </label>
+                                    <input
+                                      className="form-control-inside form-control"
+                                      name="city"
+                                      placeholder="City"
+                                      type="text"
+                                      value={address[0]?.city}
+
+                                  {/* <div className="col-4 ">State</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label className="form-label">
+                                      State <span className="red-text">*</span>
+                                    </label>
+                                    <select
+                                      className=" form-control-inside form-select form-control"
+                                      name="state"
+                                      value={address[0]?.state}
+
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 0)
+                                      }
+                                    />
+                                    {errors.map((error, index) => {
+
+                                      if (error.field === "address[0].state") {
+
                                         return (
                                           <div
                                             key={index}
@@ -2941,19 +3353,34 @@ const handleRadioChange = (event) => {
                                 <div className="select-label">
                                   <div className="col-12 p0 field-wrapper">
                                     <label className="form-label">
+
+                                      Postal Code{" "}
+                                      <span className="red-text">*</span>
+
                                       City <span className="red-text">*</span>
+
                                     </label>
                                     <input
                                       className="form-control-inside form-control"
-                                      name="city"
-                                      placeholder="City"
+                                      name="postalCode"
                                       type="text"
+
+                                      maxLength={6}
+                                      placeholder="Postal Code"
+                                      value={address[0]?.postalCode}
+
                                       value={address[0]?.city}
+
                                       onChange={(event) =>
                                         handleAddressChange(event, 0)
                                       }
                                     />
                                     {errors.map((error, index) => {
+
+                                      if (
+                                        error.field === "address[0].postalCode"
+                                      ) {
+
                                       if (error.field === "address[0].city") {
                                         return (
                                           <div
@@ -2969,6 +3396,7 @@ const handleRadioChange = (event) => {
                                   </div>
                                 </div>
                               </div>
+
                               <div className="col-6">
                                 <div className="select-label">
                                   <div className="col-12 p0 field-wrapper">

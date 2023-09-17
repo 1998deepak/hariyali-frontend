@@ -33,7 +33,7 @@ const DashboardTable = () => {
   const handleClose = () => setShowUploadModal(false);
 
   const handleYearChange = (e) => {
-    
+
     setSelectedYear(e.target.value);
     getDistricts(e.target.value);
     getCities(e.target.value);
@@ -60,8 +60,8 @@ const DashboardTable = () => {
     if (response?.status === SUCCESS) {
       setYears(response.data);
       setLoading(false);
-      setSelectedYear(years[years.length-1]);
-      
+      setSelectedYear(years[years.length - 1]);
+
     } else {
       toast.error(response?.message);
       setLoading(false);
@@ -74,8 +74,8 @@ const DashboardTable = () => {
     if (response?.status === SUCCESS) {
       setSeasons(response.data);
       setLoading(false);
-      setSelectedSeason(seasons[seasons.length-1]);
-      
+      setSelectedSeason(seasons[seasons.length - 1]);
+
     } else {
       toast.error(response?.message);
       setLoading(false);
@@ -90,8 +90,8 @@ const DashboardTable = () => {
       response.data.map(data => {
         districtList.push({ name: data, code: data });
       });
-        setSelectedDistricts(districtList);
-      
+      setSelectedDistricts(districtList);
+
       setDistricts(districtList);
       setLoading(false);
     } else {
@@ -108,9 +108,9 @@ const DashboardTable = () => {
       response.data.map(data => {
         cityList.push({ name: data, code: data })
       });
-      
+
       setSelectedCities(cityList);
-      
+
       setCities(cityList);
       setLoading(false);
     } else {
@@ -392,8 +392,8 @@ const DashboardTable = () => {
                   <th>District</th>
                   <th>No of Plant Planted</th>
                   <th>Plantation Date</th>
-                  <th>Latitude</th>
-                  <th>Longitude</th>
+                  {/* <th>Latitude</th>
+                  <th>Longitude</th> */}
                   <th>Status</th>
                 </tr>
               </thead>
@@ -406,23 +406,25 @@ const DashboardTable = () => {
                       <td>{plantation.district}</td>
                       <td>{plantation.noOfPlantsPlanted}</td>
                       <td>{plantation.plantationDateString}</td>
-                      <td>{plantation.latitude}</td>
-                      <td>{plantation.longitude}</td>
+                      {/* <td>{plantation.latitude}</td>
+                      <td>{plantation.longitude}</td> */}
                       <td>{plantation.status}</td>
                     </tr>
                   )
                 })}
               </tbody>
             </table>
-            <ReactPaginate className="pagination"
-              breakLabel="..."
-              nextLabel="next"
-              onPageChange={handlePageClick}
-              pageRangeDisplayed={5}
-              pageCount={pageCount}
-              previousLabel="Previous"
-              renderOnZeroPageCount={null}
-            />
+            {plantationList.length > 0 && (
+              <ReactPaginate className="pagination"
+                breakLabel="..."
+                nextLabel="next"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={pageCount}
+                previousLabel="Previous"
+                renderOnZeroPageCount={null}
+              />
+            )}
           </div>
         </div>
         {/* <div className="row">

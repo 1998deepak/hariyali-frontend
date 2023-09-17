@@ -71,4 +71,13 @@ const ROUTE = {
     {label:"Failure",Value:"Failure"}
   ]
 
+  export const OCCASION_LIST = [
+    {label:"Birthday",value:"Birthday"},
+    {label:"Wedding",value:"Wedding"},
+    {label:"Anniversary",value:"Anniversary"},
+    {label:"Achievement",value:"Wedding"},
+    {label:"Festival",value:"Festival"},
+    {label:"Memorial Tribute",value:"Memorial Tribute"},
+  ]
+
   export { USER_DETAILS, ROUTE , TOKEN , SUCCESS,ROLEAUTHORITY,stateOptions,PAYMENT_MODES };

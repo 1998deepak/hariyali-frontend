@@ -40,6 +40,8 @@ import UserDashboard from "./components/master/user/UserDashboard";
 import UserReceipts from "./components/master/user/UserReceipts";
 import Faq from "./components/master/otherMenu/Faq";
 import DashboardTable from "./components/master/Dashboard/DashboardTable";
+import NewOnlineDonation from "./components/master/user/onlinedonation/NewOnlineDonation";
+import Commitment from "./components/master/Dashboard/Commitment";
 
 
 function HomeWithHeaderAndFooter() {
@@ -164,6 +166,19 @@ function UpdateUserWithHeaderFooter() {
         <UserLeftMenu />
         <div className="float-left page-scroll " style={{ width: "100%" }}>
         <UserUpdate />
+        </div>
+      </div>
+    </>
+  );
+}
+function UserDonationWithHeaderFooter() {
+  return (
+    <>
+    <AdminHeader />
+    <div className="leftmenu-main">
+        <UserLeftMenu />
+        <div className="float-left page-scroll " style={{ width: "100%" }}>
+        <NewOnlineDonation />
         </div>
       </div>
     </>
@@ -307,6 +322,19 @@ function PlantingWithHeaderAndFooter() {
     </>
   );
 }
+function CommitmentWithHeaderAndFooter() {
+  return (
+    <>
+       <AdminHeader />
+      <div className="leftmenu-main">
+        <AdminLeftMenu />
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <Commitment />
+      </div>
+      </div>
+    </>
+  );
+}
 function UserDonationView({ userDetails, setAuthToken, authToken }) {
   return (
     <>
@@ -374,6 +402,9 @@ function App() {
                   </ProtectedRoutes>}/>
                   <Route path="/user/receipts" element = {<ProtectedRoutes user={authority.user}>
                     <UserReceiptsWithHeaderFooter />
+                  </ProtectedRoutes>}/>
+                  <Route path="/user/donation" element = {<ProtectedRoutes user={authority.user}>
+                    <UserDonationWithHeaderFooter/>
                   </ProtectedRoutes>}/>
 
 
@@ -480,6 +511,13 @@ function App() {
                 element={
                   <ProtectedRoutes admin={authority.admin} >
                     <PlantingWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
+                  </ProtectedRoutes>
+                } />
+
+        <Route path="/Commitment"
+                element={
+                  <ProtectedRoutes admin={authority.admin} >
+                    <CommitmentWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
                   </ProtectedRoutes>
                 } />
       </Routes>
