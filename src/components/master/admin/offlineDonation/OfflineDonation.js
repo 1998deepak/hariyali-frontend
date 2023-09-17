@@ -20,30 +20,8 @@ function OfflineDonation() {
       packageName: "",
       bouquetPrice: "",
       noOfBouquets: "",
-      maintenanceCost: "",
       amount: "",
-    },
-    {
-      packageName: "",
-      bouquetPrice: "",
-      noOfBouquets: "",
-      maintenanceCost: "",
-      amount: "",
-    },
-    {
-      packageName: "",
-      bouquetPrice: "",
-      noOfBouquets: "",
-      maintenanceCost: "",
-      amount: "",
-    },
-    {
-      packageName: "",
-      bouquetPrice: "",
-      noOfBouquets: "",
-      // maintenanceCost: "",
-      amount: "",
-    },
+    }
   ];
 
   const initialUserData = {
@@ -55,6 +33,7 @@ function OfflineDonation() {
       donarType: "",
       prefix: "",
       organisation: "",
+      citizenship : "",
       isTaxBenefit: false,
       panCard: "",
       activityType: "",
@@ -236,26 +215,34 @@ function OfflineDonation() {
     // Validate user data fields
     if (!userData?.user?.firstName) {
       validationErrors.push({ field: "userData.user.firstName", message: "First Name is required" });
+      document.getElementById("firstName").focus();
     } else if (/\d/.test(userData.user.firstName)) {
       validationErrors.push({ field: "userData.user.firstName", message: "First Name should only contain alphabets" });
+      document.getElementById("firstName").focus();
     }
 
     if (!userData?.user?.lastName) {
       validationErrors.push({ field: "userData.user.lastName", message: "Last Name is required" });
+      document.getElementById("lastName").focus();
     } else if (/\d/.test(userData.user.lastName)) {
       validationErrors.push({ field: "userData.user.lastName", message: "Last Name should only contain alphabets" });
+      document.getElementById("lastName").focus();
     }
 
     if (!userData?.user?.mobileNo) {
       validationErrors.push({ field: "userData.user.mobileNo", message: "Mobile Number is required" });
+      document.getElementById("mobileNo").focus();
     } else if (!/^(?!.*[a-zA-Z])\d{10}$/.test(userData.user.mobileNo)) {
       validationErrors.push({ field: "userData.user.mobileNo", message: "Mobile Number must contain exactly 10 digits and no alphabetic characters" });
+      document.getElementById("mobileNo").focus();
     }
 
     if (!userData?.user?.emailId) {
       validationErrors.push({ field: "userData.user.emailId", message: "Email ID is required" });
+      document.getElementById("emailId").focus();
     } else if (!/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(userData.user.emailId)) {
       validationErrors.push({ field: "userData.user.emailId", message: "Invalid Email ID" });
+      document.getElementById("emailId").focus();
     }
 
     if (!userData?.user?.panCard) {
@@ -263,12 +250,14 @@ function OfflineDonation() {
         field: "userData.user.panCard",
         message: "PAN card is required",
       });
+      document.getElementById("panCard").focus();
     }
     else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
       validationErrors.push({
         field: "userData.user.panCard",
         message: "PAN card No is Invalid",
       });
+      document.getElementById("panCard").focus();
     }
 
     if (!userData?.user?.donarType) {
@@ -276,12 +265,10 @@ function OfflineDonation() {
     }
     if (!userData?.user?.prefix) {
       validationErrors.push({ field: "userData.user.prefix", message: "Prefix is required" });
+      document.getElementById("prefix").focus();
     }
     if (userData?.user?.donarType.toLocaleLowerCase() === "corporate" && !userData?.user?.organisation) {
       validationErrors.push({ field: "userData.user.organisation", message: "Organisation is required" });
-    }
-    if (!userData?.user?.panCard) {
-      validationErrors.push({ field: "userData.user.panCard", message: "PAN card is required" });
     }
     if (userData?.user?.donarType.toLocaleLowerCase() === "corporate" && userData?.user?.activityType === null) {
       validationErrors.push({ field: "userData.user.activityType", message: "Activity Type is required" });
@@ -341,25 +328,31 @@ function OfflineDonation() {
       console.log(address[i]);
       if (!addr?.street1) {
         validationErrors.push({ field: "address[" + i + "].street1", message: "Street is required" });
+        document.getElementById("street1").focus();
       }
       if (!addr?.country) {
         validationErrors.push({ field: "address[" + i + "].country", message: "Country is required" });
+        document.getElementById("country").focus();
       }else if (/\d/.test(userData.user.lastName)) {
         validationErrors.push({ field: "address[" + i + "].country", message: "Country should only contain alphabets" });
+        document.getElementById("country").focus();
       }
-
       if (!addr?.state) {
         validationErrors.push({ field: "address[" + i + "].state", message: "State is required" });
+        document.getElementById("state").focus();
       }
 
       if (!addr?.city) {
         validationErrors.push({ field: "address[" + i + "].city", message: "City is required" });
+        document.getElementById("city").focus();
       }else if (/\d/.test(addr?.city)) {
         validationErrors.push({ field: "address[" + i + "].city", message: "City should only contain alphabets" });
+        document.getElementById("city").focus();
       }
 
        if ((addr?.postalCode).length > 6) {
         validationErrors.push({ field: "address[" + i + "].postalCode", message: "Postal Code should only contain six numbers" });
+        document.getElementById("postalCode").focus();
       }
     }
 
@@ -660,7 +653,7 @@ function OfflineDonation() {
       currentField = currentField[keys[i]];
     }
     console.log(currentField);
-    if(name == "user.panCard" || name == "user.firstName" || name == "user.lastName"){
+    if(name == "user.panCard" || name == "user.firstName" || name == "user.lastName" || name == "user.emailId"){
       currentField[keys[keys.length - 1]] = value.toUpperCase();
     }else{
       currentField[keys[keys.length - 1]] = value;
@@ -1094,6 +1087,7 @@ function OfflineDonation() {
                                   <input
                                     className="form-control-inside"
                                     type="text"
+                                    id="mobileNo"
                                     name="user.mobileNo"
                                     placeholder="Mobile No."
                                     value={userData?.user?.mobileNo}
@@ -1166,6 +1160,7 @@ function OfflineDonation() {
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.prefix"
+                                    id="prefix"
                                     value={userData?.user?.prefix}
                                     onChange={handleChange}
                                   >
@@ -1190,6 +1185,7 @@ function OfflineDonation() {
                                   <input
                                     className="form-control-inside"
                                     type="text"
+                                    id="firstName"
                                     name="user.firstName"
                                     placeholder="First Name"
                                     value={userData?.user?.firstName}
@@ -1211,6 +1207,7 @@ function OfflineDonation() {
                                   <input
                                     className="form-control-inside"
                                     type="text"
+                                    id="lastName"
                                     name="user.lastName"
                                     placeholder="Last Name"
                                     value={userData?.user?.lastName}
@@ -1233,6 +1230,7 @@ function OfflineDonation() {
                                   <input
                                     className="form-control-inside"
                                     name="user.panCard"
+                                    id="panCard"
                                     placeholder="PAN card No."
                                     type="text"
                                     value={userData?.user?.panCard}
@@ -1305,6 +1303,7 @@ function OfflineDonation() {
                                   <input
                                     className="form-control-inside"
                                     name="street1"
+                                    id="street1"
                                     placeholder=" Street 1"
                                     type="text"
                                     value={address[0]?.street1}
@@ -1365,6 +1364,7 @@ function OfflineDonation() {
                                   <input
                                     className="form-control-inside"
                                     name="country"
+                                    id="country"
                                     placeholder="Country"
                                     type="text"
                                     value={address[0]?.country}
@@ -1388,6 +1388,7 @@ function OfflineDonation() {
                                   <select
                                     className=" form-control-inside form-select"
                                     name="state"
+                                    id="state"
                                     value={address[0]?.state}
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
@@ -1416,6 +1417,7 @@ function OfflineDonation() {
                                   <input
                                     className="form-control-inside"
                                     name="city"
+                                    id="city"
                                     placeholder="City"
                                     type="text"
                                     value={address[0]?.city}
@@ -1439,6 +1441,7 @@ function OfflineDonation() {
                                   <input
                                     className="form-control-inside"
                                     name="postalCode"
+                                    id="postalCode"
                                     placeholder="Postal Code"
                                     type="text"
                                     value={address[0]?.postalCode}
@@ -1453,7 +1456,7 @@ function OfflineDonation() {
                         </div>
                         <hr /><div id="addaddressDiv" className="hide">
                           <div className="actionheadingdiv" >
-                            Permanent Address
+                            Organisation Address
                             <div
                               className="float-right addminicon"
                               onClick={minaddressDiv}
@@ -1470,6 +1473,7 @@ function OfflineDonation() {
                                     <input
                                       className="form-control-inside"
                                       name="street1"
+                                      id="street1"
                                       placeholder=" Street 1"
                                       type="text"
                                       value={address[1]?.street1}
@@ -1521,6 +1525,7 @@ function OfflineDonation() {
                                     <input
                                       className="form-control-inside"
                                       name="country"
+                                      id="country"
                                       placeholder="Country"
                                       type="text"
                                       // value={address[1].country}
@@ -1538,6 +1543,7 @@ function OfflineDonation() {
                                     <select
                                       className=" form-control-inside form-select"
                                       name="state"
+                                      id="state"
                                       value={address[1]?.state}
                                       onChange={(event) =>
                                         handleAddressChange(event, 1)
@@ -1560,6 +1566,7 @@ function OfflineDonation() {
                                     <input
                                       className="form-control-inside"
                                       name="city"
+                                      id="city"
                                       placeholder="City"
                                       type="text"
                                       value={address[1]?.city}
@@ -1577,6 +1584,7 @@ function OfflineDonation() {
                                     <input
                                       className="form-control-inside"
                                       name="postalCode"
+                                      id="postalCode"
                                       placeholder="Postal Code"
                                       type="text"
                                       value={address[1]?.postalCode}
