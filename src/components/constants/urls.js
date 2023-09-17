@@ -14,7 +14,7 @@ export const URLS = {
 
     // GET USER DETAILS BY DONOR ID
     GETUSERDETAILSBYDONORID: "/getUserDetailsByDonorId/",
-    GETUSERDETAILSBYDONORIDOREMAILID: "/getUserDetailsByDonorId/",
+    GETUSERDETAILSBYDONORIDOREMAILID: "/getUserPersonalDetailsbyEmailOrDonorId",
     ADDNEWDONATIONS: "/newDonation",
 
     //opt

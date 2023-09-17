@@ -99,7 +99,7 @@ export const DonationService = {
     id = (await EncryptionService.encrypt(id)).toString();
     try {
       const response = await APIService.Instance.get(
-        URLS.GETUSERDETAILSBYDONORIDOREMAILID + id
+        URLS.GETUSERDETAILSBYDONORIDOREMAILID +"?emailOrDonorId="+ id
       );
       console.log(response);
       return response?.data;
