@@ -207,7 +207,7 @@ function HomePage() {
         
       useEffect(() => {
         const obj1 = document.getElementById("value1");
-        animateValue1(obj1, 0, 22861288, 5000);
+        animateValue1(obj1, 0, 24861288, 5000);
       }, []);
 
      //Second Part
@@ -246,7 +246,7 @@ function HomePage() {
 
     useEffect(() => {
       const obj3 = document.getElementById("value3");
-      animateValue3(obj3, 0, 0.4, 5000);
+      animateValue3(obj3, 0, 153 , 5000);
     }, []);
   
 
@@ -261,32 +261,26 @@ function HomePage() {
       {/* slide info */}
 
       <div className="container pv-75">
-
-        <div className="row mb10 impact-wrapper">
-          <div className="col-12 col-md-4 text-center">
-            <div className="tree-features" >
+        <div className="mb10 impact-wrapper">          
+            <div className="tree-features">
+              {/* <i className="icon-tree"></i> */}
               <h4>Trees planted so far</h4>
               <p id="value1">0</p>
             </div>
-          </div>
-          <div className="col-12 col-md-4 text-center">
+          
             <div className="tree-features">
               <h4>Survival rate of trees</h4>
-              <div className="d-flex">
+              <div className="d-flex align-items-center">
                 <p id="value2">0</p><span>%</span>
               </div>
             </div>
-          </div>
-          <div className="col-12 col-md-4 text-center">
             <div className="tree-features">
-              <h4>Carbon sequestered</h4>
-              <div className="d-flex">
-                <p id="value3">0</p><span>mtCO 2 e</span>
+              <h4>Estimated Carbon Sequestered</h4>
+              <div className="d-flex align-items-center">
+                <p id="value3">0</p><span>ktonne CO<sub>2</sub>e</span>
               </div>
             </div>
-          </div>
         </div>
-
       </div>
       <section className="bg-green">
         <div className="container pv-75">
@@ -295,10 +289,9 @@ function HomePage() {
 
             <div className="col-12 col-md-6">
               <div className="program-details">
-                <h3 className="mb-3">Who Are We</h3>
-                <p>Project Hariyali is a joint initiative by Mahindra Foundation and Naandi Foundation. One million trees have been planted
-                  each year since 2007 across India. The project is part of nature-based solution that focuses on natural resource management and global organic
-                  farming protocols to improve the eco-system. Going forward, the project aims to plant 5 million trees per annum.</p>
+                <h3 className="mb-3">Who We Are</h3>
+                <p>Project Hariyali is a joint initiative of Mahindra Foundation and Naandi Foundation. One million trees have been planted each year since 
+                  2007 across India. The project is part of nature-based solution that focuses on natural resource management and global organic farming protocols to improve the eco-system. Going forward, the project aims to plant 5 million trees per annum.</p>
                 <div className="pt-5">
                   <a href="/AboutUs" className="btn btn-secondary">Know More</a>
                   <Link className="btn btn-primary" to={`/OnlineDonation`}>Donate</Link>
@@ -371,7 +364,7 @@ function HomePage() {
           <div className="col-12 col-md-6">
             <div className="program-details">
               <h3 className="mb-3">How To Associate</h3>
-              <p>There are two seasons for plantation - Monsoon and Winter. You can choose to plant in any of these seasons or both with one time investment of ₹ 450/- per plant. The sapling takes 3 years of nurturing and monitoring to be self – dependent.
+              <p>There are two seasons for plantation - Monsoon and Winter. You can choose to plant in any of these seasons or both with one time contribution of ₹ 450/- per plant. The sapling takes 3 years of nurturing and monitoring to be self – dependent. 
                 We provide support to the plant for these 3 years and in case if the plant doesn't survive, we replace it with a new sapling.</p>
               <div className="pt-5">
                 <a href="/WaystoAssociate" className="btn btn-secondary">Read More</a>

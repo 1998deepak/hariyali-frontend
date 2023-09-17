@@ -15,8 +15,8 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
 
   const columns = [
     {
-      dataField: "donationId",
-      text: "Donation ID",
+      dataField: "donationCode",
+      text: "Donation Code",
     },
     {
       dataField: "paymentDate",
@@ -119,7 +119,7 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
   
   const getAllDonationOfUser = async (id) => {
     console.log(id);
-    setLoading(true);
+    // setLoading(true);
     const response = await DonationService.getAllDonationOfUser(id);
     console.log(id);
     console.log(response?.data);
@@ -131,6 +131,7 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
       const newData = donorData.map((donor) => ({
         donorId:donor.donorId,
         donationId: donor.donationId,
+        donationCode:donor.donationCode,
         firstName: donor.firstName,
         lastName: donor.lastName,
         paymentDate: donor.paymentInfo.paymentDate,
@@ -165,7 +166,7 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
                 keyField="donationId"
                 data={data}
                 columns={columns}
-                pagination={paginationFactory()}
+                 pagination={paginationFactory()}
               />
             </div>
           </div>

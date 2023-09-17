@@ -120,10 +120,10 @@ function WaystoAssociate() {
                         </div>
                         <br />
                         <div>
-                            <p className="text-center"> You can chose to plant in any of the above seasons or both @ ₹ 450/-* per plant.</p>
-                            <p className="text-center">The sapling takes 3 years of nurturing and monitoring to be self – dependent. We provide support to the plant for these 3 years and in case the plant doesn’t survive, we replace it with a new sapling.
+                            <p className="text-center">You can plant a tree for just ₹ 450/-* per plant.</p>
+                            <p className="text-center">The sapling takes 3 years of nurturing and monitoring to be self – sustainable. We provide support during this period and in case the plant doesn’t survive, we replace it with a new sapling.
                             </p>
-                            <i className="text-center">* Each donation supports maintenance of plant and hand-holding of the farmers for additonal two years .</i>
+                            <p className="text-center"><i>* Each donation supports maintenance of the plant and handholding of the farmers for additional two years.</i></p>
                         </div>
                     </div>
                 </div>
@@ -407,7 +407,7 @@ function WaystoAssociate() {
                                 </Row></div>
                                 <br />
                                 <p>
-                                    <address>  CSR Queries contact Sunny Gangar <a href="mail:csr@hariyali.org.in"><i className="bi bi-envelope-fill"></i> csr@hariyali.org.in</a> | <a href="tel:93224 56789 ">
+                                    <address> For CSR Queries contact Sunny Gangar <a href="mail:csr@hariyali.org.in"><i className="bi bi-envelope-fill"></i> csr@hariyali.org.in</a> | <a href="tel:93224 56789 ">
                                         <i className="bi bi-phone"></i> 93224 56789 </a> | <a href="tel: 022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a></address>
                                 </p></div>
 
@@ -423,7 +423,7 @@ function WaystoAssociate() {
                     <Container >
                         <div className=" feature-description-other">
                         <h3 class="text-center sub-title"> Our Partner</h3>
-                            <div className="col-9  m-auto"> 
+                            <div className="m-auto"> 
                             <Row className="justify-content-between ourpartner">
                                 <div className="col-6 col-md-4 mb-lg-0 mb-3 marginall-pad-0 text-center">
                                     <img src={bristlecone} width="80%" />

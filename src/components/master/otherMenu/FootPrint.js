@@ -15,11 +15,7 @@ import image from "../../../assets/img/bannerWherearewe.png";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 function FootPrint() {
   const [arakushow, setArakuShow] = useState(false);
@@ -68,7 +64,8 @@ function FootPrint() {
                 <figcaption>
                   <h2>
                     {" "}
-                    <span>Araku Valley</span>,<br /> Andhra Pradesh
+                    <span>Araku Valley</span>,<br /> 
+                    <span>nestled in the North-West Region of Andhra Pradesh</span>
                   </h2>
                   <p className="arrowright-foot">
                     <FiArrowRightCircle />
@@ -81,7 +78,8 @@ function FootPrint() {
                 <figcaption>
                   <h2>
                     {" "}
-                    <span>Shravasti</span>,<br /> Uttar Pradesh
+                    <span>Shravasti Uttar Pradesh</span>,<br /> 
+                    <span>Bhinga, the district headquarters of Shravasti</span>
                   </h2>
                   <p className="arrowright-foot">
                     <FiArrowRightCircle />
@@ -94,7 +92,8 @@ function FootPrint() {
                 <figcaption>
                   <h2>
                     {" "}
-                    <span>Moga</span>,<br /> Punjab
+                    <span>Moga Punjab</span>,<br /> 
+                    <span>Moga is in the Indian State Of Punjab</span>
                   </h2>
                   <p className="arrowright-foot">
                     <FiArrowRightCircle />
@@ -107,7 +106,8 @@ function FootPrint() {
                 <figcaption>
                   <h2>
                     {" "}
-                    <span>Tarn Taran</span>,<br /> Punjab
+                    <span>Tarn Taran Punjab</span>,<br /> 
+                    <span>Tarn Taran Sahib is a City in the State of Punjab</span>
                   </h2>
                   <p className="arrowright-foot">
                     <FiArrowRightCircle />
@@ -120,7 +120,8 @@ function FootPrint() {
                 <figcaption>
                   <h2>
                     {" "}
-                    <span>Solan</span>,<br /> Himachal Pradesh
+                    <span>Solan Himachal Pradesh</span>,<br /> 
+                    <span>The Project ss proposed to be located in Solan District</span>
                   </h2>
                   <p className="arrowright-foot">
                     <FiArrowRightCircle />
@@ -133,7 +134,8 @@ function FootPrint() {
                 <figcaption>
                   <h2>
                     {" "}
-                    <span>Wardha</span>,<br /> Maharashtra
+                    <span>Wardha Maharashtra</span>,<br />
+                    <span>Wardha district is One Of the 35 districts in Western India</span>
                   </h2>
                   <p className="arrowright-foot">
                     <FiArrowRightCircle />
@@ -144,30 +146,8 @@ function FootPrint() {
             </div>
           </Row>
         </Container>
-        <div className="container">
+        {/* <div className="container">
           <h2 className="sub-title text-center mb-0">FAQ</h2>
-          {/* <div className="row">
-                <div className="col-12 col-md-4">
-                  <div className="faqpercent-div">
-                    <div className="faqpercent-no">70%</div>
-                    <div className="faqpercentname">Direct Programme</div>
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="faqpercent-div">
-                    <div className="faqpercent-no">20%</div>
-                    <div className="faqpercentname">
-                      Project Management & Monitoring
-                    </div>
-                  </div>
-                </div>
-                <div className="col-12 col-md-4">
-                  <div className="faqpercent-div">
-                    <div className="faqpercent-no">10%</div>
-                    <div className="faqpercentname">Administration</div>
-                  </div>
-                </div>
-              </div> */}
           <div className="my-5">
             <Accordion>
               <AccordionSummary
@@ -332,7 +312,7 @@ function FootPrint() {
               </AccordionDetails>
             </Accordion>
           </div>
-        </div>
+        </div> */}
       </div>{" "}
       <Modal show={arakushow} onHide={ArakuClose}>
         <Modal.Header closeButton>

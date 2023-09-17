@@ -2955,51 +2955,42 @@ tr td input {
   /* background: url('../img/winter.png') no-repeat center; */
   background-size: contain;
 }
+.impact-wrapper {
+  margin-top: -4rem;
+  z-index: 99;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
 .tree-features {
-  width: 260px;
-  height: 260px;
-  border: 1px solid #ccc;
-  border-radius: 50%;
-  padding: 1rem;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  box-shadow: inset 0px 2px 14px 6px #ccc;
 }
 
 .impact-wrapper .tree-features {
-  width: auto;
-  height: auto;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
-  border: 0;
-  border-radius: 0;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 4.25rem 1rem;
+  margin: 0 1.5rem 1rem;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  box-shadow: none;
 }
 
 .tree-features h4 {
   font-size: 1.125rem;
   padding: 0 0.75rem;
   line-height: normal;
-}
-
-.impact-wrapper {
-  box-shadow: 0 0 4px #ccc;
-  padding: 1rem 0;
-  margin-top: -4rem;
-  z-index: 99;
-  position: relative;
-  background: #fff;
-  padding: 1.5rem 0;
 }
 
 .tree-features p {
@@ -3010,7 +3001,12 @@ tr td input {
   padding: 5px 15px;
   margin-bottom: 0;
 }
-
+.impact-wrapper .tree-features h4{
+  margin-bottom: 0;
+}
+.impact-wrapper .tree-features p{
+  font-size: 1.875rem;
+}
 .icon-block:hover:before {
   transform: scale(1.1);
 }
@@ -3500,7 +3496,12 @@ figure.effect-layla:hover img {
 .testimonial-slider .react-slideshow-container+ul.indicators li {
   margin: 0 0.25rem;
 }
-
+.testimonial-legend{
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-style: italic;
+  text-align: right;
+}
 .awards-slider .carousel-control-prev,
 .awards-slider .carousel-control-next {
   width: 50px;
@@ -4121,12 +4122,12 @@ iframe {
 }
 
 .quantitative-card .discover-block {
-  height: 200px;
-  margin-bottom: 25px;
+  /* height: 200px;
+  margin-bottom: 25px; */
 }
 
 .quantitative-card .discover-block:hover {
-  height: 200px;
+  /* height: 200px; */
 }
 
 .steps-nav {
@@ -4387,6 +4388,13 @@ iframe {
 .accordion-button:focus{
   box-shadow: none;
   border-color: #23aa4a;
+}
+.nested-ul{
+  margin-left: 1rem;
+  list-style-type:lower-alpha;
+}
+.nested-ul li{
+  list-style-type: disc;
 }
 @media screen and (max-width:1440px) {
   .nav-list .nav-item a.nav-link {
@@ -5130,7 +5138,62 @@ iframe {
   font-size: 1.125rem;
   font-weight: 600;
 }
+
 /* .donation-table th:nth-child(2),
 .donation-table td:nth-child(2){
   width: 120px;
 } */
+
+.plantation .card {
+  top: 4px;
+}
+
+.plantation .p-multiselect {
+  height: 40px;
+  line-height: 13px;
+  position: relative;
+}
+
+.top-30{
+  top:30px;
+}
+
+.fileUploadModal .modal-header{
+  background-color: rgb(35, 170, 74);
+  color: #fff;
+}
+
+.fileUploadModal .modal-dialog{
+  width: 40% !important;
+}
+.quantitative-card{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 100%;
+}
+.discover-block{
+  width: 30%;
+  height: 100%;
+  margin: 0 1rem 1rem;
+  min-height: 206px;
+}
+.discover-block .card-header{
+  font-size: 1.25rem;
+  font-weight: 600;
+  background-color: #23aa4a;
+  color: #fff;
+  text-align: center;
+}
+.discover-block .card-text{
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  color: #23aa4a;
+  margin: 1rem 0;
+}
+.discover-block .card-body{
+  height: 100%;
+  text-align: center;
+}

@@ -55,7 +55,7 @@ const Header = () => {
                   <div className="footer-divheading">Company</div>
                   <ul>
                     <li>
-                    <a href="/AboutUs"> Who Are We</a></li>
+                    <a href="/AboutUs"> Who We Are</a></li>
                     <li>
                     <a href="/WhatWeDo"> What We Do</a></li>
                     <li><a href="/WhySupportUs"> Why Support Us</a></li>
@@ -69,6 +69,13 @@ const Header = () => {
                   <ul>
                     <li><a href="">Privacy Policy</a></li>
                     <li><a href="">Terms & Conditions</a></li>
+                    <li><a href="">Legal Documents</a>
+                        <ul className="nested-ul">
+                          <li><a href="">Registration Certificate </a></li>
+                          <li><a href="">80 G Certificate </a></li>
+                          <li><a href="">Pan Card </a></li>
+                        </ul>
+                    </li>
                    
                   </ul>
                 </div>
@@ -76,9 +83,14 @@ const Header = () => {
                 <div className="footer-divheading">Contact Us </div>
                   <address>
                   <h5 className="mb-0">Mahindra Foundation</h5>
-                  <p>Cecil Court, MB Marg, NearRegal Cinema, Apollo Bandar, Colaba, Mumbai, Maharashtra 400005</p>
+                  <p>3rd Floor, Cecil Court
+                    Mahakavi Bhushan Marg
+                    Near Regal Cinema, Colaba 
+                    Mumbai, Maharashtra -400001
+                    </p>
                   <a href="tel:93224 56789"><i className="bi bi-phone"></i> 93224 56789</a><br/>
                   <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a> <br/>
+                  <a href="mailto:support@hariyali.org.in"><i className="bi bi-envelope-fill"></i>support@hariyali.org.in</a>
                   </address>
                  
                   {/* <i className="bi bi-clock"></i> 10.00am to 7.00pm IST <br/>(Monday to

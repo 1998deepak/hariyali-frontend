@@ -101,7 +101,7 @@ function AboutUs() {
           <div className="container">
             <div className="pv-75">
               <div className="feature-description feature-description-other">
-                <h2 className="sub-title  text-center">Who Are We</h2>
+                <h2 className="sub-title  text-center">Who We Are</h2>
                 <p className="text-center">
                 Project Hariyali is a joint initiative by Mahindra Foundation and Naandi Foundation.
                 <div className="whowe-knowtext"><a href="#knowYourPatners">know more</a> about these Foundations</div>
@@ -116,15 +116,16 @@ function AboutUs() {
                 <div className="feature-description feature-description-other">
                   <h2 className="sub-title  text-center">Details about initiative</h2>
                   <p className="text-center">
-                    The project was launched on 2<sup>nd</sup> October 2007, as an afforestation initiative, with a target to plant a million trees every year. Project Hariyali aims to increase green cover, arrest the rising ecological imbalance to create environmentally conscious and aware citizenry. Project Hariyali is an excellent example of nature-based solutions that focuses on natural resource management and global organic farming protocols to improve the eco-system.</p>
-                  <p>We are currently active in three regions for large scale plantation:</p>
+                  The project was launched on 2<sup>nd</sup> October 2007, as an afforestation initiative, with a target to plant a million trees every year. Project Hariyali aims to increase green cover, arrest the rising ecological imbalance to create an environmentally conscious and aware citizenry. Project Hariyali is 
+                  an excellent example of nature-based solutions in climate action that focuses on natural resource management and global organic farming protocols to improve the eco-system.</p>
+                  <p className="text-center">Our large scale plantation is active in 3 regions. </p>
                   <div className="row">
                     <div className="col-12 col-md-6 col-lg-4 mb-4">
                       <div className="card h-100">
                         <img src={arakuImg} className="img-fluid rounded-start" alt="..." />
                         <div className="card-body text-center">
                           <h5 className="card-title">Southern India</h5>
-                          <p className="card-text">The project started in <b className="colorgreen">Araku Valley</b>, <b className="colorgreen">Visakhapatnam</b>, <b className="colorgreen">Andhra Pradesh</b> started in 2010</p>
+                          <p className="card-text">Project Hariyali started in <b className="colorgreen">Araku Valley</b> in <b className="colorgreen">Visakhapatnam</b>, <b className="colorgreen">Andhra Pradesh</b> in 2010</p>
                         </div>
                       </div>
                     </div>
@@ -133,7 +134,7 @@ function AboutUs() {
                         <img src={tarnImg} className="img-fluid rounded-start" alt="..." />
                         <div className="card-body text-center">
                           <h5 className="card-title">Northern India</h5>
-                          <p className="card-text">The project <b className="colorgreen">Shravasti in Uttar Pradesh</b>,
+                          <p className="card-text">Our project <b className="colorgreen">Shravasti in Uttar Pradesh</b>,
                             <b className="colorgreen">Tarn Taran & Moga in Punjab</b> and <b className="colorgreen">Solan in Himachal Pradesh</b> started in 2021</p>
                         </div>
                       </div>
@@ -143,7 +144,7 @@ function AboutUs() {
                         <img src={wardhaImg} className="img-fluid rounded-start" alt="..." />
                         <div className="card-body text-center">
                           <h5 className="card-title">Western India</h5>
-                          <p className="card-text">The project is being currently replicated in <b className="colorgreen">Wardha, Maharashtra</b> started in 2023</p>
+                          <p className="card-text">Our <b className="colorgreen">Wardha Project in Maharashtra</b> started in 2023</p>
                         </div>
                       </div>
                     </div>
@@ -163,7 +164,7 @@ function AboutUs() {
                 <div className="feature-description">
                   <h2 className="text-capitalize">Goal</h2>
                   <p className="">
-                    <quote><b className="colorgreen">Planting 5 million trees</b> per annum through partnerships with like-minded organizations and people, and in the process support the livelihood of marginalized farmer communities.
+                    <quote><b className="colorgreen">Planting 5 million trees per annum</b> through partnerships with like-minded organizations and people, and in the process support the livelihood of marginalized farmer communities.
                     </quote></p>
                 </div>
               </div>
@@ -321,7 +322,7 @@ function AboutUs() {
               </div>
             </div>
           </section>
-          <div className="container">
+          {/* <div className="container">
             <div className=" pv-75">
               <div className="col-12">
                 <div className="feature-description">
@@ -367,11 +368,12 @@ function AboutUs() {
                         </li><li>
                           Naandi Foundation</li></ul>
                       </div>
-                    </div></div>
+                    </div>
+                    </div>
 
                   </div>
                   
-                  <div></div></div></div></div></div>
+                  <div></div></div></div></div></div> */}
           {/* popup */}
           <Modal show={anandMahindrashow} onHide={AnandMahindraClose}>
             <Modal.Header closeButton>
@@ -508,7 +510,7 @@ function AboutUs() {
               </div>
             </Modal.Body>
           </Modal>
-          <Modal show={gopalakrishnanshow} onHide={GopalakrishnanClose}>
+          {/* <Modal show={gopalakrishnanshow} onHide={GopalakrishnanClose}>
             <Modal.Header closeButton>
               <Modal.Title>Senapathy “Kris” Gopalakrishnan</Modal.Title>
             </Modal.Header>
@@ -530,7 +532,7 @@ function AboutUs() {
                   </p></div>
               </div>
             </Modal.Body>
-          </Modal>
+          </Modal> */}
           <Modal show={gopalakrishnanshow} onHide={GopalakrishnanClose}>
             <Modal.Header closeButton>
               <Modal.Title>Senapathy “Kris” Gopalakrishnan</Modal.Title>

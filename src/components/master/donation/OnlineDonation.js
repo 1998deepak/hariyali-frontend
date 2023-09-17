@@ -28,7 +28,8 @@ function OnlineDonation() {
   const [loading, setLoading] = useState(false);
   const [newEmail, setNewEmail] = useState(null);
   const [gatewayConfiguration, setGatewayConfiguration] = useState(null);
-  const [privacyPolicy, setPrivacyPolicy] = useState(false);
+  const [privacyPolicy1, setPrivacyPolicy1] = useState(false);
+  const [privacyPolicy2, setPrivacyPolicy2] = useState(false);
   const [informationShare, setInformationShare] = useState(false);
 
   const [donation, setDonation] = useState("");
@@ -175,6 +176,7 @@ function OnlineDonation() {
 
   const [captchaVerfied, setCaptchaVerfied] = useState(false);
   const [message, setMessage] = useState("");
+  const [privacyPolicymessage, setPrivacyPolicymessage] = useState("");
   function hasValues(obj) {
     for (let key in obj) {
       console.log(obj.hasOwnProperty(key));
@@ -482,7 +484,8 @@ function OnlineDonation() {
     setRecipient(initialRecipientData);
     setUserData(initialUserData);
     setInformationShare("yes");
-    setPrivacyPolicy(false);
+    setPrivacyPolicy1(false);
+    setPrivacyPolicy2(false);
   };
 
   const setCaptchaFlag = async (flag) => {
@@ -493,12 +496,11 @@ function OnlineDonation() {
     e.preventDefault();
     const isValid = validate();
     console.log("isValid:", isValid);
-
-    if (isValid) {
-      if (!privacyPolicy) {
-        toast.error("Please Accept Privacy Policy");
-        return;
-      }
+    if (!privacyPolicy1 || !privacyPolicy2) {
+    
+      setPrivacyPolicymessage("Please Accept Privacy Policy");
+    } else if (isValid) {
+      setPrivacyPolicymessage("");
       let updatedUserPackage = [];
       packageData.map((item) => {
         if (item.noOfBouquets && item.amount) {
@@ -787,12 +789,13 @@ function OnlineDonation() {
     const updatedDonations = [...donations];
     if (name === "donationEvent") {
       console.log(name);
-      if (value === 'other') {
-        setShowOtherInput(true);
-      } else {
-        setShowOtherInput(false);
-      }
+      // if (value === 'other') {
+      //   setShowOtherInput(true);
+      // } else {
+      //   setShowOtherInput(false);
+      // }
       updatedDonations[index][name] = value;
+      console.log(updatedDonations);
     }
     if (name === "generalDonation") {
       let gnrlDonation = parseInt(value);
@@ -803,6 +806,7 @@ function OnlineDonation() {
     }
     setDonations(updatedDonations);
   };
+
   const handleRecipentChange = (event, index) => {
     const { name, value } = event.target;
     console.log(name);
@@ -1201,7 +1205,7 @@ function OnlineDonation() {
                       </div>
                     ) : null}
                   </div>
-                  {isCSR ? (
+                  {/* {isCSR ? (
                     <div>
                       {" "}
                       <p>
@@ -1213,7 +1217,7 @@ function OnlineDonation() {
                         <a href="tel:93224 56789">93224 56789</a>
                       </p>
                     </div>
-                  ) : null}
+                  ) : null} */}
                   <div>
                     <div className="row">
                       <div className="col-6">
@@ -2119,10 +2123,14 @@ function OnlineDonation() {
                           <PrivacyPolicy
                             informationShare={informationShare}
                             setInformationShare={setInformationShare}
-                            privacyPolicy={privacyPolicy}
-                            setPrivacyPolicy={setPrivacyPolicy}
+                            privacyPolicy1={privacyPolicy1}
+                            privacyPolicy2={privacyPolicy2}
+                            setPrivacyPolicy1={setPrivacyPolicy1}
+                            setPrivacyPolicy2={setPrivacyPolicy2}
                             handleShowConditions={handleShowConditions}
+                            privacyPolicymessage={privacyPolicymessage}
                           />
+
                           <button
                             type="submit"
                             className="mt20 mr10 webform-button--submit"
@@ -2210,30 +2218,23 @@ function OnlineDonation() {
                                 value={donations[0].donationEvent}
                                 onChange={(e) => handleDonationChange(e, 0)}
                               >
-                                <option disabled selected value="">
-                                </option>
-                                <option value="Birthday"> Happy Birthday</option>
-                                <option value="New Year"> New Year</option>
-                                <option value="Deepawali"> Deepawali</option>
-                                <option value=" EID">  EID</option>
-                                <option value="Christmas"> Christmas</option>
-                                <option value="Wedding">Wedding</option>
-                                <option value="Anniversary">Work anniversary</option>
-                                <option value="Achievement">Achievement</option>
-                                <option value="Retirement">Retirement</option>
-                                <option value="Condolence">  Condolence
-                                </option>
-                                <option value="other">Others: </option>
-                                <input type="text" className="form-control" />
+                                <option disabled selected value="">Select Occasion</option>
+                                <option value="Festivals">Festivals</option>
+                                <option value="Special day"> Special Day</option>
+                                <option value="Achievements"> Achievements</option>
+                                <option value=" Memorial Tribute">  Memorial Tribute</option>
+                                <option value="Simple Donation"> Simple Donation</option>
+                                
+                                {/* <input type="text" className="form-control" /> */}
                               </select>
 
-                              {showOtherInput && (
+                              {/* {showOtherInput && (
                                 <input
                                   type="text"
                                   className="form-control"
                                   placeholder="Specify other event"
                                 />
-                              )}
+                              )} */}
                               {/* <div id="otherOption">
                                 <label for="otherText">Enter other option:</label>
                                 <input type="text" id="otherText"/>
@@ -2298,7 +2299,7 @@ function OnlineDonation() {
                           </div>
                         </div>
                       ) : null}
-                      {isCSRGift ? (
+                      {/* {isCSRGift ? (
                         <div>
                           {" "}
                           <p>
@@ -2310,7 +2311,7 @@ function OnlineDonation() {
                             <a href="tel:93224 56789">93224 56789</a>
                           </p>
                         </div>
-                      ) : null}                        
+                      ) : null}                         */}
                         
                     </div>
                     <div>
@@ -3353,9 +3354,12 @@ function OnlineDonation() {
                         <PrivacyPolicy
                           informationShare={informationShare}
                           setInformationShare={setInformationShare}
-                          privacyPolicy={privacyPolicy}
-                          setPrivacyPolicy={setPrivacyPolicy}
+                          privacyPolicy1={privacyPolicy1}
+                          privacyPolicy2={privacyPolicy2}
+                          setPrivacyPolicy1={setPrivacyPolicy1}
+                          setPrivacyPolicy2={setPrivacyPolicy2}
                           handleShowConditions={handleShowConditions}
+                          privacyPolicymessage={privacyPolicymessage}
                         />
                         <button
                           type="submit"

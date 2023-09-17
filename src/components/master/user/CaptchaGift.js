@@ -95,12 +95,16 @@ function CaptchaGift({verified, setVerified}) {
             name="username"
             onChange={handleChange}
             autoComplete="off"
+            onBlur={onSubmit}
+            disabled={verified}
           />
           <button
             type="button"
             id="succesBTN"
             onClick={onSubmit}
             className="verify-capt"
+            
+            hidden
           >
             Verify Captcha
           </button>
