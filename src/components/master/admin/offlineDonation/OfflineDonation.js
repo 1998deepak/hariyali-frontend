@@ -1888,12 +1888,6 @@ function OfflineDonation() {
                         </div>
                         <div className="actionheadingdiv">
                           Mode of Payment
-                          <div
-                            className="float-right addminicon"
-                            onClick={addpaymenticon}
-                          >
-                            <FaPlusSquare />
-                          </div>
                         </div>
                         <PaymentDetails
                           donations={donations}
@@ -2956,12 +2950,6 @@ function OfflineDonation() {
                         <hr />
                         <div className="actionheadingdiv">
                           Mode of Payment
-                          <div
-                            className="float-right addminicon"
-                            onClick={addgiftpaymenticon}
-                          >
-                            <FaPlusSquare />
-                          </div>
                         </div>
                         <PaymentDetails
                           donations={donations}
@@ -3693,12 +3681,6 @@ function OfflineDonation() {
                         </div>
                         <div className="actionheadingdiv">
                           Mode of Payment
-                          <div
-                            className="float-right addminicon"
-                            onClick={addpaymenticon}
-                          >
-                            <FaPlusSquare />
-                          </div>
                         </div>
                         <PaymentDetails
                           donations={donations}
@@ -4652,12 +4634,6 @@ function OfflineDonation() {
                         <hr />
                         <div className="actionheadingdiv">
                           Mode of Payment
-                          <div
-                            className="float-right addminicon"
-                            onClick={addgiftpaymenticon}
-                          >
-                            <FaPlusSquare />
-                          </div>
                         </div>
                         <PaymentDetails
                           donations={donations}

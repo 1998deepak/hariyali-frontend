@@ -916,12 +916,6 @@ function OfflineDonationPay() {
 
                   <div className="actionheadingdiv">
                     Mode of Payment
-                    <div
-                      className="float-right addminicon"
-                      onClick={addpaymenticon}
-                    >
-                      <FaPlusSquare />
-                    </div>
                   </div>
                   <PaymentDetails
                     donations={donationData}
