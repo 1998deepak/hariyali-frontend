@@ -592,7 +592,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                   className="form-control-inside"
                   name="cardHolderName"
                   placeholder="Name on Card"
-                  type="Number"
+                  type="text"
                   value={donations[0]?.paymentInfo[index]?.cardHolderName}
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
                   disabled={isDisabled}
