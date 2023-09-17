@@ -931,22 +931,31 @@ function OnlineDonation() {
     console.log(response);
     if (response?.status === "Success") {
       toast.success(response?.message);
-      let addr = [...initialAddress];
-      if (hasValues(response.data.address[0])) {
-        addr[0] = response.data.address[0];
+      if (response.data.address) {
+        let addr = [...initialAddress];
+        if (response.data.address[0]) {
+          if (hasValues(response.data.address[0])) {
+            addr[0] = response.data.address[0];
+          }
+        }
+        if (response.data.address[1]) {
+          if (hasValues(response.data.address[1])) {
+            addr[1] = response.data.address[1];
+          }
+        }
       }
-      if (hasValues(response.data.address[1])) {
-        addr[1] = response.data.address[1];
-      }
-      setAddress(addr);
+
       const formData = {
         formData: {
           user: response?.data,
         },
       };
-      console.log(response.data.donations[0]);
-      setPackageData(formData.formData.user.donations[0].userPackage);
-      setDonations(response.data.donations);
+      if (response.data.donations) {
+        if (response.data.donations[0]) {
+          setPackageData(formData.formData.user.donations[0].userPackage);
+        }
+        setDonations(response.data.donations);
+      }
       setUserData(formData.formData);
       clearState();
       setDonation(type);
