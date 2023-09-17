@@ -46,7 +46,7 @@ export const URLS = {
     GET_ALL_ACTIVE_BANKS:"/bank/findAllActiveBank",
     GET_USER_DONATIONS:"/getUserDonations",
 
-    //Upload Excel Plantation
+    //Plantation service
     PLANTATION_YEARS:"/plantation/years",
     PLANTATION_SEASONS:"/plantation/seasons",
     PLANTATION_DISTRICTS:"/plantation/districts",
@@ -55,4 +55,6 @@ export const URLS = {
     PLANTATION_FINDALLBYFILTER:"/plantation/findAllByFilter",
     PLANTATION_EXPORTREPORT:"/plantation/exportReport",
 
+    //commitment service
+    COMMITMENT_FINDALLBYFILTER:"/commitment/findByFilter"
 };

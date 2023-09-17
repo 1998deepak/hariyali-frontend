@@ -82,6 +82,19 @@ export const PlantationService = {
       } 
     }
   },
+  getCommitmentList: async (data) => {
+    try {
+      
+      const response = await APIService.Instance.post(
+        URLS.COMMITMENT_FINDALLBYFILTER, data
+      );
+      return response?.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } 
+    }
+  },
   exportExcel: async (data) => {
     try {
       const response = await APIService.Instance.post(
