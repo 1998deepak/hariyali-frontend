@@ -265,6 +265,7 @@ const handleRadioChange = (event) => {
       });
       document.getElementById("panCard").focus();
     }
+    
 
     if (!userData?.user?.donarType) {
       validationErrors.push({ field: "userData.user.donarType", message: "Donor Type is required" });
@@ -1514,11 +1515,10 @@ console.log(donationsGift);
                                       }
                                   >
                                     <option disabled selected value="">Select Country</option>
-                                    {stateOptions.map((state) => (
-                                      <option key={state} value={state}>
-                                        {state}
-                                      </option>
-                                    ))}
+                                        <option >INDIA</option>
+                                        <option >ICELAND</option>
+                                        <option >JORDAN</option>
+                                        <option >LITHUANIA</option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (error.field === 'address[0].country') {
@@ -2652,13 +2652,11 @@ console.log(donationsGift);
                               </div>
                               <div className="col-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">Country <span className="red-text"> *</span></div>
+                                  <div className="col-4 ">Country<span className="red-text">*</span></div>
                                   <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
+                                    <select
+                                      className=" form-control-inside form-select"
                                       name="country"
-                                      placeholder="Country"
-                                      type="text"
                                       value={recipient[0].address[0].country}
                                       onChange={(e) =>
                                         handleRecipentAddressChange(
@@ -2666,7 +2664,15 @@ console.log(donationsGift);
                                           0
                                         )
                                       }
-                                    />
+                                    >
+                                      <option disabled selected value="">
+                                        Select Country
+                                      </option>
+                                      <option >INDIA</option>
+                                        <option >ICELAND</option>
+                                        <option >JORDAN</option>
+                                        <option >LITHUANIA</option>
+                                    </select>
                                     {errors.map((error, index) => {
                                       if (error.field === 'recipient[0].address[0].country') {
                                         return <div key={index} className="error-message red-text">{error.message}</div>;
@@ -3301,11 +3307,10 @@ console.log(donationsGift);
                                       <option disabled selected value="">
                                         Select Country
                                       </option>
-                                      {stateOptions.map((state) => (
-                                        <option key={state} value={state}>
-                                          {state}
-                                        </option>
-                                      ))}
+                                      <option >INDIA</option>
+                                        <option >ICELAND</option>
+                                        <option >JORDAN</option>
+                                        <option >LITHUANIA</option>
                                     </select>
                                     {errors.map((error, index) => {
                                       if (
@@ -4084,14 +4089,10 @@ console.log(donationsGift);
                                       <option disabled selected value="">
                                         Select Country
                                       </option>
-                                      {stateOptions.map((state) => (
-                                        <option
-                                          key={state}
-                                          value={state}
-                                        >
-                                          {state}
-                                        </option>
-                                      ))}
+                                      <option >INDIA</option>
+                                        <option >ICELAND</option>
+                                        <option >JORDAN</option>
+                                        <option >LITHUANIA</option>
                                     </select>
                                     {errors.map((error, index) => {
                                       if (error.field === 'recipient[0].address[0].country') {
@@ -4140,13 +4141,11 @@ console.log(donationsGift);
                               </div>
                               <div className="col-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">City</div>
+                                  <div className="col-4 ">City<span className="red-text">*</span></div>
                                   <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="city"
-                                      placeholder="City"
-                                      type="text"
+                                    <select
+                                      className=" form-control-inside form-select"
+                                      name="state"
                                       value={recipient[0].address[0].city}
                                       onChange={(e) =>
                                         handleRecipentAddressChange(
@@ -4154,7 +4153,16 @@ console.log(donationsGift);
                                           0
                                         )
                                       }
-                                    />
+                                    >
+                                      <option disabled selected value="">
+                                        Select City
+                                      </option>
+                                      <option>UDHNA</option>
+                                      <option>VADALI</option>
+                                      <option>SARDHAR</option>
+                                      <option>SHEHERA</option>
+
+                                    </select>
                                     {errors.map((error, index) => {
                                       if (error.field === 'recipient[0].address[0].city') {
                                         return <div key={index} className="error-message red-text">{error.message}</div>;

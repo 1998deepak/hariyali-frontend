@@ -260,6 +260,14 @@ const handleRadioChange = (event) => {
       document.getElementById("mobileNo").focus();
     }
 
+    if (!/^(?!.*[a-zA-Z])\d{10}$/.test(userData.user.addharCard)) {
+      validationErrors.push({
+        field: "userData.user.addharCard",
+        message:"Addhar Number must contain exactly 16 digits and no alphabetic characters",
+      });
+      document.getElementById("addharCard").focus();
+    }
+
     if (!userData?.user?.donarType) {
       validationErrors.push({
         field: "userData.user.donarType",
@@ -1484,46 +1492,6 @@ const handleRadioChange = (event) => {
                                   </div>
                                 </div>{" "}
                               </div>
-                              <div className="col-6">
-                                <div className="select-label">
-                                  {/* <div className="col-4 ">Prefix</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                    <label
-                                      for="residance"
-                                      class="form-label top-27"
-                                    >
-                                      Residance{" "}
-                                      <span className="red-text">*</span>
-                                    </label>
-                                    <select
-                                      className=" form-control-inside form-select form-control"
-                                      name="user.residance"
-                                      value={userData?.user?.residance}
-                                      onChange={handleChange}
-                                    >
-                                      <option disabled selected value="">
-                                        residance
-                                      </option>
-                                    </select>
-                                    {errors.map((error, index) => {
-                                      if (
-                                        error.field ===
-                                        "userData.user.residance"
-                                      ) {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
-                                  </div>
-                                </div>
-                              </div>
                               {userData?.user?.citizenship === "India" ? (
                                 <>
                                   <div className="col-6">
@@ -1804,11 +1772,10 @@ const handleRadioChange = (event) => {
                                       <option disabled selected value="">
                                         Select Country
                                       </option>
-                                      {stateOptions.map((state) => (
-                                        <option key={state} value={state}>
-                                          {state}
-                                        </option>
-                                      ))}
+                                        <option >INDIA</option>
+                                        <option >ICELAND</option>
+                                        <option >JORDAN</option>
+                                        <option >LITHUANIA</option>
                                     </select>
                                     {errors.map((error, index) => {
                                       if (
@@ -2552,48 +2519,41 @@ const handleRadioChange = (event) => {
                                   </div>
                                 </div>{" "}
                               </div>
-                              <div className="col-6">
-                                <div className="select-label">
-                                  {/* <div className="col-4 ">Prefix</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                    <label
-                                      for="residance"
-                                      class="form-label top-27"
-                                    >
-                                      Residance{" "}
-                                      <span className="red-text">*</span>
-                                    </label>
-                                    <select
-                                      className=" form-control-inside form-select form-control"
-                                      name="user.residance"
-                                      value={userData?.user?.residance}
-                                      onChange={handleChange}
-                                    >
-                                      <option disabled selected value="">
-                                        residance
-                                      </option>
-                                    </select>
-                                    {errors.map((error, index) => {
-                                      if (
-                                        error.field ===
-                                        "userData.user.residance"
-                                      ) {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
-                                  </div>
-                                </div>
-                              </div>
                               {userData?.user?.citizenship === "India" ? (
                                 <>
+                                  <div className="col-6">
+                                    <div className="select-label">
+                                      <div className="col-12 p0 field-wrapper">
+                                      <div>
+                                      <label>
+                                        Do you have an Pan card?
+                                      </label>
+                                      <div className="radio-buttons">
+                                        <label>
+                                          <input
+                                            type="radio"
+                                            name="aadharRadio"
+                                            value="yes"
+                                            checked={hasAadharCard}
+                                            onChange={handleRadioChange}
+                                          />{' '}
+                                          Yes
+                                        </label>{" "}
+                                        <label>
+                                          <input
+                                            type="radio"
+                                            name="aadharRadio"
+                                            value="no"
+                                            checked={!hasAadharCard}
+                                            onChange={handleRadioChange}
+                                          />{' '}
+                                          No
+                                        </label>
+                                      </div>
+                                      </div>
+                                      </div>
+                                    </div>
+                                  </div>
                                   <div className="col-6">
                                     <div className="select-label">
                                       {/* <div className="col-4 ">PAN card</div> */}
@@ -2635,39 +2595,6 @@ const handleRadioChange = (event) => {
                                           }
                                           return null;
                                         })}
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className="col-6">
-                                    <div className="select-label">
-                                      <div className="col-12 p0 field-wrapper">
-                                      <div>
-                                      <label>
-                                        Do you have an Aadhar card?
-                                      </label>
-                                      <div className="radio-buttons">
-                                        <label>
-                                          <input
-                                            type="radio"
-                                            name="aadharRadio"
-                                            value="yes"
-                                            checked={hasAadharCard}
-                                            onChange={handleRadioChange}
-                                          />{' '}
-                                          Yes
-                                        </label>{" "}
-                                        <label>
-                                          <input
-                                            type="radio"
-                                            name="aadharRadio"
-                                            value="no"
-                                            checked={!hasAadharCard}
-                                            onChange={handleRadioChange}
-                                          />{' '}
-                                          No
-                                        </label>
-                                      </div>
-                                      </div>
                                       </div>
                                     </div>
                                   </div>
@@ -2866,11 +2793,10 @@ const handleRadioChange = (event) => {
                                       <option disabled selected value="">
                                         Select Country
                                       </option>
-                                      {stateOptions.map((state) => (
-                                        <option key={state} value={state}>
-                                          {state}
-                                        </option>
-                                      ))}
+                                        <option >INDIA</option>
+                                        <option >ICELAND</option>
+                                        <option >JORDAN</option>
+                                        <option >LITHUANIA</option>
                                     </select>
                                     {errors.map((error, index) => {
                                       if (
