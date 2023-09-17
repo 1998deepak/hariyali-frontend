@@ -184,12 +184,9 @@ function OfflineDonation() {
 
   const [recipient, setRecipient] = useState(initialRecipientData);
 
-  const [donarIdList, setDonarIdList] = useState([]);
+  const [userIdList, setUserIdList] = useState([]);
 
   const [loading, setLoading] = useState(false);
-
-  const [accountList, setAccountList] = useState([]);
-  const [bankList, setBankList] = useState([]);
 
   function hasValues(obj) {
     for (let key in obj) {
@@ -423,9 +420,6 @@ function OfflineDonation() {
     )
   }
 
-
-
-
   const userAdd = async (e) => {
     e.preventDefault();
 
@@ -523,61 +517,15 @@ function OfflineDonation() {
   };
 
   useEffect(() => {
-    getDonarIdList();
-    getAllActiveBankAccounts();
-    getAllActiveBanks();
+    getUserIdList();
   }, []);
-  // const getAllPackages = async () => {
-  //   setLoading(true);
-  //   const response = await DonationService.getAllPackages();
-  //   if (response?.status === SUCCESS) {
-  //     console.log(response);
-  //     let packageData = [...initialPackageData];
-  //     console.log(packageData);
-  //     const parsedData = JSON.parse(response.data);
 
-  //     let data = parsedData.map((item)=>({packageName:item.package_name,bouquetPrice: item.bouquet_price,noOfBouquets:1,amount:item.bouquet_price}))
-      
-  //     setPackageData(data);
-  //     calculateOverallTotal(data)
-  //     setLoading(false);
-  //   } else {
-  //     toast.error(response?.message);
-  //     setLoading(false);
-  //   }
-  // };
-  const getAllActiveBankAccounts = async () => {
+  const getUserIdList = async () => {
     setLoading(true);
-    const response = await DonationService.getAllActiveAccount();
-    if (response?.status === SUCCESS) {
-      setAccountList(response.data);
-      setLoading(false);
-    } else {
-      toast.error(response?.message);
-      setLoading(false);
-    }
-  };
-
-  const getAllActiveBanks = async () => {
-    setLoading(true);
-    const response = await DonationService.getAllActiveBanks();
-    console.log(response);
-    if (response?.status === SUCCESS) {
-      console.log(response.data);
-      setBankList(response.data);
-      setLoading(false);
-    } else {
-      toast.error(response?.message);
-      setLoading(false);
-    }
-  };
-
-  const getDonarIdList = async () => {
-    setLoading(true);
-    const response = await DonationService.getAllDonarId();
+    const response = await DonationService.getAllUserId();
     if (response?.status === 200) {
       // let data = response.data.map((item)=> ({ label: item, value: item }))
-      setDonarIdList(response.data);
+      setUserIdList(response.data);
       setLoading(false);
     } else {
       toast.error(response?.message);
@@ -883,9 +831,9 @@ console.log(donationsGift);
   };
 
   // get Detail by donar ID
-  const handleDonarId = async (donorId) => {
+  const handleSearchId = async (donorId) => {
     setLoading(true);
-    let response = await DonationService.getDetailsByDonorId(donorId);
+    let response = await DonationService.getDetailsByEmailIdOrDonorId(donorId);
     console.log("API Response:", response);
 
     if (response?.status === "Success") {
@@ -1735,139 +1683,16 @@ console.log(donationsGift);
                           </div>
                           <hr />
                         </div>
-                        <div className="actionheadingdiv">Mode of Payment
-                          <div
-                            className="float-right addminicon"
-                            onClick={addpaymenticon}
-                          >
-                            <FaPlusSquare />
-                          </div></div>
-                        <PaymentDetails donations={donations} errors={errors} bankList={bankList} handlePaymentInfoChange={handlePaymentInfoChange} index={0}/>
-                        <div id="addpaymentDiv" className="hide">
-                          <hr />
-                          <div className="actionheadingdiv">Mode of Payment
-                            <div
-                              className="float-right addminicon"
-                              onClick={minpaymentDiv}
-                            >
-                              <FaMinusSquare />
-                            </div></div>
-                          <div className="col-12 pr15 mt20">
-                            <div className="row">
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 "> Select Mode</div>
-                                  <div className="col-8 p0">
-                                    <select
-                                      name="paymentMode"
-                                      className=" form-control-inside form-select"
-                                      value={donations[0].paymentInfo[1].paymentMode}
-                                      onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
-                                      }
-                                    >
-                                      <option selected>Select</option>
-                                      <option value="Cheque">Cheque</option>
-                                      <option value="Cash">Cash</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 "> Bank Name</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="bankName"
-                                      placeholder="Bank Name"
-                                      type="text"
-                                      value={donations[0]?.paymentInfo[1].bankName}
-                                      onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 "> Chq/DD No.</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="chqORddNo"
-                                      placeholder="Chq/DD No."
-                                      type="text"
-                                      value={donations[0]?.paymentInfo[1].chqORddNo}
-                                      onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">Chq/DD Date</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="chqORddDate"
-                                      placeholder="Chq/DD Date"
-                                      type="date"
-                                      value={
-                                        donations[0]?.paymentInfo[1].chqORddDate
-                                      }
-                                      onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">Payment Date</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="paymentDate"
-                                      placeholder="Payment Date"
-                                      type="date"
-                                      value={
-                                        donations[0]?.paymentInfo[1].paymentDate
-                                      }
-                                      onChange={(event) =>
-                                        handlePaymentInfoChange(event, 0, 1)
-                                      }
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">Amount</div>
-                                  <div className="col-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="amount"
-                                      placeholder="Amount"
-                                      type="number"
-                                      value={donations[0]?.paymentInfo[1].amount}
-                                      onChange={(event) => {
-                                        if (event.target.value < 0) {
-                                          event.target.value = 0;
-                                        }
-                                        handlePaymentInfoChange(event, 0, 1);
-                                      }}
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                        <div className="actionheadingdiv">
+                          Mode of Payment
                         </div>
+                        <PaymentDetails
+                          donations={donations}
+                          errors={errors}
+                          setLoading={setLoading}
+                          handlePaymentInfoChange={handlePaymentInfoChange}
+                          index={0}
+                        />
                         <button
                           className="mt20 mr10 webform-button--submit"
                           onClick={userAdd}
@@ -2648,25 +2473,17 @@ console.log(donationsGift);
 
                         </div>
                         <hr />
-                        <div className="actionheadingdiv">Mode of Payment
-                          <div
-                            className="float-right addminicon"
-                            onClick={addgiftpaymenticon}
-                          >
-                            <FaPlusSquare />
-                          </div></div>
-                        <PaymentDetails donations={donations} errors={errors} bankList={bankList} handlePaymentInfoChange={handlePaymentInfoChange} index={0}/>
-                        <div id="addgiftpaymentDiv" className="hide">
-                          <hr />
-                          <div className="actionheadingdiv">Mode of Payment
-                            <div
-                              className="float-right addminicon"
-                              onClick={mingiftpaymentDiv}
-                            >
-                              <FaMinusSquare />
-                            </div></div>
-                            <PaymentDetails donations={donations} errors={errors} bankList={bankList} handlePaymentInfoChange={handlePaymentInfoChange} index={1}/>
+                        <div className="actionheadingdiv">
+                          Mode of Payment
                         </div>
+                        <PaymentDetails
+                          donations={donations}
+                          errors={errors}
+                          setLoading={setLoading}
+                          handlePaymentInfoChange={handlePaymentInfoChange}
+                          index={0}
+                        />
+
                         <button
                           type="submit"
                           className="mt20 mr10 webform-button--submit"
@@ -2718,7 +2535,10 @@ console.log(donationsGift);
                               <div className="row select-label">
                                 <div className="col-4 ">Donor ID <span className="red-text">*</span></div>
                                 <div className="col-8 p0">
-                                  <SearchWithSuggestions data={donarIdList} onClickSearch={handleDonarId}/>
+                                  <SearchWithSuggestions
+                                    data={userIdList}
+                                    onClickSearch={handleSearchId}
+                                  />
                                 </div>
                               </div>
                             </div>
@@ -3272,25 +3092,17 @@ console.log(donationsGift);
                           </div>
                           <hr />
                         </div>
-                        <div className="actionheadingdiv">Mode of Payment
-                          <div
-                            className="float-right addminicon"
-                            onClick={addpaymenticon}
-                          >
-                            <FaPlusSquare />
-                          </div></div>
-                          <PaymentDetails donations={donations} errors={errors} bankList={bankList} handlePaymentInfoChange={handlePaymentInfoChange} index={0}/>
-                        <div id="addpaymentDiv" className="hide">
-                          <hr />
-                          <div className="actionheadingdiv">Mode of Payment
-                            <div
-                              className="float-right addminicon"
-                              onClick={minpaymentDiv}
-                            >
-                              <FaMinusSquare />
-                            </div></div>
-                            <PaymentDetails donations={donations} errors={errors} bankList={bankList} handlePaymentInfoChange={handlePaymentInfoChange} index={1}/>
+                        <div className="actionheadingdiv">
+                          Mode of Payment
                         </div>
+                        <PaymentDetails
+                          donations={donations}
+                          errors={errors}
+                          setLoading={setLoading}
+                          handlePaymentInfoChange={handlePaymentInfoChange}
+                          index={0}
+                        />
+
                         <button
                           className="mt20 mr10 webform-button--submit"
                           onClick={(e) => createDonation(e, userData)}
@@ -3325,7 +3137,10 @@ console.log(donationsGift);
                               <div className="row select-label">
                                 <div className="col-4 ">Donor ID <span className="red-text">*</span></div>
                                 <div className="col-8 p0">
-                                <SearchWithSuggestions data={donarIdList} onClickSearch={handleDonarId}/>
+                                  <SearchWithSuggestions
+                                    data={userIdList}
+                                    onClickSearch={handleSearchId}
+                                  />
                                 </div>
                               </div>
                             </div>
@@ -4072,25 +3887,17 @@ console.log(donationsGift);
 
                         </div>
                         <hr />
-                        <div className="actionheadingdiv">Mode of Payment
-                          <div
-                            className="float-right addminicon"
-                            onClick={addgiftpaymenticon}
-                          >
-                            <FaPlusSquare />
-                          </div></div>
-                          <PaymentDetails donations={donations} errors={errors} bankList={bankList} handlePaymentInfoChange={handlePaymentInfoChange} index={0}/>
-                        <div id="addgiftpaymentDiv" className="hide">
-                          <hr />
-                          <div className="actionheadingdiv">Mode of Payment
-                            <div
-                              className="float-right addminicon"
-                              onClick={mingiftpaymentDiv}
-                            >
-                              <FaMinusSquare />
-                            </div></div>
-                            <PaymentDetails donations={donations} errors={errors} bankList={bankList} handlePaymentInfoChange={handlePaymentInfoChange} index={1}/>
+                        <div className="actionheadingdiv">
+                          Mode of Payment
                         </div>
+                        <PaymentDetails
+                          donations={donations}
+                          errors={errors}
+                          setLoading={setLoading}
+                          handlePaymentInfoChange={handlePaymentInfoChange}
+                          index={0}
+                        />
+
                         <button
                           type="submit"
                           className="mt20 mr10 webform-button--submit"

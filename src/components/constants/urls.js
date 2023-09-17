@@ -8,11 +8,13 @@ export const URLS = {
     USERADD: "/userAddOffline",
     USERONLINEADD: "/userAddOnline",
     GETBYEMAILID: "/getuser/",
+    GETDONORIDBYEMAILID:'/getUserDonarId/',
     GETBYEXISTINGEMAILID: "/getExistingUser/",
     GETALLPACKAGE: "/getAllPackages",
 
     // GET USER DETAILS BY DONOR ID
     GETUSERDETAILSBYDONORID: "/getUserDetailsByDonorId/",
+    GETUSERDETAILSBYDONORIDOREMAILID: "/getUserPersonalDetailsbyEmailOrDonorId",
     ADDNEWDONATIONS: "/newDonation",
 
     //opt
@@ -27,6 +29,7 @@ export const URLS = {
     UPDATEUSER: "/updateUser",
     UPDATEDONATIONOFUSER: "/updateDonation",
     GETDONARIDLIST: "/getAllDonarId",
+    GETALLUSERIDLIST: "/getAllUserId",
 
     // Web donor
     GETALLUSERWITHWEBID: "/getAlluserWithWebId",

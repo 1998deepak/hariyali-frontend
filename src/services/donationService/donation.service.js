@@ -94,6 +94,48 @@ export const DonationService = {
       return error.response.data;
     }
   },
+  getDetailsByEmailIdOrDonorId: async (id) => {
+    console.log(id);
+    id = (await EncryptionService.encrypt(id)).toString();
+    try {
+      const response = await APIService.Instance.get(
+        URLS.GETUSERDETAILSBYDONORIDOREMAILID +"?emailOrDonorId="+ id
+      );
+      console.log(response);
+      return response?.data;
+    } catch (error) {
+      return error.response.data;
+    }
+  },
+
+
+  getDonorIdByEmailId: async (emailId) => {
+    console.log(emailId);
+    emailId = (await EncryptionService.encrypt(emailId)).toString();
+    try {
+      const response = await APIService.Instance.get(
+        URLS.GETDONORIDBYEMAILID + emailId
+      );
+      console.log(response);
+      return response?.data;
+    } catch (error) {
+      return error.response.data;
+    }
+  },
+
+  getDonorIdByEmailId: async (emailId) => {
+    console.log(emailId);
+    emailId = (await EncryptionService.encrypt(emailId)).toString();
+    try {
+      const response = await APIService.Instance.get(
+        URLS.GETDONORIDBYEMAILID + emailId
+      );
+      console.log(response);
+      return response?.data;
+    } catch (error) {
+      return error.response.data;
+    }
+  },
 
   getExistingDetailsByEmailId: async (emailId) => {
     console.log(emailId);
@@ -319,6 +361,20 @@ export const DonationService = {
     try {
       const response = await APIService.Instance.get(
         URLS.GETDONARIDLIST
+      );
+      return response;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+        toast.error(err?.message);
+      }
+    }
+  },
+  getAllUserId: async () => {
+    try {
+      const response = await APIService.Instance.get(
+        URLS.GETALLUSERIDLIST
       );
       return response;
     } catch (err) {

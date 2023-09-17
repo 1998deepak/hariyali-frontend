@@ -9,7 +9,7 @@ const PrivacyPolicy = ({
   setInformationShare,
   handleShowConditions,
   isDisabled,
-  privacyPolicymessage,
+  privacyPolicymessage
 }) => {
   return (
     <>

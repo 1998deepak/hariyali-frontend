@@ -4,9 +4,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { DonationService } from "../../../../services/donationService/donation.service";
 import { useParams, useNavigate } from "react-router-dom";
-import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
 import { stateOptions } from "../../../constants/constants";
 import Loader from "../../../common/loader/Loader";
+import PaymentDetails from "../../../common/PaymentDetails";
 
 function UserSpecificDonationView() {
 
@@ -50,20 +50,39 @@ function UserSpecificDonationView() {
       recipient: [],
       paymentInfo: [
         {
+          paymentInfoId: "",
           paymentMode: "",
           bankName: "",
           chqORddNo: "",
           chqORddDate: "",
           paymentDate: "",
-          amount: 0,
-        },
-        {
-          paymentMode: "",
-          bankName: "",
-          chqORddNo: "",
-          chqORddDate: "",
-          paymentDate: "",
-          amount: 0,
+          amount: "",
+          donation: "",
+          remark: "",
+          paymentTrackingId: "",
+          bankPaymentRefNo: "",
+          cardName: "",
+          currency: "",
+          paymentStatus: "",
+          orderId: "",
+          accountId: "",
+          receiptDate: "",
+          receivedAmount: "",
+          bankCharge: "",
+          documentNumber: "",
+          bankAddress: "",
+          depositNumber: "",
+          depositDate: "",
+          receiptNumber: "",
+          realizationDate: "",
+          creditCardNumber: "",
+          cardExpiry: "",
+          cardHolderName: "",
+          chequeNumber: "",
+          chequeDate: "",
+          demandDraftNumber: "",
+          demandDraftDate: "",
+          totalAmount: "",
         },
       ],
     },
@@ -442,103 +461,12 @@ console.log(donationData);
                   {
                     donationData.paymentInfo.map((payment)=>{
                       return (<>
-                      <div className="col-12 pr15 mt10 mb-2r">
-                      <div className="row">
-                        <div className="col-6">
-                          <div className="row select-label">
-                            <div className="col-4 "> Select Mode</div>
-                            <div className="col-8 p0">
-                              <select
-                                name="paymentMode"
-                                className=" form-control-inside form-select"
-                                value={payment.paymentMode || ""}
-                               disabled
-                                required
-                              >
-                                <option disabled selected value="">Donar Type</option>
-                                <option value="Cheque">Cheque</option>
-                                <option value="Cash">Cash</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-6">
-                          <div className="row select-label">
-                            <div className="col-4 "> Bank Name</div>
-                            <div className="col-8 p0">
-                              <input
-                                className="form-control-inside"
-                                name="bankName"
-                                placeholder="Bank Name"
-                                type="text"
-                                value={payment.bankName || ""}
-                                disabled
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-6">
-                          <div className="row select-label">
-                            <div className="col-4 "> Chq/DD No.</div>
-                            <div className="col-8 p0">
-                              <input
-                                className="form-control-inside"
-                                name="chqORddNo"
-                                placeholder="Chq/DD No."
-                                type="text"
-                                value={payment.chqORddNo || ""}
-                                disabled
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-6">
-                          <div className="row select-label">
-                            <div className="col-4 ">Chq/DD Date</div>
-                            <div className="col-8 p0">
-                              <input
-                                className="form-control-inside"
-                                name="chqORddDate"
-                                placeholder="Chq/DD Date"
-                                type="date"
-                                value={payment.chqORddDate || ""}
-                                disabled
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-6">
-                          <div className="row select-label">
-                            <div className="col-4 ">Payment Date</div>
-                            <div className="col-8 p0">
-                              <input
-                                className="form-control-inside"
-                                name="paymentDate"
-                                placeholder="Payment Date"
-                                type="date"
-                                value={payment.paymentDate || ""}
-                                disabled
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-6">
-                          <div className="row select-label">
-                            <div className="col-4 ">Amount</div>
-                            <div className="col-8 p0">
-                              <input
-                                className="form-control-inside"
-                                name="amount"
-                                placeholder="Amount"
-                                type="number"
-                                value={payment.amount || ""}
-                                disabled
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                        <PaymentDetails
+                          donations={donationData}
+                          setLoading={setLoading}
+                          index={0}
+                          isDisabled
+                        />
                     <hr/>
                     </>)
                     })
