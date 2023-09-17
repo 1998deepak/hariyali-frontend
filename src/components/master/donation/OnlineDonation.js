@@ -27,7 +27,8 @@ function OnlineDonation() {
   const [loading, setLoading] = useState(false);
   const [newEmail, setNewEmail] = useState(null);
   const [gatewayConfiguration, setGatewayConfiguration] = useState(null);
-  const [privacyPolicy, setPrivacyPolicy] = useState(false);
+  const [privacyPolicy1, setPrivacyPolicy1] = useState(false);
+  const [privacyPolicy2, setPrivacyPolicy2] = useState(false);
   const [informationShare, setInformationShare] = useState(false);
 
   const [donation, setDonation] = useState("");
@@ -180,6 +181,7 @@ function OnlineDonation() {
 
   const [captchaVerfied, setCaptchaVerfied] = useState(false);
   const [message, setMessage] = useState("");
+  const [privacyPolicymessage, setPrivacyPolicymessage] = useState("");
   function hasValues(obj) {
     for (let key in obj) {
       console.log(obj.hasOwnProperty(key));
@@ -456,7 +458,8 @@ function OnlineDonation() {
     setRecipient(initialRecipientData);
     setUserData(initialUserData);
     setInformationShare("yes");
-    setPrivacyPolicy(false);
+    setPrivacyPolicy1(false);
+    setPrivacyPolicy2(false);
   };
 
   const setCaptchaFlag = async (flag) => {
@@ -467,12 +470,11 @@ function OnlineDonation() {
     e.preventDefault();
     const isValid = validate();
     console.log("isValid:", isValid);
-
-    if (isValid) {
-      if (!privacyPolicy) {
-        toast.error("Please Accept Privacy Policy");
-        return;
-      }
+    if (!privacyPolicy1 || !privacyPolicy2) {
+    
+      setPrivacyPolicymessage("Please Accept Privacy Policy");
+    } else if (isValid) {
+      setPrivacyPolicymessage("");
       let updatedUserPackage = [];
       packageData.map((item) => {
         if (item.noOfBouquets && item.amount) {
@@ -1992,10 +1994,14 @@ function OnlineDonation() {
                           <PrivacyPolicy
                             informationShare={informationShare}
                             setInformationShare={setInformationShare}
-                            privacyPolicy={privacyPolicy}
-                            setPrivacyPolicy={setPrivacyPolicy}
+                            privacyPolicy1={privacyPolicy1}
+                            privacyPolicy2={privacyPolicy2}
+                            setPrivacyPolicy1={setPrivacyPolicy1}
+                            setPrivacyPolicy2={setPrivacyPolicy2}
                             handleShowConditions={handleShowConditions}
+                            privacyPolicymessage={privacyPolicymessage}
                           />
+
                           <button
                             type="submit"
                             className="mt20 mr10 webform-button--submit"
@@ -3142,9 +3148,12 @@ function OnlineDonation() {
                         <PrivacyPolicy
                           informationShare={informationShare}
                           setInformationShare={setInformationShare}
-                          privacyPolicy={privacyPolicy}
-                          setPrivacyPolicy={setPrivacyPolicy}
+                          privacyPolicy1={privacyPolicy1}
+                          privacyPolicy2={privacyPolicy2}
+                          setPrivacyPolicy1={setPrivacyPolicy1}
+                          setPrivacyPolicy2={setPrivacyPolicy2}
                           handleShowConditions={handleShowConditions}
+                          privacyPolicymessage={privacyPolicymessage}
                         />
                         <button
                           type="submit"

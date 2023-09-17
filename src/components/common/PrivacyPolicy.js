@@ -1,11 +1,14 @@
 import React from "react";
 
 const PrivacyPolicy = ({
-  privacyPolicy,
-  setPrivacyPolicy,
+  privacyPolicy1,
+  privacyPolicy2,
+  setPrivacyPolicy1,
+  setPrivacyPolicy2,
   informationShare,
   setInformationShare,
   handleShowConditions,
+  privacyPolicymessage,
 }) => {
   return (
     <>
@@ -15,8 +18,8 @@ const PrivacyPolicy = ({
             <input
               type="checkbox"
               name="Condition"
-              value={privacyPolicy}
-              onChange={() => setPrivacyPolicy(!privacyPolicy)}
+              value={privacyPolicy1}
+              onChange={() => setPrivacyPolicy1(!privacyPolicy1)}
               className="checkboxinput"
             />
             By checking this box, I confirm that I have read, understood and
@@ -35,8 +38,8 @@ const PrivacyPolicy = ({
           <input
               type="checkbox"
               name="Condition"
-              value={privacyPolicy}
-              onChange={() => setPrivacyPolicy(!privacyPolicy)}
+              value={privacyPolicy2}
+              onChange={() => setPrivacyPolicy2(!privacyPolicy2)}
               className="checkboxinput"
             />I understand that I am free to withdraw my consent to the processing
             of my personal data, at any time, by writing to
@@ -49,7 +52,7 @@ const PrivacyPolicy = ({
         value={informationShare}
         onChange={(e) => setInformationShare(e.target.value)}
       >
-        <input type="radio" name="consent" value="no" checked={informationShare ==="no"} />
+        <input type="radio" name="consent" value="yes" checked={informationShare ==="yes"} />
         {"  "}
         Yes, I consent to receive campaign related correspondences regarding
         Project Hariyali.
@@ -59,6 +62,7 @@ const PrivacyPolicy = ({
         No, I do not consent to receive campaign related correspondences
         regarding Project Hariyali.
       </div>
+      <div><span className="red-text">{privacyPolicymessage}</span></div>
     </>
   );
 };
