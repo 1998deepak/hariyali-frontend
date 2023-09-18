@@ -290,8 +290,7 @@ function HomePage() {
             <div className="col-12 col-md-6">
               <div className="program-details">
                 <h3 className="mb-3">Who We Are</h3>
-                <p>Project Hariyali is a joint initiative of Mahindra Foundation and Naandi Foundation. One million trees have been planted each year since 
-                  2007 across India. The project is part of nature-based solution that focuses on natural resource management and global organic farming protocols to improve the eco-system. Going forward, the project aims to plant 5 million trees per annum.</p>
+                <p>Project Hariyali is a joint initiative of Mahindra Foundation and Naandi Foundation. One million trees have been planted each year since 2007 across India. The project is part of nature-based solution that focuses on natural resource management and global organic farming protocols to improve the eco-system. Going forward, the project aims to plant 5 million trees per annum.</p>
                 <div className="pt-5">
                   <a href="/AboutUs" className="btn btn-secondary">Know More</a>
                   <Link className="btn btn-primary" to={`/OnlineDonation`}>Donate</Link>
@@ -364,8 +363,9 @@ function HomePage() {
           <div className="col-12 col-md-6">
             <div className="program-details">
               <h3 className="mb-3">How To Associate</h3>
-              <p>There are two seasons for plantation - Monsoon and Winter. You can choose to plant in any of these seasons or both with one time contribution of ₹ 450/- per plant. The sapling takes 3 years of nurturing and monitoring to be self – dependent. 
-                We provide support to the plant for these 3 years and in case if the plant doesn't survive, we replace it with a new sapling.</p>
+              <p>
+              There  are two seasons for plantation - Monsoon and Winter. You can choose to plant in any of these seasons or both with one time contribution of ₹ 450/- per plant. The sapling takes 3 years of nurturing and monitoring to be self – dependent. We provide support to the plant for these 3 years and in case if the plant doesn't survive, we replace it with a new sapling.
+              </p>
               <div className="pt-5">
                 <a href="/WaystoAssociate" className="btn btn-secondary">Read More</a>
                 <Link className="btn btn-primary" to={`/OnlineDonation`}>Donate</Link>
