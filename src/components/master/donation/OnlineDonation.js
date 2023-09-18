@@ -57,7 +57,7 @@ function OnlineDonation() {
 //     setdecodedString(decodedSource);
 // }
 
-const [hasAadharCard, setHasAadharCard] = useState(false);
+const [hasAadharCard, setHasAadharCard] = useState(true);
 
 const handleRadioChange = (event) => {
   setHasAadharCard(event.target.value === 'yes');
@@ -290,7 +290,7 @@ const handleRadioChange = (event) => {
     }
     console.log(hasAadharCard);
     if(userData?.user?.citizenship === 'India'){
-      if(hasAadharCard === false){
+      if(hasAadharCard === true){
         if (!userData?.user?.panCard) {
           validationErrors.push({
             field: "userData.user.panCard",
@@ -1533,7 +1533,7 @@ const handleRadioChange = (event) => {
                                       <div className="col-12 p0 field-wrapper">
                                       <div>
                                       <label>
-                                        Do you have an Aadhar card?
+                                        Do you have an Pan card?
                                       </label>
                                       <div className="radio-buttons">
                                         <label>
@@ -1562,45 +1562,7 @@ const handleRadioChange = (event) => {
                                     </div>
                                   </div>
                                   {hasAadharCard ? (
-                                  <div id="addharId" className="col-6">
-                                    <div className="select-label">
-                                      {/* <div className="col-4 ">PAN card</div> */}
-                                      <div className="col-12 p0 field-wrapper">
-                                        <label
-                                          for="addharCard"
-                                          class="form-label top-27"
-                                        >
-                                          Addhar Card{" "}
-                                          <span className="red-text">*</span>
-                                        </label>
-                                        <input
-                                          className="form-control-inside form-control"
-                                          name="user.addharCard"
-                                          id="addharCard"
-                                          placeholder="Addhar card No."
-                                          type="text"
-                                          maxLength={16}
-                                          value={userData?.user?.addharCard}
-                                          onChange={handleChange}
-                                        />
-                                        {errors.map((error, index) => {
-                                          if (
-                                            error.field === "userData.user.addharCard"
-                                          ) {
-                                            return (
-                                              <div
-                                                key={index}
-                                                className="error-message red-text"
-                                              >
-                                                {error.message}
-                                              </div>
-                                            );
-                                          }
-                                          return null;
-                                        })}
-                                      </div>
-                                    </div>
-                                  </div>) :  <div className="col-6">
+                                  <div className="col-6">
                                     <div className="select-label">
                                       {/* <div className="col-4 ">PAN card</div> */}
                                       <div className="col-12 p0 field-wrapper">
@@ -1644,7 +1606,48 @@ const handleRadioChange = (event) => {
                                         })}
                                       </div>
                                     </div>
-                                  </div>}
+                                  </div>) :(
+                                    <div id="addharId" className="col-6">
+                                    <div className="select-label">
+                                      {/* <div className="col-4 ">PAN card</div> */}
+                                      <div className="col-12 p0 field-wrapper">
+                                        <label
+                                          for="addharCard"
+                                          class="form-label top-27"
+                                        >
+                                          Addhar Card{" "}
+                                          <span className="red-text">*</span>
+                                        </label>
+                                        <input
+                                          className="form-control-inside form-control"
+                                          name="user.addharCard"
+                                          id="addharCard"
+                                          placeholder="Addhar card No."
+                                          type="text"
+                                          maxLength={16}
+                                          value={userData?.user?.addharCard}
+                                          onChange={handleChange}
+                                        />
+                                        {errors.map((error, index) => {
+                                          if (
+                                            error.field === "userData.user.addharCard"
+                                          ) {
+                                            return (
+                                              <div
+                                                key={index}
+                                                className="error-message red-text"
+                                              >
+                                                {error.message}
+                                              </div>
+                                            );
+                                          }
+                                          return null;
+                                        })}
+                                      </div>
+                                    </div>
+                                  </div> 
+                                  ) 
+                                   }
                                 </>
                               ) : (
                                 <>
@@ -2586,6 +2589,7 @@ const handleRadioChange = (event) => {
                                       </div>
                                     </div>
                                   </div>
+                                  {hasAadharCard ? (
                                   <div className="col-6">
                                     <div className="select-label">
                                       {/* <div className="col-4 ">PAN card</div> */}
@@ -2600,6 +2604,7 @@ const handleRadioChange = (event) => {
                                         <input
                                           className="form-control-inside form-control"
                                           name="user.panCard"
+                                          id="panCard"
                                           placeholder="PAN card No."
                                           type="text"
                                           value={userData?.user?.panCard}
@@ -2629,18 +2634,13 @@ const handleRadioChange = (event) => {
                                         })}
                                       </div>
                                     </div>
-                                  </div>
-                                  {hasAadharCard && (
-                                  <div
-                                    id="addharId"
-                                    className="col-6"
-                                    style={{ display: "none" }}
-                                  >
+                                  </div>) :(
+                                    <div id="addharId" className="col-6">
                                     <div className="select-label">
                                       {/* <div className="col-4 ">PAN card</div> */}
                                       <div className="col-12 p0 field-wrapper">
                                         <label
-                                          for="panCard"
+                                          for="addharCard"
                                           class="form-label top-27"
                                         >
                                           Addhar Card{" "}
@@ -2649,6 +2649,7 @@ const handleRadioChange = (event) => {
                                         <input
                                           className="form-control-inside form-control"
                                           name="user.addharCard"
+                                          id="addharCard"
                                           placeholder="Addhar card No."
                                           type="text"
                                           maxLength={16}
@@ -2657,8 +2658,7 @@ const handleRadioChange = (event) => {
                                         />
                                         {errors.map((error, index) => {
                                           if (
-                                            error.field ===
-                                            "userData.user.addharCard"
+                                            error.field === "userData.user.addharCard"
                                           ) {
                                             return (
                                               <div
@@ -2673,8 +2673,9 @@ const handleRadioChange = (event) => {
                                         })}
                                       </div>
                                     </div>
-                                  </div>
-                                  )}
+                                  </div> 
+                                  ) 
+                                   }
                                 </>
                               ) : (
                                 <>
