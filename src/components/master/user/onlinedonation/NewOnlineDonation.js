@@ -16,27 +16,9 @@ function NewOnlineDonation() {
   const initialPackageData = [
     {
       packageName: "",
-      bouquetPrice: "",
-      noOfBouquets: "",
-      amount: "",
-    },
-    {
-      packageName: "",
-      bouquetPrice: "",
-      noOfBouquets: "",
-      amount: "",
-    },
-    {
-      packageName: "",
-      bouquetPrice: "",
-      noOfBouquets: "",
-      amount: "",
-    },
-    {
-      packageName: "",
-      bouquetPrice: "",
-      noOfBouquets: "",
-      amount: "",
+      bouquetPrice: 450,
+      noOfBouquets: 1,
+      amount: 450,
     },
   ];
 
@@ -260,17 +242,14 @@ function NewOnlineDonation() {
     setPackageData(packages);
   };
 
-  const calculateOverallTotal = (packageData) => {
-    const totalAmountOfPackage = packageData.reduce(
-      (accumulator, packageItem, index) => {
-        return (
-          accumulator + packageItem.bouquetPrice * packageItem.noOfBouquets
-        );
-      },
-      0
-    );
+  const calculateOverallTotal = (row) => {
+    console.log(row)
+    const totalCost = 450 * parseInt(row[0].noOfBouquets);
+    console.log(row[0].noOfBouquets);
+    console.log(totalCost);
     const updatedDonations = [...donations];
-    updatedDonations[0]["totalAmount"] = totalAmountOfPackage;
+    updatedDonations[0]["totalAmount"] = totalCost;
+    console.log(updatedDonations);
     setDonations(updatedDonations);
   };
 

@@ -6,9 +6,10 @@ import { toast } from "react-toastify";
 const PackageDetails = ({
   packageData,
   setPackageData,
+  donations,
+  setDonations,
   calculateOverallTotal,
   initialPackageData,
-  donations,
   setLoading
 }) => {
 
@@ -48,8 +49,7 @@ const PackageDetails = ({
         const totalCost = 450 * row.noOfBouquets;
         userPackageData[rowIndex]["amount"] = totalCost;
         setPackageData(userPackageData);
-        calculateOverallTotal(packageData);
-        console.log(userPackageData[0].amount);
+        calculateOverallTotal(userPackageData);
       };
 
   return (
@@ -96,7 +96,7 @@ const PackageDetails = ({
           </tbody>
         </table>
         <div className="overalltotal">
-          Overall Total : INR{" "}{packageData[0].amount}{" "}
+          Overall Total : INR{" "}{packageData[0].amount}
         </div>
       </div>
     </>
