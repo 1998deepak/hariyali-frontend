@@ -89,7 +89,7 @@ p {
   width: 30px;
   margin-right: 2px;
 }
-
+.tree-featureswidth{width: 355px;}
 .homesubmit-div {
   /* font-family: "Georama", sans-serif; */
   font-size: 1rem;
@@ -5110,10 +5110,13 @@ iframe {
   bottom: 40px;
   right: 40px;
 }
+.css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root{background: #f1f1f1 !important;}
 .css-1elwnq4-MuiPaper-root-MuiAccordion-root{
-  border:1px solid #ccc;
+  border:1px solid #ccc;    margin-bottom: 2px;
   font-family: 'Montserrat', sans-serif;
 }
+
+.greencolor{color: #23aa4a;}
 .css-ahj2mt-MuiTypography-root{
   font-family: 'Montserrat', sans-serif !important;
 }
@@ -5127,10 +5130,13 @@ iframe {
 }
 .css-1elwnq4-MuiPaper-root-MuiAccordion-root.Mui-expanded{
   margin: 0 !important;
-}
+}.css-o4b71y-MuiAccordionSummary-content.Mui-expanded{margin:10px 0 !important}
 
 .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded{
-  background: #23aa4a;
+  background: #23aa4a !important;
+  color: #fff !important;min-height: 50px !important;
+}
+.css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded svg{
   color: #fff !important;
 }
 .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded .css-ahj2mt-MuiTypography-root{
@@ -5167,6 +5173,31 @@ iframe {
   align-items: stretch;
   height: 100%;
 }
+.impactbg1{background-image: url(../img/impact-bg/impact-bg1.png); background-repeat: no-repeat;     height: 208px;
+     background-position: center; border: 4px solid #ffffff7d;
+     border-radius: 10px;}
+.impactbgcolor1{background: rgb(227,227,227);
+  background: linear-gradient(90deg, rgba(227,227,227,1) 0%, rgba(194,194,194,1) 100%);border-radius: 10px;}
+  .impactbg2{background-image: url(../img/impact-bg/impact-bg2.png); background-repeat: no-repeat;     height: 208px;
+    background-position: center; border: 4px solid #ffffff7d;
+    border-radius: 10px;}
+.impactbgcolor2{background: rgb(227,227,227);
+  background: linear-gradient(90deg, rgba(227,227,227,1) 0%, rgba(194,194,194,1) 100%);border-radius: 10px;}
+ .impactbg3{background-image: url(../img/impact-bg/impact-bg3.png); background-repeat: no-repeat;     height: 208px;
+  background-position: center; border: 4px solid #ffffff7d;
+  border-radius: 10px;}
+.impactbgcolor3{background: rgb(227,227,227);
+  background: linear-gradient(90deg, rgba(227,227,227,1) 0%, rgba(194,194,194,1) 100%);border-radius: 10px;}
+.impactbg4{background-image: url(../img/impact-bg/impact-bg4.png); background-repeat: no-repeat;     height: 208px;
+  background-position: center;border: 4px solid #ffffff7d;
+  border-radius: 10px; }
+.impactbgcolor4{background: rgb(227,227,227);
+  background: linear-gradient(90deg, rgba(227,227,227,1) 0%, rgba(194,194,194,1) 100%);border-radius: 10px;}
+.impactbg5{background-image: url(../img/impact-bg/impact-bg5.png); background-repeat: no-repeat;     height: 208px;
+  background-position: center;border: 4px solid #ffffff7d;
+  border-radius: 10px; }
+.impactbgcolor5{background: rgb(227,227,227);
+  background: linear-gradient(90deg, rgba(227,227,227,1) 0%, rgba(194,194,194,1) 100%);border-radius: 10px;}
 .discover-block{
   width: 30%;
   height: 100%;
@@ -5176,18 +5207,18 @@ iframe {
 .discover-block .card-header{
   font-size: 1.25rem;
   font-weight: 600;
-  background-color: #23aa4a;
-  color: #fff;
-  text-align: center;
+  color: #3f6341;
+  text-align: left;
 }
+.impact-margin{padding: 15px;}
 .discover-block .card-text{
   font-size: 1.5rem;
   font-weight: 600;
-  text-align: center;
-  color: #23aa4a;
-  margin: 1rem 0;
-}
+  text-align: right;
+  color: #000;
+  margin: 1rem 0; 
+}.impactwidth{width: 70%; height: 75px; margin-top: 15px;  font-size: 0.925rem;}
 .discover-block .card-body{
-  height: 100%;
-  text-align: center;
+   font-size: 1rem;
+  text-align: left; color: #363636;
 }

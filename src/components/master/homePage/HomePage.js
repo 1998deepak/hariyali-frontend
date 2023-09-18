@@ -262,19 +262,19 @@ function HomePage() {
 
       <div className="container pv-75">
         <div className="mb10 impact-wrapper">          
-            <div className="tree-features">
+            <div className="tree-features tree-featureswidth">
               {/* <i className="icon-tree"></i> */}
               <h4>Trees planted so far</h4>
               <p id="value1">0</p>
             </div>
           
-            <div className="tree-features">
+            <div className="tree-features tree-featureswidth">
               <h4>Survival rate of trees</h4>
               <div className="d-flex align-items-center">
                 <p id="value2">0</p><span>%</span>
               </div>
             </div>
-            <div className="tree-features">
+            <div className="tree-features tree-featureswidth">
               <h4>Estimated Carbon Sequestered</h4>
               <div className="d-flex align-items-center">
                 <p id="value3">0</p><span>ktonne CO<sub>2</sub>e</span>
@@ -435,19 +435,19 @@ function HomePage() {
           </h2>
 
           <div class="grid"> <div className="col-8 m-auto"><Row className="justify-content-between ">
-            <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+            <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 marginall-pad-0">
               <figure className="effect-duke boxshaow-0"><img src={sdg13} width="100%" />
               </figure></div>
-            <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+            <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 marginall-pad-0">
               <figure className="effect-duke boxshaow-0"><img src={sdg15} width="100%" /></figure>
             </div>
-            <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+            <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 marginall-pad-0">
               <figure className="effect-duke boxshaow-0"><img src={sdg8} width="100%" /></figure>
             </div>
-            <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+            <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 marginall-pad-0">
               <figure className="effect-duke boxshaow-0"><img src={sdg14} width="100%" /></figure>
             </div>
-            <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+            <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 marginall-pad-0">
               <figure className="effect-duke boxshaow-0"><img src={sdg17} width="100%" /></figure>
             </div>
           </Row></div></div>

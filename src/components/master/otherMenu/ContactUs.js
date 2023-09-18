@@ -12,7 +12,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import { FaEnvira } from "react-icons/fa";
 function ContactUs() {
   const initialUserData = {
     contactName: "",
@@ -334,7 +334,7 @@ function ContactUs() {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-                    <Typography>How do I see and get info about my tree once I’ve bought it?</Typography>
+                    <Typography> <FaEnvira className="greencolor"/> How do I see and get info about my tree once I’ve bought it?</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>
@@ -361,7 +361,7 @@ function ContactUs() {
                     aria-controls="panel2a-content"
                     id="panel2a-header"
                   >
-                    <Typography>How does it work?</Typography>
+                    <Typography> <FaEnvira className="greencolor"/> How does it work?</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>
@@ -385,7 +385,7 @@ function ContactUs() {
                     aria-controls="panel3a-content"
                     id="panel3a-header"
                   >
-                    <Typography>Are the trees I buy already planted or will they be planted in the future?</Typography>
+                    <Typography> <FaEnvira className="greencolor"/> Are the trees I buy already planted or will they be planted in the future?</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>
@@ -409,7 +409,7 @@ function ContactUs() {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-                    <Typography>Do I get a certificate or other proof that I own my trees?</Typography>
+                    <Typography> <FaEnvira className="greencolor"/> Do I get a certificate or other proof that I own my trees?</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>
@@ -430,7 +430,7 @@ function ContactUs() {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-                    <Typography>Does the price of my tree include all taxes and fees?</Typography>
+                    <Typography> <FaEnvira className="greencolor"/> Does the price of my tree include all taxes and fees?</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>
@@ -454,7 +454,7 @@ function ContactUs() {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-                    <Typography>How long do trees take to reach maturity?</Typography>
+                    <Typography> <FaEnvira className="greencolor"/> How long do trees take to reach maturity?</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>
@@ -477,7 +477,7 @@ function ContactUs() {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-                    <Typography> Why is tree ownership good for the planet?</Typography>
+                    <Typography> <FaEnvira className="greencolor"/> Why is tree ownership good for the planet?</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>
