@@ -117,7 +117,9 @@ function WhatWeDo() {
           <div className="feature-description feature-description-other">
             <h2 className="sub-title text-center">What We Do</h2>
             <p>
-            Project Hariyali aims to increase green cover, arrest the rising ecological imbalance, enhance biodiversity, and restore the functional forest which support livelihood of small holding farmer families. The trees we plant strengthen the ecosystem and enhance ecological diversity.
+            Project Hariyali aims to increase green cover, arrest the rising ecological imbalance, enhance biodiversity, 
+            and restore the functional forest which support livelihood of small holding farmer families. 
+            The trees we plant strengthen the ecosystem and enhance ecological diversity
             </p>
           </div>
         </Container>
@@ -151,7 +153,7 @@ function WhatWeDo() {
                               Monsoon <span>(Jun - Sep)</span>
                             </h5>
                             <p className="card-text">
-                            The Monsoon plantation starts in September of the previous financial year, giving our team 7-8 months of lead time to select and nurture the saplings.
+                            The Monsoon plantation starts in September of the previous financial year, giving our team 7-8 months of lead time to select and nurture the saplings
                             </p>
                           </div>
                         </div>
@@ -174,7 +176,7 @@ function WhatWeDo() {
                               Winter <span>(Nov - Jan)</span>
                             </h5>
                             <p className="card-text">
-                            The process of plantation for the Winter plantation starts in August and saplings are planted between December to January of the same financial year.
+                            The Winter plantation starts in August and saplings are planted between December to January of the same financial year.
                             </p>
                           </div>
                         </div>
@@ -195,8 +197,11 @@ function WhatWeDo() {
           <p className="text-center">We follow a systematic process which enables us to get a very high survival rate.</p>
           <div className="process-image">
             <img src={processImg1} alt="" />
+            </div>
           </div>
-          <h3 className="text-center">Sample Monsoon Plantation Calendar</h3>
+          <div className="bg-green">
+          <div className="col-12 feature-description">
+          <h2 className="sub-title text-center">Sample Monsoon Plantation Calendar</h2>
           <div className="row">
             <div className="col-12 col-md-6">
               <h4 className="text-center">Year 1</h4>
@@ -209,8 +214,9 @@ function WhatWeDo() {
             <img src={processImg} alt="" />
           </div>
         </div>
+        </div>
         {/* ----------plant name */}
-        <div className="bg-green">
+        
           <div className="container pv-75">
             {/* <h3 class="text-center my-5 sub-title">Following commemorative artworks are available to choose from</h3> */}
             <h3 class="text-center sub-title">Trees we plant</h3>
@@ -243,7 +249,7 @@ function WhatWeDo() {
               </Carousel>
             </div>
           </div>
-        </div>
+        
         {/* plant name */}
         {/* <div className="container mt-5 mb30 ">
           <h2 className="sub-title text-center">Plant names</h2>

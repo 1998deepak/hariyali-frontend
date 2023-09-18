@@ -389,19 +389,19 @@ function WaystoAssociate() {
                                 <p >Project Hariyali is aligned with United Nations Sustainable Goals</p>
 
                                 <div className="col-3 pd-le-r-15"> <Row className="justify-content-between ">
-                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3  marginall-pad-0">
                                         <img src={sdg13} width="100%" />
                                     </div>
-                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3  marginall-pad-0">
                                         <img src={sdg15} width="100%" />
                                     </div>
-                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 marginall-pad-0">
                                         <img src={sdg8} width="100%" />
                                     </div>
-                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3  marginall-pad-0">
                                         <img src={sdg14} width="100%" />
                                     </div>
-                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 discover-block marginall-pad-0">
+                                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3  marginall-pad-0">
                                         <img src={sdg17} width="100%" />
                                     </div>
                                 </Row></div>
