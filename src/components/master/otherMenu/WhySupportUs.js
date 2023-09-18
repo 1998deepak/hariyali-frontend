@@ -71,7 +71,7 @@ function WhySupportUs() {
     [
       {
         quote:
-          "FICCI CSR Awards – In Skill Development & Livelihood Category,2021",
+          "FICCI CSR Awards – In Skill Development & Livelihood Category, 2021",
         image: limcaAward,
       },
       {
@@ -81,7 +81,7 @@ function WhySupportUs() {
       },
       {
         quote:
-          "The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category,2020",
+          "The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category, 2020",
         image: csrCertificate1,
       },
     ],
@@ -110,14 +110,14 @@ function WhySupportUs() {
       image: testimonial2,
       name: "I care for my saplings just like a mother cares for her child",
       quote:
-        "I live in Purva village of Shravasti district. After joining Hariyali I got 91 fruit saplings including guava, jackfruit and lemon. I also received training on how to dig the pit for sapling planting, how much distance to maintain between saplings, how and when to spray bio inputs etc. I nurture, love and care for these saplings as a mother does for her child. Under the guidance of the Naandi team, I am making bio inputs too. In three years these will become trees and start bearing fruits which my family can consume. And from the fifth year they will bear enough fruits for me to go to the market and sell them and make a living.",
+        "I live in Chabeet village of Solan district. I have been doing the usual kind of farming, but the yield was never very good. When I heard about Project Hariyali I immediately came forward to join it. I was given 42 fruit saplings - mostly plum and apple. I follow all the organic regenerative farming practices faithfully. This is my small contribution towards reversing climate change and making Himachal Pradesh clean and green. In the future, my family will reap the benefits.",
       legend: "From Shravasti, Uttar Pradesh",
     },
     {
       image: testimonial3,
       name: "This is my small contribution towards reversing climate change",
       quote:
-        "I live in Chabeet village of Solan district. I have been doing the usual kind of farming, but the yield was never very good. When I heard about Project Hariyali I immediately came forward to join it.  I was given 42 fruit saplings - mostly plum and apple. I follow all the organic regenerative farming practices faithfully. This is my small contribution towards reversing climate change and making Himachal Pradesh clean and green. In the future, my family will reap the benefits. ",
+        "I live in Chabeet village of Solan district. I have been doing the usual kind of farming, but the yield was never very good. When I heard about Project Hariyali I immediately came forward to join it. I was given 42 fruit saplings - mostly plum and apple. I follow all the organic regenerative farming practices faithfully. This is my small contribution towards reversing climate change and making Himachal Pradesh clean and green. In the future, my family will reap the benefits. ",
       legend: "From Solan, Himachal Pradesh",
     },
     {
@@ -166,18 +166,13 @@ function WhySupportUs() {
               <h2 className="sub-title text-center">Why Support Us</h2>
 
               <p className="text-center">
-                The Problem The total forest and tree cover in India is 8,09,537
-                square kilometres i.e., 24.62 % of the total geographical area.
-                But as per the National Forest Policy, the ideal percentage of
-                total geographical area under forest should be at least 33% to
-                maintain ecological stability. India ranked the second highest
-                for the rate of deforestation after losing 668,400 hectares of
-                forest cover in the last 30 years. The forest areas are under
-                threat due to rapid industrialization, road and other
-                connectivity projects as well as irrigation projects. Over and
-                above, 90% of the area under the biodiversity hotspots have been
-                lost as per the Centre for Science and Environment’s (CSE) new
-                report entitled ‘State of India’s Environment in Figures 2021’.
+                The Problem The total forest and tree cover in India is 8,09,537 square kilometres i.e., 
+                24.62 % of the total geographical area. But as per the National Forest Policy, the ideal percentage of total geographical 
+                area under forest should be at least 33% to maintain ecological stability. India ranked the second highest for the rate of 
+                deforestation after losing 668,400 hectares of forest cover in the last 30 years. The forest areas are under threat due to 
+                rapid industrialization, road and other connectivity projects as well as irrigation projects. Over and above, 90% of the area 
+                under the biodiversity hotspots have been lost as per 
+                the Centre for Science and Environment’s (CSE) new report entitled ‘State of India’s Environment in Figures 2021’.
               </p>
             </div>
           </div>
@@ -254,10 +249,8 @@ function WhySupportUs() {
               Impact of Hariyali Project
             </h3>
             <p className="text-center">
-              Project Hariyali is a unique blend in the sphere of environmental
-              sustainability and impacting livelihood. The Project is already
-              contributing towards mission LiFE & India’s commitment toward
-              carbon neutrality.
+            Project Hariyali is a unique blend in the sphere of environmental sustainability and impacting livelihood. 
+            The Project is already contributing towards mission LiFE & India’s commitment toward carbon neutrality.
             </p>
           </div>
           <div className="justify-content-center quantitative-card">
@@ -371,17 +364,15 @@ function WhySupportUs() {
             <div className="col-12 col-md-6">
               <div className="feature-description feature-description-other">
                 <h3 className="sub-title text-center">
-                  Impact Assessment Report{" "}
+                  Impact Assessment Report
                 </h3>
                 <p>
                   <i>
-                    {" "}
-                    Annual third - party audits have been conducted since 2012 by Unique forestry and land use GmbH.
+                    Annual third - party audits have been conducted since 2012 by Unique Agroforestry and Land use Germany which is a globally recognized company. 
                   </i>
                 </p>
                 <p>
                   <i>
-                    {" "}
                     Since FY22, Impact Assessment as part of CSR guidelines have been conducted by third party organizations. In the last Impact Assessment conducted for plantations done in FY21, the survival rate has been reported at 94.67%. Project Hariyali has been awarded “Platinum” category performance of CSR Activity by an NABCB accredited “Type A” Inspection Body.
                   </i>
                 </p>
