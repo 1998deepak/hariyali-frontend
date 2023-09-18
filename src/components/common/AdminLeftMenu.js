@@ -14,7 +14,7 @@ import {RiUserAddLine} from "react-icons/ri";
 import {BiDonateHeart} from "react-icons/bi";
 import {FiUserPlus, FiSettings, FiUsers} from "react-icons/fi";
 import {CiViewList} from "react-icons/ci";
-import {PiPottedPlantDuotone} from "react-icons/pi";
+import {PiPottedPlantDuotone, PiHandshake} from "react-icons/pi";
 import {HiOutlineDocumentReport} from "react-icons/hi";
 import { useState } from "react";
 import Accordion from 'react-bootstrap/Accordion';
@@ -147,7 +147,7 @@ const LeftMenu = () => {
               <Link
                 to="/Commitment"
                 className="nav-link dropdown-indicator-left label-1"
-              > <PiPottedPlantDuotone />
+              > <PiHandshake />
                 <span className="link-text">Commitment </span>
 
               </Link>

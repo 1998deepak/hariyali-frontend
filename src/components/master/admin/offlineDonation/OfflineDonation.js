@@ -1138,6 +1138,41 @@ console.log(donationsGift);
                                 </div>
                               </div>
                             </div>
+                            <div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 "> Citizenship <span className="red-text">*</span></div>
+                                <div className="col-8 p0">
+                              
+                                  <select
+                                    className=" form-control-inside form-select"
+                                    name="user.citizenship"
+                                    id="citizenship"
+                                    value={userData?.user?.citizenship}
+                                    onChange={handleChange}
+                                  >
+                                    <option disabled selected value="">
+                                      Select Country
+                                    </option>
+                                    <option value="FRANCE">France</option>
+                                    <option value="INDIA">India</option>
+                                    <option value="USA">USA</option>
+                                  </select>
+                                  {errors.map((error, index) => {
+                                    if (error.field === "userData.user.citizenship") {
+                                      return (
+                                        <div
+                                          key={index}
+                                          className="error-message red-text"
+                                        >
+                                          {error.message}
+                                        </div>
+                                      );
+                                    }
+                                    return null;
+                                  })}
+                                </div>
+                              </div>
+                            </div>
                             {
                               userData?.user?.donarType.toLowerCase() ===  "corporate" ?
                               <div className="col-6">
@@ -1235,8 +1270,9 @@ console.log(donationsGift);
                                 </div>
                               </div>{" "}
                             </div>
-                            {userData?.user?.citizenship === "India" ? (
+                            {userData?.user?.citizenship === "INDIA" ? (
                               <>
+                            {!hasAadharCard && (
                             <div className="col-6">
                               <div className="row select-label">
                                 <div className="col-4 ">PAN card <span className="red-text">*</span></div>
@@ -1268,7 +1304,7 @@ console.log(donationsGift);
                                     })}
                                 </div>
                               </div>
-                            </div>
+                            </div>)}
                             <div className="col-6">
                                     <div className="select-label">
                                       <div className="col-12 p0 field-wrapper">
@@ -1306,7 +1342,7 @@ console.log(donationsGift);
                                   <div
                                     id="addharId"
                                     className="col-6"
-                                    style={{ display: "none" }}
+                                    
                                   >
                                     <div className="select-label">
                                       {/* <div className="col-4 ">PAN card</div> */}
@@ -1914,6 +1950,41 @@ console.log(donationsGift);
                                 </div>
                               </div>
                             </div>
+                            <div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 "> Citizenship <span className="red-text">*</span></div>
+                                <div className="col-8 p0">
+                              
+                                  <select
+                                    className=" form-control-inside form-select"
+                                    name="user.citizenship"
+                                    id="citizenship"
+                                    value={userData?.user?.citizenship}
+                                    onChange={handleChange}
+                                  >
+                                    <option disabled selected value="">
+                                      Select Country
+                                    </option>
+                                    <option value="FRANCE">France</option>
+                                    <option value="INDIA">India</option>
+                                    <option value="USA">USA</option>
+                                  </select>
+                                  {errors.map((error, index) => {
+                                    if (error.field === "userData.user.citizenship") {
+                                      return (
+                                        <div
+                                          key={index}
+                                          className="error-message red-text"
+                                        >
+                                          {error.message}
+                                        </div>
+                                      );
+                                    }
+                                    return null;
+                                  })}
+                                </div>
+                              </div>
+                            </div>
                             { 
                               userData.user.donarType.toLowerCase() === "corporate" ?
                               <div className="col-6">
@@ -2008,8 +2079,9 @@ console.log(donationsGift);
                               </div>{" "}
                             </div>
 
-                            {userData?.user?.citizenship === "India" ? (
+                            {userData?.user?.citizenship === "INDIA" ? (
                               <>
+                            {!hasAadharCard && (
                             <div className="col-6">
                               <div className="row select-label">
                                 <div className="col-4 ">PAN card <span className="red-text">*</span></div>
@@ -2042,6 +2114,7 @@ console.log(donationsGift);
                                 </div>
                               </div>
                             </div>
+                            )}
                             <div className="col-6">
                                     <div className="select-label">
                                       <div className="col-12 p0 field-wrapper">

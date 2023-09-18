@@ -305,7 +305,7 @@ const handleRadioChange = (event) => {
           document.getElementById("panCard").focus();
         }
       }else{
-          if (!/^(?!.*[a-zA-Z])\d{16}$/.test(userData.user.addharCard)) {
+          if (!/^(?!.*[a-zA-Z])\d{16}$/.test(userData.user.addharCard) && hasAadharCard) {
             validationErrors.push({
               field: "userData.user.addharCard",
               message:"Addhar Number must contain exactly 16 digits and no alphabetic characters",
@@ -955,7 +955,9 @@ const handleRadioChange = (event) => {
     setLoading(true);
     let response = await DonationService.getDetailsByEmailId(emailId);
     console.log(response);
+    setMessage("");
     if (response?.status === "Success") {
+
       toast.success(response?.message);
       if (response.data.address) {
         let addr = [...initialAddress];
@@ -1906,9 +1908,8 @@ const handleRadioChange = (event) => {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              {/* <div className="col-6">
                                 <div className="select-label">
-                                  {/* <div className="col-4 ">City</div> */}
                                   <div className="col-12 p0 field-wrapper">
                                     <label class="form-label top-27">
                                       City <span className="red-text">*</span>
@@ -1939,7 +1940,7 @@ const handleRadioChange = (event) => {
                                     })}
                                   </div>
                                 </div>
-                              </div>
+                              </div> */}
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Postal Code</div> */}
@@ -3545,6 +3546,7 @@ const handleRadioChange = (event) => {
               </Button>
             </Modal.Footer>
           </Modal>
+
           <TermsConditionsPopup
             showConditons={showConditons}
             handleCloseConditions={handleCloseConditions}
@@ -3572,6 +3574,36 @@ const handleRadioChange = (event) => {
           />
         </form>
       )}
+      <Modal
+        className="transaction-modal"
+        show={showDonationModal}
+        onHide={handleDonationModalClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Body>
+          <div className="row">
+            <div className="col-12">
+              <Card >
+                <Card.Body>
+                  <div className="card-icon">
+                    <BsEmojiSmile />
+                  </div>
+                  <Card.Text dangerouslySetInnerHTML={{ __html: transactionMessage }}> 
+
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
+          </div>
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleDonationModalClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

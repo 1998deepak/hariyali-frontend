@@ -25,8 +25,9 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
     const getAllActiveBankAccounts = async () => {
       setLoading(true);
       const response = await DonationService.getAllActiveAccount();
-      if (response?.status === SUCCESS) {
-        setAccountList(response.data);
+      console.log(response.data);
+      if (response?.data?.status === SUCCESS) {
+        setAccountList(response.data.data);
         setLoading(false);
       } else {
         toast.error(response?.message);
@@ -103,8 +104,8 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                 </option>
                 {accountList.map((mode) => {
                   return (
-                    <option key={mode.id} value={mode.bankName}>
-                      {mode.bankName}
+                    <option key={mode.id} value={mode.accountNumber}>
+                      {mode.accountHolderName}
                     </option>
                   );
                 })}
