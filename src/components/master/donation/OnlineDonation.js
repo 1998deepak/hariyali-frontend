@@ -3059,7 +3059,7 @@ const handleRadioChange = (event) => {
                                       </label>
                                       <input
                                         className="form-control-inside form-control"
-                                        name="recipient[0].firstName"
+                                        name="firstName"
                                         id="recFirstName"
                                         placeholder="First Name"
                                         type="text"
