@@ -135,9 +135,11 @@ const DashboardTable = () => {
         setShowUploadModal(false);
         getYears();
         getSeasons();
-        getDistricts(selectedYear);
-        getCities(selectedYear);
-        getPlantationList();
+        setTimeout(() => {
+          getDistricts(selectedYear);
+          getCities(selectedYear);
+          getPlantationList();
+        }, 1000);
         toast.info(response?.message);
       } else {
         toast.error(response?.message);

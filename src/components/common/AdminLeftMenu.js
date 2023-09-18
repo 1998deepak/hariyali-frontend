@@ -143,7 +143,7 @@ const LeftMenu = () => {
 
             </Accordion.Item>
             <Accordion.Item eventKey="3">
-              <Accordion.Header className={activeHead =='plantation'? 'disabled active' : 'disabled'} onClick={()=>activeHeadTag('commitment')}>
+              <Accordion.Header className={activeHead =='commitment'? 'disabled active' : 'disabled'} onClick={()=>activeHeadTag('commitment')}>
               <Link
                 to="/Commitment"
                 className="nav-link dropdown-indicator-left label-1"
