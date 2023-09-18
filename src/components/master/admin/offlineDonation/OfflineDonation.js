@@ -1353,15 +1353,15 @@ console.log(donationsGift);
                           </div>
                         </div>
                         <hr />
-                        <div className="actionheadingdiv">
-                        Orgnization Address
-                          <div
-                            className="float-right addminicon"
-                            onClick={addaddressicon}
-                          >
-                            <FaPlusSquare />
-                          </div>
-                        </div>
+                        {userData?.user?.donarType === "Corporate" ? (
+                            <div className="actionheadingdiv">
+                              Orgnization Address
+                            </div>
+                          ) : (
+                            <div className="actionheadingdiv">
+                              Address
+                            </div>
+                          )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-6">
@@ -2125,9 +2125,15 @@ console.log(donationsGift);
                           </div>
                         </div>
                         <hr />
-                        <div className="actionheadingdiv">
-                        Orgnization Address
-                        </div>
+                        {userData?.user?.donarType === "Corporate" ? (
+                            <div className="actionheadingdiv">
+                              Orgnization Address
+                            </div>
+                          ) : (
+                            <div className="actionheadingdiv">
+                              Address
+                            </div>
+                          )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-6">
@@ -2904,15 +2910,15 @@ console.log(donationsGift);
                           </div>
                         </div>
                         <hr />
-                        <div className="actionheadingdiv">
-                        Orgnization Address
-                          <div
-                            className="float-right addminicon"
-                            onClick={addaddressicon}
-                          >
-                            <FaPlusSquare />
-                          </div>
-                        </div>
+                        {userData?.user?.donarType === "Corporate" ? (
+                            <div className="actionheadingdiv">
+                              Orgnization Address
+                            </div>
+                          ) : (
+                            <div className="actionheadingdiv">
+                              Address
+                            </div>
+                          )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-6">
@@ -3541,9 +3547,15 @@ console.log(donationsGift);
                           </div>
                         </div>
                         <hr />
-                        <div className="actionheadingdiv">
-                        Orgnization Address
-                        </div>
+                        {userData?.user?.donarType === "Corporate" ? (
+                            <div className="actionheadingdiv">
+                              Orgnization Address
+                            </div>
+                          ) : (
+                            <div className="actionheadingdiv">
+                              Address
+                            </div>
+                          )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-6">
