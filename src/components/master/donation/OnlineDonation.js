@@ -2360,6 +2360,7 @@ const handleRadioChange = (event) => {
                             donations={donations}
                             calculateOverallTotal={calculateOverallTotal}
                           />
+                          <div className="clear"></div>
                           <hr />
                           {userData?.user?.donarType === "Corporate" ? (
                             <div className="actionheadingdiv">
