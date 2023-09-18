@@ -616,10 +616,10 @@ const handleRadioChange = (event) => {
       console.log(response);
       if (response?.status === SUCCESS) {
         toast.success(response?.message);
-        //setGatewayConfiguration(response);
-        // setTimeout(() => {
-        //   document.getElementById("gatewayForm").submit();
-        // }, 1000);
+        setGatewayConfiguration(response);
+        setTimeout(() => {
+          document.getElementById("gatewayForm").submit();
+        }, 1000);
         clearForm(e);
         setLoading(false);
       } else {
