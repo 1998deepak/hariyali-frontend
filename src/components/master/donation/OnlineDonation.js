@@ -57,7 +57,7 @@ function OnlineDonation() {
 //     setdecodedString(decodedSource);
 // }
 
-const [hasAadharCard, setHasAadharCard] = useState( );
+const [hasAadharCard, setHasAadharCard] = useState(false);
 
 const handleRadioChange = (event) => {
   setHasAadharCard(event.target.value === 'yes');
@@ -77,12 +77,12 @@ const handleRadioChange = (event) => {
   const initialPackageData = [
     {
       packageName: "",
-      bouquetPrice: "",
-      noOfBouquets: "",
-      amount: "",
+      bouquetPrice: 450,
+      noOfBouquets: 1,
+      amount: 450,
     },
   ];
-
+  const [packageData, setPackageData] = useState(initialPackageData);
   const initialUserData = {
     user: {
       firstName: "",
@@ -171,7 +171,7 @@ const handleRadioChange = (event) => {
       ],
     },
   ];
-  const [packageData, setPackageData] = useState(initialPackageData);
+  
 
   const [userData, setUserData] = useState(initialUserData);
 
@@ -616,10 +616,10 @@ const handleRadioChange = (event) => {
       console.log(response);
       if (response?.status === SUCCESS) {
         toast.success(response?.message);
-        setGatewayConfiguration(response);
-        setTimeout(() => {
-          document.getElementById("gatewayForm").submit();
-        }, 1000);
+        //setGatewayConfiguration(response);
+        // setTimeout(() => {
+        //   document.getElementById("gatewayForm").submit();
+        // }, 1000);
         clearForm(e);
         setLoading(false);
       } else {
@@ -766,17 +766,17 @@ const handleRadioChange = (event) => {
     console.log(userPackageData);
   };
 
-  const calculateOverallTotal = (packageData) => {
-    const totalAmountOfPackage = packageData.reduce(
-      (accumulator, packageItem, index) => {
-        return 450 + packageItem.bouquetPrice * packageItem.noOfBouquets;
-      },
-      0
-    );
+  const calculateOverallTotal = (row) => {
+    console.log(row)
+    const totalCost = 450 * parseInt(row[0].noOfBouquets);
+    console.log(row[0].noOfBouquets);
+    console.log(totalCost);
     const updatedDonations = [...donations];
-    updatedDonations[0]["totalAmount"] = totalAmountOfPackage;
+    updatedDonations[0]["totalAmount"] = totalCost;
+    console.log(updatedDonations);
     setDonations(updatedDonations);
   };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     const updatedFormData = { ...userData };
@@ -1149,6 +1149,8 @@ const handleRadioChange = (event) => {
   // );
 
   // const [showOtherInput, setShowOtherInput] = useState(false);
+
+  console.log(donations);
 
   return (
     <>
@@ -1852,46 +1854,6 @@ const handleRadioChange = (event) => {
                                     </select>
                                     {errors.map((error, index) => {
                                       if (error.field === "address[0].state") {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="select-label">
-                                  {/* <div className="col-4 ">State</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                    <label class="form-label top-27">
-                                      City <span className="red-text">*</span>
-                                    </label>
-                                    <select
-                                      className=" form-control-inside form-select form-control"
-                                      name="city"
-                                      id="city"
-                                      value={address[0]?.city}
-                                      onChange={(event) =>
-                                        handleAddressChange(event, 0)
-                                      }
-                                    >
-                                      <option disabled selected value="">
-                                        Select City
-                                      </option>
-                                      <option>UDHNA</option>
-                                      <option>VADALI</option>
-                                      <option>SARDHAR</option>
-                                      <option>SHEHERA</option>
-                                    </select>
-                                    {errors.map((error, index) => {
-                                      if (error.field === "address[0].city") {
                                         return (
                                           <div
                                             key={index}
@@ -2934,46 +2896,6 @@ const handleRadioChange = (event) => {
                               </div>
                               <div className="col-6">
                                 <div className="select-label">
-                                  {/* <div className="col-4 ">State</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                    <label className="form-label">
-                                      City <span className="red-text">*</span>
-                                    </label>
-                                    <select
-                                      className=" form-control-inside form-select form-control"
-                                      name="city"
-                                      id="city"
-                                      value={address[0]?.city}
-                                      onChange={(event) =>
-                                        handleAddressChange(event, 0)
-                                      }
-                                    >
-                                      <option disabled selected value="">
-                                        Select City
-                                      </option>
-                                      <option>UDHNA</option>
-                                      <option>VADALI</option>
-                                      <option>SARDHAR</option>
-                                      <option>SHEHERA</option>
-                                    </select>
-                                    {errors.map((error, index) => {
-                                      if (error.field === "address[0].city") {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="select-label">
                                   <div className="col-12 p0 field-wrapper">
                                     <label className="form-label">
                                       City <span className="red-text">*</span>
@@ -3058,7 +2980,7 @@ const handleRadioChange = (event) => {
                                       </label>
                                       <input
                                         className="form-control-inside form-control"
-                                        name="recipient[0].firstName"
+                                        name="firstName"
                                         id="recFirstName"
                                         placeholder="First Name"
                                         type="text"
