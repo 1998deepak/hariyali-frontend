@@ -8,11 +8,13 @@ export const URLS = {
     USERADD: "/userAddOffline",
     USERONLINEADD: "/userAddOnline",
     GETBYEMAILID: "/getuser/",
+    GETDONORIDBYEMAILID:'/getUserDonarId/',
     GETBYEXISTINGEMAILID: "/getExistingUser/",
     GETALLPACKAGE: "/getAllPackages",
 
     // GET USER DETAILS BY DONOR ID
     GETUSERDETAILSBYDONORID: "/getUserDetailsByDonorId/",
+    GETUSERDETAILSBYDONORIDOREMAILID: "/getUserPersonalDetailsbyEmailOrDonorId",
     ADDNEWDONATIONS: "/newDonation",
 
     //opt
@@ -27,6 +29,7 @@ export const URLS = {
     UPDATEUSER: "/updateUser",
     UPDATEDONATIONOFUSER: "/updateDonation",
     GETDONARIDLIST: "/getAllDonarId",
+    GETALLUSERIDLIST: "/getAllUserId",
 
     // Web donor
     GETALLUSERWITHWEBID: "/getAlluserWithWebId",
@@ -38,6 +41,20 @@ export const URLS = {
 
     //receipts
     GETALLRECEIPTSBYUSER:"/getAllReceiptByUser",
-    DOWNLOADRECEIPT:"/receipt/download/"
+    DOWNLOADRECEIPT:"/receipt/download/",
+    GET_ALL_ACTIVE_BANK_ACCOUNT:"/findAllActiveAccount",
+    GET_ALL_ACTIVE_BANKS:"/bank/findAllActiveBank",
+    GET_USER_DONATIONS:"/getUserDonations",
 
+    //Plantation service
+    PLANTATION_YEARS:"/plantation/years",
+    PLANTATION_SEASONS:"/plantation/seasons",
+    PLANTATION_DISTRICTS:"/plantation/districts",
+    PLANTATION_CITIES:"/plantation/cities",
+    PLANTATION_UPLOAD:"/plantation/upload",
+    PLANTATION_FINDALLBYFILTER:"/plantation/findAllByFilter",
+    PLANTATION_EXPORTREPORT:"/plantation/exportReport",
+
+    //commitment service
+    COMMITMENT_FINDALLBYFILTER:"/commitment/findByFilter"
 };

@@ -39,6 +39,9 @@ import UserSpecificDonationView from "./components/master/admin/donarCreation/Us
 import UserDashboard from "./components/master/user/UserDashboard";
 import UserReceipts from "./components/master/user/UserReceipts";
 import Faq from "./components/master/otherMenu/Faq";
+import DashboardTable from "./components/master/Dashboard/DashboardTable";
+import NewOnlineDonation from "./components/master/user/onlinedonation/NewOnlineDonation";
+import Commitment from "./components/master/Dashboard/Commitment";
 
 
 function HomeWithHeaderAndFooter() {
@@ -161,8 +164,21 @@ function UpdateUserWithHeaderFooter() {
     <AdminHeader />
     <div className="leftmenu-main">
         <UserLeftMenu />
-        <div className="float-left page-scroll remove-top-margin" style={{ width: "100%" }}>
+        <div className="float-left page-scroll " style={{ width: "100%" }}>
         <UserUpdate />
+        </div>
+      </div>
+    </>
+  );
+}
+function UserDonationWithHeaderFooter() {
+  return (
+    <>
+    <AdminHeader />
+    <div className="leftmenu-main">
+        <UserLeftMenu />
+        <div className="float-left page-scroll " style={{ width: "100%" }}>
+        <NewOnlineDonation />
         </div>
       </div>
     </>
@@ -174,7 +190,7 @@ function UserReceiptsWithHeaderFooter() {
     <AdminHeader />
     <div className="leftmenu-main">
         <UserLeftMenu />
-        <div className="float-left page-scroll remove-top-margin" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
         <UserReceipts />
         </div>
       </div>
@@ -188,7 +204,7 @@ function UserDashboardWithHeaderFooter() {
     <AdminHeader />
     <div className="leftmenu-main">
         <UserLeftMenu />
-        <div className="float-left page-scroll remove-top-margin" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
         <UserDashboard />
         </div>
       </div>
@@ -293,13 +309,39 @@ function DashboardWithHeaderAndFooter() {
     </>
   );
 }
+function PlantingWithHeaderAndFooter() {
+  return (
+    <>
+       <AdminHeader />
+      <div className="leftmenu-main">
+        <AdminLeftMenu />
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <DashboardTable />
+      </div>
+      </div>
+    </>
+  );
+}
+function CommitmentWithHeaderAndFooter() {
+  return (
+    <>
+       <AdminHeader />
+      <div className="leftmenu-main">
+        <AdminLeftMenu />
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <Commitment />
+      </div>
+      </div>
+    </>
+  );
+}
 function UserDonationView({ userDetails, setAuthToken, authToken }) {
   return (
     <>
      <AdminHeader />
       <div className="leftmenu-main">
       <UserLeftMenu />
-        <div className="float-left" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
         <UserdonationView userDetails={userDetails?.email} setAuthToken={setAuthToken} authToken={authToken} />
         </div>
       </div>
@@ -313,7 +355,7 @@ function UserSpecificDonation() {
        <AdminHeader />
       <div className="leftmenu-main">
       <UserLeftMenu />
-        <div className="float-left" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
       <UserSpecificDonationView />
       </div></div>
     </>
@@ -360,6 +402,9 @@ function App() {
                   </ProtectedRoutes>}/>
                   <Route path="/user/receipts" element = {<ProtectedRoutes user={authority.user}>
                     <UserReceiptsWithHeaderFooter />
+                  </ProtectedRoutes>}/>
+                  <Route path="/user/donation" element = {<ProtectedRoutes user={authority.user}>
+                    <UserDonationWithHeaderFooter/>
                   </ProtectedRoutes>}/>
 
 
@@ -459,6 +504,20 @@ function App() {
                 element={
                   <ProtectedRoutes admin={authority.admin} >
                     <DashboardWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
+                  </ProtectedRoutes>
+                } />
+
+        <Route path="/Plantation"
+                element={
+                  <ProtectedRoutes admin={authority.admin} >
+                    <PlantingWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
+                  </ProtectedRoutes>
+                } />
+
+        <Route path="/Commitment"
+                element={
+                  <ProtectedRoutes admin={authority.admin} >
+                    <CommitmentWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
                   </ProtectedRoutes>
                 } />
       </Routes>

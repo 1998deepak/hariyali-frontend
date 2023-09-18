@@ -1,11 +1,15 @@
 import React from "react";
 
 const PrivacyPolicy = ({
-  privacyPolicy,
-  setPrivacyPolicy,
+  privacyPolicy1,
+  privacyPolicy2,
+  setPrivacyPolicy1,
+  setPrivacyPolicy2,
   informationShare,
   setInformationShare,
   handleShowConditions,
+  isDisabled,
+  privacyPolicymessage
 }) => {
   return (
     <>
@@ -15,9 +19,10 @@ const PrivacyPolicy = ({
             <input
               type="checkbox"
               name="Condition"
-              value={privacyPolicy}
-              onChange={() => setPrivacyPolicy(!privacyPolicy)}
+              value={privacyPolicy1}
+              onChange={() => setPrivacyPolicy1(!privacyPolicy1)}
               className="checkboxinput"
+              disabled = {isDisabled}
             />
             By checking this box, I confirm that I have read, understood and
             agree to the Terms of Use and{" "}
@@ -32,7 +37,14 @@ const PrivacyPolicy = ({
             I withdraw my consent.
           </li>
           <li>
-            I understand that I am free to withdraw my consent to the processing
+          <input
+              type="checkbox"
+              name="Condition"
+              value={privacyPolicy2}
+              onChange={() => setPrivacyPolicy2(!privacyPolicy2)}
+              className="checkboxinput"
+              disabled = {isDisabled}
+            />I understand that I am free to withdraw my consent to the processing
             of my personal data, at any time, by writing to
             support@hariyali.org,in.
           </li>
@@ -53,6 +65,7 @@ const PrivacyPolicy = ({
         No, I do not consent to receive campaign related correspondences
         regarding Project Hariyali.
       </div>
+      <div><span className="red-text">{privacyPolicymessage}</span></div>
     </>
   );
 };

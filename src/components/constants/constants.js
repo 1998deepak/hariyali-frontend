@@ -51,5 +51,33 @@ const ROUTE = {
     "Delhi",
     "Puducherry",
   ];
-  
-  export { USER_DETAILS, ROUTE , TOKEN , SUCCESS,ROLEAUTHORITY,stateOptions };
+
+  export const BANK_TRANSFER = "Bank Transfer";
+  export const CREDIT_CARD = "Credit Card";
+  export const CHEQUE = "Cheque";
+  export const DEMAND_DRAFT = "Demand Draft";
+  export const ONLINE = "Online";
+
+  const PAYMENT_MODES = [
+    {label:BANK_TRANSFER,value:BANK_TRANSFER},
+    {label:CREDIT_CARD,value:CREDIT_CARD},
+    {label:CHEQUE,value:CHEQUE},
+    {label:DEMAND_DRAFT,value:DEMAND_DRAFT},
+    {label:ONLINE,value:ONLINE},
+  ];
+
+  export const PAYMENT_STATUS = [
+    {label:"Success",Value:"Success"},
+    {label:"Failure",Value:"Failure"}
+  ]
+
+  export const OCCASION_LIST = [
+    {label:"Birthday",value:"Birthday"},
+    {label:"Wedding",value:"Wedding"},
+    {label:"Anniversary",value:"Anniversary"},
+    {label:"Achievement",value:"Wedding"},
+    {label:"Festival",value:"Festival"},
+    {label:"Memorial Tribute",value:"Memorial Tribute"},
+  ]
+
+  export { USER_DETAILS, ROUTE , TOKEN , SUCCESS,ROLEAUTHORITY,stateOptions,PAYMENT_MODES };

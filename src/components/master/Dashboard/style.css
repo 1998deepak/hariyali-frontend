@@ -1,0 +1,67 @@
+.pagination {
+    margin: 0;
+  }
+  
+  .pagination li:hover {
+    cursor: pointer;
+  }
+  
+  .header_wrap {
+    padding: 30px 0;
+  }
+  .num_rows {
+    width: 20%;
+    float: left;
+  }
+  .tb_search {
+    width: 20%;
+    float: right;
+  }
+  .pagination-container {
+    width: 70%;
+    float: left;
+  }
+  
+  .rows_count {
+    width: 20%;
+    float: right;
+    text-align: right;
+    color: #f3eded;
+  }
+  
+  .pagination-noteline {
+    color: black;
+    float: left;
+  }
+  
+  .shadow-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+  .shadow-table-pagination{
+    float: right;
+    /* width: 100%; */
+    border-collapse: collapse;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+  .p-multiselect-panel {
+    width: 16%;
+  }
+  .page-link:focus {
+    box-shadow: 0 0 0 0.1rem #eef5f0;
+  }
+  .tb_search1 {
+    width: 8%;
+    float: right;
+  }
+  .alignment_paginatin{
+    margin-left: 65%;
+  }
+  .p-multiselect-panel .p-multiselect-items .p-multiselect-item {
+  
+    padding: 0.63rem 0.2rem;
+  
+  }

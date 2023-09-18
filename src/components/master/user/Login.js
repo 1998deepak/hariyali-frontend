@@ -1,4 +1,4 @@
-import {  useRef, useState } from "react";
+import { useRef, useState } from "react";
 import logo from "../../../assets/img/logotrans.png";
 import Captcha from "./Captcha";
 import ReactPasswordToggleIcon from "react-password-toggle-icon";
@@ -6,7 +6,7 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { SUCCESS, TOKEN, USER_DETAILS } from "../../constants/constants";
 import { AuthService } from "../../../services/auth/auth.service";
-import { toast,ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { EncryptionService } from "../../../services/encryption.service";
 import { UserService } from "../../../services/userService/user.service";
 import Loader from "../../common/loader/Loader";
@@ -25,7 +25,7 @@ function Login() {
     password: "",
     email: "",
     captcha: "",
-    donarID:"",
+    donarID: "",
   });
   const navigate = useNavigate();
 
@@ -39,13 +39,14 @@ function Login() {
 
   const login = async (e) => {
     e.preventDefault();
+
     setErrors({ ...errors, captcha: "" });
     if (formData.username == "") {
       setErrors({ ...errors, username: "Enter the Username" });
     } else if (formData.password == "") {
       setErrors({ ...errors, password: "Enter the Password" });
-    }else if(!verified){
-      setErrors({ ...errors, captcha: "Please verify captcha" }); 
+    } else if (!verified) {
+      setErrors({ ...errors, captcha: "Please verify captcha" });
     } else if (errors.username == "" && errors.password == "" && errors.captcha == "") {
       setLoading(true)
       const response = await AuthService.login(formData);
@@ -100,7 +101,7 @@ function Login() {
             }, 2000);
           } else {
             setTimeout(() => {
-              navigate("/user/dashboard");
+              navigate("/UserDonation");
             }, 2000);
           }
           toast.success("Successfully Login!");
@@ -127,11 +128,11 @@ function Login() {
     e.preventDefault();
     if (!donarID) {
       // If donorID is empty, set an error message
-      setErrors({ ...errors, donarID: "Please enter Donor Id" }); 
+      setErrors({ ...errors, donarID: "Please enter Donor Id" });
       return;
     }
     const formData = {
-        donorId: donarID,
+      donorId: donarID,
     };
     console.log(formData);
     setLoading(true)
@@ -146,7 +147,7 @@ function Login() {
       toast.error("Invalid Donor Id ! Please Try Again");
       setLoading(false)
       setDonarID('');
-    
+
     }
     //  }
   };
@@ -180,19 +181,21 @@ function Login() {
       }
     }
   };
- 
+
   //toggle password hide show
   const showIcon = () => <FaEyeSlash />;
   const hideIcon = () => <FaEye />;
   const goToLogin = () => {
     navigate("/OtpId");
   };
+
+
   return (
     <>
-    <ToastContainer/>
-    {loading && <Loader/>}
-    <div className="logindiv bggray">
-      
+      <ToastContainer />
+      {loading && <Loader />}
+      <div className="logindiv bggray">
+
         <div
           id="loginDiv"
           className="row justify-content-between contact-form-wrap login-wrapper"
@@ -207,8 +210,8 @@ function Login() {
           </div>
           <div className="">
             <form className="form-div contact-form-wrap">
-             <div className="form-group mb-3">
-             <input
+              <div className="form-group mb-3">
+                <input
                   name="username"
                   type="text"
                   placeholder="Username"
@@ -216,11 +219,11 @@ function Login() {
                   value={formData.username}
                   onChange={(e) => handleValueChange(e)}
                 />
-                  {errors.username !== "" && (
-        <div className="error-message red-text">{errors.username}</div>
-      )}
-             </div>
-             <div className="form-group mb-3">  
+                {errors.username !== "" && (
+                  <div className="error-message red-text">{errors.username}</div>
+                )}
+              </div>
+              <div className="form-group mb-3">
                 <input
                   type="password"
                   placeholder="Password"
@@ -236,11 +239,11 @@ function Login() {
                   hideIcon={hideIcon}
                   showIcon={showIcon}
                 />
-                 {errors.password !== "" && (
-        <div className="error-message red-text">{errors.password}</div>
-      )}
-              </div>   
-                
+                {errors.password !== "" && (
+                  <div className="error-message red-text">{errors.password}</div>
+                )}
+              </div>
+
               <div className="row justify-content-between mb-3">
                 <div className="col-6 account-act">Account Activation</div>
                 <div
@@ -250,24 +253,28 @@ function Login() {
                   Forgot Password
                 </div>
               </div>
-              
+
               <Captcha verified={verified} setVerified={setVerified}></Captcha>
               {errors.captcha != "" && (
                 <div className="error-message red-text">{errors.captcha}</div>
               )}
+
+             
+
               <div id="VerifyOTP" className=" my-3">
                 {/* <label className="my-2"> */}
-                  <input
-                    name="verifyOTP"
-                    className={isHidden ? "hide" : "form-control"}
-                    type="text"
-                    placeholder="Verify OTP"
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
-                  />
+                <input
+                  name="verifyOTP"
+                  className={isHidden ? "hide" : "form-control"}
+                  type="text"
+                  placeholder="Verify OTP"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                />
                 {/* </label> */}
               </div>
               <div className="text-center mb-4">
+               
                 <button
                   onClick={login}
                   //className="webform-button--submit button button--primary js-form-submit form-submit"
@@ -305,16 +312,16 @@ function Login() {
           <h5 className="text-center">Donor ID</h5>
           <p>Please Enter your Donor ID!</p>
           <div className="">
-            <form className="form-div contact-form-wrap">              
-                <input
-                  type="text"
-                  className="form-control"
-                  value={donarID}
-                  onChange={(e) => setDonarID(e.target.value)}
-                />
-                  {errors.donarID !== "" && (
-        <div className="error-message red-text">{errors.donarID}</div>
-      )}
+            <form className="form-div contact-form-wrap">
+              <input
+                type="text"
+                className="form-control"
+                value={donarID}
+                onChange={(e) => setDonarID(e.target.value)}
+              />
+              {errors.donarID !== "" && (
+                <div className="error-message red-text">{errors.donarID}</div>
+              )}
               <div className="text-center">
                 <button
                   className="btn mt20 mr10 webform-button--submit"

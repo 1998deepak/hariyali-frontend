@@ -47,7 +47,12 @@ const Header = () => {
   }, []);
 
   const location = useLocation();
-  console.log(JSON.stringify(location))
+  console.log(JSON.stringify(location.search))
+
+  const queryParameters = new URLSearchParams(window.location.search)
+  const type = queryParameters.get("meconnectId")
+  const name = queryParameters.get("source")
+
 
   return (
     <>
@@ -66,7 +71,7 @@ const Header = () => {
                 <Nav className="justify-content-end  nav-list" activeKey={location.pathname}>
                   <Nav.Item >
                     <Nav.Link href="/AboutUs" className={`${activeTab === 'AboutUs' ? 'active' : ''}`}
-        onClick={() => setActiveTab('AboutUs')} eventKey="/AboutUs">Who Are We</Nav.Link>
+        onClick={() => setActiveTab('AboutUs')} eventKey="/AboutUs">Who We Are</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="/WhatWeDo" className={`${activeTab === 'WhatWeDo' ? 'active' : ''}`}
@@ -84,10 +89,10 @@ const Header = () => {
                     <Nav.Link href="/FootPrint" className={`${activeTab === 'FootPrint' ? 'active' : ''}`}
         onClick={() => setActiveTab('FootPrint')} eventKey="/FootPrint">Where Are We</Nav.Link>
                   </Nav.Item>
-                  <Nav.Item>
+                  {/* <Nav.Item>
                     <Nav.Link href="/Faq" className={`${activeTab === 'Faq' ? 'active' : ''}`}
         onClick={() => setActiveTab('Faq')} eventKey="/Faq">FAQ</Nav.Link>
-                  </Nav.Item>
+                  </Nav.Item> */}
                   <Nav.Item>
                     <Nav.Link href="/ContactUs" className={`${activeTab === 'ContactUs' ? 'active' : ''}`}
         onClick={() => setActiveTab('ContactUs')} eventKey="/ContactUs">Ask Us</Nav.Link>

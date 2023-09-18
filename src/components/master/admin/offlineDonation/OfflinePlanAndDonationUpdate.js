@@ -2,22 +2,15 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Container, Row, Tab, Tabs } from "react-bootstrap";
-import numberToWords from 'number-to-words';
-import Donateslid from "../../../../assets/img/slider/Donateslid.jpg";
 import { DonationService } from "../../../../services/donationService/donation.service";
-import { SUCCESS } from "../../../constants/constants";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { BANK_TRANSFER, CHEQUE, stateOptions } from "../../../constants/constants";
+import { useParams, useNavigate } from "react-router-dom";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
 import Loader from "../../../common/loader/Loader";
+import PaymentDetails from "../../../common/PaymentDetails";
 // nyn
 function OfflineDonationPay() {
-
   const navigate = useNavigate();
-
-
-
-
   const id = useParams().id;
   const initialPackageData = [
     {
@@ -25,7 +18,6 @@ function OfflineDonationPay() {
       packageName: "",
       bouquetPrice: "",
       noOfBouquets: "",
-      // maintenanceCost: "",
       amount: "",
     },
     {
@@ -33,102 +25,21 @@ function OfflineDonationPay() {
       packageName: "",
       bouquetPrice: "",
       noOfBouquets: "",
-      // maintenanceCost: "",
       amount: "",
     },
-   
   ];
 
   const [packageData, setPackageData] = useState(initialPackageData);
 
-
-  const [paymentDate, setPaymentDate] = useState();
-
-
-
-  // Function to handle changes in noOfBouquets
-  // const handleNoBouquetChange = (index, value) => {
-  //   if (value < 0) {
-  //     value = 0;
-  //   }
-  //   const newData = [...packageData];
-  //   newData[index].noOfBouquets = value;
-  //   newData[index].amount =
-  //     parseFloat(newData[index].bouquetPrice) * parseFloat(value) + parseFloat(newData[index].maintenanceCost);
-  //     console.log(newData);
-  //   setPackageData(newData);
-  // };
-  // console.log(packageData);
-
-
-
-  const minpaymentDiv = () => {
-    if (document.getElementById("addpaymentDiv")) {
-      if (document.getElementById("addpaymentDiv").style.display === "block") {
-        document.getElementById("addpaymentDiv").style.display = "none";
-      }
-    }
-  };
-  const totalAmountOfPackage = packageData.reduce(
-    (total, item) =>
-      total +
-      parseFloat(item.bouquetPrice) * parseFloat(item.noOfBouquets) +
-      parseFloat(item.maintenanceCost),
-    0
-  );
-
-  // submit
-  const stateOptions = [
-    "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Bihar",
-    "Chhattisgarh",
-    "Goa",
-    "Gujarat",
-    "Haryana",
-    "Himachal Pradesh",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Odisha",
-    "Punjab",
-    "Rajasthan",
-    "Sikkim",
-    "Tamil Nadu",
-    "Telangana",
-    "Tripura",
-    "Uttar Pradesh",
-    "Uttarakhand",
-    "West Bengal",
-    "Andaman and Nicobar Islands",
-    "Chandigarh",
-    "Dadra and Nagar Haveli",
-    "Daman and Diu",
-    "Lakshadweep",
-    "Delhi",
-    "Puducherry",
-  ];
-
-
-
-
-
-
   const initialUserData = {
     user: {
-      emailId: '',
-      donorId: '',
+      emailId: "",
+      donorId: "",
     },
   };
   const intialDonations = [
     {
+      donationCode:"",
       donationType: "",
       donationMode: "offline",
       donationEvent: "",
@@ -138,20 +49,74 @@ function OfflineDonationPay() {
       recipient: [],
       paymentInfo: [
         {
+          paymentInfoId: "",
           paymentMode: "",
           bankName: "",
           chqORddNo: "",
           chqORddDate: "",
           paymentDate: "",
-          amount: 0,
+          amount: "",
+          donation: "",
+          remark: "",
+          paymentTrackingId: "",
+          bankPaymentRefNo: "",
+          cardName: "",
+          currency: "",
+          paymentStatus: "",
+          orderId: "",
+          accountId: "",
+          receiptDate: "",
+          receivedAmount: "",
+          bankCharge: "",
+          documentNumber: "",
+          bankAddress: "",
+          depositNumber: "",
+          depositDate: "",
+          receiptNumber: "",
+          realizationDate: "",
+          creditCardNumber: "",
+          cardExpiry: "",
+          cardHolderName: "",
+          chequeNumber: "",
+          chequeDate: "",
+          demandDraftNumber: "",
+          demandDraftDate: "",
+          totalAmount: "",
         },
         {
+          paymentInfoId: "",
           paymentMode: "",
           bankName: "",
           chqORddNo: "",
           chqORddDate: "",
           paymentDate: "",
-          amount: 0,
+          amount: "",
+          donation: "",
+          remark: "",
+          paymentTrackingId: "",
+          bankPaymentRefNo: "",
+          cardName: "",
+          currency: "",
+          paymentStatus: "",
+          orderId: "",
+          accountId: "",
+          receiptDate: "",
+          receivedAmount: "",
+          bankCharge: "",
+          documentNumber: "",
+          bankAddress: "",
+          depositNumber: "",
+          depositDate: "",
+          receiptNumber: "",
+          realizationDate: "",
+          creditCardNumber: "",
+          cardExpiry: "",
+          cardHolderName: "",
+          chequeNumber: "",
+          chequeDate: "",
+          demandDraftNumber: "",
+          demandDraftDate: "",
+          totalAmount: "",
         },
       ],
     },
@@ -182,15 +147,13 @@ function OfflineDonationPay() {
   const [recipient, setRecipient] = useState(initialRecipientData[0]);
   const [loading, setLoading] = useState(false);
 
-
   const handleChangeNumberOfBouquets = (e, row, rowIndex) => {
     let { name, value } = e.target;
     console.log({ name, value, rowIndex }, row);
     let userPackageData = packageData;
     userPackageData[rowIndex][name] = value;
 
-    const totalCost =
-      (row.bouquetPrice) * row.noOfBouquets;
+    const totalCost = row.bouquetPrice * row.noOfBouquets;
     userPackageData[rowIndex]["amount"] = totalCost;
     setPackageData(userPackageData);
     calculateOverallTotal();
@@ -199,7 +162,9 @@ function OfflineDonationPay() {
   const calculateOverallTotal = () => {
     const totalAmountOfPackage = packageData.reduce(
       (accumulator, packageItem) => {
-        return accumulator + packageItem.bouquetPrice * packageItem.noOfBouquets;
+        return (
+          accumulator + packageItem.bouquetPrice * packageItem.noOfBouquets
+        );
       },
       0
     );
@@ -212,41 +177,30 @@ function OfflineDonationPay() {
         },
         ...donationData.slice(1),
       ];
-  
       setDonationData(updatedDonationData);
     }
-    // const updatedDonations = [...donationData];
-    // updatedDonations[0]["totalAmount"] = totalAmountOfPackage;
-    // setDonationData(updatedDonations);
   };
-  
-  
-  console.log(donationData.totalAmount);
 
   const handleRecipentAddressChange = (name, value, index) => {
     const updatedRecipient = { ...recipient };
     updatedRecipient.address[index] = {
       ...updatedRecipient.address[index],
-      [name]: value
+      [name]: value,
     };
     setRecipient(updatedRecipient);
   };
-
-
-  console.log(recipient);
 
   const handleRecipientChange = (name, value) => {
     console.log(name, value);
     setRecipient((prevRecipient) => ({
       ...prevRecipient,
       [name]: value,
-       // Update the mobileNo property with the new value
+      // Update the mobileNo property with the new value
     }));
-  
   };
-  
+
   console.log(recipient);
-console.log(handleRecipientChange);
+  console.log(handleRecipientChange);
   const handleDonationChange = (name, value) => {
     setDonationData((prevDonationData) => ({
       ...prevDonationData,
@@ -254,8 +208,6 @@ console.log(handleRecipientChange);
     }));
   };
   console.log(donationData);
-
-
 
   const handlePaymentInfoChange = (e, payIndex) => {
     let { name, value } = e.target;
@@ -289,7 +241,6 @@ console.log(handleRecipientChange);
     if (id) {
       getDonationById(id);
     }
-
   }, [id]);
 
   const getDonationById = async (id) => {
@@ -308,7 +259,6 @@ console.log(handleRecipientChange);
         const donations = data.user.donations[0];
         const updatedDonationData = { ...intialDonations[0], ...donations };
         setDonationData(updatedDonationData);
-
 
         if (
           donations.donationType === "Gift-Donate" &&
@@ -358,12 +308,9 @@ console.log(handleRecipientChange);
 
         // setPackageData(updatedPackageData);
 
-
-
         console.log(packageData);
         console.log(userData);
         setLoading(false);
-
       }
       setLoading(false);
     } catch (error) {
@@ -374,199 +321,189 @@ console.log(handleRecipientChange);
   console.log(recipient);
   // console.log(donationData.recipient[0]);
 
-
   const [errors, setErrors] = useState({});
-  
-// test 
-const validate = () => {
-  const errors = {};
 
-  // Payment validation
-  for (let i = 0; i < donationData.paymentInfo.length; i++) {
-    const payment = donationData.paymentInfo[i];
-    // const paymentErrors = {};
+  // test
+  const validate = () => {
+    const errors = {};
 
-    // Payment mode validation
-    if (!payment.paymentMode || payment.paymentMode === "Donor Type") {
-      errors.paymentMode = "Payment Mode is required";
-    }
+    // Payment validation
+    // Validate payment info
+    if (donationData && donationData[0]?.paymentInfo) {
+      for (let i = 0; i < donationData[0].paymentInfo.length; i++) {
+        
+        const payment = donationData[0].paymentInfo[i];
 
-    // Other payment validations...
-    if (!payment.chqORddDate) {
-      errors.chqORddDate = "ChqORddDate is required";
-            }
-            if (!payment.paymentDate) {
-              errors.paymentDate = "Payment Date is required";
-            }
-            if (!payment.amount) {
-              errors.amount = "Amount is required";
-            }
-            if (!payment.bankName || payment.bankName.trim() === '') {
-              errors.bankName = "BankName is required";
-            } else if (!/^[A-Za-z]+$/.test(payment.bankName)) {
-              errors.bankName = "Bank Name is invalid";
-            }
-            if (!payment.chqORddNo) {
-              errors.chqORddNo = "ChqORddNo is required";
-            }
-    
-    // if (Object.keys(paymentErrors).length > 0) {
-    //   errors.push(paymentErrors);
-    // }
-  }
+        if (!payment.paymentMode) {
+          errors.push({
+            field: "donationData[0].paymentInfo[" + i + "].paymentMode",
+            message: "Payment Mode is required",
+          });
+        }
+        if (!payment.paymentDate) {
+          errors.push({
+            field: "donationData[0].paymentInfo[" + i + "].paymentDate",
+            message: "Payment Date is required",
+          });
+        }
+        if (!payment.amount) {
+          errors.push({
+            field: "donationData[0].paymentInfo[" + i + "].amount",
+            message: "Amount is required",
+          });
+        }
+        if (!payment.totalAmount) {
+          errors.push({
+            field: "donationData[0].paymentInfo[" + i + "].totalAmount",
+            message: "Total Amount is required",
+          });
+        }
+        if (!payment.paymentStatus) {
+          errors.push({
+            field: "donationData[0].paymentInfo[" + i + "].paymentStatus",
+            message: "Payment Status is required",
+          });
+        }
+        if (!payment.receiptDate) {
+          errors.push({
+            field: "donationData[0].paymentInfo[" + i + "].receiptDate",
+            message: "Receipt Date is required",
+          });
+        }
 
-  if (donationData.donationType == "Gift-Donate") {
-    console.log(recipient);
-    console.log(recipient.emailId);
-           
-              if (!recipient.emailId) {
-                errors.emailId = "Email Id is required";
-              } else if (
-                !/^([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+)\.([a-zA-Z]{2,5})$/.test(
-                  recipient.emailId
-                )
-              ) {
-                errors.emailId = "Enter a Valid Email Address";
-              }
-      
-              if (!recipient.mobileNo) {
-                errors.mobileNo = "Mobile Number is required";
-              } 
-              else if(!/^[6-9]\d{9}$/.test(recipient.mobileNo))
-              {
-                errors.mobileNo= "Invalid mobile number, mobile no contain only 10 digits.";
-              }
-              
-              if(!recipient.address[0].street1)
-              {
-                errors.street1  = "Street 1 is required";
-              }
-              if(!recipient.address[0].street2)
-              {
-                errors.street2  = "Street 2 is required";
-              }
-              if(!recipient.address[0].street3)
-              {
-                errors.street3  = "Street 2 is required";
-              }
-              if(!recipient.address[0].state)
-              {
-                errors.street1  = "Street 1 is required";
-              }
-              if(!recipient.address[0].city)
-              {
-                errors.city  = "City 1 is required";
-              }
-              if(!recipient.address[0].postalCode)
-              {
-                errors.postalCode  = "Postal code is required";
-              }
-              
-            }
-         
-  console.log(errors);
-  setErrors(errors);
-  return errors;
-};
-
-
-
-
-
-const updateDonation = async (e) => {
-  e.preventDefault();
-
-  const validationErrors = validate();
-
-  if (Object.entries(validationErrors).length === 0) {
-    // Construct the updated form data
-    const updatedDonationData = {
-      ...donationData,
-      userPackage: packageData,
-      
-    };
-      console.log(packageData);
-    if (donationData.donationType === "Self-Donate") {
-      updatedDonationData.recipient = []; // Set recipient array to empty for self-donate
-    }
-    else {
-       updatedDonationData.recipient=[];
-      updatedDonationData.recipient = [...updatedDonationData.recipient,recipient]
-    }
-
-    const updatedFormData = {
-      formData: {
-        user: {
-          ...userData,
-          donations: [updatedDonationData],
-        },
-      },
-    };
-
-    // setPackageData(packageData); // Set the updated package data to packageData state
-
-    console.log(updatedFormData);
-
-    try {
-      setLoading(true);
-      // Make the API call
-      const response = await DonationService.updateDonation(updatedFormData);
-      console.log(response);
-      // Process the API response as needed
-      if (response?.status) {
-        toast.success(response?.message);
-        setLoading(false);
-      } else {
-        toast.error(response?.message);
-        setLoading(false);
+        if (!payment.accountId || payment.accountId.trim() === "") {
+          errors.push({
+            field: "donationData[0].paymentInfo[" + i + "].accountId",
+            message: "Bank Account is required",
+          });
+        }
+        if (
+          donationData[0]?.paymentInfo[i].paymentMode === BANK_TRANSFER ||
+          donationData[0]?.paymentInfo[i].paymentMode === CHEQUE
+        ) {
+          if (!payment.receivedAmount) {
+            errors.push({
+              field: "donationData[0].paymentInfo[" + i + "].receivedAmount",
+              message: "Received Date is required",
+            });
+          }
+        }
       }
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-      // Handle any errors from the API call
     }
-  } else {
-    // Handle validation errors here, e.g., show error messages to the user
-    console.log("Validation Errors:", validationErrors);
-  }
-};
 
+    if (donationData.donationType == "Gift-Donate") {
+      console.log(recipient);
+      console.log(recipient.emailId);
 
-console.log(donationData);
-  console.log(donationData.paymentInfo[0]?.paymentDate);
-  // console.log(donationData.recipient[0]?.address[0])
+      if (!recipient.emailId) {
+        errors.emailId = "Email Id is required";
+      } else if (
+        !/^([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+)\.([a-zA-Z]{2,5})$/.test(
+          recipient.emailId
+        )
+      ) {
+        errors.emailId = "Enter a Valid Email Address";
+      }
 
+      if (!recipient.mobileNo) {
+        errors.mobileNo = "Mobile Number is required";
+      } else if (!/^[6-9]\d{9}$/.test(recipient.mobileNo)) {
+        errors.mobileNo =
+          "Invalid mobile number, mobile no contain only 10 digits.";
+      }
+
+      if (!recipient.address[0].street1) {
+        errors.street1 = "Street 1 is required";
+      }
+      if (!recipient.address[0].street2) {
+        errors.street2 = "Street 2 is required";
+      }
+      if (!recipient.address[0].street3) {
+        errors.street3 = "Street 2 is required";
+      }
+      if (!recipient.address[0].state) {
+        errors.street1 = "Street 1 is required";
+      }
+      if (!recipient.address[0].city) {
+        errors.city = "City 1 is required";
+      }
+      if (!recipient.address[0].postalCode) {
+        errors.postalCode = "Postal code is required";
+      }
+    }
+
+    console.log(errors);
+    setErrors(errors);
+    return errors;
+  };
+
+  const updateDonation = async (e) => {
+    e.preventDefault();
+
+    const validationErrors = validate();
+
+    if (Object.entries(validationErrors).length === 0) {
+      // Construct the updated form data
+      const updatedDonationData = {
+        ...donationData,
+        userPackage: packageData,
+      };
+      console.log(packageData);
+      if (donationData.donationType === "Self-Donate") {
+        updatedDonationData.recipient = []; // Set recipient array to empty for self-donate
+      } else {
+        updatedDonationData.recipient = [];
+        updatedDonationData.recipient = [
+          ...updatedDonationData.recipient,
+          recipient,
+        ];
+      }
+
+      const updatedFormData = {
+        formData: {
+          user: {
+            ...userData,
+            donations: [updatedDonationData],
+          },
+        },
+      };
+
+      // setPackageData(packageData); // Set the updated package data to packageData state
+
+      console.log(updatedFormData);
+
+      try {
+        setLoading(true);
+        // Make the API call
+        const response = await DonationService.updateDonation(updatedFormData);
+        console.log(response);
+        // Process the API response as needed
+        if (response?.status) {
+          toast.success(response?.message);
+          setLoading(false);
+        } else {
+          toast.error(response?.message);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error(error);
+        setLoading(false);
+        // Handle any errors from the API call
+      }
+    } else {
+      // Handle validation errors here, e.g., show error messages to the user
+      console.log("Validation Errors:", validationErrors);
+    }
+  };
 
   const handleBack = () => {
     navigate(`/DonarView/${userData.emailId}`);
   };
 
-
-
-  console.log(packageData);
-  // Function to convert amount to words
-  const convertAmountToWords = (amount) => {
-    // Check if the amount is a valid number
-    if (typeof amount !== 'number' || !isFinite(amount)) {
-      return ''; // Return an empty string or an appropriate fallback value
-    }
-
-    // Check if the amount is within the supported range
-    const MAX_SUPPORTED_AMOUNT = 999999999.99;
-    if (amount > MAX_SUPPORTED_AMOUNT) {
-      return 'Amount exceeds the supported range.'; // Return an error message or an appropriate fallback value
-    }
-
-    const amountInWords = numberToWords.toWords(amount);
-    return amountInWords;
-  };
-
- 
-
   return (
     <>
       <ToastContainer />
-      {loading && <Loader/>}
+      {loading && <Loader />}
       {/* slide info */}
       <div className="bggray">
         <div className="col-12 admin-maindiv">
@@ -594,20 +531,21 @@ console.log(donationData);
                     </div>
                     <div className="col-6">
                       <div className="row select-label">
-                        <div className="col-4 ">Donation ID</div>
+                        <div className="col-4 ">Donation Code</div>
                         <div className="col-8 p0">
                           <input
                             className="form-control-inside"
                             type="text"
                             name="donationId"
-                            value={donationData.donationId}
-                            placeholder="Donation ID"
+                            value={donationData.donationCode}
+                            placeholder="Donation Code"
                             disabled
                           />
                         </div>
                       </div>
                     </div>
-                    {donationData.donationType.toUpperCase() !== "SELF-DONATE" && (
+                    {donationData.donationType.toUpperCase() !==
+                      "SELF-DONATE" && (
                       <div className="col-6">
                         <div className="row select-label">
                           <div className="col-4">Occasion</div>
@@ -618,7 +556,12 @@ console.log(donationData);
                               name="donationEvent"
                               value={donationData.donationEvent}
                               placeholder="Occasion"
-                              onChange={(e) => handleDonationChange("donationEvent", e.target.value)}
+                              onChange={(e) =>
+                                handleDonationChange(
+                                  "donationEvent",
+                                  e.target.value
+                                )
+                              }
                               disabled
                             />
                             {errors.donationEvent && (
@@ -626,12 +569,10 @@ console.log(donationData);
                                 {errors.donationEvent}
                               </div>
                             )}
-
                           </div>
                         </div>
                       </div>
                     )}
-
                   </div>
                   <div className="actionheadingdiv">
                     Select Your Donation Plan
@@ -641,7 +582,7 @@ console.log(donationData);
 
                   {packageData && packageData.length > 0 && (
                     <div className="mt20">
-                      <table >
+                      <table>
                         <thead>
                           <tr>
                             <th>Plantin Sapling</th>
@@ -717,17 +658,19 @@ console.log(donationData);
                       {/* <div className="overalltotal">
   Overall Total: {donationData.length > 0 ? donationData[0].totalAmount : 0}
 </div> */}
-<div className="overalltotal">
-  Overall Total: {donationData.totalAmount}
-</div>
-
+                      <div className="overalltotal">
+                        Overall Total: {donationData.totalAmount}
+                      </div>
                     </div>
                   )}
                   <div className="clear"></div>
                   <hr />
-                  {donationData.donationType.toUpperCase() !== "SELF-DONATE" && (
+                  {donationData.donationType.toUpperCase() !==
+                    "SELF-DONATE" && (
                     <>
-                      <div className="actionheadingdiv">DETAILS OF RECIPIENT</div>
+                      <div className="actionheadingdiv">
+                        DETAILS OF RECIPIENT
+                      </div>
                       <div className="col-12 pr15 mt20">
                         <div className="row">
                           <div className="col-6">
@@ -741,7 +684,11 @@ console.log(donationData);
                                   type="text"
                                   value={recipient.address[0]?.street1 || ""}
                                   onChange={(e) =>
-                                    handleRecipentAddressChange("street1", e.target.value, 0)
+                                    handleRecipentAddressChange(
+                                      "street1",
+                                      e.target.value,
+                                      0
+                                    )
                                   }
                                 />
                                 {errors?.street1 && (
@@ -763,16 +710,18 @@ console.log(donationData);
                                   type="text"
                                   value={recipient.address[0].street2}
                                   onChange={(e) =>
-                                    handleRecipentAddressChange("street2", e.target.value, 0)
+                                    handleRecipentAddressChange(
+                                      "street2",
+                                      e.target.value,
+                                      0
+                                    )
                                   }
                                 />
-  {errors?.street2 && (
+                                {errors?.street2 && (
                                   <div className="error-message red-text">
                                     {errors.street2}
                                   </div>
                                 )}
-
-
                               </div>
                             </div>
                           </div>
@@ -787,10 +736,14 @@ console.log(donationData);
                                   type="text"
                                   value={recipient.address[0].street3}
                                   onChange={(e) =>
-                                    handleRecipentAddressChange("street3", e.target.value, 0)
+                                    handleRecipentAddressChange(
+                                      "street3",
+                                      e.target.value,
+                                      0
+                                    )
                                   }
                                 />
-                                 {errors?.street3 && (
+                                {errors?.street3 && (
                                   <div className="error-message red-text">
                                     {errors.street3}
                                   </div>
@@ -809,10 +762,14 @@ console.log(donationData);
                                   type="text"
                                   value={recipient.address[0].country}
                                   onChange={(e) =>
-                                    handleRecipentAddressChange("country", e.target.value, 0)
+                                    handleRecipentAddressChange(
+                                      "country",
+                                      e.target.value,
+                                      0
+                                    )
                                   }
                                 />
-                                 {errors?.country && (
+                                {errors?.country && (
                                   <div className="error-message red-text">
                                     {errors.country}
                                   </div>
@@ -828,7 +785,11 @@ console.log(donationData);
                                   className=" form-control-inside form-select"
                                   value={recipient.address[0].state}
                                   onChange={(e) =>
-                                    handleRecipentAddressChange("state", e.target.value, 0)
+                                    handleRecipentAddressChange(
+                                      "state",
+                                      e.target.value,
+                                      0
+                                    )
                                   }
                                 >
                                   <option value="">Select State</option>
@@ -857,7 +818,11 @@ console.log(donationData);
                                   name="city"
                                   value={recipient.address[0].city}
                                   onChange={(e) =>
-                                    handleRecipentAddressChange("city", e.target.value, 0)
+                                    handleRecipentAddressChange(
+                                      "city",
+                                      e.target.value,
+                                      0
+                                    )
                                   }
                                 />
                                 {errors.length > 0 && errors?.city && (
@@ -879,7 +844,11 @@ console.log(donationData);
                                   type="text"
                                   value={recipient.address[0].postalCode}
                                   onChange={(e) =>
-                                    handleRecipentAddressChange("postalCode", e.target.value, 0)
+                                    handleRecipentAddressChange(
+                                      "postalCode",
+                                      e.target.value,
+                                      0
+                                    )
                                   }
                                 />
                                 {errors.length > 0 && errors?.postalCode && (
@@ -901,10 +870,17 @@ console.log(donationData);
                                   name="mobileNo"
                                   value={recipient.mobileNo}
                                   onChange={(e) =>
-                                    handleRecipientChange("mobileNo", e.target.value)
+                                    handleRecipientChange(
+                                      "mobileNo",
+                                      e.target.value
+                                    )
                                   }
                                 />
-                                {errors.mobileNo && <div className="error-message red-text">{errors.mobileNo}</div>}
+                                {errors.mobileNo && (
+                                  <div className="error-message red-text">
+                                    {errors.mobileNo}
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
@@ -919,7 +895,10 @@ console.log(donationData);
                                   name="emailId"
                                   value={recipient.emailId}
                                   onChange={(e) =>
-                                    handleRecipientChange("emailId", e.target.value)
+                                    handleRecipientChange(
+                                      "emailId",
+                                      e.target.value
+                                    )
                                   }
                                 />
                                 {errors.length > 0 && errors?.emailId && (
@@ -931,277 +910,22 @@ console.log(donationData);
                             </div>
                           </div>
                         </div>
-
                       </div>
                     </>
                   )}
                   <hr />
 
-                  <div className="actionheadingdiv">Mode of Payment
-                    <div
-                      className="float-right addminicon"
-                      onClick={addpaymenticon}
-                    >
-                      <FaPlusSquare />
-                    </div></div>
-
-
-
-
-
-
-
-
-                    
-                  <div className="col-12 pr15 mt20">
-                    <div className="row">
-                      <div className="col-6">
-                        <div className="row select-label">
-                          <div className="col-4 "> Select Mode</div>
-                          <div className="col-8 p0">
-                            <select
-                              name="paymentMode"
-                              className=" form-control-inside form-select"
-                              value={donationData.paymentInfo[0]?.paymentMode || ""}
-                              onChange={(event) =>
-                                handlePaymentInfoChange(event, 0)
-                              }
-                              required
-                            >
-                              <option disabled selected value="">Select</option>
-                              <option value="Cheque">Cheque</option>
-                              <option value="Cash">Cash</option>
-                            </select>
-                            {errors?.paymentMode && <div className="error-message red-text">{errors.paymentMode}</div>}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-6">
-                        <div className="row select-label">
-                          <div className="col-4 "> Bank Name</div>
-                          <div className="col-8 p0">
-                          <input
-        className="form-control-inside"
-        name="bankName" 
-        placeholder="Bank Name"
-        type="text"
-        value={donationData.paymentInfo[0]?.bankName || ""} 
-        onChange={(event) => handlePaymentInfoChange(event, 0)}
-      /> 
-      {errors?.bankName && ( 
-      <div className="error-message red-text">{errors?.bankName}</div>
-    )}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-6">
-                        <div className="row select-label">
-                          <div className="col-4 "> Chq/DD No.</div>
-                          <div className="col-8 p0">
-                            <input
-                              className="form-control-inside"
-                              name="chqORddNo"
-                              placeholder="Chq/DD No."
-                              type="text"
-                              value={donationData.paymentInfo[0]?.chqORddNo || ""}
-                              onChange={(event) =>
-                                handlePaymentInfoChange(event, 0)
-                              }
-                            />
-                            {errors?.chqORddNo && <div className="error-message red-text">{errors?.chqORddNo}</div>}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-6">
-                        <div className="row select-label">
-                          <div className="col-4 ">Chq/DD Date</div>
-                          <div className="col-8 p0">
-                            <input
-                              className="form-control-inside"
-                              name="chqORddDate"
-                              placeholder="Chq/DD Date"
-                              type="date"
-                              value={donationData.paymentInfo[0]?.chqORddDate || ""}
-                              onChange={(event) =>
-                                handlePaymentInfoChange(event, 0)
-                              }
-                            />
-                            {errors?.chqORddDate && <div className="error-message red-text">{errors?.chqORddDate}</div>}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-6">
-                        <div className="row select-label">
-                          <div className="col-4 ">Payment Date</div>
-                          <div className="col-8 p0">
-                            <input
-                              className="form-control-inside"
-                              name="paymentDate"
-                              placeholder="Payment Date"
-                              type="date"
-                              value={donationData.paymentInfo[0]?.paymentDate || ""}
-                              onChange={(event) =>
-                                handlePaymentInfoChange(event, 0)
-                              }
-                            />
-                            {errors?.paymentDate && <div className="error-message red-text">{errors?.paymentDate}</div>}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-6">
-                        <div className="row select-label">
-                          <div className="col-4 ">Amount</div>
-                          <div className="col-8 p0">
-                            <input
-                              className="form-control-inside"
-                              name="amount"
-                              placeholder="Amount"
-                              type="number"
-                              value={donationData.paymentInfo[0]?.amount || ""}
-                              onChange={(event) => {
-                                if (event.target.value < 0) {
-                                  event.target.value = 0;
-                                }
-                                handlePaymentInfoChange(event, 0);
-                              }}
-                            />
-                            {errors?.amount && <div className="error-message red-text">{errors?.amount}</div>}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <div className="actionheadingdiv">
+                    Mode of Payment
                   </div>
+                  <PaymentDetails
+                    donations={donationData}
+                    errors={errors}
+                    handlePaymentInfoChange={handlePaymentInfoChange}
+                    index={0}
+                    setLoading={setLoading}
+                  />
 
-
-
-
-
-
-
-
-
-
-                  <div id="addpaymentDiv" className="hide">
-                    <hr />
-                    <div className="actionheadingdiv">Mode of Payment
-                      <div
-                        className="float-right addminicon"
-                        onClick={minpaymentDiv}
-                      >
-                        <FaMinusSquare />
-                      </div></div>
-                    <div className="col-12 pr15 mt20">
-                      <div className="row">
-                        <div className="col-6">
-                          <div className="row select-label">
-                            <div className="col-4 "> Select Mode</div>
-                            <div className="col-8 p0">
-                              <select
-                                name="paymentMode"
-                                className=" form-control-inside form-select"
-                                value={donationData.paymentInfo[1]?.paymentMode || ""}
-                                onChange={(event) =>
-                                  handlePaymentInfoChange(event, 1)
-                                }
-                              >
-                                <option selected>Donar Type</option>
-                                <option value="Cheque">Cheque</option>
-                                <option value="Cash">Cash</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-6">
-                          <div className="row select-label">
-                            <div className="col-4 "> Bank Name</div>
-                            <div className="col-8 p0">
-                              <input
-                                className="form-control-inside"
-                                name="bankName"
-                                placeholder="Bank Name"
-                                type="text"
-                                value={donationData.paymentInfo[1]?.bankName || ""}
-                                onChange={(event) =>
-                                  handlePaymentInfoChange(event, 1)
-                                }
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-6">
-                          <div className="row select-label">
-                            <div className="col-4 "> Chq/DD No.</div>
-                            <div className="col-8 p0">
-                              <input
-                                className="form-control-inside"
-                                name="chqORddNo"
-                                placeholder="Chq/DD No."
-                                type="text"
-                                value={donationData.paymentInfo[1]?.chqORddNo || ""}
-                                onChange={(event) =>
-                                  handlePaymentInfoChange(event, 1)
-                                }
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-6">
-                          <div className="row select-label">
-                            <div className="col-4 ">Chq/DD Date</div>
-                            <div className="col-8 p0">
-                              <input
-                                className="form-control-inside"
-                                name="chqORddDate"
-                                placeholder="Chq/DD Date"
-                                type="date"
-                                value={donationData.paymentInfo[1]?.chqORddDate || ""}
-                                onChange={(event) =>
-                                  handlePaymentInfoChange(event, 1)
-                                }
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-6">
-                          <div className="row select-label">
-                            <div className="col-4 ">Payment Date</div>
-                            <div className="col-8 p0">
-                              <input
-                                className="form-control-inside"
-                                name="paymentDate"
-                                placeholder="Payment Date"
-                                type="date"
-                                value={donationData.paymentInfo[1]?.paymentDate || ""}
-                                onChange={(event) =>
-                                  handlePaymentInfoChange(event, 1)
-                                }
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-6">
-                          <div className="row select-label">
-                            <div className="col-4 ">Amount</div>
-                            <div className="col-8 p0">
-                              <input
-                                className="form-control-inside"
-                                name="amount"
-                                placeholder="Amount"
-                                type="number"
-                                value={donationData.paymentInfo[1]?.amount || ""}
-                                onChange={(event) => {
-                                  if (event.target.value < 0) {
-                                    event.target.value = 0;
-                                  }
-                                  handlePaymentInfoChange(event, 1);
-                                }}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                   <button
                     type="submit"
                     className="mt20 mr10 webform-button--submit"
@@ -1210,7 +934,10 @@ console.log(donationData);
                     Update
                   </button>
 
-                  <button className="mt20 mr10 webform-button--cancel" onClick={handleBack}>
+                  <button
+                    className="mt20 mr10 webform-button--cancel"
+                    onClick={handleBack}
+                  >
                     Back
                   </button>
 

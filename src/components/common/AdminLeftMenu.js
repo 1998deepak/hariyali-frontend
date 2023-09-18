@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from "react";
+import {React,useEffect} from "react";
 import {
   Sidebar,
   Menu,
@@ -9,8 +9,17 @@ import {
 } from "react-pro-sidebar";
 import { MdCreateNewFolder } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { FaHome, FaRegCreditCard, FaUserEdit, FaUserFriends } from "react-icons/fa";
+import { FaHome, FaDonate, FaRegCreditCard, FaUserEdit, FaUserFriends } from "react-icons/fa";
+import {RiUserAddLine} from "react-icons/ri";
+import {BiDonateHeart} from "react-icons/bi";
+import {FiUserPlus, FiSettings, FiUsers} from "react-icons/fi";
+import {CiViewList} from "react-icons/ci";
+import {PiPottedPlantDuotone} from "react-icons/pi";
+import {HiOutlineDocumentReport} from "react-icons/hi";
 import { useState } from "react";
+import Accordion from 'react-bootstrap/Accordion';
+import { useAccordionButton } from 'react-bootstrap/AccordionButton';
+
 
 const LeftMenu = () => {
   const { collapseSidebar } = useProSidebar();
@@ -20,10 +29,33 @@ const LeftMenu = () => {
     setIsOpen(!isOpen);
   };
   const [isActive, setIsActive] = useState(false);
+  const [activeHead, setActiveHead] = useState("home");
+  const [mainKey, setMainKey] = useState("0");
+  const [donationKey, setDonationKey] = useState("");
 
   const handleClick = () => {
     setIsActive(!isActive);
   };
+
+  const activeHeadTag = (tag) => {
+    setActiveHead(tag);
+  };
+
+//   const decoratedOnClick = useAccordionButton(eventKey, () =>
+//   console.log('totally custom!'),
+// );
+  useEffect(() => {
+  //  let url = window.location.href;
+   
+  //  if(url.indexOf('Dashboard')>-1){
+  //   setMainKey("0");
+  //  }
+  //  if(url.indexOf('WebDonarCreation')>-1){
+  //   setMainKey("1");
+  //   setActiveHead("donationList");
+  //  }
+  }, []);
+
   return (
     <>
       <button
@@ -36,8 +68,117 @@ const LeftMenu = () => {
         </span>
       </button>
       <Sidebar className={isOpen ? "show" : ""}>
-        <div>
-          <Menu>
+        <div className="adminLetNav">
+          <Accordion defaultActiveKey='0'>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header className={activeHead == 'home'? 'active disabled' : 'disabled'} onClick={()=>activeHeadTag('home')}>
+                <Link
+                  to="/Dashboard"
+                  className="nav-link dropdown-indicator-left label-1"
+                  onClick={toggleMenu}
+                >
+                  <FaHome />
+                  Home
+                </Link>
+              </Accordion.Header>
+
+            </Accordion.Item>
+            <Accordion.Item eventKey="1">
+              <Accordion.Header className={activeHead==='donations' ? 'active' : ''} onClick={()=>activeHeadTag('donations')}><BiDonateHeart /> Donations</Accordion.Header>
+              <Accordion.Body>
+                <Accordion defaultActiveKey="0">
+                  <Accordion.Item eventKey="0">
+                    <Accordion.Header  className={activeHead=='donationList' ? 'active disabled' : 'disabled'} onClick={()=>activeHeadTag('donationList')}>
+                      
+                      <Link
+                          to="/WebDonarCreation"
+                          className="nav-link dropdown-indicator-left label-1"
+                          onClick={toggleMenu}
+                        >
+                        <CiViewList/> Donation List
+                      </Link>
+                    </Accordion.Header>
+                  </Accordion.Item>
+                  <Accordion.Item eventKey="1">
+                    <Accordion.Header className={activeHead =='addDonor'? 'active' : ''} onClick={()=>activeHeadTag('addDonor')}><FiUserPlus/> Add Donor</Accordion.Header>
+                    <Accordion.Body>
+                      <Menu>
+                        <MenuItem className={activeHead == 'existingDonor' ? 'sidebar-leftli left-sp active ' : 'sidebar-leftli left-sp'} onClick={()=>activeHeadTag('existingDonor')}>
+                          <Link
+                            to="/DonarCreation"
+                            className="nav-link dropdown-indicator-left label-1"
+                            onClick={toggleMenu}
+                          >
+                            <FiUsers/>  
+                            Existing Donor
+                          </Link>
+                        </MenuItem>
+                        <MenuItem className={activeHead == 'newDonor' ? 'sidebar-leftli left-sp active ' : 'sidebar-leftli left-sp'} onClick={()=>activeHeadTag('newDonor')}>
+                          <Link
+                            to="/OfflineDonation"
+                            className="nav-link dropdown-indicator-left label-1"
+                            onClick={toggleMenu}
+                          >
+                            <RiUserAddLine/>
+                            New Donor
+                          </Link>
+                        </MenuItem>
+                      </Menu>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
+                
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="2">
+              <Accordion.Header className={activeHead =='plantation'? 'disabled active' : 'disabled'} onClick={()=>activeHeadTag('plantation')}>
+              <Link
+                to="/Plantation"
+                className="nav-link dropdown-indicator-left label-1"
+              > <PiPottedPlantDuotone />
+                <span className="link-text">Plantation </span>
+
+              </Link>
+              </Accordion.Header>
+
+            </Accordion.Item>
+            <Accordion.Item eventKey="3">
+              <Accordion.Header className={activeHead =='plantation'? 'disabled active' : 'disabled'} onClick={()=>activeHeadTag('commitment')}>
+              <Link
+                to="/Commitment"
+                className="nav-link dropdown-indicator-left label-1"
+              > <PiPottedPlantDuotone />
+                <span className="link-text">Commitment </span>
+
+              </Link>
+              </Accordion.Header>
+
+            </Accordion.Item>
+            <Accordion.Item eventKey="4">
+              <Accordion.Header className={activeHead =='reports'? 'disabled active' : 'disabled'} onClick={()=>activeHeadTag('reports')}>
+              <Link
+                to=""
+                className="nav-link dropdown-indicator-left label-1"
+              > <HiOutlineDocumentReport />
+                Reports
+
+              </Link>
+              </Accordion.Header>
+
+            </Accordion.Item>
+            <Accordion.Item eventKey="5">
+              <Accordion.Header className={activeHead =='masters'? 'disabled active' : 'disabled'} onClick={()=>activeHeadTag('masters')}>
+              <Link
+                to=""
+                className="nav-link dropdown-indicator-left label-1"
+              > <FiSettings />
+                Masters
+              </Link>
+              </Accordion.Header>
+
+            </Accordion.Item>
+          </Accordion>
+          {/*<Menu>
             <MenuItem className="sidebar-leftli left-sp">
               <Link
                 to="/Dashboard"
@@ -53,31 +194,31 @@ const LeftMenu = () => {
                 to="/WebDonarCreation"
                 className="nav-link dropdown-indicator-left label-1" onClick={toggleMenu}
               > <FaUserFriends />
-              Web Donar              
+                Web Donar
               </Link>
             </MenuItem>
             <MenuItem className="sidebar-leftli left-sp">
               <Link
                 to="/DonarCreation"
-                className="nav-link dropdown-indicator-left label-1"  onClick={toggleMenu}
+                className="nav-link dropdown-indicator-left label-1" onClick={toggleMenu}
               > <MdCreateNewFolder />
-              Approved Donor
-                
+                Approved Donor
+
               </Link>
             </MenuItem>
             <MenuItem className="sidebar-leftli left-sp">
               <Link
                 to=""
-                className="nav-link dropdown-indicator-left label-1" 
+                className="nav-link dropdown-indicator-left label-1"
               > <MdCreateNewFolder />
-              Plantation & Commitment
-                
+                Plantation & Commitment
+
               </Link>
             </MenuItem>
-            
-          </Menu>
+
+  </Menu>*/}
         </div>
-        
+
         {/* <div>
           <Menu>
             <MenuItem className="sidebar-leftli">
