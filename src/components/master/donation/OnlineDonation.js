@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import { useLocation } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Button,
@@ -21,6 +22,7 @@ import Loader from "../../common/loader/Loader";
 import PrivacyPolicy from "../../common/PrivacyPolicy";
 import Card from "react-bootstrap/Card";
 import PackageDetails from "../../common/PackageDetails";
+import { useNavigate } from "react-router-dom";
 
 function OnlineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
@@ -47,9 +49,9 @@ function OnlineDonation() {
 
   const [showDonationModal, setShowDonationModal] = useState(false);
   const [transactionMessage, setTransactionMessage] = useState("");
-  const queryParameters = new URLSearchParams(window.location.search);
-  const meconnectId = queryParameters.get("meconnectId");
-  const source = queryParameters.get("source");
+  const location = useLocation();
+  const meconnectId = location.search.split("?meconnectId=")[1];
+  console.log(location.search.split("?meconnectId=")[1]);
 
   //   const handleDecodeClick = () => {
   //     const decodedSource = atob(source);
@@ -518,7 +520,7 @@ function OnlineDonation() {
   const setCaptchaFlag = async (flag) => {
     setCaptchaVerfied(flag);
   };
-
+  const navigate = useNavigate();
   const userAdd = async (e, donationType) => {
     e.preventDefault();
     const isValid = validate();
@@ -620,6 +622,8 @@ function OnlineDonation() {
         setTimeout(() => {
           document.getElementById("gatewayForm").submit();
         }, 1000);
+      } else if (response?.status === "OTHERTHANINDIA") {
+        navigate(response.gatewayURL);
         clearForm(e);
         setLoading(false);
       } else {
@@ -3557,7 +3561,7 @@ function OnlineDonation() {
           />
         </Container>
       </div>
-      {/* {gatewayConfiguration != null && (
+      {gatewayConfiguration != null && (
         <form
           method="post"
           name="redirect"
@@ -3577,28 +3581,8 @@ function OnlineDonation() {
             value={gatewayConfiguration.accessCode}
           />
         </form>
-      )} */}
-      {gatewayConfiguration != null && (
-        <form
-          method="get"
-          name="redirect"
-          id="gatewayForm"
-          action={gatewayConfiguration.gatewayURL}
-        >
-          <input
-            type="hidden"
-            id="encRequest"
-            name="encRequest"
-            value={gatewayConfiguration.encRequest}
-          />
-          <input
-            type="hidden"
-            name="access_code"
-            id="access_code"
-            value={gatewayConfiguration.accessCode}
-          />
-        </form>
       )}
+
       <Modal
         className="transaction-modal"
         show={showDonationModal}
