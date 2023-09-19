@@ -47,21 +47,21 @@ function OnlineDonation() {
 
   const [showDonationModal, setShowDonationModal] = useState(false);
   const [transactionMessage, setTransactionMessage] = useState("");
-  const queryParameters = new URLSearchParams(window.location.search)
-  const meconnectId = queryParameters.get("meconnectId")
-  const source = queryParameters.get("source")
+  const queryParameters = new URLSearchParams(window.location.search);
+  const meconnectId = queryParameters.get("meconnectId");
+  const source = queryParameters.get("source");
 
-//   const handleDecodeClick = () => {
-//     const decodedSource = atob(source);
-//     const decodedMeConnect = atob(meconnectId)
-//     setdecodedString(decodedSource);
-// }
+  //   const handleDecodeClick = () => {
+  //     const decodedSource = atob(source);
+  //     const decodedMeConnect = atob(meconnectId)
+  //     setdecodedString(decodedSource);
+  // }
 
-const [hasAadharCard, setHasAadharCard] = useState( );
+  const [hasAadharCard, setHasAadharCard] = useState();
 
-const handleRadioChange = (event) => {
-  setHasAadharCard(event.target.value === 'yes');
-};
+  const handleRadioChange = (event) => {
+    setHasAadharCard(event.target.value === "yes");
+  };
 
   //   const handleDecodeClick = () => {
   //     const decodedSource = atob(source);
@@ -95,8 +95,8 @@ const handleRadioChange = (event) => {
       citizenship: "",
       isTaxBenefit: false,
       panCard: "",
-      passport:"",
-      addharCard:"",
+      passport: "",
+      addharCard: "",
       activityType: null,
       meconnectId: meconnectId,
       address: [],
@@ -264,8 +264,6 @@ const handleRadioChange = (event) => {
       document.getElementById("mobileNo").focus();
     }
 
-    
-
     if (!userData?.user?.donarType) {
       validationErrors.push({
         field: "userData.user.donarType",
@@ -289,8 +287,8 @@ const handleRadioChange = (event) => {
       });
     }
     console.log(hasAadharCard);
-    if(userData?.user?.citizenship === 'India'){
-      if(hasAadharCard === false){
+    if (userData?.user?.citizenship === "India") {
+      if (hasAadharCard === false) {
         if (!userData?.user?.panCard) {
           validationErrors.push({
             field: "userData.user.panCard",
@@ -304,33 +302,35 @@ const handleRadioChange = (event) => {
           });
           document.getElementById("panCard").focus();
         }
-      }else{
-          if (!/^(?!.*[a-zA-Z])\d{16}$/.test(userData.user.addharCard) && hasAadharCard) {
-            validationErrors.push({
-              field: "userData.user.addharCard",
-              message:"Addhar Number must contain exactly 16 digits and no alphabetic characters",
-            });
-            document.getElementById("addharCard").focus();
-          }
+      } else {
+        if (
+          !/^(?!.*[a-zA-Z])\d{16}$/.test(userData.user.addharCard) &&
+          hasAadharCard
+        ) {
+          validationErrors.push({
+            field: "userData.user.addharCard",
+            message:
+              "Addhar Number must contain exactly 16 digits and no alphabetic characters",
+          });
+          document.getElementById("addharCard").focus();
+        }
       }
-      }else{
-        if (!userData?.user?.passport) {
-      validationErrors.push({
-        field: "userData.user.passport",
-        message: "Passport is required",
-      });
-      document.getElementById("passport").focus();
+    } else {
+      if (!userData?.user?.passport) {
+        validationErrors.push({
+          field: "userData.user.passport",
+          message: "Passport is required",
+        });
+        document.getElementById("passport").focus();
+      }
+      // else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.passport)) {
+      //   validationErrors.push({
+      //     field: "userData.user.passport",
+      //     message: "Passport No is Invalid",
+      //   });
+      //   document.getElementById("passport").focus();
+      // }
     }
-    // else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.passport)) {
-    //   validationErrors.push({
-    //     field: "userData.user.passport",
-    //     message: "Passport No is Invalid",
-    //   });
-    //   document.getElementById("passport").focus();
-    // }
-    }
-
-    
 
     // Validate addresses
     for (let i = 0; i < address.length; i++) {
@@ -648,7 +648,7 @@ const handleRadioChange = (event) => {
           "Thank you for your donation. <b>" +
           response?.data?.bankPaymentRefNo +
           "</b> is the transaction ID for your reference. The team will revert in 3-5 business working days.";
-          console.log(message);
+        console.log(message);
         setTransactionMessage(message);
         setShowDonationModal(true);
       } else {
@@ -957,7 +957,6 @@ const handleRadioChange = (event) => {
     console.log(response);
     setMessage("");
     if (response?.status === "Success") {
-
       toast.success(response?.message);
       if (response.data.address) {
         let addr = [...initialAddress];
@@ -1531,120 +1530,124 @@ const handleRadioChange = (event) => {
                                   <div className="col-6">
                                     <div className="select-label">
                                       <div className="col-12 p0 field-wrapper">
-                                      <div>
-                                      <label>
-                                        Do you have an Aadhar card?
-                                      </label>
-                                      <div className="radio-buttons">
-                                        <label>
-                                          <input
-                                            type="radio"
-                                            name="aadharRadio"
-                                            value="yes"
-                                            checked={hasAadharCard}
-                                            onChange={handleRadioChange}
-                                          />{' '}
-                                          Yes
-                                        </label>{" "}
-                                        <label>
-                                          <input
-                                            type="radio"
-                                            name="aadharRadio"
-                                            value="no"
-                                            checked={!hasAadharCard}
-                                            onChange={handleRadioChange}
-                                          />{' '}
-                                          No
-                                        </label>
-                                      </div>
-                                      </div>
+                                        <div>
+                                          <label>
+                                            Do you have an Aadhar card?
+                                          </label>
+                                          <div className="radio-buttons">
+                                            <label>
+                                              <input
+                                                type="radio"
+                                                name="aadharRadio"
+                                                value="yes"
+                                                checked={hasAadharCard}
+                                                onChange={handleRadioChange}
+                                              />{" "}
+                                              Yes
+                                            </label>{" "}
+                                            <label>
+                                              <input
+                                                type="radio"
+                                                name="aadharRadio"
+                                                value="no"
+                                                checked={!hasAadharCard}
+                                                onChange={handleRadioChange}
+                                              />{" "}
+                                              No
+                                            </label>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                   {hasAadharCard ? (
-                                  <div id="addharId" className="col-6">
-                                    <div className="select-label">
-                                      {/* <div className="col-4 ">PAN card</div> */}
-                                      <div className="col-12 p0 field-wrapper">
-                                        <label
-                                          for="addharCard"
-                                          class="form-label top-27"
-                                        >
-                                          Addhar Card{" "}
-                                          <span className="red-text">*</span>
-                                        </label>
-                                        <input
-                                          className="form-control-inside form-control"
-                                          name="user.addharCard"
-                                          id="addharCard"
-                                          placeholder="Addhar card No."
-                                          type="text"
-                                          maxLength={16}
-                                          value={userData?.user?.addharCard}
-                                          onChange={handleChange}
-                                        />
-                                        {errors.map((error, index) => {
-                                          if (
-                                            error.field === "userData.user.addharCard"
-                                          ) {
-                                            return (
-                                              <div
-                                                key={index}
-                                                className="error-message red-text"
-                                              >
-                                                {error.message}
-                                              </div>
-                                            );
-                                          }
-                                          return null;
-                                        })}
+                                    <div id="addharId" className="col-6">
+                                      <div className="select-label">
+                                        {/* <div className="col-4 ">PAN card</div> */}
+                                        <div className="col-12 p0 field-wrapper">
+                                          <label
+                                            for="addharCard"
+                                            class="form-label top-27"
+                                          >
+                                            Addhar Card{" "}
+                                            <span className="red-text">*</span>
+                                          </label>
+                                          <input
+                                            className="form-control-inside form-control"
+                                            name="user.addharCard"
+                                            id="addharCard"
+                                            placeholder="Addhar card No."
+                                            type="text"
+                                            maxLength={16}
+                                            value={userData?.user?.addharCard}
+                                            onChange={handleChange}
+                                          />
+                                          {errors.map((error, index) => {
+                                            if (
+                                              error.field ===
+                                              "userData.user.addharCard"
+                                            ) {
+                                              return (
+                                                <div
+                                                  key={index}
+                                                  className="error-message red-text"
+                                                >
+                                                  {error.message}
+                                                </div>
+                                              );
+                                            }
+                                            return null;
+                                          })}
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>) :  <div className="col-6">
-                                    <div className="select-label">
-                                      {/* <div className="col-4 ">PAN card</div> */}
-                                      <div className="col-12 p0 field-wrapper">
-                                        <label
-                                          for="panCard"
-                                          class="form-label top-27"
-                                        >
-                                          PAN Card{" "}
-                                          <span className="red-text">*</span>
-                                        </label>
-                                        <input
-                                          className="form-control-inside form-control"
-                                          name="user.panCard"
-                                          id="panCard"
-                                          placeholder="PAN card No."
-                                          type="text"
-                                          value={userData?.user?.panCard}
-                                          onChange={handleChange}
-                                        />
-                                        <small className="text-muted">
-                                          Disclaimer: Please ensure that you
-                                          have entered the correct PAN details
-                                          to avoid non-deduction u/s 80G of the
-                                          Income Tax Act,1961
-                                        </small>
-                                        {errors.map((error, index) => {
-                                          if (
-                                            error.field ===
-                                            "userData.user.panCard"
-                                          ) {
-                                            return (
-                                              <div
-                                                key={index}
-                                                className="error-message red-text"
-                                              >
-                                                {error.message}
-                                              </div>
-                                            );
-                                          }
-                                          return null;
-                                        })}
+                                  ) : (
+                                    <div className="col-6">
+                                      <div className="select-label">
+                                        {/* <div className="col-4 ">PAN card</div> */}
+                                        <div className="col-12 p0 field-wrapper">
+                                          <label
+                                            for="panCard"
+                                            class="form-label top-27"
+                                          >
+                                            PAN Card{" "}
+                                            <span className="red-text">*</span>
+                                          </label>
+                                          <input
+                                            className="form-control-inside form-control"
+                                            name="user.panCard"
+                                            id="panCard"
+                                            placeholder="PAN card No."
+                                            type="text"
+                                            value={userData?.user?.panCard}
+                                            onChange={handleChange}
+                                          />
+                                          <small className="text-muted">
+                                            Disclaimer: Please ensure that you
+                                            have entered the correct PAN details
+                                            to avoid non-deduction u/s 80G of
+                                            the Income Tax Act,1961
+                                          </small>
+                                          {errors.map((error, index) => {
+                                            if (
+                                              error.field ===
+                                              "userData.user.panCard"
+                                            ) {
+                                              return (
+                                                <div
+                                                  key={index}
+                                                  className="error-message red-text"
+                                                >
+                                                  {error.message}
+                                                </div>
+                                              );
+                                            }
+                                            return null;
+                                          })}
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>}
+                                  )}
                                 </>
                               ) : (
                                 <>
@@ -1701,9 +1704,7 @@ const handleRadioChange = (event) => {
                               Orgnization Address
                             </div>
                           ) : (
-                            <div className="actionheadingdiv">
-                              Address
-                            </div>
+                            <div className="actionheadingdiv">Address</div>
                           )}
                           <div className="col-12 pr15">
                             <div className="row">
@@ -1805,9 +1806,11 @@ const handleRadioChange = (event) => {
                                         Select Country
                                       </option>
                                       <option value="INDIA">INDIA</option>
-                                        <option value="ICELAND">ICELAND</option>
-                                        <option value="JORDAN">JORDAN</option>
-                                        <option value="LITHUANIA">LITHUANIA</option>
+                                      <option value="ICELAND">ICELAND</option>
+                                      <option value="JORDAN">JORDAN</option>
+                                      <option value="LITHUANIA">
+                                        LITHUANIA
+                                      </option>
                                     </select>
                                     {errors.map((error, index) => {
                                       if (
@@ -2446,42 +2449,43 @@ const handleRadioChange = (event) => {
                                   </div>
                                 </div>
                               </div>
-                              {isVisibleGift &&
-                              <div className="col-6">
-                                <div className="select-label">
-                                  {/* <div className="col-4 "> Organisation</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                    <label className="form-label">
-                                      Organisation{" "}
-                                      <span className="red-text">*</span>
-                                    </label>
-                                    <input
-                                      className="form-control-inside form-control"
-                                      name="user.organisation"
-                                      placeholder="Organisation"
-                                      type="text"
-                                      value={userData.user.organisation}
-                                      onChange={handleChange}
-                                    />
-                                    {errors.map((error, index) => {
-                                      if (
-                                        error.field ===
-                                        "userData.user.organisation"
-                                      ) {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
+                              {isVisibleGift && (
+                                <div className="col-6">
+                                  <div className="select-label">
+                                    {/* <div className="col-4 "> Organisation</div> */}
+                                    <div className="col-12 p0 field-wrapper">
+                                      <label className="form-label">
+                                        Organisation{" "}
+                                        <span className="red-text">*</span>
+                                      </label>
+                                      <input
+                                        className="form-control-inside form-control"
+                                        name="user.organisation"
+                                        placeholder="Organisation"
+                                        type="text"
+                                        value={userData.user.organisation}
+                                        onChange={handleChange}
+                                      />
+                                      {errors.map((error, index) => {
+                                        if (
+                                          error.field ===
+                                          "userData.user.organisation"
+                                        ) {
+                                          return (
+                                            <div
+                                              key={index}
+                                              className="error-message red-text"
+                                            >
+                                              {error.message}
+                                            </div>
+                                          );
+                                        }
+                                        return null;
+                                      })}
+                                    </div>
                                   </div>
                                 </div>
-                              </div>}
+                              )}
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Prefix</div> */}
@@ -2594,33 +2598,33 @@ const handleRadioChange = (event) => {
                                   <div className="col-6">
                                     <div className="select-label">
                                       <div className="col-12 p0 field-wrapper">
-                                      <div>
-                                      <label>
-                                        Do you have an Pan card?
-                                      </label>
-                                      <div className="radio-buttons">
-                                        <label>
-                                          <input
-                                            type="radio"
-                                            name="aadharRadio"
-                                            value="yes"
-                                            checked={hasAadharCard}
-                                            onChange={handleRadioChange}
-                                          />{' '}
-                                          Yes
-                                        </label>{" "}
-                                        <label>
-                                          <input
-                                            type="radio"
-                                            name="aadharRadio"
-                                            value="no"
-                                            checked={!hasAadharCard}
-                                            onChange={handleRadioChange}
-                                          />{' '}
-                                          No
-                                        </label>
-                                      </div>
-                                      </div>
+                                        <div>
+                                          <label>
+                                            Do you have an Pan card?
+                                          </label>
+                                          <div className="radio-buttons">
+                                            <label>
+                                              <input
+                                                type="radio"
+                                                name="aadharRadio"
+                                                value="yes"
+                                                checked={hasAadharCard}
+                                                onChange={handleRadioChange}
+                                              />{" "}
+                                              Yes
+                                            </label>{" "}
+                                            <label>
+                                              <input
+                                                type="radio"
+                                                name="aadharRadio"
+                                                value="no"
+                                                checked={!hasAadharCard}
+                                                onChange={handleRadioChange}
+                                              />{" "}
+                                              No
+                                            </label>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -2669,49 +2673,49 @@ const handleRadioChange = (event) => {
                                     </div>
                                   </div>
                                   {hasAadharCard && (
-                                  <div
-                                    id="addharId"
-                                    className="col-6"
-                                    style={{ display: "none" }}
-                                  >
-                                    <div className="select-label">
-                                      {/* <div className="col-4 ">PAN card</div> */}
-                                      <div className="col-12 p0 field-wrapper">
-                                        <label
-                                          for="panCard"
-                                          class="form-label top-27"
-                                        >
-                                          Addhar Card{" "}
-                                          <span className="red-text">*</span>
-                                        </label>
-                                        <input
-                                          className="form-control-inside form-control"
-                                          name="user.addharCard"
-                                          placeholder="Addhar card No."
-                                          type="text"
-                                          maxLength={16}
-                                          value={userData?.user?.addharCard}
-                                          onChange={handleChange}
-                                        />
-                                        {errors.map((error, index) => {
-                                          if (
-                                            error.field ===
-                                            "userData.user.addharCard"
-                                          ) {
-                                            return (
-                                              <div
-                                                key={index}
-                                                className="error-message red-text"
-                                              >
-                                                {error.message}
-                                              </div>
-                                            );
-                                          }
-                                          return null;
-                                        })}
+                                    <div
+                                      id="addharId"
+                                      className="col-6"
+                                      style={{ display: "none" }}
+                                    >
+                                      <div className="select-label">
+                                        {/* <div className="col-4 ">PAN card</div> */}
+                                        <div className="col-12 p0 field-wrapper">
+                                          <label
+                                            for="panCard"
+                                            class="form-label top-27"
+                                          >
+                                            Addhar Card{" "}
+                                            <span className="red-text">*</span>
+                                          </label>
+                                          <input
+                                            className="form-control-inside form-control"
+                                            name="user.addharCard"
+                                            placeholder="Addhar card No."
+                                            type="text"
+                                            maxLength={16}
+                                            value={userData?.user?.addharCard}
+                                            onChange={handleChange}
+                                          />
+                                          {errors.map((error, index) => {
+                                            if (
+                                              error.field ===
+                                              "userData.user.addharCard"
+                                            ) {
+                                              return (
+                                                <div
+                                                  key={index}
+                                                  className="error-message red-text"
+                                                >
+                                                  {error.message}
+                                                </div>
+                                              );
+                                            }
+                                            return null;
+                                          })}
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
                                   )}
                                 </>
                               ) : (
@@ -2768,9 +2772,7 @@ const handleRadioChange = (event) => {
                               Orgnization Address
                             </div>
                           ) : (
-                            <div className="actionheadingdiv">
-                              Address
-                            </div>
+                            <div className="actionheadingdiv">Address</div>
                           )}
                           <div className="col-12 pr15">
                             <div className="row">
@@ -2870,9 +2872,11 @@ const handleRadioChange = (event) => {
                                         Select Country
                                       </option>
                                       <option value="INDIA">INDIA</option>
-                                        <option value="ICELAND">ICELAND</option>
-                                        <option value="JORDAN">JORDAN</option>
-                                        <option value="LITHUANIA">LITHUANIA</option>
+                                      <option value="ICELAND">ICELAND</option>
+                                      <option value="JORDAN">JORDAN</option>
+                                      <option value="LITHUANIA">
+                                        LITHUANIA
+                                      </option>
                                     </select>
                                     {errors.map((error, index) => {
                                       if (
@@ -3553,9 +3557,30 @@ const handleRadioChange = (event) => {
           />
         </Container>
       </div>
-      {gatewayConfiguration != null && (
+      {/* {gatewayConfiguration != null && (
         <form
           method="post"
+          name="redirect"
+          id="gatewayForm"
+          action={gatewayConfiguration.gatewayURL}
+        >
+          <input
+            type="hidden"
+            id="encRequest"
+            name="encRequest"
+            value={gatewayConfiguration.encRequest}
+          />
+          <input
+            type="hidden"
+            name="access_code"
+            id="access_code"
+            value={gatewayConfiguration.accessCode}
+          />
+        </form>
+      )} */}
+      {gatewayConfiguration != null && (
+        <form
+          method="get"
           name="redirect"
           id="gatewayForm"
           action={gatewayConfiguration.gatewayURL}
@@ -3584,19 +3609,18 @@ const handleRadioChange = (event) => {
         <Modal.Body>
           <div className="row">
             <div className="col-12">
-              <Card >
+              <Card>
                 <Card.Body>
                   <div className="card-icon">
                     <BsEmojiSmile />
                   </div>
-                  <Card.Text dangerouslySetInnerHTML={{ __html: transactionMessage }}> 
-
-                  </Card.Text>
+                  <Card.Text
+                    dangerouslySetInnerHTML={{ __html: transactionMessage }}
+                  ></Card.Text>
                 </Card.Body>
               </Card>
             </div>
           </div>
-
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleDonationModalClose}>
