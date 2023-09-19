@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import { useLocation } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Button,
@@ -21,6 +22,7 @@ import Loader from "../../common/loader/Loader";
 import PrivacyPolicy from "../../common/PrivacyPolicy";
 import Card from "react-bootstrap/Card";
 import PackageDetails from "../../common/PackageDetails";
+import { useNavigate } from "react-router-dom";
 
 function OnlineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
@@ -47,21 +49,21 @@ function OnlineDonation() {
 
   const [showDonationModal, setShowDonationModal] = useState(false);
   const [transactionMessage, setTransactionMessage] = useState("");
-  const queryParameters = new URLSearchParams(window.location.search)
-  const meconnectId = queryParameters.get("meconnectId")
-  const source = queryParameters.get("source")
+  const location = useLocation();
+  const meconnectId = location.search.split("?meconnectId=")[1];
+  console.log(location.search.split("?meconnectId=")[1]);
 
-//   const handleDecodeClick = () => {
-//     const decodedSource = atob(source);
-//     const decodedMeConnect = atob(meconnectId)
-//     setdecodedString(decodedSource);
-// }
+  //   const handleDecodeClick = () => {
+  //     const decodedSource = atob(source);
+  //     const decodedMeConnect = atob(meconnectId)
+  //     setdecodedString(decodedSource);
+  // }
 
 const [hasAadharCard, setHasAadharCard] = useState(true);
 
-const handleRadioChange = (event) => {
-  setHasAadharCard(event.target.value === 'yes');
-};
+  const handleRadioChange = (event) => {
+    setHasAadharCard(event.target.value === "yes");
+  };
 
   //   const handleDecodeClick = () => {
   //     const decodedSource = atob(source);
@@ -95,8 +97,8 @@ const handleRadioChange = (event) => {
       citizenship: "",
       isTaxBenefit: false,
       panCard: "",
-      passport:"",
-      addharCard:"",
+      passport: "",
+      addharCard: "",
       activityType: null,
       meconnectId: meconnectId,
       address: [],
@@ -264,8 +266,6 @@ const handleRadioChange = (event) => {
       document.getElementById("mobileNo").focus();
     }
 
-    
-
     if (!userData?.user?.donarType) {
       validationErrors.push({
         field: "userData.user.donarType",
@@ -304,33 +304,35 @@ const handleRadioChange = (event) => {
           });
           document.getElementById("panCard").focus();
         }
-      }else{
-          if (!/^(?!.*[a-zA-Z])\d{16}$/.test(userData.user.addharCard) && hasAadharCard) {
-            validationErrors.push({
-              field: "userData.user.addharCard",
-              message:"Addhar Number must contain exactly 16 digits and no alphabetic characters",
-            });
-            document.getElementById("addharCard").focus();
-          }
+      } else {
+        if (
+          !/^(?!.*[a-zA-Z])\d{16}$/.test(userData.user.addharCard) &&
+          hasAadharCard
+        ) {
+          validationErrors.push({
+            field: "userData.user.addharCard",
+            message:
+              "Addhar Number must contain exactly 16 digits and no alphabetic characters",
+          });
+          document.getElementById("addharCard").focus();
+        }
       }
-      }else{
-        if (!userData?.user?.passport) {
-      validationErrors.push({
-        field: "userData.user.passport",
-        message: "Passport is required",
-      });
-      document.getElementById("passport").focus();
+    } else {
+      if (!userData?.user?.passport) {
+        validationErrors.push({
+          field: "userData.user.passport",
+          message: "Passport is required",
+        });
+        document.getElementById("passport").focus();
+      }
+      // else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.passport)) {
+      //   validationErrors.push({
+      //     field: "userData.user.passport",
+      //     message: "Passport No is Invalid",
+      //   });
+      //   document.getElementById("passport").focus();
+      // }
     }
-    // else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.passport)) {
-    //   validationErrors.push({
-    //     field: "userData.user.passport",
-    //     message: "Passport No is Invalid",
-    //   });
-    //   document.getElementById("passport").focus();
-    // }
-    }
-
-    
 
     // Validate addresses
     for (let i = 0; i < address.length; i++) {
@@ -523,7 +525,7 @@ const handleRadioChange = (event) => {
   const setCaptchaFlag = async (flag) => {
     setCaptchaVerfied(flag);
   };
-
+  const navigate = useNavigate();
   const userAdd = async (e, donationType) => {
     e.preventDefault();
     const isValid = validate();
@@ -625,6 +627,8 @@ const handleRadioChange = (event) => {
         setTimeout(() => {
           document.getElementById("gatewayForm").submit();
         }, 1000);
+      } else if (response?.status === "OTHERTHANINDIA") {
+        navigate(response.gatewayURL);
         clearForm(e);
         setLoading(false);
       } else {
@@ -653,7 +657,7 @@ const handleRadioChange = (event) => {
           "Thank you for your donation. <b>" +
           response?.data?.bankPaymentRefNo +
           "</b> is the transaction ID for your reference. The team will revert in 3-5 business working days.";
-          console.log(message);
+        console.log(message);
         setTransactionMessage(message);
         setShowDonationModal(true);
       } else {
@@ -962,7 +966,6 @@ const handleRadioChange = (event) => {
     console.log(response);
     setMessage("");
     if (response?.status === "Success") {
-
       toast.success(response?.message);
       if (response.data.address) {
         let addr = [...initialAddress];
@@ -1533,7 +1536,7 @@ const handleRadioChange = (event) => {
                                   </div>
                                 </div>{" "}
                               </div>
-                              {userData?.user?.citizenship === "India" ? (
+                             {userData?.user?.citizenship === "India" ? (
                                 <>
                                   <div className="col-6">
                                     <div className="select-label">
@@ -1711,9 +1714,7 @@ const handleRadioChange = (event) => {
                               Orgnization Address
                             </div>
                           ) : (
-                            <div className="actionheadingdiv">
-                              Address
-                            </div>
+                            <div className="actionheadingdiv">Address</div>
                           )}
                           <div className="col-12 pr15">
                             <div className="row">
@@ -1815,9 +1816,11 @@ const handleRadioChange = (event) => {
                                         Select Country
                                       </option>
                                       <option value="INDIA">INDIA</option>
-                                        <option value="ICELAND">ICELAND</option>
-                                        <option value="JORDAN">JORDAN</option>
-                                        <option value="LITHUANIA">LITHUANIA</option>
+                                      <option value="ICELAND">ICELAND</option>
+                                      <option value="JORDAN">JORDAN</option>
+                                      <option value="LITHUANIA">
+                                        LITHUANIA
+                                      </option>
                                     </select>
                                     {errors.map((error, index) => {
                                       if (
@@ -2417,42 +2420,43 @@ const handleRadioChange = (event) => {
                                   </div>
                                 </div>
                               </div>
-                              {isVisibleGift &&
-                              <div className="col-6">
-                                <div className="select-label">
-                                  {/* <div className="col-4 "> Organisation</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                    <label className="form-label">
-                                      Organisation{" "}
-                                      <span className="red-text">*</span>
-                                    </label>
-                                    <input
-                                      className="form-control-inside form-control"
-                                      name="user.organisation"
-                                      placeholder="Organisation"
-                                      type="text"
-                                      value={userData.user.organisation}
-                                      onChange={handleChange}
-                                    />
-                                    {errors.map((error, index) => {
-                                      if (
-                                        error.field ===
-                                        "userData.user.organisation"
-                                      ) {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
+                              {isVisibleGift && (
+                                <div className="col-6">
+                                  <div className="select-label">
+                                    {/* <div className="col-4 "> Organisation</div> */}
+                                    <div className="col-12 p0 field-wrapper">
+                                      <label className="form-label">
+                                        Organisation{" "}
+                                        <span className="red-text">*</span>
+                                      </label>
+                                      <input
+                                        className="form-control-inside form-control"
+                                        name="user.organisation"
+                                        placeholder="Organisation"
+                                        type="text"
+                                        value={userData.user.organisation}
+                                        onChange={handleChange}
+                                      />
+                                      {errors.map((error, index) => {
+                                        if (
+                                          error.field ===
+                                          "userData.user.organisation"
+                                        ) {
+                                          return (
+                                            <div
+                                              key={index}
+                                              className="error-message red-text"
+                                            >
+                                              {error.message}
+                                            </div>
+                                          );
+                                        }
+                                        return null;
+                                      })}
+                                    </div>
                                   </div>
                                 </div>
-                              </div>}
+                              )}
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Prefix</div> */}
@@ -2568,33 +2572,33 @@ const handleRadioChange = (event) => {
                                   <div className="col-6">
                                     <div className="select-label">
                                       <div className="col-12 p0 field-wrapper">
-                                      <div>
-                                      <label>
-                                        Do you have an Pan card?
-                                      </label>
-                                      <div className="radio-buttons">
-                                        <label>
-                                          <input
-                                            type="radio"
-                                            name="aadharRadio"
-                                            value="yes"
-                                            checked={hasAadharCard}
-                                            onChange={handleRadioChange}
-                                          />{' '}
-                                          Yes
-                                        </label>{" "}
-                                        <label>
-                                          <input
-                                            type="radio"
-                                            name="aadharRadio"
-                                            value="no"
-                                            checked={!hasAadharCard}
-                                            onChange={handleRadioChange}
-                                          />{' '}
-                                          No
-                                        </label>
-                                      </div>
-                                      </div>
+                                        <div>
+                                          <label>
+                                            Do you have an Pan card?
+                                          </label>
+                                          <div className="radio-buttons">
+                                            <label>
+                                              <input
+                                                type="radio"
+                                                name="aadharRadio"
+                                                value="yes"
+                                                checked={hasAadharCard}
+                                                onChange={handleRadioChange}
+                                              />{" "}
+                                              Yes
+                                            </label>{" "}
+                                            <label>
+                                              <input
+                                                type="radio"
+                                                name="aadharRadio"
+                                                value="no"
+                                                checked={!hasAadharCard}
+                                                onChange={handleRadioChange}
+                                              />{" "}
+                                              No
+                                            </label>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -2741,9 +2745,7 @@ const handleRadioChange = (event) => {
                               Orgnization Address
                             </div>
                           ) : (
-                            <div className="actionheadingdiv">
-                              Address
-                            </div>
+                            <div className="actionheadingdiv">Address</div>
                           )}
                           <div className="col-12 pr15">
                             <div className="row">
@@ -2844,9 +2846,11 @@ const handleRadioChange = (event) => {
                                         Select Country
                                       </option>
                                       <option value="INDIA">INDIA</option>
-                                        <option value="ICELAND">ICELAND</option>
-                                        <option value="JORDAN">JORDAN</option>
-                                        <option value="LITHUANIA">LITHUANIA</option>
+                                      <option value="ICELAND">ICELAND</option>
+                                      <option value="JORDAN">JORDAN</option>
+                                      <option value="LITHUANIA">
+                                        LITHUANIA
+                                      </option>
                                     </select>
                                     {errors.map((error, index) => {
                                       if (
@@ -3513,6 +3517,7 @@ const handleRadioChange = (event) => {
           />
         </form>
       )}
+
       <Modal
         className="transaction-modal"
         show={showDonationModal}
@@ -3523,19 +3528,18 @@ const handleRadioChange = (event) => {
         <Modal.Body>
           <div className="row">
             <div className="col-12">
-              <Card >
+              <Card>
                 <Card.Body>
                   <div className="card-icon">
                     <BsEmojiSmile />
                   </div>
-                  <Card.Text dangerouslySetInnerHTML={{ __html: transactionMessage }}> 
-
-                  </Card.Text>
+                  <Card.Text
+                    dangerouslySetInnerHTML={{ __html: transactionMessage }}
+                  ></Card.Text>
                 </Card.Body>
               </Card>
             </div>
           </div>
-
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleDonationModalClose}>

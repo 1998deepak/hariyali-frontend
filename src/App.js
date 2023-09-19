@@ -16,8 +16,8 @@ import DonarView from "./components/master/admin/donarCreation/Donarview";
 import OfflineDonationUpdate from "./components/master/admin/offlineDonation/OfflineDonationUpdate";
 import OfflinePlanAndDonationUpdate from "./components/master/admin/offlineDonation/OfflinePlanAndDonationUpdate";
 import Dashboard from "./components/master/admin/dashboard/Dashboard";
-import { lazy, Suspense, useEffect, useState } from 'react';
-import { AuthService } from './services/auth/auth.service';
+import { lazy, Suspense, useEffect, useState } from "react";
+import { AuthService } from "./services/auth/auth.service";
 import ConformPassword from "./components/master/user/ConformPassword";
 import OtpId from "./components/master/user/OtpId";
 import { ROLEAUTHORITY } from "./components/constants/constants";
@@ -42,13 +42,22 @@ import Faq from "./components/master/otherMenu/Faq";
 import DashboardTable from "./components/master/Dashboard/DashboardTable";
 import NewOnlineDonation from "./components/master/user/onlinedonation/NewOnlineDonation";
 import Commitment from "./components/master/Dashboard/Commitment";
-
+import FSCRAccount from "./components/master/donation/FSCRAccount";
 
 function HomeWithHeaderAndFooter() {
   return (
     <>
       <UserHeader />
       <Home />
+      <UserFooter />
+    </>
+  );
+}
+function FCRAWithHeaderAndFooter() {
+  return (
+    <>
+      <UserHeader />
+      <FSCRAccount />
       <UserFooter />
     </>
   );
@@ -147,11 +156,14 @@ function DonateWithHeaderAndFooter() {
 function ExistingOnlineDonate() {
   return (
     <>
-    <AdminHeader />
-    <div className="leftmenu-main">
+      <AdminHeader />
+      <div className="leftmenu-main">
         <UserLeftMenu />
-        <div className="float-left page-scroll remove-top-margin" style={{ width: "100%" }}>
-        <OnlineExistingDonar />
+        <div
+          className="float-left page-scroll remove-top-margin"
+          style={{ width: "100%" }}
+        >
+          <OnlineExistingDonar />
         </div>
       </div>
     </>
@@ -161,11 +173,11 @@ function ExistingOnlineDonate() {
 function UpdateUserWithHeaderFooter() {
   return (
     <>
-    <AdminHeader />
-    <div className="leftmenu-main">
+      <AdminHeader />
+      <div className="leftmenu-main">
         <UserLeftMenu />
         <div className="float-left page-scroll " style={{ width: "100%" }}>
-        <UserUpdate />
+          <UserUpdate />
         </div>
       </div>
     </>
@@ -174,11 +186,11 @@ function UpdateUserWithHeaderFooter() {
 function UserDonationWithHeaderFooter() {
   return (
     <>
-    <AdminHeader />
-    <div className="leftmenu-main">
+      <AdminHeader />
+      <div className="leftmenu-main">
         <UserLeftMenu />
         <div className="float-left page-scroll " style={{ width: "100%" }}>
-        <NewOnlineDonation />
+          <NewOnlineDonation />
         </div>
       </div>
     </>
@@ -187,11 +199,11 @@ function UserDonationWithHeaderFooter() {
 function UserReceiptsWithHeaderFooter() {
   return (
     <>
-    <AdminHeader />
-    <div className="leftmenu-main">
+      <AdminHeader />
+      <div className="leftmenu-main">
         <UserLeftMenu />
         <div className="float-left page-scroll" style={{ width: "100%" }}>
-        <UserReceipts />
+          <UserReceipts />
         </div>
       </div>
     </>
@@ -201,11 +213,11 @@ function UserReceiptsWithHeaderFooter() {
 function UserDashboardWithHeaderFooter() {
   return (
     <>
-    <AdminHeader />
-    <div className="leftmenu-main">
+      <AdminHeader />
+      <div className="leftmenu-main">
         <UserLeftMenu />
         <div className="float-left page-scroll" style={{ width: "100%" }}>
-        <UserDashboard />
+          <UserDashboard />
         </div>
       </div>
     </>
@@ -219,8 +231,8 @@ function OfflineDonationWithHeaderAndFooter() {
       <div className="leftmenu-main">
         <AdminLeftMenu />
         <div className="float-left page-scroll" style={{ width: "100%" }}>
-      <OfflineDonation />
-      </div>
+          <OfflineDonation />
+        </div>
       </div>
     </>
   );
@@ -267,23 +279,26 @@ function DonarAdminViewWithHeaderAndFooter() {
 function DonarAdminEditWithHeaderAndFooter() {
   return (
     <>
-     <AdminHeader />
+      <AdminHeader />
       <div className="leftmenu-main">
         <AdminLeftMenu />
         <div className="float-left page-scroll" style={{ width: "100%" }}>
-      <OfflineDonationUpdate />
-      </div></div>    </>
+          <OfflineDonationUpdate />
+        </div>
+      </div>{" "}
+    </>
   );
 }
 function DonarAdminPayWithHeaderAndFooter() {
   return (
     <>
-       <AdminHeader />
+      <AdminHeader />
       <div className="leftmenu-main">
         <AdminLeftMenu />
         <div className="float-left page-scroll" style={{ width: "100%" }}>
-      <OfflinePlanAndDonationUpdate />
-      </div></div>
+          <OfflinePlanAndDonationUpdate />
+        </div>
+      </div>
     </>
   );
 }
@@ -299,12 +314,12 @@ function LoginWithHeaderAndFooter() {
 function DashboardWithHeaderAndFooter() {
   return (
     <>
-       <AdminHeader />
+      <AdminHeader />
       <div className="leftmenu-main">
         <AdminLeftMenu />
         <div className="float-left page-scroll" style={{ width: "100%" }}>
-      <Dashboard  />
-      </div>
+          <Dashboard />
+        </div>
       </div>
     </>
   );
@@ -312,12 +327,12 @@ function DashboardWithHeaderAndFooter() {
 function PlantingWithHeaderAndFooter() {
   return (
     <>
-       <AdminHeader />
+      <AdminHeader />
       <div className="leftmenu-main">
         <AdminLeftMenu />
         <div className="float-left page-scroll" style={{ width: "100%" }}>
-        <DashboardTable />
-      </div>
+          <DashboardTable />
+        </div>
       </div>
     </>
   );
@@ -325,12 +340,12 @@ function PlantingWithHeaderAndFooter() {
 function CommitmentWithHeaderAndFooter() {
   return (
     <>
-       <AdminHeader />
+      <AdminHeader />
       <div className="leftmenu-main">
         <AdminLeftMenu />
         <div className="float-left page-scroll" style={{ width: "100%" }}>
-        <Commitment />
-      </div>
+          <Commitment />
+        </div>
       </div>
     </>
   );
@@ -338,11 +353,15 @@ function CommitmentWithHeaderAndFooter() {
 function UserDonationView({ userDetails, setAuthToken, authToken }) {
   return (
     <>
-     <AdminHeader />
+      <AdminHeader />
       <div className="leftmenu-main">
-      <UserLeftMenu />
+        <UserLeftMenu />
         <div className="float-left page-scroll" style={{ width: "100%" }}>
-        <UserdonationView userDetails={userDetails?.email} setAuthToken={setAuthToken} authToken={authToken} />
+          <UserdonationView
+            userDetails={userDetails?.email}
+            setAuthToken={setAuthToken}
+            authToken={authToken}
+          />
         </div>
       </div>
     </>
@@ -352,12 +371,13 @@ function UserDonationView({ userDetails, setAuthToken, authToken }) {
 function UserSpecificDonation() {
   return (
     <>
-       <AdminHeader />
+      <AdminHeader />
       <div className="leftmenu-main">
-      <UserLeftMenu />
+        <UserLeftMenu />
         <div className="float-left page-scroll" style={{ width: "100%" }}>
-      <UserSpecificDonationView />
-      </div></div>
+          <UserSpecificDonationView />
+        </div>
+      </div>
     </>
   );
 }
@@ -369,123 +389,198 @@ function App() {
   const authority = ROLEAUTHORITY;
   useEffect(() => {
     setAuthToken(AuthService.getToken());
-  }, [])
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
-      <Route path="/Unauthorised"
-                element={<Unauthorised />} />
+        <Route path="/Unauthorised" element={<Unauthorised />} />
         <Route path="/" element={<HomeWithHeaderAndFooter />} />
         <Route path="/Policy" element={<PolicyWithHeaderAndFooter />} />
         <Route path="/AboutUs" element={<AboutWithHeaderAndFooter />} />
-        <Route path="/WaystoAssociate" element={<WaystoAssociateWithHeaderAndFooter />} />
+        <Route
+          path="/WaystoAssociate"
+          element={<WaystoAssociateWithHeaderAndFooter />}
+        />
         <Route path="/WhatWeDo" element={<WhatWeDoWithHeaderAndFooter />} />
-        <Route path="/WhySupportUs" element={<WhySupportUsWithHeaderAndFooter />} />
+        <Route
+          path="/WhySupportUs"
+          element={<WhySupportUsWithHeaderAndFooter />}
+        />
         <Route path="/FootPrint" element={<FootPrintWithHeaderAndFooter />} />
-        <Route path="/GalleryAwards" element={<GalleryAwardsWithHeaderAndFooter />} />
+        <Route
+          path="/GalleryAwards"
+          element={<GalleryAwardsWithHeaderAndFooter />}
+        />
         <Route path="/Faq" element={<FaqWithHeaderAndFooter />} />
         <Route path="/ContactUs" element={<ContactUsWithHeaderAndFooter />} />
         <Route path="/Login" element={<LoginWithHeaderAndFooter />} />
         <Route path="/OtpId" element={<OtpId />} />
         <Route path="/ConformPassword" element={<ConformPassword />} />
         <Route path="/OnlineDonation" element={<DonateWithHeaderAndFooter />} />
+        <Route path="/FcraAccount" element={<FCRAWithHeaderAndFooter />} />
 
-        <Route path="/ExistingOnlineDonation" element = {<ProtectedRoutes user={authority.user}>
-                    <ExistingOnlineDonate  />
-                  </ProtectedRoutes>}/>
-        
-                  <Route path="/user/dashboard" element = {<ProtectedRoutes user={authority.user}>
-                    <UserDashboardWithHeaderFooter setAuthToken={setAuthToken} authToken={authToken} />
-                  </ProtectedRoutes>}/>
-                  <Route path="/user/update" element = {<ProtectedRoutes user={authority.user}>
-                    <UpdateUserWithHeaderFooter/>
-                  </ProtectedRoutes>}/>
-                  <Route path="/user/receipts" element = {<ProtectedRoutes user={authority.user}>
-                    <UserReceiptsWithHeaderFooter />
-                  </ProtectedRoutes>}/>
-                  <Route path="/user/donation" element = {<ProtectedRoutes user={authority.user}>
-                    <UserDonationWithHeaderFooter/>
-                  </ProtectedRoutes>}/>
+        <Route
+          path="/ExistingOnlineDonation"
+          element={
+            <ProtectedRoutes user={authority.user}>
+              <ExistingOnlineDonate />
+            </ProtectedRoutes>
+          }
+        />
 
+        <Route
+          path="/user/dashboard"
+          element={
+            <ProtectedRoutes user={authority.user}>
+              <UserDashboardWithHeaderFooter
+                setAuthToken={setAuthToken}
+                authToken={authToken}
+              />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/user/update"
+          element={
+            <ProtectedRoutes user={authority.user}>
+              <UpdateUserWithHeaderFooter />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/user/receipts"
+          element={
+            <ProtectedRoutes user={authority.user}>
+              <UserReceiptsWithHeaderFooter />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/user/donation"
+          element={
+            <ProtectedRoutes user={authority.user}>
+              <UserDonationWithHeaderFooter />
+            </ProtectedRoutes>
+          }
+        />
 
+        <Route
+          path="/UserDonation/:email?"
+          element={
+            <ProtectedRoutes user={authority.user}>
+              <UserDonationView
+                userDetails={userDetails}
+                setAuthToken={setAuthToken}
+                authToken={authToken}
+              />
+            </ProtectedRoutes>
+          }
+        />
 
-
-                  <Route path="/UserDonation/:email?"
-                element={
-                  <ProtectedRoutes user={authority.user}>
-                    <UserDonationView userDetails={userDetails} setAuthToken={setAuthToken} authToken={authToken} />
-                  </ProtectedRoutes>
-                } />
-
-            <Route path="/UserSpecificDonationView/:id?"
-                element={
-                  <ProtectedRoutes user={authority.user}>
-                    <UserSpecificDonation setAuthToken={setAuthToken} authToken={authToken} />
-                  </ProtectedRoutes>
-                } />
+        <Route
+          path="/UserSpecificDonationView/:id?"
+          element={
+            <ProtectedRoutes user={authority.user}>
+              <UserSpecificDonation
+                setAuthToken={setAuthToken}
+                authToken={authToken}
+              />
+            </ProtectedRoutes>
+          }
+        />
 
         {/* <Route
           path="/OfflineDonation"
           element={<OfflineDonationWithHeaderAndFooter />}
         /> */}
- <Route path="/OfflineDonation"
-                element={
-                  <ProtectedRoutes admin={authority.admin} user={authority.user}>
-                    <OfflineDonationWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
-                  </ProtectedRoutes>
-                } />
-      
+        <Route
+          path="/OfflineDonation"
+          element={
+            <ProtectedRoutes admin={authority.admin} user={authority.user}>
+              <OfflineDonationWithHeaderAndFooter
+                setAuthToken={setAuthToken}
+                authToken={authToken}
+              />
+            </ProtectedRoutes>
+          }
+        />
+
         {/* <Route
           path="/WebDonarCreation"
           element={<AdminWithHeaderAndFooter />}
         /> */}
-         <Route path="/WebDonarCreation"
-                element={
-                  <ProtectedRoutes admin={authority.admin} user={authority.user}>
-                    <AdminWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
-                  </ProtectedRoutes>
-                } />
-      
+        <Route
+          path="/WebDonarCreation"
+          element={
+            <ProtectedRoutes admin={authority.admin} user={authority.user}>
+              <AdminWithHeaderAndFooter
+                setAuthToken={setAuthToken}
+                authToken={authToken}
+              />
+            </ProtectedRoutes>
+          }
+        />
+
         {/* <Route
           path="/DonarCreation"
           element={<DonarAdminWithHeaderAndFooter />}
         /> */}
-         <Route  path="/DonarCreation"
-                element={
-                  <ProtectedRoutes admin={authority.admin} user={authority.user}>
-                    <DonarAdminWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
-                  </ProtectedRoutes>
-                } />
+        <Route
+          path="/DonarCreation"
+          element={
+            <ProtectedRoutes admin={authority.admin} user={authority.user}>
+              <DonarAdminWithHeaderAndFooter
+                setAuthToken={setAuthToken}
+                authToken={authToken}
+              />
+            </ProtectedRoutes>
+          }
+        />
         {/* <Route
           path="/DonarView/:id?"
           element={<DonarAdminViewWithHeaderAndFooter />}
         /> */}
-         <Route path="/DonarView/:id?"
-                element={
-                  <ProtectedRoutes admin={authority.admin} user={authority.user}>
-                    <DonarAdminViewWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
-                  </ProtectedRoutes>
-                } />
+        <Route
+          path="/DonarView/:id?"
+          element={
+            <ProtectedRoutes admin={authority.admin} user={authority.user}>
+              <DonarAdminViewWithHeaderAndFooter
+                setAuthToken={setAuthToken}
+                authToken={authToken}
+              />
+            </ProtectedRoutes>
+          }
+        />
         {/* <Route
           path="/OfflineDonationEdit/:id?"
           element={<DonarAdminEditWithHeaderAndFooter />}
         /> */}
-         <Route path="/OfflineDonationUpdate/:id?"
-                element={
-                  <ProtectedRoutes admin={authority.admin} user={authority.user}>
-                    <DonarAdminEditWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
-                  </ProtectedRoutes>
-                } />
+        <Route
+          path="/OfflineDonationUpdate/:id?"
+          element={
+            <ProtectedRoutes admin={authority.admin} user={authority.user}>
+              <DonarAdminEditWithHeaderAndFooter
+                setAuthToken={setAuthToken}
+                authToken={authToken}
+              />
+            </ProtectedRoutes>
+          }
+        />
         {/* <Route
           path="/OfflineDonationPay/:id?"
           element={<DonarAdminPayWithHeaderAndFooter />}
         /> */}
-        <Route path="/OfflinePlanAndDonationUpdate/:id?"
-                element={
-                  <ProtectedRoutes admin={authority.admin} user={authority.user}>
-                    <DonarAdminPayWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
-                  </ProtectedRoutes>
-                } />
+        <Route
+          path="/OfflinePlanAndDonationUpdate/:id?"
+          element={
+            <ProtectedRoutes admin={authority.admin} user={authority.user}>
+              <DonarAdminPayWithHeaderAndFooter
+                setAuthToken={setAuthToken}
+                authToken={authToken}
+              />
+            </ProtectedRoutes>
+          }
+        />
         {/* <Route
           path="/TryingDonation"
           element={<TryWithHeaderAndFooter />}
@@ -500,26 +595,41 @@ function App() {
           path="/Dashboard"
           element={<DashboardWithHeaderAndFooter />}
         /> */}
-        <Route path="/Dashboard"
-                element={
-                  <ProtectedRoutes admin={authority.admin} >
-                    <DashboardWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
-                  </ProtectedRoutes>
-                } />
+        <Route
+          path="/Dashboard"
+          element={
+            <ProtectedRoutes admin={authority.admin}>
+              <DashboardWithHeaderAndFooter
+                setAuthToken={setAuthToken}
+                authToken={authToken}
+              />
+            </ProtectedRoutes>
+          }
+        />
 
-        <Route path="/Plantation"
-                element={
-                  <ProtectedRoutes admin={authority.admin} >
-                    <PlantingWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
-                  </ProtectedRoutes>
-                } />
+        <Route
+          path="/Plantation"
+          element={
+            <ProtectedRoutes admin={authority.admin}>
+              <PlantingWithHeaderAndFooter
+                setAuthToken={setAuthToken}
+                authToken={authToken}
+              />
+            </ProtectedRoutes>
+          }
+        />
 
-        <Route path="/Commitment"
-                element={
-                  <ProtectedRoutes admin={authority.admin} >
-                    <CommitmentWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken} />
-                  </ProtectedRoutes>
-                } />
+        <Route
+          path="/Commitment"
+          element={
+            <ProtectedRoutes admin={authority.admin}>
+              <CommitmentWithHeaderAndFooter
+                setAuthToken={setAuthToken}
+                authToken={authToken}
+              />
+            </ProtectedRoutes>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
