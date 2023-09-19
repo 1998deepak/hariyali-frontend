@@ -24,9 +24,9 @@ const handleRadioChange = (event) => {
   const initialPackageData = [
     {
       packageName: "",
-      bouquetPrice: "",
-      noOfBouquets: "",
-      amount: "",
+      bouquetPrice: 450,
+      noOfBouquets: 1,
+      amount: 450,
     }
   ];
 
@@ -581,19 +581,14 @@ const handleRadioChange = (event) => {
     console.log(userPackageData);
   };
 
-  const calculateOverallTotal = (packageData) => {
-    const totalAmountOfPackage = packageData.reduce(
-      (accumulator, packageItem, index) => {
-        return (
-          accumulator +
-          (packageItem.bouquetPrice) *
-          packageItem.noOfBouquets
-        );
-      },
-      0
-    );
+  const calculateOverallTotal = (row) => {
+    console.log(row)
+    const totalCost = 450 * parseInt(row[0].noOfBouquets);
+    console.log(row[0].noOfBouquets);
+    console.log(totalCost);
     const updatedDonations = [...donations];
-    updatedDonations[0]["totalAmount"] = totalAmountOfPackage;
+    updatedDonations[0]["totalAmount"] = totalCost;
+    console.log(updatedDonations);
     setDonations(updatedDonations);
   };
   const handleChange = (event) => {
@@ -1542,28 +1537,30 @@ console.log(donationsGift);
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">City<span className="red-text">*</span></div>
-                                  <div className="col-8 p0">
-                                    <select
-                                      className=" form-control-inside form-select"
-                                      name="city"
-                                      id="city"
-                                      value={address[0]?.city}
+                              <div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 "> City <span className="red-text">*</span></div>
+                                <div className="col-8 p0">
+                                  <input
+                                    className="form-control-inside"
+                                    name="city"
+                                    id="city"
+                                    placeholder="City"
+                                    type="text"
+                                    value={address[0]?.city}
                                       onChange={(event) =>
                                         handleAddressChange(event, 0)
                                       }
-                                    >
-                                      <option value="">Select City</option>
-                                      <option value="UDHNA">UDHNA</option>
-                                      <option value="VADALI">VADALI</option>
-                                      <option value="SARDHAR">SARDHAR</option>
-                                      <option value="SHEHERA">SHEHERA</option>
-                                    </select>
-                                  </div>
+                                  />
+                                  {errors.map((error, index) => {
+                                    if (error.field === 'address[0].city') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
                                 </div>
                               </div>
+                            </div>
                             <div className="col-6">
                               <div className="row select-label">
                                 <div className="col-4 ">Postal Code <span className="red-text">*</span></div>
@@ -1728,28 +1725,6 @@ console.log(donationsGift);
                                           {state}
                                         </option>
                                       ))}
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">City<span className="red-text">*</span></div>
-                                  <div className="col-8 p0">
-                                    <select
-                                      className=" form-control-inside form-select"
-                                      name="city"
-                                      id="city"
-                                      value={address[1]?.city}
-                                      onChange={(event) =>
-                                        handleAddressChange(event, 1)
-                                      }
-                                    >
-                                      <option value="">Select City</option>
-                                      <option value="UDHNA">UDHNA</option>
-                                      <option value="VADALI">VADALI</option>
-                                      <option value="SARDHAR">SARDHAR</option>
-                                      <option value="SHEHERA">SHEHERA</option>
                                     </select>
                                   </div>
                                 </div>
@@ -2350,23 +2325,19 @@ console.log(donationsGift);
                             </div>
                             <div className="col-6">
                               <div className="row select-label">
-                                <div className="col-4 ">City <span className="red-text">*</span></div>
+                                <div className="col-4 "> City <span className="red-text">*</span></div>
                                 <div className="col-8 p0">
-                                  <select
-                                    className=" form-control-inside form-select"
+                                  <input
+                                    className="form-control-inside"
                                     name="city"
-                                      id="city"
-                                      value={address[0]?.city}
+                                    id="city"
+                                    placeholder="City"
+                                    type="text"
+                                    value={address[0]?.city}
                                       onChange={(event) =>
                                         handleAddressChange(event, 0)
                                       }
-                                  >
-                                    <option disabled selected value="">Select city</option>
-                                    <option value="UDHNA">UDHNA</option>
-                                      <option value="VADALI">VADALI</option>
-                                      <option value="SARDHAR">SARDHAR</option>
-                                      <option value="SHEHERA">SHEHERA</option>
-                                  </select>
+                                  />
                                   {errors.map((error, index) => {
                                     if (error.field === 'address[0].city') {
                                       return <div key={index} className="error-message red-text">{error.message}</div>;
@@ -2648,38 +2619,32 @@ console.log(donationsGift);
                                 </div>
                               </div>
                               <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">City<span className="red-text">*</span></div>
-                                  <div className="col-8 p0">
-                                    <select
-                                      className=" form-control-inside form-select"
-                                      name="city"
-                                      id="city"
-                                      value={recipient[0].address[0].city}
+                              <div className="row select-label">
+                                <div className="col-4 "> City <span className="red-text">*</span></div>
+                                <div className="col-8 p0">
+                                  <input
+                                    className="form-control-inside"
+                                    name="city"
+                                    id="city"
+                                    placeholder="City"
+                                    type="text"
+                                    value={recipient[0].address[0].city}
                                       onChange={(e) =>
                                         handleRecipentAddressChange(
                                           e,
                                           0
                                         )
                                       }
-                                    >
-                                      <option disabled selected value="">
-                                        Select City
-                                      </option>
-                                      <option value="UDHNA">UDHNA</option>
-                                      <option value="VADALI">VADALI</option>
-                                      <option value="SARDHAR">SARDHAR</option>
-                                      <option value="SHEHERA">SHEHERA</option>
-                                    </select>
-                                    {errors.map((error, index) => {
-                                      if (error.field === 'recipient[0].address[0].city') {
-                                        return <div key={index} className="error-message red-text">{error.message}</div>;
-                                      }
-                                      return null;
-                                    })}
-                                  </div>
+                                  />
+                                  {errors.map((error, index) => {
+                                    if (error.field === 'recipient[0].address[0].city') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
                                 </div>
                               </div>
+                            </div>
                               <div className="col-6">
                                 <div className="row select-label">
                                   <div className="col-4 ">
@@ -4072,38 +4037,32 @@ console.log(donationsGift);
                                 </div>
                               </div>
                               <div className="col-6">
-                                <div className="row select-label">
-                                  <div className="col-4 ">City<span className="red-text">*</span></div>
-                                  <div className="col-8 p0">
-                                    <select
-                                      className=" form-control-inside form-select"
-                                      name="state"
-                                      value={recipient[0].address[0].city}
+                              <div className="row select-label">
+                                <div className="col-4 "> City <span className="red-text">*</span></div>
+                                <div className="col-8 p0">
+                                  <input
+                                    className="form-control-inside"
+                                    name="city"
+                                    id="city"
+                                    placeholder="City"
+                                    type="text"
+                                    value={recipient[0].address[0].city}
                                       onChange={(e) =>
                                         handleRecipentAddressChange(
                                           e,
                                           0
                                         )
                                       }
-                                    >
-                                      <option disabled selected value="">
-                                        Select City
-                                      </option>
-                                      <option>UDHNA</option>
-                                      <option>VADALI</option>
-                                      <option>SARDHAR</option>
-                                      <option>SHEHERA</option>
-
-                                    </select>
-                                    {errors.map((error, index) => {
-                                      if (error.field === 'recipient[0].address[0].city') {
-                                        return <div key={index} className="error-message red-text">{error.message}</div>;
-                                      }
-                                      return null;
-                                    })}
-                                  </div>
+                                  />
+                                  {errors.map((error, index) => {
+                                    if (error.field === 'recipient[0].address[0].city') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
                                 </div>
                               </div>
+                            </div>
                               <div className="col-6">
                                 <div className="row select-label">
                                   <div className="col-4 ">
