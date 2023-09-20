@@ -95,7 +95,7 @@ const PackageDetails = ({
             })}
           </tbody>
         </table>
-        <div className="overalltotal">
+        <div className="overalltotal fw-bold">
           Overall Total : INR{" "}{packageData[0].amount}
         </div>
       </div>

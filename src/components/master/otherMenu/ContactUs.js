@@ -4,7 +4,7 @@ import { Container, Row } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "animate.css/animate.min.css";
 import "react-image-gallery/styles/css/image-gallery.css";
-import CaptchaContact from "../user/CaptchaContact";
+import Captcha from "../user/Captcha";
 import { ContactUsService } from "../../../services/ContactUsService/contactUs.service";
 import { toast, ToastContainer } from "react-toastify";
 import Accordion from '@mui/material/Accordion';
@@ -116,6 +116,11 @@ function ContactUs() {
     setContactData(data);
   };
 
+  const clearForm = (e) => {
+    e.preventDefault();
+    setContactData(initialUserData);
+  };
+
   const addConntactUsForm = async (e) => {
     e.preventDefault();
     console.log("enter in api");
@@ -127,6 +132,7 @@ function ContactUs() {
       if (response !== null) {
         console.log("Contact Us Form: " + JSON.stringify(response));
         toast.success("Email Send to Hariyali Team!");
+        clearForm(e);
         // setContactData((current) => {
         //   return current.map((item) => {
         //     return { ...item};
@@ -291,7 +297,7 @@ function ContactUs() {
                           })}
                         </div>
                         <div className="homeinput-div col-lg-12 col-12">
-                          <CaptchaContact
+                          <Captcha
                             verified={false}
                             setVerified={() => setCaptchaFlag(true)}
                             id="captcha2"
