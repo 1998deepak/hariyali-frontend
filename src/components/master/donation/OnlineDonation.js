@@ -1840,6 +1840,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               </div>
+                              {userData?.user?.citizenship === "India" ? (
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">State</div> */}
@@ -1880,7 +1881,41 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                     })}
                                   </div>
                                 </div>
+                              </div>):(
+                                <div className="col-6">
+                                <div className="select-label">
+                                  {/* <div className="col-4 "> Street 3</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">
+                                      State
+                                    </label>
+                                    <input
+                                      className="form-control-inside form-control"
+                                      name="state"
+                                      id="state"
+                                      placeholder="State"
+                                      value={address[0]?.state}
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 0)
+                                      }
+                                    />
+                                    {errors.map((error, index) => {
+                                      if (error.field === "address[0].state") {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                </div>
                               </div>
+                              )}
                               <div className="col-6">
                                 <div className="select-label">
                                   <div className="col-12 p0 field-wrapper">
@@ -2870,11 +2905,12 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               </div>
+                              {userData?.user?.citizenship === "India" ? (
                               <div className="col-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">State</div> */}
                                   <div className="col-12 p0 field-wrapper">
-                                    <label className="form-label">
+                                    <label class="form-label top-27">
                                       State <span className="red-text">*</span>
                                     </label>
                                     <select
@@ -2910,7 +2946,41 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                     })}
                                   </div>
                                 </div>
+                              </div>):(
+                                <div className="col-6">
+                                <div className="select-label">
+                                  {/* <div className="col-4 "> Street 3</div> */}
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">
+                                      State
+                                    </label>
+                                    <input
+                                      className="form-control-inside form-control"
+                                      name="state"
+                                      id="state"
+                                      placeholder="State"
+                                      value={address[0]?.state}
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 0)
+                                      }
+                                    />
+                                    {errors.map((error, index) => {
+                                      if (error.field === "address[0].state") {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                </div>
                               </div>
+                              )}
                               <div className="col-6">
                                 <div className="select-label">
                                   <div className="col-12 p0 field-wrapper">
@@ -3107,7 +3177,8 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                       </label>
                                       <input
                                         className="form-control-inside form-control"
-                                        name="recEmailId"
+                                        name="emailId"
+                                        id="recEmailId"
                                         placeholder="Email Id"
                                         type="text"
                                         value={recipient[0].emailId}
