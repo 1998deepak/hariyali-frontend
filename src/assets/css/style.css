@@ -5228,3 +5228,48 @@ iframe {
 .clicks{
   margin-bottom: 95px;
 }
+
+.mob-div {
+  display: none;
+}
+
+.desk-div {
+  justify-content: center;
+}
+
+.desk-div table {
+  width: auto;
+}
+
+.desk-div table tbody tr td {
+  font-size: 1.125rem;
+}
+
+.desk-div table tbody tr td:nth-child(2) {
+  font-weight: bolder;
+}
+
+.desk-div table tbody tr {
+  border-bottom: none;
+}
+
+@media (max-width: 767px) {
+  .desk-div {
+    display: none !important;
+  }
+
+  .mob-div {
+    display: block;
+  }
+
+  .row_div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row_div span:nth-child(2) {
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 5px;
+  }
+}
