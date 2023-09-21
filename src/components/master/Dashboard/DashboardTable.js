@@ -258,6 +258,22 @@ const DashboardTable = () => {
       }
     }
   };
+  const downloadTemplate = async () => {
+  
+      const response = await PlantationService.downloadTemplate();
+      if (response?.status === 200) {
+        console.log(response);
+        const url = window.URL.createObjectURL(response?.data);
+        const link = document.createElement("a");
+        const fileName = response.headers["content-disposition"].split("filename=")[1];
+        link.href = url;
+        link.setAttribute("download", fileName);
+        link.click();
+      } else {
+        toast.error(response?.message);
+      }
+    
+  };
 
   const handlePageClick = (event) => {
     setPageNo(event.selected);
@@ -495,7 +511,7 @@ const DashboardTable = () => {
           <Modal.Body>
             <div className='row'>
               <div className='col-12'>
-                <a href='/excelTemplate/plantationTemplate.xlsx'>Download Template</a>
+                <a href='javascript:void(0)' target='_self' onClick={downloadTemplate}>Download Template</a>
               </div>
             </div>
             <input type="file" id="fileInput" accept=".xls, .xlsx" onChange={handleFileChange} />
