@@ -42,7 +42,7 @@ import Faq from "./components/master/otherMenu/Faq";
 import DashboardTable from "./components/master/Dashboard/DashboardTable";
 import NewOnlineDonation from "./components/master/user/onlinedonation/NewOnlineDonation";
 import Commitment from "./components/master/Dashboard/Commitment";
-
+import Form10BE from "./components/master/Form10BE/Form10BE";
 
 function HomeWithHeaderAndFooter() {
   return (
@@ -220,6 +220,19 @@ function OfflineDonationWithHeaderAndFooter() {
         <AdminLeftMenu />
         <div className="float-left page-scroll" style={{ width: "100%" }}>
       <OfflineDonation />
+      </div>
+      </div>
+    </>
+  );
+}
+function FormBEWithHeaderAndFooter() {
+  return (
+    <>
+      <AdminHeader />
+      <div className="leftmenu-main">
+        <AdminLeftMenu />
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <Form10BE/>
       </div>
       </div>
     </>
@@ -416,6 +429,13 @@ function App() {
                     <UserDonationView userDetails={userDetails} setAuthToken={setAuthToken} authToken={authToken} />
                   </ProtectedRoutes>
                 } />
+
+                  <Route path="/Form10BE"
+                element={
+                  <ProtectedRoutes admin={authority.admin}>
+                    <FormBEWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken}/>
+                  </ProtectedRoutes>
+                } />  
 
             <Route path="/UserSpecificDonationView/:id?"
                 element={

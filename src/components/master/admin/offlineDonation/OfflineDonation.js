@@ -1544,14 +1544,11 @@ console.log(donationsGift);
                                 </div>
                               </div>
                             </div>
-                            {userData?.user?.citizenship === "India" ? (
+                            {address[0]?.country === "INDIA" ? (
                               <div className="col-6">
                                 <div className="select-label">
-                                  {/* <div className="col-4 ">State</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                    <label class="form-label top-27">
-                                      State <span className="red-text">*</span>
-                                    </label>
+                                <div className="col-4 ">State <span className="red-text">*</span></div>
+                                  <div className="col-8 p0 ">
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="state"
@@ -1588,11 +1585,8 @@ console.log(donationsGift);
                               </div>):(
                                 <div className="col-6">
                                 <div className="select-label">
-                                  {/* <div className="col-4 "> Street 3</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                    <label class="form-label top-27">
-                                      State
-                                    </label>
+                                <div className="col-4 ">State <span className="red-text">*</span></div>
+                                  <div className="col-8 p0">
                                     <input
                                       className="form-control-inside form-control"
                                       name="state"
@@ -2399,11 +2393,11 @@ console.log(donationsGift);
                                       }
                                   >
                                     <option disabled selected value="">Select Country</option>
-                                    {stateOptions.map((state) => (
-                                      <option key={state} value={state}>
-                                        {state}
-                                      </option>
-                                    ))}
+                                        <option value="INDIA">INDIA</option>
+                                        <option value="ICELAND">ICELAND</option>
+                                        <option value="JORDAN">JORDAN</option>
+                                        <option value="LITHUANIA">LITHUANIA</option>
+                                    
                                   </select>
                                   {errors.map((error, index) => {
                                     if (error.field === 'address[0].country') {
@@ -2414,14 +2408,11 @@ console.log(donationsGift);
                                 </div>
                               </div>
                             </div>
-                            {userData?.user?.citizenship === "India" ? (
+                            {address[0]?.country === "INDIA" ? (
                               <div className="col-6">
                                 <div className="select-label">
-                                  {/* <div className="col-4 ">State</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                    <label class="form-label top-27">
-                                      State <span className="red-text">*</span>
-                                    </label>
+                                <div className="col-4 ">State <span className="red-text">*</span></div>
+                                  <div className="col-8 p0 ">
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="state"
@@ -2458,11 +2449,8 @@ console.log(donationsGift);
                               </div>):(
                                 <div className="col-6">
                                 <div className="select-label">
-                                  {/* <div className="col-4 "> Street 3</div> */}
-                                  <div className="col-12 p0 field-wrapper">
-                                    <label class="form-label top-27">
-                                      State
-                                    </label>
+                                <div className="col-4 ">State <span className="red-text">*</span></div>
+                                  <div className="col-8 p0">
                                     <input
                                       className="form-control-inside form-control"
                                       name="state"

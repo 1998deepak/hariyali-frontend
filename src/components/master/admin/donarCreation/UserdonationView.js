@@ -166,7 +166,7 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
                 keyField="donationId"
                 data={data}
                 columns={columns}
-                 pagination={paginationFactory()}
+               //  pagination={paginationFactory()}
               />
             </div>
           </div>
