@@ -361,7 +361,7 @@ function WhySupportUs() {
       <section className="bg-green">
         <div className="container">
           <div className="row align-items-center pv-75">
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-lg-6">
               <div className="feature-description feature-description-other">
                 <h3 className="sub-title text-center">
                   Impact Assessment Report
@@ -378,7 +378,7 @@ function WhySupportUs() {
                 </p>
               </div>
             </div>
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-lg-6">
               <div className="">
                 <div className="d-flex justify-content-center pdf-wrapper">
                   <a className="pdf-tile" href={impactFile2} target="_blank">
@@ -410,14 +410,14 @@ function WhySupportUs() {
                   className="slide-content-whysupport support-content"
                 >
                   <div className="row">
-                    <div className="offset-md-1 col-12 col-md-3">
+                    <div className="offset-lg-1 col-12 col-md-4">
                       <img
                         src={testimonial.image}
                         alt="avatar"
                         className="mb-5"
                       />
                     </div>
-                    <div className="col-12 col-md-7">
+                    <div className="col-12 col-md-8">
                       <h3 className="mb-3">{testimonial.name}</h3>
                       <p className="">
                         <i className="bi bi-quote pe-2"></i>
@@ -432,8 +432,8 @@ function WhySupportUs() {
           </div>
           <div className="slide-content-whysupport support-content">
             <div className="row  d-flex justify-content-center">
-              <div className="col-12 col-md-6 text-center mb-5">
-              <video width="750" height="500" controls >
+              <div className="col-12 col-lg-6 text-center mb-5">
+              <video width="100%" height="500" controls >
               <source src={video} type="video/mp4"/>
      </video>
               </div>
