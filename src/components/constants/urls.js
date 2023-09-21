@@ -56,5 +56,8 @@ export const URLS = {
     PLANTATION_EXPORTREPORT:"/plantation/exportReport",
 
     //commitment service
-    COMMITMENT_FINDALLBYFILTER:"/commitment/findByFilter"
+    COMMITMENT_FINDALLBYFILTER:"/commitment/findByFilter",
+
+    //Form 10 BE
+    FORM10B_UPLOAD : "/uploadZipFile"
 };

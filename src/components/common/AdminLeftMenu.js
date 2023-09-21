@@ -9,12 +9,12 @@ import {
 } from "react-pro-sidebar";
 import { MdCreateNewFolder } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { FaHome, FaDonate, FaRegCreditCard, FaUserEdit, FaUserFriends } from "react-icons/fa";
+import { FaHome, FaDonate, FaRegCreditCard, FaUserEdit, FaUserFriends,FaWpforms } from "react-icons/fa";
 import {RiUserAddLine} from "react-icons/ri";
 import {BiDonateHeart} from "react-icons/bi";
-import {FiUserPlus, FiSettings, FiUsers} from "react-icons/fi";
+import {FiUserPlus, FiSettings, FiUsers } from "react-icons/fi";
 import {CiViewList} from "react-icons/ci";
-import {PiPottedPlantDuotone} from "react-icons/pi";
+import {PiPottedPlantDuotone, PiHandshake} from "react-icons/pi";
 import {HiOutlineDocumentReport} from "react-icons/hi";
 import { useState } from "react";
 import Accordion from 'react-bootstrap/Accordion';
@@ -143,11 +143,11 @@ const LeftMenu = () => {
 
             </Accordion.Item>
             <Accordion.Item eventKey="3">
-              <Accordion.Header className={activeHead =='plantation'? 'disabled active' : 'disabled'} onClick={()=>activeHeadTag('commitment')}>
+              <Accordion.Header className={activeHead =='commitment'? 'disabled active' : 'disabled'} onClick={()=>activeHeadTag('commitment')}>
               <Link
                 to="/Commitment"
                 className="nav-link dropdown-indicator-left label-1"
-              > <PiPottedPlantDuotone />
+              > <PiHandshake />
                 <span className="link-text">Commitment </span>
 
               </Link>
@@ -176,6 +176,16 @@ const LeftMenu = () => {
               </Link>
               </Accordion.Header>
 
+            </Accordion.Item>
+            <Accordion.Item eventKey="6">
+            <Accordion.Header className={activeHead =='form-16'? 'disabled active' : 'disabled'} onClick={()=>activeHeadTag('form-16')}>
+            <Link
+                to="/Form10BE"
+                className="nav-link dropdown-indicator-left label-1"
+              > <FaWpforms/>
+                Form 10BE
+              </Link>
+            </Accordion.Header>
             </Accordion.Item>
           </Accordion>
           {/*<Menu>

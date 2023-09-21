@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Tab, Tabs } from "react-bootstrap";
+import { Tab, Tabs, Modal,Button } from "react-bootstrap";
 import { UserService } from "../../../../services/userService/user.service";
 import Loader from "../../../common/loader/Loader";
 import { SUCCESS } from "../../../constants/constants";
@@ -9,6 +9,8 @@ import { DonationService } from "../../../../services/donationService/donation.s
 import RecipientDetails from "../../../common/RecipientDetails";
 import PackageDetails from "../../../common/PackageDetails";
 import DonationHeader from "./DonationHeader";
+import Card from "react-bootstrap/Card";
+import { BsEmojiSmile } from "react-icons/bs";
 
 function NewOnlineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
@@ -19,25 +21,7 @@ function NewOnlineDonation() {
       bouquetPrice: "",
       noOfBouquets: "",
       amount: "",
-    },
-    {
-      packageName: "",
-      bouquetPrice: "",
-      noOfBouquets: "",
-      amount: "",
-    },
-    {
-      packageName: "",
-      bouquetPrice: "",
-      noOfBouquets: "",
-      amount: "",
-    },
-    {
-      packageName: "",
-      bouquetPrice: "",
-      noOfBouquets: "",
-      amount: "",
-    },
+    }
   ];
 
   const initialUserData = {
@@ -96,13 +80,45 @@ function NewOnlineDonation() {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const { email } = UserService.userDetails();
+  const [gatewayConfiguration, setGatewayConfiguration] = useState(null);
+  const [showDonationModal, setShowDonationModal] = useState(false);
+  const [transactionMessage, setTransactionMessage] = useState("");
+  const handleDonationModalClose = () => setShowDonationModal(false);
 
   //calling api
   useEffect(() => {
     if (email) {
       getdetailsByEmailId(email);
     }
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get("orderId");
+    if (orderId) {
+      getPaymentInformation(orderId);
+    }
   }, [email]);
+
+  const getPaymentInformation = async (paymentId) => {
+    setLoading(true);
+    const response = await DonationService.getPaymentInformation(paymentId);
+    if (response?.status === "Success") {
+      console.log(response);
+      if (response?.data?.paymentStatus == "Success") {
+        let message =
+          "Thank you for your donation. <b>" +
+          response?.data?.bankPaymentRefNo +
+          "</b> is the transaction ID for your reference. The team will revert in 3-5 business working days.";
+        console.log(message);
+        setTransactionMessage(message);
+        setShowDonationModal(true);
+      } else {
+        toast.error(response?.data?.remark);
+      }
+      setLoading(false);
+    } else {
+      toast.error(response?.message);
+      setLoading(false);
+    }
+  };
 
   const getdetailsByEmailId = async (email) => {
     setLoading(true);
@@ -261,14 +277,12 @@ function NewOnlineDonation() {
   };
 
   const calculateOverallTotal = (packageData) => {
-    const totalAmountOfPackage = packageData.reduce(
-      (accumulator, packageItem, index) => {
-        return (
-          accumulator + packageItem.bouquetPrice * packageItem.noOfBouquets
-        );
-      },
-      0
-    );
+
+    console.log(packageData);
+    let totalAmountOfPackage = 0;
+    packageData.map(data =>{
+      totalAmountOfPackage +=data.amount;
+    });
     const updatedDonations = [...donations];
     updatedDonations[0]["totalAmount"] = totalAmountOfPackage;
     setDonations(updatedDonations);
@@ -321,6 +335,7 @@ function NewOnlineDonation() {
     e.preventDefault();
     if (validate()) {
       const updatedDonations = [...donations];
+
       const filteredPackages = packageData.filter(
         (pkg) => pkg.noOfBouquets > 0
       );
@@ -340,13 +355,16 @@ function NewOnlineDonation() {
           return donationData;
         }),
       };
-
       setLoading(true);
       const response = await DonationService.AddNewDonation(formData);
-      console.log(response);
+     
       if (response?.status === SUCCESS) {
-        console.log("Create Donation: " + JSON.stringify(response));
+       
         toast.success(response?.message);
+        setGatewayConfiguration(response);
+        setTimeout(() => {
+          document.getElementById("gatewayForm").submit();
+        }, 1000);
         clearForm(e);
         setLoading(false);
       } else {
@@ -479,6 +497,57 @@ function NewOnlineDonation() {
           </div>
         </Tab>
       </Tabs>
+      {gatewayConfiguration != null && (
+        <form
+          method="post"
+          name="redirect"
+          id="gatewayForm"
+          action={gatewayConfiguration.gatewayURL}
+        >
+          <input
+            type="hidden"
+            id="encRequest"
+            name="encRequest"
+            value={gatewayConfiguration.encRequest}
+          />
+          <input
+            type="hidden"
+            name="access_code"
+            id="access_code"
+            value={gatewayConfiguration.accessCode}
+          />
+        </form>
+      )}
+      
+      <Modal
+        className="transaction-modal"
+        show={showDonationModal}
+        onHide={handleDonationModalClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Body>
+          <div className="row">
+            <div className="col-12">
+              <Card>
+                <Card.Body>
+                  <div className="card-icon">
+                    <BsEmojiSmile />
+                  </div>
+                  <Card.Text
+                    dangerouslySetInnerHTML={{ __html: transactionMessage }}
+                  ></Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleDonationModalClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

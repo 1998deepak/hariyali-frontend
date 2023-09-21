@@ -2540,7 +2540,7 @@ tr td input {
   /* margin: 10px 0; */
   float: right;
   margin-top: 10px;
-  margin-right: 319px;
+  margin-right: 248px;
 }
 
 .edit-icon {
@@ -5229,4 +5229,55 @@ iframe {
 .discover-block .card-body{
    font-size: 1rem;
   text-align: left; color: #363636;
+}
+.click{
+  margin-bottom: 62px;
+}
+.clicks{
+  margin-bottom: 95px;
+}
+
+.mob-div {
+  display: none;
+}
+
+.desk-div {
+  justify-content: center;
+}
+
+.desk-div table {
+  width: auto;
+}
+
+.desk-div table tbody tr td {
+  font-size: 1.125rem;
+}
+
+.desk-div table tbody tr td:nth-child(2) {
+  font-weight: bolder;
+}
+
+.desk-div table tbody tr {
+  border-bottom: none;
+}
+
+@media (max-width: 767px) {
+  .desk-div {
+    display: none !important;
+  }
+
+  .mob-div {
+    display: block;
+  }
+
+  .row_div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row_div span:nth-child(2) {
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 5px;
+  }
 }
