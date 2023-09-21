@@ -42,8 +42,11 @@ import Faq from "./components/master/otherMenu/Faq";
 import DashboardTable from "./components/master/Dashboard/DashboardTable";
 import NewOnlineDonation from "./components/master/user/onlinedonation/NewOnlineDonation";
 import Commitment from "./components/master/Dashboard/Commitment";
+
+import TermsandConditions from "./components/master/otherMenu/TermsandConditions";
 import Form10BE from "./components/master/Form10BE/Form10BE";
 import FSCRAccount from "./components/master/donation/FSCRAccount";
+
 
 function HomeWithHeaderAndFooter() {
   return (
@@ -77,6 +80,15 @@ function PolicyWithHeaderAndFooter() {
     <>
       <UserHeader />
       <Policy />
+      <UserFooter />
+    </>
+  );
+}
+function TermsandConditionsWithHeaderAndFooter() {
+  return (
+    <>
+      <UserHeader />
+      <TermsandConditions />
       <UserFooter />
     </>
   );
@@ -410,6 +422,7 @@ function App() {
         <Route path="/Unauthorised" element={<Unauthorised />} />
         <Route path="/" element={<HomeWithHeaderAndFooter />} />
         <Route path="/Policy" element={<PolicyWithHeaderAndFooter />} />
+        <Route path="/TermsandConditions" element={<TermsandConditionsWithHeaderAndFooter />} />
         <Route path="/AboutUs" element={<AboutWithHeaderAndFooter />} />
         <Route
           path="/WaystoAssociate"
