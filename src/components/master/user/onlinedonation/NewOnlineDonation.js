@@ -16,10 +16,10 @@ function NewOnlineDonation() {
   const initialPackageData = [
     {
       packageName: "",
-      bouquetPrice: 450,
-      noOfBouquets: 1,
-      amount: 450,
-    },
+      bouquetPrice: "",
+      noOfBouquets: "",
+      amount: "",
+    }
   ];
 
   const initialUserData = {
@@ -78,6 +78,7 @@ function NewOnlineDonation() {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const { email } = UserService.userDetails();
+  const [gatewayConfiguration, setGatewayConfiguration] = useState(null);
 
   //calling api
   useEffect(() => {
@@ -242,14 +243,15 @@ function NewOnlineDonation() {
     setPackageData(packages);
   };
 
-  const calculateOverallTotal = (row) => {
-    console.log(row)
-    const totalCost = 450 * parseInt(row[0].noOfBouquets);
-    console.log(row[0].noOfBouquets);
-    console.log(totalCost);
+  const calculateOverallTotal = (packageData) => {
+
+    console.log(packageData);
+    let totalAmountOfPackage = 0;
+    packageData.map(data =>{
+      totalAmountOfPackage +=data.amount;
+    });
     const updatedDonations = [...donations];
-    updatedDonations[0]["totalAmount"] = totalCost;
-    console.log(updatedDonations);
+    updatedDonations[0]["totalAmount"] = totalAmountOfPackage;
     setDonations(updatedDonations);
   };
 
@@ -300,6 +302,7 @@ function NewOnlineDonation() {
     e.preventDefault();
     if (validate()) {
       const updatedDonations = [...donations];
+
       const filteredPackages = packageData.filter(
         (pkg) => pkg.noOfBouquets > 0
       );
@@ -319,13 +322,16 @@ function NewOnlineDonation() {
           return donationData;
         }),
       };
-
       setLoading(true);
       const response = await DonationService.AddNewDonation(formData);
-      console.log(response);
+     
       if (response?.status === SUCCESS) {
-        console.log("Create Donation: " + JSON.stringify(response));
+       
         toast.success(response?.message);
+        setGatewayConfiguration(response);
+        setTimeout(() => {
+          document.getElementById("gatewayForm").submit();
+        }, 1000);
         clearForm(e);
         setLoading(false);
       } else {
@@ -458,6 +464,27 @@ function NewOnlineDonation() {
           </div>
         </Tab>
       </Tabs>
+      {gatewayConfiguration != null && (
+        <form
+          method="post"
+          name="redirect"
+          id="gatewayForm"
+          action={gatewayConfiguration.gatewayURL}
+        >
+          <input
+            type="hidden"
+            id="encRequest"
+            name="encRequest"
+            value={gatewayConfiguration.encRequest}
+          />
+          <input
+            type="hidden"
+            name="access_code"
+            id="access_code"
+            value={gatewayConfiguration.accessCode}
+          />
+        </form>
+      )}
     </>
   );
 }
