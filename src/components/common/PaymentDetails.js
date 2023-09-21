@@ -413,7 +413,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
               <input
                 className="form-control-inside"
                 name="bankAddress"
-                placeholder="Received Amount"
+                placeholder="Bank Address"
                 type="text"
                 value={donations[0]?.paymentInfo[index]?.bankAddress}
                 onChange={(event) => handlePaymentInfoChange(event, 0, index)}

@@ -9,10 +9,10 @@ import {
 } from "react-pro-sidebar";
 import { MdCreateNewFolder } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { FaHome, FaDonate, FaRegCreditCard, FaUserEdit, FaUserFriends } from "react-icons/fa";
+import { FaHome, FaDonate, FaRegCreditCard, FaUserEdit, FaUserFriends,FaWpforms } from "react-icons/fa";
 import {RiUserAddLine} from "react-icons/ri";
 import {BiDonateHeart} from "react-icons/bi";
-import {FiUserPlus, FiSettings, FiUsers} from "react-icons/fi";
+import {FiUserPlus, FiSettings, FiUsers } from "react-icons/fi";
 import {CiViewList} from "react-icons/ci";
 import {PiPottedPlantDuotone, PiHandshake} from "react-icons/pi";
 import {HiOutlineDocumentReport} from "react-icons/hi";
@@ -176,6 +176,16 @@ const LeftMenu = () => {
               </Link>
               </Accordion.Header>
 
+            </Accordion.Item>
+            <Accordion.Item eventKey="6">
+            <Accordion.Header className={activeHead =='form-16'? 'disabled active' : 'disabled'} onClick={()=>activeHeadTag('form-16')}>
+            <Link
+                to="/Form10BE"
+                className="nav-link dropdown-indicator-left label-1"
+              > <FaWpforms/>
+                Form 10BE
+              </Link>
+            </Accordion.Header>
             </Accordion.Item>
           </Accordion>
           {/*<Menu>

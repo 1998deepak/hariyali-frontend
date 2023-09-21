@@ -1,0 +1,146 @@
+
+/* Upload Form10BE */
+
+.upload10be{
+    background-color: #FFF;
+    padding: 1em;
+    padding-top: 26px;
+   }
+  
+   .no-left-border-radius {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+  .custom-button {
+    background-color: #2f934a;
+    color: white;
+    border: none;
+    border-radius: 0;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
+  }
+  
+  .custom-button:hover {
+    background-color: white;
+    color: #2f934a;
+    border: 1px solid #2f934a;
+  }
+  .custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  
+  .custom-file-input::before {
+    display: inline-block;
+    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+  
+  .custom-file-input:hover::before {
+    border-color: black;
+  }
+  
+  .custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+  }
+   
+  
+  
+  .success-model-confirm {
+    color: #636363;
+    width: 325px;
+    font-size: 14px;
+  }
+  
+  .success-model-confirm .success-model-content {
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .success-model-confirm .success-model-header {
+    border-bottom: none;
+    position: relative;
+  }
+  
+  .success-model-confirm h4 {
+    text-align: center;
+    font-size: 26px;
+    margin: 30px 0 -15px;
+  }
+  
+  .success-model-confirm .form-control,
+  .success-model-confirm .btn {
+    min-height: 40px;
+    border-radius: 3px;
+  }
+  
+  .success-model-confirm .close {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+  }
+  
+  .success-model-confirm .success-model-footer {
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 13px;
+  }
+  
+  .success-model-confirm .icon-box {
+    color: #fff;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: -70px;
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    z-index: 9;
+    background: #82ce34;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .success-model-confirm .icon-box i {
+    font-size: 58px;
+    position: relative;
+    top: 3px;
+  }
+  
+  .success-model-confirm.success-model-dialog {
+    margin-top: 80px;
+  }
+  
+  .success-model-confirm .btn {
+    color: #fff;
+    border-radius: 4px;
+    background: #82ce34;
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    border: none;
+  }
+  
+  .success-model-confirm .btn:hover,
+  .success-model-confirm .btn:focus {
+    background: #6fb32b;
+    outline: none;
+  }
+  
+  .trigger-btn {
+    display: inline-block;
+    margin: 100px auto;
+  }
