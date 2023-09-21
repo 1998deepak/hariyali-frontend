@@ -3594,7 +3594,8 @@ figure.effect-layla:hover img {
   animation: transform 0.5s ease-in-out 0.5s;
 
 }
-
+.banner-term,
+.banner-policy,
 .banner-about,
 .banner-contact,
 .banner-associate,
@@ -3612,7 +3613,14 @@ figure.effect-layla:hover img {
 
   display: flex;
 }
-
+.banner-term{
+  background: url("../img/program/hariyali-img-2.jpg") no-repeat;
+  background-position: center;
+}
+.banner-policy{
+  background: url("../img/program/hariyali-img-1.jpg") no-repeat;
+  background-position: center;
+}
 .banner-faq {
   background: url("../img/slider/tarn.jpg") no-repeat;
   background-position: center;
