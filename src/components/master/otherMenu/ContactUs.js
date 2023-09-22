@@ -332,173 +332,179 @@ function ContactUs() {
                 </div>
               </div>
               <div className="my-5">
-              <h2 className="sub-title text-center mb-0">FAQ</h2>
-              <div className="my-5">
-                <Accordion>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <Typography> <FaEnvira className="greencolor"/> How do I see and get info about my tree once I’ve bought it?</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography>
-                      When you buy trees from EcoTree, we add them to your online
-                        account. You’ll be able to track their progress and
-                        geolocate them using aerial maps and photos of the forest.
-                        <br /> You will also have access to a CO2 absorption meter
-                        as well as a recovery meter over time. We send all customers
-                        a regular email newsletter to help you keep up to date with
-                        special offers and information about our forests.
-                        <br /> Every year, we send you our detailed annual report
-                        for you to learn about the work we’ve done in our forests,
-                        our progress as a company and plans for the future. Read our
-                        latest annual report now. Finally, most of our forests are
-                        open. That means you can come and visit the forest where
-                        your trees grow at any time. Just check our list of forests
-                        to see if your forest is labelled ‘open to the public’.
-                    </Typography>
-                  </AccordionDetails>
-                </Accordion>
-                <Accordion>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel2a-content"
-                    id="panel2a-header"
-                  >
-                    <Typography> <FaEnvira className="greencolor"/> How does it work?</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography>
-                    <p>Why do we need to plant trees anyway? 1. Absorb CO2.</p>
-                      <ol>
-                        <li>Purify the air.</li>
-                        <li>Help ensure the preservation of biodiversity.</li>
-                        <li>Are a source of raw materials.</li>
-                        <li>Create jobs.</li>
-                        <li>Aid the renewal of damaged land.</li>
-                        <li>Filter water.</li>
-                        <li> Have agricultural benefits.</li>
-                        <li>Provide resources for medicine. </li>
-                      </ol>
-                    </Typography>
-                  </AccordionDetails>
-                </Accordion>
-                <Accordion >
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel3a-content"
-                    id="panel3a-header"
-                  >
-                    <Typography> <FaEnvira className="greencolor"/> Are the trees I buy already planted or will they be planted in the future?</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography>
-                        At EcoTree, we work in harmony with the seasons and only
-                        plant new tree saplings in the winter. This means we need to
-                        anticipate demand for our trees ahead of time. So if you are
-                        buying a sapling, it might not be planted for a little
-                        while. If it’s listed as a mature tree at purchase, then
-                        it’s obviously growing away nicely already.
+                <h2 className="sub-title text-center mb-0">FAQ</h2>
+                <div className="my-5">
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Typography>
+                        <FaEnvira className="greencolor" />
+                        Are there any tax benefits for donating to Project Hariyali?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography>
+                        In India, yes, all contributions are deductible under Section 80 G of the Income Tax Act.
+                        <br />Once you make your donation, we will send you a receipt which also serves as your 80G certificate.
+                        Form 10BE is uploaded next financial year on your account at the Hariyali website.
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel2a-content"
+                      id="panel2a-header"
+                    >
+                      <Typography> <FaEnvira className="greencolor" />What is the purpose of a login ID & password?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography>
+                        All donors receive a system generated login ID and password through email. With your login details, you can access your account to see the number of trees planted by you over a period and other details.
+                        <br /><br />
+                        In case of changes in personal details, we encourage you to log in and make changes to your profile. You can also notify us by e-mail, and we will update our records accordingly.
+
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                  <Accordion >
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel3a-content"
+                      id="panel3a-header"
+                    >
+                      <Typography> <FaEnvira className="greencolor" />
+                        How does the donation amount utilised?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography>From every donation, only 10% of the funds are retained by the charity for administrative, marketing, and fund-raising costs; the remaining 90% is utilised exclusively towards our project expenses.
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Typography> <FaEnvira className="greencolor" />
+                        How long do trees take to reach maturity?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography>
+                        Every tree species we offer is different, in terms of how long it takes to reach maturity, it can range from 5 years to 10 years.
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Typography> <FaEnvira className="greencolor" />
+                        If there is a problem with the net banking or credit card donation process, whom do you contact?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography>You can mail to support@hariyali.org.in / gangar.sunny@mahindra.com
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Typography> <FaEnvira className="greencolor" />
+                        How safe is my personal information with Project Hariyali?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography>We do not use personal details for any other purpose than sending correspondences related to the donation. We have our Privacy policy available on the website.
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Typography> <FaEnvira className="greencolor" />
+                        Is it safe to give my credit card details online?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography>The Project Hariyali website partners with CC Avenues because it adheres to high security measures. CC Avenue is committed to ensuring that details shared by user, especially sensitive information like credit card details, etc remain protected. For further information, please visit www.ccavenues.com
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Typography> <FaEnvira className="greencolor" />
+                        Can I choose to support Project Hariyali in a specific area/region?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography>
+                        We do not give choices in area/region and selection of species for plantation.  We urge donors to contribute towards Project Hariyali irrespective of these conditions.
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Typography> <FaEnvira className="greencolor" />
+                        How can I pay by cheque?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography>
+
+                        In India, Cheque or Demand Draft can be drawn in favour of "Project Hariyali". These can be sent at the following address.
+                        <br /><br />
+                        Mahindra Foundation<br />
+                        3rd Floor, Cecil Court<br />
+                        Mahakavi Bhushan Marg<br />
+                        Near Regal Cinema, Colaba<br />
+                        Mumbai, Maharashtra - 400001<br />
                         <br />
-                        If demand for our trees is higher than we expected, we have
-                        a pre-sale system set up to ensure that everyone can still
-                        buy trees and contribute over the long term to the vital
-                        work our planet’s forests do in capturing carbon.
-                    </Typography>
-                  </AccordionDetails>
-                </Accordion>
-                <Accordion>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <Typography> <FaEnvira className="greencolor"/> Do I get a certificate or other proof that I own my trees?</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography>
-                        As a tree owner with EcoTree, you get a certificate of
-                        ownership. Our IT Department stores all records of
-                        ownership, hosted on servers outside EcoTree.
-                        <br />
-                        On top of this, we provide proof that we are maintaining a
-                        properly accounted register annually to the financial
-                        authorities (The AMF - Autorité des Marchés Financiers) in
-                        France.
-                    </Typography>
-                  </AccordionDetails>
-                </Accordion>
-                <Accordion>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <Typography> <FaEnvira className="greencolor"/> Does the price of my tree include all taxes and fees?</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography>
-                        Once your trees have been paid for, you will never have to
-                        pay more costs or taxes. Your initial payment covers the
-                        vital work we do to maintain a vibrant, sustainable forest
-                        (such as pruning, thinning and mushroom treatments). It also
-                        covers all the costs involved in the notary deeds, property
-                        taxes and maps or surveys of the forest where your trees are
-                        planted (cadastral fees).
-                        <br />
-                        Under current French tax law, any capital gain is
-                        non-taxable if it relates to the sale of trees worth less
-                        than €5,000 after 22 years or more of tree ownership.
-                    </Typography>
-                  </AccordionDetails>
-                </Accordion>
-                <Accordion>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <Typography> <FaEnvira className="greencolor"/> How long do trees take to reach maturity?</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography>
-                        Every tree species we offer is different, in terms of how
-                        long it takes to reach maturity, but we’re talking decades
-                        for all of them!
-                        <br />
-                        Not all the trees we offer are new planted saplings. Some
-                        have been growing a number of years already.
-                        <br />
-                        You can see how old a tree is when you buy it and how many
-                        years we expect it to grow before we cut it, on the tree’s
-                        product information card.
-                    </Typography>
-                  </AccordionDetails>
-                </Accordion>
-                <Accordion>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <Typography> <FaEnvira className="greencolor"/> Why is tree ownership good for the planet?</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography>
-                        Writer George Monbiot and biologist Garret Hardin have
-                        highlighted how vital our connection to nature is in its
-                        conservation. That’s why we’re going beyond donations.
-                        <br />
-                        Our tree owners (like you!) have a lifetime of reasons to
-                        stay engaged and passionate about protecting forests.
-                    </Typography>
-                  </AccordionDetails>
-                </Accordion>
+                        For all other nationals/residents, online donations can be made at www.hariyali.org.in through the Online Payment Gateway.
+
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Typography> <FaEnvira className="greencolor" />
+                        What will I receive after donating to Project Hariyali?</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography>
+
+                        After donating to Project Hariyali, you will receive the following.
+                        <br /><br />
+                        a.	A welcome letter along with the login details<br />
+                        b.	Thank you letter with a Certificate<br />
+                        c.	Receipt of the donation within 7 working days<br />
+                        d.	Plantation report <br />
+                        e.	Follow up reports for two years
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                </div>
               </div>
-              </div>
-              
+
             </div>
             <div className="contact-description-other">
               {" "}
