@@ -169,6 +169,7 @@ figure.effect-duke img {
 	max-width: 100%;
 	opacity: 1 !important;
 }
+
 figure.effect-duke {
 	/* background: -webkit-linear-gradient(-45deg, #34495e 0%, #000 100%);
 	background: linear-gradient(-45deg, #34495e 0%, #000 100%); */
@@ -180,14 +181,20 @@ figure.effect-duke {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	cursor: pointer; margin: 0 !important;
+	cursor: pointer;
+	margin: 0 !important;
 }
-.boxshaow-0{ box-shadow: 0px 0px 0px 0px !important;}
+
+.boxshaow-0 {
+	box-shadow: 0px 0px 0px 0px !important;
+}
+
 figure.effect-duke img,
 figure.effect-duke p {
 	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
 	transition: opacity 0.35s, transform 0.35s;
 }
+
 figure.effect-duke:hover img {
 	opacity: 1;
 	-webkit-transform: scale3d(2, 2, 1);
@@ -224,7 +231,8 @@ figure.effect-duke:hover h2,
 figure.effect-duke:hover p {
 	opacity: 1;
 	font-size: 1.8rem;
-	left: auto;right: auto;
+	left: auto;
+	right: auto;
 	/* -webkit-transform: scale3d(1, 1, 1);
 	transform: scale3d(1, 1, 1); */
 }
@@ -242,11 +250,13 @@ figure.effect-duke:hover p {
 .whysuimpact-effect h4 {
 	font-size: 1.3rem;
 }
-.whysuimpact-effect p{
+
+.whysuimpact-effect p {
 	color: #23aa4a;
 	font-weight: 600;
 	margin-top: 0.5rem;
 }
+
 .whysuimpact-effect:hover {
 	opacity: 1;
 	-webkit-transform: scale3d(1, 1, 1);
@@ -257,4 +267,33 @@ figure.effect-duke:hover p {
 .whysuimpact-effect:hover p {
 	color: #fff;
 }
-.arrowright-foot{font-size: 30px !important;}
+
+.arrowright-foot {
+	font-size: 30px !important;
+}
+
+@media only screen and (max-width:991px){
+	.modal.show .modal-dialog{
+		max-width: 95% !important;
+		margin-top: 20px;
+	}
+	.trustee-popup{
+		display: flex;
+		flex-direction: column;
+	}	
+	.grid figure{
+		width: 46%;
+	}
+	.footpop-img,
+	.footpop-p{
+		width: 100%;
+	}
+	.footpop-p{
+		padding: 1rem 0;
+	}
+}
+@media only screen and (max-width:767px){
+	.grid figure{
+		width: 98%;
+	}
+}

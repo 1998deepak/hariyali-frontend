@@ -8,6 +8,7 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
+
 import {
   FaSearchLocation,
   FaEdit,
@@ -59,6 +60,7 @@ import Coffee from "../../../assets/img/plantName/Coffee.png";
 // import Nectarine from "../../../assets/img/plantName/Nectarine.png";
 // import Nectarine from "../../../assets/img/plantName/Nectarine.png";
 import Approach from "../../../assets/img/approch.png";
+import VerticalSwiper from "../../common/VerticalSwiper";
 
 function WhatWeDo() {
   const plantname = [
@@ -137,7 +139,7 @@ function WhatWeDo() {
                 We have two seasons for plantation -  Monsoon and Winter
                 </h5>
                 <div className="row justify-content-center mt-5">
-                  <div className="col-12 col-md-6">
+                  <div className="col-12 col-lg-6 mb-3">
                     <div className="card plantation-card h-100">
                       <div className="row g-0 h-100">
                         <div className="col-md-5">
@@ -160,7 +162,7 @@ function WhatWeDo() {
                       </div>
                     </div>
                   </div>
-                  <div className="col-12 col-md-6">
+                  <div className="col-12 col-lg-6 mb-3">
                     <div className="card plantation-card h-100">
                       <div className="row g-0 h-100">
                         <div className="col-md-5">
@@ -197,8 +199,9 @@ function WhatWeDo() {
           <p className="text-center">We follow a systematic process which enables us to get a very high survival rate.</p>
           <div className="process-image">
             <img src={processImg1} alt="" />
-            </div>
           </div>
+          {/* <VerticalSwiper/> */}
+        </div>
           <div className="bg-green">
           <div className="col-12 feature-description">
           <h2 className="sub-title text-center">Sample Monsoon Plantation Calendar</h2>

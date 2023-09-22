@@ -274,9 +274,33 @@
 	}
 }
 
-
-@media screen and (max-width: 800px) {
+@media screen and (max-width:991px){
+  .hi-icon-wrap{
+    height: auto;
+  }
   .hi-icon {
-    margin: 15px !important;
+    margin: 0;
+  }
+  .trsteename,
+  .trsteename-desc{
+    text-align: center;
+  }
+  .trsteename{
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  .trustee-popup-img,
+  .trustee-popup-div{
+		width: 100%;
+	}
+  .trustee-popup-div{
+    padding:15px;
   }
 }
+@media screen and (max-width: 800px) {
+  .hi-icon {
+    margin: 15px;
+  }
+}
+
