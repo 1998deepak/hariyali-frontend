@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
-import { AiFillEdit, AiFillCloseCircle } from "react-icons/ai";
-import { FaAngleDoubleLeft } from "react-icons/fa";
-import BootstrapTable from "react-bootstrap-table-next";
+import { AiFillCloseCircle } from "react-icons/ai";
 import { FaRegEye } from "react-icons/fa";
 import { BsCheckCircleFill } from "react-icons/bs";
+import { RxCross2 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { WebDonorCreationService } from
@@ -42,11 +41,11 @@ function WebDonarCreation() {
 
   //Calling Function
   useEffect(() => {
-    getAllUserWithWebID();
+    getAllUserWithWebID("");
   }, []);
 
   // Get all user donation
-  const getAllUserWithWebID = async () => {
+  const getAllUserWithWebID = async (searchText) => {
     setLoading(true);
 
     let pageRequest = {
@@ -129,7 +128,7 @@ function WebDonarCreation() {
       setLoading(true)
       const response = await WebDonorCreationService.approveDonation(formData);
       console.log(response);
-      getAllUserWithWebID();
+      getAllUserWithWebID(searchText);
       if (response?.status === SUCCESS) {
         toast.success(response?.message);
         setLoading(false)
@@ -145,7 +144,7 @@ function WebDonarCreation() {
 
   const handlePageClick = (event) => {
     setPageNo(event.selected);
-    getAllUserWithWebID();
+    getAllUserWithWebID(searchText);
   };
 
   const handleDonationModalPageClick = (event) => {
@@ -172,6 +171,11 @@ function WebDonarCreation() {
     setStatusFilter(event.target.value);
   };
 
+  const clearSearch = () =>{
+    setSearchText('');
+    getAllUserWithWebID("");
+  }
+
   return (
     <>
       <ToastContainer />
@@ -188,9 +192,12 @@ function WebDonarCreation() {
                   id="searchField"
                   className="pl20 form-control-inside"
                   type="text"
+                  value={searchText}
                   onChange={handleSearch}
                 />
-                <BiSearchAlt className="searchicon" />
+                {
+                  searchText ? <RxCross2 className="searchicon" onClick={clearSearch}/>: <BiSearchAlt className="searchicon" />
+                }
               </div>
               <div className="col-3">
                 <select
@@ -214,7 +221,7 @@ function WebDonarCreation() {
                 </select>
               </div>
               <div className="col-3">
-                <button className="btn btn-search" onClick={getAllUserWithWebID}>Search</button>
+                <button className="btn btn-search" onClick={()=>getAllUserWithWebID(searchText)}>Search</button>
               </div>
             </div>
             <div className="row">
