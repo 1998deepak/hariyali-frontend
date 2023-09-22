@@ -33,10 +33,9 @@ const DashboardTable = () => {
   const handleClose = () => setShowUploadModal(false);
 
   const handleYearChange = (e) => {
-
     setSelectedYear(e.target.value);
-    getDistricts(e.target.value);
-    getCities(e.target.value);
+    getDistricts(e.target.value, false);
+    getCities(e.target.value, false);
   };
 
   //choose file for import
@@ -54,44 +53,54 @@ const DashboardTable = () => {
     }
   };
 
-  const getYears = async () => {
+  const getYears = async (flag) => {
     setLoading(true);
     const response = await PlantationService.years();
     if (response?.status === SUCCESS) {
       setYears(response.data);
       setLoading(false);
-      setSelectedYear(years[years.length - 1]);
+      if (flag) {
+        setSelectedYear(years[years.length - 1]);
+        getSeasons(true);
+        getDistricts(years[years.length - 1], true);
 
+      }
     } else {
       toast.error(response?.message);
       setLoading(false);
     }
   };
 
-  const getSeasons = async () => {
+  const getSeasons = async (flag) => {
     setLoading(true);
     const response = await PlantationService.seasons();
     if (response?.status === SUCCESS) {
       setSeasons(response.data);
       setLoading(false);
-      setSelectedSeason(seasons[seasons.length - 1]);
-
+      if (flag) {
+        setSelectedSeason(seasons[seasons.length - 1]);
+        alert();
+        alert(selectedSeason);
+      }
     } else {
       toast.error(response?.message);
       setLoading(false);
     }
   };
 
-  const getDistricts = async (year) => {
+  const getDistricts = async (year, flag) => {
     setLoading(true);
     const response = await PlantationService.districts(year);
     if (response?.status === SUCCESS) {
+
       let districtList = [];
       response.data.map(data => {
         districtList.push({ name: data, code: data });
       });
-      setSelectedDistricts(districtList);
-
+      if (flag) {
+        setSelectedDistricts(districtList);
+        getCities(year, flag);
+      }
       setDistricts(districtList);
       setLoading(false);
     } else {
@@ -100,20 +109,25 @@ const DashboardTable = () => {
     }
   };
 
-  const getCities = async (year) => {
+  const getCities = async (year, flag) => {
     setLoading(true);
     const response = await PlantationService.cities(year);
     if (response?.status === SUCCESS) {
+
       let cityList = [];
       response.data.map(data => {
         cityList.push({ name: data, code: data })
       });
-
-      setSelectedCities(cityList);
-
       setCities(cityList);
       setLoading(false);
-    } else {
+    
+      if (flag) {
+        setSelectedCities(cityList);
+        setTimeout(() => {
+          document.getElementById("search").click();
+        }, 100);
+       }
+      } else {
       toast.error(response?.message);
       setLoading(false);
     }
@@ -133,13 +147,7 @@ const DashboardTable = () => {
       if (response?.status === SUCCESS) {
         setLoading(false);
         setShowUploadModal(false);
-        getYears();
-        getSeasons();
-        setTimeout(() => {
-          getDistricts(selectedYear);
-          getCities(selectedYear);
-          getPlantationList();
-        }, 1000);
+        getYears(true);
         toast.info(response?.message);
       } else {
         toast.error(response?.message);
@@ -198,8 +206,8 @@ const DashboardTable = () => {
 
 
   useEffect(() => {
-    getYears();
-    getSeasons();
+    getYears(false);
+    getSeasons(false);
   }, []);
 
 
@@ -250,6 +258,22 @@ const DashboardTable = () => {
       }
     }
   };
+  const downloadTemplate = async () => {
+  
+      const response = await PlantationService.downloadTemplate();
+      if (response?.status === 200) {
+        console.log(response);
+        const url = window.URL.createObjectURL(response?.data);
+        const link = document.createElement("a");
+        const fileName = response.headers["content-disposition"].split("filename=")[1];
+        link.href = url;
+        link.setAttribute("download", fileName);
+        link.click();
+      } else {
+        toast.error(response?.message);
+      }
+    
+  };
 
   const handlePageClick = (event) => {
     setPageNo(event.selected);
@@ -273,6 +297,7 @@ const DashboardTable = () => {
             <select
               className=" form-control-inside form-select"
               name="plantationYear"
+              value={selectedYear}
               onChange={handleYearChange}
             >
               <option disabled selected value="">Select Plantation Year</option>
@@ -290,6 +315,7 @@ const DashboardTable = () => {
             <select
               className="form-control-inside form-select"
               name="season"
+              value={selectedSeason}
               onChange={(e) => setSelectedSeason(e.target.value)}
             >
               <option disabled selected value="">Select Season</option>
@@ -334,7 +360,7 @@ const DashboardTable = () => {
           <div className="col-md-6 col-lg-4">
             <div className="form-group d-inline-block top-30">
 
-              <Button type='submit' className="btn btn-primary" onClick={getPlantationList}>
+              <Button type='submit' className="btn btn-primary" id="search" onClick={getPlantationList}>
                 Search
               </Button>
               <Button type='submit' className="btn btn-primary" onClick={setShowUploadModal}>
@@ -485,7 +511,7 @@ const DashboardTable = () => {
           <Modal.Body>
             <div className='row'>
               <div className='col-12'>
-                <a href='/excelTemplate/plantationTemplate.xlsx'>Download Template</a>
+                <a href='javascript:void(0)' target='_self' onClick={downloadTemplate}>Download Template</a>
               </div>
             </div>
             <input type="file" id="fileInput" accept=".xls, .xlsx" onChange={handleFileChange} />
