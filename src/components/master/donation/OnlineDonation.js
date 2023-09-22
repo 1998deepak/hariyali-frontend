@@ -1085,6 +1085,9 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
     for (let i = 0; i < keys.length - 1; i++) {
       currentField = currentField[keys[i]];
     }
+    if (name === "user.donarType" && value === "Corporate") {
+      setHasAadharCard(true)
+    }
     console.log(currentField);
     currentField[keys[keys.length - 1]] = value;
     console.log(updatedFormData);
@@ -1111,6 +1114,9 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
     let currentField = updatedFormData;
     for (let i = 0; i < keys.length - 1; i++) {
       currentField = currentField[keys[i]];
+    }
+    if (name === "user.donarType" && value === "Corporate") {
+      setHasAadharCard(true)
     }
     console.log(currentField);
     currentField[keys[keys.length - 1]] = value;
@@ -1538,39 +1544,45 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                               </div>
                              {userData?.user?.citizenship === "India" ? (
                                 <>
+                                {
+                                  userData?.user?.donarType === "Individual"? 
                                   <div className="col-6">
-                                    <div className="select-label">
-                                      <div className="col-12 p0 field-wrapper">
-                                      <div>
+                                  <div className="select-label">
+                                    <div className="col-12 p0 field-wrapper">
+                                    <div>
+                                    <label>
+                                      Do you have an Pan card?
+                                    </label>
+                                    <div className="radio-buttons">
                                       <label>
-                                        Do you have an Pan card?
+                                        <input
+                                          type="radio"
+                                          name="aadharRadio"
+                                          value="yes"
+                                          checked={hasAadharCard}
+                                          onChange={handleRadioChange}
+                                        />{' '}
+                                        Yes
+                                      </label>{" "}
+                                      <label>
+                                        <input
+                                          type="radio"
+                                          name="aadharRadio"
+                                          value="no"
+                                          checked={!hasAadharCard}
+                                          onChange={handleRadioChange}
+                                        />{' '}
+                                        No
                                       </label>
-                                      <div className="radio-buttons">
-                                        <label>
-                                          <input
-                                            type="radio"
-                                            name="aadharRadio"
-                                            value="yes"
-                                            checked={hasAadharCard}
-                                            onChange={handleRadioChange}
-                                          />{' '}
-                                          Yes
-                                        </label>{" "}
-                                        <label>
-                                          <input
-                                            type="radio"
-                                            name="aadharRadio"
-                                            value="no"
-                                            checked={!hasAadharCard}
-                                            onChange={handleRadioChange}
-                                          />{' '}
-                                          No
-                                        </label>
-                                      </div>
-                                      </div>
-                                      </div>
+                                    </div>
+                                    </div>
                                     </div>
                                   </div>
+                                </div>
+                                  :
+                                  <></>
+                                }
+                                  
                                   {hasAadharCard ? (
                                   <div className="col-6">
                                     <div className="select-label">
@@ -2604,6 +2616,8 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                               </div>
                               {userData?.user?.citizenship === "India" ? (
                                 <>
+                                {
+                                  userData?.user?.donarType === "Individual"? 
                                   <div className="col-6">
                                     <div className="select-label">
                                       <div className="col-12 p0 field-wrapper">
@@ -2637,6 +2651,9 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                       </div>
                                     </div>
                                   </div>
+                                  :<></>
+                                }
+                                  
                                   {hasAadharCard ? (
                                   <div className="col-6">
                                     <div className="select-label">

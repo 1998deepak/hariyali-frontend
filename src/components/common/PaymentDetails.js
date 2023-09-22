@@ -70,7 +70,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                     );
                   })}
                 </select>
-                {errors && errors.map((error, index) => {
+                {errors?.map((error, index) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].paymentMode`
                   ) {
@@ -110,7 +110,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                   );
                 })}
               </select>
-                {errors && errors.map((error, index) => {
+                {errors?.map((error, index) => {
                   if (error.field === `donations[0].paymentInfo[${index}].accountId`) {
                     return (
                       <div key={index} className="error-message red-text">
@@ -143,7 +143,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                   }}
                   disabled={isDisabled}
                 />
-                {errors && errors.map((error, index) => {
+                {errors?.map((error, index) => {
                   if (error.field === `donations[0].paymentInfo[${index}].amount`) {
                     return (
                       <div key={index} className="error-message red-text">
@@ -171,7 +171,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
                   disabled={isDisabled}
                 />
-                {errors && errors.map((error, index) => {
+                {errors?.map((error, index) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].paymentDate`
                   ) {
@@ -189,7 +189,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
           <div className="col-6">
             <div className="row select-label">
               <div className="col-4 ">
-                Total Amount <span className="red-text">*</span>
+                Total Amount
               </div>
               <div className="col-8 p0">
                 <input
@@ -201,7 +201,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
                   disabled={isDisabled}
                 />
-                {errors && errors.map((error, index) => {
+                {errors?.map((error, index) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].paymentDate`
                   ) {
@@ -241,7 +241,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                     );
                   })}
                 </select>
-                {errors && errors.map((error, index) => {
+                {errors?.map((error, index) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].paymentStatus`
                   ) {
@@ -271,7 +271,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
                   disabled={isDisabled}
                 />
-                {errors && errors.map((error, index) => {
+                {errors?.map((error, index) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].receiptDate`
                   ) {
@@ -304,7 +304,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
                   disabled={isDisabled}
                 />
-                {errors && errors.map((error, index) => {
+                {errors?.map((error, index) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].receivedAmount`
                   ) {

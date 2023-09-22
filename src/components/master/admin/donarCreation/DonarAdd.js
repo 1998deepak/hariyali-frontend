@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { SUCCESS } from "../../../constants/constants";
 import { DonationService } from "../../../../services/donationService/donation.service";
 import Loader from "../../../common/loader/Loader";
+import { RxCross2 } from "react-icons/rx";
 
 function DonarAdd() {
   const [data, setData] = useState([]);
@@ -140,7 +141,9 @@ function DonarAdd() {
                   value={searchText}
                   onChange={handleSearch}
                 />
-                <BiSearchAlt className="searchicon" />
+                {
+                  searchText ? <RxCross2 className="searchicon" onClick={()=>setSearchText('')}/>: <BiSearchAlt className="searchicon" />
+                }
               </div>
             </div>
             <div className="col-12 pr0">
