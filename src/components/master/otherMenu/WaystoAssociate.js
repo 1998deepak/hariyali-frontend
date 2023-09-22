@@ -44,6 +44,7 @@ import Festivals from "../../../assets/img/certificate/Festivals.jpg";
 import specialday from "../../../assets/img/certificate/specialday.jpg";
 import Achievements from "../../../assets/img/certificate/Achievements.jpg";
 import MemorialTribute from "../../../assets/img/certificate/MemorialTribute.jpg";
+import Gifting from "../../../assets/img/certificate/gifting.jpg";
 
 function WaystoAssociate() {
   const [activeTab, setActiveTab] = useState("individual");
@@ -65,6 +66,7 @@ function WaystoAssociate() {
       { img: specialday, quote: "Special day" },
       { quote: "Achievements", img: Achievements },
       { quote: "Memorial Tribute", img: MemorialTribute },
+      { quote: "Gifting", img: Gifting },
     ],
     // Add more item groups as needed
   ];
@@ -74,6 +76,7 @@ function WaystoAssociate() {
       { img: specialday, quote: "Special day" },
       { quote: "Achievements", img: Achievements },
       { quote: "Memorial Tribute", img: MemorialTribute },
+      { quote: "Gifting", img: Gifting },
     ],
     // Add more item groups as needed
   ];
