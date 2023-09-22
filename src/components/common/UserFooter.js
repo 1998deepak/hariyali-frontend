@@ -69,12 +69,12 @@ const Header = () => {
                   <ul>
                     <li><a href="/Policy">Privacy Policy</a></li>
                     <li><a href="TermsandConditions">Terms & Conditions</a></li>
-                    <li><a href="">Legal Documents</a>
+                    <li>Legal Documents
                         <ul className="nested-ul">
                           <li><a href={require('../../assets/pdf/Hariyali Regd Revised Trust Deed dated 27 Oct 2014.pdf')} target="_blank"> Registration Certificate </a></li>
                           <li><a href={require('../../assets/pdf/Hariyali 80G Certificate.pdf')} target="_blank">80 G Certificate </a></li>
                           {/* <li><a href={require('../../assets/pdf/Hariyali80GCertificate.pdf')} target="_blank" download="Hariyali80GCertificate.pdf">80 G Certificate </a></li> */}
-                          <li><a href={require('../../assets/pdf/PAN - Hariyali.pdf')} target="_blank">Pan Card </a></li>
+                          <li><a href={require('../../assets/pdf/PAN - Hariyali.pdf')} target="_blank">PAN CARD </a></li>
                         </ul>
                     </li>
                    

@@ -16,9 +16,14 @@ function OfflineDonation() {
   const [donationType1, setDonationType1] = useState("Gift-Donate");
 
   const [hasAadharCard, setHasAadharCard] = useState(true);
+  const [hasPassport, setHasPassport] = useState(true);
 
 const handleRadioChange = (event) => {
   setHasAadharCard(event.target.value === 'yes');
+};
+
+const handleforeignValueChange = (event) => {
+  setHasPassport(event.target.value === 'yes');
 };
 
   const initialPackageData = [
@@ -297,9 +302,7 @@ const handleRadioChange = (event) => {
         if (!payment.amount) {
           validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].amount", message: "Amount is required" });
         }
-        if (!payment.totalAmount) {
-          validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].totalAmount", message: "Total Amount is required" });
-        }
+       
         if (!payment.paymentStatus) {
           validationErrors.push({ field: "donations[0].paymentInfo[" + i + "].paymentStatus", message: "Payment Status is required" });
         }
@@ -600,6 +603,10 @@ const handleRadioChange = (event) => {
     let currentField = updatedFormData;
     for (let i = 0; i < keys.length - 1; i++) {
       currentField = currentField[keys[i]];
+    }
+    if (name === "user.donarType" && value === "Corporate") {
+      setHasAadharCard(true)
+      setHasPassport(false)
     }
     console.log(currentField);
     if(name == "user.panCard" || name == "user.firstName" || name == "user.lastName" || name == "user.emailId"){
@@ -1265,9 +1272,11 @@ console.log(donationsGift);
                                 </div>
                               </div>{" "}
                             </div>
-                            {userData?.user?.citizenship === "INDIA" ? (
-                                <>
-                                  <div className="col-6">
+                            {userData?.user?.citizenship === "INDIA" ? 
+                            (
+                                <>{
+                                   userData?.user?.donarType === "Individual"? 
+                                   <div className="col-6">
                                     <div className="select-label">
                                       <div className="col-12 p0 field-wrapper">
                                       <div>
@@ -1300,6 +1309,9 @@ console.log(donationsGift);
                                       </div>
                                     </div>
                                   </div>
+                                  :<></>
+                                }
+                                  
                                   {hasAadharCard ? (
                                   <div className="col-6">
                                     <div className="select-label">
@@ -1374,9 +1386,9 @@ console.log(donationsGift);
                                   ) 
                                    }
                                 </>
-                              ) : (
+                              ): (
                                 <>
-                                  <div className="col-6">
+                                <div className="col-6">
                                     <div className="row select-label">
                                     <div className="col-4 clicks">Passport{" "} <span className="red-text">*</span></div>
                                       <div className="col-8 p0">
@@ -1415,6 +1427,117 @@ console.log(donationsGift);
                                       </div>
                                     </div>
                                   </div>
+                                {/* {
+                                  userData?.user?.donarType === "Individual"? 
+                                  <div className="col-6 ">
+                                    <div className="row">
+                                      <div className="col-4">
+                                        Do you have an Passport?
+                                      </div>
+                                      <div className="radio-buttons col-8">
+                                        <label>
+                                          <input
+                                            type="radio"
+                                            name="aadharRadio"
+                                            value="yes"
+                                            checked={hasPassport}
+                                            onChange={handleforeignValueChange}
+                                          />{' '}
+                                          Yes
+                                        </label>{" "}
+                                        <label>
+                                          <input
+                                            type="radio"
+                                            name="aadharRadio"
+                                            value="no"
+                                            checked={!hasPassport}
+                                            onChange={handleforeignValueChange}
+                                          />{' '}
+                                          No
+                                        </label>
+                                      </div>
+                                      </div>
+                                  </div>
+                                  :<></>
+                                }
+                                
+                                  {
+                                    hasPassport ?(
+                                      <div className="col-6">
+                                    <div className="row select-label">
+                                    <div className="col-4 clicks">Passport{" "} <span className="red-text">*</span></div>
+                                      <div className="col-8 p0">
+                                        <input
+                                          className="form-control-inside form-control"
+                                          name="user.passport"
+                                          id="passport"
+                                          placeholder="Enter the passport"
+                                          type="text"
+                                          value={userData.user.passport}
+                                          onChange={handleChange}
+                                        />
+                                        <small className="text-muted">
+                                          Disclaimer: Passport copy is mandatory
+                                          requirement to verify current
+                                          citizenship of Indian citizen residing
+                                          in foreign countries and foreign
+                                          citizens residing in India
+                                        </small>
+                                        {errors.map((error, index) => {
+                                          if (
+                                            error.field ===
+                                            "userData.user.passport"
+                                          ) {
+                                            return (
+                                              <div
+                                                key={index}
+                                                className="error-message red-text"
+                                              >
+                                                {error.message}
+                                              </div>
+                                            );
+                                          }
+                                          return null;
+                                        })}
+                                      </div>
+                                    </div>
+                                  </div>
+                                    )
+                                        :
+                                        <div className="col-6">
+                                    <div className="row select-label">
+                                    <div className="col-4">Tin Number{" "} <span className="red-text">*</span></div>
+                                      <div className="col-8 p0">
+                                        <input
+                                          className="form-control-inside form-control"
+                                          name="user.tinNumber"
+                                          id="tinNumber"
+                                          placeholder="Enter the Tin Number"
+                                          type="text"
+                                          value={userData.user.tinNumber}
+                                          onChange={handleChange}
+                                        />
+                                  
+                                        {errors.map((error, index) => {
+                                          if (
+                                            error.field ===
+                                            "userData.user.tinNumber"
+                                          ) {
+                                            return (
+                                              <div
+                                                key={index}
+                                                className="error-message red-text"
+                                              >
+                                                {error.message}
+                                              </div>
+                                            );
+                                          }
+                                          return null;
+                                        })}
+                                      </div>
+                                    </div>
+                                  </div>
+                                  } */}
                                 </>
                               )}
                           </div>
@@ -2133,6 +2256,8 @@ console.log(donationsGift);
 
                             {userData?.user?.citizenship === "INDIA" ? (
                                 <>
+                                {
+                                  userData?.user?.donarType === "Individual"? 
                                   <div className="col-6">
                                     <div className="select-label">
                                       <div className="col-12 p0 field-wrapper">
@@ -2166,6 +2291,9 @@ console.log(donationsGift);
                                       </div>
                                     </div>
                                   </div>
+                                  :<></>
+                                }
+                                  
                                   {hasAadharCard ? (
                                   <div className="col-6">
                                     <div className="select-label">

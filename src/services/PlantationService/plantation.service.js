@@ -107,8 +107,21 @@ export const PlantationService = {
       if (err?.response?.data) {
         return err?.response?.data;
       } else {
-        //   toast.error(err?.message);
-        console.log("Hello");
+      }
+    }
+  },
+  downloadTemplate: async () => {
+    try {
+      const response = await APIService.Instance.get(
+        URLS.PLANTATION_DOWNLOADTEMPLATE, {
+        responseType: 'blob', // Ensure the responseType is set to 'blob'
+      }
+      );
+      return response;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
       }
     }
   }

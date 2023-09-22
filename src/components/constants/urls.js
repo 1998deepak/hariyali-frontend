@@ -54,6 +54,7 @@ export const URLS = {
     PLANTATION_UPLOAD:"/plantation/upload",
     PLANTATION_FINDALLBYFILTER:"/plantation/findAllByFilter",
     PLANTATION_EXPORTREPORT:"/plantation/exportReport",
+    PLANTATION_DOWNLOADTEMPLATE:"/plantation/downloadTemplate",
 
     //commitment service
     COMMITMENT_FINDALLBYFILTER:"/commitment/findByFilter",

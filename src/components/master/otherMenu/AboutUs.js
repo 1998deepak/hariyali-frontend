@@ -196,7 +196,7 @@ function AboutUs() {
                       <section id="set-1">
                         <div className="hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1b">
                           <div className="justify-content-center mb-4 row">
-                            <div className="col-6 col-md-2 ">
+                            <div className="col-6 col-md-4 col-lg-2 ">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={AnandMahindra}><BsArrowRight /></div>
@@ -205,7 +205,7 @@ function AboutUs() {
                                     <div className="trsteename-desc">Chairman</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2 ">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={BharatDoshi}><BsArrowRight /></div>
@@ -214,7 +214,7 @@ function AboutUs() {
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2 ">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={UlhasYargop}><BsArrowRight /></div>
@@ -223,7 +223,7 @@ function AboutUs() {
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={ProchieMukherji}><BsArrowRight /></div>
@@ -232,7 +232,7 @@ function AboutUs() {
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={MarioNazarath}><BsArrowRight /></div>
@@ -241,7 +241,7 @@ function AboutUs() {
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2 ">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={SheetalMehta}><BsArrowRight /></div>
@@ -250,7 +250,6 @@ function AboutUs() {
                                     <div className="trsteename-desc">Executive Director</div></div>
                                 </div></a>
                             </div>
-
                           </div>
                         </div>
                       </section>
@@ -264,7 +263,7 @@ function AboutUs() {
                       <section id="set-1">
                         <div className="hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1b">
                           <div className="justify-content-center mb-4 row">
-                            <div className="col-6 col-md-2 ">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={AnjiReddy}><BsArrowRight /></div>
@@ -273,7 +272,7 @@ function AboutUs() {
                                     <div className="trsteename-desc">Founding Chairman</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2 ">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={AnandMahindranaandi}><BsArrowRight /></div>
@@ -282,7 +281,7 @@ function AboutUs() {
                                     <div className="trsteename-desc">Chairman and Life Trustee</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2 ">
+                            <div className="col-6 col-md-4 col-lg-2 ">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={Gopalakrishnan}><BsArrowRight /></div>
@@ -291,7 +290,7 @@ function AboutUs() {
                                     <div className="trsteename-desc">Life Trustee</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={SatishReddy} ><BsArrowRight /></div>
@@ -300,7 +299,7 @@ function AboutUs() {
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={RajendraPrasad}><BsArrowRight /></div>
@@ -309,7 +308,7 @@ function AboutUs() {
                                     <div className="trsteename-desc">Life Trustee</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={ManojKumar}><BsArrowRight /></div>
@@ -318,8 +317,6 @@ function AboutUs() {
                                     <div className="trsteename-desc">CEO & Ex-Officio Secretary to the Board</div></div>
                                 </div></a>
                             </div>
-
-
                           </div>
                         </div>
                       </section>
