@@ -1571,7 +1571,9 @@ textarea.form-control {
   color: #fff;
   text-decoration: none;
 }
-
+.footer-div li{
+  font-size: 1.125rem;
+}
 .footer-div li a:hover,
 .footer-div li a:focus {
   color: #23aa4a;
@@ -2682,13 +2684,18 @@ tr td input {
 }
 
 .react-slideshow-container .nav:first-of-type {
-  left: 2rem;
+  left: -2rem;
 }
 
 .react-slideshow-container .nav:last-of-type {
+  right: -2rem;
+}
+.home-page-slider .react-slideshow-container .nav:first-of-type{
+  left: 2rem;
+}
+.home-page-slider .react-slideshow-container .nav:last-of-type {
   right: 2rem;
 }
-
 .react-slideshow-container .default-nav:hover {
   background: #23aa4a;
 }
@@ -2984,10 +2991,11 @@ tr td input {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
   background-color: #fff;
   border-radius: 0.5rem;
-  padding: 4.25rem 1rem;
-  margin: 0 1.5rem 1rem;
+  padding: 2.25rem 1rem;
+  margin: 0 1rem 1rem;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
@@ -4051,7 +4059,7 @@ iframe {
 
 .group-content {
   background: #ccc;
-  padding: 3rem 1rem 5rem;
+  padding: 3rem 1rem;
   border-radius: 15px;
   margin-top: 46px;
 }
@@ -5031,15 +5039,15 @@ iframe {
   margin: 0 auto;
 }
 
-.carousel-item {
+/* .carousel-item {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 500px;
-  /* Set the height of your carousel items */
+ 
   background-color: #f0f0f0;
-  /* Set the background color */
-}
+ 
+} */
 
 .vertical-carousel-container .slick-dots {
   display: flex !important;
@@ -5124,6 +5132,23 @@ iframe {
 .slick-active .custom-dot span {
   color: #ffffff;
 }
+.awards-modal.modal.show .modal-dialog{
+  max-width: 900px !important;
+  margin: 8rem auto 0; 
+}
+.awards-modal .modal-body{
+  /* max-width: 768px; */
+  width: 100%;
+  height: 80vh;
+  margin: 0 auto;
+}
+.awards-modal .modal-body img{
+  display: block;
+  /* max-width: 500px; */
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
 @media screen and (max-width:1440px) {
   .nav-list .nav-item a.nav-link {
     font-size: 1rem;
@@ -5163,6 +5188,9 @@ iframe {
 
   .slide-content h2 {
     font-size: 2rem;
+  }
+  .tree-featureswidth{
+    width: 300px;
   }
 }
 

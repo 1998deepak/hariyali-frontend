@@ -72,12 +72,12 @@ function WhySupportUs() {
       {
         quote:
           "FICCI CSR Awards – In Skill Development & Livelihood Category, 2021",
-        image: limcaAward,
+        image: csrCertificate,
       },
       {
         quote:
           "Food System Vision Prize by Rockefeller Foundation to Naandi Foundation, 2020",
-        image: csrCertificate,
+        // image: csrCertificate,
       },
       {
         quote:
@@ -349,7 +349,7 @@ function WhySupportUs() {
               ))}
             </Carousel>
           </div>
-          <Modal show={showModal} onHide={closeModal}>
+          <Modal show={showModal} onHide={closeModal} className="awards-modal">
             <Modal.Body>
               {selectedImage && (
                 <img src={selectedImage} alt="Modal" className="img-fluid" />
@@ -410,14 +410,14 @@ function WhySupportUs() {
                   className="slide-content-whysupport support-content"
                 >
                   <div className="row">
-                    <div className="offset-lg-1 col-12 col-md-4">
+                    <div className="offset-xl-1 col-xl-3 col-12 col-lg-4">
                       <img
                         src={testimonial.image}
                         alt="avatar"
                         className="mb-5"
                       />
                     </div>
-                    <div className="col-12 col-md-8">
+                    <div className="col-12 col-lg-8 col-xl-8">
                       <h3 className="mb-3">{testimonial.name}</h3>
                       <p className="">
                         <i className="bi bi-quote pe-2"></i>

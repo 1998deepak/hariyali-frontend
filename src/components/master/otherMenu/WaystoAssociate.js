@@ -44,6 +44,7 @@ import Festivals from "../../../assets/img/certificate/Festivals.jpg";
 import specialday from "../../../assets/img/certificate/specialday.jpg";
 import Achievements from "../../../assets/img/certificate/Achievements.jpg";
 import MemorialTribute from "../../../assets/img/certificate/MemorialTribute.jpg";
+import Gifting from "../../../assets/img/certificate/gifting.jpg";
 
 function WaystoAssociate() {
   const [activeTab, setActiveTab] = useState("individual");
@@ -65,6 +66,7 @@ function WaystoAssociate() {
       { img: specialday, quote: "Special day" },
       { quote: "Achievements", img: Achievements },
       { quote: "Memorial Tribute", img: MemorialTribute },
+      { quote: "Gifting", img: Gifting },
     ],
     // Add more item groups as needed
   ];
@@ -74,6 +76,7 @@ function WaystoAssociate() {
       { img: specialday, quote: "Special day" },
       { quote: "Achievements", img: Achievements },
       { quote: "Memorial Tribute", img: MemorialTribute },
+      { quote: "Gifting", img: Gifting },
     ],
     // Add more item groups as needed
   ];
@@ -402,7 +405,7 @@ function WaystoAssociate() {
                 <h3 class="text-center my-5 sub-title">
                   Fund raising strategies
                 </h3>
-                <div className="col-12 col-md-6 cpl-lg-4">
+                <div className="col-12 col-md-6 col-lg-4">
                   <div className="text-center h-101">
                     <div className="card-img-top">
                       <img src={ind1} className="" alt="..." />
@@ -419,7 +422,7 @@ function WaystoAssociate() {
                     </div>
                   </div>
                 </div>
-                <div className="col-12 col-md-6 cpl-lg-4">
+                <div className="col-12 col-md-6 col-lg-4">
                   <div className="text-center h-101">
                     <div className="card-img-top">
                       <img src={ind3} className="" alt="..." />
@@ -439,7 +442,7 @@ function WaystoAssociate() {
                     </div>
                   </div>
                 </div>
-                <div className="col-12 col-md-6 cpl-lg-4">
+                <div className="col-12 col-md-6 col-lg-4">
                   <div className="text-center h-101">
                     <div className="card-img-top">
                       <img src={ind2} className="" alt="..." />

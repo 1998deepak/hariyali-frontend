@@ -104,7 +104,7 @@ function AboutUs() {
                 <h2 className="sub-title  text-center">Who We Are</h2>
                 <p className="text-center">
                   Project Hariyali is a joint initiative of Mahindra Foundation and Naandi Foundation
-                  <div className="whowe-knowtext"><a href="#knowYourPatners">know more</a> about these Foundations</div>
+                  <div className="whowe-knowtext"><a href="#knowYourPatners">Know more</a> about these Foundations</div>
                   {/* Click here to <a href="#knowYourPatners">know more</a>  about these Foundations */}
                 </p>
               </div>
@@ -114,12 +114,10 @@ function AboutUs() {
             <div className="row align-items-center pv-75">
               <div className="col-12">
                 <div className="feature-description feature-description-other">
-                  <h2 className="sub-title  text-center">Details about The Initiative</h2>
+                  <h2 className="sub-title  text-center">The Initiative</h2>
                   <p className="text-center">
-                  The project was launched on 2<sup>nd</sup> October 2007, as an afforestation initiative, with a target to plant a million trees every year.
-                  Project Hariyali aims to increase green cover, arrest the rising ecological imbalance to create an environmentally conscious and 
-                  aware citizenry. Project Hariyali is an excellent example of nature-based solutions in climate action that focuses on natural 
-                  resource management and global organic farming protocols to improve the eco-system.</p>
+                  The project was launched on 2<sup>nd</sup> October 2007, as an afforestation initiative, with a target to plant a million trees every year. Project Hariyali aims to increase green cover, arrest the rising ecological imbalance to create an environmentally conscious and aware citizenry. Project Hariyali is an excellent example of nature-based solutions in climate action that focuses on natural
+                   resource management and global organic farming protocols to improve the eco-system. </p>
 
                   <p className="text-center">Our large scale plantation is active in 3 regions. </p>
                   <div className="row">
