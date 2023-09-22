@@ -1571,7 +1571,9 @@ textarea.form-control {
   color: #fff;
   text-decoration: none;
 }
-
+.footer-div li{
+  font-size: 1.125rem;
+}
 .footer-div li a:hover,
 .footer-div li a:focus {
   color: #23aa4a;
@@ -2682,13 +2684,18 @@ tr td input {
 }
 
 .react-slideshow-container .nav:first-of-type {
-  left: 2rem;
+  left: -2rem;
 }
 
 .react-slideshow-container .nav:last-of-type {
+  right: -2rem;
+}
+.home-page-slider .react-slideshow-container .nav:first-of-type{
+  left: 2rem;
+}
+.home-page-slider .react-slideshow-container .nav:last-of-type {
   right: 2rem;
 }
-
 .react-slideshow-container .default-nav:hover {
   background: #23aa4a;
 }
@@ -2984,6 +2991,7 @@ tr td input {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
   background-color: #fff;
   border-radius: 0.5rem;
   padding: 4.25rem 1rem;
@@ -5031,15 +5039,15 @@ iframe {
   margin: 0 auto;
 }
 
-.carousel-item {
+/* .carousel-item {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 500px;
-  /* Set the height of your carousel items */
+ 
   background-color: #f0f0f0;
-  /* Set the background color */
-}
+ 
+} */
 
 .vertical-carousel-container .slick-dots {
   display: flex !important;
@@ -5163,6 +5171,9 @@ iframe {
 
   .slide-content h2 {
     font-size: 2rem;
+  }
+  .tree-featureswidth{
+    width: 300px;
   }
 }
 
