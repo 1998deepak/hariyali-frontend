@@ -122,7 +122,7 @@ function NewOnlineDonation() {
 
   const getdetailsByEmailId = async (email) => {
     setLoading(true);
-    let response = await DonationService.getUserDetails(email);
+    let response = await DonationService.getDetailsByEmailIdOrDonorId(email);
     console.log("API Response:", response);
 
     if (response?.status === "Success") {

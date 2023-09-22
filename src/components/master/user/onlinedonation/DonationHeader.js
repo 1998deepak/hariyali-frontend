@@ -11,7 +11,7 @@ const DonationHeader = ({
   return (
     <div className="col-12 mt20">
       <div className="row ">
-        <div className="col-6">
+        {/* <div className="col-6">
           <div className="row select-label">
             <div className="col-4 ">
               Donor ID <span className="red-text">*</span>
@@ -27,7 +27,7 @@ const DonationHeader = ({
               />
             </div>
           </div>
-        </div>
+        </div> */}
         {isOccasion ? (
           <div className="col-6">
             <div className="row select-label">
