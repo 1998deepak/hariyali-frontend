@@ -22,7 +22,7 @@
   display: inline-block;
   font-size: 20px;
   cursor: pointer;
-  margin: 15px 30px;
+  /* margin: 15px 30px; */
   width: 100%;
   height: 215px;
   border-radius: 50%;
@@ -299,8 +299,8 @@
   }
 }
 @media screen and (max-width: 800px) {
-  .hi-icon {
+  /* .hi-icon {
     margin: 15px;
-  }
+  } */
 }
 

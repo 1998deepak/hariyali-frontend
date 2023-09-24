@@ -1194,7 +1194,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                 >
                   {/* <div className="pageheadingdiv mb10">Self Donor</div> */}
                   <div className="row">
-                    <div className="col-6">
+                    <div className="col-12 col-md-6">
                       <div className="select-label">
                         {/* <div className="col-4 "> Donor Type</div> */}
                         <div className="col-12 p0 field-wrapper">
@@ -1234,7 +1234,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                   </div>
                   <div>
                     <div className="row">
-                      <div className="col-6">
+                      <div className="col-12 col-md-6">
                         <div className="select-label">
                           {/* <div className="col-4 "> Select Your Citizenship</div> */}
                           <div className="col-12 p0 field-wrapper">
@@ -1272,7 +1272,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                           </div>
                         </div>
                       </div>
-                      <div className="col-6">
+                      <div className="col-12 col-md-6">
                         <div className="select-label">
                           {/* <div className="col-4 "> Email ID</div> */}
                           <div className="col-12 p0 field-wrapper">
@@ -1339,7 +1339,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                           )}
                           <div className="col-12 pr15">
                             <div className="row">
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Mobile No.</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -1379,7 +1379,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                               </div>
                               {userData?.user?.donarType.toLocaleLowerCase() ===
                               "corporate" ? (
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 "> Organisation</div> */}
                                     <div className="col-12 p0 field-wrapper">
@@ -1422,7 +1422,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                 <></>
                               )}
 
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Prefix</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -1465,7 +1465,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">First Name</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -1504,7 +1504,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Last Name</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -1546,7 +1546,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                 <>
                                 {
                                   userData?.user?.donarType === "Individual"? 
-                                  <div className="col-6">
+                                  <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     <div className="col-12 p0 field-wrapper">
                                     <div>
@@ -1584,7 +1584,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                 }
                                   
                                   {hasAadharCard ? (
-                                  <div className="col-6">
+                                  <div className="col-12 col-md-6">
                                     <div className="select-label">
                                       {/* <div className="col-4 ">PAN card</div> */}
                                       <div className="col-12 p0 field-wrapper">
@@ -1629,7 +1629,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                       </div>
                                     </div>
                                   </div>) :(
-                                    <div id="addharId" className="col-6">
+                                    <div id="addharId" className="col-12 col-md-6">
                                     <div className="select-label">
                                       {/* <div className="col-4 ">PAN card</div> */}
                                       <div className="col-12 p0 field-wrapper">
@@ -1673,7 +1673,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                 </>
                               ) : (
                                 <>
-                                  <div className="col-6">
+                                  <div className="col-12 col-md-6">
                                     <div className="select-label">
                                       {/* <div className="col-4 ">PAN card</div> */}
                                       <div className="col-12 p0 field-wrapper">
@@ -1730,7 +1730,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                           )}
                           <div className="col-12 pr15">
                             <div className="row">
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 "> Street 1</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -1767,7 +1767,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 "> Street 2</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -1787,7 +1787,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 "> Street 3</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -1807,7 +1807,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">State</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -1853,7 +1853,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                 </div>
                               </div>
                               {userData?.user?.citizenship === "India" ? (
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">State</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -1894,7 +1894,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               </div>):(
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 "> Street 3</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -1928,7 +1928,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                 </div>
                               </div>
                               )}
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   <div className="col-12 p0 field-wrapper">
                                     <label class="form-label top-27">
@@ -1961,7 +1961,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               </div> 
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Postal Code</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -2014,7 +2014,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                             </div>
                             <div className="col-12 pr15">
                               <div className="row">
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 "> Street 1</div> */}
                                     <div className="col-12 p0 field-wrapper">
@@ -2034,7 +2034,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 "> Street 2</div> */}
                                     <div className="col-12 p0 field-wrapper">
@@ -2054,7 +2054,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 "> Street 3</div> */}
                                     <div className="col-12 p0 field-wrapper">
@@ -2074,7 +2074,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 ">Country</div> */}
                                     <div className="col-12 p0 field-wrapper">
@@ -2094,7 +2094,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 ">State</div> */}
                                     <div className="col-12 p0 field-wrapper">
@@ -2119,7 +2119,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 ">City</div> */}
                                     <div className="col-12 p0 field-wrapper">
@@ -2139,7 +2139,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 ">Postal Code</div> */}
                                     <div className="col-12 p0 field-wrapper">
@@ -2164,7 +2164,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                             <hr />
                           </div>
 
-                          <div className="col-6 mt20">
+                          <div className="col-12 col-md-6 mt20">
                             <Captcha
                               verified={false}
                               setVerified={() => {
@@ -2236,7 +2236,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                   >
                     <div className="col-12 ">
                       <div className="row">
-                        <div className="col-6">
+                        <div className="col-12 col-md-6">
                           <div className=" select-label">
                             {/* <div className="col-4 "> Donor Type</div> */}
                             <div className="col-12 p0 field-wrapper">
@@ -2272,7 +2272,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                             </div>
                           </div>
                         </div>
-                        <div className="col-6">
+                        <div className="col-12 col-md-6">
                           <div className=" select-label">
                             {/* <div className="col-4 ">Occasion</div> */}
                             <div className="col-12 p0 field-wrapper">
@@ -2329,7 +2329,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                     </div>
                     <div>
                       <div className="row">
-                        <div className="col-6">
+                        <div className="col-12 col-md-6">
                           <div className=" select-label">
                             {/* <div className="col-4 "> Select Your Citizenship</div> */}
                             <div className="col-12 p0 field-wrapper">
@@ -2353,7 +2353,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                             </div>
                           </div>
                         </div>
-                        <div className="col-6">
+                        <div className="col-12 col-md-6">
                           <div className="select-label">
                             {/* <div className="col-4 "> Email ID</div> */}
                             <div className="col-12 p0 field-wrapper">
@@ -2381,7 +2381,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                             </div>
                           </div>
                         </div>
-                        <div className="col-6">
+                        <div className="col-12 col-md-6">
                           <div className=" select-label">
                             {/* <div className="col-4 ">Occasion</div> */}
                             <div className="col-12 p0 field-wrapper">
@@ -2432,7 +2432,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                           )}
                           <div className="col-12 pr15 mt20">
                             <div className="row">
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Mobile No.</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -2468,7 +2468,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                 </div>
                               </div>
                               {isVisibleGift && (
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 "> Organisation</div> */}
                                     <div className="col-12 p0 field-wrapper">
@@ -2504,7 +2504,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               )}
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Prefix</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -2543,7 +2543,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">First Name</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -2579,7 +2579,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">Last Name</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -2618,7 +2618,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                 <>
                                 {
                                   userData?.user?.donarType === "Individual"? 
-                                  <div className="col-6">
+                                  <div className="col-12 col-md-6">
                                     <div className="select-label">
                                       <div className="col-12 p0 field-wrapper">
                                         <div>
@@ -2655,7 +2655,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                 }
                                   
                                   {hasAadharCard ? (
-                                  <div className="col-6">
+                                  <div className="col-12 col-md-6">
                                     <div className="select-label">
                                       {/* <div className="col-4 ">PAN card</div> */}
                                       <div className="col-12 p0 field-wrapper">
@@ -2700,7 +2700,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                       </div>
                                     </div>
                                   </div>) :(
-                                    <div id="addharId" className="col-6">
+                                    <div id="addharId" className="col-12 col-md-6">
                                     <div className="select-label">
                                       {/* <div className="col-4 ">PAN card</div> */}
                                       <div className="col-12 p0 field-wrapper">
@@ -2744,7 +2744,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                 </>
                               ) : (
                                 <>
-                                  <div className="col-6">
+                                  <div className="col-12 col-md-6">
                                     <div className="select-label">
                                       {/* <div className="col-4 ">PAN card</div> */}
                                       <div className="col-12 p0 field-wrapper">
@@ -2801,7 +2801,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                           )}
                           <div className="col-12 pr15">
                             <div className="row">
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 "> Street 1</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -2838,7 +2838,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 "> Street 2</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -2858,7 +2858,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   <div className="col-12 p0 field-wrapper">
                                     <label className="form-label">
@@ -2877,7 +2877,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">State</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -2923,7 +2923,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                 </div>
                               </div>
                               {userData?.user?.citizenship === "India" ? (
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 ">State</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -2964,7 +2964,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               </div>):(
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   {/* <div className="col-4 "> Street 3</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -2998,7 +2998,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                 </div>
                               </div>
                               )}
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   <div className="col-12 p0 field-wrapper">
                                     <label className="form-label">
@@ -3030,7 +3030,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   <div className="col-12 p0 field-wrapper">
                                     <label className="form-label">
@@ -3075,7 +3075,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                           <div className="col-12 pr15">
                             <div>
                               <div className="row">
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     <div className="col-12 p0 field-wrapper">
                                       <label className="form-label">
@@ -3112,7 +3112,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     <div className="col-12 p0 field-wrapper">
                                       <label className="form-label">
@@ -3149,7 +3149,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     <div className="col-12 p0 field-wrapper">
                                       <label className="form-label">
@@ -3185,7 +3185,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     <div className="col-12 p0 field-wrapper">
                                       <label className="form-label">
@@ -3223,7 +3223,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                 </div>
                               </div>
                               <div className="row">
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     <div className="col-12 p0 field-wrapper">
                                       <label className="form-label">
@@ -3260,7 +3260,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                   </div>
                                 </div>
 
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     <div className="col-12 p0 field-wrapper">
                                       <label className="form-label">
@@ -3279,7 +3279,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     <div className="col-12 p0 field-wrapper">
                                       <label className="form-label">
@@ -3298,7 +3298,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     <div className="col-12 p0 field-wrapper">
                                       <label className="form-label">
@@ -3334,7 +3334,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     {/* <div className="col-4 ">Statesss</div> */}
                                     <div className="col-12 p0 field-wrapper">
@@ -3378,7 +3378,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     <div className="col-12 p0 field-wrapper">
                                       <label className="form-label">City</label>
@@ -3412,7 +3412,7 @@ const [hasAadharCard, setHasAadharCard] = useState(true);
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-6">
+                                <div className="col-12 col-md-6">
                                   <div className="select-label">
                                     <div className="col-12 p0 field-wrapper">
                                       <label className="form-label">
