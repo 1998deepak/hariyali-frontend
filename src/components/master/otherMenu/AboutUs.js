@@ -18,7 +18,8 @@ import SheetalMehtaimg from "../../../assets/img/trustee/SheetalMehta.jpg";
 import AnandMahindrapng from "../../../assets/img/trustee/AnandMahindra.png";
 import BharatDoshipng from "../../../assets/img/trustee/BharatDoshi.png";
 import UlhasYargoppng from "../../../assets/img/trustee/UlhasYargop.png";
-import ProchieMukherjipng from "../../../assets/img/trustee/DumyUser.png";
+import ProchieMukherjiimg from "../../../assets/img/trustee/ProchieMukherji.jpg";
+import ProchieMukherjipng from "../../../assets/img/trustee/ProchieMukherji.png";
 import MarioNazarathpng from "../../../assets/img/trustee/DumyUser.png";
 import SheetalMehtapng from "../../../assets/img/trustee/SheetalMehta.png";
 import AnjiReddyimg from "../../../assets/img/trustee/AnjiReddy.jpg";
@@ -227,7 +228,7 @@ function AboutUs() {
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={ProchieMukherji}><BsArrowRight /></div>
-                                  <img src={DumyUserimg} className="hi-iconimg" alt="" />
+                                  <img src={ProchieMukherjiimg} className="hi-iconimg" alt="" />
                                   <div className="trsteename">Prochie Mukherje 
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>

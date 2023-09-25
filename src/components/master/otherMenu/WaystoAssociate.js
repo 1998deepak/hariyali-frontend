@@ -66,7 +66,7 @@ function WaystoAssociate() {
       { img: specialday, quote: "Special day" },
       { quote: "Achievements", img: Achievements },
       { quote: "Memorial Tribute", img: MemorialTribute },
-      { quote: "Gifting", img: Gifting },
+      { quote: "Simple Gifting", img: Gifting },
     ],
     // Add more item groups as needed
   ];
@@ -76,7 +76,7 @@ function WaystoAssociate() {
       { img: specialday, quote: "Special day" },
       { quote: "Achievements", img: Achievements },
       { quote: "Memorial Tribute", img: MemorialTribute },
-      { quote: "Gifting", img: Gifting },
+      { quote: "Simple Gifting", img: Gifting },
     ],
     // Add more item groups as needed
   ];
