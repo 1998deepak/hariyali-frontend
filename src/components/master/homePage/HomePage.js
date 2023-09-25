@@ -435,7 +435,7 @@ function HomePage() {
             Alignment with United Nations Sustainable Development Goals
           </h2>
 
-          <div class="grid"> <div className="col-8 m-auto"><Row className="justify-content-between ">
+          <div class="grid"> <div className="col-12 col-xl-8 m-auto"><Row className="">
             <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 marginall-pad-0">
               <figure className="effect-duke boxshaow-0"><img src={sdg13} width="100%" />
               </figure></div>
