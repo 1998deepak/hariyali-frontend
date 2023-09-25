@@ -523,22 +523,22 @@ function WaystoAssociate() {
                   Goals
                 </p>
 
-                <div className="col-3 pd-le-r-15">
+                <div className="col-12 col-md-8 pd-le-r-15">
                   {" "}
-                  <Row className="justify-content-between ">
-                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3  marginall-pad-0">
+                  <Row>
+                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 marginall-pad-0">
                       <img src={sdg13} width="100%" />
                     </div>
-                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3  marginall-pad-0">
+                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 marginall-pad-0">
                       <img src={sdg15} width="100%" />
                     </div>
                     <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3 marginall-pad-0">
                       <img src={sdg8} width="100%" />
                     </div>
-                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3  marginall-pad-0">
+                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 marginall-pad-0">
                       <img src={sdg14} width="100%" />
                     </div>
-                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 mb-3  marginall-pad-0">
+                    <div className="col-6 col-md-4 col-lg-2-extra mb-lg-0 marginall-pad-0">
                       <img src={sdg17} width="100%" />
                     </div>
                   </Row>

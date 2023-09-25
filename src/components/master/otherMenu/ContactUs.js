@@ -193,7 +193,7 @@ function ContactUs() {
                   <form className="contact-form-wrap">
                     <div className="">
                       <Row>
-                        <div className="homeinput-div col-lg-6 col-12 field-wrapper">
+                        <div className="homeinput-div col-12 col-lg-6 col-12 field-wrapper">
                           <label className="form-label">Name</label>
                           <input
                             className="form-control form-text required"
@@ -218,7 +218,7 @@ function ContactUs() {
                             return null;
                           })}
                         </div>
-                        <div className="homeinput-div col-lg-6 col-12 field-wrapper">
+                        <div className="homeinput-div col-12 col-lg-6 col-12 field-wrapper">
                           <label className="form-label">Email Id</label>
                           <input
                             className="form-control form-text required"
@@ -243,7 +243,7 @@ function ContactUs() {
                             return null;
                           })}
                         </div>
-                        <div className="homeinput-div col-lg-12 col-12 field-wrapper">
+                        <div className="homeinput-div col-12 col-lg-12 col-12 field-wrapper">
                           <label className="form-label">Subject</label>
                           <input
                             className="form-control form-text required"
@@ -268,7 +268,7 @@ function ContactUs() {
                             return null;
                           })}
                         </div>
-                        <div className="homeinput-div col-lg-12 col-12 field-wrapper">
+                        <div className="homeinput-div col-12 col-lg-12 col-12 field-wrapper">
                           <label className="form-label">Message</label>
                           <textarea
                             className="form-control form-textarea required"
@@ -296,7 +296,7 @@ function ContactUs() {
                             return null;
                           })}
                         </div>
-                        <div className="homeinput-div col-lg-12 col-12">
+                        <div className="homeinput-div col-12 col-lg-12 col-12">
                           <Captcha
                             verified={false}
                             setVerified={() => setCaptchaFlag(true)}
@@ -504,7 +504,6 @@ function ContactUs() {
                   </Accordion>
                 </div>
               </div>
-
             </div>
             <div className="contact-description-other">
               {" "}
@@ -521,13 +520,6 @@ function ContactUs() {
                 </div>
               </section>
             </div>
-            {/* <Row className="justify-content-between  padding30tb contact-form-wrap">
-              <div className=" col-lg-2"></div>
-              <div className="pt30 col-lg-8 ">
-                
-              </div>
-              <div className=" col-lg-2"></div>
-            </Row> */}
           </div>
         </div>
       </div>
