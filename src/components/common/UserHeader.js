@@ -66,9 +66,9 @@ const Header = () => {
 
               </Navbar.Toggle >
 
-              <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+              <Navbar.Collapse id="responsive-navbar-nav" className="">
            
-                <Nav className="justify-content-end  nav-list" activeKey={location.pathname}>
+                <Nav className=" nav-list" activeKey={location.pathname}>
                   <Nav.Item >
                     <Nav.Link href="/AboutUs" className={`${activeTab === 'AboutUs' ? 'active' : ''}`}
         onClick={() => setActiveTab('AboutUs')} eventKey="/AboutUs">Who We Are</Nav.Link>
