@@ -72,12 +72,11 @@ const ROUTE = {
   ]
 
   export const OCCASION_LIST = [
-    {label:"Birthday",value:"Birthday"},
-    {label:"Wedding",value:"Wedding"},
-    {label:"Anniversary",value:"Anniversary"},
-    {label:"Achievement",value:"Wedding"},
-    {label:"Festival",value:"Festival"},
+    {label:"Festivals",value:"Festivals"},
+    {label:"Special day",value:"Special day"},
+    {label:"Achievements",value:"Achievements"},
     {label:"Memorial Tribute",value:"Memorial Tribute"},
+    {label:"Simple Donation",value:"Simple Donation"},
   ]
 
   export { USER_DETAILS, ROUTE , TOKEN , SUCCESS,ROLEAUTHORITY,stateOptions,PAYMENT_MODES };
