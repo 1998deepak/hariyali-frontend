@@ -281,9 +281,9 @@ figure.effect-duke:hover p {
 		display: flex;
 		flex-direction: column;
 	}	
-	.grid figure{
+	/* .grid figure{
 		width: 46%;
-	}
+	} */
 	.footpop-img,
 	.footpop-p{
 		width: 100%;
