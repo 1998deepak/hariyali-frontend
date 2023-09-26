@@ -4371,6 +4371,7 @@ iframe {
   display: block;
   width: 150px;
   height: 150px;
+  object-fit: cover;
   border: 1px solid #ccc;
   border-radius: 50%;
   margin: 0 auto 1rem;
@@ -5151,10 +5152,18 @@ video {
 .hi-icon {
   margin: 0;
 }
+
 .navbar-toggler:focus {
-  border: 0 ;
+  border: 0;
   box-shadow: none;
 }
+
+.certificate-slider .carousel-control-prev,
+.certificate-slider .carousel-control-next,
+.certificate-slider .carousel-indicators {
+  display: none;
+}
+
 @media screen and (max-width:1440px) {
   .nav-list .nav-item a.nav-link {
     font-size: 1rem;
@@ -5235,12 +5244,14 @@ video {
   } */
 }
 
-@media only screen and (max-width:1024px){
+@media only screen and (max-width:1024px) {
+
   .navbar-toggler,
   .navbar-expand-lg .navbar-toggler,
   .navbar-expand .navbar-toggler {
     display: block;
   }
+
   .navbar-collapse {
     position: fixed;
     left: 0;
@@ -5252,16 +5263,18 @@ video {
     bottom: 0;
     background-color: rgba(35 170 74/90%);
   }
+
   .nav-list,
   .navbar-expand .navbar-nav,
   .navbar-expand-lg .navbar-nav,
   .navbar-expand .navbar-collapse,
-  .navbar-expand-lg .navbar-collapse{
+  .navbar-expand-lg .navbar-collapse {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
   }
+
   .nav-list .nav-item a.nav-link {
     color: #fff;
     font-size: 1.5rem;
@@ -5271,6 +5284,7 @@ video {
   .nav-list .nav-item a.nav-link:before {
     display: none;
   }
+
   .collapse:not(.show) {
     display: none !important;
   }
@@ -5278,12 +5292,20 @@ video {
   .nav-sublist .nav-item {
     margin: 0 !important;
   }
+
   .menu-button-donet {
     width: 100%;
     padding: 5px 10px;
   }
-  .tree-featureswidth{
+
+  .tree-featureswidth {
     width: 28%;
+  }
+
+  .certificate-slider .carousel-control-prev,
+  .certificate-slider .carousel-control-next,
+  .certificate-slider .carousel-indicators {
+    display: none;
   }
 }
 
@@ -5444,27 +5466,30 @@ video {
   video {
     height: 450px;
   }
+
   .banner-term,
   .banner-policy,
   .banner-about,
-  .banner-contact,  
+  .banner-contact,
   .banner-support,
   .banner-footprint,
   .banner-associate,
-  .banner-footprint{
+  .banner-footprint {
     max-width: 100%;
     background-size: cover;
     background-position: center;
     height: 30vh;
   }
-  .banner-wedo{
+
+  .banner-wedo {
     background-size: contain;
     height: 30vh;
   }
+
   .banner-associate,
-  .banner-footprint{
+  .banner-footprint {
     background-size: contain;
-    background-position:center;
+    background-position: center;
     background-color: #c9c9c9;
   }
 }
@@ -5505,6 +5530,7 @@ video {
   .spt70 {
     padding-top: 70px;
   }
+
   .subaboutheading {
     padding-top: 10px;
   }
@@ -5608,23 +5634,25 @@ video {
   .banner-term,
   .banner-policy,
   .banner-about,
-  .banner-contact,  
+  .banner-contact,
   .banner-support,
   .banner-footprint,
   .banner-associate,
-  .banner-footprint{
+  .banner-footprint {
     max-width: 100%;
     background-size: cover;
     background-position: top center;
   }
-  .banner-wedo{
+
+  .banner-wedo {
     background-size: contain;
     min-height: 30vh;
   }
+
   .banner-associate,
-  .banner-footprint{
+  .banner-footprint {
     background-size: contain;
-    background-position:center;
+    background-position: center;
     background-color: #c9c9c9;
     height: 180px;
   }
