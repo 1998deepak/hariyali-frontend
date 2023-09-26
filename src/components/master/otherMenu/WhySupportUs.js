@@ -72,7 +72,7 @@ function WhySupportUs() {
       {
         quote:
           "FICCI CSR Awards – In Skill Development & Livelihood Category, 2021",
-        image: csrCertificate,
+        image: csrCertificate1,
       },
       {
         quote:
@@ -82,7 +82,7 @@ function WhySupportUs() {
       {
         quote:
           "The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category, 2020",
-        image: csrCertificate1,
+        image: csrCertificate,
       },
     ],
     [
@@ -220,6 +220,9 @@ function WhySupportUs() {
               {/* <i className="icon-monsoon"></i> */}
             </div>
           </div>
+        </div>
+        <div>
+          <button className="btn btn-success">Plant a tree</button>
         </div>
         <p className="text-center">
           Support the nation reach Carbon neutrality. Join us to make an impact

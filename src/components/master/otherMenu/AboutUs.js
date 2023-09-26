@@ -18,7 +18,7 @@ import SheetalMehtaimg from "../../../assets/img/trustee/SheetalMehta.jpg";
 import AnandMahindrapng from "../../../assets/img/trustee/AnandMahindra.png";
 import BharatDoshipng from "../../../assets/img/trustee/BharatDoshi.png";
 import UlhasYargoppng from "../../../assets/img/trustee/UlhasYargop.png";
-import ProchieMukherjipng from "../../../assets/img/trustee/DumyUser.png";
+import ProchieMukherjipng from "../../../assets/img/trustee/Prochie Mukherje.jpg";
 import MarioNazarathpng from "../../../assets/img/trustee/DumyUser.png";
 import SheetalMehtapng from "../../../assets/img/trustee/SheetalMehta.png";
 import AnjiReddyimg from "../../../assets/img/trustee/AnjiReddy.jpg";
@@ -138,11 +138,12 @@ function AboutUs() {
                         <img src={tarnImg} className="img-fluid rounded-start" alt="..." />
                         <div className="card-body text-center">
                           <h5 className="card-title">Northern India</h5>
-                          <p className="card-text">Our project <b className="colorgreen">Shravasti in Uttar Pradesh</b>,
+                          {/* <p className="card-text">Our project <b className="colorgreen">Shravasti in Uttar Pradesh</b>,
                             <b className="colorgreen">
                             Project Hariyali started in <b className="colorgreen">Shravasti</b> in <b className="colorgreen">Uttar Pradesh</b>, <b className="colorgreen">Tarn Taran</b> & <b className="colorgreen">Moga</b> in <b className="colorgreen">Punjab</b> and <b className="colorgreen">Solan</b> in <b className="colorgreen">Himachal Pradesh</b> in 2021. 
 
-                              Tarn Taran & Moga in Punjab</b> and <b className="colorgreen">Solan in Himachal Pradesh</b> started in 2021</p>
+                              Tarn Taran & Moga in Punjab</b> and <b className="colorgreen">Solan in Himachal Pradesh</b> started in 2021</p> */}
+                              <p className="card-text">Project Hariyali started in <b className="colorgreen">Shravasti</b> in <b className="colorgreen">Uttar Pradesh</b>, Tarn Taran & Moga in Punjab and Solan in <b className="colorgreen">Himachal Pradesh</b> in 2021.</p>
                         </div>
                       </div>
                     </div>
@@ -227,7 +228,7 @@ function AboutUs() {
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={ProchieMukherji}><BsArrowRight /></div>
-                                  <img src={DumyUserimg} className="hi-iconimg" alt="" />
+                                  <img src={ProchieMukherjipng} className="hi-iconimg" alt="" />
                                   <div className="trsteename">Prochie Mukherje 
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>
