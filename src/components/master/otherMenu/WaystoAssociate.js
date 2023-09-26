@@ -580,7 +580,7 @@ function WaystoAssociate() {
             </Container>
           </div>
         </section>
-        <div className="project-bg ">
+        <div className="project-bg patner-carousel">
           <Container>
             <div className=" feature-description-other">
               <h3 class="text-center sub-title"> Our Partner</h3>
