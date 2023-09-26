@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Carousel, Modal, Button } from "react-bootstrap";
+import { Carousel, Modal, Button, Nav} from "react-bootstrap";
 import { Container, Row } from "react-bootstrap";
 import "animate.css/animate.min.css";
 // import "react-image-gallery/styles/css/image-gallery.css";
@@ -30,7 +30,9 @@ import csrCertificate1 from "../../../assets/img/CSR.png";
 import aimacertificate from "../../../assets/img/AIMA.jpg";
 import program3 from "../../../assets/img/co2.jpg";
 import program4 from "../../../assets/img/lifestyle.jpg";
-import video from '../../../assets/video/Solan-women-farmer-AV.mp4'
+import video from '../../../assets/video/Solan-women-farmer-AV.mp4';
+import { Link, useNavigate, useLocation} from "react-router-dom";
+import plantation from "../../../assets/img/GIF's/plant-img.gif";
 // const slides = [
 //   {
 //     title: 'When you cut a tree you take a life and when you plant a tree you plant a HOPE',
@@ -73,7 +75,7 @@ function WhySupportUs() {
       {
         quote:
           "FICCI CSR Awards – In Skill Development & Livelihood Category, 2021",
-        image: csrCertificate1,
+        image: csrCertificate,
       },
       {
         quote:
@@ -83,7 +85,7 @@ function WhySupportUs() {
       {
         quote:
           "The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category, 2020",
-        image: csrCertificate,
+        image: csrCertificate1,
       },
     ],
     [
@@ -133,7 +135,7 @@ function WhySupportUs() {
 
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-
+  const navigate = useNavigate();
   const openModal = (image) => {
     setSelectedImage(image);
     setShowModal(true);
@@ -142,6 +144,9 @@ function WhySupportUs() {
   const closeModal = () => {
     setSelectedImage(null);
     setShowModal(false);
+  };
+  const goToDonate = () => {
+    navigate("/OnlineDonation");
   };
 
   const zoomOutProperties = {
@@ -222,13 +227,15 @@ function WhySupportUs() {
             </div>
           </div>
         </div>
-        <div>
-          <button className="btn btn-success">Plant a tree</button>
-        </div>
         <p className="text-center">
           Support the nation reach Carbon neutrality. Join us to make an impact
           through Project Hariyali{" "}
         </p>
+          <div className="text-center">
+              <div className="" onClick={goToDonate}>
+                <Button className="menu-button-donet"><img src={plantation} alt="Donote" className="donoteicon" />Plant A Tree </Button>
+              </div>
+            </div>
       </section>
       {/* <div className="container pv-75">
         <div className="row mb30 impact-wrapper">
