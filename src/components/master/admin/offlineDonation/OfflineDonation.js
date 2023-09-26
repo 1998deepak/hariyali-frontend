@@ -247,10 +247,10 @@ const handleforeignValueChange = (event) => {
 
     if (!userData?.user?.emailId) {
       validationErrors.push({ field: "userData.user.emailId", message: "Email ID is required" });
-      document.getElementById("emailId").focus();
+       document.getElementById("emailId").focus();
     } else if (!/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(userData.user.emailId)) {
       validationErrors.push({ field: "userData.user.emailId", message: "Invalid Email ID" });
-      document.getElementById("emailId").focus();
+       document.getElementById("emailId").focus();
     }
 
     if (!userData?.user?.panCard) {
@@ -421,6 +421,14 @@ const handleforeignValueChange = (event) => {
 
     setErrors(validationErrors);
 
+    // if (validationErrors.length>0) {
+    //   validationErrors.forEach((errors)=>{
+    //     if (document.getElementById(`${errors.field.split('.').pop()}`)) {
+    //       document.getElementById(`${errors.field.split('.').pop()}`).focus();
+    //       return;
+    //     }
+    //   })
+    // }
     return validationErrors.length === 0;
   };
 
@@ -1078,6 +1086,7 @@ console.log(donationsGift);
                                   <input
                                     className="form-control-inside"
                                     type="text"
+                                    id="emailId"
                                     name="user.emailId"
                                     placeholder="Email ID"
                                     value={userData?.user?.emailId}
@@ -1124,6 +1133,7 @@ console.log(donationsGift);
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.donarType"
+                                    id="donarType"
                                     value={userData?.user?.donarType}
                                     onChange={handleChange}
                                   >
@@ -2067,6 +2077,7 @@ console.log(donationsGift);
                                     className="form-control-inside"
                                     type="text"
                                     name="user.emailId"
+                                    id="emailId"
                                     placeholder="Email ID"
                                     value={userData.user.emailId}
                                     // onBlur={handleBlur}
@@ -2109,6 +2120,7 @@ console.log(donationsGift);
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.donarType"
+                                    id="donarType"
                                     value={userData.user.donarType}
                                     onChange={handleChange}
                                   >
@@ -3049,6 +3061,7 @@ console.log(donationsGift);
                                     className="form-control-inside"
                                     type="text"
                                     name="user.emailId"
+                                    id="emailId"
                                     placeholder="Email ID"
                                     value={userData?.user?.emailId}
                                     onBlur={(e) => handleDonarIdBlur(e)}
@@ -3094,6 +3107,7 @@ console.log(donationsGift);
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.donarType"
+                                    id="donarType"
                                     value={userData?.user?.donarType}
                                     onChange={handleChange}
                                     disabled
@@ -3213,6 +3227,7 @@ console.log(donationsGift);
                                   <input
                                     className="form-control-inside"
                                     name="user.panCard"
+                                    id="panCard"
                                     placeholder="PAN card No."
                                     type="text"
                                     value={userData?.user?.panCard}
@@ -3678,6 +3693,7 @@ console.log(donationsGift);
                                     className="form-control-inside"
                                     type="text"
                                     name="user.emailId"
+                                    id="emailId"
                                     placeholder="Email ID"
                                     value={userData.user.emailId}
                                     onBlur={(e) => handleDonarIdBlur(e)}
@@ -3723,6 +3739,7 @@ console.log(donationsGift);
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.donarType"
+                                    id="donarType"
                                     value={userData.user.donarType}
                                     onBlur={(e) => handleDonarIdBlur(e)}
                                     onChange={handleChange}
@@ -3849,6 +3866,7 @@ console.log(donationsGift);
                                   <input
                                     className="form-control-inside"
                                     name="user.panCard"
+                                    id="panCard"
                                     placeholder="PAN card No."
                                     type="text"
                                     value={userData.user.panCard}

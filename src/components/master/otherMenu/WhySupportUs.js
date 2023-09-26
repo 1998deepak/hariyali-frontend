@@ -25,8 +25,9 @@ import limcaAward from "../../../assets/img/Limca Records 2015_page-0001.jpg";
 import limcaAward1 from "../../../assets/img/Limca Records 2020_pages-to-jpg-0001.jpg";
 import impactAssessment1 from "../../../assets/img/Impact Assessment Report FY 22_page-0001.jpg";
 import impactAssessment2 from "../../../assets/img/Impact Assessment Report FY 23_page-0001.jpg";
-import csrCertificate from "../../../assets/img/Image20230825001140.png";
-import csrCertificate1 from "../../../assets/img/Image20230825001136.png";
+import csrCertificate from "../../../assets/img/Image20230825001136.png";
+import csrCertificate1 from "../../../assets/img/CSR.png";
+import aimacertificate from "../../../assets/img/AIMA.jpg";
 import program3 from "../../../assets/img/co2.jpg";
 import program4 from "../../../assets/img/lifestyle.jpg";
 import video from '../../../assets/video/Solan-women-farmer-AV.mp4'
@@ -88,7 +89,7 @@ function WhySupportUs() {
     [
       {
         quote: "AIMA Runner- up CSR Award, 2023",
-        //image :
+        image: aimacertificate,
       },
       {
         quote: "Limca book of Awards - National Record, 2016",
