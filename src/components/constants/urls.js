@@ -60,5 +60,10 @@ export const URLS = {
     COMMITMENT_FINDALLBYFILTER:"/commitment/findByFilter",
 
     //Form 10 BE
-    FORM10B_UPLOAD : "/uploadZipFile"
+    FORM10B_UPLOAD : "/uploadZipFile",
+
+    //contries and states api
+    GETALLCOUNTRY:'/getAllCountry',
+    GETSTATESBYCOUNTRY:'/getAllStateByCountryId/',
+    GETALLCITIZENSHIP:'/getAllCitizensip'
 };
