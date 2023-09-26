@@ -22,7 +22,7 @@ import {
   FaCannabis,
 } from "react-icons/fa";
 // import whatwe1 from "../../../assets/img/whatwe1.jpg";
-import whatwe2 from "../../../assets/img/whatwe2.jpg";
+// import whatwe2 from "../../../assets/img/whatwe2.jpg";
 import processImg1 from "../../../assets/img/process.jpg";
 import processImg from "../../../assets/img/calender.png";
 import step2Img from "../../../assets/img/pr-step2.png";
