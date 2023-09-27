@@ -40,6 +40,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
       getAllActiveBankAccounts();
     }, [])
     
+    console.log(donations);
 
   return (
     <>
