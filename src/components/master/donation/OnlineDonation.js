@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Button,
@@ -22,7 +22,6 @@ import Loader from "../../common/loader/Loader";
 import PrivacyPolicy from "../../common/PrivacyPolicy";
 import Card from "react-bootstrap/Card";
 import PackageDetails from "../../common/PackageDetails";
-import { useNavigate } from "react-router-dom";
 import useScrollTop from "../../hooks/useScrollTop";
 
 function OnlineDonation() {
@@ -225,6 +224,7 @@ function OnlineDonation() {
     setLoading(true);
     const response = await DonationService.getAllCitizenship();
     if (response?.status === 200) {
+      console.log(response.data);
       // let data = response.data.map((item)=> ({ label: item, value: item }))
       setCitizenships(response.data);
       setLoading(false);
@@ -337,7 +337,7 @@ function OnlineDonation() {
       });
     }
     console.log(hasAadharCard);
-    if (userData?.user?.citizenship === "India") {
+    if (userData?.user?.citizenship.toUpperCase() === INDIA) {
       if (hasAadharCard === true) {
         if (!userData?.user?.panCard) {
           validationErrors.push({
@@ -1608,7 +1608,7 @@ function OnlineDonation() {
                                   </div>
                                 </div>{" "}
                               </div>
-                              {userData?.user?.citizenship === "India" ? (
+                              {userData?.user?.citizenship.toUpperCase() === INDIA ? (
                                 <>
                                   {userData?.user?.donarType ===
                                   "Individual" ? (
@@ -2743,7 +2743,7 @@ function OnlineDonation() {
                                   </div>
                                 </div>{" "}
                               </div>
-                              {userData?.user?.citizenship === "India" ? (
+                              {userData?.user?.citizenship.toUpperCase() === INDIA ? (
                                 <>
                                   {userData?.user?.donarType ===
                                   "Individual" ? (

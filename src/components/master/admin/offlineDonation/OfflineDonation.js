@@ -16,6 +16,7 @@ import SearchWithSuggestions from "../../../common/searchComponent/SearchWithSug
 import Loader from "../../../common/loader/Loader";
 import PaymentDetails from "../../../common/PaymentDetails";
 import PackageDetails from "../../../common/PackageDetails";
+import {INDIA} from "../../../constants/constants";
 
 function OfflineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
@@ -295,18 +296,41 @@ function OfflineDonation() {
       document.getElementById("emailId").focus();
     }
 
-    if (!userData?.user?.panCard) {
-      validationErrors.push({
-        field: "userData.user.panCard",
-        message: "PAN card is required",
-      });
-      document.getElementById("panCard").focus();
-    } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
-      validationErrors.push({
-        field: "userData.user.panCard",
-        message: "PAN card No is Invalid",
-      });
-      document.getElementById("panCard").focus();
+    if (userData?.user?.citizenship.toUpperCase() === INDIA) {
+      if (hasAadharCard === true) {
+        if (!userData?.user?.panCard) {
+          validationErrors.push({
+            field: "userData.user.panCard",
+            message: "PAN card is required",
+          });
+          document.getElementById("panCard").focus();
+        } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
+          validationErrors.push({
+            field: "userData.user.panCard",
+            message: "PAN card No is Invalid",
+          });
+          document.getElementById("panCard").focus();
+        }
+      } else {
+        if (
+          !/^(?!.*[a-zA-Z])\d{16}$/.test(userData.user.addharCard) &&
+          hasAadharCard
+        ) {
+          validationErrors.push({
+            field: "userData.user.addharCard",
+            message:
+              "Addhar Number must contain exactly 16 digits and no alphabetic characters",
+          });
+          document.getElementById("addharCard").focus();
+        }
+      }
+    } else { if (!userData?.user?.passport) {
+        validationErrors.push({
+          field: "userData.user.passport",
+          message: "Passport is required",
+        });
+        document.getElementById("passport").focus();
+      }
     }
 
     if (!userData?.user?.donarType) {
@@ -1584,7 +1608,7 @@ function OfflineDonation() {
                                 </div>
                               </div>{" "}
                             </div>
-                            {userData?.user?.citizenship === "INDIA" ? (
+                            {userData?.user?.citizenship.toUpperCase() === INDIA ? (
                               <>
                                 {userData?.user?.donarType === "Individual" ? (
                                   <div className="col-6">
@@ -2801,7 +2825,7 @@ function OfflineDonation() {
                               </div>{" "}
                             </div>
 
-                            {userData?.user?.citizenship === "INDIA" ? (
+                            {userData?.user?.citizenship.toUpperCase() === INDIA ? (
                               <>
                                 {userData?.user?.donarType === "Individual" ? (
                                   <div className="col-6">
