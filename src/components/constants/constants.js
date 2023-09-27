@@ -1,5 +1,6 @@
 const TOKEN = "token";
-const SUCCESS = "Success"
+const SUCCESS = "Success";
+const INDIA = "INDIA";
 const ROLEAUTHORITY ={
   admin:"Admin",
   user:"User"
@@ -79,4 +80,4 @@ const ROUTE = {
     {label:"Simple Donation",value:"Simple Donation"},
   ]
 
-  export { USER_DETAILS, ROUTE , TOKEN , SUCCESS,ROLEAUTHORITY,stateOptions,PAYMENT_MODES };
+  export { USER_DETAILS, ROUTE , TOKEN , SUCCESS,ROLEAUTHORITY,stateOptions,PAYMENT_MODES,INDIA };

@@ -23,6 +23,7 @@ import PrivacyPolicy from "../../common/PrivacyPolicy";
 import Card from "react-bootstrap/Card";
 import PackageDetails from "../../common/PackageDetails";
 import { useNavigate } from "react-router-dom";
+import {INDIA} from "../../constants/constants";
 
 function OnlineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
@@ -222,6 +223,7 @@ function OnlineDonation() {
     setLoading(true);
     const response = await DonationService.getAllCitizenship();
     if (response?.status === 200) {
+      console.log(response.data);
       // let data = response.data.map((item)=> ({ label: item, value: item }))
       setCitizenships(response.data);
       setLoading(false);
@@ -334,7 +336,7 @@ function OnlineDonation() {
       });
     }
     console.log(hasAadharCard);
-    if (userData?.user?.citizenship === "India") {
+    if (userData?.user?.citizenship.toUpperCase() === INDIA) {
       if (hasAadharCard === true) {
         if (!userData?.user?.panCard) {
           validationErrors.push({
@@ -1605,7 +1607,7 @@ function OnlineDonation() {
                                   </div>
                                 </div>{" "}
                               </div>
-                              {userData?.user?.citizenship === "India" ? (
+                              {userData?.user?.citizenship.toUpperCase() === INDIA ? (
                                 <>
                                   {userData?.user?.donarType ===
                                   "Individual" ? (
@@ -2740,7 +2742,7 @@ function OnlineDonation() {
                                   </div>
                                 </div>{" "}
                               </div>
-                              {userData?.user?.citizenship === "India" ? (
+                              {userData?.user?.citizenship.toUpperCase() === INDIA ? (
                                 <>
                                   {userData?.user?.donarType ===
                                   "Individual" ? (

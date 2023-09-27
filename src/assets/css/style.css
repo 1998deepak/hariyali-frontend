@@ -3682,9 +3682,9 @@ figure.effect-layla:hover img {
 }
 
 .banner-wedo {
-  background: url("../img/whatwedo7.png") no-repeat;
+  background: url("../img/whatwedo6.png") no-repeat;
   background-position: center;
-  /* border-bottom: 1px solid #ccc; */
+  border-bottom: 1px solid #ccc;
   background-size: contain;
   min-height: 50vh;
 }
