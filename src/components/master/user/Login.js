@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import logo from "../../../assets/img/logotrans.png";
 import Captcha from "./Captcha";
 import ReactPasswordToggleIcon from "react-password-toggle-icon";
@@ -10,8 +10,12 @@ import { toast, ToastContainer } from "react-toastify";
 import { EncryptionService } from "../../../services/encryption.service";
 import { UserService } from "../../../services/userService/user.service";
 import Loader from "../../common/loader/Loader";
+import useScrollTop from "../../hooks/useScrollTop";
 
 function Login() {
+  //scroll Screen to top
+  useScrollTop();
+  
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -28,7 +32,8 @@ function Login() {
     donarID: "",
   });
   const navigate = useNavigate();
-
+ 
+  
 
   const handleValueChange = (event) => {
     const updatedValue = { ...formData };

@@ -23,8 +23,11 @@ import PrivacyPolicy from "../../common/PrivacyPolicy";
 import Card from "react-bootstrap/Card";
 import PackageDetails from "../../common/PackageDetails";
 import { useNavigate } from "react-router-dom";
+import useScrollTop from "../../hooks/useScrollTop";
 
 function OnlineDonation() {
+  //scroll Screen to top
+  useScrollTop();
   const [donationType, setDonationType] = useState("Self-Donate");
   const [generalDonation, setGeneralDonation] = useState(null);
   const [loading, setLoading] = useState(false);
