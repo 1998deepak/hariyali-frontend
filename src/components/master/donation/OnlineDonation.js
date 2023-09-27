@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Button,
@@ -14,7 +14,7 @@ import {
 import Captcha from "../user/Captcha";
 import CaptchaGift from "../user/CaptchaGift";
 import { DonationService } from "../../../services/donationService/donation.service";
-import { SUCCESS } from "../../constants/constants";
+import { INDIA, SUCCESS } from "../../constants/constants";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
 import { BsEmojiSmile } from "react-icons/bs";
 import TermsConditionsPopup from "../../common/popup/TermsConditionsPopup";
@@ -22,9 +22,11 @@ import Loader from "../../common/loader/Loader";
 import PrivacyPolicy from "../../common/PrivacyPolicy";
 import Card from "react-bootstrap/Card";
 import PackageDetails from "../../common/PackageDetails";
-import { useNavigate } from "react-router-dom";
+import useScrollTop from "../../hooks/useScrollTop";
 
 function OnlineDonation() {
+  //scroll Screen to top
+  useScrollTop();
   const [donationType, setDonationType] = useState("Self-Donate");
   const [generalDonation, setGeneralDonation] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -222,6 +224,7 @@ function OnlineDonation() {
     setLoading(true);
     const response = await DonationService.getAllCitizenship();
     if (response?.status === 200) {
+      console.log(response.data);
       // let data = response.data.map((item)=> ({ label: item, value: item }))
       setCitizenships(response.data);
       setLoading(false);
@@ -334,7 +337,7 @@ function OnlineDonation() {
       });
     }
     console.log(hasAadharCard);
-    if (userData?.user?.citizenship === "India") {
+    if (userData?.user?.citizenship.toUpperCase() === INDIA) {
       if (hasAadharCard === true) {
         if (!userData?.user?.panCard) {
           validationErrors.push({
@@ -587,7 +590,8 @@ function OnlineDonation() {
       });
       console.log(updatedUserPackage);
       const user = userData?.user;
-
+      user.campaignConsent = informationShare;
+      user.dataConsent = privacyPolicy2;
       if (donations[0].paymentInfo) {
         let paymentArray = { ...donations[0] };
 
@@ -1605,7 +1609,7 @@ function OnlineDonation() {
                                   </div>
                                 </div>{" "}
                               </div>
-                              {userData?.user?.citizenship === "India" ? (
+                              {userData?.user?.citizenship.toUpperCase() === INDIA ? (
                                 <>
                                   {userData?.user?.donarType ===
                                   "Individual" ? (
@@ -2512,7 +2516,7 @@ function OnlineDonation() {
                             {/* <div className="col-4 ">Occasion</div> */}
                             <div className="col-12 p0 field-wrapper">
                               <label className="form-label">
-                                Content <span className="red-text">*</span>
+                              Message for the Giftee <span className="red-text">*</span>
                               </label>
                               <textarea
                                 className="form-control"
@@ -2740,7 +2744,7 @@ function OnlineDonation() {
                                   </div>
                                 </div>{" "}
                               </div>
-                              {userData?.user?.citizenship === "India" ? (
+                              {userData?.user?.citizenship.toUpperCase() === INDIA ? (
                                 <>
                                   {userData?.user?.donarType ===
                                   "Individual" ? (

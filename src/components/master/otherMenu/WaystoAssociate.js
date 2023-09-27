@@ -41,7 +41,7 @@ import mahindrafinance from "../../../assets/img/partner/mahindrafinance.jpg";
 import mahindrarice from "../../../assets/img/partner/mahindrarice.jpg";
 
 import Festivals from "../../../assets/img/certificate/Festivals.jpg";
-import specialday from "../../../assets/img/certificate/specialday.jpg";
+import Specialday from "../../../assets/img/certificate/celebrateAward.jpg";
 import Achievements from "../../../assets/img/certificate/Achievements.jpg";
 import MemorialTribute from "../../../assets/img/certificate/MemorialTribute.jpg";
 import Gifting from "../../../assets/img/certificate/gifting.jpg";
@@ -63,20 +63,30 @@ function WaystoAssociate() {
   const Individualsitems = [
     [
       { img: Festivals, quote: "Festivals" },
-      { img: specialday, quote: "Special day" },
+      { img: Specialday, quote: "Special day" },
       { quote: "Achievements", img: Achievements },
       { quote: "Memorial Tribute", img: MemorialTribute },
-      { quote: "Gifting", img: Gifting },
+      { quote: "Simple Gifting", img: Gifting },
     ],
     // Add more item groups as needed
   ];
+
+  const Patners = [
+    [
+      { img: bristlecone},
+      { img: mahindrafinance},
+      { img: mahindrarice },
+    ],
+    // Add more item groups as needed
+  ];
+
   const Corporatesitems = [
     [
       { img: Festivals, quote: "Festivals" },
-      { img: specialday, quote: "Special day" },
+      { img: Specialday, quote: "Special day" },
       { quote: "Achievements", img: Achievements },
       { quote: "Memorial Tribute", img: MemorialTribute },
-      { quote: "Gifting", img: Gifting },
+      { quote: "Simple Gifting", img: Gifting },
     ],
     // Add more item groups as needed
   ];
@@ -349,7 +359,7 @@ function WaystoAssociate() {
                             alt="..."
                           />
                           <div className="card-body tree-features1">
-                            <h5 className="card-title ">Gifting</h5>
+                            <h5 className="card-title ">Simple Gifting</h5>
                             {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
                             {/* <a href="#" className="btn btn-primary">Gift</a> */}
                           </div>
@@ -570,10 +580,11 @@ function WaystoAssociate() {
             </Container>
           </div>
         </section>
-        <div className="project-bg ">
+        <div className="project-bg patner-carousel">
           <Container>
             <div className=" feature-description-other">
               <h3 class="text-center sub-title"> Our Partner</h3>
+              <Carousel indicators={true}>
               <div className="m-auto">
                 <Row className="justify-content-between ourpartner">
                   <div className="col-6 col-md-4 mb-lg-0 mb-3 marginall-pad-0 text-center">
@@ -587,6 +598,7 @@ function WaystoAssociate() {
                   </div>
                 </Row>
               </div>
+              </Carousel>
               <br />
             </div>
 

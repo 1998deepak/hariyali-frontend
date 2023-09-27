@@ -18,7 +18,7 @@ import SheetalMehtaimg from "../../../assets/img/trustee/SheetalMehta.jpg";
 import AnandMahindrapng from "../../../assets/img/trustee/AnandMahindra.png";
 import BharatDoshipng from "../../../assets/img/trustee/BharatDoshi.png";
 import UlhasYargoppng from "../../../assets/img/trustee/UlhasYargop.png";
-import ProchieMukherjipng from "../../../assets/img/trustee/DumyUser.png";
+import ProchieMukherjipng from "../../../assets/img/trustee/Prochie Mukherje.jpg";
 import MarioNazarathpng from "../../../assets/img/trustee/DumyUser.png";
 import SheetalMehtapng from "../../../assets/img/trustee/SheetalMehta.png";
 import AnjiReddyimg from "../../../assets/img/trustee/AnjiReddy.jpg";
@@ -138,11 +138,12 @@ function AboutUs() {
                         <img src={tarnImg} className="img-fluid rounded-start" alt="..." />
                         <div className="card-body text-center">
                           <h5 className="card-title">Northern India</h5>
-                          <p className="card-text">Our project <b className="colorgreen">Shravasti in Uttar Pradesh</b>,
+                          {/* <p className="card-text">Our project <b className="colorgreen">Shravasti in Uttar Pradesh</b>,
                             <b className="colorgreen">
                             Project Hariyali started in <b className="colorgreen">Shravasti</b> in <b className="colorgreen">Uttar Pradesh</b>, <b className="colorgreen">Tarn Taran</b> & <b className="colorgreen">Moga</b> in <b className="colorgreen">Punjab</b> and <b className="colorgreen">Solan</b> in <b className="colorgreen">Himachal Pradesh</b> in 2021. 
 
-                              Tarn Taran & Moga in Punjab</b> and <b className="colorgreen">Solan in Himachal Pradesh</b> started in 2021</p>
+                              Tarn Taran & Moga in Punjab</b> and <b className="colorgreen">Solan in Himachal Pradesh</b> started in 2021</p> */}
+                              <p className="card-text">Project Hariyali started in <b className="colorgreen">Shravasti</b> in <b className="colorgreen">Uttar Pradesh</b>, Tarn Taran & Moga in Punjab and Solan in <b className="colorgreen">Himachal Pradesh</b> in 2021.</p>
                         </div>
                       </div>
                     </div>
@@ -200,7 +201,7 @@ function AboutUs() {
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={AnandMahindra}><BsArrowRight /></div>
-                                  <img src={AnandMahindraimg} className="hi-iconimg" alt="Anand Mahindra" />
+                                  <img src={AnandMahindraimg} className="hi-iconimg" alt="Anand Mahindra" onClick={AnandMahindra}/>
                                   <div className="trsteename">Anand Mahindra
                                     <div className="trsteename-desc">Chairman</div></div>
                                 </div></a>
@@ -209,7 +210,7 @@ function AboutUs() {
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={BharatDoshi}><BsArrowRight /></div>
-                                  <img src={BharatDoshiimg} className="hi-iconimg" alt="Bharat Doshi" />
+                                  <img src={BharatDoshiimg} className="hi-iconimg" alt="Bharat Doshi" onClick={BharatDoshi}/>
                                   <div className="trsteename">Bharat Doshi
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>
@@ -218,7 +219,7 @@ function AboutUs() {
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={UlhasYargop}><BsArrowRight /></div>
-                                  <img src={UlhasYargopimg} className="hi-iconimg" alt="" />
+                                  <img src={UlhasYargopimg} className="hi-iconimg" alt="" onClick={UlhasYargop}/>
                                   <div className="trsteename">Ulhas Yargop
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>
@@ -227,7 +228,7 @@ function AboutUs() {
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={ProchieMukherji}><BsArrowRight /></div>
-                                  <img src={DumyUserimg} className="hi-iconimg" alt="" />
+                                  <img src={ProchieMukherjipng} className="hi-iconimg" alt="" onClick={ProchieMukherji}/>
                                   <div className="trsteename">Prochie Mukherje 
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>
@@ -236,7 +237,7 @@ function AboutUs() {
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={MarioNazarath}><BsArrowRight /></div>
-                                  <img src={DumyUserimg} className="hi-iconimg" alt="" />
+                                  <img src={DumyUserimg} className="hi-iconimg" alt="" onClick={MarioNazarath}/>
                                   <div className="trsteename">Mario Nazarath
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>
@@ -245,7 +246,7 @@ function AboutUs() {
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={SheetalMehta}><BsArrowRight /></div>
-                                  <img src={SheetalMehtaimg} className="hi-iconimg" alt="" />
+                                  <img src={SheetalMehtaimg} className="hi-iconimg" onClick={SheetalMehta} alt="" />
                                   <div className="trsteename">Sheetal Mehta
                                     <div className="trsteename-desc">Executive Director</div></div>
                                 </div></a>
@@ -267,7 +268,7 @@ function AboutUs() {
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={AnjiReddy}><BsArrowRight /></div>
-                                  <img src={AnjiReddyimg} className="hi-iconimg" alt="Anji Reddy" />
+                                  <img src={AnjiReddyimg} className="hi-iconimg" onClick={AnjiReddy} alt="Anji Reddy" />
                                   <div className="trsteename">Late Dr. K. Anji Reddy
                                     <div className="trsteename-desc">Founding Chairman</div></div>
                                 </div></a>
@@ -276,7 +277,7 @@ function AboutUs() {
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={AnandMahindranaandi}><BsArrowRight /></div>
-                                  <img src={AnandMahindraimg} className="hi-iconimg" alt="Anand Mahindra" />
+                                  <img src={AnandMahindraimg} className="hi-iconimg" onClick={AnandMahindranaandi} alt="Anand Mahindra" />
                                   <div className="trsteename">Anand Mahindra
                                     <div className="trsteename-desc">Chairman and Life Trustee</div></div>
                                 </div></a>
@@ -285,7 +286,7 @@ function AboutUs() {
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={Gopalakrishnan}><BsArrowRight /></div>
-                                  <img src={Gopalakrishnanimg} className="hi-iconimg" alt="Gopalakrishnan" />
+                                  <img src={Gopalakrishnanimg} className="hi-iconimg" onClick={Gopalakrishnan} alt="Gopalakrishnan" />
                                   <div className="trsteename">Senapathy “Kris” Gopalakrishnan
                                     <div className="trsteename-desc">Life Trustee</div></div>
                                 </div></a>
@@ -294,7 +295,7 @@ function AboutUs() {
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={SatishReddy} ><BsArrowRight /></div>
-                                  <img src={SatishReddyimg} className="hi-iconimg" alt="SatishReddy" />
+                                  <img src={SatishReddyimg} className="hi-iconimg" onClick={SatishReddy} alt="SatishReddy" />
                                   <div className="trsteename">Satish Reddy
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>
@@ -303,7 +304,7 @@ function AboutUs() {
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={RajendraPrasad}><BsArrowRight /></div>
-                                  <img src={RajendraPrasadimg} className="hi-iconimg" alt="RajendraPrasad" />
+                                  <img src={RajendraPrasadimg} className="hi-iconimg" onClick={RajendraPrasad} alt="RajendraPrasad" />
                                   <div className="trsteename">Maganti Rajendra Prasad
                                     <div className="trsteename-desc">Life Trustee</div></div>
                                 </div></a>
@@ -312,7 +313,7 @@ function AboutUs() {
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={ManojKumar}><BsArrowRight /></div>
-                                  <img src={ManojKumarimg} className="hi-iconimg" alt="ManojKumar" />
+                                  <img src={ManojKumarimg} className="hi-iconimg" onClick={ManojKumar} alt="ManojKumar" />
                                   <div className="trsteename">Manoj Kumar
                                     <div className="trsteename-desc">CEO & Ex-Officio Secretary to the Board</div></div>
                                 </div></a>
@@ -406,7 +407,7 @@ function AboutUs() {
             <Modal.Body>
               <div class="trustee-popup" closeButton>
                 <div className="trustee-popup-img">
-                  <img src={ProchieMukherjipng} alt="ProchieMukherji" />
+                  <img height={300} width={300} src={ProchieMukherjipng} alt="ProchieMukherji" />
                 </div>
                 <div>
                   <p className="trustee-popup-div" >
