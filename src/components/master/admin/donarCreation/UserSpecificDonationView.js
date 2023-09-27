@@ -247,67 +247,11 @@ function UserSpecificDonationView() {
                       donations={Array.of(donationData)}
                       disabled
                     />
-                    {/* <div className="actionheadingdiv">
-                    Donation Plan
-                  </div>
-                  {packageData && packageData.length > 0 && (
-                    <div className="mt20">
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Plantin Sapling</th>
-                            <th>Cost per Sapling</th>
-                            <th>No. Sapling</th>
-                            <th>Amount</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {packageData.map((item, index) => (
-                            <tr key={index}>
-                              <td className="w28p">{item.packageName}</td>
-                              <td className="w18p">
-                                <input
-                                  type="number"
-                                  className="form-control-inside"
-                                  value={item.bouquetPrice}
-                                  disabled
-                                />
-                              </td>
-                              <td className="w18p">
-                                <input
-                                  type="number"
-                                  className="form-control-inside"
-                                  name="noOfBouquets"
-                                  value={item.noOfBouquets}
-                                  disabled
-                                />
-                              </td>
-                              <td className="text-right w18p">
-                                <input
-                                  type="number"
-                                  value={item.amount}
-                                  className="form-control-inside"
-                                  disabled
-                                />
-                              </td>
-                            </tr>
-                          ))}
-                          <tr>
-                            
-                          </tr>
-                        </tbody>
-                      </table>
-                      
-                      <div className="overalltotal">
-                        Overall Total: {donationData.totalAmount}
-                      </div>
-
-                    </div>
-                  )} */}
 
                     <div className="clear" />
                     <hr />
-                    {donationData.donationType !== "self-Donate" && (
+                    {donationData.donationType.toLowerCase() !==
+                      "self-donate" && (
                       <>
                         <div className="actionheadingdiv">
                           DETAILS OF RECIPIENT
@@ -378,18 +322,13 @@ function UserSpecificDonationView() {
                               <div className="row select-label">
                                 <div className="col-4 ">State</div>
                                 <div className="col-8  p0">
-                                  <select
+                                  <input
+                                    type="text"
                                     className=" form-control-inside form-select"
                                     value={recipient.address[0].state}
                                     disabled
-                                  >
-                                    <option value="">Select State</option>
-                                    {stateOptions.map((state) => (
-                                      <option key={state} value={state}>
-                                        {state}
-                                      </option>
-                                    ))}
-                                  </select>
+                                    placeholder="state"
+                                  />
                                 </div>
                               </div>
                             </div>
