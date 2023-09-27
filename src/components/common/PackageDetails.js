@@ -43,7 +43,7 @@ const PackageDetails = ({
             {packageData.map((packageItem, index) => {
               return (
                 <tr key={index}>
-                  <td>450</td>
+                  <td>INR 450</td>
                   {/* <td>{packageItem.maintenanceCost}</td> */}
                   <td>
                     <input
