@@ -4,6 +4,7 @@ const PackageDetails = ({
   packageData,
   setPackageData,
   calculateOverallTotal,
+  disabled
 }) => {
 
     const handleChangeNumberOfBouquets = (e, row, rowIndex) => {
@@ -23,7 +24,7 @@ const PackageDetails = ({
 
   return (
     <>
-      <div className="actionheadingdiv">Select Your Donation Plan</div>
+      <div className="actionheadingdiv">{disabled ? <></>:<>Select Your</>} Donation Plan</div>
       <div className="mt20">
         <table>
           <colgroup>
@@ -57,6 +58,7 @@ const PackageDetails = ({
                         handleChangeNumberOfBouquets(event, packageItem, index);
                       }}
                       max={1000000}
+                      disabled={disabled}
                     />
                   </td>
                   <td>{packageItem.amount}</td>

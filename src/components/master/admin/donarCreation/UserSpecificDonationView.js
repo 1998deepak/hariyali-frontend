@@ -7,9 +7,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { stateOptions } from "../../../constants/constants";
 import Loader from "../../../common/loader/Loader";
 import PaymentDetails from "../../../common/PaymentDetails";
+import PackageDetails from "../../../common/PackageDetails";
 
 function UserSpecificDonationView() {
-
   const navigate = useNavigate();
   const id = useParams().id;
   const initialPackageData = [
@@ -27,20 +27,19 @@ function UserSpecificDonationView() {
       noOfBouquets: "",
       amount: "",
     },
-
   ];
 
   const [packageData, setPackageData] = useState(initialPackageData);
 
   const initialUserData = {
     user: {
-      emailId: '',
-      donorId: '',
+      emailId: "",
+      donorId: "",
     },
   };
   const intialDonations = [
     {
-      donationcode:"",
+      donationcode: "",
       donationType: "",
       donationMode: "offline",
       donationEvent: "",
@@ -112,7 +111,7 @@ function UserSpecificDonationView() {
   const [donationData, setDonationData] = useState(intialDonations[0]);
   const [recipient, setRecipient] = useState(initialRecipientData[0]);
   const [loading, setLoading] = useState(false);
-  
+
   useEffect(() => {
     if (id) {
       getDonationById(id);
@@ -125,9 +124,9 @@ function UserSpecificDonationView() {
       const response = await DonationService.getDonationById(id);
       if (response?.data) {
         const data = JSON.parse(response.data);
+        console.log(data);
         setUserData(data.user);
         const donations = data.user.donations[0];
-      console.log(donations);
         const updatedDonationData = { ...intialDonations[0], ...donations };
         setDonationData(updatedDonationData);
         if (
@@ -136,13 +135,13 @@ function UserSpecificDonationView() {
           donations.recipient.length > 0
         ) {
           const recipientData = donations.recipient[0];
-
           if (recipientData.address && recipientData.address.length > 0) {
             const address = recipientData.address[0];
             const updatedRecipientData = {
               ...recipientData,
               ...(address.length > 0 ? { address: address[0] } : {}),
             };
+            console.log(updatedRecipientData);
             setRecipient(updatedRecipientData);
           }
         }
@@ -153,7 +152,6 @@ function UserSpecificDonationView() {
           const updatedPackageData = userPackage.map((packageItem) => {
             return {
               packageId: packageItem.packageId,
-              packageName: packageItem.packageName,
               bouquetPrice: packageItem.bouquetPrice,
               noOfBouquets: packageItem.noOfBouquets,
               amount: packageItem.amount,
@@ -171,16 +169,17 @@ function UserSpecificDonationView() {
       setLoading(false);
     }
   };
-console.log(donationData);
+  console.log(donationData);
   const handleBack = () => {
     navigate(`/UserDonation/${userData.emailId}`);
   };
 
+  console.log(userData);
 
   return (
     <>
       <ToastContainer />
-      {loading && <Loader/>}
+      {loading && <Loader />}
       {/* slide info */}
       <div className="bggray">
         <div className="col-12 admin-maindiv">
@@ -221,7 +220,8 @@ console.log(donationData);
                         </div>
                       </div>
                     </div>
-                    {donationData.donationType !== "Self-Donate" && (
+                    {donationData.donationType.toLowerCase() !==
+                      "self-donate" && (
                       <div className="col-6">
                         <div className="row select-label">
                           <div className="col-4">Occasion</div>
@@ -238,7 +238,16 @@ console.log(donationData);
                         </div>
                       </div>
                     )}
-                  <div className="actionheadingdiv">
+
+                    <PackageDetails
+                      packageData={packageData}
+                      setPackageData={setPackageData}
+                      setLoading={setLoading}
+                      initialPackageData={initialPackageData}
+                      donations={Array.of(donationData)}
+                      disabled
+                    />
+                    {/* <div className="actionheadingdiv">
                     Donation Plan
                   </div>
                   {packageData && packageData.length > 0 && (
@@ -249,7 +258,6 @@ console.log(donationData);
                             <th>Plantin Sapling</th>
                             <th>Cost per Sapling</th>
                             <th>No. Sapling</th>
-                            {/* <th>2 Years Maintenance</th> */}
                             <th>Amount</th>
                           </tr>
                         </thead>
@@ -295,184 +303,181 @@ console.log(donationData);
                       </div>
 
                     </div>
-                  )}
+                  )} */}
 
-                  <div className="clear"/>
-                  <hr />
-                  {donationData.donationType !== "Self-Donate" && (
-                    <>
-                      <div className="actionheadingdiv">DETAILS OF RECIPIENT</div>
-                      <div className="col-12 pr15 mt20">
-                        <div className="row">
-                          <div className="col-6">
-                            <div className="row select-label">
-                              <div className="col-4 "> Street 1</div>
-                              <div className="col-8  p0">
-                                <input
-                                  className="form-control-inside"
-                                  placeholder=" Street 1"
-                                  name="street1"
-                                  type="text"
-                                  value={recipient.address[0]?.street1 || ""}
-                                  disabled
-                                />
+                    <div className="clear" />
+                    <hr />
+                    {donationData.donationType !== "self-Donate" && (
+                      <>
+                        <div className="actionheadingdiv">
+                          DETAILS OF RECIPIENT
+                        </div>
+                        <div className="col-12 pr15 mt20">
+                          <div className="row">
+                            <div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 "> Street 1</div>
+                                <div className="col-8  p0">
+                                  <input
+                                    className="form-control-inside"
+                                    placeholder=" Street 1"
+                                    name="street1"
+                                    type="text"
+                                    value={recipient.address[0]?.street1 || ""}
+                                    disabled
+                                  />
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="row select-label">
-                              <div className="col-4 "> Street 2</div>
-                              <div className="col-8  p0">
-                                <input
-                                  className="form-control-inside"
-                                  placeholder="Street 2"
-                                  name="street2"
-                                  type="text"
-                                  value={recipient.address[0].street2}
-                                  disabled
-                                />
+                            <div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 "> Street 2</div>
+                                <div className="col-8  p0">
+                                  <input
+                                    className="form-control-inside"
+                                    placeholder="Street 2"
+                                    name="street2"
+                                    type="text"
+                                    value={recipient.address[0].street2}
+                                    disabled
+                                  />
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="row select-label">
-                              <div className="col-4 "> Street 3</div>
-                              <div className="col-8  p0">
-                                <input
-                                  className="form-control-inside"
-                                  placeholder="Street 3"
-                                  name="street3"
-                                  type="text"
-                                  value={recipient.address[0].street3}
-                                  disabled
-                                />
-                                
+                            <div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 "> Street 3</div>
+                                <div className="col-8  p0">
+                                  <input
+                                    className="form-control-inside"
+                                    placeholder="Street 3"
+                                    name="street3"
+                                    type="text"
+                                    value={recipient.address[0].street3}
+                                    disabled
+                                  />
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="row select-label">
-                              <div className="col-4 ">Country</div>
-                              <div className="col-8  p0">
-                                <input
-                                  className="form-control-inside"
-                                  placeholder="Country"
-                                  name="country"
-                                  type="text"
-                                  value={recipient.address[0].country}
-                                  disabled
-                                />
-                               </div>
-                            </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="row select-label">
-                              <div className="col-4 ">State</div>
-                              <div className="col-8  p0">
-                                <select
-                                  className=" form-control-inside form-select"
-                                  value={recipient.address[0].state}
-                                  disabled
-                                >
-                                  <option value="">Select State</option>
-                                  {stateOptions.map((state) => (
-                                    <option key={state} value={state}>
-                                      {state}
-                                    </option>
-                                  ))}
-                                </select>
+                            <div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 ">Country</div>
+                                <div className="col-8  p0">
+                                  <input
+                                    className="form-control-inside"
+                                    placeholder="Country"
+                                    name="country"
+                                    type="text"
+                                    value={recipient.address[0].country}
+                                    disabled
+                                  />
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="row select-label">
-                              <div className="col-4 ">City</div>
-                              <div className="col-8  p0">
-                                <input
-                                  className="form-control-inside"
-                                  placeholder="City"
-                                  type="text"
-                                  name="city"
-                                  value={recipient.address[0].city}
-                                  
-                                  disabled
-                                />
-                               
+                            <div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 ">State</div>
+                                <div className="col-8  p0">
+                                  <select
+                                    className=" form-control-inside form-select"
+                                    value={recipient.address[0].state}
+                                    disabled
+                                  >
+                                    <option value="">Select State</option>
+                                    {stateOptions.map((state) => (
+                                      <option key={state} value={state}>
+                                        {state}
+                                      </option>
+                                    ))}
+                                  </select>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="row select-label">
-                              <div className="col-4 ">Postal Code</div>
-                              <div className="col-8  p0">
-                                <input
-                                  className="form-control-inside"
-                                  placeholder="Postal Code"
-                                  name="postalCode"
-                                  type="text"
-                                  value={recipient.address[0].postalCode}
-                                 
-                                  disabled
-                                />
-                                
+                            <div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 ">City</div>
+                                <div className="col-8  p0">
+                                  <input
+                                    className="form-control-inside"
+                                    placeholder="City"
+                                    type="text"
+                                    name="city"
+                                    value={recipient.address[0].city}
+                                    disabled
+                                  />
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="row select-label">
-                              <div className="col-4 ">Mobile No.</div>
-                              <div className="col-8  p0">
-                                <input
-                                  className="form-control-inside"
-                                  placeholder="Mobile No."
-                                  type="text"
-                                  name="mobileNo"
-                                  value={recipient.mobileNo}
-                                  disabled
-                                />
+                            <div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 ">Postal Code</div>
+                                <div className="col-8  p0">
+                                  <input
+                                    className="form-control-inside"
+                                    placeholder="Postal Code"
+                                    name="postalCode"
+                                    type="text"
+                                    value={recipient.address[0].postalCode}
+                                    disabled
+                                  />
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="row select-label">
-                              <div className="col-4 ">Email ID</div>
-                              <div className="col-8  p0">
-                                <input
-                                  className="form-control-inside"
-                                  placeholder="Email ID"
-                                  type="text"
-                                  name="emailId"
-                                  value={recipient.emailId}
-                                  disabled
-                                />
-                               
+                            <div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 ">Mobile No.</div>
+                                <div className="col-8  p0">
+                                  <input
+                                    className="form-control-inside"
+                                    placeholder="Mobile No."
+                                    type="text"
+                                    name="mobileNo"
+                                    value={recipient.mobileNo}
+                                    disabled
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div className="col-6">
+                              <div className="row select-label">
+                                <div className="col-4 ">Email ID</div>
+                                <div className="col-8  p0">
+                                  <input
+                                    className="form-control-inside"
+                                    placeholder="Email ID"
+                                    type="text"
+                                    name="emailId"
+                                    value={recipient.emailId}
+                                    disabled
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
+                      </>
+                    )}
+                    <hr />
 
-                      </div>
-                    </>
-                  )}
-                  <hr />
-
-                  <div className="actionheadingdiv">Mode of Payment
-                    </div>
-                  {
-                    donationData.paymentInfo.map((payment)=>{
-                      return (<>
-                        <PaymentDetails
-                          donations={donationData}
-                          setLoading={setLoading}
-                          index={0}
-                          isDisabled
-                        />
-                    <hr/>
-                    </>)
-                    })
-                  }
+                    <div className="actionheadingdiv">Mode of Payment</div>
+                    {donationData.paymentInfo.map((payment) => {
+                      return (
+                        <>
+                          <PaymentDetails
+                            donations={Array.of(donationData)}
+                            setLoading={setLoading}
+                            index={0}
+                            isDisabled
+                          />
+                          <hr />
+                        </>
+                      );
+                    })}
                   </div>
-                  <button className="mt20 mr10 webform-button--cancel" onClick={handleBack}>
+                  <button
+                    className="mt20 mr10 webform-button--cancel"
+                    onClick={handleBack}
+                  >
                     Back
                   </button>
                 </form>
