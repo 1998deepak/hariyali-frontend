@@ -14,7 +14,7 @@ import {
 import Captcha from "../user/Captcha";
 import CaptchaGift from "../user/CaptchaGift";
 import { DonationService } from "../../../services/donationService/donation.service";
-import { SUCCESS } from "../../constants/constants";
+import { INDIA, SUCCESS } from "../../constants/constants";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
 import { BsEmojiSmile } from "react-icons/bs";
 import TermsConditionsPopup from "../../common/popup/TermsConditionsPopup";
@@ -590,7 +590,8 @@ function OnlineDonation() {
       });
       console.log(updatedUserPackage);
       const user = userData?.user;
-
+      user.campaignConsent = informationShare;
+      user.dataConsent = privacyPolicy2;
       if (donations[0].paymentInfo) {
         let paymentArray = { ...donations[0] };
 
