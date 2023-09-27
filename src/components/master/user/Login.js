@@ -61,7 +61,7 @@ function Login() {
           setIsHide(!isHide);
           setLoading(false)
         } else {
-          toast.error(response?.message);
+          toast.error(response?.data);
           setLoading(false)
         }
       } else {
@@ -212,6 +212,7 @@ function Login() {
             <form className="form-div contact-form-wrap">
               <div className="form-group mb-3">
                 <input
+                  autoComplete="off"
                   name="username"
                   type="text"
                   placeholder="Username"
@@ -225,6 +226,7 @@ function Login() {
               </div>
               <div className="form-group mb-3">
                 <input
+                  autoComplete="off"
                   type="password"
                   placeholder="Password"
                   className="login-input login-password form-control"

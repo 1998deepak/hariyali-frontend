@@ -22,12 +22,12 @@ export const AuthService = {
       return response?.data;
     }
      catch (err) {
-      // console.log(err);
-      // if (err?.response?.data) {
-      //   return err?.response?.data;
-      // }else{
-      // toast.error(err?.message);
-      //  }
+      console.log(err);
+      if (err?.response?.data) {
+        return err?.response;
+      }else{
+      toast.error(err?.message);
+       }
     }
   },
 
