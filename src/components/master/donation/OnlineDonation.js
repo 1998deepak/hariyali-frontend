@@ -2516,7 +2516,7 @@ function OnlineDonation() {
                             {/* <div className="col-4 ">Occasion</div> */}
                             <div className="col-12 p0 field-wrapper">
                               <label className="form-label">
-                                Content <span className="red-text">*</span>
+                              Message for the Giftee <span className="red-text">*</span>
                               </label>
                               <textarea
                                 className="form-control"
