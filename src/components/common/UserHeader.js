@@ -106,7 +106,7 @@ const Header = () => {
             activeKey="/home"
             onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
           >
-            <Nav.Item className="text-center small-non">
+            <Nav.Item className="text-center">
               <div className="topmenu-icon" onClick={goToLogin}>
                 <FaUser style={{ color: "#23aa4a"}} />
               </div>
