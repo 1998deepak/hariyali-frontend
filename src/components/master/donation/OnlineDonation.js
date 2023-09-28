@@ -44,6 +44,7 @@ function OnlineDonation() {
   const [validSelfUser, setValidSelfUser] = useState(false);
   const [validGiftUser, setValidGiftUser] = useState(false);
 
+  const [totalAmount, setTotalAmount] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -678,7 +679,10 @@ function OnlineDonation() {
           document.getElementById("gatewayForm").submit();
         }, 1000);
       } else if (response?.status === "OTHERTHANINDIA") {
-        navigate(response.gatewayURL);
+        setTotalAmount(response.data.donations[0].totalAmount);
+        navigate(response.gatewayURL, {
+          state: response.data.donations[0].totalAmount,
+        });
         clearForm(e);
         setLoading(false);
       } else {
@@ -876,7 +880,7 @@ function OnlineDonation() {
       return updatedAddress;
     });
     if (data) {
-      getStatesByCountry(data.id);
+      getStatesByCountry(data.countryCode);
   }
   };
   //Handle Donations
@@ -930,7 +934,7 @@ function OnlineDonation() {
     console.log(updatedAddress);
     setRecipient(updatedAddress);
     if (data) {
-      getStatesByCountry(data.id);
+      getStatesByCountry(data.countryCode);
   }
     return updatedAddress;
   };

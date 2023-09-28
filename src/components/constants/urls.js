@@ -64,6 +64,6 @@ export const URLS = {
 
     //contries and states api
     GETALLCOUNTRY:'/getAllCountry',
-    GETSTATESBYCOUNTRY:'/getAllStateByCountryId/',
+    GETSTATESBYCOUNTRY:'/getAllStateByCountryId',
     GETALLCITIZENSHIP:'/getAllCitizensip'
 };
