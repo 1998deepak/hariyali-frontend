@@ -321,7 +321,7 @@ function OnlineDonation() {
         message: "Donor Type is required",
       });
     }
-    if(userData?.user?.donarType === "Corporate"){ 
+    if(userData?.user?.donarType === "Individual"){ 
       if (!userData?.user?.prefix) {
         validationErrors.push({
           field: "userData.user.prefix",
