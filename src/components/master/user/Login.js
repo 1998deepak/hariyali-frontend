@@ -213,6 +213,7 @@ function Login() {
           <div className="loginlogo">
             <img src={logo} alt="Logo" />
           </div>
+          <p>Welcome! This login is exclusively for our valued existing donors. Log in to access your profile and donation history.</p>
           <div className="">
             <form className="form-div contact-form-wrap">
               <div className="form-group mb-3">
