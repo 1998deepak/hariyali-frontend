@@ -875,7 +875,7 @@ function OnlineDonation() {
       return updatedAddress;
     });
     if (data) {
-      getStatesByCountry(data.id);
+      getStatesByCountry(data.countryCode);
   }
   };
   //Handle Donations

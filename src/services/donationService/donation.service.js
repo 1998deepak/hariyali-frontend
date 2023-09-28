@@ -479,7 +479,7 @@ export const DonationService = {
   getAllStatesByCountry: async (country) => {
     try {
       const response = await APIService.Instance.get(
-        URLS.GETSTATESBYCOUNTRY+country
+        URLS.GETSTATESBYCOUNTRY+"?countryCode="+country
       );
       return response;
     } catch (err) {
