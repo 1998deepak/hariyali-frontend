@@ -95,17 +95,24 @@ export const AuthService = {
       }
     }
   },
-
-
-
-
-
-
-
   resetPassword: async (password,token) => {
     try {
       const response = await APIService.Instance.post(
         URLS.RESETPASSWORD+"?password="+password+"&token="+token       
+      );
+      return response?.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      }else{
+      toast.error(err?.message);
+       }
+    }
+  },  
+  changePassword: async (data) => {
+    try {
+      const response = await APIService.Instance.post(
+        URLS.CHANGEE_PASSWORD, data      
       );
       return response?.data;
     } catch (err) {

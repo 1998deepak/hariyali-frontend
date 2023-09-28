@@ -16,7 +16,7 @@ import DonarView from "./components/master/admin/donarCreation/Donarview";
 import OfflineDonationUpdate from "./components/master/admin/offlineDonation/OfflineDonationUpdate";
 import OfflinePlanAndDonationUpdate from "./components/master/admin/offlineDonation/OfflinePlanAndDonationUpdate";
 import Dashboard from "./components/master/admin/dashboard/Dashboard";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AuthService } from "./services/auth/auth.service";
 import ConformPassword from "./components/master/user/ConformPassword";
 import OtpId from "./components/master/user/OtpId";
@@ -42,6 +42,7 @@ import Faq from "./components/master/otherMenu/Faq";
 import DashboardTable from "./components/master/Dashboard/DashboardTable";
 import NewOnlineDonation from "./components/master/user/onlinedonation/NewOnlineDonation";
 import Commitment from "./components/master/Dashboard/Commitment";
+import ChangePassword from "./components/master/Dashboard/ChangePassword";
 import FSCRAccount from "./components/master/donation/FSCRAccount";
 
 function HomeWithHeaderAndFooter() {
@@ -350,6 +351,32 @@ function CommitmentWithHeaderAndFooter() {
     </>
   );
 }
+function ChangePasswordWithHeaderAndFooter() {
+  return (
+    <>
+      <AdminHeader />
+      <div className="leftmenu-main">
+        <AdminLeftMenu />
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
+          <ChangePassword />
+        </div>
+      </div>
+    </>
+  );
+}
+function ChangeUserPasswordWithHeaderAndFooter() {
+  return (
+    <>
+      <AdminHeader />
+      <div className="leftmenu-main">
+        <UserLeftMenu />
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
+          <ChangePassword />
+        </div>
+      </div>
+    </>
+  );
+}
 function UserDonationView({ userDetails, setAuthToken, authToken }) {
   return (
     <>
@@ -390,6 +417,7 @@ function App() {
   useEffect(() => {
     setAuthToken(AuthService.getToken());
   }, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -624,6 +652,29 @@ function App() {
           element={
             <ProtectedRoutes admin={authority.admin}>
               <CommitmentWithHeaderAndFooter
+                setAuthToken={setAuthToken}
+                authToken={authToken}
+              />
+            </ProtectedRoutes>
+          }
+        />
+
+        <Route
+          path="/ChangePassword"
+          element={
+            <ProtectedRoutes admin={authority.admin}>
+              <ChangePasswordWithHeaderAndFooter
+                setAuthToken={setAuthToken}
+                authToken={authToken}
+              />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/ChangeUserPassword"
+          element={
+            <ProtectedRoutes user={authority.user}>
+              <ChangeUserPasswordWithHeaderAndFooter
                 setAuthToken={setAuthToken}
                 authToken={authToken}
               />

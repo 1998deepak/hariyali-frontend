@@ -533,6 +533,9 @@ input:disabled {
 
 .userdetails-tr {
   font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .dropdown-toggle {
@@ -5227,4 +5230,13 @@ iframe {
 }
 .clicks{
   margin-bottom: 95px;
+}
+
+.change-password{
+  padding: 0 !important;
+  color: #000 !important;
+}
+
+.react-password-toggle-icon-wrapper {
+  height: 37px !important;
 }

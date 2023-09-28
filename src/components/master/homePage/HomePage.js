@@ -56,7 +56,7 @@ import { useState } from 'react';
 import { USER_DETAILS } from "../../../components/constants/constants";
 import { AuthService } from "../../../services/auth/auth.service";
 import { EncryptionService } from "../../../services/encryption.service";
-
+import { APIService } from '../../../services/api/api-service';
 // style was imported in index.css
 // import "react-slideshow-image/dist/styles.css";
 // const images = [image1, image2, image3, image4];
@@ -226,6 +226,7 @@ function HomePage() {
     if(localStorage.getItem(USER_DETAILS)){
       let userDetails = await EncryptionService.decrypt(localStorage.getItem(USER_DETAILS));
       const response = await AuthService.logout(JSON.parse(userDetails));  
+      await APIService.Instance.removeToken();
     }
   }
 

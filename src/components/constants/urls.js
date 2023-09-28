@@ -57,5 +57,8 @@ export const URLS = {
     PLANTATION_DOWNLOADTEMPLATE:"/plantation/downloadTemplate",
 
     //commitment service
-    COMMITMENT_FINDALLBYFILTER:"/commitment/findByFilter"
+    COMMITMENT_FINDALLBYFILTER:"/commitment/findByFilter",
+
+    //for change password
+    CHANGEE_PASSWORD:"/changePassword"
 };
