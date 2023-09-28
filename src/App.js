@@ -43,7 +43,11 @@ import DashboardTable from "./components/master/Dashboard/DashboardTable";
 import NewOnlineDonation from "./components/master/user/onlinedonation/NewOnlineDonation";
 import Commitment from "./components/master/Dashboard/Commitment";
 import ChangePassword from "./components/master/Dashboard/ChangePassword";
+
+import TermsandConditions from "./components/master/otherMenu/TermsandConditions";
+import Form10BE from "./components/master/Form10BE/Form10BE";
 import FSCRAccount from "./components/master/donation/FSCRAccount";
+
 
 function HomeWithHeaderAndFooter() {
   return (
@@ -77,6 +81,15 @@ function PolicyWithHeaderAndFooter() {
     <>
       <UserHeader />
       <Policy />
+      <UserFooter />
+    </>
+  );
+}
+function TermsandConditionsWithHeaderAndFooter() {
+  return (
+    <>
+      <UserHeader />
+      <TermsandConditions />
       <UserFooter />
     </>
   );
@@ -234,6 +247,19 @@ function OfflineDonationWithHeaderAndFooter() {
         <div className="float-left page-scroll" style={{ width: "100%" }}>
           <OfflineDonation />
         </div>
+      </div>
+    </>
+  );
+}
+function FormBEWithHeaderAndFooter() {
+  return (
+    <>
+      <AdminHeader />
+      <div className="leftmenu-main">
+        <AdminLeftMenu />
+        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <Form10BE/>
+      </div>
       </div>
     </>
   );
@@ -424,6 +450,7 @@ function App() {
         <Route path="/Unauthorised" element={<Unauthorised />} />
         <Route path="/" element={<HomeWithHeaderAndFooter />} />
         <Route path="/Policy" element={<PolicyWithHeaderAndFooter />} />
+        <Route path="/TermsandConditions" element={<TermsandConditionsWithHeaderAndFooter />} />
         <Route path="/AboutUs" element={<AboutWithHeaderAndFooter />} />
         <Route
           path="/WaystoAssociate"
@@ -505,17 +532,19 @@ function App() {
           }
         />
 
-        <Route
-          path="/UserSpecificDonationView/:id?"
-          element={
-            <ProtectedRoutes user={authority.user}>
-              <UserSpecificDonation
-                setAuthToken={setAuthToken}
-                authToken={authToken}
-              />
-            </ProtectedRoutes>
-          }
-        />
+                  <Route path="/Form10BE"
+                element={
+                  <ProtectedRoutes admin={authority.admin}>
+                    <FormBEWithHeaderAndFooter setAuthToken={setAuthToken} authToken={authToken}/>
+                  </ProtectedRoutes>
+                } />
+
+            <Route path="/UserSpecificDonationView/:id?"
+                element={
+                  <ProtectedRoutes user={authority.user}>
+                    <UserSpecificDonation setAuthToken={setAuthToken} authToken={authToken} />
+                  </ProtectedRoutes>
+                } />
 
         {/* <Route
           path="/OfflineDonation"

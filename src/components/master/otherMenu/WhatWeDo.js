@@ -8,6 +8,7 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
+
 import {
   FaSearchLocation,
   FaEdit,
@@ -21,7 +22,7 @@ import {
   FaCannabis,
 } from "react-icons/fa";
 // import whatwe1 from "../../../assets/img/whatwe1.jpg";
-import whatwe2 from "../../../assets/img/whatwe2.jpg";
+// import whatwe2 from "../../../assets/img/whatwe2.jpg";
 import processImg1 from "../../../assets/img/process.jpg";
 import processImg from "../../../assets/img/calender.png";
 import step2Img from "../../../assets/img/pr-step2.png";
@@ -59,6 +60,7 @@ import Coffee from "../../../assets/img/plantName/Coffee.png";
 // import Nectarine from "../../../assets/img/plantName/Nectarine.png";
 // import Nectarine from "../../../assets/img/plantName/Nectarine.png";
 import Approach from "../../../assets/img/approch.png";
+import VerticalSwiper from "../../common/VerticalSwiper";
 
 function WhatWeDo() {
   const plantname = [
@@ -116,10 +118,7 @@ function WhatWeDo() {
         <Container className="pv-75">
           <div className="feature-description feature-description-other">
             <h2 className="sub-title text-center">What We Do</h2>
-            <p>
-            Project Hariyali aims to increase green cover, arrest the rising ecological imbalance, enhance biodiversity, 
-            and restore the functional forest which support livelihood of small holding farmer families. 
-            The trees we plant strengthen the ecosystem and enhance ecological diversity
+            <p>Project Hariyali aims to increase green cover, arrest the rising ecological imbalance, enhance biodiversity, and restore the functional forest which support livelihood of small holding farmer families. The trees we plant strengthen the ecosystem and enhance ecological diversity. 
             </p>
           </div>
         </Container>
@@ -133,11 +132,10 @@ function WhatWeDo() {
                   {" "}
                   <img src={Approach} alt="Approach" />
                 </div>
-                <h5 className="text-center mt-5">
-                We have two seasons for plantation -  Monsoon and Winter
+                <h5 className="text-center mt-5">We have two seasons for plantation - Monsoon and Winter. 
                 </h5>
                 <div className="row justify-content-center mt-5">
-                  <div className="col-12 col-md-6">
+                  <div className="col-12 col-lg-6 mb-3">
                     <div className="card plantation-card h-100">
                       <div className="row g-0 h-100">
                         <div className="col-md-5">
@@ -153,14 +151,14 @@ function WhatWeDo() {
                               Monsoon <span>(Jun - Sep)</span>
                             </h5>
                             <p className="card-text">
-                            The Monsoon plantation starts in September of the previous financial year, giving our team 7-8 months of lead time to select and nurture the saplings
+                            The planning for Monsoon plantation starts in the month of November of the previous financial year, giving our team 7-8 months of lead time to select and nurture the saplings before the plantation season begins.
                             </p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="col-12 col-md-6">
+                  <div className="col-12 col-lg-6 mb-3">
                     <div className="card plantation-card h-100">
                       <div className="row g-0 h-100">
                         <div className="col-md-5">
@@ -176,8 +174,7 @@ function WhatWeDo() {
                               Winter <span>(Nov - Jan)</span>
                             </h5>
                             <p className="card-text">
-                            The Winter plantation starts in August and saplings are planted between December to January of the same financial year.
-                            </p>
+                            The planning for Winter plantation starts in the month of July, giving our team 4-5 months of lead time to select and nurture the saplings before the plantation season begins.                             </p>
                           </div>
                         </div>
                       </div>
@@ -194,14 +191,15 @@ function WhatWeDo() {
         </section>
         <div className="container mt-5">
           <h2 className="sub-title text-center">Planting Process</h2>
-          <p className="text-center">We follow a systematic process which enables us to get a very high survival rate.</p>
+          <p className="text-center">We follow a systematic process which enables us to get a very high survival rate. </p>
           <div className="process-image">
             <img src={processImg1} alt="" />
-            </div>
           </div>
+          {/* <VerticalSwiper/> */}
+        </div>
           <div className="bg-green">
           <div className="col-12 feature-description">
-          <h2 className="sub-title text-center">Sample Monsoon Plantation Calendar</h2>
+          <h2 className="sub-title text-center">Plantation Calendar - Monsoon Season</h2>
           <div className="row">
             <div className="col-12 col-md-6">
               <h4 className="text-center">Year 1</h4>

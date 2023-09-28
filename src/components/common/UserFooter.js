@@ -10,14 +10,14 @@ import {
 import logo from "../../assets/img/logotrans-white.png";
 
 const Header = () => {
-
+ 
   return (
     <>
       <div className="footerbg">
         <Container>
           <Row className="justify-content-between ptb50 row">
             <div className="col-12 col-md-12 col-lg-4 small-center">
-              <div className="logo-container">
+             <div className="logo-container">
                 <img src={logo} alt="Logo" className="logo" />  
               </div>              
               <div className="footersocial-div row mb-3">
@@ -61,19 +61,20 @@ const Header = () => {
                     <li><a href="/WhySupportUs"> Why Support Us</a></li>
                     <li><a href="/WaystoAssociate"> How To Associate</a></li>
                     <li><a href="/FootPrint"> Where Are We</a></li>                    
-                    <li><a href="/ContactUs"> Ask Us</a></li>
+                    <li><a href="/ContactUs"> Write To Us</a></li>
                   </ul>
                 </div>                
                 <div className="col-12 col-md-6 col-lg-4 footer-div">
                   <div className="footer-divheading">Resources</div>
                   <ul>
-                    <li><a href="">Privacy Policy</a></li>
-                    <li><a href="">Terms & Conditions</a></li>
-                    <li><a href="">Legal Documents</a>
+                    <li><a href="/Policy">Privacy Policy</a></li>
+                    <li><a href="TermsandConditions">Terms & Conditions</a></li>
+                    <li>Legal Documents
                         <ul className="nested-ul">
-                          <li><a href="">Registration Certificate </a></li>
-                          <li><a href="">80 G Certificate </a></li>
-                          <li><a href="">Pan Card </a></li>
+                          <li><a href={require('../../assets/pdf/Hariyali Regd Revised Trust Deed dated 27 Oct 2014.pdf')} target="_blank"> Registration Certificate </a></li>
+                          <li><a href={require('../../assets/pdf/Hariyali 80G Certificate.pdf')} target="_blank">80 G Certificate </a></li>
+                          {/* <li><a href={require('../../assets/pdf/Hariyali80GCertificate.pdf')} target="_blank" download="Hariyali80GCertificate.pdf">80 G Certificate </a></li> */}
+                          <li><a href={require('../../assets/pdf/PAN - Hariyali.pdf')} target="_blank">PAN CARD </a></li>
                         </ul>
                     </li>
                    
@@ -92,17 +93,6 @@ const Header = () => {
                   <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a> <br/>
                   <a href="mailto:support@hariyali.org.in"><i className="bi bi-envelope-fill"></i> support@hariyali.org.in</a>
                   </address>
-                 
-                  {/* <i className="bi bi-clock"></i> 10.00am to 7.00pm IST <br/>(Monday to
-                    Saturday) */}
-                    {/* <div className="footer-divheading">About Us</div>
-                    <ul>
-                      <li><a href="">Mission & Vision</a></li>
-                      <li><a href="">Our Journey</a></li>
-                      <li><a href="">Our Team</a></li>
-                      <li><a href="">Our Achievements </a></li>
-                      <li><a href="">Volunteer with us</a></li>
-                    </ul> */}
                 </div>
               </div>
             </div>

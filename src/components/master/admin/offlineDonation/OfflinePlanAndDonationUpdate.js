@@ -920,7 +920,7 @@ function OfflineDonationPay() {
                   </div>
                   <PaymentDetails
                     donations={donationData}
-                    errors={errors}
+                    // errors={errors}
                     handlePaymentInfoChange={handlePaymentInfoChange}
                     index={0}
                     setLoading={setLoading}

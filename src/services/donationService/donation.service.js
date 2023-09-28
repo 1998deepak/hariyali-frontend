@@ -462,4 +462,47 @@ export const DonationService = {
     }
   },
 
+  getAllCountries: async () => {
+    try {
+      const response = await APIService.Instance.get(
+        URLS.GETALLCOUNTRY
+      );
+      return response;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+        toast.error(err?.message);
+      }
+    }
+  },
+  getAllStatesByCountry: async (country) => {
+    try {
+      const response = await APIService.Instance.get(
+        URLS.GETSTATESBYCOUNTRY+"?countryCode="+country
+      );
+      return response;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+        toast.error(err?.message);
+      }
+    }
+  },
+  getAllCitizenship: async () => {
+    try {
+      const response = await APIService.Instance.get(
+        URLS.GETALLCITIZENSHIP
+      );
+      return response;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+        toast.error(err?.message);
+      }
+    }
+  },
+
 }

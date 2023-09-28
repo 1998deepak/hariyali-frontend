@@ -66,9 +66,9 @@ const Header = () => {
 
               </Navbar.Toggle >
 
-              <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+              <Navbar.Collapse id="responsive-navbar-nav" className="">
            
-                <Nav className="justify-content-end  nav-list" activeKey={location.pathname}>
+                <Nav className=" nav-list" activeKey={location.pathname}>
                   <Nav.Item >
                     <Nav.Link href="/AboutUs" className={`${activeTab === 'AboutUs' ? 'active' : ''}`}
         onClick={() => setActiveTab('AboutUs')} eventKey="/AboutUs">Who We Are</Nav.Link>
@@ -95,7 +95,7 @@ const Header = () => {
                   </Nav.Item> */}
                   <Nav.Item>
                     <Nav.Link href="/ContactUs" className={`${activeTab === 'ContactUs' ? 'active' : ''}`}
-        onClick={() => setActiveTab('ContactUs')} eventKey="/ContactUs">Ask Us</Nav.Link>
+        onClick={() => setActiveTab('ContactUs')} eventKey="/ContactUs">Write To Us</Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Navbar.Collapse>
@@ -106,8 +106,8 @@ const Header = () => {
             activeKey="/home"
             onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
           >
-            <Nav.Item className="text-center small-non">
-              <div className="topmenu-icon" onClick={goToLogin}>
+            <Nav.Item className="text-center">
+              <div className="topmenu-icon" onClick={goToLogin} title="Donar Login"> 
                 <FaUser style={{ color: "#23aa4a"}} />
               </div>
             </Nav.Item>

@@ -55,7 +55,8 @@ const [loading, setLoading] = useState(false);
       if (response?.data) {
         setUserData(response.data);
         setAddressData(response.data.address);
-        
+        setInformationShare(response.data.campaignConsent);
+        setPrivacyPolicy(response.data.dataConsent)
       }
       setLoading(false);
     } catch (error) {

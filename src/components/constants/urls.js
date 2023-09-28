@@ -59,6 +59,14 @@ export const URLS = {
     //commitment service
     COMMITMENT_FINDALLBYFILTER:"/commitment/findByFilter",
 
+    //Form 10 BE
+    FORM10B_UPLOAD : "/uploadZipFile",
+
+    //contries and states api
+    GETALLCOUNTRY:'/getAllCountry',
+    GETSTATESBYCOUNTRY:'/getAllStateByCountryId',
+    GETALLCITIZENSHIP:'/getAllCitizensip'
+
     //for change password
     CHANGEE_PASSWORD:"/changePassword"
 };

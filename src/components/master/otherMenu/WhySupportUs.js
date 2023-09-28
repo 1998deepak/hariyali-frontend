@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Carousel, Modal, Button } from "react-bootstrap";
+import { Carousel, Modal, Button, Nav} from "react-bootstrap";
 import { Container, Row } from "react-bootstrap";
 import "animate.css/animate.min.css";
 // import "react-image-gallery/styles/css/image-gallery.css";
@@ -25,11 +25,14 @@ import limcaAward from "../../../assets/img/Limca Records 2015_page-0001.jpg";
 import limcaAward1 from "../../../assets/img/Limca Records 2020_pages-to-jpg-0001.jpg";
 import impactAssessment1 from "../../../assets/img/Impact Assessment Report FY 22_page-0001.jpg";
 import impactAssessment2 from "../../../assets/img/Impact Assessment Report FY 23_page-0001.jpg";
-import csrCertificate from "../../../assets/img/Image20230825001140.png";
-import csrCertificate1 from "../../../assets/img/Image20230825001136.png";
+import csrCertificate from "../../../assets/img/Image20230825001136.png";
+import csrCertificate1 from "../../../assets/img/CSR.png";
+import aimacertificate from "../../../assets/img/AIMA.jpg";
 import program3 from "../../../assets/img/co2.jpg";
 import program4 from "../../../assets/img/lifestyle.jpg";
-import video from '../../../assets/video/Solan-women-farmer-AV.mp4'
+import video from '../../../assets/video/Solan-women-farmer-AV.mp4';
+import { Link, useNavigate, useLocation} from "react-router-dom";
+import plantation from "../../../assets/img/GIF's/plant-img.gif";
 // const slides = [
 //   {
 //     title: 'When you cut a tree you take a life and when you plant a tree you plant a HOPE',
@@ -72,12 +75,12 @@ function WhySupportUs() {
       {
         quote:
           "FICCI CSR Awards – In Skill Development & Livelihood Category, 2021",
-        image: limcaAward,
+        image: csrCertificate,
       },
       {
         quote:
           "Food System Vision Prize by Rockefeller Foundation to Naandi Foundation, 2020",
-        image: csrCertificate,
+        // image: csrCertificate,
       },
       {
         quote:
@@ -88,7 +91,7 @@ function WhySupportUs() {
     [
       {
         quote: "AIMA Runner- up CSR Award, 2023",
-        //image :
+        image: aimacertificate,
       },
       {
         quote: "Limca book of Awards - National Record, 2016",
@@ -110,21 +113,21 @@ function WhySupportUs() {
       image: testimonial2,
       name: "I care for my saplings just like a mother cares for her child",
       quote:
-        "I live in Chabeet village of Solan district. I have been doing the usual kind of farming, but the yield was never very good. When I heard about Project Hariyali I immediately came forward to join it. I was given 42 fruit saplings - mostly plum and apple. I follow all the organic regenerative farming practices faithfully. This is my small contribution towards reversing climate change and making Himachal Pradesh clean and green. In the future, my family will reap the benefits.",
+        "I live in Purva village of Shravasti district. After joining Hariyali, I got 91 fruit saplings including guava, jackfruit and lemon. I also received training on how to dig the pit for sapling planting, how much distance to maintain between saplings, how and when to spray bio inputs etc. I nurture, love and care for these saplings as a mother does for her child. Under the guidance of the Naandi team, I am making bio inputs too. In three years, these will become trees and start bearing fruits which my family can consume. And from the fifth year they will bear enough fruits for me to go to the market and sell them and make a living.",
       legend: "From Shravasti, Uttar Pradesh",
     },
     {
       image: testimonial3,
       name: "This is my small contribution towards reversing climate change",
       quote:
-        "I live in Chabeet village of Solan district. I have been doing the usual kind of farming, but the yield was never very good. When I heard about Project Hariyali I immediately came forward to join it. I was given 42 fruit saplings - mostly plum and apple. I follow all the organic regenerative farming practices faithfully. This is my small contribution towards reversing climate change and making Himachal Pradesh clean and green. In the future, my family will reap the benefits. ",
+        "I live in Chabeet village of Solan district. I have been doing the usual kind of farming, but the yield was never very good. When I heard about Project Hariyali, I immediately came forward to join it.  I was given 42 fruit saplings - mostly plum and apple. I follow all the organic regenerative farming practices faithfully. This is my small contribution towards reversing climate change and making Himachal Pradesh clean and green. In the future, my family will reap the benefits.  ",
       legend: "From Solan, Himachal Pradesh",
     },
     {
       image: testimonial4,
       name: "These will add nutritional diversity for my family",
       quote:
-        "I live in Kokri Kalan village of Moga district. We struggle to make a reasonable livelihood. I always had a liking for plants and agriculture in general. Through Project Hariyali, I have learnt efficient farming practices. I am confident that with these practices I will reap benefits in future. I have received 31 fruit saplings which include guava, mango, orange and peach. I know these will add nutritional diversity for my family as well as bring additional income in future.",
+        "I live in Kokri Kalan village of Moga district. We struggle to make a reasonable livelihood. I always had a liking for plants and agriculture in general. Through Project Hariyali, I have learnt efficient farming practices. I am confident that with these practices I will reap benefits in future. I have received 31 fruit saplings which include guava, mango, orange, and peach. I know these will add nutritional diversity for my family as well as bring additional income in future.",
       legend: "From Moga, Punjab",
     },
     // Add other testimonials
@@ -132,7 +135,7 @@ function WhySupportUs() {
 
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-
+  const navigate = useNavigate();
   const openModal = (image) => {
     setSelectedImage(image);
     setShowModal(true);
@@ -141,6 +144,9 @@ function WhySupportUs() {
   const closeModal = () => {
     setSelectedImage(null);
     setShowModal(false);
+  };
+  const goToDonate = () => {
+    navigate("/OnlineDonation");
   };
 
   const zoomOutProperties = {
@@ -166,13 +172,7 @@ function WhySupportUs() {
               <h2 className="sub-title text-center">Why Support Us</h2>
 
               <p className="text-center">
-                The Problem The total forest and tree cover in India is 8,09,537 square kilometres i.e., 
-                24.62 % of the total geographical area. But as per the National Forest Policy, the ideal percentage of total geographical 
-                area under forest should be at least 33% to maintain ecological stability. India ranked the second highest for the rate of 
-                deforestation after losing 668,400 hectares of forest cover in the last 30 years. The forest areas are under threat due to 
-                rapid industrialization, road and other connectivity projects as well as irrigation projects. Over and above, 90% of the area 
-                under the biodiversity hotspots have been lost as per 
-                the Centre for Science and Environment’s (CSE) new report entitled ‘State of India’s Environment in Figures 2021’.
+              The total forest and tree cover in India is 809,537 square kilometres i.e., 24.62 % of the total geographical area. But as per the National Forest Policy, the ideal percentage of total geographical area under forest should be at least 33% to maintain ecological stability. India ranked the second highest for the rate of deforestation after losing 668,400 hectares of forest cover in the last 30 years. The forest areas are under threat due to rapid industrialization, road, and other connectivity projects as well as irrigation projects. Over and above, 90% of the area under the biodiversity hotspots have been lost as per the Centre for Science and Environment’s (CSE) new report entitled ‘State of India’s Environment in Figures 2021’. 
               </p>
             </div>
           </div>
@@ -180,7 +180,7 @@ function WhySupportUs() {
       </section>
       <section className="container">
         <div className="row justify-content-center">
-          <div className="col-12 col-md-5">
+          <div className="col-12 col-lg-6">
             <div className="card plantation-card h-100">
               <img
                 src={program3}
@@ -203,7 +203,7 @@ function WhySupportUs() {
               </div>
             </div>
           </div>
-          <div className="col-12 col-md-5">
+          <div className="col-12 col-lg-6">
             <div className="card plantation-card h-100">
               <img
                 src={program4}
@@ -216,11 +216,7 @@ function WhySupportUs() {
                   Lifestyle for Environment
                 </h5>
                 <p>
-                  India is promoting individual responsibility toward climate
-                  action through Mission LIFE “Lifestyle for Environment”. This
-                  movement aims to transform individuals into pro planet people
-                  by having them adopt sustainable lifestyles and minimize their
-                  carbon footprints.
+                India is promoting individual responsibility toward climate action through Mission LIFE “Lifestyle for Environment”. This movement aims to transform individuals into pro planet people by having them adopt sustainable lifestyles and minimize their carbon footprints.
                 </p>
               </div>
               {/* <i className="icon-monsoon"></i> */}
@@ -231,6 +227,11 @@ function WhySupportUs() {
           Support the nation reach Carbon neutrality. Join us to make an impact
           through Project Hariyali{" "}
         </p>
+          <div className="text-center">
+              <div className="" onClick={goToDonate}>
+                <Button className="menu-button-donet"><img src={plantation} alt="Donote" className="donoteicon" />Plant A Tree </Button>
+              </div>
+            </div>
       </section>
       {/* <div className="container pv-75">
         <div className="row mb30 impact-wrapper">
@@ -250,7 +251,7 @@ function WhySupportUs() {
             </h3>
             <p className="text-center">
             Project Hariyali is a unique blend in the sphere of environmental sustainability and impacting livelihood. 
-            The Project is already contributing towards mission LiFE & India’s commitment toward carbon neutrality.
+            The Project is already contributing towards mission LiFE & India’s commitment toward carbon neutrality. 
             </p>
           </div>
           <div className="justify-content-center quantitative-card">
@@ -349,7 +350,7 @@ function WhySupportUs() {
               ))}
             </Carousel>
           </div>
-          <Modal show={showModal} onHide={closeModal}>
+          <Modal show={showModal} onHide={closeModal} className="awards-modal">
             <Modal.Body>
               {selectedImage && (
                 <img src={selectedImage} alt="Modal" className="img-fluid" />
@@ -361,24 +362,24 @@ function WhySupportUs() {
       <section className="bg-green">
         <div className="container">
           <div className="row align-items-center pv-75">
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-lg-6">
               <div className="feature-description feature-description-other">
                 <h3 className="sub-title text-center">
                   Impact Assessment Report
                 </h3>
                 <p>
                   <i>
-                    Annual third - party audits have been conducted since 2012 by Unique Agroforestry and Land use Germany which is a globally recognized company. 
+                  Annual third - party audits have been conducted since 2012 by Unique forestry and land use GmbH.
                   </i>
                 </p>
                 <p>
                   <i>
-                    Since FY22, Impact Assessment as part of CSR guidelines have been conducted by third party organizations. In the last Impact Assessment conducted for plantations done in FY21, the survival rate has been reported at 94.67%. Project Hariyali has been awarded “Platinum” category performance of CSR Activity by an NABCB accredited “Type A” Inspection Body.
+                  Since FY22, Impact Assessment as part of CSR guidelines have been conducted by third party organizations. In the last Impact Assessment conducted for plantations done in FY21, the survival rate has been reported at 94.67%. <b>Project Hariyali has been awarded “Platinum” category performance of CSR Activity by an NABCB accredited “Type A” Inspection Body. </b>
                   </i>
                 </p>
               </div>
             </div>
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-lg-6">
               <div className="">
                 <div className="d-flex justify-content-center pdf-wrapper">
                   <a className="pdf-tile" href={impactFile2} target="_blank">
@@ -410,14 +411,14 @@ function WhySupportUs() {
                   className="slide-content-whysupport support-content"
                 >
                   <div className="row">
-                    <div className="offset-md-1 col-12 col-md-3">
+                    <div className="offset-xl-1 col-xl-3 col-12 col-lg-4">
                       <img
                         src={testimonial.image}
                         alt="avatar"
                         className="mb-5"
                       />
                     </div>
-                    <div className="col-12 col-md-7">
+                    <div className="col-12 col-lg-8 col-xl-8">
                       <h3 className="mb-3">{testimonial.name}</h3>
                       <p className="">
                         <i className="bi bi-quote pe-2"></i>
@@ -432,8 +433,8 @@ function WhySupportUs() {
           </div>
           <div className="slide-content-whysupport support-content">
             <div className="row  d-flex justify-content-center">
-              <div className="col-12 col-md-6 text-center mb-5">
-              <video width="750" height="500" controls >
+              <div className="col-12 col-lg-6 text-center mb-5">
+              <video width="100%" height="500" controls >
               <source src={video} type="video/mp4"/>
      </video>
               </div>

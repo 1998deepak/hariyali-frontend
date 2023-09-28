@@ -18,7 +18,7 @@ import SheetalMehtaimg from "../../../assets/img/trustee/SheetalMehta.jpg";
 import AnandMahindrapng from "../../../assets/img/trustee/AnandMahindra.png";
 import BharatDoshipng from "../../../assets/img/trustee/BharatDoshi.png";
 import UlhasYargoppng from "../../../assets/img/trustee/UlhasYargop.png";
-import ProchieMukherjipng from "../../../assets/img/trustee/DumyUser.png";
+import ProchieMukherjipng from "../../../assets/img/trustee/Prochie Mukherje.jpg";
 import MarioNazarathpng from "../../../assets/img/trustee/DumyUser.png";
 import SheetalMehtapng from "../../../assets/img/trustee/SheetalMehta.png";
 import AnjiReddyimg from "../../../assets/img/trustee/AnjiReddy.jpg";
@@ -104,7 +104,7 @@ function AboutUs() {
                 <h2 className="sub-title  text-center">Who We Are</h2>
                 <p className="text-center">
                   Project Hariyali is a joint initiative of Mahindra Foundation and Naandi Foundation
-                  <div className="whowe-knowtext"><a href="#knowYourPatners">know more</a> about these Foundations</div>
+                  <div className="whowe-knowtext"><a href="#knowYourPatners">Know more</a> about these Foundations</div>
                   {/* Click here to <a href="#knowYourPatners">know more</a>  about these Foundations */}
                 </p>
               </div>
@@ -114,14 +114,12 @@ function AboutUs() {
             <div className="row align-items-center pv-75">
               <div className="col-12">
                 <div className="feature-description feature-description-other">
-                  <h2 className="sub-title  text-center">Details about The Initiative</h2>
+                  <h2 className="sub-title  text-center">The Initiative</h2>
                   <p className="text-center">
-                  The project was launched on 2<sup>nd</sup> October 2007, as an afforestation initiative, with a target to plant a million trees every year.
-                  Project Hariyali aims to increase green cover, arrest the rising ecological imbalance to create an environmentally conscious and 
-                  aware citizenry. Project Hariyali is an excellent example of nature-based solutions in climate action that focuses on natural 
-                  resource management and global organic farming protocols to improve the eco-system.</p>
+                  The project was launched on 2<sup>nd</sup> October 2007, as an afforestation initiative, with a target to plant a million trees every year. Project Hariyali aims to increase green cover, arrest the rising ecological imbalance to create an environmentally conscious and aware citizenry. Project Hariyali is an excellent example of nature-based solutions in climate action that focuses on natural resource management and global organic farming protocols to improve the eco-system. 
+                  </p>
 
-                  <p className="text-center">Our large scale plantation is active in 3 regions. </p>
+                  <p className="text-center">Our large-scale plantation is active in 3 regions. </p>
                   <div className="row">
                     <div className="col-12 col-md-6 col-lg-4 mb-4">
                       <div className="card h-100">
@@ -129,8 +127,8 @@ function AboutUs() {
                         <div className="card-body text-center">
                           <h5 className="card-title">Southern India</h5>
                           <p className="card-text">
-                          Project Hariyali started in <b className="colorgreen">Araku Valley</b> in 
-                          <b className="colorgreen">Visakhapatnam</b>, <b className="colorgreen">Andhra Pradesh</b> in 2010
+                          Project Hariyali started in<b className="colorgreen"> Araku Valley</b> in <b className="colorgreen">Visakhapatnam</b>,
+                          <b className="colorgreen"> Andhra Pradesh</b> in 2010. 
                          </p>
                         </div>
                       </div>
@@ -140,8 +138,12 @@ function AboutUs() {
                         <img src={tarnImg} className="img-fluid rounded-start" alt="..." />
                         <div className="card-body text-center">
                           <h5 className="card-title">Northern India</h5>
-                          <p className="card-text">Our project <b className="colorgreen">Shravasti in Uttar Pradesh</b>,
-                            <b className="colorgreen">Tarn Taran & Moga in Punjab</b> and <b className="colorgreen">Solan in Himachal Pradesh</b> started in 2021</p>
+                          {/* <p className="card-text">Our project <b className="colorgreen">Shravasti in Uttar Pradesh</b>,
+                            <b className="colorgreen">
+                            Project Hariyali started in <b className="colorgreen">Shravasti</b> in <b className="colorgreen">Uttar Pradesh</b>, <b className="colorgreen">Tarn Taran</b> & <b className="colorgreen">Moga</b> in <b className="colorgreen">Punjab</b> and <b className="colorgreen">Solan</b> in <b className="colorgreen">Himachal Pradesh</b> in 2021. 
+
+                              Tarn Taran & Moga in Punjab</b> and <b className="colorgreen">Solan in Himachal Pradesh</b> started in 2021</p> */}
+                              <p className="card-text">Project Hariyali started in <b className="colorgreen">Shravasti</b> in <b className="colorgreen">Uttar Pradesh</b>, Tarn Taran & Moga in Punjab and Solan in <b className="colorgreen">Himachal Pradesh</b> in 2021.</p>
                         </div>
                       </div>
                     </div>
@@ -150,7 +152,8 @@ function AboutUs() {
                         <img src={wardhaImg} className="img-fluid rounded-start" alt="..." />
                         <div className="card-body text-center">
                           <h5 className="card-title">Western India</h5>
-                          <p className="card-text">Our project in<b className="colorgreen">Wardha</b>,<b className="colorgreen">Maharashtra</b> started in 2023</p>
+                          <p className="card-text">Project Hariyali started in <b className="colorgreen">Wardha</b>,
+                          <b className="colorgreen">Maharashtra</b> in 2023</p>
                         </div>
                       </div>
                     </div>
@@ -170,7 +173,7 @@ function AboutUs() {
                 <div className="feature-description">
                   <h2 className="text-capitalize">Goal</h2>
                   <p className="">
-                    <quote><b className="colorgreen">Planting 5 million trees per annum.</b> 
+                    <quote><b className="colorgreen">Planting 5 million trees</b>  per annum.
                     </quote></p>
                 </div>
               </div>
@@ -194,61 +197,60 @@ function AboutUs() {
                       <section id="set-1">
                         <div className="hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1b">
                           <div className="justify-content-center mb-4 row">
-                            <div className="col-6 col-md-2 ">
+                            <div className="col-6 col-md-4 col-lg-2 ">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={AnandMahindra}><BsArrowRight /></div>
-                                  <img src={AnandMahindraimg} className="hi-iconimg" alt="Anand Mahindra" />
+                                  <img src={AnandMahindraimg} className="hi-iconimg" alt="Anand Mahindra" onClick={AnandMahindra}/>
                                   <div className="trsteename">Anand Mahindra
                                     <div className="trsteename-desc">Chairman</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2 ">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={BharatDoshi}><BsArrowRight /></div>
-                                  <img src={BharatDoshiimg} className="hi-iconimg" alt="Bharat Doshi" />
+                                  <img src={BharatDoshiimg} className="hi-iconimg" alt="Bharat Doshi" onClick={BharatDoshi}/>
                                   <div className="trsteename">Bharat Doshi
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2 ">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={UlhasYargop}><BsArrowRight /></div>
-                                  <img src={UlhasYargopimg} className="hi-iconimg" alt="" />
+                                  <img src={UlhasYargopimg} className="hi-iconimg" alt="" onClick={UlhasYargop}/>
                                   <div className="trsteename">Ulhas Yargop
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={ProchieMukherji}><BsArrowRight /></div>
-                                  <img src={DumyUserimg} className="hi-iconimg" alt="" />
-                                  <div className="trsteename">Prochie Mukherji
+                                  <img src={ProchieMukherjipng} className="hi-iconimg" alt="" onClick={ProchieMukherji}/>
+                                  <div className="trsteename">Prochie Mukherje 
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={MarioNazarath}><BsArrowRight /></div>
-                                  <img src={DumyUserimg} className="hi-iconimg" alt="" />
+                                  <img src={DumyUserimg} className="hi-iconimg" alt="" onClick={MarioNazarath}/>
                                   <div className="trsteename">Mario Nazarath
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2 ">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={SheetalMehta}><BsArrowRight /></div>
-                                  <img src={SheetalMehtaimg} className="hi-iconimg" alt="" />
+                                  <img src={SheetalMehtaimg} className="hi-iconimg" onClick={SheetalMehta} alt="" />
                                   <div className="trsteename">Sheetal Mehta
                                     <div className="trsteename-desc">Executive Director</div></div>
                                 </div></a>
                             </div>
-
                           </div>
                         </div>
                       </section>
@@ -262,62 +264,60 @@ function AboutUs() {
                       <section id="set-1">
                         <div className="hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1b">
                           <div className="justify-content-center mb-4 row">
-                            <div className="col-6 col-md-2 ">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={AnjiReddy}><BsArrowRight /></div>
-                                  <img src={AnjiReddyimg} className="hi-iconimg" alt="Anji Reddy" />
+                                  <img src={AnjiReddyimg} className="hi-iconimg" onClick={AnjiReddy} alt="Anji Reddy" />
                                   <div className="trsteename">Late Dr. K. Anji Reddy
                                     <div className="trsteename-desc">Founding Chairman</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2 ">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={AnandMahindranaandi}><BsArrowRight /></div>
-                                  <img src={AnandMahindraimg} className="hi-iconimg" alt="Anand Mahindra" />
+                                  <img src={AnandMahindraimg} className="hi-iconimg" onClick={AnandMahindranaandi} alt="Anand Mahindra" />
                                   <div className="trsteename">Anand Mahindra
                                     <div className="trsteename-desc">Chairman and Life Trustee</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2 ">
+                            <div className="col-6 col-md-4 col-lg-2 ">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={Gopalakrishnan}><BsArrowRight /></div>
-                                  <img src={Gopalakrishnanimg} className="hi-iconimg" alt="Gopalakrishnan" />
+                                  <img src={Gopalakrishnanimg} className="hi-iconimg" onClick={Gopalakrishnan} alt="Gopalakrishnan" />
                                   <div className="trsteename">Senapathy “Kris” Gopalakrishnan
                                     <div className="trsteename-desc">Life Trustee</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={SatishReddy} ><BsArrowRight /></div>
-                                  <img src={SatishReddyimg} className="hi-iconimg" alt="SatishReddy" />
+                                  <img src={SatishReddyimg} className="hi-iconimg" onClick={SatishReddy} alt="SatishReddy" />
                                   <div className="trsteename">Satish Reddy
                                     <div className="trsteename-desc">Trustee</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={RajendraPrasad}><BsArrowRight /></div>
-                                  <img src={RajendraPrasadimg} className="hi-iconimg" alt="RajendraPrasad" />
+                                  <img src={RajendraPrasadimg} className="hi-iconimg" onClick={RajendraPrasad} alt="RajendraPrasad" />
                                   <div className="trsteename">Maganti Rajendra Prasad
                                     <div className="trsteename-desc">Life Trustee</div></div>
                                 </div></a>
                             </div>
-                            <div className="col-6 col-md-2">
+                            <div className="col-6 col-md-4 col-lg-2">
                               <a className="hi-icon hi-icondiv">
                                 <div className="trstee-div">
                                   <div className="moretrstee" onClick={ManojKumar}><BsArrowRight /></div>
-                                  <img src={ManojKumarimg} className="hi-iconimg" alt="ManojKumar" />
+                                  <img src={ManojKumarimg} className="hi-iconimg" onClick={ManojKumar} alt="ManojKumar" />
                                   <div className="trsteename">Manoj Kumar
                                     <div className="trsteename-desc">CEO & Ex-Officio Secretary to the Board</div></div>
                                 </div></a>
                             </div>
-
-
                           </div>
                         </div>
                       </section>
@@ -402,19 +402,16 @@ function AboutUs() {
           </Modal>
           <Modal show={prochieMukherjishow} onHide={ProchieMukherjiClose}>
             <Modal.Header closeButton>
-              <Modal.Title>Prochie Mukherji</Modal.Title>
+              <Modal.Title>Prochie Mukherje </Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <div class="trustee-popup" closeButton>
                 <div className="trustee-popup-img">
-                  <img src={ProchieMukherjipng} alt="ProchieMukherji" />
+                  <img height={300} width={300} src={ProchieMukherjipng} alt="ProchieMukherji" />
                 </div>
                 <div>
                   <p className="trustee-popup-div" >
-                    Space Holder - Ulhas Yargop, worked with the Mahindra Group for 27 years in various capacities including Group President-IT Sector, Group CTO and Chairman of the Group Sustainability Council. He superannuated in 2019.
-                    <br />Ulhas is currently the Chairman of Bristlecone. He previously served on the boards of Tech Mahindra, AT&T Global Network Services India Pvt. Ltd., Comviva Technologies, FixStream Technologies, d.light design Inc., etc.
-                    <br />Ulhas is a member of the Managing Committee of Harvard Business School (India) Research Center, a member of the Board of Governors of The Mahindra United World College of India, Mahindra University, President-Trustee of Mahindra International, a Trustee of K.C. Mahindra Education Trust, Tech Mahindra Foundation, Mahindra World School Educational Trust, Chennai, Mahindra Education Society, Mumbai and Mahindra Academy, Zaheerabad.
-
+                  Prochie Mukherji has been a Trustee of the Mahindra Foundation since May 2003. She joined M&M in 1995 in Human Resources, and subsequently served as Chief of Staff to the Vice Chairman/Chairman. She has been associated with many of the educational initiatives of the Mahindra Group, including the Mahindra United World College, and takes a keen interest in educational, social, and environmental issues. Prior to joining M&M, she has worked in Hindustan Lever, ICICI, Glaxo Ltd., and the Tata Group. She holds BA(Hons) and LL.B degrees from Bombay University where she was a gold medallist. She also has Master of Laws from the Yale Law School, USA.
                   </p></div>
               </div>
             </Modal.Body>
@@ -430,9 +427,9 @@ function AboutUs() {
                 </div>
                 <div>
                   <p className="trustee-popup-div" >
-                    Space Holder - Ulhas Yargop, worked with the Mahindra Group for 27 years in various capacities including Group President-IT Sector, Group CTO and Chairman of the Group Sustainability Council. He superannuated in 2019.
+                    {/* Space Holder - Ulhas Yargop, worked with the Mahindra Group for 27 years in various capacities including Group President-IT Sector, Group CTO and Chairman of the Group Sustainability Council. He superannuated in 2019.
                     <br />Ulhas is currently the Chairman of Bristlecone. He previously served on the boards of Tech Mahindra, AT&T Global Network Services India Pvt. Ltd., Comviva Technologies, FixStream Technologies, d.light design Inc., etc.
-                    <br />Ulhas is a member of the Managing Committee of Harvard Business School (India) Research Center, a member of the Board of Governors of The Mahindra United World College of India, Mahindra University, President-Trustee of Mahindra International, a Trustee of K.C. Mahindra Education Trust, Tech Mahindra Foundation, Mahindra World School Educational Trust, Chennai, Mahindra Education Society, Mumbai and Mahindra Academy, Zaheerabad.
+                    <br />Ulhas is a member of the Managing Committee of Harvard Business School (India) Research Center, a member of the Board of Governors of The Mahindra United World College of India, Mahindra University, President-Trustee of Mahindra International, a Trustee of K.C. Mahindra Education Trust, Tech Mahindra Foundation, Mahindra World School Educational Trust, Chennai, Mahindra Education Society, Mumbai and Mahindra Academy, Zaheerabad. */}
 
                   </p></div>
               </div>

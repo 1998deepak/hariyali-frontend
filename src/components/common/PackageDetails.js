@@ -1,51 +1,21 @@
-import React, { useEffect } from "react";
-import { DonationService } from "../../services/donationService/donation.service";
-import { SUCCESS } from "../constants/constants";
-import { toast } from "react-toastify";
+import React from "react";
 
 const PackageDetails = ({
   packageData,
   setPackageData,
-  donations,
-  setDonations,
   calculateOverallTotal,
-  initialPackageData,
-  setLoading
+  disabled
 }) => {
-
-    useEffect(() => {
-        //getAllPackages();
-      }, []);
-    
-      const getAllPackages = async () => {
-        setLoading(true);
-        const response = await DonationService.getAllPackages();
-        if (response?.status === SUCCESS) {
-          console.log(response);
-          let packageData = [...initialPackageData];
-          console.log(packageData);
-          const parsedData = JSON.parse(response.data);
-          let data = parsedData.map((item) => ({
-            bouquetPrice: item.bouquet_price,
-            noOfBouquets: 1,
-            amount: item.bouquet_price,
-          }));
-          setPackageData(data);
-          calculateOverallTotal(data);
-          setLoading(false);
-        } else {
-          toast.error(response?.message);
-          setLoading(false);
-        }
-      };
-
-      
 
     const handleChangeNumberOfBouquets = (e, row, rowIndex) => {
         let { name, value } = e.target;
         console.log({ name, value, rowIndex }, row);
         let userPackageData = packageData;
-        userPackageData[rowIndex][name] = value;
+        if(value > 1000000){
+          userPackageData[rowIndex][name] = 1000000;
+        }else{
+          userPackageData[rowIndex][name] = value;
+        }
         const totalCost = 450 * row.noOfBouquets;
         userPackageData[rowIndex]["amount"] = totalCost;
         setPackageData(userPackageData);
@@ -54,7 +24,7 @@ const PackageDetails = ({
 
   return (
     <>
-      <div className="actionheadingdiv">Select Your Donation Plan</div>
+      <div className="actionheadingdiv">{disabled ? <></>:<>SELECT NUMBER</>} OF SAPLING</div>
       <div className="mt20">
         <table>
           <colgroup>
@@ -65,7 +35,7 @@ const PackageDetails = ({
           <thead>
             <tr>
               <th>Cost per Sapling</th>
-              <th >No. Sapling</th>
+              <th >Number of Sapling</th>
               <th>Total Cost</th>
             </tr>
           </thead>
@@ -73,13 +43,13 @@ const PackageDetails = ({
             {packageData.map((packageItem, index) => {
               return (
                 <tr key={index}>
-                  <td>450</td>
+                  <td>INR 450</td>
                   {/* <td>{packageItem.maintenanceCost}</td> */}
                   <td>
                     <input
                       type="number"
                       name="noOfBouquets"
-                      className="form-control-inside"
+                      className="form-control-inside bouquets-field"
                       value={packageItem.noOfBouquets}
                       onChange={(event) => {
                         if (event.target.value < 0) {
@@ -87,9 +57,11 @@ const PackageDetails = ({
                         }
                         handleChangeNumberOfBouquets(event, packageItem, index);
                       }}
+                      max={1000000}
+                      disabled={disabled}
                     />
                   </td>
-                  <td>{packageItem.amount}</td>
+                  <td>INR {packageItem.amount}</td>
                 </tr>
               );
             })}
