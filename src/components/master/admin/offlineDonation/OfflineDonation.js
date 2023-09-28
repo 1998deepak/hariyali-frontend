@@ -853,7 +853,9 @@ function OfflineDonation() {
       return updatedAddress;
     });
     if (data) {
-        getStatesByCountry(data.id);
+      if (data) {
+        getStatesByCountry(data.countryCode);
+    }
     }
     
   };
