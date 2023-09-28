@@ -95,7 +95,7 @@ const Header = () => {
                   </Nav.Item> */}
                   <Nav.Item>
                     <Nav.Link href="/ContactUs" className={`${activeTab === 'ContactUs' ? 'active' : ''}`}
-        onClick={() => setActiveTab('ContactUs')} eventKey="/ContactUs">Ask Us</Nav.Link>
+        onClick={() => setActiveTab('ContactUs')} eventKey="/ContactUs">Write To Us</Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Navbar.Collapse>
@@ -107,7 +107,7 @@ const Header = () => {
             onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
           >
             <Nav.Item className="text-center">
-              <div className="topmenu-icon" onClick={goToLogin}>
+              <div className="topmenu-icon" onClick={goToLogin} title="Donar Login"> 
                 <FaUser style={{ color: "#23aa4a"}} />
               </div>
             </Nav.Item>

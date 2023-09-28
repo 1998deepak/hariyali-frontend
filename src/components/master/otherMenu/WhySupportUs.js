@@ -216,11 +216,7 @@ function WhySupportUs() {
                   Lifestyle for Environment
                 </h5>
                 <p>
-                  India is promoting individual responsibility toward climate
-                  action through Mission LIFE “Lifestyle for Environment”. This
-                  movement aims to transform individuals into pro planet people
-                  by having them adopt sustainable lifestyles and minimize their
-                  carbon footprints.
+                India is promoting individual responsibility toward climate action through Mission LIFE “Lifestyle for Environment”. This movement aims to transform individuals into pro planet people by having them adopt sustainable lifestyles and minimize their carbon footprints.
                 </p>
               </div>
               {/* <i className="icon-monsoon"></i> */}

@@ -361,21 +361,26 @@ function HomePage() {
             <div className="col-12 col-lg-6">
               <div className="program-details feature-description-other">
                 <h3 className="mb-3">Why Support Us</h3>
-                <p>
+                {/* <p>
                   India is the 7th most vulnerable country with respect to
                   climate extremes <em>(CRI, 2021)</em>. The total forest cover
                   needs to increase for ecological stability.
-                </p>
-                <p>
+                </p> */}
+                {/* <p>India is promoting individual responsibility toward climate action through Mission LiFE "Lifestyle for Environment". Hariyali Project has increased the green cover and is in alignment with LiFE "Lifestyle for Environment".</p> */}
+                {/* <p>
                   India is promoting individual responsibility toward climate
                   action through Mission LiFE "Lifestyle for Environment".
                   Hariyali Project has increased the green cover and is in
                   alignment with LiFE "Lifestyle for Environment".
-                </p>
-                <p>
+                </p> */}
+                {/* <p>
                   Hariyali Project has been conferred with multiple awards by
                   national and international bodies.
-                </p>
+                </p> */}
+                <p>
+                  India is committed to its National Determined Contributions and seeks to be carbon neutral by 2070.</p>
+                  <p>India is promoting individual responsibility toward climate action through Mission LiFE "Lifestyle for Environment". Project Hariyali has increased the green cover and is in alignment with LiFE.</p><p>Hariyali Project has been conferred with multiple awards by national and international bodies.</p>
+                
 
                 <div className="pt-5">
                   <a href="/WhySupportUs" className="btn btn-secondary">

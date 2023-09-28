@@ -157,7 +157,7 @@ function ContactUs() {
           <div className="pv-75 pb-0">
             <div className="feature-description pb-0">
               <div className="container">
-                <h2 className="sub-title text-center mb-0">Ask Us</h2>
+                <h2 className="sub-title text-center mb-0">Write To Us</h2>
               </div>
             </div>
           </div>

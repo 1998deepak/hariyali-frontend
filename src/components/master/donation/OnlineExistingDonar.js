@@ -1018,9 +1018,6 @@ export default function OnlineExistingDonar() {
                   <div>
                      <div>
                       <form className="form-div contact-form-wrap">
-                        <div className="actionheadingdiv">
-                          Select Your Donation Plan
-                        </div>
                         <div className="mt20">
                           <table>
                             <thead>
@@ -1682,9 +1679,6 @@ export default function OnlineExistingDonar() {
                         </div>
                       </div> </div>
                         <div>
-                      <div className="actionheadingdiv">
-                        Select Your Donation Plan
-                      </div>
                       <div className="mt20">
                         <table>
                           <thead>

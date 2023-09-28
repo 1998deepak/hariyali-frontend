@@ -61,7 +61,7 @@ const Header = () => {
                     <li><a href="/WhySupportUs"> Why Support Us</a></li>
                     <li><a href="/WaystoAssociate"> How To Associate</a></li>
                     <li><a href="/FootPrint"> Where Are We</a></li>                    
-                    <li><a href="/ContactUs"> Ask Us</a></li>
+                    <li><a href="/ContactUs"> Write To Us</a></li>
                   </ul>
                 </div>                
                 <div className="col-12 col-md-6 col-lg-4 footer-div">

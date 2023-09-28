@@ -24,7 +24,7 @@ const PackageDetails = ({
 
   return (
     <>
-      <div className="actionheadingdiv">{disabled ? <></>:<>Select Your</>} Donation Plan</div>
+      <div className="actionheadingdiv">{disabled ? <></>:<>SELECT NUMBER</>} OF SAPLING</div>
       <div className="mt20">
         <table>
           <colgroup>
@@ -35,7 +35,7 @@ const PackageDetails = ({
           <thead>
             <tr>
               <th>Cost per Sapling</th>
-              <th >No. Sapling</th>
+              <th >Number of Sapling</th>
               <th>Total Cost</th>
             </tr>
           </thead>
@@ -61,7 +61,7 @@ const PackageDetails = ({
                       disabled={disabled}
                     />
                   </td>
-                  <td>{packageItem.amount}</td>
+                  <td>INR {packageItem.amount}</td>
                 </tr>
               );
             })}
