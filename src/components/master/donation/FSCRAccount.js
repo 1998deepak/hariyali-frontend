@@ -2,9 +2,11 @@ import React from "react";
 import { Container, Col, Row, Form } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function FSCRAccount() {
+  const location = useLocation();
+  const data = location.state;
   return (
     <>
       <Container>
@@ -18,14 +20,12 @@ export default function FSCRAccount() {
                 As per the new guidelines, issued by the Indian Government, a
                 foreign citizen can make the payment only through a bank
                 transfer to the FCRA account using SWIFT Transaction mode.
-              </p>
-              {" "}
+              </p>{" "}
               <p className="mb-2">
-                As a citizen of India you can make the payment of Rs.2000
+                As a citizen of India you can make the payment of Rs.{data}{" "}
                 through bank transfer using the SWIFT Transaction mode as given
                 below.
-              </p>
-              {" "}
+              </p>{" "}
               <div className="desk-div d-flex">
                 <table>
                   <tbody>
@@ -96,8 +96,7 @@ export default function FSCRAccount() {
                 overseas account in foreign currency and hence in the case of
                 NRI (Non-Resident Indian), payment from NRE/NRO accounts will
                 not be permitted.
-              </p>
-              {" "}
+              </p>{" "}
               <p className="mb-2">
                 Once you have made the payment, kindly share your transaction
                 details (Bank transaction number, bank name, date of payment,

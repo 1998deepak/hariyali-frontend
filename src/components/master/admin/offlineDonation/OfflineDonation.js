@@ -909,7 +909,7 @@ function OfflineDonation() {
     console.log(updatedAddress);
     setRecipient(updatedAddress);
     if (data) {
-      getStatesByCountry(data.id);
+      getStatesByCountry(data.countryCode);
   }
     return updatedAddress;
   };
