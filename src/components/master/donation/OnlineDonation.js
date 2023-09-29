@@ -661,15 +661,20 @@ function OnlineDonation() {
       }
 
       // Send the form data as JSON
-      console.log(user);
+      
       // console.log(JSON.stringify(user));
       // console.log(
       //   "Donation: " + JSON.stringify(user.donations[0])
       // );
 
+      if(user.donations[0].totalAmount == 0){
+        
+        user.donations[0].totalAmount = user.donations[0].userPackage[0].amount;
+        
+      }
       setNewEmail(user.emailId);
 
-      // console.log(formData);
+      console.log(user);
       const response = await DonationService.AddOnlineuser(user);
       console.log(response);
       if (response?.status === SUCCESS) {
