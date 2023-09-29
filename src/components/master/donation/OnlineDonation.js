@@ -291,7 +291,9 @@ function OnlineDonation() {
         field: "userData.user.firstName",
         message: "First Name should only contain alphabets",
       });
-      document.getElementById("firstName").focus();
+        if(document.getElementById("firstName")){
+          document.getElementById("firstName").focus();
+        }
     }
 
     if (!userData?.user?.lastName) {
@@ -305,7 +307,8 @@ function OnlineDonation() {
         field: "userData.user.lastName",
         message: "Last Name should only contain alphabets",
       });
-      document.getElementById("lastName").focus();
+      if(document.getElementById("lastName")){
+      document.getElementById("lastName").focus();}
     }
 
 
@@ -322,7 +325,9 @@ function OnlineDonation() {
         message:
           "Mobile Number must contain exactly 10 digits and no alphabetic characters",
       });
+      if(document.getElementById("mobileNo")){
       document.getElementById("mobileNo").focus();
+    }
     }
   }else{
     if (!userData?.user?.mobileNo) {
@@ -335,9 +340,11 @@ function OnlineDonation() {
       validationErrors.push({
         field: "userData.user.mobileNo",
         message:
-          "Mobile Number must contain exactly 10 digits and no alphabetic characters",
+          "Mobile Number must contain exactly 11 digits and no alphabetic characters",
       });
+      if(document.getElementById("mobileNo")){
       document.getElementById("mobileNo").focus();
+    }
     }
   }
 
@@ -364,7 +371,6 @@ function OnlineDonation() {
         message: "Organisation is required",
       });
     }
-    console.log(hasAadharCard);
     if (userData?.user?.citizenship.toUpperCase() === INDIA) {
       if (hasAadharCard === true) {
         if (!userData?.user?.panCard) {
@@ -372,16 +378,28 @@ function OnlineDonation() {
             field: "userData.user.panCard",
             message: "PAN Card Number is required",
           });
-          document.getElementById("panCard").focus();
+          if(document.getElementById("panCard")){
+            document.getElementById("panCard").focus();
+          }
         } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
-          
-          validationErrors.push({
+            validationErrors.push({
             field: "userData.user.panCard",
             message: "PAN Card Number is Invalid",
           });
-          document.getElementById("panCard").focus();
+          if(document.getElementById("panCard")){
+            document.getElementById("panCard").focus();
+          }
+        }else if(/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard) === true && userData?.user?.donarType.toLocaleLowerCase() === "Individual"){
+          if(userData?.user?.panCard.charAt(3) !== "H" || userData?.user?.panCard.charAt(3) !== "P"){
+            validationErrors.push({
+              field: "userData.user.panCard",
+              message: "PAN Card Number is Invalid",
+            });
+            if(document.getElementById("panCard")){
+              document.getElementById("panCard").focus();
+            }
         }
-      } else {
+      }} else {
         if (
           !/^(?!.*[a-zA-Z])\d{16}$/.test(userData.user.addharCard) &&
           hasAadharCard
@@ -400,7 +418,9 @@ function OnlineDonation() {
           field: "userData.user.passport",
           message: "Passport is required",
         });
-        document.getElementById("passport").focus();
+        if(document.getElementById("passport")){
+          document.getElementById("passport").focus();
+        } 
       }
       // else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.passport)) {
       //   validationErrors.push({
