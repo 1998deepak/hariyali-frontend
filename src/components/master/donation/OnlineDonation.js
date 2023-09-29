@@ -312,7 +312,7 @@ function OnlineDonation() {
     }
 
 
-    if (userData?.user?.citizenship.toUpperCase() === INDIA) {
+    if (userData?.user?.citizenship?.toUpperCase() === INDIA) {
     if (!userData?.user?.mobileNo) {
       validationErrors.push({
         field: "userData.user.mobileNo",
@@ -354,14 +354,14 @@ function OnlineDonation() {
         message: "Donor Type is required",
       });
     }
-    // if(userData?.user?.donarType === "Individual"){ 
-    //   if (!userData?.user?.prefix) {
-    //     validationErrors.push({
-    //       field: "userData.user.prefix",
-    //       message: "Prefix is required",
-    //     });
-    //     document.getElementById("prefix").focus();
-    //   }}
+    if(userData?.user?.donarType === "Individual"){ 
+      if (!userData?.user?.prefix || userData?.user?.prefix =="") {
+        validationErrors.push({
+          field: "userData.user.prefix",
+          message: "Prefix is required",
+        });
+        document.getElementById("prefix").focus();
+      }}
     if (
       userData?.user?.donarType.toLocaleLowerCase() === "corporate" &&
       !userData?.user?.organisation
@@ -401,9 +401,7 @@ function OnlineDonation() {
         }
       }} else {
         if (
-          !/^(?!.*[a-zA-Z])\d{16}$/.test(userData.user.addharCard) &&
-          hasAadharCard
-        ) {
+          !(/^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$/.test(userData.user.addharCard))) {
           validationErrors.push({
             field: "userData.user.addharCard",
             message:
@@ -487,8 +485,7 @@ function OnlineDonation() {
 
     // Validate recipient (only for "Gift Donate" donation type)
     console.log(donationType);
-   
-    if (donationType === "Gift-Donate") {
+    if (donationType === "gift-donate") {
       console.log(donations[0].donationEvent);
       if (!donations[0]?.donationEvent) {
         validationErrors.push({
@@ -585,6 +582,10 @@ function OnlineDonation() {
     setInformationShare("yes");
     setPrivacyPolicy1(false);
     setPrivacyPolicy2(false);
+    setUserEmail("");
+    setGiftUserEmail("");
+    setIsDivOpenGift(false);
+    setIsDivOpen(false);
   };
 
   const setCaptchaFlag = async (flag) => {
@@ -593,6 +594,7 @@ function OnlineDonation() {
   const navigate = useNavigate();
   const userAdd = async (e, donationType) => {
     e.preventDefault();
+    setDonationType(donationType == "self" ? "self-donate" : "gift-donate");
     const isValid = validate();
     console.log("isValid:", isValid);
     if (!privacyPolicy1 || !privacyPolicy2) {
@@ -1492,11 +1494,11 @@ function OnlineDonation() {
                           <hr />
                           {userData?.user?.donarType === "Corporate" ? (
                             <div className="actionheadingdiv">
-                              DETAILS OF POINT OF CONTACT 
+                              DETAILS OF POINT OF CONTACT
                             </div>
                           ) : (
                             <div className="actionheadingdiv">
-                              DETAILS OF DONOR 
+                              DETAILS OF DONOR
                             </div>
                           )}
                           <div className="col-12 pr15">
@@ -1746,7 +1748,7 @@ function OnlineDonation() {
                                   </div>
                                 </div>{" "}
                               </div>
-                              {userData?.user?.citizenship.toUpperCase() ===
+                              {userData?.user?.citizenship?.toUpperCase() ===
                               INDIA ? (
                                 <>
                                   {userData?.user?.donarType ===
@@ -2582,7 +2584,7 @@ function OnlineDonation() {
                             </div>
                           </div>
                         </div>
-                        
+
                       </div>
                     </div>
                     <div>
@@ -2697,7 +2699,7 @@ function OnlineDonation() {
                                   {" "}
                                   Achievements
                                 </option>
-                                <option value=" Memorial Tribute">
+                                <option value="Memorial Tribute">
                                   {" "}
                                   Memorial Tribute
                                 </option>
@@ -2743,8 +2745,8 @@ function OnlineDonation() {
                             </div>
                           </div>
                         </div>
-                        
-                        <div className="col-12 padding-top-10">                  
+
+                        <div className="col-12 padding-top-10">
                           <span className="actionheadingdiv"><b>Proceed to Gift and provide Gifter & Giftee details</b></span>
 
                           <Button
@@ -3010,7 +3012,7 @@ function OnlineDonation() {
                                   </div>
                                 </div>{" "}
                               </div>
-                              {userData?.user?.citizenship.toUpperCase() ===
+                              {userData?.user?.citizenship?.toUpperCase() ===
                               INDIA ? (
                                 <>
                                   {userData?.user?.donarType ===
@@ -3474,6 +3476,7 @@ function OnlineDonation() {
                                     <input
                                       className="form-control-inside form-control"
                                       name="city"
+                                      id="city"
                                       placeholder="City"
                                       type="text"
                                       value={address[0]?.city}
@@ -3506,6 +3509,7 @@ function OnlineDonation() {
                                     </label>
                                     <input
                                       className="form-control-inside form-control"
+                                      id="postalCode"
                                       name="postalCode"
                                       type="text"
                                       maxLength={6}
