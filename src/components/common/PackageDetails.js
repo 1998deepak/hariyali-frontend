@@ -24,7 +24,7 @@ const PackageDetails = ({
 
   return (
     <>
-      <div className="actionheadingdiv">{disabled ? <></>:<>SELECT NUMBER</>} OF SAPLING</div>
+      <div className="actionheadingdiv">{disabled ? <></>:<>SELECT NUMBER</>} OF SAPLINGS</div>
       <div className="mt20">
         <table>
           <colgroup>
@@ -35,7 +35,7 @@ const PackageDetails = ({
           <thead>
             <tr>
               <th>Cost per Sapling</th>
-              <th >Number of Sapling</th>
+              <th >Number of Saplings</th>
               <th>Total Cost</th>
             </tr>
           </thead>

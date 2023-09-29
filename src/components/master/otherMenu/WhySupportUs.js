@@ -282,12 +282,12 @@ function WhySupportUs() {
             <div className="discover-block impactbgcolor3">
               <div className="impactbg3">
               <div class="impact-margin h-100">  <div class="card-header">
-                  CO<sub>2</sub> sequestered
+                  CO<sub>2</sub> Sequestered
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title impactwidth">CO<sub>2</sub> sequestered through the project Since
+                  <h5 class="card-title impactwidth">CO<sub>2</sub> sequestered through the project since
                     inception{" "}</h5>
-                  <p class="card-text">400,000+ tonnes</p>
+                  <p class="card-text">&#x3E;<span>153.0 ktonne CO<sub>2</sub>e</span></p>
                 </div></div>
               </div>
             </div>
@@ -312,7 +312,7 @@ function WhySupportUs() {
                   Bio-diversity
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title impactwidth">Significant positive change in</h5>
+                  <h5 class="card-title impactwidth">Significant positive change in bio-diversity</h5>
                   <p class="card-text">Bio-diversity</p>
                 </div></div>
               </div>

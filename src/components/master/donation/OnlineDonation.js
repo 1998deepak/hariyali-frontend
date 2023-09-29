@@ -23,6 +23,7 @@ import PrivacyPolicy from "../../common/PrivacyPolicy";
 import Card from "react-bootstrap/Card";
 import PackageDetails from "../../common/PackageDetails";
 import useScrollTop from "../../hooks/useScrollTop";
+import PrivacyPolicyPopup from "../../common/popup/PrivacyPolicyPopup";
 
 function OnlineDonation() {
   //scroll Screen to top
@@ -41,6 +42,7 @@ function OnlineDonation() {
   const [validatePopup, setValidatePopup] = useState({});
   const [show, setShow] = useState(false);
   const [showConditons, setShowConditons] = useState(false);
+  const [showConditons1, setShowConditons1] = useState(false);
   const [validSelfUser, setValidSelfUser] = useState(false);
   const [validGiftUser, setValidGiftUser] = useState(false);
 
@@ -49,7 +51,7 @@ function OnlineDonation() {
   const handleShow = () => setShow(true);
 
   const handleCloseConditions = () => setShowConditons(false);
-
+  const handleShowConditions1 = () => setShowConditons1(false);
   const [showDonationModal, setShowDonationModal] = useState(false);
   const [transactionMessage, setTransactionMessage] = useState("");
   const location = useLocation();
@@ -77,6 +79,11 @@ function OnlineDonation() {
   const handleShowConditions = (e) => {
     e.preventDefault();
     setShowConditons(true);
+  };
+
+  const handleCloseConditions1 = (e) => {
+    e.preventDefault();
+    setShowConditons1(true);
   };
 
   const initialPackageData = [
@@ -135,6 +142,7 @@ function OnlineDonation() {
       donationEvent: "",
       totalAmount: 0,
       generalDonation: null,
+      giftContent:"",
       userPackage: [],
       recipient: [],
       paymentInfo: [
@@ -255,7 +263,7 @@ function OnlineDonation() {
 
   const validate = (pan) => {
     const validationErrors = [];
-
+    console.log(recipient[0]?.firstName, recipient[0].lastName, recipient[0]?.emailId);
     // Validate donationType
     if (!donationType) {
       validationErrors.push({
@@ -472,6 +480,13 @@ function OnlineDonation() {
           message: "Donation Event is required",
         });
       }
+      console.log(donations[0]?.giftContent);
+      if (!donations[0]?.giftContent) {
+        validationErrors.push({
+          field: "donations.giftContent",
+          message: "Message for the giftee is required",
+        });
+      }
       console.log(recipient[0]?.firstName);
       if (!recipient[0]?.firstName) {
         validationErrors.push({
@@ -506,52 +521,12 @@ function OnlineDonation() {
           message: "Email ID is required",
         });
         document.getElementById("recEmailId").focus();
-      } else if (
-        !/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(
-          recipient[0].emailId
-        )
-      ) {
+      } else if (!/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(recipient[0].emailId)) {
         validationErrors.push({
           field: "recipient[0].emailId",
           message: "Invalid Email ID",
         });
         document.getElementById("recEmailId").focus();
-      }
-      if (!recipient[0]?.mobileNo) {
-        validationErrors.push({
-          field: "recipient[0].mobileNo",
-          message: "Mobile Number is required",
-        });
-        document.getElementById("recMobileNo").focus();
-      } else if (!/^(?!.*[a-zA-Z])\d{10}$/.test(recipient[0]?.mobileNo)) {
-        validationErrors.push({
-          field: "recipient[0].mobileNo",
-          message:
-            "Mobile Number must contain exactly 10 digits and no alphabetic characters",
-        });
-        document.getElementById("recMobileNo").focus();
-      }
-
-      if (!recipient[0]?.address[0]?.street1) {
-        validationErrors.push({
-          field: "recipient[0].address[0].street1",
-          message: "Recipient Street is required",
-        });
-        document.getElementById("recStreet1").focus();
-      }
-      if (!recipient[0]?.address[0]?.country) {
-        validationErrors.push({
-          field: "recipient[0].address[0].country",
-          message: "Recipient Country is required",
-        });
-        document.getElementById("recCountry").focus();
-      }
-      if (!recipient[0]?.address[0]?.state) {
-        validationErrors.push({
-          field: "recipient[0].address[0].state",
-          message: "Recipient State is required",
-        });
-        document.getElementById("recState").focus();
       }
     }
 
@@ -922,7 +897,7 @@ function OnlineDonation() {
     console.log(e);
     const { name, value } = e.target;
     const updatedDonations = [...donations];
-    if (name === "donationEvent") {
+    // if (name === "donationEvent") {
       console.log(name);
       // if (value === 'other') {
       //   setShowOtherInput(true);
@@ -931,7 +906,7 @@ function OnlineDonation() {
       // }
       updatedDonations[index][name] = value;
       console.log(updatedDonations);
-    }
+    // }
     if (name === "generalDonation") {
       let gnrlDonation = parseInt(value);
       console.log(gnrlDonation);
@@ -1044,7 +1019,6 @@ function OnlineDonation() {
   const handleBlur = async (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-    console.log(name);
     let error = "";
     if (!value) {
       error = "Email ID is required";
@@ -1353,42 +1327,46 @@ function OnlineDonation() {
                         <div className="select-label">
                           {/* <div className="col-4 "> Select Your Citizenship</div> */}
                           <div className="col-12 p0 field-wrapper">
-                            <label for="citizenship" class="form-label">
-                              Select Your Country{" "}
-                              <span className="red-text">*</span>
-                            </label>
-                            <select
-                              className=" form-control-inside form-select"
-                              name="user.citizenship"
-                              id="citizenship"
-                              value={userData?.user?.citizenship}
-                              onChange={handleChange}
-                            >
-                              <option disabled selected value="">
-                                Select Country
-                              </option>
-                              {citizenships.map((citizenship) => {
-                                return (
-                                  <option value={citizenship.citizenshipName}>
-                                    {citizenship.citizenshipName}
-                                  </option>
-                                );
-                              })}
-                            </select>
-                            {errors.map((error, index) => {
-                              if (error.field === "userData.user.citizenship") {
-                                return (
-                                  <div
-                                    key={index}
-                                    className="error-message red-text"
-                                  >
-                                    {error.message}
+                                    <label class="form-label">
+                                      Select Your Country{" "}
+                                      <span className="red-text">*</span>
+                                    </label>
+                                    <select
+                                      className=" form-control-inside form-select"
+                                      name="country"
+                                      id="country"
+                                      value={address[0]?.country}
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 0)
+                                      }
+                                    >
+                                      <option disabled selected value="">
+                                        Select Country
+                                      </option>
+                                      {countries.map((country) => {
+                                        return (
+                                          <option value={country.countryName}>
+                                            {country.countryName}
+                                          </option>
+                                        );
+                                      })}
+                                    </select>
+                                    {errors.map((error, index) => {
+                                      if (
+                                        error.field === "address[0].country"
+                                      ) {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
                                   </div>
-                                );
-                              }
-                              return null;
-                            })}
-                          </div>
                         </div>
                       </div>):(<div className="col-12 col-md-6">
                         <div className="select-label">
@@ -1438,12 +1416,12 @@ function OnlineDonation() {
                           <div className="col-12 p0 field-wrapper">
                             {userData?.user?.donarType === "Corporate" ? (
                               <label for="emailId" class="form-label top-18">
-                                Email ID - Point Of Contact{" "}
+                                Email ID - Point of Contact{" "}
                                 <span className="red-text">*</span>
                               </label>
                             ) : (
                               <label for="emailId" class="form-label top-18">
-                                Email ID <span className="red-text">*</span>
+                                Email ID of Donor{" "} <span className="red-text">*</span>
                               </label>
                             )}
                             <input
@@ -1481,11 +1459,12 @@ function OnlineDonation() {
                     </div>{" "}
                     <div dangerouslySetInnerHTML={{ __html: message }}></div>
                     {userData?.user?.donarType === "Corporate" ? (
-                      <div>For CSR related enquiries please reach us at Gangar Sunny, <a href="">GANGAR.SUNNY@mahindra.com</a>   |  93224 56789</div>
+                      <div>For CSR related enquiries please reach us at <a href="">support@hariyali.org.in</a> | 022 22021031</div>
                     ) : (
                       <></>
                     )}
                   </div>
+                  <br/>
                   <div>
                     {isDivOpen && (
                       <div>
@@ -1506,7 +1485,7 @@ function OnlineDonation() {
                             </div>
                           ) : (
                             <div className="actionheadingdiv">
-                              DETAILS OF DONAR
+                              DETAILS OF DONOR
                             </div>
                           )}
                           <div className="col-12 pr15">
@@ -1643,7 +1622,6 @@ function OnlineDonation() {
                                     <div className="col-12 p0 field-wrapper">
                                       <label className="form-label">
                                         Prefix{" "}
-                                        <span className="red-text">*</span>
                                       </label>
 
                                       <select
@@ -1762,10 +1740,9 @@ function OnlineDonation() {
                                 <>
                                   {userData?.user?.donarType ===
                                   "Individual" ? (
-                                    <div className="col-12 col-md-6">
+                                    <div className="col-12 col-md-6 mt-5">
                                       <div className="select-label">
                                         <div className="col-12 p0 field-wrapper">
-                                          <div>
                                             <label>
                                               Do you have a PAN Card?
                                             </label>
@@ -1791,7 +1768,6 @@ function OnlineDonation() {
                                                 No
                                               </label>
                                             </div>
-                                          </div>
                                         </div>
                                       </div>
                                     </div>
@@ -1955,13 +1931,13 @@ function OnlineDonation() {
                               )}
                             </div>
                           </div>
-                          <hr />
+                          <br/>
                           {userData?.user?.donarType === "Corporate" ? (
-                            <div className="actionheadingdiv">
-                              Orgnization Address
+                            <div className="">
+                            ORGANISATION ADDRESS
                             </div>
                           ) : (
-                            <div className="actionheadingdiv">Address</div>
+                            <div className="">ADDRESS</div>
                           )}
                           <div className="col-12 pr15">
                             <div className="row">
@@ -2482,6 +2458,7 @@ function OnlineDonation() {
                             setPrivacyPolicy1={setPrivacyPolicy1}
                             setPrivacyPolicy2={setPrivacyPolicy2}
                             handleShowConditions={handleShowConditions}
+                            handleCloseConditions1 ={handleCloseConditions1}
                             privacyPolicymessage={privacyPolicymessage}
                           />
 
@@ -2560,6 +2537,131 @@ function OnlineDonation() {
                           </div>
                         </div>
                         <div className="col-12 col-md-6">
+                          <div className="select-label">
+                            {/* <div className="col-4 "> Email ID</div> */}
+                            <div className="col-12 p0 field-wrapper">
+                              {userData?.user?.donarType === "Corporate" ? (
+                                <label for="emailId" class="form-label top-18">
+                                  Email ID - Point Of Contact{" "}
+                                  <span className="red-text">*</span>
+                                </label>
+                              ) : (
+                                <label for="emailId" class="form-label top-18">
+                                  Email ID of Donor / Gifter {" "}<span className="red-text">*</span>
+                                </label>
+                              )}
+                              <input
+                                type="text"
+                                name="gift"
+                                value={giftUserEmail}
+                                id="emailId"
+                                onChange={onChangeGiftUserEmail}
+                                placeholder="Enter Email Id"
+                                className="form-control"
+                                // onKeyPress={handleKeyPress}
+                                onBlur={handleBlur}
+                              />
+                              {emailError ? (
+                                <div className="error-message red-text">
+                                  {emailError}
+                                </div>
+                              ) : (
+                                <></>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div>
+                      <div className="row">
+                        <div className="col-12 col-md-6">
+                          <div className=" select-label">
+                            {/* <div className="col-4 "> Select Your Citizenship</div> */}
+                            {userData?.user?.donarType === "Corporate" ? (
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label">
+                                      Select Your Country{" "}
+                                      <span className="red-text">*</span>
+                                    </label>
+                                    <select
+                                      className=" form-control-inside form-select"
+                                      name="country"
+                                      id="country"
+                                      value={address[0]?.country}
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 0)
+                                      }
+                                    >
+                                      <option disabled selected value="">
+                                        Select Country
+                                      </option>
+                                      {countries.map((country) => {
+                                        return (
+                                          <option value={country.countryName}>
+                                            {country.countryName}
+                                          </option>
+                                        );
+                                      })}
+                                    </select>
+                                    {errors.map((error, index) => {
+                                      if (
+                                        error.field === "address[0].country"
+                                      ) {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                ):(
+                              <div className="col-12 p0 field-wrapper">
+                              <label className="form-label">
+                                Select Your Citizenship{" "}
+                                <span className="red-text">*</span>
+                              </label>
+                              <select
+                                className=" form-control-inside form-select"
+                                name="user.citizenship"
+                                value={userData?.user?.citizenship}
+                                onChange={handleChange}
+                              >
+                                <option disabled selected value="">
+                                  Select Citizenship
+                                </option>
+                                {citizenships.map((citizenship) => {
+                                  return (
+                                    <option value={citizenship.citizenshipName}>
+                                      {citizenship.citizenshipName}
+                                    </option>
+                                  );
+                                })}
+                              </select>
+                              {errors.map((error, index) => {
+                              if (error.field === "userData.user.citizenship") {
+                                return (
+                                  <div
+                                    key={index}
+                                    className="error-message red-text"
+                                  >
+                                    {error.message}
+                                  </div>
+                                );
+                              }
+                              return null;
+                            })}
+                            </div>
+                            )}
+                          </div>
+                        </div>
+                        <div className="col-12 col-md-6">
                           <div className=" select-label">
                             {/* <div className="col-4 ">Occasion</div> */}
                             <div className="col-12 p0 field-wrapper">
@@ -2608,85 +2710,20 @@ function OnlineDonation() {
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="row">
-                        <div className="col-12 col-md-6">
-                          <div className=" select-label">
-                            {/* <div className="col-4 "> Select Your Citizenship</div> */}
-                            <div className="col-12 p0 field-wrapper">
-                              <label className="form-label">
-                                Select Your Citizenship{" "}
-                                <span className="red-text">*</span>
-                              </label>
-                              <select
-                                className=" form-control-inside form-select"
-                                name="user.citizenship"
-                                value={userData?.user?.citizenship}
-                                onChange={handleChange}
-                              >
-                                <option disabled selected value="">
-                                  Select Citizenship
-                                </option>
-                                {citizenships.map((citizenship) => {
-                                  return (
-                                    <option value={citizenship.citizenshipName}>
-                                      {citizenship.citizenshipName}
-                                    </option>
-                                  );
-                                })}
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6">
-                          <div className="select-label">
-                            {/* <div className="col-4 "> Email ID</div> */}
-                            <div className="col-12 p0 field-wrapper">
-                              {userData?.user?.donarType === "Corporate" ? (
-                                <label for="emailId" class="form-label top-18">
-                                  Email ID - Point Of Contact{" "}
-                                  <span className="red-text">*</span>
-                                </label>
-                              ) : (
-                                <label for="emailId" class="form-label top-18">
-                                  Email ID <span className="red-text">*</span>
-                                </label>
-                              )}
-                              <input
-                                type="text"
-                                name="gift"
-                                value={giftUserEmail}
-                                id="emailId"
-                                onChange={onChangeGiftUserEmail}
-                                placeholder="Enter Email Id"
-                                className="form-control"
-                                // onKeyPress={handleKeyPress}
-                                onBlur={handleBlur}
-                              />
-                              {emailError ? (
-                                <div className="error-message red-text">
-                                  {emailError}
-                                </div>
-                              ) : (
-                                <></>
-                              )}
-                            </div>
-                          </div>
-                        </div>
                         <div className="col-12 col-md-6">
                           <div className=" select-label">
                             {/* <div className="col-4 ">Occasion</div> */}
                             <div className="col-12 p0 field-wrapper">
                               <label className="form-label">
-                                Message for the Giftee{" "}
+                                Message for the Giftee {" "}
                                 <span className="red-text">*</span>
                               </label>
                               <textarea
                                 className="form-control"
                                 placeholder="Message for the Giftee"
-                                onChange={handleChangeTextarea}
+                                name="giftContent"
+                                value={donations[0].giftContent}
+                                onChange={(e) => {handleChangeTextarea(e);handleDonationChange(e, 0)}}
                                 maxLength={maxLength}
                               ></textarea>
                               <p>
@@ -2695,7 +2732,10 @@ function OnlineDonation() {
                             </div>
                           </div>
                         </div>
+
                         <div className="col-12 padding-top-10">
+                          <span className="actionheadingdiv"><b>Proceed to Gift and provide Gifter & Giftee details</b></span>
+
                           <Button
                             className="float-right"
                             variant="success"
@@ -2723,11 +2763,11 @@ function OnlineDonation() {
                           <hr />
                           {userData?.user?.donarType === "Corporate" ? (
                             <div className="actionheadingdiv">
-                              DETAILS OF POINT OF CONTACT
+                              DETAILS OF POINT OF CONTACT / GIFTER
                             </div>
                           ) : (
                             <div className="actionheadingdiv">
-                              DETAILS OF DONAR
+                              DETAILS OF DONAR / GIFTER
                             </div>
                           )}
                           <div className="col-12 pr15 mt20">
@@ -2853,7 +2893,6 @@ function OnlineDonation() {
                                     <div className="col-12 p0 field-wrapper">
                                       <label className="form-label">
                                         Prefix{" "}
-                                        <span className="red-text">*</span>
                                       </label>
 
                                       <select
@@ -2965,10 +3004,9 @@ function OnlineDonation() {
                                 <>
                                   {userData?.user?.donarType ===
                                   "Individual" ? (
-                                    <div className="col-12 col-md-6">
+                                    <div className="col-12 col-md-6 mt-5">
                                       <div className="select-label">
                                         <div className="col-12 p0 field-wrapper">
-                                          <div>
                                             <label>
                                               Do you have a PAN Card?
                                             </label>
@@ -2994,7 +3032,6 @@ function OnlineDonation() {
                                                 No
                                               </label>
                                             </div>
-                                          </div>
                                         </div>
                                       </div>
                                     </div>
@@ -3158,13 +3195,13 @@ function OnlineDonation() {
                               )}
                             </div>
                           </div>
-                          <hr />
+                          <br />
                           {userData?.user?.donarType === "Corporate" ? (
-                            <div className="actionheadingdiv">
-                              Orgnization Address
+                            <div className="">
+                              ORGANISATION ADDRESS
                             </div>
                           ) : (
-                            <div className="actionheadingdiv">Address</div>
+                            <div className="">ADDRESS</div>
                           )}
                           <div className="col-12 pr15">
                             <div className="row">
@@ -3491,7 +3528,7 @@ function OnlineDonation() {
                           </div>
                           <hr />
                           <div className="actionheadingdiv">
-                            DETIALS OF GIFTEE
+                            DETIALS OF GIFTEE / RECEIPIENT
                           </div>
                           <div className="col-12 pr15">
                             <div>
@@ -3907,6 +3944,7 @@ function OnlineDonation() {
                             setPrivacyPolicy1={setPrivacyPolicy1}
                             setPrivacyPolicy2={setPrivacyPolicy2}
                             handleShowConditions={handleShowConditions}
+                            handleCloseConditions1={handleCloseConditions1}
                             privacyPolicymessage={privacyPolicymessage}
                           />
                           <button
@@ -4014,6 +4052,10 @@ function OnlineDonation() {
           <TermsConditionsPopup
             showConditons={showConditons}
             handleCloseConditions={handleCloseConditions}
+          />
+          <PrivacyPolicyPopup
+            showConditons1={showConditons1}
+            handleCloseConditions1={handleShowConditions1}
           />
         </Container>
       </div>

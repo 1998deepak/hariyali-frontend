@@ -68,7 +68,7 @@ const Header = () => {
                   <div className="footer-divheading">Resources</div>
                   <ul>
                     <li><a href="/Policy">Privacy Policy</a></li>
-                    <li><a href="TermsandConditions">Terms & Conditions</a></li>
+                    <li><a href="TermsandConditions">Terms Of Use</a></li>
                     <li>Legal Documents
                         <ul className="nested-ul">
                           <li><a href={require('../../assets/pdf/Hariyali Regd Revised Trust Deed dated 27 Oct 2014.pdf')} target="_blank"> Registration Certificate </a></li>

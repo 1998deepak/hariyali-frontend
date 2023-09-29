@@ -12,17 +12,17 @@ const TermsConditionsPopup = ({ showConditons, handleCloseConditions }) => {
       dialogClassName="modal-90w"
     >
       <Modal.Header style={{ backgroundColor: "#23aa4a" }} closeButton>
-        <Modal.Title>Privacy Policy</Modal.Title>
+        <Modal.Title>Terms Of Use</Modal.Title>
       </Modal.Header>
       <Modal.Body className="modal-70h">
-        <Row>
+      <Row>
           <p>
           Project Hariyali is a joint initiative of Mahindra Foundation and Naandi Foundation which focusses on improving India's green cover and protecting biodiversity. It is the fulfillment of a shared vision of Mahindra Foundation and Naandi Foundation for the preservation of the environment which includes but is not restricted to large scale tree plantation, natural resource management, global organic farming protocols to support local community livelihoods, enriching the agricultural eco system and build functional forests.</p>
 
 
-<p>Thank you for using the Website "www.hariyali.org.in", which is jointly  operated and managed by Mahindra Foundation   having its registered office at Gateway Building, Apollo Bunder, Mumbai – 400 001, India and Naandi Foundation  having its registered office at 502, Trendset Towers, Road No 2, Banjara Hills, Hyderabad 500 034, Telangana, India (hereinafter collectively referred to as  "we" or "us", which expression shall, unless it be repugnant to the context or meaning thereof, be deemed to mean and include,  successors and permitted assigns). </p>
+<p>Thank you for using the Website <b>"www.hariyali.org.in"</b>, which is jointly  operated and managed by <b>Mahindra Foundation</b>   having its registered office at Gateway Building, Apollo Bunder, Mumbai – 400 001, India and <b>Naandi Foundation</b>  having its registered office at 502, Trendset Towers, Road No 2, Banjara Hills, Hyderabad 500 034, Telangana, India (hereinafter collectively referred to as  <b>"we"</b> or <b>"us"</b>, which expression shall, unless it be repugnant to the context or meaning thereof, be deemed to mean and include,  successors and permitted assigns). </p>
 
-<p>These Terms of Use, together with any documents incorporated by reference including the Privacy Policy available at Website, and all other operating rules, policies, and procedures that may be published on the Website by us which are incorporated by reference (collectively referred to as the "Agreement"), govern your access to and use of the Website  and any content, functionality, sub-domains and services offered on or through the same. </p>
+<p>These Terms of Use, together with any documents incorporated by reference including the Privacy Policy available at Website, and all other operating rules, policies, and procedures that may be published on the Website by us which are incorporated by reference (collectively referred to as the <b>"Agreement"</b>), govern your access to and use of the Website  and any content, functionality, sub-domains and services offered on or through the same. </p>
 
 
 <p>BY VIEWING, ACCESSING, BROWSING, DEALING, TRANSACTING AND/OR OTHERWISE USING THIS WEBSITE, YOU SHALL BE DEEMED TO HAVE ACCEPTED THE AGREEMENT. <b>PLEASE READ THE AGREEMENT CAREFULLY BEFORE PROCEEDING.</b>  IN THE EVENT, AN OPTION IS GIVEN DURING THE COURSE OF EVERY TRANSACTION TO ENABLE THE USER TO EXPRESS HIS/HER ACCEPTANCE OR REJECTION OF THE AGREEMENT, YOUR ACCEPTANCE BY CLICKING ON <b>"I AGREE"</b> SHALL BE DEEMED THAT YOU HAVE GONE THROUGH, UNDERSTOOD AND ACCEPTED THESE TERMS AND CONDITIONS COMPLETELY AND ACCORDINGLY THE AGREEMENT SHALL BE TREATED AS LEGALLY BINDING AND ENFORCEABLE AGREEMENT BETWEEN US AND YOU. <b>IN CASE IF YOU DO NOT AGREE WITH ANY OF THESE TERMS & CONDITIONS OR ALL OF THE AGREEMENT, THEN YOU ARE NOT PERMITTED TO VIEW, ACCESS, DEAL WITH AND/OR TRANSACT ON THIS WEBSITE.</b>  </p>
@@ -73,7 +73,7 @@ const TermsConditionsPopup = ({ showConditons, handleCloseConditions }) => {
 
 <p>5.1	To access the Website or some of the resources it offers, You may be asked to provide certain registration details or other information. It is a condition of Your use of the Website that all the information You provide on the Website is correct, current and complete. You agree that all information You provide to register with this Website or otherwise, including but not limited to through the use of any interactive features on the Website, is governed by our Privacy Policy, and You consent to all actions we take with respect to Your information consistent with our Privacy Policy. </p>
 
-<p>5.2	Privacy and Personal Data: Our Privacy Policy explains how we shall process your personal data and protect your privacy, when you use the Website. You agree to the processing of your personal data in accordance with the Privacy Policy. If you become aware of any unauthorized use of your account, you agree to promptly notify us at support@hariyali.co.in.</p>
+<p>5.2	<b>Privacy and Personal Data:</b> Our Privacy Policy explains how we shall process your personal data and protect your privacy, when you use the Website. You agree to the processing of your personal data in accordance with the Privacy Policy. If you become aware of any unauthorized use of your account, you agree to promptly notify us at <a href="">support@hariyali.org.in</a>.</p>
 
 <p>5.3	If you choose, or are provided with, a username, password or any other piece of information as part of our security procedures, You must treat such information as confidential, and You must not disclose it to any other person or entity under any circumstances, whatsoever. You also acknowledge that Your account is personal to You and agree not to provide any other person with access to this Website or portions of it using Your username, password or other security information. You agree to notify us immediately of any unauthorized access to or use of Your username or password or any other breach of security. You also agree to ensure that you exit/logout from Your account at the end of each session. You should use particular caution when accessing Your account from a public or shared computer so that others are not able to view or record Your password or other personal information.</p>
 
@@ -86,13 +86,13 @@ const TermsConditionsPopup = ({ showConditons, handleCloseConditions }) => {
 <p><b>5.7	OTP-Based Verification</b></p>
 
 <p>5.7.1	To enhance the security and integrity of your account and transactions, our Website may utilize OTP (One-Time Password) based verification. By using our Website, you acknowledge and agree to the following:</p>
-<p>5.7.1.1	Usage of OTP: You understand that certain features and transactions within the Website may require OTP-based verification to confirm Your identity and secure your account. This includes, but is not limited to, account registration, password reset, and critical transactions.</p>
-<p>5.7.1.2	Contact Information: You consent to provide accurate and up-to-date contact information, including phone numbers and email addresses, which will be used for sending OTPs. You agree that any discrepancies in this information may hinder your ability to access the Website's features.</p>
-<p>5.7.1.3	OTP Security: You acknowledge that OTPs are time-sensitive and unique codes that provide an additional layer of security. You agree to keep OTPs confidential and not share them with anyone. We will never ask you for your OTP or any sensitive information via email, phone call, or any other means.</p>
-<p>5.7.1.4	Access Control: You understand that the OTP-based verification is designed to prevent unauthorized access to your account. By using OTPs, you agree to take responsibility for the security of your mobile device, ensuring it is locked, and only accessible by you or authorized users.</p>
-<p>5.7.1.5	Unauthorized Access: If you suspect any unauthorized access to your account or if you receive an OTP without initiating any action, you agree to immediately notify our customer support team and take necessary steps to secure your account.</p>
-<p>5.7.1.6	Limited Liability: While OTP-based verification enhances security, it does not eliminate all risks associated with digital transactions. We are not liable for any unauthorized access, misuse, or breaches resulting from factors beyond our control.</p>
-<p>5.7.1.7	Modification of OTP Process: We reserve the right to modify, suspend, or terminate the OTP-based verification process, or to impose additional security measures at our discretion. We will notify you of any such changes in accordance with our communication procedures.</p>
+<p>5.7.1.1	<b>Usage of OTP:</b> You understand that certain features and transactions within the Website may require OTP-based verification to confirm Your identity and secure your account. This includes, but is not limited to, account registration, password reset, and critical transactions.</p>
+<p>5.7.1.2	<b>Contact Information:</b> You consent to provide accurate and up-to-date contact information, including phone numbers and email addresses, which will be used for sending OTPs. You agree that any discrepancies in this information may hinder your ability to access the Website's features.</p>
+<p>5.7.1.3	<b>OTP Security:</b> You acknowledge that OTPs are time-sensitive and unique codes that provide an additional layer of security. You agree to keep OTPs confidential and not share them with anyone. We will never ask you for your OTP or any sensitive information via email, phone call, or any other means.</p>
+<p>5.7.1.4	<b>Access Control:</b> You understand that the OTP-based verification is designed to prevent unauthorized access to your account. By using OTPs, you agree to take responsibility for the security of your mobile device, ensuring it is locked, and only accessible by you or authorized users.</p>
+<p>5.7.1.5	<b>Unauthorized Access:</b> If you suspect any unauthorized access to your account or if you receive an OTP without initiating any action, you agree to immediately notify our customer support team and take necessary steps to secure your account.</p>
+<p>5.7.1.6	<b>Limited Liability:</b> While OTP-based verification enhances security, it does not eliminate all risks associated with digital transactions. We are not liable for any unauthorized access, misuse, or breaches resulting from factors beyond our control.</p>
+<p>5.7.1.7	<b>Modification of OTP Process:</b> We reserve the right to modify, suspend, or terminate the OTP-based verification process, or to impose additional security measures at our discretion. We will notify you of any such changes in accordance with our communication procedures.</p>
 
 <p><b><u>6.	INTELLECTUAL PROPERTY RIGHTS NOTICE</u></b></p>
 	
@@ -134,7 +134,7 @@ const TermsConditionsPopup = ({ showConditons, handleCloseConditions }) => {
 
 <p>9.3	User shall not upload on the Website or otherwise distribute or publish through the Website any matter or material which is or may be considered abusive, pornographic, illegal, defamatory, obscene, racist or which is otherwise unlawful or designed to cause disruption to any computer systems or network. We shall be entitled without liability to the User and at our discretion to remove any such content from our server immediately. No user shall post any message to the Website which is in violation of the acceptable user policies in respect of this Website. We reserve the right to delete and remove all such postings.  </p>
 
-<p> 9.4	In the event, User is required to submit his/her information on the Website (“User Submissions”), User agrees and undertakes that the User shall be solely responsible for the same and confirms that such User Submissions: </p>
+<p> 9.4	In the event, User is required to submit his/her information on the Website (<b>“User Submissions”</b>), User agrees and undertakes that the User shall be solely responsible for the same and confirms that such User Submissions: </p>
 <p>(a)	is complete, correct, relevant and accurate. </p>
 <p>(b)	is not fraudulent. </p>
 <p>(c)	does not infringe any third party's intellectual property, trade secret and/or other proprietary rights and/or privacy. </p>
@@ -189,9 +189,9 @@ const TermsConditionsPopup = ({ showConditons, handleCloseConditions }) => {
 
 <p><b><u>13.	DISPUTE RESOLUTION, GOVERNING LAW AND JURISDICTION</u></b></p>
 
-<p>Dispute Resolution: Any dispute arising out of or in connection with this Agreement, including any question regarding its existence, validity or termination, shall be referred to and finally resolved by arbitration in accordance with the Arbitration Rules of the Mumbai Centre for International Arbitration (“MCIA Rules”), which rules are deemed to be incorporated by reference in this clause. The seat of the arbitration shall be Mumbai. The tribunal shall consist of one arbitrator. The language of the arbitration shall be English.</p>
+<p><b>Dispute Resolution:</b> Any dispute arising out of or in connection with this Agreement, including any question regarding its existence, validity or termination, shall be referred to and finally resolved by arbitration in accordance with the Arbitration Rules of the Mumbai Centre for International Arbitration (<b>“MCIA Rules”</b>), which rules are deemed to be incorporated by reference in this clause. The seat of the arbitration shall be Mumbai. The tribunal shall consist of one arbitrator. The language of the arbitration shall be English.</p>
 
-<p>Governing Law and Jurisdiction: All matters relating to the Website and the Agreement and any dispute or claim arising therefrom or related thereto (in each case, including non-contractual disputes or claims) shall be governed by and construed in accordance with the laws of India and courts at Mumbai only shall have exclusive jurisdiction.</p>
+<p><b>Governing Law and Jurisdiction:</b> All matters relating to the Website and the Agreement and any dispute or claim arising therefrom or related thereto (in each case, including non-contractual disputes or claims) shall be governed by and construed in accordance with the laws of India and courts at Mumbai only shall have exclusive jurisdiction.</p>
 
 <p><b><u>14.	FORCE MAJEURE</u></b></p>
 
@@ -215,11 +215,11 @@ If any provision of these Terms of Use is held by a court or other tribunal of c
 
 <p><b><u>d)	Opt out</u></b></p>
 
-<p>The User may send an email at support@hariyali.co.in to unsubscribe from receiving communications from the Website </p>
+<p>The User may send an email at <a href="">support@hariyali.org.in</a> to unsubscribe from receiving communications from the Website </p>
 
 <p><b><u>e)	Grievance Officer </u></b></p>
 
-<p>For any service-related queries or complaints relating to the Website, you can write to us at support@hariyali.co.in</p>
+<p>For any service-related queries or complaints relating to the Website, you can write to us at <a href="">support@hariyali.org.in</a></p>
         </Row>
       </Modal.Body>
       <Modal.Footer>

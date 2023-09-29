@@ -8,6 +8,7 @@ const PrivacyPolicy = ({
   informationShare,
   setInformationShare,
   handleShowConditions,
+  handleCloseConditions1,
   isDisabled,
   privacyPolicymessage
 }) => {
@@ -22,10 +23,17 @@ const PrivacyPolicy = ({
               value={privacyPolicy1}
               onChange={() => setPrivacyPolicy1(!privacyPolicy1)}
               className="checkboxinput"
-              disabled = {isDisabled}
+              disabled={isDisabled}
             />
-            By checking this box, I confirm that I have read, understood and
-            agree to the Terms of Use and{" "}
+            {/* By checking this box, I confirm that I have read, understood and
+            agree to the{" "}
+            <button
+              className="privacy-policy-link"
+              onClick={handleShowConditions}
+            >
+              Terms of Use{" "}
+            </button>{" "}
+            and{" "}
             <button
               className="privacy-policy-link"
               onClick={handleShowConditions}
@@ -34,19 +42,37 @@ const PrivacyPolicy = ({
             </button>{" "}
             and I consent to the processing of all personal data relating to me
             for the purposes as more fully described in the Privacy Policy until
-            I withdraw my consent.
+            I withdraw my consent. */}
+              By checking this box, I confirm that I have read and agree to the{" "}
+              <button
+              className="privacy-policy-link"
+              onClick={handleShowConditions}
+            >
+              Terms of Use{" "}
+            </button>{" "}
+            and{" "}
+            <button
+              className="privacy-policy-link"
+              onClick={handleCloseConditions1}
+            >
+              Privacy Policy
+            </button>{" "}. 
+            {/* I consent to the processing of
+              my personal data for the purposes described in the Privacy Policy
+              until I withdraw my consent. */}
           </li>
           <li>
-          <input
+            <input
               type="checkbox"
               name="Condition"
               value={privacyPolicy2}
               onChange={() => setPrivacyPolicy2(!privacyPolicy2)}
               className="checkboxinput"
-              disabled = {isDisabled}
-            />I understand that I am free to withdraw my consent to the processing
-            of my personal data, at any time, by writing to
-            support@hariyali.org,in.
+              disabled={isDisabled}
+            />
+            I understand that I am free to withdraw my consent to the processing
+            of my personal data, at any time, by writing to{" "}
+            <a href="">support@hariyali.org,in.</a>
           </li>
         </ul>
       </div>
@@ -55,17 +81,29 @@ const PrivacyPolicy = ({
         value={informationShare}
         onChange={(e) => setInformationShare(e.target.value)}
       >
-        <input type="radio" name="consent" value="yes" checked={informationShare ==="yes"} />
+        <input
+          type="radio"
+          name="consent"
+          value="yes"
+          checked={informationShare === "yes"}
+        />
         {"  "}
         Yes, I consent to receive campaign related correspondences regarding
         Project Hariyali.
         <br />
-        <input type="radio" name="consent" value="no" checked={informationShare ==="no"} />
+        <input
+          type="radio"
+          name="consent"
+          value="no"
+          checked={informationShare === "no"}
+        />
         {"  "}
         No, I do not consent to receive campaign related correspondences
         regarding Project Hariyali.
       </div>
-      <div><span className="red-text">{privacyPolicymessage}</span></div>
+      <div>
+        <span className="red-text">{privacyPolicymessage}</span>
+      </div>
     </>
   );
 };
