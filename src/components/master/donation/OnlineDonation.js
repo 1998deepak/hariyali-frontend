@@ -280,13 +280,7 @@ function OnlineDonation() {
     }
 
     // Validate user data fields
-    if (!userData?.user?.citizenship) {
-      validationErrors.push({
-        field: "userData.user.citizenship",
-        message: "Citizenship is required",
-      });
-      document.getElementById("citizenship").focus();
-    } else if (!userData?.user?.firstName) {
+    if (!userData?.user?.firstName) {
       validationErrors.push({
         field: "userData.user.firstName",
         message: "First Name is required",
