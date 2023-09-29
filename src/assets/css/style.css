@@ -751,8 +751,8 @@ input:disabled {
   font-size: 12px;
   width: 90px;
   position: absolute;
-  top: 30px; 
-  left: 50%;
+  top: 35px; 
+  right: -50%;
   transform: translateX(10%);
   opacity: 0;
   transition: opacity 0.3s ease;
