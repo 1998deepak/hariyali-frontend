@@ -12,7 +12,7 @@ import { SUCCESS } from "../../../constants/constants";
 import { Modal, Button } from "react-bootstrap";
 import Loader from "../../../common/loader/Loader.js";
 import Table from 'react-bootstrap/Table';
-import ReactPaginate from 'react-paginate';
+import Pagination from '../../../common/Pagination';
 
 function WebDonarCreation() {
   const [data, setData] = useState([]);
@@ -23,16 +23,17 @@ function WebDonarCreation() {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
-  const [pageNo, setPageNo] = useState(0);
+  const [pageNo, setPageNo] = useState(1);
   const [pagesize, setPageSize] = useState(10);
   const [pageCount, setPageCount] = useState(1);
   const [totalRecords, setTotalRecords] = useState(0);
   const [showDonationModal, setShowDonationModal] = useState(false);
   const [donationList, setDonationList] = useState([]);
 
-  const [donationModalPageNo, setDonationModalPageNo] = useState(0);
+  const [donationModalPageNo, setDonationModalPageNo] = useState(1);
   const [donationModalPagesize, setDonationModalPageSize] = useState(10);
   const [donationModalPageCount, setDonationModalPageCount] = useState(0);
+  const [donationModalTotalRecords, setDonationModalTotalRecords] = useState(0);
 
   const [donor, setDonor] = useState({});
   const [remark, setRemark] = useState("");
@@ -41,13 +42,13 @@ function WebDonarCreation() {
 
   //Calling Function
   useEffect(() => {
-    getAllUserWithWebID("");
+    getAllUserWithWebID("", 0);
   }, []);
 
   // Get all user donation
-  const getAllUserWithWebID = async (searchText) => {
+  const getAllUserWithWebID = async (searchText, pageNo) => {
     setLoading(true);
-
+    
     let pageRequest = {
       searchText: searchText,
       status: statusFilter,
@@ -78,11 +79,11 @@ function WebDonarCreation() {
     }
   };
 
-  const getUserDonations = async (donor) => {
+  const getUserDonations = async (donor, pageNo) => {
     setLoading(true);
     let pageRequest = {
       userId: donor.userId,
-      pageNumber: donationModalPageNo,
+      pageNumber: pageNo,
       pageSize: donationModalPagesize
 
     }
@@ -93,7 +94,7 @@ function WebDonarCreation() {
     if (response?.data) {
       setDonationList(response.data);
       console.log(donationList);
-      setDonationModalPageCount(response.totalPages);
+      setDonationModalTotalRecords(response.totalRecords);
       setLoading(false);
       setShowDonationModal(true);
     } else {
@@ -128,7 +129,7 @@ function WebDonarCreation() {
       setLoading(true)
       const response = await WebDonorCreationService.approveDonation(formData);
       console.log(response);
-      getAllUserWithWebID(searchText);
+      getAllUserWithWebID(searchText, 0);
       if (response?.status === SUCCESS) {
         toast.success(response?.message);
         setLoading(false)
@@ -143,13 +144,14 @@ function WebDonarCreation() {
   };
 
   const handlePageClick = (event) => {
-    setPageNo(event.selected);
-    getAllUserWithWebID(searchText);
+    console.log(event);
+    setPageNo(event);
+    getAllUserWithWebID(searchText, event-1);
   };
 
   const handleDonationModalPageClick = (event) => {
-    setDonationModalPageNo(event.selected);
-    getUserDonations(donor);
+    setDonationModalPageNo(event);
+    getUserDonations(donor, event-1);
   };
 
   // Handle Search for searching record
@@ -171,9 +173,9 @@ function WebDonarCreation() {
     setStatusFilter(event.target.value);
   };
 
-  const clearSearch = () =>{
+  const clearSearch = () => {
     setSearchText('');
-    getAllUserWithWebID("");
+    getAllUserWithWebID("", 0);
   }
 
   return (
@@ -196,7 +198,7 @@ function WebDonarCreation() {
                   onChange={handleSearch}
                 />
                 {
-                  searchText ? <RxCross2 className="searchicon" onClick={clearSearch}/>: <BiSearchAlt className="searchicon" />
+                  searchText ? <RxCross2 className="searchicon" onClick={clearSearch} /> : <BiSearchAlt className="searchicon" />
                 }
               </div>
               <div className="col-3">
@@ -221,7 +223,7 @@ function WebDonarCreation() {
                 </select>
               </div>
               <div className="col-3">
-                <button className="btn btn-search" onClick={()=>getAllUserWithWebID(searchText)}>Search</button>
+                <button className="btn btn-search" onClick={() => getAllUserWithWebID(searchText, 0)}>Search</button>
               </div>
             </div>
             <div className="row">
@@ -273,7 +275,7 @@ function WebDonarCreation() {
                                     onClick={() => handleApproveAndReject(donor, "Rejected")} />
                                 </>
                               }
-                              <Link onClick={() => getUserDonations(donor)} className="view-icon icon-btn" ><FaRegEye /></Link>
+                              <Link onClick={() => getUserDonations(donor, 0)} className="view-icon icon-btn" ><FaRegEye /></Link>
                             </span>
 
                           </td>
@@ -283,16 +285,15 @@ function WebDonarCreation() {
                     })}
                   </tbody>
                 </Table>
-                <ReactPaginate className="pagination"
-                  breakLabel="..."
-                  nextLabel="next"
-                  onPageChange={handlePageClick}
-                  pageRangeDisplayed={5}
-                  pageCount={pageCount}
-                  previousLabel="Previous"
-                  renderOnZeroPageCount={null}
-                />
-
+                {totalRecords > 0 &&
+                  <Pagination
+                    itemsCount={totalRecords}
+                    itemsPerPage={pagesize}
+                    currentPage={pageNo}
+                    setCurrentPage={handlePageClick}
+                    alwaysShown={false}
+                  />
+                }
               </div>
             </div>
           </div>
@@ -369,7 +370,7 @@ function WebDonarCreation() {
                             <td>{payment.paymentDate}</td>
                             <td>
                               <span>
-                                <Link onClick={() => getUserDonations(donor)} className="view-icon icon-btn" ><FaRegEye /></Link>
+                                <Link onClick={() => getUserDonations(donor, 0)} to={`/OfflinePlanAndDonationUpdate/${donation.donationId}`} className="view-icon icon-btn" ><FaRegEye /></Link>
                               </span>
 
                             </td>
@@ -380,15 +381,16 @@ function WebDonarCreation() {
                   })}
                 </tbody>
               </Table>
-              <ReactPaginate className="pagination"
-                breakLabel="..."
-                nextLabel="next"
-                onPageChange={handleDonationModalPageClick}
-                pageRangeDisplayed={5}
-                pageCount={donationModalPageCount}
-                previousLabel="Previous"
-                renderOnZeroPageCount={null}
-              />
+              
+              {donationModalTotalRecords > 0 &&
+                  <Pagination
+                    itemsCount={donationModalTotalRecords}
+                    itemsPerPage={donationModalPagesize}
+                    currentPage={donationModalPageNo}
+                    setCurrentPage={handleDonationModalPageClick}
+                    alwaysShown={false}
+                  />
+                }
             </div>
           </div>
 
