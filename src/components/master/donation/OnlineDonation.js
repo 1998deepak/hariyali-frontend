@@ -272,7 +272,13 @@ function OnlineDonation() {
     }
 
     // Validate user data fields
-    if (!userData?.user?.firstName) {
+    if (!userData?.user?.citizenship) {
+      validationErrors.push({
+        field: "userData.user.citizenship",
+        message: "Citizenship is required",
+      });
+      document.getElementById("citizenship").focus();
+    } else if (!userData?.user?.firstName) {
       validationErrors.push({
         field: "userData.user.firstName",
         message: "First Name is required",
@@ -301,7 +307,7 @@ function OnlineDonation() {
     }
 
 
-    if (userData?.user?.citizenship.toUpperCase() === INDIA) {
+    if (userData?.user?.citizenship?.toUpperCase() === INDIA) {
     if (!userData?.user?.mobileNo) {
       validationErrors.push({
         field: "userData.user.mobileNo",
@@ -327,7 +333,7 @@ function OnlineDonation() {
       validationErrors.push({
         field: "userData.user.mobileNo",
         message:
-          "Mobile Number must contain exactly 10 digits and no alphabetic characters",
+          "Mobile Number must contain exactly 11 digits and no alphabetic characters",
       });
       document.getElementById("mobileNo").focus();
     }
@@ -340,7 +346,7 @@ function OnlineDonation() {
       });
     }
     if(userData?.user?.donarType === "Individual"){ 
-      if (!userData?.user?.prefix) {
+      if (!userData?.user?.prefix || userData?.user?.prefix =="") {
         validationErrors.push({
           field: "userData.user.prefix",
           message: "Prefix is required",
@@ -357,7 +363,8 @@ function OnlineDonation() {
       });
     }
     console.log(hasAadharCard);
-    if (userData?.user?.citizenship.toUpperCase() === INDIA) {
+    console.log(userData?.user?.citizenship);
+    if (userData?.user?.citizenship?.toUpperCase() === INDIA) {
       if (hasAadharCard === true) {
         if (!userData?.user?.panCard) {
           validationErrors.push({
@@ -375,9 +382,7 @@ function OnlineDonation() {
         }
       } else {
         if (
-          !/^(?!.*[a-zA-Z])\d{16}$/.test(userData.user.addharCard) &&
-          hasAadharCard
-        ) {
+          !(/^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$/.test(userData.user.addharCard))) {
           validationErrors.push({
             field: "userData.user.addharCard",
             message:
@@ -459,7 +464,7 @@ function OnlineDonation() {
 
     // Validate recipient (only for "Gift Donate" donation type)
     console.log(donationType);
-    if (donationType === "Gift-Donate") {
+    if (donationType === "gift-donate") {
       console.log(donations[0].donationEvent);
       if (!donations[0]?.donationEvent) {
         validationErrors.push({
@@ -589,6 +594,10 @@ function OnlineDonation() {
     setInformationShare("yes");
     setPrivacyPolicy1(false);
     setPrivacyPolicy2(false);
+    setUserEmail("");
+    setGiftUserEmail("");
+    setIsDivOpenGift(false);
+    setIsDivOpen(false);
   };
 
   const setCaptchaFlag = async (flag) => {
@@ -597,6 +606,7 @@ function OnlineDonation() {
   const navigate = useNavigate();
   const userAdd = async (e, donationType) => {
     e.preventDefault();
+    setDonationType(donationType == "self" ? "self-donate" : "gift-donate");
     const isValid = validate();
     console.log("isValid:", isValid);
     if (!privacyPolicy1 || !privacyPolicy2) {
@@ -1034,6 +1044,7 @@ function OnlineDonation() {
   const handleBlur = async (event) => {
     event.preventDefault();
     const { name, value } = event.target;
+    console.log(name);
     let error = "";
     if (!value) {
       error = "Email ID is required";
@@ -1746,7 +1757,7 @@ function OnlineDonation() {
                                   </div>
                                 </div>{" "}
                               </div>
-                              {userData?.user?.citizenship.toUpperCase() ===
+                              {userData?.user?.citizenship?.toUpperCase() ===
                               INDIA ? (
                                 <>
                                   {userData?.user?.donarType ===
@@ -2949,7 +2960,7 @@ function OnlineDonation() {
                                   </div>
                                 </div>{" "}
                               </div>
-                              {userData?.user?.citizenship.toUpperCase() ===
+                              {userData?.user?.citizenship?.toUpperCase() ===
                               INDIA ? (
                                 <>
                                   {userData?.user?.donarType ===
@@ -3415,6 +3426,7 @@ function OnlineDonation() {
                                     <input
                                       className="form-control-inside form-control"
                                       name="city"
+                                      id="city"
                                       placeholder="City"
                                       type="text"
                                       value={address[0]?.city}
@@ -3447,6 +3459,7 @@ function OnlineDonation() {
                                     </label>
                                     <input
                                       className="form-control-inside form-control"
+                                      id="postalCode"
                                       name="postalCode"
                                       type="text"
                                       maxLength={6}
