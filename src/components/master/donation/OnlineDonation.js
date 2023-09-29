@@ -667,7 +667,7 @@ function OnlineDonation() {
       console.log(user);
 
       //setting recipent data
-      if (recipient[0].address[0].state) {
+      if (donationType == "gift") {
         console.log(recipient);
         console.log("Reci");
         user.donations[0].recipient = recipient;
