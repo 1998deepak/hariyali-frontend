@@ -1350,42 +1350,46 @@ function OnlineDonation() {
                         <div className="select-label">
                           {/* <div className="col-4 "> Select Your Citizenship</div> */}
                           <div className="col-12 p0 field-wrapper">
-                            <label for="citizenship" class="form-label">
-                              Select Your Country{" "}
-                              <span className="red-text">*</span>
-                            </label>
-                            <select
-                              className=" form-control-inside form-select"
-                              name="user.citizenship"
-                              id="citizenship"
-                              value={userData?.user?.citizenship}
-                              onChange={handleChange}
-                            >
-                              <option disabled selected value="">
-                                Select Country
-                              </option>
-                              {citizenships.map((citizenship) => {
-                                return (
-                                  <option value={citizenship.citizenshipName}>
-                                    {citizenship.citizenshipName}
-                                  </option>
-                                );
-                              })}
-                            </select>
-                            {errors.map((error, index) => {
-                              if (error.field === "userData.user.citizenship") {
-                                return (
-                                  <div
-                                    key={index}
-                                    className="error-message red-text"
-                                  >
-                                    {error.message}
+                                    <label class="form-label">
+                                      Select Your Country{" "}
+                                      <span className="red-text">*</span>
+                                    </label>
+                                    <select
+                                      className=" form-control-inside form-select"
+                                      name="country"
+                                      id="country"
+                                      value={address[0]?.country}
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 0)
+                                      }
+                                    >
+                                      <option disabled selected value="">
+                                        Select Country
+                                      </option>
+                                      {countries.map((country) => {
+                                        return (
+                                          <option value={country.countryName}>
+                                            {country.countryName}
+                                          </option>
+                                        );
+                                      })}
+                                    </select>
+                                    {errors.map((error, index) => {
+                                      if (
+                                        error.field === "address[0].country"
+                                      ) {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
                                   </div>
-                                );
-                              }
-                              return null;
-                            })}
-                          </div>
                         </div>
                       </div>):(<div className="col-12 col-md-6">
                         <div className="select-label">
@@ -2663,6 +2667,19 @@ function OnlineDonation() {
                                   );
                                 })}
                               </select>
+                              {errors.map((error, index) => {
+                              if (error.field === "userData.user.citizenship") {
+                                return (
+                                  <div
+                                    key={index}
+                                    className="error-message red-text"
+                                  >
+                                    {error.message}
+                                  </div>
+                                );
+                              }
+                              return null;
+                            })}
                             </div>
                             )}
                           </div>
