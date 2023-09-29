@@ -537,6 +537,9 @@ input:disabled {
 
 .userdetails-tr {
   font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .dropdown-toggle {
@@ -3525,7 +3528,7 @@ figure.effect-layla:hover img {
 }
 
 .patner-carousel .carousel-control-next {
-  right:-2rem ;   
+  right:-2rem ;
 }
 
 .testimonial-slider {
@@ -5035,6 +5038,15 @@ iframe {
   margin-bottom: 95px;
 }
 
+.change-password{
+  padding: 0 !important;
+  color: #000 !important;
+}
+
+.react-password-toggle-icon-wrapper {
+  height: 37px !important;
+}
+
 .mob-div {
   display: none;
 }
@@ -5070,9 +5082,9 @@ iframe {
   justify-content: center;
   align-items: center;
   height: 500px;
- 
+
   background-color: #f0f0f0;
- 
+
 } */
 
 .vertical-carousel-container .slick-dots {
@@ -5610,7 +5622,7 @@ video {
   .nav-list {
     margin-top: 0px;
   }
-/* 
+/*
   .nav-sublist {
     padding-top: 6px;
   } */
