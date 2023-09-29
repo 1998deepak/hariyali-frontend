@@ -56,9 +56,10 @@ const PrivacyPolicy = ({
               onClick={handleCloseConditions1}
             >
               Privacy Policy
-            </button>{" "}. I consent to the processing of
+            </button>{" "}. 
+            {/* I consent to the processing of
               my personal data for the purposes described in the Privacy Policy
-              until I withdraw my consent.
+              until I withdraw my consent. */}
           </li>
           <li>
             <input

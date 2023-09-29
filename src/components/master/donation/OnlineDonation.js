@@ -263,7 +263,7 @@ function OnlineDonation() {
 
   const validate = (pan) => {
     const validationErrors = [];
-
+    console.log(recipient[0]?.firstName, recipient[0].lastName, recipient[0]?.emailId);
     // Validate donationType
     if (!donationType) {
       validationErrors.push({
@@ -467,12 +467,20 @@ function OnlineDonation() {
 
     // Validate recipient (only for "Gift Donate" donation type)
     console.log(donationType);
+   
     if (donationType === "Gift-Donate") {
       console.log(donations[0].donationEvent);
       if (!donations[0]?.donationEvent) {
         validationErrors.push({
           field: "donations.donationEvent",
           message: "Donation Event is required",
+        });
+      }
+      console.log(donations[0]?.giftContent);
+      if (!donations[0]?.giftContent) {
+        validationErrors.push({
+          field: "donations.giftContent",
+          message: "Message for the giftee is required",
         });
       }
       console.log(recipient[0]?.firstName);
@@ -509,52 +517,12 @@ function OnlineDonation() {
           message: "Email ID is required",
         });
         document.getElementById("recEmailId").focus();
-      } else if (
-        !/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(
-          recipient[0].emailId
-        )
-      ) {
+      } else if (!/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(recipient[0].emailId)) {
         validationErrors.push({
           field: "recipient[0].emailId",
           message: "Invalid Email ID",
         });
         document.getElementById("recEmailId").focus();
-      }
-      if (!recipient[0]?.mobileNo) {
-        validationErrors.push({
-          field: "recipient[0].mobileNo",
-          message: "Mobile Number is required",
-        });
-        document.getElementById("recMobileNo").focus();
-      } else if (!/^(?!.*[a-zA-Z])\d{10}$/.test(recipient[0]?.mobileNo)) {
-        validationErrors.push({
-          field: "recipient[0].mobileNo",
-          message:
-            "Mobile Number must contain exactly 10 digits and no alphabetic characters",
-        });
-        document.getElementById("recMobileNo").focus();
-      }
-
-      if (!recipient[0]?.address[0]?.street1) {
-        validationErrors.push({
-          field: "recipient[0].address[0].street1",
-          message: "Recipient Street is required",
-        });
-        document.getElementById("recStreet1").focus();
-      }
-      if (!recipient[0]?.address[0]?.country) {
-        validationErrors.push({
-          field: "recipient[0].address[0].country",
-          message: "Recipient Country is required",
-        });
-        document.getElementById("recCountry").focus();
-      }
-      if (!recipient[0]?.address[0]?.state) {
-        validationErrors.push({
-          field: "recipient[0].address[0].state",
-          message: "Recipient State is required",
-        });
-        document.getElementById("recState").focus();
       }
     }
 
@@ -1439,12 +1407,12 @@ function OnlineDonation() {
                           <div className="col-12 p0 field-wrapper">
                             {userData?.user?.donarType === "Corporate" ? (
                               <label for="emailId" class="form-label top-18">
-                                Email ID - Point Of Contact{" "}
+                                Email ID - Point of Contact{" "}
                                 <span className="red-text">*</span>
                               </label>
                             ) : (
                               <label for="emailId" class="form-label top-18">
-                                Email ID Of Donor / Gifter{" "} <span className="red-text">*</span>
+                                Email ID of Donor{" "} <span className="red-text">*</span>
                               </label>
                             )}
                             <input
@@ -1504,11 +1472,11 @@ function OnlineDonation() {
                           <hr />
                           {userData?.user?.donarType === "Corporate" ? (
                             <div className="actionheadingdiv">
-                              DETAILS OF POINT OF CONTACT / GIFTER
+                              DETAILS OF POINT OF CONTACT 
                             </div>
                           ) : (
                             <div className="actionheadingdiv">
-                              DETAILS OF DONOR / GIFTER
+                              DETAILS OF DONOR 
                             </div>
                           )}
                           <div className="col-12 pr15">
@@ -2570,7 +2538,7 @@ function OnlineDonation() {
                                 </label>
                               ) : (
                                 <label for="emailId" class="form-label top-18">
-                                  Email ID Of Donor / Gifter {" "}<span className="red-text">*</span>
+                                  Email ID of Donor / Gifter {" "}<span className="red-text">*</span>
                                 </label>
                               )}
                               <input
@@ -2738,7 +2706,7 @@ function OnlineDonation() {
                             {/* <div className="col-4 ">Occasion</div> */}
                             <div className="col-12 p0 field-wrapper">
                               <label className="form-label">
-                                Message for the Giftee (150 characters){" "}
+                                Message for the Giftee {" "}
                                 <span className="red-text">*</span>
                               </label>
                               <textarea
@@ -2756,10 +2724,9 @@ function OnlineDonation() {
                           </div>
                         </div>
                         
-                        <div className="col-12 padding-top-10">
-                        {userData?.user?.donarType === "Individual" ? (
+                        <div className="col-12 padding-top-10">                  
                           <span className="actionheadingdiv"><b>Proceed to Gift and provide Gifter & Giftee details</b></span>
-                        ):("")}
+
                           <Button
                             className="float-right"
                             variant="success"

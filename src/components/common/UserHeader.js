@@ -107,7 +107,7 @@ const Header = () => {
             onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
           >
             <Nav.Item className="text-center">
-              <div className="topmenu-icon" onClick={goToLogin} data-title="Donar Login"> 
+              <div className="topmenu-icon" onClick={goToLogin} data-title="Donor Login"> 
                 <FaUser style={{ color: "#23aa4a"}} />
               </div>
             </Nav.Item>
