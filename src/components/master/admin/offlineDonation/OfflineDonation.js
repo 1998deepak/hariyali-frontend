@@ -301,13 +301,13 @@ function OfflineDonation() {
         if (!userData?.user?.panCard) {
           validationErrors.push({
             field: "userData.user.panCard",
-            message: "PAN card is required",
+            message: "PAN Card Number is required",
           });
           document.getElementById("panCard").focus();
         } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
           validationErrors.push({
             field: "userData.user.panCard",
-            message: "PAN card No is Invalid",
+            message: "PAN Card Number is Invalid",
           });
           document.getElementById("panCard").focus();
         }
@@ -319,7 +319,7 @@ function OfflineDonation() {
           validationErrors.push({
             field: "userData.user.addharCard",
             message:
-              "Addhar Number must contain exactly 16 digits and no alphabetic characters",
+              "AADHAAR Card Number must contain exactly 16 digits and no alphabetic characters",
           });
           document.getElementById("addharCard").focus();
         }
@@ -1305,7 +1305,15 @@ function OfflineDonation() {
                         />
                         <div className="clear" />
                         <hr />
-                        <div className="actionheadingdiv">Personal Details</div>
+                        {userData?.user?.donarType === "Corporate" ? (
+                            <div className="actionheadingdiv">
+                              DETAILS OF POINT OF CONTACT
+                            </div>
+                          ) : (
+                            <div className="actionheadingdiv">
+                              DETAILS OF DONAR
+                            </div>
+                          )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-6">
@@ -1347,7 +1355,7 @@ function OfflineDonation() {
                             <div className="col-6">
                               <div className="row select-label">
                                 <div className="col-4 ">
-                                  Mobile No.<span className="red-text">*</span>
+                                  Mobile Number<span className="red-text">*</span>
                                 </div>
                                 <div className="col-8 p0">
                                   <input
@@ -1355,7 +1363,7 @@ function OfflineDonation() {
                                     type="text"
                                     id="mobileNo"
                                     name="user.mobileNo"
-                                    placeholder="Mobile No."
+                                    placeholder="Mobile Number"
                                     value={userData?.user?.mobileNo}
                                     onChange={handleChange}
                                   />
@@ -1618,7 +1626,7 @@ function OfflineDonation() {
                                       <div className="col-12 p0 field-wrapper">
                                         <div>
                                           <label>
-                                            Do you have an Pan card?
+                                            Do you have a PAN Card?
                                           </label>
                                           <div className="radio-buttons">
                                             <label>
@@ -1662,7 +1670,7 @@ function OfflineDonation() {
                                           className="form-control-inside form-control"
                                           name="user.panCard"
                                           id="panCard"
-                                          placeholder="PAN card No."
+                                          placeholder="PAN Card Number"
                                           type="text"
                                           value={userData?.user?.panCard}
                                           onChange={handleChange}
@@ -1696,7 +1704,7 @@ function OfflineDonation() {
                                   <div id="addharId" className="col-6">
                                     <div className="row select-label">
                                       <div className="col-4">
-                                        Addhar Card{" "}
+                                      AADHAAR Card{" "}
                                         <span className="red-text">*</span>
                                       </div>
                                       <div className="col-8 p0 ">
@@ -1704,7 +1712,7 @@ function OfflineDonation() {
                                           className="form-control-inside form-control"
                                           name="user.addharCard"
                                           id="addharCard"
-                                          placeholder="Addhar card No."
+                                          placeholder="AADHAAR Card Number"
                                           type="text"
                                           maxLength={16}
                                           value={userData?.user?.addharCard}
@@ -2490,10 +2498,6 @@ function OfflineDonation() {
                                       {" "}
                                       Memorial Tribute
                                     </option>
-                                    <option value="Simple Donation">
-                                      {" "}
-                                      Simple Donation
-                                    </option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (
@@ -2527,7 +2531,15 @@ function OfflineDonation() {
                         <div className="clear" />
                         <div className="col-6 mt20"></div>
                         <hr />
-                        <div className="actionheadingdiv">Personal Details</div>
+                        {userData?.user?.donarType === "Corporate" ? (
+                            <div className="actionheadingdiv">
+                              DETAILS OF POINT OF CONTACT
+                            </div>
+                          ) : (
+                            <div className="actionheadingdiv">
+                              DETAILS OF DONAR
+                            </div>
+                          )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-6">
@@ -2568,14 +2580,14 @@ function OfflineDonation() {
                             <div className="col-6">
                               <div className="row select-label">
                                 <div className="col-4 ">
-                                  Mobile No.<span className="red-text">*</span>
+                                  Mobile Number<span className="red-text">*</span>
                                 </div>
                                 <div className="col-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
                                     name="user.mobileNo"
-                                    placeholder="Mobile No."
+                                    placeholder="Mobile Number"
                                     value={userData.user.mobileNo}
                                     onChange={handleChange}
                                   />
@@ -2835,7 +2847,7 @@ function OfflineDonation() {
                                       <div className="col-12 p0 field-wrapper">
                                         <div>
                                           <label>
-                                            Do you have an Pan card?
+                                            Do you have an PAN Card?
                                           </label>
                                           <div className="radio-buttons">
                                             <label>
@@ -2913,7 +2925,7 @@ function OfflineDonation() {
                                   <div id="addharId" className="col-6">
                                     <div className="row select-label">
                                       <div className="col-4">
-                                        Addhar Card{" "}
+                                      AADHAAR Card{" "}
                                         <span className="red-text">*</span>
                                       </div>
                                       <div className="col-8 p0 ">
@@ -2921,7 +2933,7 @@ function OfflineDonation() {
                                           className="form-control-inside form-control"
                                           name="user.addharCard"
                                           id="addharCard"
-                                          placeholder="Addhar card No."
+                                          placeholder="AADHAAR Card Number"
                                           type="text"
                                           maxLength={16}
                                           value={userData?.user?.addharCard}
@@ -3410,14 +3422,14 @@ function OfflineDonation() {
                               <div className="col-6">
                                 <div className="row select-label">
                                   <div className="col-4 ">
-                                    Mobile No.
+                                    Mobile Number
                                     <span className="red-text">*</span>
                                   </div>
                                   <div className="col-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="mobileNo"
-                                      placeholder="Mobile No."
+                                      placeholder="Mobile Number"
                                       type="text"
                                       value={recipient[0].mobileNo}
                                       onChange={(e) =>
@@ -3778,7 +3790,15 @@ function OfflineDonation() {
                         />
                         <div className="clear" />
                         <hr />
-                        <div className="actionheadingdiv">Personal Details</div>
+                        {userData?.user?.donarType === "Corporate" ? (
+                            <div className="actionheadingdiv">
+                              DETAILS OF POINT OF CONTACT
+                            </div>
+                          ) : (
+                            <div className="actionheadingdiv">
+                              DETAILS OF DONAR
+                            </div>
+                          )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-6">
@@ -3811,14 +3831,14 @@ function OfflineDonation() {
                             <div className="col-6">
                               <div className="row select-label">
                                 <div className="col-4 ">
-                                  Mobile No.<span className="red-text">*</span>
+                                  Mobile Number<span className="red-text">*</span>
                                 </div>
                                 <div className="col-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
                                     name="user.mobileNo"
-                                    placeholder="Mobile No."
+                                    placeholder="Mobile Number"
                                     value={userData?.user?.mobileNo}
                                     onChange={handleChange}
                                     disabled
@@ -4455,10 +4475,6 @@ function OfflineDonation() {
                                       {" "}
                                       Memorial Tribute
                                     </option>
-                                    <option value="Simple Donation">
-                                      {" "}
-                                      Simple Donation
-                                    </option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (
@@ -4491,7 +4507,15 @@ function OfflineDonation() {
                         />
                         <div className="clear" />
                         <hr />
-                        <div className="actionheadingdiv">Personal Details</div>
+                        {userData?.user?.donarType === "Corporate" ? (
+                            <div className="actionheadingdiv">
+                              DETAILS OF POINT OF CONTACT
+                            </div>
+                          ) : (
+                            <div className="actionheadingdiv">
+                              DETAILS OF DONAR
+                            </div>
+                          )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-6">
@@ -4524,14 +4548,14 @@ function OfflineDonation() {
                             <div className="col-6">
                               <div className="row select-label">
                                 <div className="col-4 ">
-                                  Mobile No.<span className="red-text">*</span>
+                                  Mobile Number<span className="red-text">*</span>
                                 </div>
                                 <div className="col-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
                                     name="user.mobileNo"
-                                    placeholder="Mobile No."
+                                    placeholder="Mobile Number"
                                     value={userData.user.mobileNo}
                                     onBlur={(e) => handleDonarIdBlur(e)}
                                     onChange={handleChange}
@@ -4992,14 +5016,14 @@ function OfflineDonation() {
                               <div className="col-6">
                                 <div className="row select-label">
                                   <div className="col-4 ">
-                                    Mobile No.
+                                    Mobile Number
                                     <span className="red-text">*</span>
                                   </div>
                                   <div className="col-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="mobileNo"
-                                      placeholder="Mobile No."
+                                      placeholder="Mobile Number"
                                       type="text"
                                       value={recipient[0].mobileNo}
                                       onChange={(e) =>

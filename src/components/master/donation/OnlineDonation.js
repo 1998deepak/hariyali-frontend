@@ -253,7 +253,7 @@ function OnlineDonation() {
 
   const [errors, setErrors] = useState([]);
 
-  const validate = () => {
+  const validate = (pan) => {
     const validationErrors = [];
 
     // Validate donationType
@@ -300,6 +300,8 @@ function OnlineDonation() {
       document.getElementById("lastName").focus();
     }
 
+
+    if (userData?.user?.citizenship.toUpperCase() === INDIA) {
     if (!userData?.user?.mobileNo) {
       validationErrors.push({
         field: "userData.user.mobileNo",
@@ -314,6 +316,22 @@ function OnlineDonation() {
       });
       document.getElementById("mobileNo").focus();
     }
+  }else{
+    if (!userData?.user?.mobileNo) {
+      validationErrors.push({
+        field: "userData.user.mobileNo",
+        message: "Mobile Number is required",
+      });
+      document.getElementById("mobileNo").focus();
+    } else if (!/^(?!.*[a-zA-Z])\d{11}$/.test(userData.user.mobileNo)) {
+      validationErrors.push({
+        field: "userData.user.mobileNo",
+        message:
+          "Mobile Number must contain exactly 10 digits and no alphabetic characters",
+      });
+      document.getElementById("mobileNo").focus();
+    }
+  }
 
     if (!userData?.user?.donarType) {
       validationErrors.push({
@@ -344,13 +362,14 @@ function OnlineDonation() {
         if (!userData?.user?.panCard) {
           validationErrors.push({
             field: "userData.user.panCard",
-            message: "PAN card is required",
+            message: "PAN Card Number is required",
           });
           document.getElementById("panCard").focus();
         } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
+          
           validationErrors.push({
             field: "userData.user.panCard",
-            message: "PAN card No is Invalid",
+            message: "PAN Card Number is Invalid",
           });
           document.getElementById("panCard").focus();
         }
@@ -362,7 +381,7 @@ function OnlineDonation() {
           validationErrors.push({
             field: "userData.user.addharCard",
             message:
-              "Addhar Number must contain exactly 16 digits and no alphabetic characters",
+              "ADDHAR Number must contain exactly 16 digits and no alphabetic characters",
           });
           document.getElementById("addharCard").focus();
         }
@@ -1241,6 +1260,17 @@ function OnlineDonation() {
 
   console.log(donations);
 
+  const [inputValue, setInputValue] = useState('');
+  const maxLength = 150;
+
+  const handleChangeTextarea = (event) => {
+    const inputValue = event.target.value;
+
+    if (inputValue.length <= maxLength) {
+      setInputValue(inputValue);
+    }
+  };
+
   return (
     <>
       <ToastContainer />
@@ -1307,7 +1337,49 @@ function OnlineDonation() {
                   </div>
                   <div>
                     <div className="row">
+                    {userData?.user?.donarType === "Corporate" ? (
                       <div className="col-12 col-md-6">
+                        <div className="select-label">
+                          {/* <div className="col-4 "> Select Your Citizenship</div> */}
+                          <div className="col-12 p0 field-wrapper">
+                            <label for="citizenship" class="form-label">
+                              Select Your Country{" "}
+                              <span className="red-text">*</span>
+                            </label>
+                            <select
+                              className=" form-control-inside form-select"
+                              name="user.citizenship"
+                              id="citizenship"
+                              value={userData?.user?.citizenship}
+                              onChange={handleChange}
+                            >
+                              <option disabled selected value="">
+                                Select Country
+                              </option>
+                              {citizenships.map((citizenship) => {
+                                return (
+                                  <option value={citizenship.citizenshipName}>
+                                    {citizenship.citizenshipName}
+                                  </option>
+                                );
+                              })}
+                            </select>
+                            {errors.map((error, index) => {
+                              if (error.field === "userData.user.citizenship") {
+                                return (
+                                  <div
+                                    key={index}
+                                    className="error-message red-text"
+                                  >
+                                    {error.message}
+                                  </div>
+                                );
+                              }
+                              return null;
+                            })}
+                          </div>
+                        </div>
+                      </div>):(<div className="col-12 col-md-6">
                         <div className="select-label">
                           {/* <div className="col-4 "> Select Your Citizenship</div> */}
                           <div className="col-12 p0 field-wrapper">
@@ -1348,7 +1420,7 @@ function OnlineDonation() {
                             })}
                           </div>
                         </div>
-                      </div>
+                      </div>)}
                       <div className="col-12 col-md-6">
                         <div className="select-label">
                           {/* <div className="col-4 "> Email ID</div> */}
@@ -1796,7 +1868,7 @@ function OnlineDonation() {
                                             className="form-control-inside form-control"
                                             name="user.addharCard"
                                             id="addharCard"
-                                            placeholder="Addhar card No."
+                                            placeholder="AADHAAR Card Number"
                                             type="text"
                                             maxLength={16}
                                             value={userData?.user?.addharCard}
@@ -2603,8 +2675,12 @@ function OnlineDonation() {
                               <textarea
                                 className="form-control"
                                 placeholder="Message for the Giftee"
-                                maxLength={150}
+                                onChange={handleChangeTextarea}
+                                maxLength={maxLength}
                               ></textarea>
+                              <p>
+                                {inputValue.length}/{maxLength} Characters
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -2995,7 +3071,7 @@ function OnlineDonation() {
                                             className="form-control-inside form-control"
                                             name="user.addharCard"
                                             id="addharCard"
-                                            placeholder="Addhar card No."
+                                            placeholder="AADHAAR Card Number"
                                             type="text"
                                             maxLength={16}
                                             value={userData?.user?.addharCard}
