@@ -1056,7 +1056,16 @@ function OnlineDonation() {
     console.log(response);
     setMessage("");
     if (response?.status === "Success") {
-      toast.success(response?.message);
+      if (response?.message.indexOf("click here")) {
+        setMessage(
+          response?.message?.replace(
+            "click here",
+            '<a href="/Login">click here</a>'
+          )
+        );
+      } else{
+        toast.success(response?.message);
+      }
       if (response.data.address) {
         let addr = [...initialAddress];
         if (response.data.address[0]) {

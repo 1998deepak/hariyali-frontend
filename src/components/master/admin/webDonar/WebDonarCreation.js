@@ -370,7 +370,7 @@ function WebDonarCreation() {
                             <td>{payment.paymentDate}</td>
                             <td>
                               <span>
-                                <Link onClick={() => getUserDonations(donor, 0)} to={`/OfflinePlanAndDonationUpdate/${donation.donationId}`} className="view-icon icon-btn" ><FaRegEye /></Link>
+                                <Link to={`/OfflinePlanAndDonationUpdate/${donation.donationId}`} className="view-icon icon-btn" ><FaRegEye /></Link>
                               </span>
 
                             </td>
