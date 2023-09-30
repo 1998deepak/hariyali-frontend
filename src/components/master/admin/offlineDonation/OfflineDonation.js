@@ -1311,7 +1311,7 @@ function OfflineDonation() {
                             </div>
                           ) : (
                             <div className="actionheadingdiv">
-                              DETAILS OF DONAR
+                              DETAILS OF DONOR
                             </div>
                           )}
                         <div className="col-12 pr15 mt20">
@@ -2043,7 +2043,7 @@ function OfflineDonation() {
                               </div>
                             </div>
                             <div className="col-6">
-                                <div className="select-label">
+                                <div className="row select-label">
                                   <div className="col-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
@@ -2537,7 +2537,7 @@ function OfflineDonation() {
                             </div>
                           ) : (
                             <div className="actionheadingdiv">
-                              DETAILS OF DONAR
+                              DETAILS OF DONOR
                             </div>
                           )}
                         <div className="col-12 pr15 mt20">
@@ -3151,7 +3151,7 @@ function OfflineDonation() {
                               </div>
                             </div>
                             <div className="col-6">
-                                <div className="select-label">
+                                <div className="row select-label">
                                   <div className="col-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
@@ -3796,7 +3796,7 @@ function OfflineDonation() {
                             </div>
                           ) : (
                             <div className="actionheadingdiv">
-                              DETAILS OF DONAR
+                              DETAILS OF DONOR
                             </div>
                           )}
                         <div className="col-12 pr15 mt20">
@@ -4513,7 +4513,7 @@ function OfflineDonation() {
                             </div>
                           ) : (
                             <div className="actionheadingdiv">
-                              DETAILS OF DONAR
+                              DETAILS OF DONOR
                             </div>
                           )}
                         <div className="col-12 pr15 mt20">
