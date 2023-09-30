@@ -372,7 +372,8 @@ function OnlineDonation() {
         document.getElementById("organisation").focus();
       }
     }
-    if (userData?.user?.citizenship.toUpperCase() === INDIA) {
+    if (userData?.user?.citizenship.toUpperCase() === INDIA || address[0]?.country.toUpperCase() ===
+    INDIA ) {
       if (hasAadharCard === true) {
         if (!userData?.user?.panCard) {
           validationErrors.push({
