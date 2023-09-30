@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Carousel, Modal, Button, Nav} from "react-bootstrap";
+import { Carousel, Modal, Button, Nav } from "react-bootstrap";
 import { Container, Row } from "react-bootstrap";
 import "animate.css/animate.min.css";
+import Slider from "react-slick";
 // import "react-image-gallery/styles/css/image-gallery.css";
 import { Zoom } from "react-slideshow-image";
 // program
@@ -30,8 +31,8 @@ import csrCertificate1 from "../../../assets/img/CSR.png";
 import aimacertificate from "../../../assets/img/AIMA.jpg";
 import program3 from "../../../assets/img/co2.jpg";
 import program4 from "../../../assets/img/lifestyle.jpg";
-import video from '../../../assets/video/Solan-women-farmer-AV.mp4';
-import { Link, useNavigate, useLocation} from "react-router-dom";
+import video from "../../../assets/video/Solan-women-farmer-AV.mp4";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import plantation from "../../../assets/img/GIF's/plant-img.gif";
 // const slides = [
 //   {
@@ -71,33 +72,29 @@ import plantation from "../../../assets/img/GIF's/plant-img.gif";
 
 function WhySupportUs() {
   const items = [
-    [
-      {
-        quote:
-          "FICCI CSR Awards – In Skill Development & Livelihood Category, 2021",
-        image: csrCertificate,
-      },
-      {
-        quote:
-          "Food System Vision Prize by Rockefeller Foundation to Naandi Foundation, 2020",
-        // image: csrCertificate,
-      },
-      {
-        quote:
-          "The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category, 2020",
-        image: csrCertificate1,
-      },
-    ],
-    [
-      {
-        quote: "AIMA Runner- up CSR Award, 2023",
-        image: aimacertificate,
-      },
-      {
-        quote: "Limca book of Awards - National Record, 2016",
-        image: limcaAward,
-      },
-    ],
+    {
+      quote:
+        "FICCI CSR Awards – In Skill Development & Livelihood Category, 2021",
+      image: csrCertificate,
+    },
+    {
+      quote:
+        "Food System Vision Prize by Rockefeller Foundation to Naandi Foundation, 2020",
+      // image: csrCertificate,
+    },
+    {
+      quote:
+        "The CSR Conclave and Awards by IFCCI in the Environment and Sustainability Category, 2020",
+      image: csrCertificate1,
+    },
+    {
+      quote: "AIMA Runner- up CSR Award, 2023",
+      image: aimacertificate,
+    },
+    {
+      quote: "Limca book of Awards - National Record, 2016",
+      image: limcaAward,
+    },
     // Add more item groups as needed
   ];
 
@@ -107,7 +104,7 @@ function WhySupportUs() {
       name: "Farmer family from Gondhi Rapa village (Hukumpeta mandal), Araku.",
       quote:
         "We are from Gondhi Rapa village in Hukumpeta mandal of the Araku region. Our farm yields 894 kgs of crimson red coffee cherries which we have given to the cooperative thereby earning 6 times of what we earned two years.",
-      legend: 'From Araku, Andhra Pradesh',
+      legend: "From Araku, Andhra Pradesh",
     },
     {
       image: testimonial2,
@@ -161,6 +158,40 @@ function WhySupportUs() {
     height: "315", // Set the height of the video player
     width: "560", // Set the width of the video player
   };
+  var settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1140,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
   return (
     <>
       {/* body */}
@@ -172,7 +203,18 @@ function WhySupportUs() {
               <h2 className="sub-title text-center">Why Support Us</h2>
 
               <p className="text-center">
-              The total forest and tree cover in India is 809,537 square kilometres i.e., 24.62 % of the total geographical area. But as per the National Forest Policy, the ideal percentage of total geographical area under forest should be at least 33% to maintain ecological stability. India ranked the second highest for the rate of deforestation after losing 668,400 hectares of forest cover in the last 30 years. The forest areas are under threat due to rapid industrialization, road, and other connectivity projects as well as irrigation projects. Over and above, 90% of the area under the biodiversity hotspots have been lost as per the Centre for Science and Environment’s (CSE) new report entitled ‘State of India’s Environment in Figures 2021’. 
+                The total forest and tree cover in India is 809,537 square
+                kilometres i.e., 24.62 % of the total geographical area. But as
+                per the National Forest Policy, the ideal percentage of total
+                geographical area under forest should be at least 33% to
+                maintain ecological stability. India ranked the second highest
+                for the rate of deforestation after losing 668,400 hectares of
+                forest cover in the last 30 years. The forest areas are under
+                threat due to rapid industrialization, road, and other
+                connectivity projects as well as irrigation projects. Over and
+                above, 90% of the area under the biodiversity hotspots have been
+                lost as per the Centre for Science and Environment’s (CSE) new
+                report entitled ‘State of India’s Environment in Figures 2021’.
               </p>
             </div>
           </div>
@@ -216,7 +258,11 @@ function WhySupportUs() {
                   Lifestyle for Environment
                 </h5>
                 <p>
-                India is promoting individual responsibility toward climate action through Mission LIFE “Lifestyle for Environment”. This movement aims to transform individuals into pro planet people by having them adopt sustainable lifestyles and minimize their carbon footprints.
+                  India is promoting individual responsibility toward climate
+                  action through Mission LIFE “Lifestyle for Environment”. This
+                  movement aims to transform individuals into pro planet people
+                  by having them adopt sustainable lifestyles and minimize their
+                  carbon footprints.
                 </p>
               </div>
               {/* <i className="icon-monsoon"></i> */}
@@ -227,11 +273,14 @@ function WhySupportUs() {
           Support the nation reach Carbon neutrality. Join us to make an impact
           through Project Hariyali{" "}
         </p>
-          <div className="text-center">
-              <div className="" onClick={goToDonate}>
-                <Button className="menu-button-donet"><img src={plantation} alt="Donote" className="donoteicon" />Plant A Tree </Button>
-              </div>
-            </div>
+        <div className="text-center">
+          <div className="my-4" >
+            <Button className="btn btn-primary" onClick={goToDonate}> 
+              <img src={plantation} alt="Donote" className="donoteicon" />
+              Plant A Tree{" "}
+            </Button>
+          </div>
+        </div>
       </section>
       {/* <div className="container pv-75">
         <div className="row mb30 impact-wrapper">
@@ -250,45 +299,60 @@ function WhySupportUs() {
               Impact of Hariyali Project
             </h3>
             <p className="text-center">
-            Project Hariyali is a unique blend in the sphere of environmental sustainability and impacting livelihood. 
-            The Project is already contributing towards mission LiFE & India’s commitment toward carbon neutrality. 
+              Project Hariyali is a unique blend in the sphere of environmental
+              sustainability and impacting livelihood. The Project is already
+              contributing towards mission LiFE & India’s commitment toward
+              carbon neutrality.
             </p>
           </div>
           <div className="justify-content-center quantitative-card">
             <div className="discover-block impactbgcolor1">
               <div className="impactbg1">
-              <div class="impact-margin h-100">
-                <div class="card-header">
-                  Trees planted
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title impactwidth">Number of trees planted since 2007</h5>
-                  <p class="card-text">24.86 Millions</p>
+                <div class="impact-margin h-100">
+                  <div class="card-header">Trees planted</div>
+                  <div class="card-body">
+                    <h5 class="card-title impactwidth">
+                      Number of trees planted since 2007
+                    </h5>
+                    <p class="card-text">24.86 Millions</p>
+                  </div>
                 </div>
               </div>
-            </div></div>
+            </div>
             <div className="discover-block impactbgcolor2">
               <div className="impactbg2">
-              <div class="impact-margin h-100"> 
-               <div class="card-header">
-                  Survival Rate of Plant</div>
-                
-                <div class="card-body">
-                  <h5 class="card-title impactwidth">Overall survival rate of plant since inception</h5>
-                  <p class="card-text">85% Plus</p>
-                </div></div>
+                <div class="impact-margin h-100">
+                  <div class="card-header">Survival Rate of Plant</div>
+
+                  <div class="card-body">
+                    <h5 class="card-title impactwidth">
+                      Overall survival rate of plant since inception
+                    </h5>
+                    <p class="card-text">85% Plus</p>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="discover-block impactbgcolor3">
               <div className="impactbg3">
-              <div class="impact-margin h-100">  <div class="card-header">
-                  CO<sub>2</sub> Sequestered
+                <div class="impact-margin h-100">
+                  {" "}
+                  <div class="card-header">
+                    CO<sub>2</sub> Sequestered
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title impactwidth">
+                      CO<sub>2</sub> sequestered through the project since
+                      inception{" "}
+                    </h5>
+                    <p class="card-text">
+                      &#x3E;
+                      <span>
+                        153.0 ktonne CO<sub>2</sub>e
+                      </span>
+                    </p>
+                  </div>
                 </div>
-                <div class="card-body">
-                  <h5 class="card-title impactwidth">CO<sub>2</sub> sequestered through the project since
-                    inception{" "}</h5>
-                  <p class="card-text">&#x3E;<span>153.0 ktonne CO<sub>2</sub>e</span></p>
-                </div></div>
               </div>
             </div>
             {/* </Row> */}
@@ -296,43 +360,67 @@ function WhySupportUs() {
             {/* <Row className="justify-content-center mb-4 quantitative-card"> */}
             <div className="discover-block impactbgcolor4">
               <div className="impactbg4">
-              <div class="impact-margin h-100">  <div class="card-header">
-                  Soil Quality
+                <div class="impact-margin h-100">
+                  {" "}
+                  <div class="card-header">Soil Quality</div>
+                  <div class="card-body">
+                    <h5 class="card-title impactwidth">
+                      Improvement in soil quality in terms of carbon, water
+                      holding capacity & nutrients
+                    </h5>
+                    <p class="card-text">Soil Health</p>
+                  </div>
                 </div>
-                <div class="card-body">
-                  <h5 class="card-title impactwidth">Improvement in soil quality in terms of carbon, water
-                    holding capacity & nutrients</h5>
-                  <p class="card-text">Soil Health</p>
-                </div></div>
               </div>
             </div>
             <div className="discover-block impactbgcolor5">
               <div className="impactbg5">
-              <div class="impact-margin h-100">  <div class="card-header">
-                  Bio-diversity
+                <div class="impact-margin h-100">
+                  {" "}
+                  <div class="card-header">Bio-diversity</div>
+                  <div class="card-body">
+                    <h5 class="card-title impactwidth">
+                      Significant positive change in bio-diversity
+                    </h5>
+                    <p class="card-text">Bio-diversity</p>
+                  </div>
                 </div>
-                <div class="card-body">
-                  <h5 class="card-title impactwidth">Significant positive change in bio-diversity</h5>
-                  <p class="card-text">Bio-diversity</p>
-                </div></div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <div className="container">
+      <div className="container py-5">
         <div className="feature-description">
-          <h2 className="sub-title  text-center">Awards Won</h2>
-
+          <h2 className="sub-title text-center mb-0 pb-0">Awards Won</h2>
+          </div>
           <div className="awards-slider">
-            <Carousel indicators={true}>
+            <Slider {...settings}>
+                {items.map((subItem, subIndex) => (
+                  <>
+                    <div className="award-tile">
+                      <div
+                        key={subIndex}
+                        className="slide-content2"
+                        onClick={() => openModal(subItem.image)}
+                      >
+                        <div className="award-wrapper">
+                          <h4>{subItem.quote}</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ))}
+            </Slider>
+
+            {/* <Carousel indicators={true}>
               {items.map((item, index) => (
                 <Carousel.Item key={index}>
                   <div className="d-flex justify-content-center">
                     {item.map((subItem, subIndex) => (
                       <>
                         <div className="award-tile">
-                          {/* <div key={index} className="col-12 col-md-6 mb-3"></div> */}
+                          
                           <div
                             key={index}
                             className="slide-content2"
@@ -348,7 +436,7 @@ function WhySupportUs() {
                   </div>
                 </Carousel.Item>
               ))}
-            </Carousel>
+            </Carousel> */}
           </div>
           <Modal show={showModal} onHide={closeModal} className="awards-modal">
             <Modal.Body>
@@ -357,7 +445,6 @@ function WhySupportUs() {
               )}
             </Modal.Body>
           </Modal>
-        </div>
       </div>
       <section className="bg-green">
         <div className="container">
@@ -369,12 +456,21 @@ function WhySupportUs() {
                 </h3>
                 <p>
                   <i>
-                  Annual third - party audits have been conducted since 2012 by Unique forestry and land use GmbH.
+                    Annual third - party audits have been conducted since 2012
+                    by Unique forestry and land use GmbH.
                   </i>
                 </p>
                 <p>
                   <i>
-                  Since FY22, Impact Assessment as part of CSR guidelines have been conducted by third party organizations. In the last Impact Assessment conducted for plantations done in FY21, the survival rate has been reported at 94.67%. <b>Project Hariyali has been awarded “Platinum” category performance of CSR Activity by an NABCB accredited “Type A” Inspection Body. </b>
+                    Since FY22, Impact Assessment as part of CSR guidelines have
+                    been conducted by third party organizations. In the last
+                    Impact Assessment conducted for plantations done in FY21,
+                    the survival rate has been reported at 94.67%.{" "}
+                    <b>
+                      Project Hariyali has been awarded “Platinum” category
+                      performance of CSR Activity by an NABCB accredited “Type
+                      A” Inspection Body.{" "}
+                    </b>
                   </i>
                 </p>
               </div>
@@ -424,7 +520,9 @@ function WhySupportUs() {
                         <i className="bi bi-quote pe-2"></i>
                         {testimonial.quote}
                       </p>
-                      <div className="testimonial-legend">{testimonial.legend} </div>
+                      <div className="testimonial-legend">
+                        {testimonial.legend}{" "}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -434,9 +532,9 @@ function WhySupportUs() {
           <div className="slide-content-whysupport support-content">
             <div className="row  d-flex justify-content-center">
               <div className="col-12 col-lg-6 text-center mb-5">
-              <video width="100%" height="500" controls >
-              <source src={video} type="video/mp4"/>
-     </video>
+                <video width="100%" height="500" controls>
+                  <source src={video} type="video/mp4" />
+                </video>
               </div>
               {/* <div className="col-12 col-md-6 text-center">
                 <iframe

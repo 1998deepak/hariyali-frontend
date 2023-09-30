@@ -2043,7 +2043,7 @@ function OfflineDonation() {
                               </div>
                             </div>
                             <div className="col-6">
-                                <div className="select-label">
+                                <div className="row select-label">
                                   <div className="col-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
