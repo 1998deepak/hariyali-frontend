@@ -363,15 +363,17 @@ function OnlineDonation() {
         document.getElementById("prefix").focus();
       }}
     if (
-      userData?.user?.donarType.toLocaleLowerCase() === "corporate" &&
-      !userData?.user?.organisation
-    ) {
+      userData?.user?.donarType.toLocaleLowerCase() === "corporate" && !userData?.user?.organisation) {
       validationErrors.push({
         field: "userData.user.organisation",
         message: "Organisation is required",
       });
+      if(document.getElementById("organisation")){
+        document.getElementById("organisation").focus();
+      }
     }
-    if (userData?.user?.citizenship.toUpperCase() === INDIA) {
+    if (userData?.user?.citizenship.toUpperCase() === INDIA || address[0]?.country.toUpperCase() ===
+    INDIA ) {
       if (hasAadharCard === true) {
         if (!userData?.user?.panCard) {
           validationErrors.push({
@@ -1521,6 +1523,7 @@ function OnlineDonation() {
                                         <input
                                           className="form-control-inside form-control"
                                           name="user.organisation"
+                                          id="organisation"
                                           placeholder="Organisation"
                                           type="text"
                                           value={userData?.user?.organisation}
@@ -1530,12 +1533,12 @@ function OnlineDonation() {
                                         {errors.map((error, index) => {
                                           if (
                                             error.field ===
-                                            "userData.user.organisation red-text"
+                                            "userData.user.organisation"
                                           ) {
                                             return (
                                               <div
                                                 key={index}
-                                                className="error-message"
+                                                className="error-message red-text"
                                               >
                                                 {error.message}
                                               </div>
@@ -1750,6 +1753,7 @@ function OnlineDonation() {
                                 </div>{" "}
                               </div>
                               {userData?.user?.citizenship?.toUpperCase() ===
+                              INDIA || address[0]?.country.toUpperCase() ===
                               INDIA ? (
                                 <>
                                   {userData?.user?.donarType ===
@@ -3015,6 +3019,7 @@ function OnlineDonation() {
                                 </div>{" "}
                               </div>
                               {userData?.user?.citizenship?.toUpperCase() ===
+                              INDIA || address[0]?.country.toUpperCase() ===
                               INDIA ? (
                                 <>
                                   {userData?.user?.donarType ===
