@@ -667,7 +667,7 @@ function OnlineDonation() {
       console.log(user);
 
       //setting recipent data
-      if (recipient[0].address[0].state) {
+      if (donationType == "gift") {
         console.log(recipient);
         console.log("Reci");
         user.donations[0].recipient = recipient;
@@ -1458,7 +1458,7 @@ function OnlineDonation() {
                           </div>
                         </div>
                       </div>
-
+                      {message == "" &&
                       <div className="col-12 padding-top-10">
                         <Button
                           className="float-right"
@@ -1469,6 +1469,7 @@ function OnlineDonation() {
                           Proceed
                         </Button>
                       </div>
+                      }
                     </div>{" "}
                     <div dangerouslySetInnerHTML={{ __html: message }}></div>
                     {userData?.user?.donarType === "Corporate" ? (
@@ -2745,19 +2746,20 @@ function OnlineDonation() {
                             </div>
                           </div>
                         </div>
+                        {message == "" &&
+                          <div className="col-12 padding-top-10">
+                            <span className="actionheadingdiv"><b>Proceed to Gift and provide Gifter & Giftee details</b></span>
 
-                        <div className="col-12 padding-top-10">
-                          <span className="actionheadingdiv"><b>Proceed to Gift and provide Gifter & Giftee details</b></span>
-
-                          <Button
-                            className="float-right"
-                            variant="success"
-                            disabled={!validGiftUser}
-                            onClick={() => sendOtp(giftUserEmail)}
-                          >
-                            Proceed
-                          </Button>
-                        </div>
+                            <Button
+                              className="float-right"
+                              variant="success"
+                              disabled={!validGiftUser}
+                              onClick={() => sendOtp(giftUserEmail)}
+                            >
+                              Proceed
+                            </Button>
+                          </div>
+                        }
                       </div>{" "}
                       <div dangerouslySetInnerHTML={{ __html: message }}></div>
                     </div>

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import MultiSelectDropdown from './MultiSelectDropdown';
-import axios from 'axios';
 import { toast, ToastContainer } from "react-toastify";
-import { Button, Modal, Form } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { PlantationService } from '../../../services/PlantationService/plantation.service';
 import { SUCCESS } from "../../constants/constants";
 import Loader from "../../common/loader/Loader";
 import { MultiSelect } from "primereact/multiselect";
-import ReactPaginate from 'react-paginate';
+import Pagination from '../../common/Pagination';
+
 
 const DashboardTable = () => {
   const [selectedYear, setSelectedYear] = useState(null);
@@ -120,14 +119,14 @@ const DashboardTable = () => {
       });
       setCities(cityList);
       setLoading(false);
-    
+
       if (flag) {
         setSelectedCities(cityList);
         setTimeout(() => {
           document.getElementById("search").click();
         }, 100);
-       }
-      } else {
+      }
+    } else {
       toast.error(response?.message);
       setLoading(false);
     }
@@ -159,7 +158,7 @@ const DashboardTable = () => {
   };
 
 
-  const getPlantationList = async () => {
+  const getPlantationList = async (pageNo) => {
 
     if (selectedYear == null) {
       toast.error("Please select plantation year!");
@@ -196,6 +195,7 @@ const DashboardTable = () => {
       const response = await PlantationService.getPlantationList(data);
       if (response?.status === SUCCESS) {
         setPlantationList(response.data);
+        setTotalRecords(response.totalRecords);
         setLoading(false);
       } else {
         toast.error(response?.message);
@@ -259,25 +259,25 @@ const DashboardTable = () => {
     }
   };
   const downloadTemplate = async () => {
-  
-      const response = await PlantationService.downloadTemplate();
-      if (response?.status === 200) {
-        console.log(response);
-        const url = window.URL.createObjectURL(response?.data);
-        const link = document.createElement("a");
-        const fileName = response.headers["content-disposition"].split("filename=")[1];
-        link.href = url;
-        link.setAttribute("download", fileName);
-        link.click();
-      } else {
-        toast.error(response?.message);
-      }
-    
+
+    const response = await PlantationService.downloadTemplate();
+    if (response?.status === 200) {
+      console.log(response);
+      const url = window.URL.createObjectURL(response?.data);
+      const link = document.createElement("a");
+      const fileName = response.headers["content-disposition"].split("filename=")[1];
+      link.href = url;
+      link.setAttribute("download", fileName);
+      link.click();
+    } else {
+      toast.error(response?.message);
+    }
+
   };
 
   const handlePageClick = (event) => {
-    setPageNo(event.selected);
-    getPlantationList();
+    setPageNo(event);
+    getPlantationList(event - 1);
   };
 
 
@@ -360,7 +360,7 @@ const DashboardTable = () => {
           <div className="col-md-6 col-lg-4">
             <div className="form-group d-inline-block top-30">
 
-              <Button type='submit' className="btn btn-primary" id="search" onClick={getPlantationList}>
+              <Button type='submit' className="btn btn-primary" id="search" onClick={() => getPlantationList(0)}>
                 Search
               </Button>
               <Button type='submit' className="btn btn-primary" onClick={setShowUploadModal}>
@@ -410,7 +410,7 @@ const DashboardTable = () => {
           </Modal>
         </div> */}
         <br />
-        <div className="row">
+        <div className="row padding-bottom-10">
           <div className="col-12">
             <table className="table table-striped table-bordered shadow-table">
               <thead>
@@ -442,61 +442,18 @@ const DashboardTable = () => {
                 })}
               </tbody>
             </table>
-            {plantationList.length > 0 && (
-              <ReactPaginate className="pagination"
-                breakLabel="..."
-                nextLabel="next"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
-                pageCount={pageCount}
-                previousLabel="Previous"
-                renderOnZeroPageCount={null}
+
+            {totalRecords > 0 &&
+              <Pagination
+                itemsCount={totalRecords}
+                itemsPerPage={pagesize}
+                currentPage={pageNo}
+                setCurrentPage={handlePageClick}
+                alwaysShown={false}
               />
-            )}
+            }
           </div>
         </div>
-        {/* <div className="row">
-          <div className="col-12">
-            <div className="rows_count pagination-noteline" style={{ 'padding-top': '8px' }}>
-              Showing 11 to 20 of 91 entries
-            </div>
-            <div className="">
-              <nav className="d-flex justify-content-between align-items-center">
-
-                <ul className="pagination shadow-table-pagination alignment_paginatin">
-                  <li className="page-item">
-                    <a className="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li className="page-item"><a className="page-link" href="#">1</a></li>
-                  <li className="page-item active"><a className="page-link" href="#">2</a></li>
-                  <li className="page-item"><a className="page-link" href="#">3</a></li>
-                  <li className="page-item"><a className="page-link" href="#">4</a></li>
-                  <li className="page-item"><a className="page-link" href="#">5</a></li>
-                  <li className="page-item"><a className="page-link" href="#">6</a></li>
-                  <li className="page-item">
-                    <a className="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-                <div className="form-group tb_search1">
-                  <div className="input-group">
-                    <select className="form-control" style={{ height: '33px' }}>
-                      <option value="">10  </option>
-                      <option value="option1">10</option>
-                      <option value="option2">20</option>
-                      <option value="option3">30</option>
-                    </select>
-                  </div>
-                </div>
-
-              </nav>
-
-            </div>
-          </div>
-        </div> */}
 
         <Modal
           show={showUploadModal}
