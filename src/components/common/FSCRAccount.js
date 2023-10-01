@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default function FSCRAccount() {
   return (
     <>
-      <Container>
+      <Container className="py-5">
         <div
           id="forgotDiv"
           className="row  justify-content-between contact-form-wrap login-wrapper align-items-center mt-1 mb-1"
