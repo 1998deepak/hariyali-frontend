@@ -16,7 +16,14 @@ function ConformPassword() {
   
   const inputRef = useRef(false);
   const confirmInputRef = useRef(false);
-  const [newPassword, setNewPassword] = useState("");
+  const [password, setPassword] = useState({
+    newPassword:"",
+    confirmPassword:""
+  });
+  const [error, setError] = useState({
+    newPassword:"",
+    confirmPassword:"",
+  });
   const navigate = useNavigate();
     //toggle password hide show
     const showIcon = () => <FaEyeSlash />;
@@ -25,14 +32,24 @@ function ConformPassword() {
       navigate("/Login");
      }
 
-
-
      const setPasswordApi = async (e) =>{
-      console.log(UserId);
       e.preventDefault();
+      if (!password.newPassword) {
+        setError({...error,newPassword:"Enter New Password"});
+        return;
+      }
+      if (!password.confirmPassword) {
+        setError({...error,confirmPassword:"Enter Confirm Password"});
+        return;
+      }
+      if (password.newPassword !== password.confirmPassword) {
+        setError({...error,confirmPassword:"New Password and Confirm Password do not match"});
+      }
+     
+      console.log(UserId);
       const formData = {
           email : UserId,
-          password : newPassword
+          password : password.newPassword
       };
       console.log(formData);
       const response = await AuthService.changeNewPassword(formData);
@@ -47,6 +64,38 @@ function ConformPassword() {
         toast.error(response?.message);
       }
      }
+
+     const validaPassword = (password) => {
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=]).{8,}$/;
+      return passwordRegex.test(password);
+    };
+
+    const validatePassword = (event)=>{
+      let { value } = event.target;
+      if (value === password.newPassword) {
+        setError("");
+      }else{
+        setError({...error,confirmPassword:"New Password and Confirm Password do not match"});
+      }
+    }
+
+    const handlePasswordChange = (event) =>{
+      let { name,value } = event.target;
+      let passwords = {...password};
+      passwords[name] = value;
+      setPassword(passwords);
+      if (error[name]) {
+        setError({...error,[name]:""});
+      }
+      if (name === "newPassword") {
+        let valid = validaPassword(value);
+        if (!valid) {
+          setError({...error,newPassword:"Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character."});
+        }else{
+          setError({...error,newPassword:""});
+        }
+      }
+    }
 
   return (
     <>
@@ -68,28 +117,38 @@ function ConformPassword() {
                   className="login-input login-password form-control"
                   name="newPassword"
                   ref={inputRef}
-                  onChange={(e) => setNewPassword(e.target.value)}
+                  onChange={(e) => handlePasswordChange(e)}
                 />
                 <ReactPasswordToggleIcon className="logineye"
                         inputRef={inputRef}
                         hideIcon={hideIcon}
                         showIcon={showIcon}
                       />
+                      {error.newPassword && (
+                  <div className="error-message red-text">{error.newPassword}</div>
+                )}
               </label>
+              
               <label className="col-12 form-group">
                 <input
                   type="password"
                   placeholder="confirm Password"
                   className="login-input login-password form-control"
-                  name="conformPassword"
+                  name="confirmPassword"
                   ref={confirmInputRef}
+                  onBlur={validatePassword}
+                  onChange={(e) => handlePasswordChange(e)}
                 />
                 <ReactPasswordToggleIcon className="logineye"
                         inputRef={confirmInputRef}
                         hideIcon={hideIcon}
                         showIcon={showIcon}
                       />
+                      {error.confirmPassword && (
+                  <div className="error-message red-text">{error.confirmPassword}</div>
+                )}
               </label>
+              
               <button className="mt20 mr10 webform-button--submit" onClick={setPasswordApi}>
                 Done
               </button>
