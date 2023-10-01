@@ -633,6 +633,7 @@ function OnlineDonation() {
     setGiftUserEmail("");
     setIsDivOpenGift(false);
     setIsDivOpen(false);
+    setMessage("");
   };
 
   const setCaptchaFlag = async (flag) => {
@@ -1521,7 +1522,7 @@ function OnlineDonation() {
                       </div>
                       }
                     </div>{" "}
-                    <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                    <div className="padding-top-10" dangerouslySetInnerHTML={{ __html: message }}></div>
                     {userData?.user?.donarType === "Corporate" ? (
                       <div>For CSR related enquiries please reach us at <a href="">support@hariyali.org.in</a> | 022 22021031</div>
                     ) : (
