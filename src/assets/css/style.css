@@ -3534,11 +3534,13 @@ figure.effect-layla:hover img {
   display: none;
 }
 
-.patner-carousel .carousel-control-prev {
+.patner-carousel .carousel-control-prev,
+.trees-plant-slider .carousel-control-prev{
   left: -2rem;
 }
 
-.patner-carousel .carousel-control-next {
+.patner-carousel .carousel-control-next,
+.trees-plant-slider .carousel-control-next {
   right: -2rem;
 }
 
@@ -5439,11 +5441,13 @@ video {
     width: 1.5rem;
     height: 1.5rem;
   }
-  .patner-carousel .carousel-control-prev {
+  .patner-carousel .carousel-control-prev,
+  .trees-plant-slider .carousel-control-prev {
     left: 0;
   }
 
-  .patner-carousel .carousel-control-next {
+  .patner-carousel .carousel-control-next,
+  .trees-plant-slider .carousel-control-next {
     right: 0;
   }
   .overalltotal{
