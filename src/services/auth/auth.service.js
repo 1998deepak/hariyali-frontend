@@ -22,12 +22,12 @@ export const AuthService = {
       return response?.data;
     }
      catch (err) {
-      // console.log(err);
-      // if (err?.response?.data) {
-      //   return err?.response?.data;
-      // }else{
-      // toast.error(err?.message);
-      //  }
+      console.log(err);
+      if (err?.response?.data) {
+        return err?.response;
+      }else{
+      toast.error(err?.message);
+       }
     }
   },
 
@@ -76,6 +76,25 @@ export const AuthService = {
     }
   },
 
+  sendForgetPasswordOtp: async (formData) => {
+    console.log(formData.donorId);
+    const donarIDorMail = formData.donorId;
+    try {
+      const response = await APIService.Instance.post(
+        URLS.FORGETPASSWORD+donarIDorMail,
+        donarIDorMail
+      );
+      console.log(response);
+      return response?.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+        toast.error(err?.message);
+      }
+    }
+  },
+
   verifyOtp: async ( email, otp) => {
     try {
       email = (await EncryptionService.encrypt(email)).toString();
@@ -95,13 +114,25 @@ export const AuthService = {
       }
     }
   },
-
-
-
-
-
-
-
+  verifyForgetOtp: async ( data, otp) => {
+    try {
+      // data = (await EncryptionService.encrypt(data)).toString();
+      // otp = (await EncryptionService.encrypt(otp)).toString();
+      console.log(data);
+      console.log(otp);
+      const response = await APIService.Instance.post(
+        URLS.VERIFYFORGETOTP+`?donarIdOrEmail=${data}&otp=${otp}`,
+      );
+      console.log(response);
+      return response?.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+        toast.error(err?.message);
+      }
+    }
+  },
   resetPassword: async (password,token) => {
     try {
       const response = await APIService.Instance.post(
@@ -116,4 +147,33 @@ export const AuthService = {
        }
     }
   },  
+  changePassword: async (data) => {
+    try {
+      const response = await APIService.Instance.post(
+        URLS.CHANGEE_PASSWORD, data      
+      );
+      return response?.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      }else{
+      toast.error(err?.message);
+       }
+    }
+  },  
+  changeNewPassword: async (formData) => {
+    console.log(formData);
+    try {
+      const response = await APIService.Instance.post(
+        URLS.SET_NEW_PASSWORD, formData      
+      );
+      return response?.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      }else{
+      toast.error(err?.message);
+       }
+    }
+  }, 
 };

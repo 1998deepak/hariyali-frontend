@@ -1,42 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import MultiSelectDropdown from './MultiSelectDropdown';
-import axios from 'axios';
 import { toast, ToastContainer } from "react-toastify";
-import { Button, Modal, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { PlantationService } from '../../../services/PlantationService/plantation.service';
 import { SUCCESS } from "../../constants/constants";
 import Loader from "../../common/loader/Loader";
-import { MultiSelect } from "primereact/multiselect";
-import ReactPaginate from 'react-paginate';
-import {HiOutlineDocumentReport} from "react-icons/hi";
+import { HiOutlineDocumentReport } from "react-icons/hi";
+import Pagination from '../../common/Pagination';
 
 const Commitment = () => {
   const [selectedYear, setSelectedYear] = useState(null);
   const [selectedSeason, setSelectedSeason] = useState(null);
-  const [selectedDistricts, setSelectedDistricts] = useState(null);
-  const [file, setFile] = useState(null);
-  const [selectedCities, setSelectedCities] = useState(null); // State to store the selected season
-  // const seasonOptions = ['Monsoon', 'Winter']; 
-  const [showUploadModal, setShowUploadModal] = useState(false);
   const [years, setYears] = useState([]);
   const [seasons, setSeasons] = useState([]);
-  const [districts, setDistricts] = useState([]);
-  const [cities, setCities] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const [pageNo, setPageNo] = useState(0);
   const [pagesize, setPageSize] = useState(10);
-  const [pageCount, setPageCount] = useState(1);
   const [totalRecords, setTotalRecords] = useState(0);
   const [commitmentList, setCommitmentList] = useState([]);
 
 
-  const handleClose = () => setShowUploadModal(false);
 
   const handleYearChange = (e) => {
 
     setSelectedYear(e.target.value);
-    
+
   };
 
   const getYears = async () => {
@@ -67,7 +55,7 @@ const Commitment = () => {
     }
   };
 
-  const getCommitmentList = async () => {
+  const getCommitmentList = async (pageNo) => {
 
     if (selectedYear == null) {
       toast.error("Please select plantation year!");
@@ -75,12 +63,12 @@ const Commitment = () => {
       toast.error("Please select season!");
     } else {
       setLoading(true);
-    
+
       const data = {
         pageSize: pagesize,
         pageNumber: pageNo,
         data: {
-          plantationMaster:{
+          plantationMaster: {
             season: selectedSeason,
             plantationYear: selectedYear
           }
@@ -90,6 +78,7 @@ const Commitment = () => {
       const response = await PlantationService.getCommitmentList(data);
       if (response?.status === SUCCESS) {
         setCommitmentList(response.data);
+        setTotalRecords(response.totalRecords);
         setLoading(false);
       } else {
         toast.error(response?.message);
@@ -106,8 +95,8 @@ const Commitment = () => {
 
 
   const handlePageClick = (event) => {
-    setPageNo(event.selected);
-    getCommitmentList();
+    setPageNo(event);
+    getCommitmentList(event-1);
   };
 
 
@@ -154,17 +143,17 @@ const Commitment = () => {
               })}
             </select>
           </div>
-          
+
           <div className="col-md-6 col-lg-4">
             <div className="form-group d-inline-block top-30">
 
-              <Button type='submit' className="btn btn-primary" onClick={getCommitmentList}>
+              <Button type='submit' className="btn btn-primary" onClick={() => getCommitmentList(0)}>
                 Search
               </Button>
-              </div>
+            </div>
           </div>
         </div>
-        
+
         <div className="row">
           <div className="col-12">
             <table className="table table-striped table-bordered shadow-table">
@@ -194,48 +183,25 @@ const Commitment = () => {
                       <td>{commitment.plantationMaster?.plantationDateString}</td>
                       <td>{commitment.plantationMaster?.season}</td>
                       <td>
-                        <a href='' title='Year1 Report'><HiOutlineDocumentReport /></a> &nbsp; &nbsp;
-                        <a href='' title='Year2 Report'><HiOutlineDocumentReport /></a>
+                        <a href='javascript:void(0)' title='Year1 Report'><HiOutlineDocumentReport /></a> &nbsp; &nbsp;
+                        <a href='javascript:void(0)' title='Year2 Report'><HiOutlineDocumentReport /></a>
                       </td>
                     </tr>
                   )
                 })}
               </tbody>
             </table>
-            {commitmentList.length > 0 && (
-              <ReactPaginate className="pagination"
-                breakLabel="..."
-                nextLabel="next"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
-                pageCount={pageCount}
-                previousLabel="Previous"
-                renderOnZeroPageCount={null}
+            {totalRecords > 0 &&
+              <Pagination
+                itemsCount={totalRecords}
+                itemsPerPage={pagesize}
+                currentPage={pageNo}
+                setCurrentPage={handlePageClick}
+                alwaysShown={false}
               />
-            )}
+            }
           </div>
         </div>
-{/*         
-        <Modal
-          show={showUploadModal}
-          onHide={handleClose}
-          backdrop="static"
-          keyboard={false}
-          className='fileUploadModal'
-        >
-          <Modal.Header style={{ backgroundColor: "#23aa4a" }} closeButton>
-            <Modal.Title>Upload Excel</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className='row'>
-              <div className='col-12'>
-                <a href='/excelTemplate/plantationTemplate.xlsx'>Download Template</a>
-              </div>
-            </div>
-            <input type="file" id="fileInput" accept=".xls, .xlsx" onChange={handleFileChange} />
-            <button className='btn btn-primary' onClick={uploadFile}>Upload</button>
-          </Modal.Body>
-        </Modal> */}
       </div >
     </>
   );

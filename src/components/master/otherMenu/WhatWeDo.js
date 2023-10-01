@@ -24,7 +24,8 @@ import {
 // import whatwe1 from "../../../assets/img/whatwe1.jpg";
 // import whatwe2 from "../../../assets/img/whatwe2.jpg";
 import processImg1 from "../../../assets/img/process.jpg";
-import processImg from "../../../assets/img/calender.png";
+import calenderImg from "../../../assets/img/calender1.png";
+import calenderImg2 from "../../../assets/img/calender2.png";
 import step2Img from "../../../assets/img/pr-step2.png";
 
 import step4Img from "../../../assets/img/pr-step4.png";
@@ -197,28 +198,33 @@ function WhatWeDo() {
           </div>
           {/* <VerticalSwiper/> */}
         </div>
-          <div className="bg-green">
-          <div className="col-12 feature-description">
-          <h2 className="sub-title text-center">Plantation Calendar - Monsoon Season</h2>
-          <div className="row">
-            <div className="col-12 col-md-6">
-              <h4 className="text-center">Year 1</h4>
-            </div>
-            <div className="col-12 col-md-6">
-            <h4 className="text-center">Year 2</h4>
+        <div className="bg-green">
+          <div className="container">
+          <div className="feature-description">
+            <h2 className="sub-title text-center">Plantation Calendar - Monsoon Season</h2>
+            <div className="row">
+              <div className="col-12 col-md-6">
+                <h4 className="text-center">Year 1</h4>
+                <div className="process-image">
+                  <img src={calenderImg} alt="" />
+                </div>
+              </div>
+              <div className="col-12 col-md-6">
+              <h4 className="text-center">Year 2</h4>
+                <div className="process-image">
+                  <img src={calenderImg2} alt="" />
+                </div>
+              </div>
             </div>
           </div>
-          <div className="process-image">
-            <img src={processImg} alt="" />
           </div>
-        </div>
         </div>
         {/* ----------plant name */}
         
           <div className="container pv-75">
             {/* <h3 class="text-center my-5 sub-title">Following commemorative artworks are available to choose from</h3> */}
             <h3 class="text-center sub-title">Trees we plant</h3>
-            <div className="certificate-slider">
+            <div className="trees-plant-slider">
               <Carousel indicators={true}>
                 {plantname.map((item, index) => (
                   <Carousel.Item key={index}>

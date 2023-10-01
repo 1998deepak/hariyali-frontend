@@ -3,10 +3,14 @@ import { Container, Col, Row, Form } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Link, useLocation } from "react-router-dom";
+import useScrollTop from "../../hooks/useScrollTop";
 
 export default function FSCRAccount() {
   const location = useLocation();
-  const data = location.state;
+  console.log(location.state)
+  const data = location.state.split(",")[0];
+  const data1 = location.state.split(",")[1];
+  useScrollTop();
   return (
     <>
       <Container>
@@ -22,9 +26,9 @@ export default function FSCRAccount() {
                 transfer to the FCRA account using SWIFT Transaction mode.
               </p>{" "}
               <p className="mb-2">
-                As a citizen of India you can make the payment of Rs.{data}{" "}
-                through bank transfer using the SWIFT Transaction mode as given
-                below.
+                As a citizen of <b>{data1}</b> you can make the payment of 
+                <b>Rs.{" "}{data}</b> through bank transfer using the SWIFT Transaction
+                mode as given below.
               </p>{" "}
               <div className="desk-div d-flex">
                 <table>

@@ -20,7 +20,7 @@ const Header = () => {
              <div className="logo-container">
                 <img src={logo} alt="Logo" className="logo" />  
               </div>              
-              <div className="footersocial-div row mb-3">
+              {/* <div className="footersocial-div row mb-3">
                 <div className="col-2">
                   <div className="footersocial">
                     <FaFacebookF />
@@ -46,7 +46,7 @@ const Header = () => {
                     <FaYoutube />
                   </div>
                 </div>
-              </div>
+              </div> */}
               
             </div>
             <div className="col-12 col-md-12 col-lg-8 footerlinks">
@@ -61,14 +61,14 @@ const Header = () => {
                     <li><a href="/WhySupportUs"> Why Support Us</a></li>
                     <li><a href="/WaystoAssociate"> How To Associate</a></li>
                     <li><a href="/FootPrint"> Where Are We</a></li>                    
-                    <li><a href="/ContactUs"> Ask Us</a></li>
+                    <li><a href="/ContactUs"> Write To Us</a></li>
                   </ul>
                 </div>                
                 <div className="col-12 col-md-6 col-lg-4 footer-div">
                   <div className="footer-divheading">Resources</div>
                   <ul>
                     <li><a href="/Policy">Privacy Policy</a></li>
-                    <li><a href="TermsandConditions">Terms & Conditions</a></li>
+                    <li><a href="TermsandConditions">Terms Of Use</a></li>
                     <li>Legal Documents
                         <ul className="nested-ul">
                           <li><a href={require('../../assets/pdf/Hariyali Regd Revised Trust Deed dated 27 Oct 2014.pdf')} target="_blank"> Registration Certificate </a></li>
@@ -89,7 +89,7 @@ const Header = () => {
                     Near Regal Cinema, Colaba 
                     Mumbai, Maharashtra -400001
                     </p>
-                  <a href="tel:93224 56789"><i className="bi bi-phone"></i> 93224 56789</a><br/>
+                  {/* <a href="tel:93224 56789"><i className="bi bi-phone"></i> 93224 56789</a><br/> */}
                   <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a> <br/>
                   <a href="mailto:support@hariyali.org.in"><i className="bi bi-envelope-fill"></i> support@hariyali.org.in</a>
                   </address>

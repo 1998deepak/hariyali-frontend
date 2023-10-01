@@ -3,7 +3,9 @@ export const URLS = {
     LOGIN: '/loginOtp',
     LOGOUT: '/logout',
     SENDMAILFORGETPASSWORD: '/forgetPassword',
+    FORGETPASSWORD:'/forgetPassword/',
     VERIFYOTP: '/verify-otp/',
+    VERIFYFORGETOTP:'/verifyForgotOtp',
     // user
     USERADD: "/userAddOffline",
     USERONLINEADD: "/userAddOnline",
@@ -65,5 +67,9 @@ export const URLS = {
     //contries and states api
     GETALLCOUNTRY:'/getAllCountry',
     GETSTATESBYCOUNTRY:'/getAllStateByCountryId',
-    GETALLCITIZENSHIP:'/getAllCitizensip'
+    GETALLCITIZENSHIP:'/getAllCitizensip',
+
+    //for change password
+    CHANGEE_PASSWORD:"/changePassword",
+    SET_NEW_PASSWORD:"/setUserNewPassword"
 };

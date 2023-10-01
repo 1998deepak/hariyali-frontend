@@ -246,7 +246,9 @@ function OfflineDonation() {
         field: "userData.user.firstName",
         message: "First Name should only contain alphabets",
       });
+      if(document.getElementById("firstName")){
       document.getElementById("firstName").focus();
+      }
     }
 
     if (!userData?.user?.lastName) {
@@ -254,28 +256,89 @@ function OfflineDonation() {
         field: "userData.user.lastName",
         message: "Last Name is required",
       });
-      document.getElementById("lastName").focus();
+      if(document.getElementById("lastName")){
+        document.getElementById("lastName").focus();
+        }
     } else if (/\d/.test(userData.user.lastName)) {
       validationErrors.push({
         field: "userData.user.lastName",
         message: "Last Name should only contain alphabets",
       });
-      document.getElementById("lastName").focus();
+      if(document.getElementById("lastName")){
+        document.getElementById("lastName").focus();
+        }
     }
+
+    if (userData?.user?.citizenship.toUpperCase() === INDIA || address[0]?.country.toUpperCase() ===
+    INDIA ) {
+      if (hasAadharCard === true) {
+        if (!userData?.user?.panCard) {
+          validationErrors.push({
+            field: "userData.user.panCard",
+            message: "PAN Card Number is required",
+          });
+          if(document.getElementById("panCard")){
+            document.getElementById("panCard").focus();
+          }
+        } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
+            validationErrors.push({
+            field: "userData.user.panCard",
+            message: "PAN Card Number is Invalid",
+          });
+          if(document.getElementById("panCard")){
+            document.getElementById("panCard").focus();
+          }
+        }else if(/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard) === true && userData?.user?.donarType.toLocaleLowerCase() === "Individual"){
+          if(userData?.user?.panCard.charAt(3) !== "H" || userData?.user?.panCard.charAt(3) !== "P"){
+            validationErrors.push({
+              field: "userData.user.panCard",
+              message: "PAN Card Number is Invalid",
+            });
+            if(document.getElementById("panCard")){
+              document.getElementById("panCard").focus();
+            }
+        }
+      }} else {
+        if (
+          !(/^\d{12}$/.test(userData.user.addharCard))) {
+          validationErrors.push({
+            field: "userData.user.addharCard",
+            message:
+              "ADDHAR Number must contain exactly 12 digits and no alphabetic characters",
+          });
+          if(document.getElementById("addharCard")){
+            document.getElementById("addharCard").focus();
+          } 
+        }
+      }
+    } else {
+      if (!userData?.user?.passport) {
+        validationErrors.push({
+          field: "userData.user.passport",
+          message: "Passport is required",
+        });
+        if(document.getElementById("passport")){
+          document.getElementById("passport").focus();
+        } 
+      }}
 
     if (!userData?.user?.mobileNo) {
       validationErrors.push({
         field: "userData.user.mobileNo",
         message: "Mobile Number is required",
       });
-      document.getElementById("mobileNo").focus();
+      if(document.getElementById("mobileNo")){
+        document.getElementById("mobileNo").focus();
+        }
     } else if (!/^(?!.*[a-zA-Z])\d{10}$/.test(userData.user.mobileNo)) {
       validationErrors.push({
         field: "userData.user.mobileNo",
         message:
           "Mobile Number must contain exactly 10 digits and no alphabetic characters",
       });
-      document.getElementById("mobileNo").focus();
+      if(document.getElementById("mobileNo")){
+        document.getElementById("mobileNo").focus();
+        }
     }
 
     if (!userData?.user?.emailId) {
@@ -283,7 +346,9 @@ function OfflineDonation() {
         field: "userData.user.emailId",
         message: "Email ID is required",
       });
-      document.getElementById("emailId").focus();
+      if(document.getElementById("emailId")){
+        document.getElementById("emailId").focus();
+        }
     } else if (
       !/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(
         userData.user.emailId
@@ -293,45 +358,11 @@ function OfflineDonation() {
         field: "userData.user.emailId",
         message: "Invalid Email ID",
       });
-      document.getElementById("emailId").focus();
+      if(document.getElementById("emailId")){
+        document.getElementById("emailId").focus();
+      }
     }
 
-    if (userData?.user?.citizenship.toUpperCase() === INDIA) {
-      if (hasAadharCard === true) {
-        if (!userData?.user?.panCard) {
-          validationErrors.push({
-            field: "userData.user.panCard",
-            message: "PAN card is required",
-          });
-          document.getElementById("panCard").focus();
-        } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
-          validationErrors.push({
-            field: "userData.user.panCard",
-            message: "PAN card No is Invalid",
-          });
-          document.getElementById("panCard").focus();
-        }
-      } else {
-        if (
-          !/^(?!.*[a-zA-Z])\d{16}$/.test(userData.user.addharCard) &&
-          hasAadharCard
-        ) {
-          validationErrors.push({
-            field: "userData.user.addharCard",
-            message:
-              "Addhar Number must contain exactly 16 digits and no alphabetic characters",
-          });
-          document.getElementById("addharCard").focus();
-        }
-      }
-    } else { if (!userData?.user?.passport) {
-        validationErrors.push({
-          field: "userData.user.passport",
-          message: "Passport is required",
-        });
-        document.getElementById("passport").focus();
-      }
-    }
 
     if (!userData?.user?.donarType) {
       validationErrors.push({
@@ -344,7 +375,9 @@ function OfflineDonation() {
         field: "userData.user.prefix",
         message: "Prefix is required",
       });
-      document.getElementById("prefix").focus();
+      if(document.getElementById("prefix")){
+        document.getElementById("prefix").focus();
+      }
     }
     if (
       userData?.user?.donarType.toLocaleLowerCase() === "corporate" &&
@@ -442,27 +475,35 @@ function OfflineDonation() {
           field: "address[" + i + "].street1",
           message: "Street is required",
         });
-        document.getElementById("street1").focus();
+        if(document.getElementById("street1")){
+          document.getElementById("street1").focus();
+        }
       }
       if (!addr?.country) {
         validationErrors.push({
           field: "address[" + i + "].country",
           message: "Country is required",
         });
-        document.getElementById("country").focus();
+        if(document.getElementById("country")){
+          document.getElementById("country").focus();
+        }
       } else if (/\d/.test(userData.user.lastName)) {
         validationErrors.push({
           field: "address[" + i + "].country",
           message: "Country should only contain alphabets",
         });
-        document.getElementById("country").focus();
+        if(document.getElementById("country")){
+          document.getElementById("country").focus();
+        }
       }
       if (!addr?.state) {
         validationErrors.push({
           field: "address[" + i + "].state",
           message: "State is required",
         });
-        document.getElementById("state").focus();
+        if(document.getElementById("state")){
+          document.getElementById("state").focus();
+        }
       }
 
       if (!addr?.city) {
@@ -470,13 +511,18 @@ function OfflineDonation() {
           field: "address[" + i + "].city",
           message: "City is required",
         });
-        document.getElementById("city").focus();
+        if(document.getElementById("city")){
+          document.getElementById("city").focus();
+        }
+       
       } else if (/\d/.test(addr?.city)) {
         validationErrors.push({
           field: "address[" + i + "].city",
           message: "City should only contain alphabets",
         });
-        document.getElementById("city").focus();
+        if(document.getElementById("city")){
+          document.getElementById("city").focus();
+        }
       }
 
       if ((addr?.postalCode).length > 6) {
@@ -484,7 +530,9 @@ function OfflineDonation() {
           field: "address[" + i + "].postalCode",
           message: "Postal Code should only contain six numbers",
         });
-        document.getElementById("postalCode").focus();
+        if(document.getElementById("postalCode")){
+          document.getElementById("postalCode").focus();
+        }
       }
     }
 
@@ -712,9 +760,24 @@ function OfflineDonation() {
     setLoading(true);
     const response = await DonationService.getAllStatesByCountry(countryId);
     if (response?.status === 200) {
-      // let data = response.data.map((item)=> ({ label: item, value: item }))
-      setStates(response.data);
-      setLoading(false);
+      if(response?.data.length === 0){
+        console.log(response?.data.length)
+        if(document.getElementById("state2")){
+        document.getElementById("state2").style.display = "block";
+        } if(document.getElementById("state3")){
+          document.getElementById("state3").style.display = "none";
+        }
+        setStates(response.data);
+        setLoading(false);
+      }else{
+        if(document.getElementById("state2")){
+          document.getElementById("state2").style.display = "none";
+          } if(document.getElementById("state3")){
+            document.getElementById("state3").style.display = "block";
+          }
+        setStates(response.data);
+        setLoading(false);
+      }
     } else {
       toast.error(response?.message);
       setLoading(false);
@@ -1305,7 +1368,15 @@ function OfflineDonation() {
                         />
                         <div className="clear" />
                         <hr />
-                        <div className="actionheadingdiv">Personal Details</div>
+                        {userData?.user?.donarType === "Corporate" ? (
+                            <div className="actionheadingdiv">
+                              DETAILS OF POINT OF CONTACT
+                            </div>
+                          ) : (
+                            <div className="actionheadingdiv">
+                              DETAILS OF DONOR
+                            </div>
+                          )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-6">
@@ -1347,7 +1418,7 @@ function OfflineDonation() {
                             <div className="col-6">
                               <div className="row select-label">
                                 <div className="col-4 ">
-                                  Mobile No.<span className="red-text">*</span>
+                                  Mobile Number<span className="red-text">*</span>
                                 </div>
                                 <div className="col-8 p0">
                                   <input
@@ -1355,7 +1426,7 @@ function OfflineDonation() {
                                     type="text"
                                     id="mobileNo"
                                     name="user.mobileNo"
-                                    placeholder="Mobile No."
+                                    placeholder="Mobile Number"
                                     value={userData?.user?.mobileNo}
                                     onChange={handleChange}
                                   />
@@ -1618,7 +1689,7 @@ function OfflineDonation() {
                                       <div className="col-12 p0 field-wrapper">
                                         <div>
                                           <label>
-                                            Do you have an Pan card?
+                                            Do you have a PAN Card?
                                           </label>
                                           <div className="radio-buttons">
                                             <label>
@@ -1662,7 +1733,7 @@ function OfflineDonation() {
                                           className="form-control-inside form-control"
                                           name="user.panCard"
                                           id="panCard"
-                                          placeholder="PAN card No."
+                                          placeholder="PAN Card Number"
                                           type="text"
                                           value={userData?.user?.panCard}
                                           onChange={handleChange}
@@ -1696,7 +1767,7 @@ function OfflineDonation() {
                                   <div id="addharId" className="col-6">
                                     <div className="row select-label">
                                       <div className="col-4">
-                                        Addhar Card{" "}
+                                      AADHAAR Card{" "}
                                         <span className="red-text">*</span>
                                       </div>
                                       <div className="col-8 p0 ">
@@ -1704,9 +1775,9 @@ function OfflineDonation() {
                                           className="form-control-inside form-control"
                                           name="user.addharCard"
                                           id="addharCard"
-                                          placeholder="Addhar card No."
+                                          placeholder="AADHAAR Card Number"
                                           type="text"
-                                          maxLength={16}
+                                          maxLength={12}
                                           value={userData?.user?.addharCard}
                                           onChange={handleChange}
                                         />
@@ -2034,8 +2105,8 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
-                                <div className="select-label">
+                            <div id ="state3" className="col-6" style={{display:"block"}}>
+                                <div className="row select-label">
                                   <div className="col-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
@@ -2155,6 +2226,40 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             )} */}
+                            <div id="state2" className="col-6" style={{display:"none"}}>
+                              <div className="row select-label">
+                                <div className="col-4 ">
+                                  {" "}
+                                  State <span className="red-text">*</span>
+                                </div>
+                                <div className="col-8 p0">
+                                  <input
+                                    className="form-control-inside"
+                                    name="state"
+                                      id="state1"
+                                      placeholder="State"
+                                      type="text"
+                                    value={address[0]?.state}
+                                    onChange={(event) =>
+                                      handleAddressChange(event, 0)
+                                    }
+                                  />
+                                  {errors.map((error, index) => {
+                                    if (error.field === "address[0].state") {
+                                      return (
+                                        <div
+                                          key={index}
+                                          className="error-message red-text"
+                                        >
+                                          {error.message}
+                                        </div>
+                                      );
+                                    }
+                                    return null;
+                                  })}
+                                </div>
+                              </div>
+                            </div>
                             <div className="col-6">
                               <div className="row select-label">
                                 <div className="col-4 ">
@@ -2486,13 +2591,9 @@ function OfflineDonation() {
                                       {" "}
                                       Achievements
                                     </option>
-                                    <option value=" Memorial Tribute">
+                                    <option value="Memorial Tribute">
                                       {" "}
                                       Memorial Tribute
-                                    </option>
-                                    <option value="Simple Donation">
-                                      {" "}
-                                      Simple Donation
                                     </option>
                                   </select>
                                   {errors.map((error, index) => {
@@ -2527,7 +2628,15 @@ function OfflineDonation() {
                         <div className="clear" />
                         <div className="col-6 mt20"></div>
                         <hr />
-                        <div className="actionheadingdiv">Personal Details</div>
+                        {userData?.user?.donarType === "Corporate" ? (
+                            <div className="actionheadingdiv">
+                              DETAILS OF POINT OF CONTACT
+                            </div>
+                          ) : (
+                            <div className="actionheadingdiv">
+                              DETAILS OF DONOR
+                            </div>
+                          )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-6">
@@ -2568,14 +2677,14 @@ function OfflineDonation() {
                             <div className="col-6">
                               <div className="row select-label">
                                 <div className="col-4 ">
-                                  Mobile No.<span className="red-text">*</span>
+                                  Mobile Number<span className="red-text">*</span>
                                 </div>
                                 <div className="col-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
                                     name="user.mobileNo"
-                                    placeholder="Mobile No."
+                                    placeholder="Mobile Number"
                                     value={userData.user.mobileNo}
                                     onChange={handleChange}
                                   />
@@ -2835,7 +2944,7 @@ function OfflineDonation() {
                                       <div className="col-12 p0 field-wrapper">
                                         <div>
                                           <label>
-                                            Do you have an Pan card?
+                                            Do you have an PAN Card?
                                           </label>
                                           <div className="radio-buttons">
                                             <label>
@@ -2913,7 +3022,7 @@ function OfflineDonation() {
                                   <div id="addharId" className="col-6">
                                     <div className="row select-label">
                                       <div className="col-4">
-                                        Addhar Card{" "}
+                                      AADHAAR Card{" "}
                                         <span className="red-text">*</span>
                                       </div>
                                       <div className="col-8 p0 ">
@@ -2921,9 +3030,9 @@ function OfflineDonation() {
                                           className="form-control-inside form-control"
                                           name="user.addharCard"
                                           id="addharCard"
-                                          placeholder="Addhar card No."
+                                          placeholder="AADHAAR Card Number"
                                           type="text"
-                                          maxLength={16}
+                                          maxLength={12}
                                           value={userData?.user?.addharCard}
                                           onChange={handleChange}
                                         />
@@ -3138,8 +3247,8 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
-                                <div className="select-label">
+                            <div id="state3" className="col-6" style={{display:"block"}}>
+                                <div className="row select-label">
                                   <div className="col-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
@@ -3259,6 +3368,40 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             )} */}
+                            <div id="state2" className="col-6" style={{display:"none"}}>
+                              <div className="row select-label">
+                                <div className="col-4 ">
+                                  {" "}
+                                  State <span className="red-text">*</span>
+                                </div>
+                                <div className="col-8 p0">
+                                  <input
+                                    className="form-control-inside"
+                                    name="state"
+                                      id="state1"
+                                      placeholder="State"
+                                      type="text"
+                                    value={address[0]?.state}
+                                    onChange={(event) =>
+                                      handleAddressChange(event, 0)
+                                    }
+                                  />
+                                  {errors.map((error, index) => {
+                                    if (error.field === "address[0].state") {
+                                      return (
+                                        <div
+                                          key={index}
+                                          className="error-message red-text"
+                                        >
+                                          {error.message}
+                                        </div>
+                                      );
+                                    }
+                                    return null;
+                                  })}
+                                </div>
+                              </div>
+                            </div>
                             <div className="col-6">
                               <div className="row select-label">
                                 <div className="col-4 ">
@@ -3410,14 +3553,14 @@ function OfflineDonation() {
                               <div className="col-6">
                                 <div className="row select-label">
                                   <div className="col-4 ">
-                                    Mobile No.
+                                    Mobile Number
                                     <span className="red-text">*</span>
                                   </div>
                                   <div className="col-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="mobileNo"
-                                      placeholder="Mobile No."
+                                      placeholder="Mobile Number"
                                       type="text"
                                       value={recipient[0].mobileNo}
                                       onChange={(e) =>
@@ -3778,7 +3921,15 @@ function OfflineDonation() {
                         />
                         <div className="clear" />
                         <hr />
-                        <div className="actionheadingdiv">Personal Details</div>
+                        {userData?.user?.donarType === "Corporate" ? (
+                            <div className="actionheadingdiv">
+                              DETAILS OF POINT OF CONTACT
+                            </div>
+                          ) : (
+                            <div className="actionheadingdiv">
+                              DETAILS OF DONOR
+                            </div>
+                          )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-6">
@@ -3811,14 +3962,14 @@ function OfflineDonation() {
                             <div className="col-6">
                               <div className="row select-label">
                                 <div className="col-4 ">
-                                  Mobile No.<span className="red-text">*</span>
+                                  Mobile Number<span className="red-text">*</span>
                                 </div>
                                 <div className="col-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
                                     name="user.mobileNo"
-                                    placeholder="Mobile No."
+                                    placeholder="Mobile Number"
                                     value={userData?.user?.mobileNo}
                                     onChange={handleChange}
                                     disabled
@@ -4455,10 +4606,6 @@ function OfflineDonation() {
                                       {" "}
                                       Memorial Tribute
                                     </option>
-                                    <option value="Simple Donation">
-                                      {" "}
-                                      Simple Donation
-                                    </option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (
@@ -4491,7 +4638,15 @@ function OfflineDonation() {
                         />
                         <div className="clear" />
                         <hr />
-                        <div className="actionheadingdiv">Personal Details</div>
+                        {userData?.user?.donarType === "Corporate" ? (
+                            <div className="actionheadingdiv">
+                              DETAILS OF POINT OF CONTACT
+                            </div>
+                          ) : (
+                            <div className="actionheadingdiv">
+                              DETAILS OF DONOR
+                            </div>
+                          )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-6">
@@ -4524,14 +4679,14 @@ function OfflineDonation() {
                             <div className="col-6">
                               <div className="row select-label">
                                 <div className="col-4 ">
-                                  Mobile No.<span className="red-text">*</span>
+                                  Mobile Number<span className="red-text">*</span>
                                 </div>
                                 <div className="col-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
                                     name="user.mobileNo"
-                                    placeholder="Mobile No."
+                                    placeholder="Mobile Number"
                                     value={userData.user.mobileNo}
                                     onBlur={(e) => handleDonarIdBlur(e)}
                                     onChange={handleChange}
@@ -4992,14 +5147,14 @@ function OfflineDonation() {
                               <div className="col-6">
                                 <div className="row select-label">
                                   <div className="col-4 ">
-                                    Mobile No.
+                                    Mobile Number
                                     <span className="red-text">*</span>
                                   </div>
                                   <div className="col-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="mobileNo"
-                                      placeholder="Mobile No."
+                                      placeholder="Mobile Number"
                                       type="text"
                                       value={recipient[0].mobileNo}
                                       onChange={(e) =>

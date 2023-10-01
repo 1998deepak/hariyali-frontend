@@ -2,14 +2,8 @@ import React from "react";
 import { Container, Row } from "react-bootstrap";
 import "animate.css/animate.min.css";
 import "../../../assets/css/footprint.css";
-import mahindraLogo from "../../../assets/img/mahindra-logo.png";
 import "react-image-gallery/styles/css/image-gallery.css";
-import ImageGallery from "react-image-gallery";
 // about
-import aboutbg from "../../../assets/img/about/tree-background.png";
-import about1 from "../../../assets/img/about/about1.png";
-import about2 from "../../../assets/img/about/about2.png";
-import about3 from "../../../assets/img/about/about3.png";
 // about
 // program
 // import program1 from "../../assets/img/program/program1.png";
@@ -18,17 +12,10 @@ import program2 from "../../../assets/img/biodiversity.jpg";
 import program3 from "../../../assets/img/co2.jpg";
 import program4 from "../../../assets/img/lifestyle.jpg";
 import program5 from "../../../assets/img/featurewhere.png";
-import planting from "../../../assets/img/about/hariyali-img-4.jpg";
-import bio from "../../../assets/img/program/hariyali-img-2.jpg";
-import impro from "../../../assets/img/program/hariyali-img-3.jpg";
 // program
 // projects
-import ourproject1 from "../../../assets/img/project/ourproject1.png";
-import ourproject2 from "../../../assets/img/project/ourproject2.png";
-import ourproject3 from "../../../assets/img/project/ourproject3.png";
 // projects
 // SDG Links
-import sdglinks from "../../../assets/img/SDG/sdglinks.png";
 import sdg13 from "../../../assets/img/SDG/sdg13.png";
 import sdg15 from "../../../assets/img/SDG/sdg15.png";
 import sdg8 from "../../../assets/img/SDG/sdg8.png";
@@ -36,22 +23,8 @@ import sdg14 from "../../../assets/img/SDG/sdg14.png";
 import sdg17 from "../../../assets/img/SDG/sdg17.png";
 // SDG Links
 // blogs
-import blogs1 from "../../../assets/img/blogs/blogs1.jpg";
-import blogs2 from "../../../assets/img/blogs/blogs2.jpg";
-import blogsbg from "../../../assets/img/blogs/blogbg.png";
 // blogs
 // icon
-import { GiShakingHands } from "react-icons/gi";
-import { RiCalendarCheckLine } from "react-icons/ri";
-import { FaPrayingHands } from "react-icons/fa";
-import { RiUserSettingsFill } from "react-icons/ri";
-import { TbTree } from "react-icons/tb";
-import { SiGumtree } from "react-icons/si";
-import { TfiShoppingCart } from "react-icons/tfi";
-import { BiLink } from "react-icons/bi";
-import { IoHomeOutline } from "react-icons/io5";
-import { ImLocation } from "react-icons/im";
-import { BsBoxArrowUpRight } from "react-icons/bs";
 // import 'react-slideshow-image/dist/styles.css';
 // import riseProgramResgions1 from "../../../assets/img/program/rise-program-resgions-1.webp";
 // import riseProgramResgions2 from "../../../assets/img/program/rise-program-resgions-2.webp";
@@ -59,11 +32,8 @@ import { BsBoxArrowUpRight } from "react-icons/bs";
 // import riseProgramResgions4 from "../../../assets/img/program/rise-program-resgions-4.webp";
 // gallary
 // import improving from "../../../assets/img/hariyali-img-4.jpg";
-import gallary2 from "../../../assets/img/gallary/gallary2.jpg";
-import gallary3 from "../../../assets/img/gallary/gallary3.jpg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 // animation
-import { AnimationOnScroll } from "react-animation-on-scroll";
 //
 import { Zoom } from "react-slideshow-image";
 // import image1 from "../../../assets/img/slider/rise-program-resgions-1.jpg";
@@ -82,7 +52,11 @@ import planttreeImg from "../../../assets/img/plant.png";
 import gifttreeImg from "../../../assets/img/holding-hand.png";
 
 import { useEffect } from "react";
-import { useState } from "react";
+import { useState } from 'react';
+import { USER_DETAILS } from "../../../components/constants/constants";
+import { AuthService } from "../../../services/auth/auth.service";
+import { EncryptionService } from "../../../services/encryption.service";
+import { APIService } from '../../../services/api/api-service';
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
@@ -257,6 +231,20 @@ function HomePage() {
     const obj3 = document.getElementById("value3");
     animateValue3(obj3, 0, 153, 5000);
   }, []);
+    useEffect(() => {
+      const obj3 = document.getElementById("value3");
+      animateValue3(obj3, 0, 153 , 5000);
+      sessionExpired();
+    }, []);
+
+
+  const sessionExpired = async () => {
+    if(localStorage.getItem(USER_DETAILS)){
+      let userDetails = await EncryptionService.decrypt(localStorage.getItem(USER_DETAILS));
+      const response = await AuthService.logout(JSON.parse(userDetails));
+      await APIService.Instance.removeToken();
+    }
+  }
 
   return (
     <>
@@ -361,21 +349,26 @@ function HomePage() {
             <div className="col-12 col-lg-6">
               <div className="program-details feature-description-other">
                 <h3 className="mb-3">Why Support Us</h3>
-                <p>
+                {/* <p>
                   India is the 7th most vulnerable country with respect to
                   climate extremes <em>(CRI, 2021)</em>. The total forest cover
                   needs to increase for ecological stability.
-                </p>
-                <p>
+                </p> */}
+                {/* <p>India is promoting individual responsibility toward climate action through Mission LiFE "Lifestyle for Environment". Hariyali Project has increased the green cover and is in alignment with LiFE "Lifestyle for Environment".</p> */}
+                {/* <p>
                   India is promoting individual responsibility toward climate
                   action through Mission LiFE "Lifestyle for Environment".
                   Hariyali Project has increased the green cover and is in
                   alignment with LiFE "Lifestyle for Environment".
-                </p>
-                <p>
+                </p> */}
+                {/* <p>
                   Hariyali Project has been conferred with multiple awards by
                   national and international bodies.
-                </p>
+                </p> */}
+                <p>
+                  India is committed to its National Determined Contributions and seeks to be carbon neutral by 2070.</p>
+                  <p>India is promoting individual responsibility toward climate action through Mission LiFE "Lifestyle for Environment". Project Hariyali has increased the green cover and is in alignment with LiFE.</p><p>Hariyali Project has been conferred with multiple awards by national and international bodies.</p>
+
 
                 <div className="pt-5">
                   <a href="/WhySupportUs" className="btn btn-secondary">

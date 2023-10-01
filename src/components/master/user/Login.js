@@ -66,7 +66,7 @@ function Login() {
           setIsHide(!isHide);
           setLoading(false)
         } else {
-          toast.error(response?.message);
+          toast.error(response?.data);
           setLoading(false)
         }
       } else {
@@ -131,6 +131,7 @@ function Login() {
   const [donarID, setDonarID] = useState("");
   const sendEmail = async (e) => {
     e.preventDefault();
+    console.log(donarID);
     if (!donarID) {
       // If donorID is empty, set an error message
       setErrors({ ...errors, donarID: "Please enter Donor Id" });
@@ -141,13 +142,15 @@ function Login() {
     };
     console.log(formData);
     setLoading(true)
-    const response = await AuthService.sendForgetPasswordLink(formData);
+    const response = await AuthService.sendForgetPasswordOtp(formData);
     console.log(response);
     console.log(response?.status === SUCCESS);
     if (response?.status === SUCCESS) {
       toast.success("Email sent successfully!");
       setLoading(false)
-      navigate("/OtpId");
+      navigate("/OtpId",{
+        state: formData.donorId,
+      });
     } else {
       toast.error("Invalid Donor Id ! Please Try Again");
       setLoading(false)
@@ -213,10 +216,12 @@ function Login() {
           <div className="loginlogo">
             <img src={logo} alt="Logo" />
           </div>
+          <p>Welcome! This login is exclusively for our valued existing donors. Log in to access your profile and donation history.</p>
           <div className="">
             <form className="form-div contact-form-wrap">
               <div className="form-group mb-3">
                 <input
+                  autoComplete="off"
                   name="username"
                   type="text"
                   placeholder="Username"
@@ -230,6 +235,7 @@ function Login() {
               </div>
               <div className="form-group mb-3">
                 <input
+                  autoComplete="off"
                   type="password"
                   placeholder="Password"
                   className="login-input login-password form-control"
@@ -250,9 +256,9 @@ function Login() {
               </div>
 
               <div className="row justify-content-between mb-3">
-                <div className="col-6 account-act">Account Activation</div>
+                {/* <div className="col-6 account-act">Account Activation</div> */}
                 <div
-                  className="col-6 forgot-pass justify-content-end"
+                  className="col-6 account-act"
                   onClick={forgotLink}
                 >
                   Forgot Password

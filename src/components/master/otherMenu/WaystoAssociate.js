@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Carousel } from "react-bootstrap";
 import { Container, Row } from "react-bootstrap";
 import "animate.css/animate.min.css";
+import Slider from "react-slick";
 // import "react-image-gallery/styles/css/image-gallery.css";
 // program
 import planting from "../../../assets/img/about/hariyali-img-4.jpg";
@@ -60,36 +61,73 @@ function WaystoAssociate() {
       document.getElementById("plantTree").style.display = "block";
     }
   };
-  const Individualsitems = [
-    [
+  const Individualsitems = [    
       { img: Festivals, quote: "Festivals" },
       { img: Specialday, quote: "Special day" },
       { quote: "Achievements", img: Achievements },
       { quote: "Memorial Tribute", img: MemorialTribute },
-      { quote: "Simple Gifting", img: Gifting },
-    ],
     // Add more item groups as needed
   ];
 
-  const Patners = [
-    [
+  const Partneritems = [
       { img: bristlecone},
       { img: mahindrafinance},
       { img: mahindrarice },
-    ],
     // Add more item groups as needed
   ];
 
   const Corporatesitems = [
-    [
       { img: Festivals, quote: "Festivals" },
       { img: Specialday, quote: "Special day" },
       { quote: "Achievements", img: Achievements },
       { quote: "Memorial Tribute", img: MemorialTribute },
-      { quote: "Simple Gifting", img: Gifting },
-    ],
+      
+      // { quote: "Simple Gifting", img: Gifting },
     // Add more item groups as needed
   ];
+
+  var settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1140,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          initialSlide: 1,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <>
@@ -385,28 +423,18 @@ function WaystoAssociate() {
                   Gifting and Commemoration can include following events
                 </h3>
                 <div className="certificate-slider">
-                  <Carousel indicators={true}>
-                    {Individualsitems.map((item, index) => (
-                      <Carousel.Item key={index}>
-                        <div className="d-flex justify-content-center">
-                          {item.map((subItem, subIndex) => (
-                            <>
-                              <div className="certificate-tile">
-                                {/* <div key={index} className="col-12 col-md-6 mb-3"></div> */}
-                                <div key={index} className="slide-content2">
-                                  <div className="certificate-wrapper">
-                                    <img src={subItem.img} alt="" />
-
-                                    <h4>{subItem.quote}</h4>
-                                  </div>
-                                </div>
-                              </div>
-                            </>
-                          ))}
-                        </div>
-                      </Carousel.Item>
+                <Slider {...settings}>                        
+                    {Individualsitems.map((subItem, subIndex) => (
+                      <>
+                          <div className="certificate-tile">
+                            <div className="certificate-wrapper" key={subIndex}>
+                              <img src={subItem.img} alt="" />
+                              <h4>{subItem.quote}</h4>
+                            </div>  
+                          </div>                        
+                      </>
                     ))}
-                  </Carousel>
+                </Slider>
                 </div>
               </div>
             </div>
@@ -481,14 +509,28 @@ function WaystoAssociate() {
                 Gifting and Commemoration can include following events
               </h3>
               <div className="certificate-slider">
-                <Carousel indicators={true}>
+              <Slider {...settings}>                        
+                    {Corporatesitems.map((subItem, subIndex) => (                      <>
+                        <div className="certificate-tile">
+                          <div className="certificate-wrapper" key={subIndex}>
+                            <img src={subItem.img} alt="" />
+                            <h4>{subItem.quote}</h4>
+                          </div>  
+                        </div>                        
+                      </>
+                    ))}
+                </Slider>
+
+
+
+                {/* <Carousel indicators={true}>
                   {Corporatesitems.map((item, index) => (
                     <Carousel.Item key={index}>
                       <div className="d-flex justify-content-center">
                         {item.map((subItem, subIndex) => (
                           <>
                             <div className="certificate-tile">
-                              {/* <div key={index} className="col-12 col-md-6 mb-3"></div> */}
+                              
                               <div key={index} className="slide-content2">
                                 <div className="certificate-wrapper">
                                   <img src={subItem.img} alt="" />
@@ -501,7 +543,7 @@ function WaystoAssociate() {
                       </div>
                     </Carousel.Item>
                   ))}
-                </Carousel>
+                </Carousel> */}
               </div>
             </div>
           </div>
@@ -582,9 +624,18 @@ function WaystoAssociate() {
         </section>
         <div className="project-bg patner-carousel">
           <Container>
-            <div className=" feature-description-other">
+            <div className="partner-slider">
               <h3 class="text-center sub-title"> Our Partner</h3>
-              <Carousel indicators={true}>
+              <Slider {...settings}>                        
+                  {Partneritems.map((subItem, subIndex) => (                      
+                  <>  
+                      <div className="partner-logo" key={subIndex}>
+                        <img src={subItem.img} alt="" />
+                      </div>                  
+                    </>
+                  ))}
+              </Slider>
+              {/* <Carousel indicators={true}>
               <div className="m-auto">
                 <Row className="justify-content-between ourpartner">
                   <div className="col-6 col-md-4 mb-lg-0 mb-3 marginall-pad-0 text-center">
@@ -598,7 +649,7 @@ function WaystoAssociate() {
                   </div>
                 </Row>
               </div>
-              </Carousel>
+              </Carousel> */}
               <br />
             </div>
 
