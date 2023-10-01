@@ -264,11 +264,11 @@ function OfflineDonation() {
     }
 
     if (
-      !(/^\d{12}$/.test(userData.user.addharCard))) {
+      !(/^\d{12}$/.test(userData.user.addharCard)) && !hasAadharCard) {
       validationErrors.push({
         field: "userData.user.addharCard",
         message:
-          "ADDHAR Number must contain exactly 16 digits and no alphabetic characters",
+          "ADDHAR Number must contain exactly 12 digits and no alphabetic characters",
       });
       if(document.getElementById("addharCard")){
         document.getElementById("addharCard").focus();

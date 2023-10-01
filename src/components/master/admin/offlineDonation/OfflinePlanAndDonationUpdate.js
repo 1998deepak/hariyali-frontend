@@ -8,6 +8,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
 import Loader from "../../../common/loader/Loader";
 import PaymentDetails from "../../../common/PaymentDetails";
+import OnlinePaymentDetails from "../../../common/OnlinePaymentDetails";
+import PackageDetails from "../../../common/PackageDetails";
 // nyn
 function OfflineDonationPay() {
   const navigate = useNavigate();
@@ -574,97 +576,16 @@ function OfflineDonationPay() {
                       </div>
                     )}
                   </div>
-                  <div className="actionheadingdiv">
-                    Select Your Donation Plan
-                  </div>
-                  {/* {packageData && packageData.length > 0 && (
-  packageData.some((item) => item.plan || item.priceBouquet || item.noBouquet || item.maintenance || item.amount) ? ( */}
-
-                  {packageData && packageData.length > 0 && (
-                    <div className="mt20">
-                      <table>
-                        <thead>
-                          <tr>
-                            <th>Plantin Sapling</th>
-                            <th>Cost per Sapling</th>
-                            <th>No. Sapling</th>
-                            {/* <th>2 Years Maintenance</th> */}
-                            <th>Amount</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {packageData.map((item, index) => (
-                            <tr key={index}>
-                              <td className="w28p">{item.packageName}</td>
-                              <td className="w18p">
-                                <input
-                                  type="number"
-                                  className="form-control-inside"
-                                  value={item.bouquetPrice}
-                                  disabled
-                                />
-                              </td>
-                              <td className="w18p">
-                                <input
-                                  type="number"
-                                  name="noOfBouquets"
-                                  value={item.noOfBouquets}
-                                  onChange={(event) => {
-                                    if (event.target.value < 0) {
-                                      event.target.value = 0;
-                                    }
-                                    handleChangeNumberOfBouquets(
-                                      event,
-                                      item,
-                                      index
-                                    );
-                                  }}
-                                  disabled
-                                />
-                              </td>
-                              {/* <td className="w18p">
-                                <input
-                                  type="number"
-                                  className="form-control-inside"
-                                  value={item.maintenanceCost}
-                                  disabled
-                                />
-                              </td> */}
-                              <td className="text-right w18p">
-                                <input
-                                  type="number"
-                                  value={item.amount}
-                                  className="form-control-inside"
-                                  disabled
-                                />
-                              </td>
-                            </tr>
-                          ))}
-                          <tr>
-                            {/* <td className="text-right" colSpan="4">
-                              Total
-                            </td>
-                            <td className="text-right">
-                              <input
-                                type="number"
-                                className="form-control-inside"
-                                value={totalAmountOfPackage}
-                                disabled
-                              />
-                            </td> */}
-                          </tr>
-                        </tbody>
-                      </table>
-                      {/* <div className="overalltotal">
-  Overall Total: {donationData.length > 0 ? donationData[0].totalAmount : 0}
-</div> */}
-                      <div className="overalltotal">
-                        Overall Total: {donationData.totalAmount}
-                      </div>
-                    </div>
-                  )}
+                 <PackageDetails
+                            packageData={packageData}
+                            setPackageData={setPackageData}
+                            setLoading={setLoading}
+                            initialPackageData={initialPackageData}
+                            donations={donationData}
+                            calculateOverallTotal={calculateOverallTotal}
+                          />
+                  
                   <div className="clear"></div>
-                  <hr />
                   {donationData.donationType.toUpperCase() !==
                     "SELF-DONATE" && (
                     <>
@@ -918,14 +839,27 @@ function OfflineDonationPay() {
                   <div className="actionheadingdiv">
                     Mode of Payment
                   </div>
-                  <PaymentDetails
-                    donations={donationData}
-                    // errors={errors}
-                    handlePaymentInfoChange={handlePaymentInfoChange}
-                    index={0}
-                    setLoading={setLoading}
-                  />
-
+                  {donationData.donationMode == 'online' && 
+                    
+                    <OnlinePaymentDetails
+                      donations={donationData}
+                      // errors={errors}
+                      handlePaymentInfoChange={handlePaymentInfoChange}
+                      index={0}
+                      setLoading={setLoading}
+                    />
+                  } 
+                  {donationData.donationMode != 'online' && 
+                    <PaymentDetails
+                      donations={new Array(donationData)}
+                      // errors={errors}
+                      handlePaymentInfoChange={handlePaymentInfoChange}
+                      index={0}
+                      setLoading={setLoading}
+                    />
+                  }
+                  {donationData.donationMode != 'online' && 
+                  <>
                   <button
                     type="submit"
                     className="mt20 mr10 webform-button--submit"
@@ -940,7 +874,8 @@ function OfflineDonationPay() {
                   >
                     Back
                   </button>
-
+                  </>
+                  }
                   {/* <button
                     type="submit"
                     className="mt20 mr10 webform-button--cancel "
