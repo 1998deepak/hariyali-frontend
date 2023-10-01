@@ -171,10 +171,6 @@ function ContactUs() {
                       3rd Floor, Cecil Court Mahakavi Bhushan Marg Near Regal
                       Cinema, Colaba Mumbai, Maharashtra - 400001
                     </p>
-                    <a href="tel:93224 56789" className="ask-p">
-                      <i className="bi bi-phone"></i> 93224 56789
-                    </a>
-                    <br />
                     <a href="tel:022 22021031" className="ask-p">
                       <i className="bi bi-telephone-fill"></i> 022 22021031
                     </a>

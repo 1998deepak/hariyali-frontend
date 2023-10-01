@@ -183,8 +183,8 @@ const Commitment = () => {
                       <td>{commitment.plantationMaster?.plantationDateString}</td>
                       <td>{commitment.plantationMaster?.season}</td>
                       <td>
-                        <a href='' title='Year1 Report'><HiOutlineDocumentReport /></a> &nbsp; &nbsp;
-                        <a href='' title='Year2 Report'><HiOutlineDocumentReport /></a>
+                        <a href='javascript:void(0)' title='Year1 Report'><HiOutlineDocumentReport /></a> &nbsp; &nbsp;
+                        <a href='javascript:void(0)' title='Year2 Report'><HiOutlineDocumentReport /></a>
                       </td>
                     </tr>
                   )
