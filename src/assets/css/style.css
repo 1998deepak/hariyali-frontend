@@ -3205,7 +3205,8 @@ tr td input {
 }
 
 .btn-primary:hover,
-.btn-primary:focus {
+.btn-primary:focus,
+.btn-primary:active {
   border-color: #23aa4a;
   background: #fff;
   color: #23aa4a;
@@ -3534,11 +3535,13 @@ figure.effect-layla:hover img {
   display: none;
 }
 
-.patner-carousel .carousel-control-prev {
+.patner-carousel .carousel-control-prev,
+.trees-plant-slider .carousel-control-prev{
   left: -2rem;
 }
 
-.patner-carousel .carousel-control-next {
+.patner-carousel .carousel-control-next,
+.trees-plant-slider .carousel-control-next {
   right: -2rem;
 }
 
@@ -5439,11 +5442,13 @@ video {
     width: 1.5rem;
     height: 1.5rem;
   }
-  .patner-carousel .carousel-control-prev {
+  .patner-carousel .carousel-control-prev,
+  .trees-plant-slider .carousel-control-prev {
     left: 0;
   }
 
-  .patner-carousel .carousel-control-next {
+  .patner-carousel .carousel-control-next,
+  .trees-plant-slider .carousel-control-next {
     right: 0;
   }
   .overalltotal{
@@ -5827,7 +5832,7 @@ video {
   }
 
   .donoteicon {
-    display: none;
+    /* display: none; */
   }
   .capt-code{
     font-size: 20px;
