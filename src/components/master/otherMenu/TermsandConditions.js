@@ -75,7 +75,7 @@ function TermsandConditions() {
 
 <p>5.1	To access the Website or some of the resources it offers, You may be asked to provide certain registration details or other information. It is a condition of Your use of the Website that all the information You provide on the Website is correct, current and complete. You agree that all information You provide to register with this Website or otherwise, including but not limited to through the use of any interactive features on the Website, is governed by our Privacy Policy, and You consent to all actions we take with respect to Your information consistent with our Privacy Policy. </p>
 
-<p>5.2	<b>Privacy and Personal Data:</b> Our Privacy Policy explains how we shall process your personal data and protect your privacy, when you use the Website. You agree to the processing of your personal data in accordance with the Privacy Policy. If you become aware of any unauthorized use of your account, you agree to promptly notify us at <a href="">support@hariyali.org.in</a>.</p>
+<p>5.2	<b>Privacy and Personal Data:</b> Our Privacy Policy explains how we shall process your personal data and protect your privacy, when you use the Website. You agree to the processing of your personal data in accordance with the Privacy Policy. If you become aware of any unauthorized use of your account, you agree to promptly notify us at <a href="mailto:support@hariyali.org.in">support@hariyali.org.in</a>.</p>
 
 <p>5.3	If you choose, or are provided with, a username, password or any other piece of information as part of our security procedures, You must treat such information as confidential, and You must not disclose it to any other person or entity under any circumstances, whatsoever. You also acknowledge that Your account is personal to You and agree not to provide any other person with access to this Website or portions of it using Your username, password or other security information. You agree to notify us immediately of any unauthorized access to or use of Your username or password or any other breach of security. You also agree to ensure that you exit/logout from Your account at the end of each session. You should use particular caution when accessing Your account from a public or shared computer so that others are not able to view or record Your password or other personal information.</p>
 
@@ -217,11 +217,11 @@ If any provision of these Terms of Use is held by a court or other tribunal of c
 
 <p><b><u>d)	Opt out</u></b></p>
 
-<p>The User may send an email at <a href="">support@hariyali.org.in</a> to unsubscribe from receiving communications from the Website </p>
+<p>The User may send an email at <a href="mailto:support@hariyali.org.in">support@hariyali.org.in</a> to unsubscribe from receiving communications from the Website </p>
 
 <p><b><u>e)	Grievance Officer </u></b></p>
 
-<p>For any service-related queries or complaints relating to the Website, you can write to us at <a href="">support@hariyali.org.in</a></p>
+<p>For any service-related queries or complaints relating to the Website, you can write to us at <a href="mailto:support@hariyali.org.in">support@hariyali.org.in</a></p>
         </Row>
                 </div>
             </div>
