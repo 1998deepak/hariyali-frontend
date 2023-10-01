@@ -1161,6 +1161,7 @@ function OnlineDonation() {
             addr[1] = response.data.address[1];
           }
         }
+        setAddress(addr);
       }
 
       const formData = {
@@ -1170,6 +1171,9 @@ function OnlineDonation() {
       };
       if (response.data.donations) {
         if (response.data.donations[0].userPackage) {
+          if(formData.formData.user.donations[0].userPackage[0].userDonation){
+            delete formData.formData.user.donations[0].userPackage[0].userDonation;
+          }
           setPackageData(formData.formData.user.donations[0].userPackage);
         }
         setDonations(response.data.donations);
@@ -1177,11 +1181,13 @@ function OnlineDonation() {
       setUserData(formData.formData);
       clearState();
       setDonation(type);
+      
       if (type === "self") {
         setValidSelfUser(true);
       } else {
         setValidGiftUser(true);
       }
+      
       setLoading(false);
     } else if (
       response?.statusCode === 409 ||
@@ -1208,8 +1214,12 @@ function OnlineDonation() {
         setValidGiftUser(false);
         setIsDivOpenGift(true);
       }
-      setLoading(false);
-    }
+      setAddress(initialAddress);
+      setDonations(intialDonations);
+      setRecipient(initialRecipientData);
+      setUserData(initialUserData);
+        setLoading(false);
+      }
   };
 
   const sendOtp = async (emailId) => {
