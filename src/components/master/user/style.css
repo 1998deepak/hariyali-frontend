@@ -1,3 +1,9 @@
-.hide{
-    display: block;
+.header-text{
+    text-align: center;
+    margin: 20px 0px;
 }
+
+.creditial-div{
+    min-width: 400px;
+}
+
