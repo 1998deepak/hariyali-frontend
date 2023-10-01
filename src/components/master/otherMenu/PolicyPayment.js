@@ -246,7 +246,7 @@ function PolicyPayment() {
             <p>(viii) to lodge a complaint with the competent authority, and</p>
             <p>(ix) to nominate any individual who shall in the event of death, or physical or mental incapacity exercise your rights in accordance with applicable data protection laws.</p>
 
-            <p>If you are no longer interested in receiving any correspondence and/or other marketing information from us, please e-mail your request to us at <a href="">support@hariyali.org.in</a></p>
+            <p>If you are no longer interested in receiving any correspondence and/or other marketing information from us, please e-mail your request to us at <a href="mailto:support@hariyali.org.in">support@hariyali.org.in</a></p>
 
             <p><b>9.	Contact details</b></p>
 
@@ -257,7 +257,7 @@ function PolicyPayment() {
             Gateway Building,
             Apollo Bunder, Colaba, 
             Mumbai 400 001, Maharashtra, India 
-            Email: <a href="">support@hariyali.org.in</a></p>
+            Email: <a href="mailto:support@hariyali.org.in">support@hariyali.org.in</a></p>
 
             <p><b>10.	Changes to the Privacy Policy</b></p>
 
