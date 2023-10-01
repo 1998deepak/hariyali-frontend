@@ -263,6 +263,18 @@ function OfflineDonation() {
       document.getElementById("lastName").focus();
     }
 
+    if (
+      !(/^\d{12}$/.test(userData.user.addharCard))) {
+      validationErrors.push({
+        field: "userData.user.addharCard",
+        message:
+          "ADDHAR Number must contain exactly 16 digits and no alphabetic characters",
+      });
+      if(document.getElementById("addharCard")){
+        document.getElementById("addharCard").focus();
+      } 
+    }
+
     if (!userData?.user?.mobileNo) {
       validationErrors.push({
         field: "userData.user.mobileNo",
@@ -1714,7 +1726,7 @@ function OfflineDonation() {
                                           id="addharCard"
                                           placeholder="AADHAAR Card Number"
                                           type="text"
-                                          maxLength={16}
+                                          maxLength={12}
                                           value={userData?.user?.addharCard}
                                           onChange={handleChange}
                                         />
@@ -2935,7 +2947,7 @@ function OfflineDonation() {
                                           id="addharCard"
                                           placeholder="AADHAAR Card Number"
                                           type="text"
-                                          maxLength={16}
+                                          maxLength={12}
                                           value={userData?.user?.addharCard}
                                           onChange={handleChange}
                                         />

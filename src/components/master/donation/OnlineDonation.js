@@ -220,10 +220,27 @@ function OnlineDonation() {
   const getStatesByCountry = async (countryId) => {
     setLoading(true);
     const response = await DonationService.getAllStatesByCountry(countryId);
+    console.log("get states", response.data );
     if (response?.status === 200) {
+      if(response?.data.length === 0){
+        console.log(response?.data.length)
+        if(document.getElementById("state2")){
+        document.getElementById("state2").style.display = "block";
+        } if(document.getElementById("state3")){
+          document.getElementById("state3").style.display = "none";
+        }
+        setStates(response.data);
+        setLoading(false);
+      }else{
+        if(document.getElementById("state2")){
+          document.getElementById("state2").style.display = "none";
+          } if(document.getElementById("state3")){
+            document.getElementById("state3").style.display = "block";
+          }
+        setStates(response.data);
+        setLoading(false);
+      }
       // let data = response.data.map((item)=> ({ label: item, value: item }))
-      setStates(response.data);
-      setLoading(false);
     } else {
       toast.error(response?.message);
       setLoading(false);
@@ -312,7 +329,8 @@ function OnlineDonation() {
     }
 
 
-    if (userData?.user?.citizenship?.toUpperCase() === INDIA) {
+    if (userData?.user?.citizenship?.toUpperCase() === INDIA || address[0]?.country.toUpperCase() ===
+    INDIA) {
     if (!userData?.user?.mobileNo) {
       validationErrors.push({
         field: "userData.user.mobileNo",
@@ -354,14 +372,6 @@ function OnlineDonation() {
         message: "Donor Type is required",
       });
     }
-    if(userData?.user?.donarType === "Individual"){ 
-      if (!userData?.user?.prefix || userData?.user?.prefix =="") {
-        validationErrors.push({
-          field: "userData.user.prefix",
-          message: "Prefix is required",
-        });
-        document.getElementById("prefix").focus();
-      }}
     if (
       userData?.user?.donarType.toLocaleLowerCase() === "corporate" && !userData?.user?.organisation) {
       validationErrors.push({
@@ -403,13 +413,15 @@ function OnlineDonation() {
         }
       }} else {
         if (
-          !(/^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$/.test(userData.user.addharCard))) {
+          !(/^\d{12}$/.test(userData.user.addharCard))) {
           validationErrors.push({
             field: "userData.user.addharCard",
             message:
               "ADDHAR Number must contain exactly 16 digits and no alphabetic characters",
           });
-          document.getElementById("addharCard").focus();
+          if(document.getElementById("addharCard")){
+            document.getElementById("addharCard").focus();
+          } 
         }
       }
     } else {
@@ -447,41 +459,54 @@ function OnlineDonation() {
           field: "address[" + i + "].street1",
           message: "Street is required",
         });
-        document.getElementById("street1").focus();
+        if(document.getElementById("street1")){
+          document.getElementById("street1").focus();
+        }
       }
       if (!addr?.country) {
         validationErrors.push({
           field: "address[" + i + "].country",
           message: "Country is required",
         });
-        document.getElementById("country").focus();
+        if(document.getElementById("country")){
+          document.getElementById("country").focus();
+        }
       }
       if (!addr?.state) {
         validationErrors.push({
           field: "address[" + i + "].state",
           message: "State is required",
         });
-        document.getElementById("state").focus();
+        if(document.getElementById("state")){
+          document.getElementById("state").focus();
+        }
       }
       if (!addr?.city) {
         validationErrors.push({
           field: "address[" + i + "].city",
           message: "City is required",
         });
-        document.getElementById("city").focus();
+        if(document.getElementById("city")){
+          document.getElementById("city").focus();
+        }        
       }
       if (!addr?.postalCode) {
         validationErrors.push({
           field: "address[" + i + "].postalCode",
           message: "postalCode is required",
         });
-        document.getElementById("postalCode").focus();
+        if(document.getElementById("postalCode")){
+          document.getElementById("postalCode").focus();
+        }
       } else if (!/^\d{6}$/.test(addr?.postalCode)) {
         validationErrors.push({
           field: "address[" + i + "].postalCode",
           message: "Invalid Postal Code",
         });
-        document.getElementById("postalCode").focus();
+        if(document.getElementById("postalCode")){
+          document.getElementById("postalCode").focus();
+        }
+        
       }
     }
 
@@ -494,6 +519,9 @@ function OnlineDonation() {
           field: "donations.donationEvent",
           message: "Donation Event is required",
         });
+        if(document.getElementById("donationEvent")){
+          document.getElementById("donationEvent").focus();
+        }
       }
       console.log(donations[0]?.giftContent);
       if (!donations[0]?.giftContent) {
@@ -501,6 +529,9 @@ function OnlineDonation() {
           field: "donations.giftContent",
           message: "Message for the giftee is required",
         });
+        if(document.getElementById("giftContent")){
+          document.getElementById("giftContent").focus();
+        }
       }
       console.log(recipient[0]?.firstName);
       if (!recipient[0]?.firstName) {
@@ -508,26 +539,35 @@ function OnlineDonation() {
           field: "recipient[0].firstName",
           message: "First Name is required",
         });
-        document.getElementById("recFirstName").focus();
+        if(document.getElementById("recFirstName")){
+          document.getElementById("recFirstName").focus();
+        }
       } else if (/\d/.test(recipient[0].firstName)) {
         validationErrors.push({
           field: "recipient[0].firstName",
           message: "First Name should only contain alphabets",
         });
-        document.getElementById("recFirstName").focus();
+        if(document.getElementById("recFirstName")){
+          document.getElementById("recFirstName").focus();
+        } 
       }
       if (!recipient[0].lastName) {
         validationErrors.push({
           field: "recipient[0].lastName",
           message: "Last Name is required",
         });
-        document.getElementById("recLastName").focus();
+        if(document.getElementById("recLastName")){
+          document.getElementById("recLastName").focus();
+        }
       } else if (/\d/.test(recipient[0].lastName)) {
         validationErrors.push({
           field: "recipient[0].lastName",
           message: "Last Name should only contain alphabets",
         });
-        document.getElementById("recLastName").focus();
+        if(document.getElementById("recLastName")){
+          document.getElementById("recLastName").focus();
+        }
+        
       }
 
       if (!recipient[0]?.emailId) {
@@ -535,13 +575,18 @@ function OnlineDonation() {
           field: "recipient[0].emailId",
           message: "Email ID is required",
         });
-        document.getElementById("recEmailId").focus();
+        if(document.getElementById("recEmailId")){
+          document.getElementById("recEmailId").focus();
+        }
       } else if (!/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(recipient[0].emailId)) {
         validationErrors.push({
           field: "recipient[0].emailId",
           message: "Invalid Email ID",
         });
-        document.getElementById("recEmailId").focus();
+        if(document.getElementById("recEmailId")){
+          document.getElementById("recEmailId").focus();
+        }
+        
       }
     }
 
@@ -1875,7 +1920,7 @@ function OnlineDonation() {
                                             id="addharCard"
                                             placeholder="AADHAAR Card Number"
                                             type="text"
-                                            maxLength={16}
+                                            maxLength={12}
                                             value={userData?.user?.addharCard}
                                             onChange={handleChange}
                                           />
@@ -2082,7 +2127,7 @@ function OnlineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-12 col-md-6">
+                              <div id="state3" className="col-12 col-md-6" style={{display:"block"}}>
                                 <div className="select-label">
                                   {/* <div className="col-4 ">State</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -2206,6 +2251,39 @@ function OnlineDonation() {
                                   </div>
                                 </div>
                               )} */}
+                              <div id="state2" className="col-12 col-md-6" style={{display:"none"}}>
+                                <div className="select-label">
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">
+                                      State <span className="red-text">*</span>
+                                    </label>
+                                    <input
+                                      className="form-control-inside form-control"
+                                      name="state"
+                                      id="state1"
+                                      placeholder="State"
+                                      type="text"
+                                      value={address[0]?.state}
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 0)
+                                      }
+                                    />
+                                    {errors.map((error, index) => {
+                                      if (error.field === "address[0].state") {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                </div>
+                              </div>
                               <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   <div className="col-12 p0 field-wrapper">
@@ -2689,6 +2767,7 @@ function OnlineDonation() {
                               <select
                                 className=" form-control-inside form-select"
                                 name="donationEvent"
+                                id="donationEvent"
                                 value={donations[0].donationEvent}
                                 onChange={(e) => handleDonationChange(e, 0)}
                               >
@@ -2740,6 +2819,7 @@ function OnlineDonation() {
                                 className="form-control"
                                 placeholder="Message for the Giftee"
                                 name="giftContent"
+                                id="giftContent"
                                 value={donations[0].giftContent}
                                 onChange={(e) => {handleChangeTextarea(e);handleDonationChange(e, 0)}}
                                 maxLength={maxLength}
@@ -2747,6 +2827,19 @@ function OnlineDonation() {
                               <p>
                                 {inputValue.length}/{maxLength} Characters
                               </p>
+                              {errors.map((error, index) => {
+                                if (error.field === "donations.giftContent") {
+                                  return (
+                                    <div
+                                      key={index}
+                                      className="error-message red-text"
+                                    >
+                                      {error.message}
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              })}
                             </div>
                           </div>
                         </div>
@@ -3141,7 +3234,7 @@ function OnlineDonation() {
                                             id="addharCard"
                                             placeholder="AADHAAR Card Number"
                                             type="text"
-                                            maxLength={16}
+                                            maxLength={12}
                                             value={userData?.user?.addharCard}
                                             onChange={handleChange}
                                           />
@@ -3347,7 +3440,7 @@ function OnlineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-12 col-md-6">
+                              <div id="state3" className="col-12 col-md-6" style={{display:"block"}}>
                                 <div className="select-label">
                                   {/* <div className="col-4 ">State</div> */}
                                   <div className="col-12 p0 field-wrapper">
@@ -3474,6 +3567,39 @@ function OnlineDonation() {
                                   </div>
                                 </div>
                               )} */}
+                              <div id="state2" className="col-12 col-md-6" style={{display:"none"}}>
+                                <div className="select-label">
+                                  <div className="col-12 p0 field-wrapper">
+                                    <label class="form-label top-27">
+                                      State <span className="red-text">*</span>
+                                    </label>
+                                    <input
+                                      className="form-control-inside form-control"
+                                      name="state"
+                                      id="state1"
+                                      placeholder="State"
+                                      type="text"
+                                      value={address[0]?.state}
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 0)
+                                      }
+                                    />
+                                    {errors.map((error, index) => {
+                                      if (error.field === "address[0].state") {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
+                                  </div>
+                                </div>
+                              </div>
                               <div className="col-12 col-md-6">
                                 <div className="select-label">
                                   <div className="col-12 p0 field-wrapper">

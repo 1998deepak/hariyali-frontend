@@ -20,7 +20,7 @@ const Header = () => {
              <div className="logo-container">
                 <img src={logo} alt="Logo" className="logo" />  
               </div>              
-              <div className="footersocial-div row mb-3">
+              {/* <div className="footersocial-div row mb-3">
                 <div className="col-2">
                   <div className="footersocial">
                     <FaFacebookF />
@@ -46,7 +46,7 @@ const Header = () => {
                     <FaYoutube />
                   </div>
                 </div>
-              </div>
+              </div> */}
               
             </div>
             <div className="col-12 col-md-12 col-lg-8 footerlinks">
