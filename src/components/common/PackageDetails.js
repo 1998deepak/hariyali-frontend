@@ -9,6 +9,14 @@ const PackageDetails = ({
 
     const handleChangeNumberOfBouquets = (e, row, rowIndex) => {
         let { name, value } = e.target;
+        // if( value <= 0){
+        //   value = 1;
+        // }
+        if(value){
+          if(value < 1){
+            value = 1;
+          }
+        }
         console.log({ name, value, rowIndex }, row);
         let userPackageData = packageData;
         if(value > 1000000){
@@ -52,23 +60,23 @@ const PackageDetails = ({
                       className="form-control-inside bouquets-field"
                       value={packageItem.noOfBouquets}
                       onChange={(event) => {
-                        if (event.target.value < 0) {
-                          event.target.value = 0;
-                        }
+                        // if (event.target.value < 0) {
+                        //   event.target.value = 0;
+                        // }
                         handleChangeNumberOfBouquets(event, packageItem, index);
                       }}
                       max={1000000}
                       disabled={disabled}
                     />
                   </td>
-                  <td>INR {packageItem.amount}</td>
+                  <td>INR {packageItem.amount === 0 ? " ":packageItem.amount}</td>
                 </tr>
               );
             })}
           </tbody>
         </table>
         <div className="overalltotal fw-bold">
-          Overall Total : INR{" "}{packageData[0].amount}
+          Overall Total : INR{" "}{packageData[0].amount=== 0 ? " ": packageData[0].amount}
         </div>
       </div>
     </>

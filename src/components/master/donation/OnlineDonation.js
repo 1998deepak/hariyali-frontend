@@ -356,11 +356,11 @@ function OnlineDonation() {
         message: "Mobile Number is required",
       });
       document.getElementById("mobileNo").focus();
-    } else if (!/^(?!.*[a-zA-Z])\d{11}$/.test(userData.user.mobileNo)) {
+    } else if (!/^(?!.*[a-zA-Z])\d{10}$/.test(userData.user.mobileNo)) {
       validationErrors.push({
         field: "userData.user.mobileNo",
         message:
-          "Mobile Number must contain exactly 11 digits and no alphabetic characters",
+          "Mobile Number must contain exactly 10 digits and no alphabetic characters",
       });
       if(document.getElementById("mobileNo")){
       document.getElementById("mobileNo").focus();
@@ -391,14 +391,14 @@ function OnlineDonation() {
           if(userData?.user?.donarType === "Corporate"){
             validationErrors.push({
             field: "userData.user.panCard",
-            message: "TAN Number is Invalid",
+            message: "PAN card number is Invalid",
           });
           if(document.getElementById("panCard")){
             document.getElementById("panCard").focus();
           }}else{
             validationErrors.push({
               field: "userData.user.panCard",
-              message: "PAN Card Number is Invalid",
+              message: "PAN card number is Invalid",
             });
             if(document.getElementById("panCard")){
               document.getElementById("panCard").focus();
@@ -408,14 +408,14 @@ function OnlineDonation() {
           if(userData?.user?.donarType === "Corporate"){
             validationErrors.push({
             field: "userData.user.panCard",
-            message: "TAN Number is Invalid",
+            message: "PAN card number is Invalid",
           });
           if(document.getElementById("panCard")){
             document.getElementById("panCard").focus();
           }}else{
             validationErrors.push({
               field: "userData.user.panCard",
-              message: "PAN Card Number is Invalid",
+              message: "PAN card number is Invalid",
             });
             if(document.getElementById("panCard")){
               document.getElementById("panCard").focus();
@@ -427,7 +427,7 @@ function OnlineDonation() {
             console.log("working!!")
             validationErrors.push({
               field: "userData.user.panCard",
-              message: "TAN Number is Invalid",
+              message: "PAN card number is Invalid",
             });
             if(document.getElementById("panCard")){
               document.getElementById("panCard").focus();
@@ -440,7 +440,7 @@ function OnlineDonation() {
           console.log("working!!")
           validationErrors.push({
             field: "userData.user.panCard",
-            message: "PAN Card Number is Invalid",
+            message: "PAN card number is Invalid",
           });
           if(document.getElementById("panCard")){
             document.getElementById("panCard").focus();
@@ -1888,7 +1888,7 @@ function OnlineDonation() {
                                               for="panCard"
                                               class="form-label top-27"
                                             >
-                                              TAN Number{" "}
+                                              PAN Card Number{" "}
                                               <span className="red-text">
                                                 *
                                               </span>
@@ -1901,7 +1901,7 @@ function OnlineDonation() {
                                               for="panCard"
                                               class="form-label top-27"
                                             >
-                                              PAN Card{" "}
+                                              PAN Card Number{" "}
                                               <span className="red-text">
                                                 *
                                               </span>
@@ -1913,7 +1913,7 @@ function OnlineDonation() {
                                             className="form-control-inside form-control"
                                             name="user.panCard"
                                             id="panCard"
-                                            placeholder={userData?.user?.donarType === "Corporate"?"TAN number":"PAN card number"}
+                                            placeholder={userData?.user?.donarType === "Corporate"?"PAN card number":"PAN card number"}
                                             type="text"
                                             value={userData?.user?.panCard}
                                             onChange={handleChange}
@@ -3208,7 +3208,7 @@ function OnlineDonation() {
                                               for="panCard"
                                               class="form-label top-27"
                                             >
-                                              TAN Number{" "}
+                                              PAN Card Number{" "}
                                               <span className="red-text">
                                                 *
                                               </span>
@@ -3221,7 +3221,7 @@ function OnlineDonation() {
                                               for="panCard"
                                               class="form-label top-27"
                                             >
-                                              PAN Card{" "}
+                                              PAN Card Number{" "}
                                               <span className="red-text">
                                                 *
                                               </span>
@@ -3233,7 +3233,7 @@ function OnlineDonation() {
                                             className="form-control-inside form-control"
                                             name="user.panCard"
                                             id="panCard"
-                                            placeholder={userData?.user?.donarType === "Corporate"?"TAN number":"PAN card number"}
+                                            placeholder={userData?.user?.donarType === "Corporate"?"PAN card number":"PAN card number"}
                                             type="text"
                                             value={userData?.user?.panCard}
                                             onChange={handleChange}
