@@ -750,7 +750,10 @@ function OnlineDonation() {
       } else if (response?.status === "OTHERTHANINDIA") {
         setTotalAmount(response.data.donations[0].totalAmount);
         navigate(response.gatewayURL, {
-          state: response.data.donations[0].totalAmount,
+          state:
+            response.data.donations[0].totalAmount +
+            "," +
+            response.data.donations[0].createdBy,
         });
         clearForm(e);
         setLoading(false);
