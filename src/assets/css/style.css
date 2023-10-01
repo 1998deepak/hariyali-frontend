@@ -3752,7 +3752,7 @@ figure.effect-layla:hover img {
   background-position: center;
   border-bottom: 1px solid #ccc;
   background-size: contain;
-  min-height: 50vh;
+  height: 50vh;
 }
 
 .banner-support {
@@ -5450,9 +5450,9 @@ video {
     margin-right: 0;
   }
   .capt-code{
-    font-size: 22px;
+    font-size: 24px;
     text-align: center;
-    width: 140px;
+    width: 200px;
   }
   .awards-slider .slick-prev, .awards-slider .slick-next,.partner-slider .slick-prev, .partner-slider .slick-next,
   .certificate-slider .slick-prev, .certificate-slider .slick-next{
@@ -5815,7 +5815,7 @@ video {
 
   .banner-wedo {
     background-size: contain;
-    min-height: 30vh;
+    height: 20vh;
   }
 
   .banner-associate,
@@ -5828,6 +5828,10 @@ video {
 
   .donoteicon {
     display: none;
+  }
+  .capt-code{
+    font-size: 20px;
+    width: 140px;
   }
   
 }
