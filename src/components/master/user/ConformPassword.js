@@ -34,6 +34,10 @@ function ConformPassword() {
 
      const setPasswordApi = async (e) =>{
       e.preventDefault();
+      if(error.newPassword || error.confirmPassword){
+        return;
+      }
+      
       if (!password.newPassword) {
         setError({...error,newPassword:"Enter New Password"});
         return;
