@@ -417,7 +417,7 @@ function OnlineDonation() {
           validationErrors.push({
             field: "userData.user.addharCard",
             message:
-              "ADDHAR Number must contain exactly 16 digits and no alphabetic characters",
+              "ADDHAR Number must contain exactly 12 digits and no alphabetic characters",
           });
           if(document.getElementById("addharCard")){
             document.getElementById("addharCard").focus();
@@ -750,7 +750,10 @@ function OnlineDonation() {
       } else if (response?.status === "OTHERTHANINDIA") {
         setTotalAmount(response.data.donations[0].totalAmount);
         navigate(response.gatewayURL, {
-          state: response.data.donations[0].totalAmount,
+          state:
+            response.data.donations[0].totalAmount +
+            "," +
+            response.data.donations[0].createdBy,
         });
         clearForm(e);
         setLoading(false);
@@ -1849,7 +1852,7 @@ function OnlineDonation() {
                                               for="panCard"
                                               class="form-label top-27"
                                             >
-                                              PAN Card of the Organization{" "}
+                                              TAN Number{" "}
                                               <span className="red-text">
                                                 *
                                               </span>
@@ -3163,7 +3166,7 @@ function OnlineDonation() {
                                               for="panCard"
                                               class="form-label top-27"
                                             >
-                                              PAN Card of the Organization{" "}
+                                              TAN Number{" "}
                                               <span className="red-text">
                                                 *
                                               </span>

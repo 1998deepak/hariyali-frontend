@@ -6,7 +6,7 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { useNavigate  } from "react-router-dom";
 import { SUCCESS, TOKEN, USER_DETAILS } from "../../constants/constants";
 import { AuthService } from '../../../services/auth/auth.service';
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 function ConformPassword() {
   
@@ -20,11 +20,11 @@ function ConformPassword() {
       navigate("/Login");
      }
 
+
+
      const setPasswordApi = async (e) =>{
       console.log("hii");
- 
       e.preventDefault();
-  
       const formData = {
           password : newPassword
       };
@@ -33,15 +33,16 @@ function ConformPassword() {
       console.log(response);
       console.log(response?.status === SUCCESS);
       if (response?.status === SUCCESS) {
-        toast.status("Password changed successfully!");
-        //navigate("/ConformPassword");
+        toast.success(response?.message);
+        navigate("/home");
       } else {
         toast.error(response?.message);
       }
-    
      }
 
   return (
+    <>
+    <ToastContainer/>
     <div className="logindiv bggray">
       <div className="col-6 mauto">
         <div className="loginlogo">
@@ -92,6 +93,7 @@ function ConformPassword() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
