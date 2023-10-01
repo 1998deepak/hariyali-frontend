@@ -6,10 +6,13 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { useNavigate  } from "react-router-dom";
 import { SUCCESS, TOKEN, USER_DETAILS } from "../../constants/constants";
 import { AuthService } from '../../../services/auth/auth.service';
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import { useLocation } from "react-router-dom";
 
 function OtpId() {
-  
+  const location = useLocation();
+  console.log(location.state)
+  const data = location.state;
   const navigate = useNavigate();
   
   const goToLogin = () =>{
@@ -25,19 +28,12 @@ function OtpId() {
      console.log("hii");
      e.preventDefault();
      console.log(OTP);
-
-     const formData = {
-       formData: {
-         OTP: OTP
-       }
-     };
-     console.log(formData);
-     const response = await AuthService.verifyForgetOtp(formData);
+     const response = await AuthService.verifyForgetOtp(data, OTP);
      console.log(response);
      console.log(response?.status === SUCCESS);
      if (response?.status === SUCCESS) {
-       toast.status("OTP Verified successfully!");
-       navigate("/ConformPassword");
+       toast.success(response?.message);
+        navigate("/ConformPassword");
      } else {
        toast.error(response?.message);
      }
@@ -46,6 +42,8 @@ function OtpId() {
  
 
   return (
+    <>
+    <ToastContainer/>
     <div className="logindiv bggray">
       <div className="col-6 mauto">
         <div className="loginlogo">
@@ -70,6 +68,7 @@ function OtpId() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
