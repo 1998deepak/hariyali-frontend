@@ -288,8 +288,8 @@ function OfflineDonation() {
           if(document.getElementById("panCard")){
             document.getElementById("panCard").focus();
           }
-        }else if(/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard) === true && userData?.user?.donarType.toLocaleLowerCase() === "Individual"){
-          if(userData?.user?.panCard.charAt(3) !== "H" || userData?.user?.panCard.charAt(3) !== "P"){
+        }if(/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard) === true && userData?.user?.donarType === "Corporate"){
+          if(userData?.user?.panCard.trim().charAt(3) === "H" || userData?.user?.panCard.trim().charAt(3) === "P"){
             validationErrors.push({
               field: "userData.user.panCard",
               message: "PAN Card Number is Invalid",
@@ -298,7 +298,18 @@ function OfflineDonation() {
               document.getElementById("panCard").focus();
             }
         }
-      }} else {
+      }
+      if(/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard) === true && userData?.user?.donarType === "Individual"){
+        if(userData?.user?.panCard.trim().charAt(3) !== "H" && userData?.user?.panCard.trim().charAt(3) !== "P"){
+          validationErrors.push({
+            field: "userData.user.panCard",
+            message: "PAN Card Number is Invalid",
+          });
+          if(document.getElementById("panCard")){
+            document.getElementById("panCard").focus();
+          }
+      }
+    }} else {
         if (
           !(/^\d{12}$/.test(userData.user.addharCard))) {
           validationErrors.push({
@@ -2988,7 +2999,7 @@ function OfflineDonation() {
                                           className="form-control-inside form-control"
                                           name="user.panCard"
                                           id="panCard"
-                                          placeholder="PAN card No."
+                                          placeholder="PAN card number"
                                           type="text"
                                           value={userData?.user?.panCard}
                                           onChange={handleChange}
@@ -4135,7 +4146,7 @@ function OfflineDonation() {
                                     className="form-control-inside"
                                     name="user.panCard"
                                     id="panCard"
-                                    placeholder="PAN card No."
+                                    placeholder="PAN card number"
                                     type="text"
                                     value={userData?.user?.panCard}
                                     onChange={handleChange}
@@ -4858,7 +4869,7 @@ function OfflineDonation() {
                                     className="form-control-inside"
                                     name="user.panCard"
                                     id="panCard"
-                                    placeholder="PAN card No."
+                                    placeholder="PAN card number"
                                     type="text"
                                     value={userData.user.panCard}
                                     onBlur={(e) => handleDonarIdBlur(e)}

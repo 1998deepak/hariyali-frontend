@@ -388,20 +388,38 @@ function OnlineDonation() {
     INDIA ) {
       if (hasAadharCard === true) {
         if (!userData?.user?.panCard) {
-          validationErrors.push({
-            field: "userData.user.panCard",
-            message: "PAN Card Number is required",
-          });
-          if(document.getElementById("panCard")){
-            document.getElementById("panCard").focus();
-          }
-        } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
+          if(userData?.user?.donarType === "Corporate"){
             validationErrors.push({
             field: "userData.user.panCard",
-            message: "PAN Card Number is Invalid",
+            message: "TAN Number is Invalid",
           });
           if(document.getElementById("panCard")){
             document.getElementById("panCard").focus();
+          }}else{
+            validationErrors.push({
+              field: "userData.user.panCard",
+              message: "PAN Card Number is Invalid",
+            });
+            if(document.getElementById("panCard")){
+              document.getElementById("panCard").focus();
+            }
+          }
+        } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
+          if(userData?.user?.donarType === "Corporate"){
+            validationErrors.push({
+            field: "userData.user.panCard",
+            message: "TAN Number is Invalid",
+          });
+          if(document.getElementById("panCard")){
+            document.getElementById("panCard").focus();
+          }}else{
+            validationErrors.push({
+              field: "userData.user.panCard",
+              message: "PAN Card Number is Invalid",
+            });
+            if(document.getElementById("panCard")){
+              document.getElementById("panCard").focus();
+            }
           }
         } if(/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard) === true && userData?.user?.donarType === "Corporate"){
           console.log(userData?.user?.panCard.trim().charAt(3));
@@ -1627,7 +1645,7 @@ function OnlineDonation() {
                                         </label>
                                         <input
                                           className="form-control-inside form-control"
-                                          type="number"
+                                          type="text"
                                           id="mobileNo"
                                           name="user.mobileNo"
                                           placeholder="Mobile Number"
@@ -1668,7 +1686,7 @@ function OnlineDonation() {
                                       </label>
                                       <input
                                         className="form-control-inside form-control"
-                                        type="number"
+                                        type="text"
                                         id="mobileNo"
                                         name="user.mobileNo"
                                         placeholder="Mobile Number"
@@ -1865,6 +1883,7 @@ function OnlineDonation() {
                                         <div className="col-12 p0 field-wrapper">
                                           {userData?.user?.donarType ===
                                           "Corporate" ? (
+                                            <>
                                             <label
                                               for="panCard"
                                               class="form-label top-27"
@@ -1874,7 +1893,10 @@ function OnlineDonation() {
                                                 *
                                               </span>
                                             </label>
+                                            </>
+                                            
                                           ) : (
+                                            <>
                                             <label
                                               for="panCard"
                                               class="form-label top-27"
@@ -1884,16 +1906,18 @@ function OnlineDonation() {
                                                 *
                                               </span>
                                             </label>
+                                         
+                                            </>
                                           )}
                                           <input
                                             className="form-control-inside form-control"
                                             name="user.panCard"
                                             id="panCard"
-                                            placeholder="PAN card No."
+                                            placeholder={userData?.user?.donarType === "Corporate"?"TAN number":"PAN card number"}
                                             type="text"
                                             value={userData?.user?.panCard}
                                             onChange={handleChange}
-                                          />
+                                            />
                                           <small className="text-muted">
                                             Disclaimer: Please ensure that you
                                             have entered the correct PAN details
@@ -3179,6 +3203,7 @@ function OnlineDonation() {
                                         <div className="col-12 p0 field-wrapper">
                                           {userData?.user?.donarType ===
                                           "Corporate" ? (
+                                            <>
                                             <label
                                               for="panCard"
                                               class="form-label top-27"
@@ -3188,7 +3213,10 @@ function OnlineDonation() {
                                                 *
                                               </span>
                                             </label>
+                                            
+                                            </>
                                           ) : (
+                                            <>
                                             <label
                                               for="panCard"
                                               class="form-label top-27"
@@ -3198,12 +3226,14 @@ function OnlineDonation() {
                                                 *
                                               </span>
                                             </label>
+                                            
+                                            </>
                                           )}
                                           <input
                                             className="form-control-inside form-control"
                                             name="user.panCard"
                                             id="panCard"
-                                            placeholder="PAN card No."
+                                            placeholder={userData?.user?.donarType === "Corporate"?"TAN number":"PAN card number"}
                                             type="text"
                                             value={userData?.user?.panCard}
                                             onChange={handleChange}
@@ -3777,13 +3807,13 @@ function OnlineDonation() {
                                   <div className="select-label">
                                     <div className="col-12 p0 field-wrapper">
                                       <label className="form-label">
-                                        Mobile No.
+                                        Mobile Number
                                       </label>
                                       <input
                                         className="form-control-inside form-control"
                                         id="recMobileNo"
                                         name="mobileNo"
-                                        placeholder="Mobile No."
+                                        placeholder="Mobile Number"
                                         type="text"
                                         value={recipient[0].mobileNo}
                                         onChange={(e) =>
