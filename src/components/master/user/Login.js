@@ -148,7 +148,9 @@ function Login() {
     if (response?.status === SUCCESS) {
       toast.success("Email sent successfully!");
       setLoading(false)
-      navigate("/OtpId");
+      navigate("/OtpId",{
+        state: formData.donorId,
+      });
     } else {
       toast.error("Invalid Donor Id ! Please Try Again");
       setLoading(false)

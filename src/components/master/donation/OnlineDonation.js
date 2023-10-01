@@ -417,7 +417,7 @@ function OnlineDonation() {
           validationErrors.push({
             field: "userData.user.addharCard",
             message:
-              "ADDHAR Number must contain exactly 16 digits and no alphabetic characters",
+              "ADDHAR Number must contain exactly 12 digits and no alphabetic characters",
           });
           if(document.getElementById("addharCard")){
             document.getElementById("addharCard").focus();
@@ -1852,7 +1852,7 @@ function OnlineDonation() {
                                               for="panCard"
                                               class="form-label top-27"
                                             >
-                                              PAN Card of the Organization{" "}
+                                              TAN Number{" "}
                                               <span className="red-text">
                                                 *
                                               </span>
@@ -3166,7 +3166,7 @@ function OnlineDonation() {
                                               for="panCard"
                                               class="form-label top-27"
                                             >
-                                              PAN Card of the Organization{" "}
+                                              TAN Number{" "}
                                               <span className="red-text">
                                                 *
                                               </span>

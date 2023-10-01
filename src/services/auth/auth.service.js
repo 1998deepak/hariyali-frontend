@@ -114,12 +114,14 @@ export const AuthService = {
       }
     }
   },
-  verifyForgetOtp: async ( formData) => {
+  verifyForgetOtp: async ( data, otp) => {
     try {
+      // data = (await EncryptionService.encrypt(data)).toString();
       // otp = (await EncryptionService.encrypt(otp)).toString();
-      // console.log(otp);
+      console.log(data);
+      console.log(otp);
       const response = await APIService.Instance.post(
-        URLS.VERIFYFORGETOTP, formData
+        URLS.VERIFYFORGETOTP+`?donarIdOrEmail=${data}&otp=${otp}`,
       );
       console.log(response);
       return response?.data;
