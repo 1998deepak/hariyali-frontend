@@ -256,9 +256,9 @@ function Login() {
               </div>
 
               <div className="row justify-content-between mb-3">
-                <div className="col-6 account-act">Account Activation</div>
+                {/* <div className="col-6 account-act">Account Activation</div> */}
                 <div
-                  className="col-6 forgot-pass justify-content-end"
+                  className="col-6 account-act"
                   onClick={forgotLink}
                 >
                   Forgot Password
