@@ -3205,7 +3205,8 @@ tr td input {
 }
 
 .btn-primary:hover,
-.btn-primary:focus {
+.btn-primary:focus,
+.btn-primary:active {
   border-color: #23aa4a;
   background: #fff;
   color: #23aa4a;
@@ -5831,7 +5832,7 @@ video {
   }
 
   .donoteicon {
-    display: none;
+    /* display: none; */
   }
   .capt-code{
     font-size: 20px;
