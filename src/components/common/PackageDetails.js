@@ -14,7 +14,7 @@ const PackageDetails = ({
         if(value > 1000000){
           userPackageData[rowIndex][name] = 1000000;
         }else{
-          userPackageData[rowIndex][name] = value;
+          userPackageData[rowIndex][name] =  Math.trunc(value);
         }
         const totalCost = 450 * row.noOfBouquets;
         userPackageData[rowIndex]["amount"] = totalCost;
