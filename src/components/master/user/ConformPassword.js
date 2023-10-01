@@ -1,16 +1,21 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import logo from "../../../assets/img/logotrans.png";
-import Captcha from "./Captcha";
 import ReactPasswordToggleIcon from "react-password-toggle-icon";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
-import { useNavigate  } from "react-router-dom";
-import { SUCCESS, TOKEN, USER_DETAILS } from "../../constants/constants";
+import { useLocation, useNavigate  } from "react-router-dom";
+import { SUCCESS} from "../../constants/constants";
 import { AuthService } from '../../../services/auth/auth.service';
 import { ToastContainer, toast } from "react-toastify";
+import "./style.css"
 
 function ConformPassword() {
+
+  const location = useLocation();
+  console.log(location.state)
+  const UserId = location.state;
   
   const inputRef = useRef(false);
+  const confirmInputRef = useRef(false);
   const [newPassword, setNewPassword] = useState("");
   const navigate = useNavigate();
     //toggle password hide show
@@ -23,9 +28,10 @@ function ConformPassword() {
 
 
      const setPasswordApi = async (e) =>{
-      console.log("hii");
+      console.log(UserId);
       e.preventDefault();
       const formData = {
+          email : UserId,
           password : newPassword
       };
       console.log(formData);
@@ -34,7 +40,9 @@ function ConformPassword() {
       console.log(response?.status === SUCCESS);
       if (response?.status === SUCCESS) {
         toast.success(response?.message);
-        navigate("/home");
+        setTimeout(()=>{
+          navigate("/Login");
+        },1000)
       } else {
         toast.error(response?.message);
       }
@@ -44,20 +52,20 @@ function ConformPassword() {
     <>
     <ToastContainer/>
     <div className="logindiv bggray">
-      <div className="col-6 mauto">
+      <div className="mauto">
         <div className="loginlogo">
           <img src={logo} alt="Logo" />
         </div>
-        <div className="row justify-content-between bgwite border1 padding30 contact-form-wrap">
-          <h5>Conform Password</h5>
+        <div className="row justify-content-between bgwite border1 padding30 contact-form-wrap creditial-div">
+          <h5 className="header-text">Confirm Password</h5>
           <p>Please Enter your New Password!</p>
           <div className="col-12">
             <form className="form-div contact-form-wrap" >
-            <label className="col-12">
+            <label className="col-12 form-group">
                 <input
-                  type="newPassword"
+                  type="password"
                   placeholder="New Password"
-                  className="login-input login-password"
+                  className="login-input login-password form-control"
                   name="newPassword"
                   ref={inputRef}
                   onChange={(e) => setNewPassword(e.target.value)}
@@ -68,16 +76,16 @@ function ConformPassword() {
                         showIcon={showIcon}
                       />
               </label>
-              <label className="col-12">
+              <label className="col-12 form-group">
                 <input
-                  type="conformPassword"
-                  placeholder="conform Password"
-                  className="login-input login-password"
+                  type="password"
+                  placeholder="confirm Password"
+                  className="login-input login-password form-control"
                   name="conformPassword"
-                  ref={inputRef}
+                  ref={confirmInputRef}
                 />
                 <ReactPasswordToggleIcon className="logineye"
-                        inputRef={inputRef}
+                        inputRef={confirmInputRef}
                         hideIcon={hideIcon}
                         showIcon={showIcon}
                       />
