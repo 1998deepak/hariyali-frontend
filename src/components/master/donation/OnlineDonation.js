@@ -966,6 +966,12 @@ function OnlineDonation() {
         ...updatedAddress[index],
         [name]: value,
       };
+      if (data) {
+        updatedAddress[index] = {
+          ...updatedAddress[index],
+          ["state"]: "",
+        };
+      }
       console.log(updatedAddress[index]);
       return updatedAddress;
     });
@@ -2547,8 +2553,8 @@ function OnlineDonation() {
                           <div className="col-12 col-md-6 mt20">
                             <Captcha
                               verified={false}
-                              setVerified={() => {
-                                setCaptchaFlag(true);
+                              setVerified={(flag) => {
+                                setCaptchaFlag(flag);
                               }}
                               id="captcha1"
                             />
@@ -4075,11 +4081,11 @@ function OnlineDonation() {
                           </div>
 
                           <hr />
-
+                        <div className="col-12 col-md-6 mt20">
                           <CaptchaGift
                             verified={false}
-                            setVerified={() => setCaptchaFlag(true)}
-                            id="captcha1"
+                            setVerified={(flag) => setCaptchaFlag(flag)}
+                            id="captcha2"
                           />
                           {errors.map((error, index) => {
                             if (error.field === "captchaError") {
@@ -4101,7 +4107,7 @@ function OnlineDonation() {
                           ) : (
                             <></>
                           )}
-
+                        </div>
                           <hr />
                           <PrivacyPolicy
                             informationShare={informationShare}

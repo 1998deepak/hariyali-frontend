@@ -912,6 +912,12 @@ function OfflineDonation() {
         ...updatedAddress[index],
         [name]: value,
       };
+      if (data) {
+        updatedAddress[index] = {
+          ...updatedAddress[index],
+          ["state"]: "",
+        };
+      }
       console.log(updatedAddress[index]);
       return updatedAddress;
     });
