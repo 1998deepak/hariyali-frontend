@@ -71,7 +71,7 @@ function CaptchaGift({verified, setVerified}) {
   return (
     <>
     <div className="row">
-    <div className=" col-3 captactcode ">
+    <div className=" col captactcode ">
      <div className="capt-code" id="captcha">
         {captcha}
       </div>
@@ -86,7 +86,7 @@ function CaptchaGift({verified, setVerified}) {
         
       </button>
       </div>
-      <div className="col-6 captcha-wrapper">
+      <div className="col captcha-wrapper">
         <input
             type="text"
             id="inputType"
