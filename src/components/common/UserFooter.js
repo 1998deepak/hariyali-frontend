@@ -89,7 +89,7 @@ const Header = () => {
                     Near Regal Cinema, Colaba 
                     Mumbai, Maharashtra -400001
                     </p>
-                  <a href="tel:93224 56789"><i className="bi bi-phone"></i> 93224 56789</a><br/>
+                  {/* <a href="tel:93224 56789"><i className="bi bi-phone"></i> 93224 56789</a><br/> */}
                   <a href="tel:022 22021031"><i className="bi bi-telephone-fill"></i> 022 22021031</a> <br/>
                   <a href="mailto:support@hariyali.org.in"><i className="bi bi-envelope-fill"></i> support@hariyali.org.in</a>
                   </address>
