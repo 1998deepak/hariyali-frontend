@@ -513,7 +513,7 @@ function ContactUs() {
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.180251338984!2d72.83045697599867!3d18.923414056743518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7d1daffffffff%3A0x10104990a52ce0ed!2sKc%20Mahindra%20Education%20Trust!5e0!3m2!1sen!2sin!4v1692557952647!5m2!1sen!2sin"
                     ></iframe> */}
                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3774.1598122210316!2d72.8323002!3d18.9243191!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7d1c16a8e4a01%3A0x35f31deca5a594f0!2sCecil%20Court%2C%20Regal%20Cinema%2C%20Colaba%20Causeway%2C%20Apollo%20Bandar%2C%20Colaba%2C%20Mumbai%2C%20Maharashtra%20400001!5e0!3m2!1sen!2sin!4v1696094959670!5m2!1sen!2sin" 
-                    width="600" height="450"></iframe>
+                    width="100%" height="450"></iframe>
                   </div>
                 </div>
               </section>
