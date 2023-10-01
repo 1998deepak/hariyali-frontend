@@ -271,7 +271,11 @@ figure.effect-duke:hover p {
 .arrowright-foot {
 	font-size: 30px !important;
 }
-
+@media only screen and (max-width:1024px){
+	figure.effect-apollo p{
+		opacity: 1;
+	}
+}
 @media only screen and (max-width:991px){
 	.modal.show .modal-dialog{
 		max-width: 95% !important;
