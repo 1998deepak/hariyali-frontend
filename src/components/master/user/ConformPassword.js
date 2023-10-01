@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 function ConformPassword() {
   
   const inputRef = useRef(false);
+  const [newPassword, setNewPassword] = useState("");
   const navigate = useNavigate();
     //toggle password hide show
     const showIcon = () => <FaEyeSlash />;
@@ -18,6 +19,28 @@ function ConformPassword() {
     const goToBack = () =>{
       navigate("/Login");
      }
+
+     const setPasswordApi = async (e) =>{
+      console.log("hii");
+ 
+      e.preventDefault();
+  
+      const formData = {
+          password : newPassword
+      };
+      console.log(formData);
+      const response = await AuthService.changeNewPassword(formData);
+      console.log(response);
+      console.log(response?.status === SUCCESS);
+      if (response?.status === SUCCESS) {
+        toast.status("Password changed successfully!");
+        //navigate("/ConformPassword");
+      } else {
+        toast.error(response?.message);
+      }
+    
+     }
+
   return (
     <div className="logindiv bggray">
       <div className="col-6 mauto">
@@ -36,6 +59,7 @@ function ConformPassword() {
                   className="login-input login-password"
                   name="newPassword"
                   ref={inputRef}
+                  onChange={(e) => setNewPassword(e.target.value)}
                 />
                 <ReactPasswordToggleIcon className="logineye"
                         inputRef={inputRef}
@@ -57,7 +81,7 @@ function ConformPassword() {
                         showIcon={showIcon}
                       />
               </label>
-              <button className="mt20 mr10 webform-button--submit">
+              <button className="mt20 mr10 webform-button--submit" onClick={setPasswordApi}>
                 Done
               </button>
               <button className="mt20 mr10 webform-button--cancel"  onClick={goToBack}>

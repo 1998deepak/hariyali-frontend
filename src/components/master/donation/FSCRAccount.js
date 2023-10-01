@@ -7,6 +7,7 @@ import useScrollTop from "../../hooks/useScrollTop";
 
 export default function FSCRAccount() {
   const location = useLocation();
+  console.log(location.state)
   const data = location.state.split(",")[0];
   const data1 = location.state.split(",")[1];
   useScrollTop();

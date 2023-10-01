@@ -76,6 +76,25 @@ export const AuthService = {
     }
   },
 
+  sendForgetPasswordOtp: async (formData) => {
+    console.log(formData.donorId);
+    const donarIDorMail = formData.donorId;
+    try {
+      const response = await APIService.Instance.post(
+        URLS.FORGETPASSWORD+donarIDorMail,
+        donarIDorMail
+      );
+      console.log(response);
+      return response?.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+        toast.error(err?.message);
+      }
+    }
+  },
+
   verifyOtp: async ( email, otp) => {
     try {
       email = (await EncryptionService.encrypt(email)).toString();
@@ -84,6 +103,23 @@ export const AuthService = {
       console.log(otp);
       const response = await APIService.Instance.post(
         URLS.VERIFYOTP+`?donarIdOrEmail=${email}&otp=${otp}`,
+      );
+      console.log(response);
+      return response?.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+        toast.error(err?.message);
+      }
+    }
+  },
+  verifyForgetOtp: async ( formData) => {
+    try {
+      // otp = (await EncryptionService.encrypt(otp)).toString();
+      // console.log(otp);
+      const response = await APIService.Instance.post(
+        URLS.VERIFYFORGETOTP, formData
       );
       console.log(response);
       return response?.data;
@@ -123,4 +159,19 @@ export const AuthService = {
        }
     }
   },  
+  changeNewPassword: async (formData) => {
+    console.log(formData);
+    try {
+      const response = await APIService.Instance.post(
+        URLS.SET_NEW_PASSWORD, formData      
+      );
+      return response?.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      }else{
+      toast.error(err?.message);
+       }
+    }
+  }, 
 };

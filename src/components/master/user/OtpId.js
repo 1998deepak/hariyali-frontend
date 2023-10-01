@@ -23,18 +23,16 @@ function OtpId() {
    const[OTP,setOTP]=useState("")
    const verifyOtp = async (e) => {
      console.log("hii");
- 
      e.preventDefault();
- 
      console.log(OTP);
- 
+
      const formData = {
        formData: {
          OTP: OTP
        }
      };
      console.log(formData);
-     const response = await AuthService.verifyOtp(formData);
+     const response = await AuthService.verifyForgetOtp(formData);
      console.log(response);
      console.log(response?.status === SUCCESS);
      if (response?.status === SUCCESS) {

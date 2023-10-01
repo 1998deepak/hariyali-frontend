@@ -131,6 +131,7 @@ function Login() {
   const [donarID, setDonarID] = useState("");
   const sendEmail = async (e) => {
     e.preventDefault();
+    console.log(donarID);
     if (!donarID) {
       // If donorID is empty, set an error message
       setErrors({ ...errors, donarID: "Please enter Donor Id" });
@@ -141,7 +142,7 @@ function Login() {
     };
     console.log(formData);
     setLoading(true)
-    const response = await AuthService.sendForgetPasswordLink(formData);
+    const response = await AuthService.sendForgetPasswordOtp(formData);
     console.log(response);
     console.log(response?.status === SUCCESS);
     if (response?.status === SUCCESS) {

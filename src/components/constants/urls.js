@@ -3,7 +3,9 @@ export const URLS = {
     LOGIN: '/loginOtp',
     LOGOUT: '/logout',
     SENDMAILFORGETPASSWORD: '/forgetPassword',
+    FORGETPASSWORD:'/forgetPassword/',
     VERIFYOTP: '/verify-otp/',
+    VERIFYFORGETOTP:'/verifyForgotOtp',
     // user
     USERADD: "/userAddOffline",
     USERONLINEADD: "/userAddOnline",
@@ -69,4 +71,5 @@ export const URLS = {
 
     //for change password
     CHANGEE_PASSWORD:"/changePassword",
+    SET_NEW_PASSWORD:"/setUserNewPassword"
 };
