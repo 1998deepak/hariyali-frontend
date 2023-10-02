@@ -35,7 +35,7 @@ function UserReceipts() {
         return (
           <span>
             <button
-              className="edit-icon"
+              className="edit-icon btn btn-all"
               onClick={() => downloadReceipt(row.reciept_number)}
             >
               Download
@@ -113,7 +113,7 @@ function UserReceipts() {
                       keyField="receiptId"
                       data={userReceiptData}
                       columns={columns}
-                      pagination={paginationFactory()}
+                      // pagination={paginationFactory()}
                     />
                   </div>
                 </div>
