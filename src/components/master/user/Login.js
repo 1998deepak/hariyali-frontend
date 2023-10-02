@@ -66,12 +66,12 @@ function Login() {
           setIsHide(!isHide);
           setLoading(false)
         } else {
-          toast.error(response?.data);
+          toast.error("Email/Password wrong");
+          //toast.error(response?.data);
           setLoading(false)
         }
       } else {
-
-        toast.error("Invalid credentials ! Username or Password Incorrect");
+        toast.error("Email ID Wrong");
         setLoading(false)
       }
     }

@@ -57,7 +57,7 @@ function OnlineDonation() {
   const location = useLocation();
   const meconnectId = location.search.split("?meconnectId=")[1];
   console.log(location.search.split("?meconnectId=")[1]);
-  console.log(privacyPolicy2);
+
   //   const handleDecodeClick = () => {
   //     const decodedSource = atob(source);
   //     const decodedMeConnect = atob(meconnectId)
@@ -685,8 +685,7 @@ function OnlineDonation() {
       setPrivacyPolicymessage("Please provide consent");
     } else if(privacyPolicy1 && privacyPolicy2){
       setPrivacyPolicymessage("");
-    }
-    else if (isValid) {
+    } else if (isValid) {
       setPrivacyPolicymessage("");
       let updatedUserPackage = [];
       packageData.map((item) => {
@@ -1127,7 +1126,7 @@ function OnlineDonation() {
       error = "Email ID is required";
       //validationErrors.push({ field: "userData.user.emailId", message: "Email ID is required" });
     } else if (
-      !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value)
+      !/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(value)
     ) {
       error = "Invalid Email ID";
       //validationErrors.push({ field: "userData.user.emailId", message: "Invalid Email ID" });
@@ -1361,7 +1360,7 @@ function OnlineDonation() {
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer  className="toast_adjust"/>
       {/* slider */}
       {loading && <Loader />}
       {/* <div className="pt100"></div> */}
