@@ -4673,6 +4673,7 @@ iframe {
   width: 100%;
   z-index: 9;
   background-color: #fff;
+  border-bottom:1px solid #ccc;
 }
 
 .remove-top-margin {
@@ -5488,6 +5489,7 @@ video {
     margin-top: 70px;
   }
   .selftGift-tab .nav-item .nav-link{
+    font-size: 1rem;
     padding: 1rem;
   }
   tr th{
@@ -5495,6 +5497,13 @@ video {
   }
   .newexti-tab .nav-link{
     font-size: 24px;
+    height: auto;
+  }
+  .admintop-logo {
+    margin-left: 0;
+  }
+  .all-form-wrap h5{
+    font-size: 1rem;
   }
 }
 
