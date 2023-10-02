@@ -25,7 +25,7 @@ export const URLS = {
 
     //  Donar
     GETALLUSERDONATION: "/getAlluser",
-    GETALLDONATIONOFUSER: "/getAllDonationOfUser/",
+    GETALLDONATIONOFUSER: "/getAllDonationOfUser",
     GETDONATIONBYID: "/getDonationById/",
     GETUSERDETAILS: "/getUserDetails/",
     UPDATEUSER: "/updateUser",
