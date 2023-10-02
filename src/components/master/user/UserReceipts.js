@@ -62,7 +62,7 @@ const [loading, setLoading] = useState(false);
   //calling api
   useEffect(() => {
     if (email) {
-      getUserDetails("negod50406@vikinoko.com");
+      getUserDetails(email);
     }
   }, [email]);
 
@@ -111,7 +111,7 @@ const [loading, setLoading] = useState(false);
                 keyField="receiptId"
                 data={userReceiptData}
                 columns={columns}
-                pagination={paginationFactory()}
+                // pagination={paginationFactory()}
               />
             </div>
               </div></div></div></div>
