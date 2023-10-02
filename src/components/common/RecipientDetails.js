@@ -126,7 +126,7 @@ const RecipientDetails = ({
           <div className="row">
             <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-12 col-lg-4 "> Street 1</div>
+                <div className="col-12 col-lg-4 "> Street 1 <span className="red-text">*</span></div>
                 <div className="col-12 col-lg-8 p0">
                   <input
                     className="form-control-inside"

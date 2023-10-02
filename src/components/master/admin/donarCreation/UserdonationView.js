@@ -56,7 +56,7 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
             <div className="row">
               <h5 className="col-9">Your Donations</h5>
             </div>
-            <div className="col-12 pr0">
+            <div className="table-responsive">
               <table className="table table-striped table-bordered shadow-table">
                 <thead>
                   <tr>
