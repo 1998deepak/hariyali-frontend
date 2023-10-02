@@ -2,6 +2,7 @@
 import jwt_decode from "jwt-decode";
 import { toast } from "react-toastify";
 import { APIService } from "../api/api-service";
+import { URLS } from "../../components/constants/urls";
 
 
 
@@ -28,7 +29,16 @@ export const UserService = {
         const expiryTime = decoded.exp;
         return {email,role,roleId,expiryTime};
         }
-      }
+      },
+      resendOtp: async (userId) => {
+        console.log(userId);
+        // userId = (await EncryptionService.encrypt(userId)).toString();
+        // otp = (await EncryptionService.encrypt(otp)).toString(); 
+        const response = await APIService.Instance.post(
+          URLS.RESEND_OTP + `?donarIdOrEmail=${userId}`,
+        );
+        return response?.data;
+      },
     
     };
 
