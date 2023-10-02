@@ -13,12 +13,12 @@ const RecipientDetails = ({
       <div className="col-12 pr15 mt20">
         <div>
           <div className="row">
-            <div className="col-6">
+            <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-4 ">
+                <div className="col-12 col-lg-4 ">
                   First Name <span className="red-text">*</span>
                 </div>
-                <div className="col-8 p0">
+                <div className="col-12 col-lg-8 p0">
                   <input
                     className="form-control-inside"
                     name="firstName"
@@ -40,12 +40,12 @@ const RecipientDetails = ({
                 </div>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-4 ">
+                <div className="col-12 col-lg-4 ">
                   Last Name <span className="red-text">*</span>
                 </div>
-                <div className="col-8 p0">
+                <div className="col-12 col-lg-8 p0">
                   <input
                     className="form-control-inside"
                     name="lastName"
@@ -67,13 +67,13 @@ const RecipientDetails = ({
                 </div>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-4 ">
+                <div className="col-12 col-lg-4 ">
                   Mobile No.
                   <span className="red-text">*</span>
                 </div>
-                <div className="col-8 p0">
+                <div className="col-12 col-lg-8 p0">
                   <input
                     className="form-control-inside"
                     name="mobileNo"
@@ -95,12 +95,12 @@ const RecipientDetails = ({
                 </div>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-4 ">
+                <div className="col-12 col-lg-4 ">
                   Email Id <span className="red-text">*</span>
                 </div>
-                <div className="col-8 p0">
+                <div className="col-12 col-lg-8 p0">
                   <input
                     className="form-control-inside"
                     name="emailId"
@@ -124,10 +124,10 @@ const RecipientDetails = ({
             </div>
           </div>
           <div className="row">
-            <div className="col-6">
+            <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-4 "> Street 1</div>
-                <div className="col-8 p0">
+                <div className="col-12 col-lg-4 "> Street 1</div>
+                <div className="col-12 col-lg-8 p0">
                   <input
                     className="form-control-inside"
                     name="street1"
@@ -150,10 +150,10 @@ const RecipientDetails = ({
               </div>
             </div>
 
-            <div className="col-6">
+            <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-4 "> Street 2</div>
-                <div className="col-8 p0">
+                <div className="col-12 col-lg-4 "> Street 2</div>
+                <div className="col-12 col-lg-8 p0">
                   <input
                     className="form-control-inside"
                     name="street2"
@@ -165,10 +165,10 @@ const RecipientDetails = ({
                 </div>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-4 "> Street 3</div>
-                <div className="col-8 p0">
+                <div className="col-12 col-lg-4 "> Street 3</div>
+                <div className="col-12 col-lg-8 p0">
                   <input
                     className="form-control-inside"
                     name="street3"
@@ -180,12 +180,12 @@ const RecipientDetails = ({
                 </div>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-4 ">
+                <div className="col-12 col-lg-4 ">
                   Country<span className="red-text">*</span>
                 </div>
-                <div className="col-8 p0">
+                <div className="col-12 col-lg-8 p0">
                   <input
                     className="form-control-inside"
                     name="country"
@@ -207,12 +207,12 @@ const RecipientDetails = ({
                 </div>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-4 ">
+                <div className="col-12 col-lg-4 ">
                   State<span className="red-text">*</span>
                 </div>
-                <div className="col-8 p0">
+                <div className="col-12 col-lg-8 p0">
                   <select
                     className=" form-control-inside form-select"
                     name="state"
@@ -241,10 +241,10 @@ const RecipientDetails = ({
                 </div>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-4 ">City</div>
-                <div className="col-8 p0">
+                <div className="col-12 col-lg-4 ">City</div>
+                <div className="col-12 col-lg-8 p0">
                   <input
                     className="form-control-inside"
                     name="city"
@@ -266,10 +266,10 @@ const RecipientDetails = ({
                 </div>
               </div>
             </div>
-            <div className="col-6">
+            <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-4 ">Postal Code</div>
-                <div className="col-8 p0">
+                <div className="col-12 col-lg-4 ">Postal Code</div>
+                <div className="col-12 col-lg-8 p0">
                   <input
                     className="form-control-inside"
                     name="postalCode"

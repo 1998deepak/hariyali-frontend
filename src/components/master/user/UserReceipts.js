@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { DonationService } from "../../../services/donationService/donation.service";
@@ -9,10 +9,8 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 
 function UserReceipts() {
-
-
-//states to store data
-const [loading, setLoading] = useState(false);
+  //states to store data
+  const [loading, setLoading] = useState(false);
   const [userReceiptData, setUserReceiptData] = useState([]);
   const { email } = UserService.userDetails();
 
@@ -32,11 +30,16 @@ const [loading, setLoading] = useState(false);
     {
       dataField: "",
       text: "Action",
-      formatter: (cell,row) => {
+      formatter: (cell, row) => {
         console.log(row);
         return (
           <span>
-            <button className="edit-icon" onClick={()=>downloadReceipt(row.reciept_number)}>Download</button>
+            <button
+              className="edit-icon btn btn-all"
+              onClick={() => downloadReceipt(row.reciept_number)}
+            >
+              Download
+            </button>
           </span>
         );
       },
@@ -46,11 +49,10 @@ const [loading, setLoading] = useState(false);
   // getUser Details
   const getUserDetails = async (id) => {
     try {
-      setLoading(true)
+      setLoading(true);
       const response = await DonationService.getAllReceiptByUser(id);
       if (response?.data) {
         setUserReceiptData(response.data);
-        
       }
       setLoading(false);
     } catch (error) {
@@ -73,10 +75,10 @@ const [loading, setLoading] = useState(false);
       const response = await DonationService.downloadReceipt(receiptNumber);
       if (response?.status === 200) {
         const url = window.URL.createObjectURL(response?.data);
-          const link = document.createElement("a");
-          link.href = url;
-          link.setAttribute("download", "download.pdf");
-          link.click();
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "download.pdf");
+        link.click();
         setLoading(false);
       } else {
         toast.error(response?.message);
@@ -92,11 +94,10 @@ const [loading, setLoading] = useState(false);
     }
   };
 
-
   return (
     <>
       <ToastContainer />
-      {loading && <Loader/>}
+      {loading && <Loader />}
       <div className="bggray">
         <div className="col-12 admin-maindiv">
           <div className=" justify-content-between bgwite borderform1 padding30 all-form-wrap">
@@ -104,20 +105,24 @@ const [loading, setLoading] = useState(false);
             <div className="col-12 pr0 contact-form-wrap">
               {" "}
               <div className="row">
-              <div className="col-12 pr0">
-              <BootstrapTable
-                classes="mt20"
-                class
-                keyField="receiptId"
-                data={userReceiptData}
-                columns={columns}
-                // pagination={paginationFactory()}
-              />
+                <div className="col-12 pr0">
+                <div className="table-responsive">
+                    <BootstrapTable
+                      classes="mt20"
+                      class
+                      keyField="receiptId"
+                      data={userReceiptData}
+                      columns={columns}
+                      // pagination={paginationFactory()}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-              </div></div></div></div>
+          </div>
+        </div>
       </div>
       {/* body */}
-
     </>
   );
 }

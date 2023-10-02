@@ -229,10 +229,10 @@ const [loading, setLoading] = useState(false);
                 <form className="form-div contact-form-wrap">
                   <div className="col-12 pr15 mt20">
                     <div className="row">
-                      <div className="col-6">
+                      <div className="col-12 col-lg-6">
                         <div className="row select-label">
-                          <div className="col-4 "> Donor ID</div>
-                          <div className="col-8 p0">
+                          <div className="col-12 col-lg-4"> Donor ID</div>
+                          <div className="col-12 col-lg-8 p0">
                             <input
                               className="form-control-inside form-control"
                               type="text"
@@ -250,10 +250,10 @@ const [loading, setLoading] = useState(false);
                   <div className="actionheadingdiv">Personal Details</div>
                   <div className="col-12 pr15 mt20">
                     <div className="row">
-                      <div className="col-6">
+                      <div className="col-12 col-lg-6">
                         <div className="row select-label">
-                          <div className="col-4 "> Email ID</div>
-                          <div className="col-8 p0">
+                          <div className="col-12 col-lg-4"> Email ID</div>
+                          <div className="col-12 col-lg-8 p0">
                             <input
                               className="form-control-inside form-control"
                               type="text"
@@ -268,10 +268,10 @@ const [loading, setLoading] = useState(false);
                           </div>
                         </div>
                       </div>
-                      <div className="col-6">
+                      <div className="col-12 col-lg-6">
                         <div className="row select-label">
-                          <div className="col-4 ">Mobile No.</div>
-                          <div className="col-8 p0">
+                          <div className="col-12 col-lg-4">Mobile No.</div>
+                          <div className="col-12 col-lg-8 p0">
                             <input
                               className="form-control-inside form-control"
                               type="text"
@@ -284,10 +284,10 @@ const [loading, setLoading] = useState(false);
                           </div>
                         </div>
                       </div>
-                      <div className="col-6">
+                      <div className="col-12 col-lg-6">
                         <div className="row select-label">
-                          <div className="col-4 "> Donor Type</div>
-                          <div className="col-8 p0">
+                          <div className="col-12 col-lg-4"> Donor Type</div>
+                          <div className="col-12 col-lg-8 p0">
                             <select className=" form-control-inside form-select"
                               name="donarType"
                               value={userData.donarType}
@@ -302,10 +302,10 @@ const [loading, setLoading] = useState(false);
 
                         </div>
                       </div>
-                      <div className="col-6">
+                      <div className="col-12 col-lg-6">
                         <div className="row select-label">
-                          <div className="col-4 "> Organisation</div>
-                          <div className="col-8 p0">
+                          <div className="col-12 col-lg-4"> Organisation</div>
+                          <div className="col-12 col-lg-8 p0">
                             <input
                               className="form-control-inside form-control"
                               name="organisation"
@@ -318,10 +318,10 @@ const [loading, setLoading] = useState(false);
                           </div>
                         </div>
                       </div>
-                      <div className="col-6">
+                      <div className="col-12 col-lg-6">
                         <div className="row select-label">
-                          <div className="col-4 ">Prefix</div>
-                          <div className="col-8 p0">
+                          <div className="col-12 col-lg-4">Prefix</div>
+                          <div className="col-12 col-lg-8 p0">
                             <select className=" form-control-inside form-select"
                               value={userData.prefix}
                               onChange={handleChange}
@@ -335,10 +335,10 @@ const [loading, setLoading] = useState(false);
                           </div>
                         </div>
                       </div>
-                      <div className="col-6">
+                      <div className="col-12 col-lg-6">
                         <div className="row select-label">
-                          <div className="col-4 ">First Name</div>
-                          <div className="col-8 p0">
+                          <div className="col-12 col-lg-4">First Name</div>
+                          <div className="col-12 col-lg-8 p0">
                             <input
                               className="form-control-inside form-control"
                               type="text"
@@ -352,10 +352,10 @@ const [loading, setLoading] = useState(false);
                           </div>
                         </div>
                       </div>
-                      <div className="col-6">
+                      <div className="col-12 col-lg-6">
                         <div className="row select-label">
-                          <div className="col-4 ">Last Name</div>
-                          <div className="col-8 p0">
+                          <div className="col-12 col-lg-4">Last Name</div>
+                          <div className="col-12 col-lg-8 p0">
                             <input
                               className="form-control-inside form-control"
                               type="text"
@@ -370,10 +370,10 @@ const [loading, setLoading] = useState(false);
                         </div>{" "}
                       </div>
 
-                      <div className="col-6">
+                      <div className="col-12 col-lg-6">
                         <div className="row select-label">
-                          <div className="col-4 ">PAN card</div>
-                          <div className="col-8 p0">
+                          <div className="col-12 col-lg-4">PAN card</div>
+                          <div className="col-12 col-lg-8 p0">
                             <input
                               className="form-control-inside form-control"
                               placeholder="PAN card No."
@@ -395,10 +395,10 @@ const [loading, setLoading] = useState(false);
                     {
                       addressData.map((addr, index) => {
                         return <div key={index} className="row">
-                          <div className="col-6">
+                          <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-4 "> Street 1</div>
-                              <div className="col-8 p0">
+                              <div className="col-12 col-lg-4"> Street 1</div>
+                              <div className="col-12 col-lg-8 p0">
                                 <input
                                   className="form-control-inside form-control"
                                   name="street1"
@@ -411,10 +411,10 @@ const [loading, setLoading] = useState(false);
                               </div>
                             </div>
                           </div>
-                          <div className="col-6">
+                          <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-4 "> Street 2</div>
-                              <div className="col-8 p0">
+                              <div className="col-12 col-lg-4"> Street 2</div>
+                              <div className="col-12 col-lg-8 p0">
                                 <input
                                   className="form-control-inside form-control"
                                   name="street2"
@@ -426,10 +426,10 @@ const [loading, setLoading] = useState(false);
                               </div>
                             </div>
                           </div>
-                          <div className="col-6">
+                          <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-4 "> Street 3</div>
-                              <div className="col-8 p0">
+                              <div className="col-12 col-lg-4"> Street 3</div>
+                              <div className="col-12 col-lg-8 p0">
                                 <input
                                   className="form-control-inside form-control"
                                   name="street3"
@@ -441,10 +441,10 @@ const [loading, setLoading] = useState(false);
                               </div>
                             </div>
                           </div>
-                          <div className="col-6">
+                          <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-4 ">Country</div>
-                              <div className="col-8 p0">
+                              <div className="col-12 col-lg-4">Country</div>
+                              <div className="col-12 col-lg-8 p0">
                                 <input
                                   className="form-control-inside form-control"
                                   name="country"
@@ -457,10 +457,10 @@ const [loading, setLoading] = useState(false);
                               </div>
                             </div>
                           </div>
-                          <div className="col-6">
+                          <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-4 ">State</div>
-                              <div className="col-8 p0">
+                              <div className="col-12 col-lg-4">State</div>
+                              <div className="col-12 col-lg-8 p0">
                                 <select
                                   className=" form-control-inside form-select"
                                   name="state"
@@ -478,10 +478,10 @@ const [loading, setLoading] = useState(false);
                               </div>
                             </div>
                           </div>
-                          <div className="col-6">
+                          <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-4 ">City</div>
-                              <div className="col-8 p0">
+                              <div className="col-12 col-lg-4">City</div>
+                              <div className="col-12 col-lg-8 p0">
                                 <input
                                   className="form-control-inside form-control"
                                   name="city"
@@ -494,10 +494,10 @@ const [loading, setLoading] = useState(false);
                               </div>
                             </div>
                           </div>
-                          <div className="col-6">
+                          <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-4 ">Postal Code</div>
-                              <div className="col-8 p0">
+                              <div className="col-12 col-lg-4">Postal Code</div>
+                              <div className="col-12 col-lg-8 p0">
                                 <input
                                   className="form-control-inside form-control"
                                   name="postalCode"
