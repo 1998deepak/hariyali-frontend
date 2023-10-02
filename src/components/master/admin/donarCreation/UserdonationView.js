@@ -24,7 +24,7 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
     },
     {
       dataField: "paymentInfoId",
-      text: "Txn Number",
+      text: "Transaction Number",
     },
     {
       dataField: "paymentStatus",

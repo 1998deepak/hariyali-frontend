@@ -163,7 +163,7 @@ export const DonationService = {
 
   getPaymentInformation: async (paymentId) => {
     try {
-      paymentId = (await EncryptionService.encrypt(paymentId)).toString();
+      // paymentId = (await EncryptionService.encrypt(paymentId)).toString();
       const response = await APIService.Instance.get(
         URLS.GETPAYMENTINFO + paymentId
       );
