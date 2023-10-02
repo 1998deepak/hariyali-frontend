@@ -92,8 +92,18 @@ function NewOnlineDonation() {
     }
     const urlParams = new URLSearchParams(window.location.search);
     const orderId = urlParams.get("orderId");
-    if (orderId) {
-      getPaymentInformation(orderId);
+    if(orderId){
+      localStorage.setItem("userOrderId", orderId);
+      let newLocation = window.location.href.substring(0, window.location.href.indexOf("?orderId"));
+      window.location.replace(newLocation);
+      
+      
+    } else{
+      const orderIdStr = localStorage.getItem("userOrderId");
+      if (orderIdStr) {
+        localStorage.removeItem("userOrderId")
+        getPaymentInformation(orderIdStr);
+      }
     }
   }, [email]);
 
@@ -111,7 +121,11 @@ function NewOnlineDonation() {
         setTransactionMessage(message);
         setShowDonationModal(true);
       } else {
-        toast.error(response?.data?.remark);
+        let message =
+          "Something went wrong, please try again.";
+        console.log(message);
+        setTransactionMessage(message);
+        setShowDonationModal(true);
       }
       setLoading(false);
     } else {

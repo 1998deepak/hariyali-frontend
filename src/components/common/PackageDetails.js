@@ -9,20 +9,20 @@ const PackageDetails = ({
 
     const handleChangeNumberOfBouquets = (e, row, rowIndex) => {
         let { name, value } = e.target;
-        // if( value <= 0){
-        //   value = 1;
-        // }
-        if(value){
-          if(value < 1){
-            value = 1;
-          }
+        if( value <= 0){
+          value = 0;
         }
+        // if(value){
+        //   if(value < 1){
+        //     value = 1;
+        //   }
+        // }
         console.log({ name, value, rowIndex }, row);
         let userPackageData = packageData;
         if(value > 1000000){
           userPackageData[rowIndex][name] = 1000000;
         }else{
-          userPackageData[rowIndex][name] = value;
+          userPackageData[rowIndex][name] =  Math.trunc(value);
         }
         const totalCost = 450 * row.noOfBouquets;
         userPackageData[rowIndex]["amount"] = totalCost;
@@ -32,7 +32,7 @@ const PackageDetails = ({
 
   return (
     <>
-      <div className="actionheadingdiv">{disabled ? <></>:<>SELECT NUMBER</>} OF SAPLINGS</div>
+      <div className="actionheadingdiv">SELECT NUMBER OF SAPLINGS</div>
       <div className="mt20">
         <table>
           <colgroup>

@@ -30,42 +30,49 @@ function CaptchaGift({verified, setVerified}) {
   };
 
   const onSubmit = (e) => {
-    var element = document.getElementById("succesBTN");
-    var inputData = document.getElementById("inputType");
-    element.style.cursor = "wait";
-    element.innerHTML = "Checking...";
-    inputData.disabled = true;
-    element.disabled = true;
+    if (captcha === user.username) {
+      setVerified(true);
+    } else{
+      setVerified(false);
+    }
+    // debugger;
+    // var element = document.getElementById("succesBTN");
+    // var inputData = document.getElementById("inputType");
+    // element.style.cursor = "wait";
+    // element.innerHTML = "Checking...";
+    // inputData.disabled = true;
+    // element.disabled = true;
 
-    var myFunctions = function () {
-      if (captcha === user.username) {
-        element.style.backgroundColor = "green";
-        element.style.color = "#fff";
-        element.innerHTML = "Verified";
-        element.disabled = true;
-        element.style.cursor = "not-allowed";
-        setVerified(true);
-      } else {
-        element.style.backgroundColor = "red";
-        element.style.color = "#fff";
-        element.style.cursor = "not-allowed";
-        element.innerHTML = "Not Matched";
-        element.disabled = true;
-        //  element.disabled = true;
-        var myFunction = function () {
-          element.style.backgroundColor = "#d6d6d6";
-          element.style.border = "#c9c9c9";
-          element.style.color = "#818181";
-          element.style.cursor = "pointer";
-          element.innerHTML = "Verify Captcha";
-          element.disabled = false;
-          inputData.disabled = false;
-          inputData.value = "";
-        };
-        setTimeout(myFunction, 2000);
-      }
-    };
-    setTimeout(myFunctions, 2000);
+    // var myFunctions = function () {
+    //   debugger;
+    //   if (captcha === user.username) {
+    //     element.style.backgroundColor = "green";
+    //     element.style.color = "#fff";
+    //     element.innerHTML = "Verified";
+    //     element.disabled = true;
+    //     element.style.cursor = "not-allowed";
+    //     setVerified(true);
+    //   } else {
+    //     element.style.backgroundColor = "red";
+    //     element.style.color = "#fff";
+    //     element.style.cursor = "not-allowed";
+    //     element.innerHTML = "Not Matched";
+    //     element.disabled = true;
+    //     //  element.disabled = true;
+    //     var myFunction = function () {
+    //       element.style.backgroundColor = "#d6d6d6";
+    //       element.style.border = "#c9c9c9";
+    //       element.style.color = "#818181";
+    //       element.style.cursor = "pointer";
+    //       element.innerHTML = "Verify Captcha";
+    //       element.disabled = false;
+    //       inputData.disabled = false;
+    //       inputData.value = "";
+    //     };
+    //     setTimeout(myFunction, 2000);
+    //   }
+    // };
+    // setTimeout(myFunctions, 2000);
   };
 
   return (

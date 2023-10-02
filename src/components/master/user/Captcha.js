@@ -24,6 +24,7 @@ function Captcha({ verified, setVerified }) {
   }
 
   const onSubmit = (e) => {
+    debugger;
     const { value } = e.target;
       if (captcha === value) {
         setVerified(true);
