@@ -689,7 +689,7 @@ function OnlineDonation() {
       setPrivacyPolicymessage("Please provide consent");
     } else if(privacyPolicy1 && privacyPolicy2){
       setPrivacyPolicymessage("");
-    } else if (isValid) {
+       if (isValid) {
       setPrivacyPolicymessage("");
       let updatedUserPackage = [];
       packageData.map((item) => {
@@ -810,6 +810,7 @@ function OnlineDonation() {
         }
       }
     }
+  }
   };
 
   useEffect(() => {
@@ -1172,7 +1173,7 @@ function OnlineDonation() {
   const getUserInfo = async (emailId, type) => {
     setLoading(true);
     let response = await DonationService.getDetailsByEmailId(emailId);
-    console.log(response);
+    // console.log(response.data.address[0].state);
     setMessage("");
     if (response?.status === "Success") {
       toast.success(response?.message);
