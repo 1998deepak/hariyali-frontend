@@ -52,12 +52,12 @@ const AdminHeader = () => {
   return (
     <>
       <Navbar className="navbar-top Navbar Navbar-login sticky-navbar">
-        <div className="Navbar-div justify-content-between">
+        <div className="Navbar-div collapse navbar-collapse justify-content-between">
           <div className="navbar-logo">
             <div className="bar-icon">
               <HiBars3CenterLeft />
             </div>
-            <Link className="navbar-brand-logo">
+            <Link className="float-left navbar-brand-logo">
               <div className="admintop-logo">
                 <img src={Logo} alt="Hariyali" style={{ height: "45px" }} />
               </div>

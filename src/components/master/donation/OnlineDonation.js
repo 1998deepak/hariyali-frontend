@@ -372,11 +372,13 @@ function OnlineDonation() {
   }
 
     if (!userData?.user?.donarType) {
+    
       validationErrors.push({
         field: "userData.user.donarType",
         message: "Donor Type is required",
       });
       if(document.getElementById("donarType")){
+        console.log(document.getElementById("donarType"));
         document.getElementById("donarType").focus();
       }
     }
@@ -2669,14 +2671,14 @@ function OnlineDonation() {
                               </label>
                               <select
                                 className=" form-control-inside form-select"
-                                name="user.donarType"
                                 id="donarType"
+                                name="user.donarType"
                                 value={userData?.user?.donarType}
                                 // onChange={handleChange}
                                 onChange={changeHandlerGift}
                               >
                                 <option disabled selected value="">
-                                  Donor Type
+                                  Donor Type Gift
                                 </option>
                                 <option value="Individual">Individual</option>
                                 <option value="Corporate">Corporate</option>
@@ -2790,8 +2792,8 @@ function OnlineDonation() {
                               </label>
                               <select
                                 className=" form-control-inside form-select"
-                                name="user.citizenship"
                                 id="Citizenship"
+                                name="user.citizenship"
                                 value={userData?.user?.citizenship}
                                 onChange={handleChange}
                               >
