@@ -65,7 +65,7 @@ export default function FSCRAccount() {
               <p>
                 Once you have made the payment, kindly share your transaction
                 details (Bank transaction number, bank name, date of payment,
-                amount transacted) to support@hariyali.org.in.
+                amount transacted) to <a href="mailto:support@hariyali.org.in">support@hariyali.org.in</a>
               </p>
               <Link to="/" className="btn btn-success" type="button">
                 Ok

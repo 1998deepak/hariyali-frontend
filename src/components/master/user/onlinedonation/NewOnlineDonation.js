@@ -449,7 +449,7 @@ function NewOnlineDonation() {
                           className="mt20 mr10 webform-button--submit"
                           onClick={(e) => createDonation(e, userData)}
                         >
-                          Create Donate
+                          Proceed to pay
                         </button>
                         <button
                           className="mt20 mr10 webform-button--cancel "

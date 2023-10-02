@@ -404,7 +404,7 @@ function ContactUs() {
                         If there is a problem with the net banking or credit card donation process, whom do you contact?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                      <Typography>You can mail to support@hariyali.org.in / gangar.sunny@mahindra.com
+                      <Typography>You can mail to <a href="mailto:support@hariyali.org.in">support@hariyali.org.in</a>
                       </Typography>
                     </AccordionDetails>
                   </Accordion>
