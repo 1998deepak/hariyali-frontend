@@ -72,7 +72,7 @@ const PrivacyPolicy = ({
             />
             I understand that I am free to withdraw my consent to the processing
             of my personal data, at any time, by writing to{" "}
-            <a href="mailto:support@hariyali.org,in.">support@hariyali.org,in.</a>
+            <a href="mailto:support@hariyali.org.in">support@hariyali.org.in</a>
           </li>
         </ul>
       </div>
