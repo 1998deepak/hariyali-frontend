@@ -43,15 +43,15 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
 
   return (
     <>
-      <div className="col-12 pr15 mt20">
+      <div className="col-sm-12 pr15 mt20">
         <div className="row">
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 {" "}
                 Select Mode <span className="red-text">*</span>
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <select
                   name="paymentMode"
                   className=" form-control-inside form-select"
@@ -85,13 +85,13 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
               </div>
             </div>
           </div>         
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 {" "}
                 Bank Account <span className="red-text">*</span>
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
               <select
                 name="accountId"
                 className=" form-control-inside form-select"
@@ -123,12 +123,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 Amount <span className="red-text">*</span>
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="amount"
@@ -156,12 +156,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 Payment Date <span className="red-text">*</span>
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="paymentDate"
@@ -186,12 +186,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 Total Amount
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="totalAmount"
@@ -216,13 +216,13 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 {" "}
                 Payment Status <span className="red-text">*</span>
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <select
                   name="paymentStatus"
                   className=" form-control-inside form-select"
@@ -256,12 +256,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
               </div>
             </div>
           </div>  
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 Receipt Date <span className="red-text">*</span>
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="receiptDate"
@@ -289,12 +289,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
           {
            donations[0]?.paymentInfo[index]?.paymentMode === BANK_TRANSFER || donations[0]?.paymentInfo[index]?.paymentMode === CHEQUE ? 
           <>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 Received Amount <span className="red-text">*</span>
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="receivedAmount"
@@ -329,12 +329,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
           {
            donations[0]?.paymentInfo[index]?.paymentMode === BANK_TRANSFER ? 
           <>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 Bank Charge
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="bankCharge"
@@ -348,12 +348,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 Document Number
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="documentNumber"
@@ -376,13 +376,13 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
 
           {
            donations[0]?.paymentInfo[index]?.paymentMode ===  DEMAND_DRAFT || donations[0]?.paymentInfo[index]?.paymentMode === BANK_TRANSFER || donations[0]?.paymentInfo[index]?.paymentMode === CHEQUE  ? 
-          <><div className="col-6">   
+          <><div className="col-sm-6">   
           <div className="row select-label">
-            <div className="col-4 ">
+            <div className="col-sm-4 ">
               {" "}
               Bank Name
             </div>
-            <div className="col-8 p0">
+            <div className="col-sm-8 p0">
               <select
                 name="bankName"
                 className=" form-control-inside form-select"
@@ -404,12 +404,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
             </div>
           </div>
         </div>
-        <div className="col-6">
+        <div className="col-sm-6">
           <div className="row select-label">
-            <div className="col-4 ">
+            <div className="col-sm-4 ">
               Bank Address
             </div>
-            <div className="col-8 p0">
+            <div className="col-sm-8 p0">
               <input
                 className="form-control-inside"
                 name="bankAddress"
@@ -428,12 +428,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
         {
            donations[0]?.paymentInfo[index]?.paymentMode === (BANK_TRANSFER || ONLINE) ? 
           <>
-           <div className="col-6">
+           <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 Transaction Number
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="orderId"
@@ -454,12 +454,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
          {
            donations[0]?.paymentInfo[index]?.paymentMode === CHEQUE ? 
           <>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
               Cheque Number
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="chequeNumber"
@@ -473,12 +473,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
               Cheque Date
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="chequeDate"
@@ -500,12 +500,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
         {
            donations[0]?.paymentInfo[index]?.paymentMode === DEMAND_DRAFT ? 
           <>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
               DD number
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="demandDraftNumber"
@@ -519,12 +519,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
               DD date
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="demandDraftDate"
@@ -546,12 +546,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
         {
            donations[0]?.paymentInfo[index]?.paymentMode === CREDIT_CARD ? 
           <>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
               Credit Card Number
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="creditCardNumber"
@@ -565,12 +565,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
               Expiry
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="cardExpiry"
@@ -583,12 +583,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
               Name On Card
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="cardHolderName"
@@ -606,12 +606,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
           :<></>
         }
          
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 Deposit Number
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="depositNumber"
@@ -624,12 +624,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
               </div>
             </div>
           </div> 
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 Deposit Date
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="depositDate"
@@ -642,12 +642,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
               </div>
             </div>
           </div> 
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 Receipt Number 
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="receiptNumber"
@@ -660,12 +660,12 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
               </div>
             </div>
           </div> 
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
               Realization Date
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="realizationDate"

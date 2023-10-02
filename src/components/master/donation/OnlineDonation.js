@@ -850,6 +850,12 @@ function OnlineDonation() {
     }
     //getAllPackages();
   }, []);
+  
+  //scroll to top on landing
+  
+   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
   const getPaymentInformation = async (paymentId) => {
     setLoading(true);
