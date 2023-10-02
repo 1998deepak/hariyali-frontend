@@ -29,12 +29,12 @@ const DonationHeader = ({
           </div>
         </div> */}
         {isOccasion ? (
-          <div className="col-6">
+          <div className="col-12 col-lg-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-12 col-lg-4 ">
                 Occasion <span className="red-text">*</span>
               </div>
-              <div className="col-8 p0">
+              <div className="col-12 col-lg-8 p0">
                 <select
                   className=" form-control-inside form-select"
                   name="donationEvent"

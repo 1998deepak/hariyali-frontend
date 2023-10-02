@@ -21,7 +21,7 @@ const LeftMenu = () => {
 
   return (
     <>
-    <button
+    {/* <button
         className=" baricon  btn navbar-toggler navbar-toggler-humburger-icon hover-bg-transparent"
         type="button"
         onClick={toggleMenu}
@@ -29,7 +29,7 @@ const LeftMenu = () => {
         <span className="navbar-toggle-icon">
           <span className="toggle-line"></span>
         </span>
-      </button>
+      </button> */}
       <Sidebar className={isOpen ? "show" : ""}>
         <div className="adminLetNav">
           <Accordion defaultActiveKey='0'>
