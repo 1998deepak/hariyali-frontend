@@ -275,7 +275,7 @@ function OfflineDonation() {
         if (!userData?.user?.panCard) {
           validationErrors.push({
             field: "userData.user.panCard",
-            message: "PAN Card Number is required",
+            message: "PAN Card is required",
           });
           if(document.getElementById("panCard")){
             document.getElementById("panCard").focus();
@@ -283,7 +283,7 @@ function OfflineDonation() {
         } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
             validationErrors.push({
             field: "userData.user.panCard",
-            message: "PAN Card Number is Invalid",
+            message: "PAN Card is Invalid",
           });
           if(document.getElementById("panCard")){
             document.getElementById("panCard").focus();
@@ -292,7 +292,7 @@ function OfflineDonation() {
           if(userData?.user?.panCard.trim().charAt(3) === "H" || userData?.user?.panCard.trim().charAt(3) === "P"){
             validationErrors.push({
               field: "userData.user.panCard",
-              message: "PAN Card Number is Invalid",
+              message: "PAN Card is Invalid",
             });
             if(document.getElementById("panCard")){
               document.getElementById("panCard").focus();
@@ -303,7 +303,7 @@ function OfflineDonation() {
         if(userData?.user?.panCard.trim().charAt(3) !== "H" && userData?.user?.panCard.trim().charAt(3) !== "P"){
           validationErrors.push({
             field: "userData.user.panCard",
-            message: "PAN Card Number is Invalid",
+            message: "PAN Card is Invalid",
           });
           if(document.getElementById("panCard")){
             document.getElementById("panCard").focus();
@@ -1373,7 +1373,7 @@ function OfflineDonation() {
                     activeKey={donationType}
                     onSelect={handleTabSelect}
                   >
-                    <Tab eventKey="Self-Donate" title="Plant a tree">
+                    <Tab eventKey="Self-Donate" title="Plant A Tree">
                       <form className="form-div contact-form-wrap">
                         <PackageDetails
                           packageData={packageData}
@@ -1750,7 +1750,7 @@ function OfflineDonation() {
                                           className="form-control-inside form-control"
                                           name="user.panCard"
                                           id="panCard"
-                                          placeholder="PAN Card Number"
+                                          placeholder="PAN Card"
                                           type="text"
                                           value={userData?.user?.panCard}
                                           onChange={handleChange}
@@ -2576,7 +2576,7 @@ function OfflineDonation() {
                     </Tab>
                     <Tab
                       eventKey="Gift-Donate"
-                      title="Gift a tree"
+                      title="Gift A Tree"
                       //  onClick={(eventKey) => handleTabSelect()}
                     >
                       {/* <h5>Gift a tree</h5> */}
@@ -3005,7 +3005,7 @@ function OfflineDonation() {
                                           className="form-control-inside form-control"
                                           name="user.panCard"
                                           id="panCard"
-                                          placeholder="PAN card number"
+                                          placeholder="PAN Card"
                                           type="text"
                                           value={userData?.user?.panCard}
                                           onChange={handleChange}
@@ -3907,7 +3907,7 @@ function OfflineDonation() {
                     activeKey={donationType}
                     onSelect={handleTabSelect}
                   >
-                    <Tab eventKey="Self-Donate" title="Plant a tree">
+                    <Tab eventKey="Self-Donate" title="Plant A Tree">
                       {/* <h5>Self Planting</h5> */}
 
                       <form className="form-div contact-form-wrap">
@@ -4152,7 +4152,7 @@ function OfflineDonation() {
                                     className="form-control-inside"
                                     name="user.panCard"
                                     id="panCard"
-                                    placeholder="PAN card number"
+                                    placeholder="PAN Card"
                                     type="text"
                                     value={userData?.user?.panCard}
                                     onChange={handleChange}
@@ -4574,7 +4574,7 @@ function OfflineDonation() {
                     </Tab>
                     <Tab
                       eventKey="Gift-Donate"
-                      title="Gift a tree"
+                      title="Gift A Tree"
                       //  onClick={(eventKey) => handleTabSelect()}
                     >
                       {/* <h5>Gift a tree</h5> */}
@@ -4875,7 +4875,7 @@ function OfflineDonation() {
                                     className="form-control-inside"
                                     name="user.panCard"
                                     id="panCard"
-                                    placeholder="PAN card number"
+                                    placeholder="PAN Card"
                                     type="text"
                                     value={userData.user.panCard}
                                     onBlur={(e) => handleDonarIdBlur(e)}

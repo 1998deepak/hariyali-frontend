@@ -70,6 +70,7 @@ function Login() {
           setLoading(false)
         }
       } else {
+
         toast.error("Invalid credentials ! Username or Password Incorrect");
         setLoading(false)
       }
@@ -111,6 +112,8 @@ function Login() {
           }
           toast.success("Successfully Login!");
         } else {
+          
+          toast.error("Invalid OTP!");
           console.log("Response: " + response.status);
         }
         setLoading(false)
@@ -134,7 +137,7 @@ function Login() {
     console.log(donarID);
     if (!donarID) {
       // If donorID is empty, set an error message
-      setErrors({ ...errors, donarID: "Please enter Donor Id" });
+      setErrors({ ...errors, donarID: "Please enter Donor Id / Email ID" });
       return;
     }
     const formData = {
