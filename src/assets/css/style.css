@@ -4673,6 +4673,7 @@ iframe {
   width: 100%;
   z-index: 9;
   background-color: #fff;
+  border-bottom:1px solid #ccc;
 }
 
 .remove-top-margin {
