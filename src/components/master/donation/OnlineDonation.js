@@ -626,7 +626,7 @@ function OnlineDonation() {
         }
         
       }
-
+      const emailRegex = /^[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*([.]{1}[A-Za-z0-9_]{2,3})+$/i;
       if (!recipient[0]?.emailId) {
         validationErrors.push({
           field: "recipient[0].emailId",
@@ -635,7 +635,7 @@ function OnlineDonation() {
         if(document.getElementById("recEmailId")){
           document.getElementById("recEmailId").focus();
         }
-      } else if (!/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(recipient[0].emailId)) {
+      } else if (!emailRegex.test(recipient[0].emailId)) {
         validationErrors.push({
           field: "recipient[0].emailId",
           message: "Invalid Email ID",
@@ -644,6 +644,16 @@ function OnlineDonation() {
           document.getElementById("recEmailId").focus();
         }
         
+      }
+
+      if (recipient[0]?.mobileNo && !/^\d{10}$/.test(recipient[0]?.mobileNo)) {
+        validationErrors.push({
+          field: "recipient[0].mobileNo",
+          message: "Mobile Number must contain exactly 10 digits and no alphabetic characters",
+        });
+        if(document.getElementById("recMobileNo")){
+          document.getElementById("recMobileNo").focus();
+        }
       }
     }
 
@@ -1183,14 +1193,13 @@ function OnlineDonation() {
     event.preventDefault();
     const { name, value } = event.target;
     let error = "";
+    const emailRegex = /^[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*([.]{1}[A-Za-z0-9_]{2,3})+$/i;
     if (!value) {
       error = "Email ID is required";
-      //validationErrors.push({ field: "userData.user.emailId", message: "Email ID is required" });
     } else if (
-      !/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(value)
+      !emailRegex.test(value)
     ) {
       error = "Invalid Email ID";
-      //validationErrors.push({ field: "userData.user.emailId", message: "Invalid Email ID" });
     }
     if (error) {
       setMailError(error);
