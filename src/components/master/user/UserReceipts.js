@@ -64,7 +64,7 @@ function UserReceipts() {
   //calling api
   useEffect(() => {
     if (email) {
-      getUserDetails("negod50406@vikinoko.com");
+      getUserDetails(email);
     }
   }, [email]);
 

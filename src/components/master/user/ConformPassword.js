@@ -109,7 +109,7 @@ function ConformPassword() {
         <div className="loginlogo">
           <img src={logo} alt="Logo" />
         </div>
-        <div className="row justify-content-between bgwite border1 padding30 contact-form-wrap creditial-div">
+        <div className="row justify-content-between bgwite padding30 contact-form-wrap creditial-div">
           <h5 className="header-text">Confirm Password</h5>
           <p>Please Enter your New Password!</p>
           <div className="col-12">

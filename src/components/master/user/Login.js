@@ -163,6 +163,27 @@ function Login() {
     //  }
   };
 
+  const resendOtp = async (e) => {
+    e.preventDefault();
+    console.log(formData.username);
+      if (!formData.username) {
+        setErrors({ ...errors, username: "Enter the Username" });
+        return;
+      }
+    setLoading(true)
+    const response = await UserService.resendOtp(formData.username);
+    console.log(response);
+    console.log(response?.status === SUCCESS);
+    if (response?.status === SUCCESS) {
+      toast.success("Otp sent successfully!");
+      setLoading(false)
+    } else {
+      toast.error("Invalid Donor Id ! Please Try Again");
+      setLoading(false)
+    }
+    //  }
+  }
+
   if (redirectFlag === true) {
     return navigate("/Dashboard");
   }
@@ -266,6 +287,7 @@ function Login() {
                 >
                   Forgot Password
                 </div>
+                
               </div>
 
               <Captcha verified={verified} setVerified={setVerified}></Captcha>
@@ -286,6 +308,12 @@ function Login() {
                   onChange={(e) => setOtp(e.target.value)}
                 />
                 {/* </label> */}
+                <div
+                 className={isHidden ? "hide" : "account-act float-right"}
+                  onClick={resendOtp}
+                >
+                  Resend OTP
+                </div>
               </div>
               <div className="text-center mb-4">
                
