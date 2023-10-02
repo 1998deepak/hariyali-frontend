@@ -71,5 +71,6 @@ export const URLS = {
 
     //for change password
     CHANGEE_PASSWORD:"/changePassword",
-    SET_NEW_PASSWORD:"/setUserNewPassword"
+    SET_NEW_PASSWORD:"/setUserNewPassword",
+    RESEND_OTP:"/reSendOtp"
 };

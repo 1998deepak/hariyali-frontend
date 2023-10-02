@@ -49,15 +49,35 @@ const AdminHeader = () => {
       toast.error("Invalid Credentials..!");
     }
   };
+
+  const toogleSideBar = () => {
+    const newSidebar = document.querySelector("body");
+    newSidebar.classList.toggle("open-nav");
+
+    document.addEventListener("click", handleDocumentClick);
+  }
+
+  const handleDocumentClick = (event) => {
+    const body = document.querySelector("body");
+    const sidebar = document.querySelector(".sidebar");
+  
+    // Check if the click occurred outside of the sidebar
+    if (sidebar && !sidebar.contains(event.target)) {
+      body.classList.remove("open-nav");
+      // Remove the click event listener
+      document.removeEventListener("click", handleDocumentClick);
+    }
+  };
+
   return (
     <>
-      <Navbar className="navbar-top Navbar Navbar-login sticky-navbar">
-        <div className="Navbar-div collapse navbar-collapse justify-content-between">
+      <div className="navbar-top sticky-navbar">
+        <div className="d-flex align-items-center justify-content-between">
           <div className="navbar-logo">
             <div className="bar-icon">
-              <HiBars3CenterLeft />
+              <HiBars3CenterLeft onClick={toogleSideBar}/>
             </div>
-            <Link className="float-left navbar-brand-logo">
+            <Link className="navbar-brand-logo">
               <div className="admintop-logo">
                 <img src={Logo} alt="Hariyali" style={{ height: "45px" }} />
               </div>
@@ -101,7 +121,7 @@ const AdminHeader = () => {
             </li>
           </ul>
         </div>
-      </Navbar>
+      </div>
     </>
   );
 };

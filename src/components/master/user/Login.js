@@ -66,11 +66,12 @@ function Login() {
           setIsHide(!isHide);
           setLoading(false)
         } else {
-          toast.error(response?.data);
+          toast.error("Email/Password wrong");
+          //toast.error(response?.data);
           setLoading(false)
         }
       } else {
-        toast.error("Invalid credentials ! Username or Password Incorrect");
+        toast.error("Email ID Wrong");
         setLoading(false)
       }
     }
@@ -111,6 +112,8 @@ function Login() {
           }
           toast.success("Successfully Login!");
         } else {
+          
+          toast.error("Invalid OTP!");
           console.log("Response: " + response.status);
         }
         setLoading(false)
@@ -134,7 +137,7 @@ function Login() {
     console.log(donarID);
     if (!donarID) {
       // If donorID is empty, set an error message
-      setErrors({ ...errors, donarID: "Please enter Donor Id" });
+      setErrors({ ...errors, donarID: "Please enter Donor Id / Email ID" });
       return;
     }
     const formData = {
@@ -159,6 +162,27 @@ function Login() {
     }
     //  }
   };
+
+  const resendOtp = async (e) => {
+    e.preventDefault();
+    console.log(formData.username);
+      if (!formData.username) {
+        setErrors({ ...errors, username: "Enter the Username" });
+        return;
+      }
+    setLoading(true)
+    const response = await UserService.resendOtp(formData.username);
+    console.log(response);
+    console.log(response?.status === SUCCESS);
+    if (response?.status === SUCCESS) {
+      toast.success("Otp sent successfully!");
+      setLoading(false)
+    } else {
+      toast.error("Invalid Donor Id ! Please Try Again");
+      setLoading(false)
+    }
+    //  }
+  }
 
   if (redirectFlag === true) {
     return navigate("/Dashboard");
@@ -263,6 +287,7 @@ function Login() {
                 >
                   Forgot Password
                 </div>
+                
               </div>
 
               <Captcha verified={verified} setVerified={setVerified}></Captcha>
@@ -283,6 +308,12 @@ function Login() {
                   onChange={(e) => setOtp(e.target.value)}
                 />
                 {/* </label> */}
+                <div
+                 className={isHidden ? "hide" : "account-act float-right"}
+                  onClick={resendOtp}
+                >
+                  Resend OTP
+                </div>
               </div>
               <div className="text-center mb-4">
                
