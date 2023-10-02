@@ -8,6 +8,7 @@ import { stateOptions } from "../../../constants/constants";
 import Loader from "../../../common/loader/Loader";
 import PaymentDetails from "../../../common/PaymentDetails";
 import PackageDetails from "../../../common/PackageDetails";
+import OnlinePaymentDetails from "../../../common/OnlinePaymentDetails";
 
 function UserSpecificDonationView() {
   const navigate = useNavigate();
@@ -117,6 +118,8 @@ function UserSpecificDonationView() {
       getDonationById(id);
     }
   }, [id]);
+
+  const handlePaymentInfoChange = (e, payIndex) => {}
 
   const getDonationById = async (id) => {
     try {
@@ -245,7 +248,7 @@ function UserSpecificDonationView() {
                       setLoading={setLoading}
                       initialPackageData={initialPackageData}
                       donations={Array.of(donationData)}
-                      disabled
+                      disabled = {true}
                     />
 
                     <div className="clear" />
@@ -399,7 +402,27 @@ function UserSpecificDonationView() {
                     <hr />
 
                     <div className="actionheadingdiv">Mode of Payment</div>
-                    {donationData.paymentInfo.map((payment) => {
+
+                    { donationData.donationMode == 'online' && 
+                    
+                    <OnlinePaymentDetails
+                      donations={donationData}
+                      // errors={errors}
+                      handlePaymentInfoChange={handlePaymentInfoChange}
+                      index={0}
+                      setLoading={setLoading}
+                    />
+                  } 
+                  {donationData.donationMode != 'online' && 
+                    <PaymentDetails
+                      donations={new Array(donationData)}
+                      // errors={errors}
+                      handlePaymentInfoChange={handlePaymentInfoChange}
+                      index={0}
+                      setLoading={setLoading}
+                    />
+                  }
+                    {/* {donationData.paymentInfo.map((payment) => {
                       return (
                         <>
                           <PaymentDetails
@@ -411,7 +434,7 @@ function UserSpecificDonationView() {
                           <hr />
                         </>
                       );
-                    })}
+                    })} */}
                   </div>
                   <button
                     className="mt20 mr10 webform-button--cancel"

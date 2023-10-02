@@ -16,7 +16,7 @@ import CaptchaGift from "../user/CaptchaGift";
 import { DonationService } from "../../../services/donationService/donation.service";
 import { INDIA, SUCCESS } from "../../constants/constants";
 import { FaMinusSquare, FaPlusSquare } from "react-icons/fa";
-import { BsEmojiSmile } from "react-icons/bs";
+import { BsEmojiSmile, BsEmojiFrown } from "react-icons/bs";
 import TermsConditionsPopup from "../../common/popup/TermsConditionsPopup";
 import Loader from "../../common/loader/Loader";
 import PrivacyPolicy from "../../common/PrivacyPolicy";
@@ -54,6 +54,7 @@ function OnlineDonation() {
   const handleShowConditions1 = () => setShowConditons1(false);
   const [showDonationModal, setShowDonationModal] = useState(false);
   const [transactionMessage, setTransactionMessage] = useState("");
+  const [paymentStatus, setPaymentStatus] = useState("");
   const location = useLocation();
   const meconnectId = location.search.split("?meconnectId=")[1];
   console.log(location.search.split("?meconnectId=")[1]);
@@ -204,7 +205,8 @@ function OnlineDonation() {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [citizenships, setCitizenships] = useState([]);
-
+  const [packageErrorMessage, setPackageErrorMessage] = useState(false);
+ 
   const getCountryList = async () => {
     setLoading(true);
     const response = await DonationService.getAllCountries();
@@ -339,7 +341,7 @@ function OnlineDonation() {
         message: "Mobile Number is required",
       });
       document.getElementById("mobileNo").focus();
-    } else if (!/^(?!.*[a-zA-Z])\d{10}$/.test(userData.user.mobileNo)) {
+    } else if (!/^\d{10}$/.test(userData.user.mobileNo)) {
       validationErrors.push({
         field: "userData.user.mobileNo",
         message:
@@ -356,7 +358,7 @@ function OnlineDonation() {
         message: "Mobile Number is required",
       });
       document.getElementById("mobileNo").focus();
-    } else if (!/^(?!.*[a-zA-Z])\d{10}$/.test(userData.user.mobileNo)) {
+    } else if (!/^\d{10}$/.test(userData.user.mobileNo)) {
       validationErrors.push({
         field: "userData.user.mobileNo",
         message:
@@ -669,6 +671,7 @@ function OnlineDonation() {
     setIsDivOpenGift(false);
     setIsDivOpen(false);
     setMessage("");
+    setPackageErrorMessage(false);
   };
 
   const setCaptchaFlag = async (flag) => {
@@ -769,33 +772,38 @@ function OnlineDonation() {
 
       if(user.donations[0].totalAmount == 0){
         
-        user.donations[0].totalAmount = user.donations[0].userPackage[0].amount;
-        
+        user.donations[0].totalAmount = user.donations[0].userPackage[0] ? user.donations[0].userPackage[0].amount : 0;
       }
-      setNewEmail(user.emailId);
+      
+      if(user.donations[0].totalAmount == 0){
 
-      console.log(user);
-      const response = await DonationService.AddOnlineuser(user);
-      console.log(response);
-      if (response?.status === SUCCESS) {
-        toast.success(response?.message);
-        setGatewayConfiguration(response);
-        setTimeout(() => {
-          document.getElementById("gatewayForm").submit();
-        }, 1000);
-      } else if (response?.status === "OTHERTHANINDIA") {
-        setTotalAmount(response.data.donations[0].totalAmount);
-        navigate(response.gatewayURL, {
-          state:
-            response.data.donations[0].totalAmount +
-            "," +
-            response.data.donations[0].createdBy,
-        });
-        clearForm(e);
-        setLoading(false);
-      } else {
-        toast.error(response?.message);
-        setLoading(false);
+        setPackageErrorMessage(true);
+      } else{
+        setNewEmail(user.emailId);
+
+        console.log(user);
+        const response = await DonationService.AddOnlineuser(user);
+        console.log(response);
+        if (response?.status === SUCCESS) {
+          toast.success(response?.message);
+          setGatewayConfiguration(response);
+          setTimeout(() => {
+            document.getElementById("gatewayForm").submit();
+          }, 1000);
+        } else if (response?.status === "OTHERTHANINDIA") {
+          setTotalAmount(response.data.donations[0].totalAmount);
+          navigate(response.gatewayURL, {
+            state:
+              response.data.donations[0].totalAmount +
+              "," +
+              response.data.donations[0].createdBy,
+          });
+          clearForm(e);
+          setLoading(false);
+        } else {
+          toast.error(response?.message);
+          setLoading(false);
+        }
       }
     }
   };
@@ -803,8 +811,17 @@ function OnlineDonation() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const orderId = urlParams.get("orderId");
-    if (orderId) {
-      getPaymentInformation(orderId);
+    if(orderId){
+      urlParams.delete("orderId", orderId);
+      localStorage.setItem("orderId", orderId);
+      let newLocation = window.location.href.substring(0, window.location.href.indexOf("?orderId"));
+      window.location.replace(newLocation);
+    } else {
+      const orderIdStr = localStorage.getItem("orderId");
+      if (orderIdStr) {
+        localStorage.removeItem("orderId")
+        getPaymentInformation(orderIdStr);
+      }
     }
     //getAllPackages();
   }, []);
@@ -814,6 +831,7 @@ function OnlineDonation() {
     const response = await DonationService.getPaymentInformation(paymentId);
     if (response?.status === "Success") {
       console.log(response);
+      setPaymentStatus(response?.data?.paymentStatus);
       if (response?.data?.paymentStatus == "Success") {
         let message =
           "Thank you for your donation. <b>" +
@@ -822,8 +840,13 @@ function OnlineDonation() {
         console.log(message);
         setTransactionMessage(message);
         setShowDonationModal(true);
+        
       } else {
-        toast.error(response?.data?.remark);
+        let message =
+          "Something went wrong, please try again.";
+        console.log(message);
+        setTransactionMessage(message);
+        setShowDonationModal(true);
       }
       setLoading(false);
     } else {
@@ -1170,7 +1193,10 @@ function OnlineDonation() {
         },
       };
       if (response.data.donations) {
-        if (response.data.donations[0].userPackage) {
+        if (response.data.donations[0].paymentInfo) {
+          delete formData.formData.user.donations[0].paymentInfo;
+        }
+        if (response.data.donations[0].userPackage && response.data.donations[0].userPackage.length > 0) {
           if(formData.formData.user.donations[0].userPackage[0].userDonation){
             delete formData.formData.user.donations[0].userPackage[0].userDonation;
           }
@@ -1595,6 +1621,9 @@ function OnlineDonation() {
                           />
                           <div className="clear"></div>
                           <hr />
+                          {packageErrorMessage &&
+                            <div className="red-text">Please select number of sampling</div>
+                          }
                           {userData?.user?.donarType === "Corporate" ? (
                             <div className="actionheadingdiv">
                               DETAILS OF POINT OF CONTACT
@@ -2934,6 +2963,9 @@ function OnlineDonation() {
                           />
                           <div className="clear"></div>
                           <hr />
+                          {packageErrorMessage != '' &&
+                            <div className="red-text">Please select number of sampling</div>
+                          }
                           {userData?.user?.donarType === "Corporate" ? (
                             <div className="actionheadingdiv">
                               DETAILS OF POINT OF CONTACT / GIFTER
@@ -4307,7 +4339,11 @@ function OnlineDonation() {
               <Card>
                 <Card.Body>
                   <div className="card-icon">
+                    {paymentStatus == 'Success'? 
                     <BsEmojiSmile />
+                    :
+                    <BsEmojiFrown/>
+                    }
                   </div>
                   <Card.Text
                     dangerouslySetInnerHTML={{ __html: transactionMessage }}
