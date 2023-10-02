@@ -146,10 +146,10 @@ const Slideshow = () => {
               <div className="donate-btn-group">
                 <div className="d-flex flex-wrap justify-content-start">
                   <Link className="btn banner-btn" to={`/OnlineDonation`}>
-                    Plant A tree <img src={planttreeImg} />
+                    Plant A Tree <img src={planttreeImg} />
                   </Link>
                   <Link className="btn banner-btn" to={`/OnlineDonation`}>
-                    Gift a Tree <img src={gifttreeImg} />
+                    Gift A Tree <img src={gifttreeImg} />
                   </Link>
                 </div>
               </div>
