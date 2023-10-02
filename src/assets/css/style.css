@@ -5708,6 +5708,8 @@ video {
 
   .logindiv {
     width: 90%;
+    height: 100%;
+    margin: 4rem 0;
   }
 
   .logindiv .login-wrapper {
@@ -5720,7 +5722,7 @@ video {
   .leftmenu-main aside{
     position: fixed;
     left: 0;
-    /* top: 72px; */
+    margin-top: 62px;
     transform: translateX(-100%);
   }
   .css-1wvake5{

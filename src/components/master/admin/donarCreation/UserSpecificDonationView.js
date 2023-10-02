@@ -196,7 +196,7 @@ function UserSpecificDonationView() {
                     <div className="col-12 col-lg-6">
                       <div className="row select-label">
                         <div className="col-12 col-lg-4"> Donor ID</div>
-                        <div className="col-12 col-lg-8p0">
+                        <div className="col-12 col-lg-8 p0">
                           <input
                             className="form-control-inside"
                             type="text"
@@ -211,7 +211,7 @@ function UserSpecificDonationView() {
                     <div className="col-12 col-lg-6">
                       <div className="row select-label">
                         <div className="col-12 col-lg-4">Donation Code</div>
-                        <div className="col-12 col-lg-8p0">
+                        <div className="col-12 col-lg-8 p0">
                           <input
                             className="form-control-inside"
                             type="text"
@@ -228,7 +228,7 @@ function UserSpecificDonationView() {
                       <div className="col-12 col-lg-6">
                         <div className="row select-label">
                           <div className="col-4">Occasion</div>
-                          <div className="col-12 col-lg-8p0">
+                          <div className="col-12 col-lg-8 p0">
                             <input
                               className="form-control-inside"
                               type="text"
