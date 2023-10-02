@@ -393,14 +393,14 @@ function OnlineDonation() {
           if(userData?.user?.donarType === "Corporate"){
             validationErrors.push({
             field: "userData.user.panCard",
-            message: "PAN card number is Invalid",
+            message: "PAN Card is Invalid",
           });
           if(document.getElementById("panCard")){
             document.getElementById("panCard").focus();
           }}else{
             validationErrors.push({
               field: "userData.user.panCard",
-              message: "PAN card number is Invalid",
+              message: "PAN Card is Invalid",
             });
             if(document.getElementById("panCard")){
               document.getElementById("panCard").focus();
@@ -410,14 +410,14 @@ function OnlineDonation() {
           if(userData?.user?.donarType === "Corporate"){
             validationErrors.push({
             field: "userData.user.panCard",
-            message: "PAN card number is Invalid",
+            message: "PAN Card is Invalid",
           });
           if(document.getElementById("panCard")){
             document.getElementById("panCard").focus();
           }}else{
             validationErrors.push({
               field: "userData.user.panCard",
-              message: "PAN card number is Invalid",
+              message: "PAN Card is Invalid",
             });
             if(document.getElementById("panCard")){
               document.getElementById("panCard").focus();
@@ -429,7 +429,7 @@ function OnlineDonation() {
             console.log("working!!")
             validationErrors.push({
               field: "userData.user.panCard",
-              message: "PAN card number is Invalid",
+              message: "PAN Card is Invalid",
             });
             if(document.getElementById("panCard")){
               document.getElementById("panCard").focus();
@@ -442,7 +442,7 @@ function OnlineDonation() {
           console.log("working!!")
           validationErrors.push({
             field: "userData.user.panCard",
-            message: "PAN card number is Invalid",
+            message: "PAN Card is Invalid",
           });
           if(document.getElementById("panCard")){
             document.getElementById("panCard").focus();
@@ -683,8 +683,12 @@ function OnlineDonation() {
     setDonationType(donationType == "self" ? "self-donate" : "gift-donate");
     const isValid = validate();
     console.log("isValid:", isValid);
-    if (!privacyPolicy1 || !privacyPolicy2) {
-      setPrivacyPolicymessage("Please Accept Privacy Policy");
+    if (!privacyPolicy1 ) {
+      setPrivacyPolicymessage("Please accept privacy policy");
+    }else if(!privacyPolicy2){
+      setPrivacyPolicymessage("Please provide consent");
+    } else if(privacyPolicy1 && privacyPolicy2){
+      setPrivacyPolicymessage("");
     } else if (isValid) {
       setPrivacyPolicymessage("");
       let updatedUserPackage = [];
@@ -1399,7 +1403,7 @@ function OnlineDonation() {
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer  className="toast_adjust"/>
       {/* slider */}
       {loading && <Loader />}
       {/* <div className="pt100"></div> */}
@@ -1418,7 +1422,7 @@ function OnlineDonation() {
               >
                 <Tab
                   eventKey="selfDonate"
-                  title="Plant a tree"
+                  title="Plant A Tree"
                   className="donation-tab"
                 >
                   {/* <div className="pageheadingdiv mb10">Self Donor</div> */}
@@ -1601,7 +1605,7 @@ function OnlineDonation() {
                     </div>{" "}
                     <div className="padding-top-10" dangerouslySetInnerHTML={{ __html: message }}></div>
                     {userData?.user?.donarType === "Corporate" ? (
-                      <div>For CSR related enquiries please reach us at <a href="">support@hariyali.org.in</a> | 022 22021031</div>
+                      <div>For CSR related enquiries please reach us at <a href="mailto:support@hariyali.org.in">ssupport@hariyali.org.in</a> | 022 22021031</div>
                     ) : (
                       <></>
                     )}
@@ -1934,7 +1938,7 @@ function OnlineDonation() {
                                               for="panCard"
                                               class="form-label top-27"
                                             >
-                                              PAN Card Number{" "}
+                                              PAN Card{" "}
                                               <span className="red-text">
                                                 *
                                               </span>
@@ -1947,7 +1951,7 @@ function OnlineDonation() {
                                               for="panCard"
                                               class="form-label top-27"
                                             >
-                                              PAN Card Number{" "}
+                                              PAN Card{" "}
                                               <span className="red-text">
                                                 *
                                               </span>
@@ -1959,7 +1963,7 @@ function OnlineDonation() {
                                             className="form-control-inside form-control"
                                             name="user.panCard"
                                             id="panCard"
-                                            placeholder={userData?.user?.donarType === "Corporate"?"PAN card number":"PAN card number"}
+                                            placeholder={userData?.user?.donarType === "Corporate"?"PAN Card":"PAN Card"}
                                             type="text"
                                             value={userData?.user?.panCard}
                                             onChange={handleChange}
@@ -2675,7 +2679,7 @@ function OnlineDonation() {
                 </Tab>
                 <Tab
                   eventKey="giftaPlant"
-                  title="Gift a tree"
+                  title="Gift A Tree"
                   className="donation-tab"
                 >
                   {/* <div className="pageheadingdiv mb10">Gift a Plant</div> */}
@@ -3257,7 +3261,7 @@ function OnlineDonation() {
                                               for="panCard"
                                               class="form-label top-27"
                                             >
-                                              PAN Card Number{" "}
+                                              PAN Card{" "}
                                               <span className="red-text">
                                                 *
                                               </span>
@@ -3270,7 +3274,7 @@ function OnlineDonation() {
                                               for="panCard"
                                               class="form-label top-27"
                                             >
-                                              PAN Card Number{" "}
+                                              PAN Card{" "}
                                               <span className="red-text">
                                                 *
                                               </span>
@@ -3282,7 +3286,7 @@ function OnlineDonation() {
                                             className="form-control-inside form-control"
                                             name="user.panCard"
                                             id="panCard"
-                                            placeholder={userData?.user?.donarType === "Corporate"?"PAN card number":"PAN card number"}
+                                            placeholder={userData?.user?.donarType === "Corporate"?"PAN Card":"PAN Card"}
                                             type="text"
                                             value={userData?.user?.panCard}
                                             onChange={handleChange}
