@@ -194,6 +194,9 @@ function OfflineDonationPay() {
 
   const handleRecipientChange = (name, value) => {
     console.log(name, value);
+    if(name === "emailId"){
+      value = value.toLowerCase();
+    }
     setRecipient((prevRecipient) => ({
       ...prevRecipient,
       [name]: value,

@@ -185,18 +185,18 @@ function UserSpecificDonationView() {
       {loading && <Loader />}
       {/* slide info */}
       <div className="bggray">
-        <div className="col-12 admin-maindiv">
+        <div className="col-sm-12 admin-maindiv">
           <div className=" justify-content-between bgwite borderform1 padding30 all-form-wrap">
             <h5>Plan and Donation</h5>
-            <div className="col-12 pr0 contact-form-wrap">
+            <div className="col-sm-12 pr0 contact-form-wrap">
               {" "}
               <div className="row">
                 <form className="form-div contact-form-wrap">
                   <div className="row">
-                    <div className="col-12 col-lg-6">
+                    <div className="col-sm-12 col-sm-lg-6">
                       <div className="row select-label">
-                        <div className="col-12 col-lg-4"> Donor ID</div>
-                        <div className="col-12 col-lg-8 p0">
+                        <div className="col-sm-12 col-sm-lg-4"> Donor ID</div>
+                        <div className="col-sm-12 col-sm-lg-8p0">
                           <input
                             className="form-control-inside"
                             type="text"
@@ -208,10 +208,10 @@ function UserSpecificDonationView() {
                         </div>
                       </div>
                     </div>
-                    <div className="col-12 col-lg-6">
+                    <div className="col-sm-12 col-sm-lg-6">
                       <div className="row select-label">
-                        <div className="col-12 col-lg-4">Donation Code</div>
-                        <div className="col-12 col-lg-8 p0">
+                        <div className="col-sm-12 col-sm-lg-4">Donation Code</div>
+                        <div className="col-sm-12 col-sm-lg-8p0">
                           <input
                             className="form-control-inside"
                             type="text"
@@ -225,10 +225,10 @@ function UserSpecificDonationView() {
                     </div>
                     {donationData.donationType.toLowerCase() !==
                       "self-donate" && (
-                      <div className="col-12 col-lg-6">
+                      <div className="col-sm-12 col-sm-lg-6">
                         <div className="row select-label">
-                          <div className="col-4">Occasion</div>
-                          <div className="col-12 col-lg-8 p0">
+                          <div className="col-sm-4">Occasion</div>
+                          <div className="col-sm-12 col-sm-lg-8p0">
                             <input
                               className="form-control-inside"
                               type="text"
@@ -259,12 +259,12 @@ function UserSpecificDonationView() {
                         <div className="actionheadingdiv">
                           DETAILS OF RECIPIENT
                         </div>
-                        <div className="col-12 pr15 mt20">
+                        <div className="col-sm-12 pr15 mt20">
                           <div className="row">
-                            <div className="col-12 col-lg-6">
+                            <div className="col-sm-12 col-sm-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4"> Street 1</div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-sm-12 col-sm-lg-4"> Street 1</div>
+                                <div className="col-sm-12 col-sm-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     placeholder=" Street 1"
@@ -276,10 +276,10 @@ function UserSpecificDonationView() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-12 col-lg-6">
+                            <div className="col-sm-12 col-sm-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4"> Street 2</div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-sm-12 col-sm-lg-4"> Street 2</div>
+                                <div className="col-sm-12 col-sm-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     placeholder="Street 2"
@@ -291,10 +291,10 @@ function UserSpecificDonationView() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-12 col-lg-6">
+                            <div className="col-sm-12 col-sm-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4"> Street 3</div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-sm-12 col-sm-lg-4"> Street 3</div>
+                                <div className="col-sm-12 col-sm-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     placeholder="Street 3"
@@ -306,10 +306,10 @@ function UserSpecificDonationView() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-12 col-lg-6">
+                            <div className="col-sm-12 col-sm-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4">Country</div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-sm-12 col-sm-lg-4">Country</div>
+                                <div className="col-sm-12 col-sm-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     placeholder="Country"
@@ -321,10 +321,10 @@ function UserSpecificDonationView() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-12 col-lg-6">
+                            <div className="col-sm-12 col-sm-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4">State</div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-sm-12 col-sm-lg-4">State</div>
+                                <div className="col-sm-12 col-sm-lg-8 p0">
                                   <input
                                     type="text"
                                     className=" form-control-inside form-select"
@@ -335,10 +335,10 @@ function UserSpecificDonationView() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-12 col-lg-6">
+                            <div className="col-sm-12 col-sm-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4">City</div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-sm-12 col-sm-lg-4">City</div>
+                                <div className="col-sm-12 col-sm-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     placeholder="City"
@@ -350,10 +350,10 @@ function UserSpecificDonationView() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-12 col-lg-6">
+                            <div className="col-sm-12 col-sm-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4">Postal Code</div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-sm-12 col-sm-lg-4">Postal Code</div>
+                                <div className="col-sm-12 col-sm-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     placeholder="Postal Code"
@@ -365,10 +365,10 @@ function UserSpecificDonationView() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-12 col-lg-6">
+                            <div className="col-sm-12 col-sm-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4">Mobile No.</div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-sm-12 col-sm-lg-4">Mobile No.</div>
+                                <div className="col-sm-12 col-sm-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     placeholder="Mobile No."
@@ -380,10 +380,10 @@ function UserSpecificDonationView() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-12 col-lg-6">
+                            <div className="col-sm-12 col-sm-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4">Email ID</div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-sm-12 col-sm-lg-4">Email ID</div>
+                                <div className="col-sm-12 col-sm-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     placeholder="Email ID"

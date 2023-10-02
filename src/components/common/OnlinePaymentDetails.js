@@ -43,15 +43,15 @@ const OnlinePaymentDetails = ({ donations, handlePaymentInfoChange, errors, setL
 
   return (
     <>
-      <div className="col-12 pr15 mt20">
+      <div className="col-sm-12 pr15 mt20">
         <div className="row">
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 {" "}
                 Payment Mode <span className="red-text">*</span>
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="paymentMode"
@@ -63,12 +63,12 @@ const OnlinePaymentDetails = ({ donations, handlePaymentInfoChange, errors, setL
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 Transaction Number
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="orderId"
@@ -80,12 +80,12 @@ const OnlinePaymentDetails = ({ donations, handlePaymentInfoChange, errors, setL
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 Payment Reference Number
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="PaymentReferenceNumber"
@@ -97,12 +97,12 @@ const OnlinePaymentDetails = ({ donations, handlePaymentInfoChange, errors, setL
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 Payment Tracking Id
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="PaymentTrackingId"
@@ -114,12 +114,12 @@ const OnlinePaymentDetails = ({ donations, handlePaymentInfoChange, errors, setL
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 Amount <span className="red-text">*</span>
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="amount"
@@ -130,12 +130,12 @@ const OnlinePaymentDetails = ({ donations, handlePaymentInfoChange, errors, setL
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 Payment Date <span className="red-text">*</span>
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="paymentDate"
@@ -146,13 +146,13 @@ const OnlinePaymentDetails = ({ donations, handlePaymentInfoChange, errors, setL
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 {" "}
                 Payment Status <span className="red-text">*</span>
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="PaymentStatus"
@@ -164,13 +164,13 @@ const OnlinePaymentDetails = ({ donations, handlePaymentInfoChange, errors, setL
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 {" "}
                 Payment Remark
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="PaymentRemark"
@@ -183,13 +183,13 @@ const OnlinePaymentDetails = ({ donations, handlePaymentInfoChange, errors, setL
             </div>
           </div>
           
-          <div className="col-6">
+          <div className="col-sm-6">
             <div className="row select-label">
-              <div className="col-4 ">
+              <div className="col-sm-4 ">
                 {" "}
                 Card
               </div>
-              <div className="col-8 p0">
+              <div className="col-sm-8 p0">
                 <input
                   className="form-control-inside"
                   name="Card"

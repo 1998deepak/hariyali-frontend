@@ -850,6 +850,12 @@ function OnlineDonation() {
     }
     //getAllPackages();
   }, []);
+  
+  //scroll to top on landing
+  
+   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
   const getPaymentInformation = async (paymentId) => {
     setLoading(true);
@@ -1376,7 +1382,7 @@ function OnlineDonation() {
   //enter key login
   const onChangeUserEmail = (event) => {
     const { value, selectionStart, selectionEnd } = event.target;
-    let changeValue = value.toUpperCase();
+    let changeValue = value.toLowerCase();
     setUserEmail(changeValue);
     setTimeout(() => {
       if (inputRef.current && selectionStart && selectionEnd) {
@@ -1390,7 +1396,7 @@ function OnlineDonation() {
 
   const onChangeGiftUserEmail = (event) => {
     const { value, selectionStart, selectionEnd } = event.target;
-    let changeValue = value.toUpperCase();
+    let changeValue = value.toLowerCase();
     setGiftUserEmail(changeValue);
     setTimeout(() => {
       if (inputGiftRef.current && selectionStart && selectionEnd) {
