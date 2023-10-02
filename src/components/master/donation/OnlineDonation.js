@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,12 +24,13 @@ import Card from "react-bootstrap/Card";
 import PackageDetails from "../../common/PackageDetails";
 import useScrollTop from "../../hooks/useScrollTop";
 import PrivacyPolicyPopup from "../../common/popup/PrivacyPolicyPopup";
+import queryString from 'query-string';
 
 function OnlineDonation() {
   //scroll Screen to top
   useScrollTop();
-  const [donationType, setDonationType] = useState("Self-Donate");
-  const [generalDonation, setGeneralDonation] = useState(null);
+  const { type} = queryString.parse(window.location.search);
+  const [donationType, setDonationType] = useState(type?"Gift-Donate":"Self-Donate");
   const [loading, setLoading] = useState(false);
   const [newEmail, setNewEmail] = useState(null);
   const [gatewayConfiguration, setGatewayConfiguration] = useState(null);
@@ -206,6 +207,8 @@ function OnlineDonation() {
   const [states, setStates] = useState([]);
   const [citizenships, setCitizenships] = useState([]);
   const [packageErrorMessage, setPackageErrorMessage] = useState(false);
+  const inputRef = useRef(null);
+  const inputGiftRef = useRef(null);
  
   const getCountryList = async () => {
     setLoading(true);
@@ -384,7 +387,7 @@ function OnlineDonation() {
         document.getElementById("donarType").focus();
       }
     }
-    if (!userData?.user?.citizenship) {
+    if (userData?.user?.donarType.toLowerCase() === "individual" && !userData?.user?.citizenship) {
       validationErrors.push({
         field: "userData.user.citizenship",
         message: "Citizenship is required",
@@ -403,7 +406,7 @@ function OnlineDonation() {
         document.getElementById("organisation").focus();
       }
     }
-    if (userData?.user?.citizenship.toUpperCase() === INDIA || address[0]?.country.toUpperCase() ===
+    if (userData?.user?.citizenship?.toUpperCase() === INDIA || address[0]?.country.toUpperCase() ===
     INDIA ) {
       if (hasAadharCard === true) {
         if (!userData?.user?.panCard) {
@@ -1378,13 +1381,31 @@ function OnlineDonation() {
 
   //enter key login
   const onChangeUserEmail = (event) => {
-    const { value } = event.target;
-    setUserEmail(value.toUpperCase());
+    const { value, selectionStart, selectionEnd } = event.target;
+    let changeValue = value.toUpperCase();
+    setUserEmail(changeValue);
+    setTimeout(() => {
+      if (inputRef.current && selectionStart && selectionEnd) {
+        inputRef.current.setSelectionRange(
+          selectionStart,
+          selectionEnd
+        );
+      }
+    }, 0);
   };
 
   const onChangeGiftUserEmail = (event) => {
-    const { value } = event.target;
-    setGiftUserEmail(value.toUpperCase());
+    const { value, selectionStart, selectionEnd } = event.target;
+    let changeValue = value.toUpperCase();
+    setGiftUserEmail(changeValue);
+    setTimeout(() => {
+      if (inputGiftRef.current && selectionStart && selectionEnd) {
+        inputGiftRef.current.setSelectionRange(
+          selectionStart,
+          selectionEnd
+        );
+      }
+    }, 0);
   };
 
   const clearState = () => {
@@ -1433,7 +1454,7 @@ function OnlineDonation() {
             {/* <div className="col-4 left-img"><img src={DonationImg} alt="donation image" class="box-img"/></div> */}
             <div className="main-content">
               <Tabs
-                defaultActiveKey="selfDonate"
+                defaultActiveKey={type ? "giftaPlant":"selfDonate"}
                 id="uncontrolled-tab-example"
                 className="selftGift-tab online-donation-tabs"
                 onSelect={() => resetErrors()}
@@ -1595,6 +1616,7 @@ function OnlineDonation() {
                               value={userEmail}
                               onChange={onChangeUserEmail}
                               className="form-control"
+                              ref={inputRef}
                               // onKeyPress={handleKeyPress}
                               onBlur={(event) => handleBlur(event)}
                             />
@@ -2767,6 +2789,7 @@ function OnlineDonation() {
                                 onChange={onChangeGiftUserEmail}
                                 placeholder="Enter Email Id"
                                 className="form-control"
+                                ref={inputGiftRef}
                                 // onKeyPress={handleKeyPress}
                                 onBlur={handleBlur}
                               />

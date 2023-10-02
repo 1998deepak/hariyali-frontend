@@ -148,7 +148,7 @@ const Slideshow = () => {
                   <Link className="btn banner-btn" to={`/OnlineDonation`}>
                     Plant A Tree <img src={planttreeImg} />
                   </Link>
-                  <Link className="btn banner-btn" to={`/OnlineDonation`}>
+                  <Link className="btn banner-btn" to={`/OnlineDonation?type=gift`}>
                     Gift A Tree <img src={gifttreeImg} />
                   </Link>
                 </div>
