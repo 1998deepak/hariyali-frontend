@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Tab, Tabs, Modal,Button } from "react-bootstrap";
+import { Tab, Tabs, Modal, Button } from "react-bootstrap";
 import { UserService } from "../../../../services/userService/user.service";
 import Loader from "../../../common/loader/Loader";
 import { SUCCESS } from "../../../constants/constants";
@@ -10,7 +10,7 @@ import RecipientDetails from "../../../common/RecipientDetails";
 import PackageDetails from "../../../common/PackageDetails";
 import DonationHeader from "./DonationHeader";
 import Card from "react-bootstrap/Card";
-import { BsEmojiSmile } from "react-icons/bs";
+import { BsEmojiSmile, BsEmojiFrown } from "react-icons/bs";
 
 function NewOnlineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
@@ -83,7 +83,9 @@ function NewOnlineDonation() {
   const [gatewayConfiguration, setGatewayConfiguration] = useState(null);
   const [showDonationModal, setShowDonationModal] = useState(false);
   const [transactionMessage, setTransactionMessage] = useState("");
+  const [packageMessage, setPackageMessage] = useState("");
   const handleDonationModalClose = () => setShowDonationModal(false);
+  const [paymentStatus, setPaymentStatus] = useState("");
 
   //calling api
   useEffect(() => {
@@ -92,13 +94,13 @@ function NewOnlineDonation() {
     }
     const urlParams = new URLSearchParams(window.location.search);
     const orderId = urlParams.get("orderId");
-    if(orderId){
+    if (orderId) {
       localStorage.setItem("userOrderId", orderId);
       let newLocation = window.location.href.substring(0, window.location.href.indexOf("?orderId"));
       window.location.replace(newLocation);
-      
-      
-    } else{
+
+
+    } else {
       const orderIdStr = localStorage.getItem("userOrderId");
       if (orderIdStr) {
         localStorage.removeItem("userOrderId")
@@ -112,6 +114,7 @@ function NewOnlineDonation() {
     const response = await DonationService.getPaymentInformation(paymentId);
     if (response?.status === "Success") {
       console.log(response);
+      setPaymentStatus(response?.data?.paymentStatus);
       if (response?.data?.paymentStatus == "Success") {
         let message =
           "Thank you for your donation. <b>" +
@@ -129,7 +132,11 @@ function NewOnlineDonation() {
       }
       setLoading(false);
     } else {
-      toast.error(response?.message);
+      let message =
+      "Something went wrong, please try again.";
+      console.log(message);
+      setTransactionMessage(message);
+      setShowDonationModal(true);
       setLoading(false);
     }
   };
@@ -288,14 +295,15 @@ function NewOnlineDonation() {
     }));
     calculateOverallTotal(packages);
     setPackageData(packages);
+    setPackageMessage("");
   };
 
   const calculateOverallTotal = (packageData) => {
 
     console.log(packageData);
     let totalAmountOfPackage = 0;
-    packageData.map(data =>{
-      totalAmountOfPackage +=data.amount;
+    packageData.map(data => {
+      totalAmountOfPackage += data.amount;
     });
     const updatedDonations = [...donations];
     updatedDonations[0]["totalAmount"] = totalAmountOfPackage;
@@ -369,21 +377,28 @@ function NewOnlineDonation() {
           return donationData;
         }),
       };
-      setLoading(true);
-      const response = await DonationService.AddNewDonation(formData);
-     
-      if (response?.status === SUCCESS) {
-       
-        toast.success(response?.message);
-        setGatewayConfiguration(response);
-        setTimeout(() => {
-          document.getElementById("gatewayForm").submit();
-        }, 1000);
-        clearForm(e);
-        setLoading(false);
+
+      if (filteredPackages?.length == 0 || filteredPackages[0].amount == 0) {
+        setPackageMessage("Please select number of sapling");
       } else {
-        toast.error(response?.message);
-        setLoading(false);
+
+        setLoading(true);
+
+        const response = await DonationService.AddNewDonation(formData);
+
+        if (response?.status === SUCCESS) {
+
+          toast.success(response?.message);
+          setGatewayConfiguration(response);
+          setTimeout(() => {
+            document.getElementById("gatewayForm").submit();
+          }, 1000);
+          clearForm(e);
+          setLoading(false);
+        } else {
+          toast.error(response?.message);
+          setLoading(false);
+        }
       }
     }
   };
@@ -427,12 +442,14 @@ function NewOnlineDonation() {
                         />
                         <div className="clear" />
                         <hr />
-
+                        {packageMessage != '' && 
+                          <div className="red-text">{packageMessage}</div>
+                        }
                         <button
                           className="mt20 mr10 webform-button--submit"
                           onClick={(e) => createDonation(e, userData)}
                         >
-                          Donate
+                          Proceed to pay
                         </button>
                         <button
                           className="mt20 mr10 webform-button--cancel "
@@ -451,7 +468,7 @@ function NewOnlineDonation() {
                     <Tab
                       eventKey="Gift-Donate"
                       title="Gift a tree"
-                      //  onClick={(eventKey) => handleTabSelect()}
+                    //  onClick={(eventKey) => handleTabSelect()}
                     >
                       {/* <h5>Gift a tree</h5> */}
                       <form className="form-div contact-form-wrap">
@@ -473,6 +490,9 @@ function NewOnlineDonation() {
                         />
                         <div className="clear" />
                         <hr />
+                        {packageMessage != '' && 
+                          <div className="red-text">{packageMessage}</div>
+                        }
                         <RecipientDetails
                           errors={errors}
                           recipient={recipient}
@@ -486,7 +506,7 @@ function NewOnlineDonation() {
                           className="mt20 mr10 webform-button--submit"
                           onClick={(e) => createDonation(e, userData)}
                         >
-                          Donate
+                          Proceed to pay
                         </button>
                         <button
                           type="submit"
@@ -532,7 +552,7 @@ function NewOnlineDonation() {
           />
         </form>
       )}
-      
+
       <Modal
         className="transaction-modal"
         show={showDonationModal}
@@ -546,7 +566,11 @@ function NewOnlineDonation() {
               <Card>
                 <Card.Body>
                   <div className="card-icon">
+                    {paymentStatus == 'Success'? 
                     <BsEmojiSmile />
+                    :
+                    <BsEmojiFrown/>
+                    }
                   </div>
                   <Card.Text
                     dangerouslySetInnerHTML={{ __html: transactionMessage }}

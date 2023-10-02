@@ -1,159 +1,55 @@
 import React, { useEffect, useState } from "react";
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
 import { Link, useParams } from "react-router-dom";
 import { DonationService } from "../../../../services/donationService/donation.service";
 import { FaRegEye } from "react-icons/fa";
 import Loader from "../../../common/loader/Loader";
+import { toast, ToastContainer } from "react-toastify";
+import Pagination from '../../../common/Pagination';
+
 function UserdonationView({ userDetails, setAuthToken, authToken }) {
-  const id=useParams().id;
+  const id = useParams().id;
   console.log(id);
-  const [data, setData] = useState([]);
-  const[donorId,setDonorId]=useState("");
-  const[donorName,setDonorName]=useState("");
   const [loading, setLoading] = useState(false);
 
-  const columns = [
-    {
-      dataField: "donationCode",
-      text: "Donation Code",
-    },
-    {
-      dataField: "paymentDate",
-      text: "Transaction Date",
-    },
-    {
-      dataField: "paymentInfoId",
-      text: "Transaction Number",
-    },
-    {
-      dataField: "paymentStatus",
-      text: "Status",
-    },
-    {
-      dataField: "",
-      text: "Action",
-      formatter: (cell,row) => {
-        console.log(row);
-        return (
-          <span>
-            <Link to={`/UserSpecificDonationView/${row.donationId}`}  className="view-icon"><FaRegEye /></Link>
-          </span>
-        );
-      },
-    },
+  const [pageNo, setPageNo] = useState(0);
+  const [pagesize, setPageSize] = useState(10);
+  const [totalRecords, setTotalRecords] = useState(0);
+  const [donationList, setDonationList] = useState([]);
 
-    // {
-    //   dataField: "",
-    //   text: "Action",
-    //   formatter: (cell, row) => {
-    //     console.log(row)
-    //     return (
-        
-    //       <span>
-    //         <Link
-    //           to={
-    //             row.donationType === "Gift donate"
-    //               ? `/GiftDonateEditPage/${row.donationId}` // Change to your actual Gift Donate edit page route
-    //               : `/OfflinePlanAndDonationUpdate/${row.donationId}`
-    //           }
-    //           className="edit-icon"
-    //         >
-    //           {row.donationType === "Gift donate" ? <BsGiftFill /> : <AiFillEdit />}
-    //         </Link>
-    //       </span>
-    //     );
-    //   },
-    // },
-  ];
+
+  const handlePageClick = (event) => {
+    setPageNo(event);
+    getAllDonationOfUser(userDetails, event-1);
+  };
 
   useEffect(() => {
-    console.log(userDetails);
-    if(userDetails)
-    {
-      getAllDonationOfUser(userDetails);
-    }
-   
+    // console.log(userDetails);
+    // if (userDetails) {
+      getAllDonationOfUser(pageNo);
+    // }
+
   }, [userDetails]);
 
-  // Get all donation of user
-  // const getAllDonationOfUser = async (id) => {
-  //   try {
-  //     console.log(id);
-  //     const response = await DonationService.getAllDonationOfUser(id);
-  //     console.log(id);
-  //     console.log(response?.data);
-  
-  //     if (response?.data) {
-  //       // Parse the JSON-encoded data string
-  //       const donorDataString = response.data;
-  //       const donorData = JSON.parse(donorDataString);
-  
-  //       console.log(donorData); // Make sure you see the parsed data in the console
-  
-  //       const newData = donorData.map((donor) => ({
-  //         donorId: donor.donorId,
-  //         donationId: donor.donationId,
-  //         firstName: donor.firstName,
-  //         lastName: donor.lastName,
-  //         paymentDate: donor.paymentInfo.paymentDate,
-  //         paymentInfoId: donor.paymentInfo.paymentInfoId,
-  //         paymentStatus: donor.paymentInfo.paymentStatus,
-  //         donationType: donor.donationType,
-  //       }));
-  
-  //       console.log(newData);
-  //       setData(newData);
-  
-  //       if (newData.length > 0) {
-  //         const fullName = `${newData[0].firstName} ${newData[0].lastName}`;
-  //         setDonorName(fullName);
-  //         setDonorId(newData[0].donorId);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching donation data:", error);
-  //   }
-  // };
-  
-  
-  const getAllDonationOfUser = async (id) => {
-    console.log(id);
-    // setLoading(true);
-    const response = await DonationService.getAllDonationOfUser(id);
-    console.log(id);
-    console.log(response?.data);
-    // console.log(response?.data?.paymentInfo);
-    
-    if (response?.data) {
-      const donorData = JSON.parse(response.data);
-      console.log(donorData);
-      const newData = donorData.map((donor) => ({
-        donorId:donor.donorId,
-        donationId: donor.donationId,
-        donationCode:donor.donationCode,
-        firstName: donor.firstName,
-        lastName: donor.lastName,
-        paymentDate: donor.paymentInfo.paymentDate,
-        paymentInfoId: donor.paymentInfo.paymentInfoId,
-        paymentStatus: donor.paymentInfo.paymentStatus,
-        donationType:donor.donationType,
-      }));
-      console.log(newData);
-      setData(newData);
-      if (newData.length > 0) {
-        const fullName = `${newData[0].firstName} ${newData[0].lastName}`;
-        setDonorName(fullName);
-        setDonorId(newData[0].donorId);
-      }
+
+  const getAllDonationOfUser = async (pageNo) => {
+
+    setLoading(true);
+    const response = await DonationService.getAllDonationOfUser(pagesize, pageNo);
+    if (response?.status === "Success") {
+      console.log(response)
+      setDonationList(response.data);
+      setTotalRecords(response.totalRecords);
+      setLoading(false);
+    } else {
+      toast.error(response?.message);
       setLoading(false);
     }
-    
+
   };
 
   return (
     <>
-    {loading && <Loader/>}
+      {loading && <Loader />}
       <div className="bggray">
         <div className="col-12 admin-maindiv">
           <div className=" justify-content-between bgwite borderform1 padding30 all-form-wrap">
@@ -161,15 +57,43 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
               <h5 className="col-9">Your Donations</h5>
             </div>
             <div className="col-12 pr0">
-              <div className="table-responsive">
-              <BootstrapTable
-                classes="mt20 "
-                keyField="donationId"
-                data={data}
-                columns={columns}
-               //  pagination={paginationFactory()}
-              />
-              </div>
+              <table className="table table-striped table-bordered shadow-table">
+                <thead>
+                  <tr>
+                    <th>Donation Code</th>
+                    <th>Transaction Date</th>
+                    <th>Transaction Number</th>
+                    <th>Donation Amount</th>
+                    <th>Payment Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {donationList.map(donation => {
+                    return (
+                      <tr>
+                        <td>{donation?.donationCode}</td>
+                        <td>{donation?.donationDate}</td>
+                        <td>{donation?.paymentInfo[0]?.bankPaymentRefNo}</td>
+                        <td>{donation?.totalAmount}</td>
+                        <td>{donation?.paymentInfo[0]?.paymentStatus}</td>
+                        <td>
+                        <Link to={`/UserSpecificDonationView/${donation.donationId}`} className="view-icon"><FaRegEye /></Link>
+                        </td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+              {totalRecords > 0 &&
+                <Pagination
+                  itemsCount={totalRecords}
+                  itemsPerPage={pagesize}
+                  currentPage={pageNo}
+                  setCurrentPage={handlePageClick}
+                  alwaysShown={false}
+                />
+              }
             </div>
           </div>
         </div>

@@ -397,7 +397,7 @@ function OnlineDonation() {
       }
     }
     if (
-      userData?.user?.donarType.toLocaleLowerCase() === "corporate" && !userData?.user?.organisation) {
+      userData?.user?.donarType?.toLocaleLowerCase() === "corporate" && !userData?.user?.organisation) {
       validationErrors.push({
         field: "userData.user.organisation",
         message: "Organisation is required",
@@ -875,7 +875,11 @@ function OnlineDonation() {
       }
       setLoading(false);
     } else {
-      toast.error(response?.message);
+      let message =
+          "Something went wrong, please try again.";
+      console.log(message);
+      setTransactionMessage(message);
+      setShowDonationModal(true);
       setLoading(false);
     }
   };
@@ -1209,7 +1213,6 @@ function OnlineDonation() {
             addr[1] = response.data.address[1];
           }
         }
-        setAddress(addr);
       }
 
       const formData = {
@@ -1218,13 +1221,8 @@ function OnlineDonation() {
         },
       };
       if (response.data.donations) {
-        if (response.data.donations[0].paymentInfo) {
-          delete formData.formData.user.donations[0].paymentInfo;
-        }
+        
         if (response.data.donations[0].userPackage && response.data.donations[0].userPackage.length > 0) {
-          if(formData.formData.user.donations[0].userPackage[0].userDonation){
-            delete formData.formData.user.donations[0].userPackage[0].userDonation;
-          }
           setPackageData(formData.formData.user.donations[0].userPackage);
         }
         setDonations(response.data.donations);
@@ -1264,13 +1262,9 @@ function OnlineDonation() {
       } else {
         setValidGiftUser(false);
         setIsDivOpenGift(true);
-      }
-      setAddress(initialAddress);
-      setDonations(intialDonations);
-      setRecipient(initialRecipientData);
-      setUserData(initialUserData);
-        setLoading(false);
-      }
+      }  
+      setLoading(false);
+    }
   };
 
   const sendOtp = async (emailId) => {
@@ -1666,7 +1660,7 @@ function OnlineDonation() {
                           <div className="clear"></div>
                           <hr />
                           {packageErrorMessage &&
-                            <div className="red-text">Please select number of sampling</div>
+                            <div className="red-text">Please select number of sapling</div>
                           }
                           {userData?.user?.donarType === "Corporate" ? (
                             <div className="actionheadingdiv">
@@ -1679,7 +1673,7 @@ function OnlineDonation() {
                           )}
                           <div className="col-12 pr15">
                             <div className="row">
-                              {userData?.user?.donarType.toLocaleLowerCase() ===
+                              {userData?.user?.donarType?.toLocaleLowerCase() ===
                               "corporate" ? (
                                 <>
                                   <div className="col-12 col-md-6">
@@ -3011,7 +3005,7 @@ function OnlineDonation() {
                           <div className="clear"></div>
                           <hr />
                           {packageErrorMessage != '' &&
-                            <div className="red-text">Please select number of sampling</div>
+                            <div className="red-text">Please select number of sapling</div>
                           }
                           {userData?.user?.donarType === "Corporate" ? (
                             <div className="actionheadingdiv">
@@ -3820,7 +3814,7 @@ function OnlineDonation() {
                           </div>
                           <hr />
                           <div className="actionheadingdiv">
-                            DETIALS OF GIFTEE / RECEIPIENT
+                            DETAILS OF GIFTEE / RECEIPIENT
                           </div>
                           <div className="col-12 pr15">
                             <div>
