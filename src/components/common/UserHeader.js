@@ -60,7 +60,7 @@ const Header = () => {
         <div className="d-flex align-items-center justify-content-between">
             <Link to="/" className="logo-container mr-2"><img src={logo} alt="Logo" className="logo" /></Link>
           <div className="">
-            <Navbar expand="lg" expanded={expanded} className="pb-0">
+            <Navbar expanded={expanded} className="pb-0">
               <Navbar.Toggle onClick={handleToggle} aria-controls="responsive-navbar-nav" >
                 <AiOutlineBars />
 

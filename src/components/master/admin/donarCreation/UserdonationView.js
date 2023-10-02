@@ -161,6 +161,7 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
               <h5 className="col-9">Your Donations</h5>
             </div>
             <div className="col-12 pr0">
+              <div className="table-responsive">
               <BootstrapTable
                 classes="mt20 "
                 keyField="donationId"
@@ -168,6 +169,7 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
                 columns={columns}
                //  pagination={paginationFactory()}
               />
+              </div>
             </div>
           </div>
         </div>

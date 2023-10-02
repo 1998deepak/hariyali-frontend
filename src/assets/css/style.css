@@ -707,7 +707,7 @@ input:disabled {
   border-color: #23aa4a;
 }
 
-.menu-button-donet:hover {
+.menu-button-donet.btn:hover {
   background-color: #396e1b;
   border-color: #23aa4a;
 }
@@ -5356,6 +5356,10 @@ video {
 
 @media only screen and (max-width:1024px) {
 
+  .headermenu {
+    padding: 15px;
+  }
+
   .navbar-toggler,
   .navbar-expand-lg .navbar-toggler,
   .navbar-expand .navbar-toggler {
@@ -5369,7 +5373,7 @@ video {
     width: 100%;
     height: 100%;
     z-index: 999;
-    top: 58px;
+    top: 87px;
     bottom: 0;
     background-color: rgba(35 170 74/90%);
   }
@@ -5403,8 +5407,8 @@ video {
     margin: 0 !important;
   }
 
-  .menu-button-donet {
-    font-size: 0.875rem;
+  .menu-button-donet.btn {
+    font-size: 0.75rem;
     width: 100%;
     padding: 5px 10px;
   }
@@ -5465,6 +5469,20 @@ video {
   }
   video{
     height: 350px;
+  }
+
+  /* user profile */
+  .page-scroll{
+    margin:0;
+  }
+  .selftGift-tab .nav-item .nav-link{
+    padding: 1rem;
+  }
+  tr th{
+    font-size: 0.875rem;
+  }
+  .newexti-tab .nav-link{
+    font-size: 24px;
   }
 }
 
@@ -5832,11 +5850,17 @@ video {
   }
 
   .donoteicon {
-    /* display: none; */
+    width: 20px;
   }
   .capt-code{
     font-size: 20px;
     width: 140px;
+  }
+  .headermenu{
+    padding: 10px;
+  }
+  .navbar-collapse{
+    top: 68px;
   }
   
 }
@@ -5860,6 +5884,14 @@ video {
 
   .nav-list .nav-item a.nav-link {
     font-size: 0.975rem;
+  }
+  .logo-container{
+    width: 75px;
+    margin-right: 5px;
+  }
+  .navbar-expand .navbar-toggler{
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 

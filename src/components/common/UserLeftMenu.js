@@ -84,7 +84,7 @@ const LeftMenu = () => {
                 to="/user/donation"
                 className="nav-link dropdown-indicator-left label-1"
               > <RiUserAddLine/>
-                donation
+                Donation
               </Link>
               </Accordion.Header>
 

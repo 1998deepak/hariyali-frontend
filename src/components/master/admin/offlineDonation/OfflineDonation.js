@@ -1390,13 +1390,13 @@ function OfflineDonation() {
                           )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   Email ID <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -1426,12 +1426,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Mobile Number<span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -1459,13 +1459,13 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   Donor Type <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.donarType"
@@ -1499,14 +1499,14 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   Citizenship{" "}
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.citizenship"
@@ -1548,14 +1548,14 @@ function OfflineDonation() {
                             </div>
                             {userData?.user?.donarType.toLowerCase() ===
                             "corporate" ? (
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     {" "}
                                     Organisation{" "}
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="user.organisation"
@@ -1588,12 +1588,12 @@ function OfflineDonation() {
                               <></>
                             )}
 
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Prefix <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.prefix"
@@ -1626,12 +1626,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   First Name <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -1659,12 +1659,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Last Name <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -1695,7 +1695,7 @@ function OfflineDonation() {
                             {userData?.user?.citizenship.toUpperCase() === INDIA ? (
                               <>
                                 {userData?.user?.donarType === "Individual" ? (
-                                  <div className="col-6">
+                                  <div className="col-12 col-lg-6">
                                     <div className="select-label">
                                       <div className="col-12 p0 field-wrapper">
                                         <div>
@@ -1733,13 +1733,13 @@ function OfflineDonation() {
                                 )}
 
                                 {hasAadharCard ? (
-                                  <div className="col-6">
+                                  <div className="col-12 col-lg-6">
                                     <div className="select-label">
-                                      <div className="col-4 click">
+                                      <div className="col-12 col-lg-4 click">
                                         PAN Card{" "}
                                         <span className="red-text">*</span>
                                       </div>
-                                      <div className="col-8 p0 ">
+                                      <div className="col-12 col-lg-8 p0 ">
                                         <input
                                           className="form-control-inside form-control"
                                           name="user.panCard"
@@ -1775,13 +1775,13 @@ function OfflineDonation() {
                                     </div>
                                   </div>
                                 ) : (
-                                  <div id="addharId" className="col-6">
+                                  <div id="addharId" className="col-12 col-lg-6">
                                     <div className="row select-label">
-                                      <div className="col-4">
+                                      <div className="col-12 col-lg-4">
                                       AADHAAR Card{" "}
                                         <span className="red-text">*</span>
                                       </div>
-                                      <div className="col-8 p0 ">
+                                      <div className="col-12 col-lg-8 p0 ">
                                         <input
                                           className="form-control-inside form-control"
                                           name="user.addharCard"
@@ -1815,13 +1815,13 @@ function OfflineDonation() {
                               </>
                             ) : (
                               <>
-                                <div className="col-6">
+                                <div className="col-12 col-lg-6">
                                   <div className="row select-label">
-                                    <div className="col-4 clicks">
+                                    <div className="col-12 col-lg-4 clicks">
                                       Passport{" "}
                                       <span className="red-text">*</span>
                                     </div>
-                                    <div className="col-8 p0">
+                                    <div className="col-12 col-lg-8 p0">
                                       <input
                                         className="form-control-inside form-control"
                                         name="user.passport"
@@ -1859,9 +1859,9 @@ function OfflineDonation() {
                                 </div>
                                 {/* {
                                   userData?.user?.donarType === "Individual"? 
-                                  <div className="col-6 ">
+                                  <div className="col-12 col-lg-6 ">
                                     <div className="row">
-                                      <div className="col-4">
+                                      <div className="col-12 col-lg-4">
                                         Do you have an Passport?
                                       </div>
                                       <div className="radio-buttons col-8">
@@ -1893,10 +1893,10 @@ function OfflineDonation() {
                                 
                                   {
                                     hasPassport ?(
-                                      <div className="col-6">
+                                      <div className="col-12 col-lg-6">
                                     <div className="row select-label">
-                                    <div className="col-4 clicks">Passport{" "} <span className="red-text">*</span></div>
-                                      <div className="col-8 p0">
+                                    <div className="col-12 col-lg-4 clicks">Passport{" "} <span className="red-text">*</span></div>
+                                      <div className="col-12 col-lg-8 p0">
                                         <input
                                           className="form-control-inside form-control"
                                           name="user.passport"
@@ -1934,10 +1934,10 @@ function OfflineDonation() {
                                   </div>
                                     )
                                         :
-                                        <div className="col-6">
+                                        <div className="col-12 col-lg-6">
                                     <div className="row select-label">
-                                    <div className="col-4">Tin Number{" "} <span className="red-text">*</span></div>
-                                      <div className="col-8 p0">
+                                    <div className="col-12 col-lg-4">Tin Number{" "} <span className="red-text">*</span></div>
+                                      <div className="col-12 col-lg-8 p0">
                                         <input
                                           className="form-control-inside form-control"
                                           name="user.tinNumber"
@@ -1982,13 +1982,13 @@ function OfflineDonation() {
                         )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   Street 1 <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="street1"
@@ -2016,10 +2016,10 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 "> Street 2</div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-4 "> Street 2</div>
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="street2"
@@ -2033,10 +2033,10 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 "> Street 3</div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-4 "> Street 3</div>
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="street3"
@@ -2050,10 +2050,10 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            {/* <div className="col-6">
+                            {/* <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">Country <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-4 ">Country <span className="red-text">*</span></div>
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="country"
@@ -2074,12 +2074,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div> */}
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Country <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="country"
@@ -2116,12 +2116,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div id ="state3" className="col-6" style={{display:"block"}}>
+                            <div id ="state3" className="col-12 col-lg-6" style={{display:"block"}}>
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0 ">
+                                  <div className="col-12 col-lg-8 p0 ">
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="state"
@@ -2160,12 +2160,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             {/* {address[0]?.country.toUpperCase() === "INDIA" ? (
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0 ">
+                                  <div className="col-12 col-lg-8 p0 ">
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="state"
@@ -2204,12 +2204,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             ) : (
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside form-control"
                                       name="state"
@@ -2237,13 +2237,13 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             )} */}
-                            <div id="state2" className="col-6" style={{display:"none"}}>
+                            <div id="state2" className="col-12 col-lg-6" style={{display:"none"}}>
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   State <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="state"
@@ -2271,13 +2271,13 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   City <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="city"
@@ -2305,13 +2305,13 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Postal Code{" "}
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="postalCode"
@@ -2341,10 +2341,10 @@ function OfflineDonation() {
                           </div>
                           <div className="col-12 pr15 mt20">
                             <div className="row">
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 "> Street 1</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 "> Street 1</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="street1"
@@ -2359,10 +2359,10 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 "> Street 2</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 "> Street 2</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="street2"
@@ -2376,10 +2376,10 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 "> Street 3</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 "> Street 3</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="street3"
@@ -2393,10 +2393,10 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              {/* <div className="col-6">
+                              {/* <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">Country <span className="red-text">*</span></div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 ">Country <span className="red-text">*</span></div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="country"
@@ -2411,9 +2411,9 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div> */}
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="select-label">
-                                  {/* <div className="col-4 ">State</div> */}
+                                  {/* <div className="col-12 col-lg-4 ">State</div> */}
                                   <div className="col-12 p0 field-wrapper">
                                     <label class="form-label top-27">
                                       Country{" "}
@@ -2457,12 +2457,12 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     State<span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <select
                                       className=" form-control-inside form-select"
                                       name="state"
@@ -2485,10 +2485,10 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">City</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 ">City</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="city"
@@ -2503,10 +2503,10 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">Postal Code</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 ">Postal Code</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="postalCode"
@@ -2577,12 +2577,12 @@ function OfflineDonation() {
                       <form className="form-div contact-form-wrap">
                         <div className="col-12 mt20">
                           <div className="row ">
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Occasion <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="donationEvent"
@@ -2637,7 +2637,7 @@ function OfflineDonation() {
                           calculateOverallTotal={calculateOverallTotal}
                         />
                         <div className="clear" />
-                        <div className="col-6 mt20"></div>
+                        <div className="col-12 col-lg-6 mt20"></div>
                         <hr />
                         {userData?.user?.donarType === "Corporate" ? (
                             <div className="actionheadingdiv">
@@ -2650,13 +2650,13 @@ function OfflineDonation() {
                           )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   Email ID <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -2685,12 +2685,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Mobile Number<span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -2717,13 +2717,13 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   Donor Type <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.donarType"
@@ -2757,14 +2757,14 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   Citizenship{" "}
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.citizenship"
@@ -2806,14 +2806,14 @@ function OfflineDonation() {
                             </div>
                             {userData.user.donarType.toLowerCase() ===
                             "corporate" ? (
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     {" "}
                                     Organisation{" "}
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="user.organisation"
@@ -2845,12 +2845,12 @@ function OfflineDonation() {
                               <></>
                             )}
 
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Prefix <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.prefix"
@@ -2882,12 +2882,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   First Name <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -2914,12 +2914,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Last Name <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -2950,7 +2950,7 @@ function OfflineDonation() {
                             {userData?.user?.citizenship.toUpperCase() === INDIA ? (
                               <>
                                 {userData?.user?.donarType === "Individual" ? (
-                                  <div className="col-6">
+                                  <div className="col-12 col-lg-6">
                                     <div className="select-label">
                                       <div className="col-12 p0 field-wrapper">
                                         <div>
@@ -2988,13 +2988,13 @@ function OfflineDonation() {
                                 )}
 
                                 {hasAadharCard ? (
-                                  <div className="col-6">
+                                  <div className="col-12 col-lg-6">
                                     <div className="select-label">
-                                      <div className="col-4 click">
+                                      <div className="col-12 col-lg-4 click">
                                         PAN Card{" "}
                                         <span className="red-text">*</span>
                                       </div>
-                                      <div className="col-8 p0 ">
+                                      <div className="col-12 col-lg-8 p0 ">
                                         <input
                                           className="form-control-inside form-control"
                                           name="user.panCard"
@@ -3030,13 +3030,13 @@ function OfflineDonation() {
                                     </div>
                                   </div>
                                 ) : (
-                                  <div id="addharId" className="col-6">
+                                  <div id="addharId" className="col-12 col-lg-6">
                                     <div className="row select-label">
-                                      <div className="col-4">
+                                      <div className="col-12 col-lg-4">
                                       AADHAAR Card{" "}
                                         <span className="red-text">*</span>
                                       </div>
-                                      <div className="col-8 p0 ">
+                                      <div className="col-12 col-lg-8 p0 ">
                                         <input
                                           className="form-control-inside form-control"
                                           name="user.addharCard"
@@ -3070,13 +3070,13 @@ function OfflineDonation() {
                               </>
                             ) : (
                               <>
-                                <div className="col-6">
+                                <div className="col-12 col-lg-6">
                                   <div className="row select-label">
-                                    <div className="col-4 clicks">
+                                    <div className="col-12 col-lg-4 clicks">
                                       Passport{" "}
                                       <span className="red-text">*</span>
                                     </div>
-                                    <div className="col-8 p0">
+                                    <div className="col-12 col-lg-8 p0">
                                       <input
                                         className="form-control-inside form-control"
                                         name="user.passport"
@@ -3126,13 +3126,13 @@ function OfflineDonation() {
                         )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   Street 1 <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="street1"
@@ -3159,10 +3159,10 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 "> Street 2</div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-4 "> Street 2</div>
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="street2"
@@ -3176,10 +3176,10 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 "> Street 3</div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-4 "> Street 3</div>
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="street3"
@@ -3193,10 +3193,10 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            {/* <div className="col-6">
+                            {/* <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">Country <span className="red-text">*</span></div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-4 ">Country <span className="red-text">*</span></div>
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="country"
@@ -3216,12 +3216,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div> */}
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Country <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="country"
@@ -3258,12 +3258,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div id="state3" className="col-6" style={{display:"block"}}>
+                            <div id="state3" className="col-12 col-lg-6" style={{display:"block"}}>
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0 ">
+                                  <div className="col-12 col-lg-8 p0 ">
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="state"
@@ -3302,12 +3302,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             {/* {address[0]?.country === "INDIA" ? (
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0 ">
+                                  <div className="col-12 col-lg-8 p0 ">
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="state"
@@ -3346,12 +3346,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             ) : (
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside form-control"
                                       name="state"
@@ -3379,13 +3379,13 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             )} */}
-                            <div id="state2" className="col-6" style={{display:"none"}}>
+                            <div id="state2" className="col-12 col-lg-6" style={{display:"none"}}>
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   State <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="state"
@@ -3413,13 +3413,13 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   City <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="city"
@@ -3447,13 +3447,13 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Postal Code{" "}
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="postalCode"
@@ -3491,13 +3491,13 @@ function OfflineDonation() {
                         <div className="col-12 pr15 mt20">
                           <div>
                             <div className="row">
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     First Name{" "}
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="firstName"
@@ -3526,13 +3526,13 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     Last Name{" "}
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="lastName"
@@ -3561,13 +3561,13 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     Mobile Number
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="mobileNo"
@@ -3596,12 +3596,12 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     Email Id <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="emailId"
@@ -3632,13 +3632,13 @@ function OfflineDonation() {
                               </div>
                             </div>
                             <div className="row">
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     {" "}
                                     Street 1<span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="street1"
@@ -3669,10 +3669,10 @@ function OfflineDonation() {
                                 </div>
                               </div>
 
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 "> Street 2</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 "> Street 2</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="street2"
@@ -3686,10 +3686,10 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 "> Street 3</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 "> Street 3</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="street3"
@@ -3703,12 +3703,12 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     Country<span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <select
                                       className=" form-control-inside form-select"
                                       name="country"
@@ -3747,12 +3747,12 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     State<span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <select
                                       className=" form-control-inside form-select"
                                       name="state"
@@ -3792,13 +3792,13 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     {" "}
                                     City <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="city"
@@ -3829,10 +3829,10 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">Postal Code</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 ">Postal Code</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="postalCode"
@@ -3907,12 +3907,12 @@ function OfflineDonation() {
                       <form className="form-div contact-form-wrap">
                         <div className="col-12 mt20">
                           <div className="row ">
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Donor ID <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <SearchWithSuggestions
                                     data={userIdList}
                                     onClickSearch={handleSearchId}
@@ -3943,13 +3943,13 @@ function OfflineDonation() {
                           )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   Email ID <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -3970,12 +3970,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Mobile Number<span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -3994,13 +3994,13 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   Donor Type <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.donarType"
@@ -4028,14 +4028,14 @@ function OfflineDonation() {
                             </div>
                             {userData.user.donarType.toLowerCase() ===
                             "corporate" ? (
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     {" "}
                                     Organisation{" "}
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="user.organisation"
@@ -4058,12 +4058,12 @@ function OfflineDonation() {
                             ) : (
                               <></>
                             )}
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Prefix <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.prefix"
@@ -4087,12 +4087,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   First Name <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -4111,12 +4111,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Last Name <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -4136,12 +4136,12 @@ function OfflineDonation() {
                               </div>{" "}
                             </div>
 
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   PAN card <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="user.panCard"
@@ -4173,13 +4173,13 @@ function OfflineDonation() {
                         )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   Street 1 <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="street1"
@@ -4200,10 +4200,10 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 "> Street 2</div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-4 "> Street 2</div>
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="street2"
@@ -4218,10 +4218,10 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 "> Street 3</div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-4 "> Street 3</div>
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="street3"
@@ -4236,12 +4236,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Country <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="country"
@@ -4262,12 +4262,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   State <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="state"
@@ -4298,12 +4298,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   City <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="city"
@@ -4324,13 +4324,13 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Postal Code{" "}
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="postalCode"
@@ -4360,10 +4360,10 @@ function OfflineDonation() {
                           </div>
                           <div className="col-12 pr15 mt20">
                             <div className="row">
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 "> Street 1</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 "> Street 1</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="street1"
@@ -4377,10 +4377,10 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 "> Street 2</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 "> Street 2</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="street2"
@@ -4394,10 +4394,10 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 "> Street 3</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 "> Street 3</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="street3"
@@ -4411,9 +4411,9 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="select-label">
-                                  {/* <div className="col-4 ">State</div> */}
+                                  {/* <div className="col-12 col-lg-4 ">State</div> */}
                                   <div className="col-12 p0 field-wrapper">
                                     <label class="form-label top-27">
                                       Country{" "}
@@ -4457,12 +4457,12 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <select
                                       className=" form-control-inside form-select"
                                       name="state"
@@ -4484,10 +4484,10 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">City</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 ">City</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="city"
@@ -4501,10 +4501,10 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">Postal Code</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 ">Postal Code</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="postalCode"
@@ -4575,12 +4575,12 @@ function OfflineDonation() {
                       <form className="form-div contact-form-wrap">
                         <div className="col-12 mt20">
                           <div className="row ">
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Donor ID <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <SearchWithSuggestions
                                     data={userIdList}
                                     onClickSearch={handleSearchId}
@@ -4588,12 +4588,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Occasion <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="donationEvent"
@@ -4660,13 +4660,13 @@ function OfflineDonation() {
                           )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   Email ID <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -4687,12 +4687,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Mobile Number<span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -4712,13 +4712,13 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   Donor Type <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.donarType"
@@ -4747,14 +4747,14 @@ function OfflineDonation() {
                             </div>
                             {userData.user.donarType.toLowerCase() ===
                             "corporate" ? (
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     {" "}
                                     Organisation{" "}
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="user.organisation"
@@ -4778,12 +4778,12 @@ function OfflineDonation() {
                               <></>
                             )}
 
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Prefix <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.prefix"
@@ -4808,12 +4808,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   First Name <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -4833,12 +4833,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Last Name <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -4859,12 +4859,12 @@ function OfflineDonation() {
                               </div>{" "}
                             </div>
 
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   PAN card <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="user.panCard"
@@ -4897,13 +4897,13 @@ function OfflineDonation() {
                         )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   {" "}
                                   Street 1 <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="street1"
@@ -4925,10 +4925,10 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 "> Street 2</div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-4 "> Street 2</div>
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="street2"
@@ -4944,10 +4944,10 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 "> Street 3</div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-4 "> Street 3</div>
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="street3"
@@ -4963,12 +4963,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Country <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="country"
@@ -4990,12 +4990,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   State <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="state"
@@ -5027,12 +5027,12 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   City <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="city"
@@ -5054,13 +5054,13 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-4 ">
+                                <div className="col-12 col-lg-4 ">
                                   Postal Code{" "}
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-8 p0">
+                                <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
                                     name="postalCode"
@@ -5085,13 +5085,13 @@ function OfflineDonation() {
                         <div className="col-12 pr15 mt20">
                           <div>
                             <div className="row">
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     First Name{" "}
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="firstName"
@@ -5120,13 +5120,13 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     Last Name{" "}
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="lastName"
@@ -5155,13 +5155,13 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     Mobile Number
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="mobileNo"
@@ -5190,12 +5190,12 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     Email Id <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="emailId"
@@ -5226,10 +5226,10 @@ function OfflineDonation() {
                               </div>
                             </div>
                             <div className="row">
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 "> Street 1</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 "> Street 1</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="street1"
@@ -5260,10 +5260,10 @@ function OfflineDonation() {
                                 </div>
                               </div>
 
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 "> Street 2</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 "> Street 2</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="street2"
@@ -5277,10 +5277,10 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 "> Street 3</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 "> Street 3</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="street3"
@@ -5294,10 +5294,10 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              {/* <div className="col-6">
+                              {/* <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">Country<span className="red-text">*</span></div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 ">Country<span className="red-text">*</span></div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="country"
@@ -5320,12 +5320,12 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div> */}
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     Country<span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <select
                                       className=" form-control-inside form-select"
                                       name="country"
@@ -5365,12 +5365,12 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     State<span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <select
                                       className=" form-control-inside form-select"
                                       name="state"
@@ -5410,13 +5410,13 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">
+                                  <div className="col-12 col-lg-4 ">
                                     {" "}
                                     City <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="city"
@@ -5447,10 +5447,10 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-6">
+                              <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-4 ">Postal Code</div>
-                                  <div className="col-8 p0">
+                                  <div className="col-12 col-lg-4 ">Postal Code</div>
+                                  <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
                                       name="postalCode"
