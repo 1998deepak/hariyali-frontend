@@ -409,7 +409,7 @@ const DashboardTable = () => {
         </div> */}
         <br />
         <div className="row padding-bottom-10">
-          <div className="col-12">
+          <div className="table-responsive">
             <table className="table table-striped table-bordered shadow-table">
               <thead>
                 <tr>
