@@ -78,8 +78,6 @@ const DashboardTable = () => {
       setLoading(false);
       if (flag) {
         setSelectedSeason(seasons[seasons.length - 1]);
-        alert();
-        alert(selectedSeason);
       }
     } else {
       toast.error(response?.message);

@@ -198,11 +198,10 @@ export const DonationService = {
 
 
 
-  getAllDonationOfUser: async (emailId) => {
-    console.log(emailId);
-    emailId = (await EncryptionService.encrypt(emailId)).toString();
+  getAllDonationOfUser: async (PageSize, PageNo) => {
+   
     const response = await APIService.Instance.get(
-      URLS.GETALLDONATIONOFUSER + emailId
+      URLS.GETALLDONATIONOFUSER+"?PageSize="+PageSize+"&PageNo="+PageNo
     );
     console.log(response);
     return response?.data;
