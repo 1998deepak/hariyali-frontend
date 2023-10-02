@@ -2558,7 +2558,7 @@ function OfflineDonation() {
                           className="mt20 mr10 webform-button--submit"
                           onClick={userAdd}
                         >
-                          Create Donate
+                          New Donation
                         </button>
                         <button
                           className="mt20 mr10 webform-button--cancel "
@@ -3870,7 +3870,7 @@ function OfflineDonation() {
                           className="mt20 mr10 webform-button--submit"
                           onClick={userAdd}
                         >
-                          Create Donate
+                          New Donation
                         </button>
                         <button
                           type="submit"
@@ -4556,7 +4556,7 @@ function OfflineDonation() {
                           className="mt20 mr10 webform-button--submit"
                           onClick={(e) => createDonation(e, userData)}
                         >
-                          Create Donate
+                          New Donation
                         </button>
                         <button
                           className="mt20 mr10 webform-button--cancel "
@@ -5488,7 +5488,7 @@ function OfflineDonation() {
                           className="mt20 mr10 webform-button--submit"
                           onClick={(e) => createDonationGift(e, userData)}
                         >
-                          Create Donate
+                          New Donation
                         </button>
                         <button
                           type="submit"
