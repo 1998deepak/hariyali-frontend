@@ -1645,7 +1645,7 @@ function OnlineDonation() {
                     </div>{" "}
                     <div className="padding-top-10" dangerouslySetInnerHTML={{ __html: message }}></div>
                     {userData?.user?.donarType === "Corporate" ? (
-                      <div>For CSR related enquiries please reach us at <a href="mailto:support@hariyali.org.in">ssupport@hariyali.org.in</a> | 022 22021031</div>
+                      <div>For CSR related enquiries please reach us at <a href="mailto:support@hariyali.org.in">support@hariyali.org.in</a> | 022 22021031</div>
                     ) : (
                       <></>
                     )}
