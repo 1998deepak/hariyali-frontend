@@ -1376,7 +1376,7 @@ function OnlineDonation() {
   //enter key login
   const onChangeUserEmail = (event) => {
     const { value, selectionStart, selectionEnd } = event.target;
-    let changeValue = value.toUpperCase();
+    let changeValue = value.toLowerCase();
     setUserEmail(changeValue);
     setTimeout(() => {
       if (inputRef.current && selectionStart && selectionEnd) {
@@ -1390,7 +1390,7 @@ function OnlineDonation() {
 
   const onChangeGiftUserEmail = (event) => {
     const { value, selectionStart, selectionEnd } = event.target;
-    let changeValue = value.toUpperCase();
+    let changeValue = value.toLowerCase();
     setGiftUserEmail(changeValue);
     setTimeout(() => {
       if (inputGiftRef.current && selectionStart && selectionEnd) {
