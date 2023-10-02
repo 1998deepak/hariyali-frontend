@@ -124,6 +124,7 @@ function DonarView() {
               </div>
             </div>
             <div className="col-12 pr0">
+            <div className="table-responsive">
               <BootstrapTable
                 classes="mt20 "
                 keyField="donationId"
@@ -131,6 +132,7 @@ function DonarView() {
                 columns={columns}
                  pagination={paginationFactory()}
               />
+              </div>
             </div>
             <div>
               <Link className="edit-icon" to={`/DonarCreation`}><IoArrowBackCircleSharp style={{fontSize:'40px'}}/></Link>
