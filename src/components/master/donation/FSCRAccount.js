@@ -26,8 +26,8 @@ export default function FSCRAccount() {
                 transfer to the FCRA account using SWIFT Transaction mode.
               </p>{" "}
               <p className="mb-2">
-                As a citizen of <b>{data1}</b> you can make the payment of 
-                <b>Rs.{" "}{data}</b> through bank transfer using the SWIFT Transaction
+                As a citizen of <b>{data1}</b> you can make the payment of {" "}
+                <b>INR{" "}{data}</b> through bank transfer using the SWIFT Transaction
                 mode as given below.
               </p>{" "}
               <div className="desk-div d-flex">
