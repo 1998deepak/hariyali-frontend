@@ -351,7 +351,7 @@ function OfflineDonation() {
         document.getElementById("mobileNo").focus();
         }
     }
-
+    const emailRegex = /^[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*([.]{1}[A-Za-z0-9_]{2,3})+$/i;
     if (!userData?.user?.emailId) {
       validationErrors.push({
         field: "userData.user.emailId",
@@ -361,7 +361,7 @@ function OfflineDonation() {
         document.getElementById("emailId").focus();
         }
     } else if (
-      !/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(
+      !emailRegex.test(
         userData.user.emailId
       )
     ) {
@@ -583,14 +583,14 @@ function OfflineDonation() {
             message: "Last Name should only contain alphabets",
           });
         }
-
+        const emailRegex = /^[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*([.]{1}[A-Za-z0-9_]{2,3})+$/i;
         if (!rec?.emailId) {
           validationErrors.push({
             field: "recipient[" + i + "].emailId",
             message: "Email ID is required",
           });
         } else if (
-          !/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(
+          !emailRegex.test(
             rec.emailId
           )
         ) {
