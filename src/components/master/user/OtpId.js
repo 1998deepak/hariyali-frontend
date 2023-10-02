@@ -24,11 +24,14 @@ function OtpId() {
      console.log(response?.status === SUCCESS);
      if (response?.status === SUCCESS) {
        toast.success(response?.message);
+       setTimeout(() => {
         navigate("/ConformPassword",
         {
           state: data,
         }
         );
+       }, 1000);
+        
      } else {
        toast.error(response?.message);
      }
@@ -43,7 +46,7 @@ function OtpId() {
         <div className="loginlogo">
           <img src={logo} alt="Logo" />
         </div>
-        <div className="row justify-content-between bgwite border1 padding30 contact-form-wrap creditial-div">
+        <div className="row justify-content-between bgwite padding30 contact-form-wrap creditial-div">
           <h5 className="header-text">Confirm Your OTP</h5>
           <p>Please Enter your OTP!</p>
           <div className="col-12">
