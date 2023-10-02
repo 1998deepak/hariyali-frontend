@@ -287,6 +287,9 @@ function OnlineDonation() {
         field: "donationType",
         message: "Donation Type is required",
       });
+      if(document.getElementById("donarType")){
+        document.getElementById("donarType").focus();
+      }
     }
 
     if (!captchaVerfied) {
@@ -373,6 +376,18 @@ function OnlineDonation() {
         field: "userData.user.donarType",
         message: "Donor Type is required",
       });
+      if(document.getElementById("donarType")){
+        document.getElementById("donarType").focus();
+      }
+    }
+    if (!userData?.user?.citizenship) {
+      validationErrors.push({
+        field: "userData.user.citizenship",
+        message: "Citizenship is required",
+      });
+      if(document.getElementById("Citizenship")){
+        document.getElementById("Citizenship").focus();
+      }
     }
     if (
       userData?.user?.donarType.toLocaleLowerCase() === "corporate" && !userData?.user?.organisation) {
@@ -1482,7 +1497,7 @@ function OnlineDonation() {
                             <select
                               className=" form-control-inside form-select"
                               name="user.citizenship"
-                              id="citizenship"
+                              id="Citizenship"
                               value={userData?.user?.citizenship}
                               onChange={handleChange}
                             >
@@ -2655,6 +2670,7 @@ function OnlineDonation() {
                               <select
                                 className=" form-control-inside form-select"
                                 name="user.donarType"
+                                id="donarType"
                                 value={userData?.user?.donarType}
                                 // onChange={handleChange}
                                 onChange={changeHandlerGift}
@@ -2775,6 +2791,7 @@ function OnlineDonation() {
                               <select
                                 className=" form-control-inside form-select"
                                 name="user.citizenship"
+                                id="Citizenship"
                                 value={userData?.user?.citizenship}
                                 onChange={handleChange}
                               >
