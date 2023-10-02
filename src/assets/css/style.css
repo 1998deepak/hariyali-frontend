@@ -4582,6 +4582,11 @@ iframe {
   padding: 4px 15px;
 }
 
+.field-wrapper .form-control-inside[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
 .field-wrapper .form-control:hover,
 .field-wrapper .form-control:focus,
 .field-wrapper .form-control-inside:hover,
