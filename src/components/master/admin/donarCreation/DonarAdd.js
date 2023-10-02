@@ -147,6 +147,7 @@ function DonarAdd() {
               </div>
             </div>
             <div className="col-12 pr0">
+            <div className="table-responsive">
               <BootstrapTable
                 classes="mt20"
                 keyField="id"
@@ -154,6 +155,7 @@ function DonarAdd() {
                 columns={columns}
                 // pagination={paginationFactory(paginationOptions)} // Apply pagination
               />
+              </div>
             </div>
           </div>
         </div>
