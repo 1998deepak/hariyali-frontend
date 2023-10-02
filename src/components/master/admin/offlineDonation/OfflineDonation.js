@@ -900,11 +900,12 @@ function OfflineDonation() {
     if (
       name == "user.panCard" ||
       name == "user.firstName" ||
-      name == "user.lastName" ||
-      name == "user.emailId"
+      name == "user.lastName"
     ) {
       currentField[keys[keys.length - 1]] = value.toUpperCase();
-    } else {
+    } else if(name == "user.emailId"){
+      currentField[keys[keys.length - 1]] = value.toLowerCase();
+    }else {
       currentField[keys[keys.length - 1]] = value;
     }
     setUserData(updatedFormData);
@@ -964,8 +965,11 @@ function OfflineDonation() {
   console.log(donations);
 
   const handleRecipentChange = (event, index) => {
-    const { name, value } = event.target;
+    let { name, value } = event.target;
     console.log(name);
+    if (name === "emailId") {
+      value = value.toLowerCase();
+    }
     setRecipient((prevAddress) => {
       const updatedAddress = [...prevAddress];
       updatedAddress[index] = {
@@ -2558,7 +2562,7 @@ function OfflineDonation() {
                           className="mt20 mr10 webform-button--submit"
                           onClick={userAdd}
                         >
-                          Create Donate
+                          New Donation
                         </button>
                         <button
                           className="mt20 mr10 webform-button--cancel "
@@ -3870,7 +3874,7 @@ function OfflineDonation() {
                           className="mt20 mr10 webform-button--submit"
                           onClick={userAdd}
                         >
-                          Create Donate
+                          New Donation
                         </button>
                         <button
                           type="submit"
@@ -4556,7 +4560,7 @@ function OfflineDonation() {
                           className="mt20 mr10 webform-button--submit"
                           onClick={(e) => createDonation(e, userData)}
                         >
-                          Create Donate
+                          New Donation
                         </button>
                         <button
                           className="mt20 mr10 webform-button--cancel "
@@ -5488,7 +5492,7 @@ function OfflineDonation() {
                           className="mt20 mr10 webform-button--submit"
                           onClick={(e) => createDonationGift(e, userData)}
                         >
-                          Create Donate
+                          New Donation
                         </button>
                         <button
                           type="submit"

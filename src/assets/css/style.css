@@ -5520,6 +5520,9 @@ video {
   .headinguser-icon svg{
     font-size: 24px;
   }
+  .Toastify__toast-container--top-right{
+    top:4rem;
+  }
 }
 
 @media only screen and (max-width: 991px) {
@@ -5708,6 +5711,8 @@ video {
 
   .logindiv {
     width: 90%;
+    height: 100%;
+    margin: 3rem 0;
   }
 
   .logindiv .login-wrapper {
@@ -5720,7 +5725,7 @@ video {
   .leftmenu-main aside{
     position: fixed;
     left: 0;
-    /* top: 72px; */
+    margin-top: 62px;
     transform: translateX(-100%);
   }
   .css-1wvake5{
@@ -5912,7 +5917,9 @@ video {
   .navbar-collapse{
     top: 68px;
   }
-  
+  .logindiv {
+    max-width: 300px;
+  }
 }
 
 @media only screen and (max-width:576px) {

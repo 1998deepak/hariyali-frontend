@@ -155,7 +155,7 @@ const Commitment = () => {
         </div>
 
         <div className="row">
-          <div className="table-responsive">
+          <div className="col-12 table-responsive">
             <table className="table table-striped table-bordered shadow-table">
               <thead>
                 <tr>
