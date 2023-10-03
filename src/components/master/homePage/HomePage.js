@@ -52,11 +52,11 @@ import planttreeImg from "../../../assets/img/plant.png";
 import gifttreeImg from "../../../assets/img/holding-hand.png";
 
 import { useEffect } from "react";
-import { useState } from 'react';
+import { useState } from "react";
 import { USER_DETAILS } from "../../../components/constants/constants";
 import { AuthService } from "../../../services/auth/auth.service";
 import { EncryptionService } from "../../../services/encryption.service";
-import { APIService } from '../../../services/api/api-service';
+import { APIService } from "../../../services/api/api-service";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
@@ -148,7 +148,10 @@ const Slideshow = () => {
                   <Link className="btn banner-btn" to={`/OnlineDonation`}>
                     Plant A Tree <img src={planttreeImg} />
                   </Link>
-                  <Link className="btn banner-btn" to={`/OnlineDonation?type=gift`}>
+                  <Link
+                    className="btn banner-btn"
+                    to={`/OnlineDonation?type=gift`}
+                  >
                     Gift A Tree <img src={gifttreeImg} />
                   </Link>
                 </div>
@@ -231,20 +234,21 @@ function HomePage() {
     const obj3 = document.getElementById("value3");
     animateValue3(obj3, 0, 153, 5000);
   }, []);
-    useEffect(() => {
-      const obj3 = document.getElementById("value3");
-      animateValue3(obj3, 0, 153 , 5000);
-      sessionExpired();
-    }, []);
-
+  useEffect(() => {
+    const obj3 = document.getElementById("value3");
+    animateValue3(obj3, 0, 153, 5000);
+    sessionExpired();
+  }, []);
 
   const sessionExpired = async () => {
-    if(localStorage.getItem(USER_DETAILS)){
-      let userDetails = await EncryptionService.decrypt(localStorage.getItem(USER_DETAILS));
+    if (localStorage.getItem(USER_DETAILS)) {
+      let userDetails = await EncryptionService.decrypt(
+        localStorage.getItem(USER_DETAILS)
+      );
       const response = await AuthService.logout(JSON.parse(userDetails));
       await APIService.Instance.removeToken();
     }
-  }
+  };
 
   return (
     <>
@@ -292,10 +296,9 @@ function HomePage() {
                   Project Hariyali is a joint initiative of Mahindra Foundation
                   and Naandi Foundation. One million trees have been planted
                   each year since 2007 across India. The project is part of
-                  nature-based solution that focuses on natural resource
-                  management and global organic farming protocols to improve the
-                  eco-system. Going forward, the project aims to plant 5 million
-                  trees per annum.{" "}
+                  nature-based solutions in climate action that focuses on
+                  regenerative agriculture to improve the eco-system. Going
+                  forward, the project aims to plant 5 million trees per annum.{" "}
                 </p>
                 <div className="pt-5">
                   <a href="/AboutUs" className="btn btn-secondary">
@@ -329,7 +332,7 @@ function HomePage() {
                 Project Hariyali aims to increase green cover, arrest the rising
                 ecological imbalance, enhance biodiversity, restore the
                 functional forest, and in the process support the livelihood of
-                marginalized farmers.
+                small holding farmer families.
               </p>
               <div className="pt-5">
                 <a href="/WhatWeDo" className="btn btn-secondary">
@@ -366,8 +369,19 @@ function HomePage() {
                   national and international bodies.
                 </p> */}
                 <p>
-                  India is committed to its National Determined Contributions and seeks to be carbon neutral by 2070.</p>
-                  <p>India is promoting individual responsibility toward climate action through Mission LiFE "Lifestyle for Environment". Project Hariyali has increased the green cover and is in alignment with LiFE.</p><p>Hariyali Project has been conferred with multiple awards by national and international bodies.</p>
+                  India is committed to its National Determined Contributions
+                  and seeks to be carbon neutral by 2070.
+                </p>
+                <p>
+                  India is promoting individual responsibility toward climate
+                  action through Mission LiFE "Lifestyle for Environment".
+                  Project Hariyali has increased the green cover and is in
+                  alignment with LiFE.
+                </p>
+                <p>
+                  Project Hariyali has been conferred with multiple awards by
+                  national and international bodies.
+                </p>
 
                 <div className="pt-5">
                   <a href="/WhySupportUs" className="btn btn-secondary">
@@ -389,7 +403,7 @@ function HomePage() {
       </section>
       <div className="container pv-75">
         <div className="row">
-        <div className="col-12 col-lg-6 order-2 order-lg-1">
+          <div className="col-12 col-lg-6 order-2 order-lg-1">
             <div className="img-responsive feature-image">
               <img src={program2} alt="Program" className="imgwidth100" />
             </div>
@@ -398,12 +412,13 @@ function HomePage() {
             <div className="program-details">
               <h3 className="mb-3">How To Associate</h3>
               <p>
-                There are two seasons for plantation - Monsoon and Winter. You
-                can choose to plant in any of these seasons or both with one
-                time contribution of ₹ 450/- per plant. The sapling takes 3
-                years of nurturing and monitoring to be self – dependent. We
-                provide support to the plant for these 3 years and in case if
-                the plant doesn’t survive, we replace it with a new sapling.
+              You can plant with one time contribution of ₹ 450/- per plant only. The sapling takes 3 years of nurturing and monitoring to be self – sustainable. We provide support during this period and in case the plant doesn’t survive, we replace it with a new sapling. 
+              </p>
+              <p>
+              Each donation supports maintenance of the plant and handholding of the farmers for additional two years. 
+              </p>
+              <p>
+              There are two seasons for plantation - Monsoon and Winter.
               </p>
               <div className="pt-5">
                 <a href="/WaystoAssociate" className="btn btn-secondary">

@@ -52,19 +52,19 @@ function ContactUs() {
         field: "contactData.contactName",
         message: "Contact Name is required",
       });
-    } else if (!/^[a-zA-Z]+$/.test(contactData.contactName)) {
+    } else if (!/^[a-zA-Z ]+$/.test(contactData.contactName)) {
       validationErrors.push({
         field: "contactData.contactName",
         message: "Contact Name should only contain alphabets",
       });
     }
-
+    const regex = /^[a-zA-Z0-9 &_]+$/;
     if (!contactData?.contactSubject) {
       validationErrors.push({
         field: "contactData.contactSubject",
         message: "Subject is required",
       });
-    } else if (!/^[a-zA-Z&_]+$/.test(contactData.contactSubject)) {
+    } else if (!regex.test(contactData.contactSubject)) {
       validationErrors.push({
         field: "contactData.contactSubject",
         message: "Subject should only contain alphabets",
@@ -91,7 +91,7 @@ function ContactUs() {
         message: "Massage is required",
       });
     }else if (
-      !/^[a-zA-Z]+$/.test(contactData.massage)
+      !regex.test(contactData.massage)
     ) {
       validationErrors.push({
         field: "contactData.massage",
@@ -174,8 +174,9 @@ function ContactUs() {
                   <address>
                     <h4 className="mb-0 askheading">Mahindra Foundation</h4>
                     <p className="ask-p">
-                      3rd Floor, Cecil Court Mahakavi Bhushan Marg Near Regal
-                      Cinema, Colaba Mumbai, Maharashtra - 400001
+                    3rd Floor, Cecil Court, Mahakavi Bhushan Marg,  <br/>
+                    Near Regal Cinema,Colaba Mumbai,<br/>
+                    Maharashtra - 400001
                     </p>
                     <a href="tel:022 22021031" className="ask-p">
                       <i className="bi bi-telephone-fill"></i> 022 22021031
