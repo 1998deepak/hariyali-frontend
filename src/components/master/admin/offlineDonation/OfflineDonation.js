@@ -1617,6 +1617,7 @@ function OfflineDonation() {
                                     <option value="Mr.">Mr.</option>
                                     <option value="Mrs.">Mrs.</option>
                                     <option value="Ms.">Ms.</option>
+                                    <option value="Miss.">Miss.</option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (
@@ -2564,18 +2565,6 @@ function OfflineDonation() {
                         >
                           New Donation
                         </button>
-                        <button
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Clear
-                        </button>
                       </form>
                     </Tab>
                     <Tab
@@ -2873,6 +2862,7 @@ function OfflineDonation() {
                                     <option value="Mr.">Mr.</option>
                                     <option value="Mrs.">Mrs.</option>
                                     <option value="Ms.">Ms.</option>
+                                    <option value="Miss.">Miss.</option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (
@@ -3876,20 +3866,6 @@ function OfflineDonation() {
                         >
                           New Donation
                         </button>
-                        <button
-                          type="submit"
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          type="submit"
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Clear
-                        </button>
                       </form>
                     </Tab>
                   </Tabs>
@@ -4087,6 +4063,7 @@ function OfflineDonation() {
                                     <option value="Mr.">Mr.</option>
                                     <option value="Mrs.">Mrs.</option>
                                     <option value="Ms.">Ms.</option>
+                                    <option value="Miss.">Miss.</option>
                                   </select>
                                   {/* {errors.map((error, index) => {
                                     if (error.field === 'userData.user.prefix') {
@@ -4562,18 +4539,6 @@ function OfflineDonation() {
                         >
                           New Donation
                         </button>
-                        <button
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Clear
-                        </button>
                       </form>
                     </Tab>
                     <Tab
@@ -4808,6 +4773,7 @@ function OfflineDonation() {
                                     <option value="Mr.">Mr.</option>
                                     <option value="Mrs.">Mrs.</option>
                                     <option value="Ms.">Ms.</option>
+                                    <option value="Miss.">Miss.</option>
                                   </select>
                                   {/* {errors.map((error, index) => {
                                     if (error.field === 'userData.user.prefix') {
@@ -5493,20 +5459,6 @@ function OfflineDonation() {
                           onClick={(e) => createDonationGift(e, userData)}
                         >
                           New Donation
-                        </button>
-                        <button
-                          type="submit"
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          type="submit"
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Clear
                         </button>
                       </form>
                     </Tab>

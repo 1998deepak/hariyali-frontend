@@ -1827,7 +1827,7 @@ function OnlineDonation() {
                                         <option value="Mr.">Mr.</option>
                                         <option value="Mrs.">Mrs.</option>
                                         <option value="Ms.">Ms.</option>
-                                        <option value="Ms.">Miss.</option>
+                                        <option value="Miss.">Miss.</option>
                                       </select>
                                       {errors.map((error, index) => {
                                         if (
@@ -2752,19 +2752,6 @@ function OnlineDonation() {
                           >
                             Proceed to pay
                           </button>
-                          <button
-                            type="submit"
-                            className="mt20 mr10 webform-button--cancel "
-                          >
-                            Cancel
-                          </button>
-                          <button
-                            type="submit"
-                            className="mt20 mr10 webform-button--cancel "
-                            onClick={clearForm}
-                          >
-                            Clear
-                          </button>
                         </form>
                       </div>
                     )}
@@ -3002,12 +2989,12 @@ function OnlineDonation() {
                             {/* <div className="col-4 ">Occasion</div> */}
                             <div className="col-12 p0 field-wrapper">
                               <label className="form-label">
-                                Message for the Giftee {" "}
+                                Message For The Giftee {" "}
                                 <span className="red-text">*</span>
                               </label>
                               <textarea
                                 className="form-control"
-                                placeholder="Message for the Giftee"
+                                placeholder="Message For The Giftee"
                                 name="giftContent"
                                 id="giftContent"
                                 value={donations[0].giftContent}
@@ -3213,6 +3200,7 @@ function OnlineDonation() {
                                         <option value="Mr.">Mr.</option>
                                         <option value="Mrs.">Mrs.</option>
                                         <option value="Ms.">Ms.</option>
+                                        <option value="Miss.">Miss.</option>
                                       </select>
                                       {errors.map((error, index) => {
                                         if (
@@ -4350,19 +4338,6 @@ function OnlineDonation() {
                             onClick={(e) => userAdd(e, "gift")}
                           >
                             Proceed to pay
-                          </button>
-                          <button
-                            type="submit"
-                            className="mt20 mr10 webform-button--cancel "
-                          >
-                            Cancel
-                          </button>
-                          <button
-                            type="submit"
-                            className="mt20 mr10 webform-button--cancel "
-                            onClick={clearForm}
-                          >
-                            Clear
                           </button>
                           {/* <button className="fab-button">
                           Preview
