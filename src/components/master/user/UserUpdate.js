@@ -47,6 +47,8 @@ function UserUpdate() {
   const [errors, setErrors] = useState({});
   const [addressData, setAddressData] = useState(initialAddress);
   const { email } = UserService.userDetails();
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
 
   // getUser Details
   const getUserDetails = async (id) => {
@@ -66,8 +68,7 @@ function UserUpdate() {
     }
   };
 
-  const [countries, setCountries] = useState([]);
-  const [states, setStates] = useState([]);
+  
 
   const getCountryList = async () => {
     setLoading(true);
@@ -217,6 +218,10 @@ function UserUpdate() {
   //Handle address change
   const handleAddressChange = (event, index) => {
     const { name, value } = event.target;
+    let data = null;
+    if (name === "country") {
+      data = countries.find((item) => item.countryName === value);
+    }
     setAddressData((prevAddress) => {
       const updatedAddress = [...prevAddress];
       updatedAddress[index] = {
@@ -225,6 +230,9 @@ function UserUpdate() {
       };
       return updatedAddress;
     });
+    if (data) {
+      getStatesByCountry(data.countryCode);
+  }
   };
 
   // handle Change
@@ -521,7 +529,7 @@ function UserUpdate() {
                                   </option>
                                   {countries.map((country) => {
                                     return (
-                                      <option value={country.countryName}>
+                                      <option key={country} value={country.countryName}>
                                         {country.countryName}
                                       </option>
                                     );
@@ -542,7 +550,7 @@ function UserUpdate() {
                                 {states?.length === 0 ? (
                                   <input
                                     type="text"
-                                    className=" form-control-inside form-select"
+                                    className=" form-control-inside form-control"
                                     name="state"
                                     value={addr.state}
                                     onChange={(event) =>
@@ -552,7 +560,7 @@ function UserUpdate() {
                                   />
                                 ) : (
                                   <select
-                                  className="form-control-inside form-control"
+                                  className="form-control-inside form-select"
                                   name="state"
                                   value={addr.state}
                                   onChange={(event) =>
