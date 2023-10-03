@@ -77,7 +77,6 @@ const ROUTE = {
     {label:"Special day",value:"Special day"},
     {label:"Achievements",value:"Achievements"},
     {label:"Memorial Tribute",value:"Memorial Tribute"},
-    {label:"Simple Donation",value:"Simple Donation"},
   ]
 
   export { USER_DETAILS, ROUTE , TOKEN , SUCCESS,ROLEAUTHORITY,stateOptions,PAYMENT_MODES,INDIA };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { DonationService } from "../../../services/donationService/donation.service";
@@ -8,90 +8,59 @@ import Loader from "../../common/loader/Loader";
 import PrivacyPolicy from "../../common/PrivacyPolicy";
 
 function UserUpdate() {
+
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
   const [informationShare, setInformationShare] = useState(false);
   const [showConditons, setShowConditons] = useState(false);
   // Initial Data for user
   const initialUserData = {
     user: {
-      firstName: "",
-      lastName: "",
-      mobileNo: "",
-      emailId: "",
-      donarType: "",
-      prefix: "",
-      organisation: "",
+      firstName: '',
+      lastName: '',
+      mobileNo: '',
+      emailId: '',
+      donarType: '',
+      prefix: '',
+      organisation: '',
       isTaxBenefit: false,
-      panCard: "",
+      panCard: '',
       activityType: null,
       address: null,
     },
   };
 
   // Initial data for address
-  const initialAddress = [
-    {
-      street1: "",
-      street2: "",
-      street3: "",
-      country: "",
-      state: "",
-      city: "",
-      postalCode: "",
-    },
-  ];
+  const initialAddress = [{
+    street1: "",
+    street2: "",
+    street3: "",
+    country: "",
+    state: "",
+    city: "",
+    postalCode: "",
+  }];
 
-  //states to store data
-  const [loading, setLoading] = useState(false);
+//states to store data
+const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState(initialUserData);
   const [errors, setErrors] = useState({});
   const [addressData, setAddressData] = useState(initialAddress);
   const { email } = UserService.userDetails();
-  const [countries, setCountries] = useState([]);
-  const [states, setStates] = useState([]);
 
   // getUser Details
   const getUserDetails = async (id) => {
     try {
-      setLoading(true);
+      setLoading(true)
       const response = await DonationService.getUserDetails(id);
       if (response?.data) {
         setUserData(response.data);
         setAddressData(response.data.address);
         setInformationShare(response.data.campaignConsent);
-        setPrivacyPolicy(response.data.dataConsent);
+        setPrivacyPolicy(response.data.dataConsent)
       }
       setLoading(false);
     } catch (error) {
       console.log(error);
-      setLoading(false);
-    }
-  };
-
-  
-
-  const getCountryList = async () => {
-    setLoading(true);
-    const response = await DonationService.getAllCountries();
-    if (response?.status === 200) {
-      // let data = response.data.map((item)=> ({ label: item, value: item }))
-      setCountries(response.data);
-      setLoading(false);
-    } else {
-      toast.error(response?.message);
-      setLoading(false);
-    }
-  };
-
-  const getStatesByCountry = async (countryId) => {
-    setLoading(true);
-    const response = await DonationService.getAllStatesByCountry(countryId);
-    console.log("get states", response.data);
-    if (response?.status === 200) {
-      setStates(response.data);
-      setLoading(false);
-    } else {
-      toast.error(response?.message);
       setLoading(false);
     }
   };
@@ -101,32 +70,32 @@ function UserUpdate() {
     if (email) {
       getUserDetails(email);
     }
-    getCountryList();
   }, [email]);
 
   //validate form
-  const validateFields = (userData, addressData) => {
+  const validateFields = (userData,addressData) => {
     const errors = {};
     // Validate emailId
     if (!userData.emailId) {
       errors.emailId = "Email ID is required";
-    } else if (
+    }
+    else if (
       !/^([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+)\.([a-zA-Z]{2,5})$/.test(
         userData.emailId
       )
     ) {
       errors.emailId = "Enter a Valid Email Address";
     }
-
+  
     // Validate mobileNo
     if (!userData.mobileNo) {
       errors.mobileNo = "Mobile No. is required";
     } else if (!/^[0-9]{10}$/.test(userData.mobileNo)) {
       errors.mobileNo = "Mobile No. must contain only digits";
     }
-
+  
     // Validate donarType
-    if (!userData.donarType || userData.donarType === "Donor Type") {
+    if (!userData.donarType || userData.donarType === "Donor Type"){
       errors.donarType = "Please select a Donor Type";
     }
     console.log(userData.donarType);
@@ -138,7 +107,7 @@ function UserUpdate() {
     if (!userData.prefix) {
       errors.organisation = "Please select a prefix";
     }
-
+  
     if (!userData.firstName) {
       errors.firstName = "First Name is required";
     } else if (!/^[A-Za-z]+$/.test(userData.firstName)) {
@@ -153,7 +122,7 @@ function UserUpdate() {
 
     // validation for address field
     if (addressData && addressData.length > 0) {
-      const firstAddress = addressData[0];
+      const firstAddress = addressData[0];      
       if (!firstAddress.street1) {
         errors.street1 = "Street 1 is required";
       }
@@ -214,10 +183,6 @@ function UserUpdate() {
   //Handle address change
   const handleAddressChange = (event, index) => {
     const { name, value } = event.target;
-    let data = null;
-    if (name === "country") {
-      data = countries.find((item) => item.countryName === value);
-    }
     setAddressData((prevAddress) => {
       const updatedAddress = [...prevAddress];
       updatedAddress[index] = {
@@ -226,16 +191,13 @@ function UserUpdate() {
       };
       return updatedAddress;
     });
-    if (data) {
-      getStatesByCountry(data.countryCode);
-  }
   };
 
   // handle Change
   const handleChange = (event) => {
     const { name, value } = event.target;
     const updatedFormData = { ...userData };
-    const keys = name.split(".");
+    const keys = name.split('.');
     let currentField = updatedFormData;
     for (let i = 0; i < keys.length - 1; i++) {
       currentField = currentField[keys[i]];
@@ -252,7 +214,7 @@ function UserUpdate() {
   return (
     <>
       <ToastContainer />
-      {loading && <Loader />}
+      {loading && <Loader/>}
       <div className="bggray">
         <div className="col-12 admin-maindiv">
           <div className=" justify-content-between bgwite borderform1 padding30 all-form-wrap">
@@ -296,13 +258,9 @@ function UserUpdate() {
                               value={userData.emailId}
                               // onBlur={handleBlur}
                               onChange={handleChange}
-                              disabled
+                                disabled   
                             />
-                            {errors.emailId && (
-                              <div className="error-message red-text">
-                                {errors.emailId}
-                              </div>
-                            )}
+                            {errors.emailId && <div className="error-message red-text">{errors.emailId}</div>}
                           </div>
                         </div>
                       </div>
@@ -318,11 +276,7 @@ function UserUpdate() {
                               value={userData.mobileNo}
                               onChange={handleChange}
                             />
-                            {errors.mobileNo && (
-                              <div className="error-message red-text">
-                                {errors.mobileNo}
-                              </div>
-                            )}
+                             {errors.mobileNo && <div className="error-message red-text">{errors.mobileNo}</div>}
                           </div>
                         </div>
                       </div>
@@ -330,23 +284,18 @@ function UserUpdate() {
                         <div className="row select-label">
                           <div className="col-12 col-lg-4"> Donor Type</div>
                           <div className="col-12 col-lg-8 p0">
-                            <select
-                              className=" form-control-inside form-select"
+                            <select className=" form-control-inside form-select"
                               name="donarType"
                               value={userData.donarType}
-                              disabled
-                              onChange={handleChange}
-                            >
+                            disabled
+                              onChange={handleChange}>
                               <option selected>Donor Type</option>
                               <option value="Corporate">Corporate</option>
                               <option value="Individual">Individual</option>
                             </select>
-                            {errors.donarType && (
-                              <div className="error-message red-text">
-                                {errors.donarType}
-                              </div>
-                            )}
+                            {errors.donarType && <div className="error-message red-text">{errors.donarType}</div>}
                           </div>
+
                         </div>
                       </div>
                       <div className="col-12 col-lg-6">
@@ -369,12 +318,11 @@ function UserUpdate() {
                         <div className="row select-label">
                           <div className="col-12 col-lg-4">Prefix</div>
                           <div className="col-12 col-lg-8 p0">
-                            <select
-                              className=" form-control-inside form-select"
+                            <select className=" form-control-inside form-select"
                               value={userData.prefix}
                               onChange={handleChange}
                               disabled
-                            >
+                              >
                               <option selected>Prefix</option>
                               <option value="Mr.">Mr.</option>
                               <option value="Mrs.">Mrs.</option>
@@ -397,11 +345,7 @@ function UserUpdate() {
                               onChange={handleChange}
                               disabled
                             />
-                            {errors.firstName && (
-                              <div className="error-message red-text">
-                                {errors.firstName}
-                              </div>
-                            )}
+                            {errors.firstName && <div className="error-message red-text">{errors.firstName}</div>}
                           </div>
                         </div>
                       </div>
@@ -418,11 +362,7 @@ function UserUpdate() {
                               onChange={handleChange}
                               disabled
                             />
-                            {errors.lastName && (
-                              <div className="error-message red-text">
-                                {errors.lastName}
-                              </div>
-                            )}
+                             {errors.lastName && <div className="error-message red-text">{errors.lastName}</div>}
                           </div>
                         </div>{" "}
                       </div>
@@ -440,6 +380,7 @@ function UserUpdate() {
                               onChange={handleChange}
                               disabled
                             />
+                            
                           </div>
                         </div>
                       </div>
@@ -448,9 +389,9 @@ function UserUpdate() {
                   <hr />
                   <div className="actionheadingdiv">Address</div>
                   <div className="col-12 pr15 mt20">
-                    {addressData.map((addr, index) => {
-                      return (
-                        <div key={index} className="row">
+                    {
+                      addressData.map((addr, index) => {
+                        return <div key={index} className="row">
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
                               <div className="col-12 col-lg-4"> Street 1</div>
@@ -461,15 +402,9 @@ function UserUpdate() {
                                   placeholder=" Street 1"
                                   type="text"
                                   value={addr.street1}
-                                  onChange={(event) =>
-                                    handleAddressChange(event, index)
-                                  }
+                                  onChange={(event) => handleAddressChange(event, index)}
                                 />
-                                {errors.street1 && (
-                                  <div className="error-message red-text">
-                                    {errors.street1}
-                                  </div>
-                                )}
+                                 {errors.street1 && <div className="error-message red-text">{errors.street1}</div>}
                               </div>
                             </div>
                           </div>
@@ -483,9 +418,7 @@ function UserUpdate() {
                                   placeholder="Street 2"
                                   type="text"
                                   value={addr.street2}
-                                  onChange={(event) =>
-                                    handleAddressChange(event, index)
-                                  }
+                                  onChange={(event) => handleAddressChange(event, index)}
                                 />
                               </div>
                             </div>
@@ -500,93 +433,48 @@ function UserUpdate() {
                                   placeholder="Street 3"
                                   type="text"
                                   value={addr.street3}
-                                  onChange={(event) =>
-                                    handleAddressChange(event, index)
-                                  }
+                                  onChange={(event) => handleAddressChange(event, index)}
                                 />
                               </div>
                             </div>
                           </div>
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-12 col-lg-4 ">Country</div>
+                              <div className="col-12 col-lg-4">Country</div>
                               <div className="col-12 col-lg-8 p0">
-                                <select
-                                  className="form-control-inside form-select"
+                                <input
+                                  className="form-control-inside form-control"
                                   name="country"
                                   placeholder="Country"
                                   type="text"
                                   value={addr.country}
-                                  onChange={(event) =>
-                                    handleAddressChange(event, index)
-                                  }
-                                >
-                                  <option disabled selected value="">
-                                    Select Country
-                                  </option>
-                                  {countries.map((country) => {
-                                    return (
-                                      <option key={country} value={country.countryName}>
-                                        {country.countryName}
-                                      </option>
-                                    );
-                                  })}
-                                </select>
-                                {errors.country && (
-                                  <div className="error-message red-text">
-                                    {errors.country}
-                                  </div>
-                                )}
+                                  onChange={(event) => handleAddressChange(event, index)}
+                                />
+                                 {errors.country && <div className="error-message red-text">{errors.country}</div>}
                               </div>
                             </div>
                           </div>
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-12 col-lg-4 "> State</div>
+                              <div className="col-12 col-lg-4">State</div>
                               <div className="col-12 col-lg-8 p0">
-                                {states?.length === 0 ? (
-                                  <input
-                                    type="text"
-                                    className=" form-control-inside form-control"
-                                    name="state"
-                                    value={addr.state}
-                                    onChange={(event) =>
-                                      handleAddressChange(event, index)
-                                    }
-                                    placeholder="state"
-                                  />
-                                ) : (
-                                  <select
-                                  className="form-control-inside form-select"
+                                <select
+                                  className=" form-control-inside form-select"
                                   name="state"
                                   value={addr.state}
-                                  onChange={(event) =>
-                                    handleAddressChange(event, index)
-                                  }
-                                  >
-                                    <option disabled selected value="">
-                                      Select State
+                                  onChange={(event) => handleAddressChange(event, index)}
+                                >
+                                  <option value="">Select State</option>
+                                  {stateOptions.map((state) => (
+                                    <option key={state} value={state}>
+                                      {state}
                                     </option>
-                                    {states.map((state) => (
-                                      <option
-                                        key={state}
-                                        value={state.stateName}
-                                      >
-                                        {state.stateName}
-                                      </option>
-                                    ))}
-                                  </select>
-                                )}
-
-{errors.state && (
-                                  <div className="error-message red-text">
-                                    {errors.state}
-                                  </div>
-                                )}
+                                  ))}
+                                </select>
+                                {errors.state && <div className="error-message red-text">{errors.state}</div>}
                               </div>
                             </div>
                           </div>
-                       
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
                               <div className="col-12 col-lg-4">City</div>
@@ -597,15 +485,9 @@ function UserUpdate() {
                                   placeholder="City"
                                   type="text"
                                   value={addr.city}
-                                  onChange={(event) =>
-                                    handleAddressChange(event, index)
-                                  }
+                                  onChange={(event) => handleAddressChange(event, index)}
                                 />
-                                {errors.city && (
-                                  <div className="error-message red-text">
-                                    {errors.city}
-                                  </div>
-                                )}
+                                 {errors.city && <div className="error-message red-text">{errors.city}</div>}
                               </div>
                             </div>
                           </div>
@@ -619,25 +501,25 @@ function UserUpdate() {
                                   placeholder="Postal Code"
                                   type="text"
                                   value={addr.postalCode}
-                                  onChange={(event) =>
-                                    handleAddressChange(event, index)
-                                  }
+                                  onChange={(event) => handleAddressChange(event, index)}
+
                                 />
                               </div>
                             </div>
                           </div>
                           <hr />
-                          <PrivacyPolicy
-                            informationShare={informationShare}
-                            setInformationShare={setInformationShare}
-                            privacyPolicy={privacyPolicy}
-                            setPrivacyPolicy={setPrivacyPolicy}
-                            handleShowConditions={handleShowConditions}
-                            isDisabled
-                          />
+                        <PrivacyPolicy
+                          informationShare={informationShare}
+                          setInformationShare={setInformationShare}
+                          privacyPolicy={privacyPolicy}
+                          setPrivacyPolicy={setPrivacyPolicy}
+                          handleShowConditions={handleShowConditions}
+                          isDisabled
+                        />
                         </div>
-                      );
-                    })}
+                      })
+                    }
+
                   </div>
                   <button
                     type="submit"
@@ -647,12 +529,10 @@ function UserUpdate() {
                     Update
                   </button>
                 </form>
-              </div>
-            </div>
-          </div>
-        </div>
+              </div></div></div></div>
       </div>
       {/* body */}
+
     </>
   );
 }
