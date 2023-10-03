@@ -186,7 +186,7 @@ const RecipientDetails = ({
             </div>
             <div className="col-12 col-lg-6">
               <div className="row select-label">
-              <div className="col-12 col-lg-4 ">Country</div>
+              <div className="col-12 col-lg-4 ">Country <span className="red-text">*</span></div>
                 <div className="col-12 col-lg-8 p0">
                   <select
                     className=" form-control-inside form-select"
@@ -221,7 +221,7 @@ const RecipientDetails = ({
             </div>
             <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-12 col-lg-4 "> State</div>
+                <div className="col-12 col-lg-4 "> State <span className="red-text">*</span></div>
                 <div className="col-12 col-lg-8 p0">
                   {
                     states?.length === 0 ?
