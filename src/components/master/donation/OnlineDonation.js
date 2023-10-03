@@ -1649,7 +1649,7 @@ function OnlineDonation() {
                           </div>
                         </div>
                       </div>
-                      {message == "" &&
+                      {/* {message == "" &&
                       <div className="col-12 padding-top-10">
                         <Button
                           className="float-right"
@@ -1660,7 +1660,7 @@ function OnlineDonation() {
                           Proceed
                         </Button>
                       </div>
-                      }
+                      } */}
                     </div>{" "}
                     <div className="padding-top-10" dangerouslySetInnerHTML={{ __html: message }}></div>
                     {userData?.user?.donarType === "Corporate" ? (
@@ -1945,8 +1945,8 @@ function OnlineDonation() {
                                 </div>{" "}
                               </div>
                               {userData?.user?.citizenship?.toUpperCase() ===
-                              INDIA || address[0]?.country.toUpperCase() ===
-                              INDIA ? (
+                              INDIA && userData?.user?.donarType === "Individual"  || address[0]?.country.toUpperCase() ===
+                              INDIA && userData?.user?.donarType === "Corporate" ? (
                                 <>
                                   {userData?.user?.donarType ===
                                   "Individual" ? (
@@ -2024,6 +2024,7 @@ function OnlineDonation() {
                                             id="panCard"
                                             placeholder={userData?.user?.donarType === "Corporate"?"PAN Card":"PAN Card"}
                                             type="text"
+                                            maxLength={10}
                                             value={userData?.user?.panCard}
                                             onChange={handleChange}
                                             />
@@ -3040,9 +3041,11 @@ function OnlineDonation() {
                             </div>
                           </div>
                         </div>
-                        {message == "" &&
+                        <div className="col-12 padding-top-10">
+                        <span className="actionheadingdiv"><b>Proceed to Gift and provide Gifter & Giftee details</b></span>
+                        </div>
+                        {/* {message == "" &&
                           <div className="col-12 padding-top-10">
-                            <span className="actionheadingdiv"><b>Proceed to Gift and provide Gifter & Giftee details</b></span>
 
                             <Button
                               className="float-right"
@@ -3053,7 +3056,7 @@ function OnlineDonation() {
                               Proceed
                             </Button>
                           </div>
-                        }
+                        } */}
                       </div>{" "}
                       <div dangerouslySetInnerHTML={{ __html: message }}></div>
                     </div>
@@ -3313,8 +3316,8 @@ function OnlineDonation() {
                                 </div>{" "}
                               </div>
                               {userData?.user?.citizenship?.toUpperCase() ===
-                              INDIA || address[0]?.country.toUpperCase() ===
-                              INDIA ? (
+                              INDIA && userData?.user?.donarType === "Individual"  || address[0]?.country.toUpperCase() ===
+                              INDIA && userData?.user?.donarType === "Corporate" ? (
                                 <>
                                   {userData?.user?.donarType ===
                                   "Individual" ? (
@@ -3392,6 +3395,7 @@ function OnlineDonation() {
                                             id="panCard"
                                             placeholder={userData?.user?.donarType === "Corporate"?"PAN Card":"PAN Card"}
                                             type="text"
+                                            maxLength={10}
                                             value={userData?.user?.panCard}
                                             onChange={handleChange}
                                           />
