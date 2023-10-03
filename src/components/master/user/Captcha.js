@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { FiRefreshCcw } from "react-icons/fi";
-function Captcha({ verified, setVerified }) {
+function Captcha({ verified, setVerified,changeCaptcha }) {
   
   const [captcha, setCaptcha] = useState("");
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
     setCaptcha(generateString(6));
-  }, []);
+  }, [changeCaptcha]);
 
   const characters = "abc123";
 
@@ -61,7 +61,7 @@ function Captcha({ verified, setVerified }) {
         <div className="col captcha-wrapper">
           <input
             type="text"
-            id="inputType"
+            id="inputCaptcha"
             className="login-input login-captcha form-control"
             placeholder="Enter Captcha"
             name="username"

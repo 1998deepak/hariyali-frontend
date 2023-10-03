@@ -470,7 +470,7 @@ function NewOnlineDonation() {
                     activeKey={donationType}
                     onSelect={handleTabSelect}
                   >
-                    <Tab eventKey="Self-Donate" title="Plant a tree">
+                    <Tab eventKey="Self-Donate" title="Plant A Tree">
                       <form className="form-div contact-form-wrap">
                         <DonationHeader
                           donations={donations}
@@ -501,7 +501,7 @@ function NewOnlineDonation() {
                     </Tab>
                     <Tab
                       eventKey="Gift-Donate"
-                      title="Gift a tree"
+                      title="Gift A Tree"
                     >
                       {/* <h5>Gift a tree</h5> */}
                       <form className="form-div contact-form-wrap">
