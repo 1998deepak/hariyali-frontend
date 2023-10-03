@@ -99,7 +99,7 @@ const Header = () => {
           </Row>
         </Container>
         <div className="copyright">          
-         Copyrights © 2023 <span><a className="colorgreen" href="Hariyali.org.in">Hariyali.org.in</a></span> | All rights reserved | Photo credit Naandi Foundation | We are available at
+         Copyrights © 2023 <span><a className="colorgreen" href="https://www.hariyali.org.in">Hariyali.org.in</a></span> | All rights reserved | Photo credit Naandi Foundation | We are available at
           <span className="colorgreen"> <a className="colorgreen" href="1t.org">1t.org</a></span>
         </div>
       </div>

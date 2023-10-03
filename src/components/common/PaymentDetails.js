@@ -201,7 +201,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
                   disabled={isDisabled}
                 />
-                {errors?.map((error, index) => {
+                {/* {errors?.map((error, index) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].paymentDate`
                   ) {
@@ -212,7 +212,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                     );
                   }
                   return null;
-                })}
+                })} */}
               </div>
             </div>
           </div>
