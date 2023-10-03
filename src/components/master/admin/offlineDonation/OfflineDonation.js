@@ -269,7 +269,7 @@ function OfflineDonation() {
         }
     }
 
-    if (userData?.user?.citizenship.toUpperCase() === INDIA || address[0]?.country.toUpperCase() ===
+    if (userData?.user?.citizenship?.toUpperCase() === INDIA || address[0]?.country?.toUpperCase() ===
     INDIA ) {
       if (hasAadharCard === true) {
         if (!userData?.user?.panCard) {
@@ -1092,34 +1092,26 @@ function OfflineDonation() {
       if (response?.status === "Success") {
         toast.success(response?.message);
         console.log(response?.data);
-        // console.log(formData.formData.user.address);
-
         let addr = [...initialAddress];
-        if (hasValues(response.data.address[0])) {
-          addr[0] = response.data.address[0];
+        if (response?.data?.address) {
+          if (hasValues(response?.data?.address[0])) {
+            addr[0] = response.data.address[0];
+          }
+          if (hasValues(response?.data?.address[1])) {
+            addr[1] = response.data.address[1];
+          }
         }
-        // console.log(formData.formData.user.address);
-        console.log(hasValues(response.data.address[1]));
-        if (hasValues(response.data.address[1])) {
-          addr[1] = response.data.address[1];
-        }
-        console.log(addr);
+        
         setAddress(addr);
-        // console.log(formData);
         const formData = {
           formData: {
             user: response?.data,
           },
         };
-        console.log(response?.data.donations[0].paymentInfo);
-
-        console.log(formData.formData.user.firstName);
-        console.log(formData.formData.user.donations[0].userPackage);
-        setPackageData(formData.formData.user.donations[0].userPackage);
+        if (formData?.formData?.user?.donations) {
+          setPackageData(formData?.formData?.user?.donations[0]?.userPackage);
+        }
         setUserData(formData.formData);
-        setTimeout(() => {
-          // navigate("/ModelView");
-        }, 2000);
         setLoading(false);
       } else if (
         response?.statusCode === 409 ||
@@ -1556,7 +1548,7 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            {userData?.user?.donarType.toLowerCase() ===
+                            {userData?.user?.donarType?.toLowerCase() ===
                             "corporate" ? (
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
@@ -1617,6 +1609,7 @@ function OfflineDonation() {
                                     <option value="Mr.">Mr.</option>
                                     <option value="Mrs.">Mrs.</option>
                                     <option value="Ms.">Ms.</option>
+                                    <option value="Miss.">Miss.</option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (
@@ -1702,7 +1695,7 @@ function OfflineDonation() {
                                 </div>
                               </div>{" "}
                             </div>
-                            {userData?.user?.citizenship.toUpperCase() === INDIA ? (
+                            {userData?.user?.citizenship?.toUpperCase() === INDIA ? (
                               <>
                                 {userData?.user?.donarType === "Individual" ? (
                                   <div className="col-12 col-lg-6">
@@ -2564,18 +2557,6 @@ function OfflineDonation() {
                         >
                           New Donation
                         </button>
-                        <button
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Clear
-                        </button>
                       </form>
                     </Tab>
                     <Tab
@@ -2814,7 +2795,7 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            {userData.user.donarType.toLowerCase() ===
+                            {userData?.user?.donarType?.toLowerCase() ===
                             "corporate" ? (
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
@@ -2873,6 +2854,7 @@ function OfflineDonation() {
                                     <option value="Mr.">Mr.</option>
                                     <option value="Mrs.">Mrs.</option>
                                     <option value="Ms.">Ms.</option>
+                                    <option value="Miss.">Miss.</option>
                                   </select>
                                   {errors.map((error, index) => {
                                     if (
@@ -2957,7 +2939,7 @@ function OfflineDonation() {
                               </div>{" "}
                             </div>
 
-                            {userData?.user?.citizenship.toUpperCase() === INDIA ? (
+                            {userData?.user?.citizenship?.toUpperCase() === INDIA ? (
                               <>
                                 {userData?.user?.donarType === "Individual" ? (
                                   <div className="col-12 col-lg-6">
@@ -3274,7 +3256,20 @@ function OfflineDonation() {
                                     State <span className="red-text">*</span>
                                   </div>
                                   <div className="col-12 col-lg-8 p0 ">
-                                    <select
+                                    {
+                                      states.length === 0 ?
+                                      <input
+                                      type="text"
+                                      className=" form-control-inside form-control"
+                                      name="state"
+                                      placeholder="state"
+                                      id="state"
+                                      value={address[0]?.state}
+                                      onChange={(event) =>
+                                        handleAddressChange(event, 0)
+                                      }
+                                      />:
+                                      <select
                                       className=" form-control-inside form-select form-control"
                                       name="state"
                                       id="state"
@@ -3295,6 +3290,8 @@ function OfflineDonation() {
                                         </option>
                                       ))}
                                     </select>
+                                    }
+                                    
                                     {errors.map((error, index) => {
                                       if (error.field === "address[0].state") {
                                         return (
@@ -3876,20 +3873,6 @@ function OfflineDonation() {
                         >
                           New Donation
                         </button>
-                        <button
-                          type="submit"
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          type="submit"
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Clear
-                        </button>
                       </form>
                     </Tab>
                   </Tabs>
@@ -4036,7 +4019,7 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            {userData.user.donarType.toLowerCase() ===
+                            {userData?.user?.donarType?.toLowerCase() ===
                             "corporate" ? (
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
@@ -4087,6 +4070,7 @@ function OfflineDonation() {
                                     <option value="Mr.">Mr.</option>
                                     <option value="Mrs.">Mrs.</option>
                                     <option value="Ms.">Ms.</option>
+                                    <option value="Miss.">Miss.</option>
                                   </select>
                                   {/* {errors.map((error, index) => {
                                     if (error.field === 'userData.user.prefix') {
@@ -4562,18 +4546,6 @@ function OfflineDonation() {
                         >
                           New Donation
                         </button>
-                        <button
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Clear
-                        </button>
                       </form>
                     </Tab>
                     <Tab
@@ -4755,7 +4727,7 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            {userData.user.donarType.toLowerCase() ===
+                            {userData?.user?.donarType?.toLowerCase() ===
                             "corporate" ? (
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
@@ -4808,6 +4780,7 @@ function OfflineDonation() {
                                     <option value="Mr.">Mr.</option>
                                     <option value="Mrs.">Mrs.</option>
                                     <option value="Ms.">Ms.</option>
+                                    <option value="Miss.">Miss.</option>
                                   </select>
                                   {/* {errors.map((error, index) => {
                                     if (error.field === 'userData.user.prefix') {
@@ -5493,20 +5466,6 @@ function OfflineDonation() {
                           onClick={(e) => createDonationGift(e, userData)}
                         >
                           New Donation
-                        </button>
-                        <button
-                          type="submit"
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          type="submit"
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Clear
                         </button>
                       </form>
                     </Tab>
