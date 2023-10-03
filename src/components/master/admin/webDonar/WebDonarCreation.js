@@ -21,6 +21,7 @@ function WebDonarCreation() {
   const [statusFilter, setStatusFilter] = useState("Pending");
   const [status, setStatus] = useState("Pending");
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [showDonationConfirmationModal, setShowDonationConfirmationModal] = useState(false);
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
   const [pageNo, setPageNo] = useState(1);
@@ -48,7 +49,7 @@ function WebDonarCreation() {
   // Get all user donation
   const getAllUserWithWebID = async (searchText, pageNo) => {
     setLoading(true);
-    
+    setPageNo(pageNo+1);
     let pageRequest = {
       searchText: searchText,
       status: statusFilter,
@@ -119,6 +120,21 @@ function WebDonarCreation() {
     setShowConfirmationModal(true);
   };
 
+  //Handle donational Approval
+  const handleDonationApproveAndReject = (row, msg) => {
+    let data = {
+      donationId: row.donationId,
+      isApproved: msg == 'Approved' ? true: false,
+      remark:null,
+      approvalStatus:msg
+    }
+
+    setInvalidRemark(false);
+    setRemark("");
+    setFormData(data);
+    setShowDonationConfirmationModal(true);
+  };
+
   //Approve donation with webid
   const approveDonationWithWebId = async (data) => {
 
@@ -143,15 +159,38 @@ function WebDonarCreation() {
     }
   };
 
+  const approveUserDonation = async (data) => {
+
+    if (formData.approvalStatus == 'Rejected' && remark == "") {
+      setInvalidRemark(true);
+    } else {
+      formData.remark = remark;
+      setLoading(true)
+      const response = await WebDonorCreationService.approveUserDonation(formData);
+      console.log(response);
+      getUserDonations(donor, donationModalPageNo-1);
+      getAllUserWithWebID("", pageNo-1);
+      if (response?.status === SUCCESS) {
+        toast.success(response?.message);
+        setLoading(false)
+      } else {
+        toast.error(response?.message);
+        setLoading(false)
+      }     
+      setShowDonationConfirmationModal(false); 
+    }
+  };
+
+
   const handlePageClick = (event) => {
     console.log(event);
     setPageNo(event);
-    getAllUserWithWebID(searchText, event-1);
+    getAllUserWithWebID(searchText, event - 1);
   };
 
   const handleDonationModalPageClick = (event) => {
     setDonationModalPageNo(event);
-    getUserDonations(donor, event-1);
+    getUserDonations(donor, event - 1);
   };
 
   // Handle Search for searching record
@@ -185,7 +224,7 @@ function WebDonarCreation() {
       <div className="bggray">
         <div className="col-12 admin-maindiv">
           <div className=" justify-content-between bgwite borderform1 padding30 all-form-wrap">
-            <h5>Donation List</h5>
+            <h5>Donor List</h5>
 
             <div className="row">
               <div className="col-3">
@@ -233,10 +272,11 @@ function WebDonarCreation() {
                 </div>
               }
               <div className="col-12 pr0">
-                <Table striped responsive>
+                <Table striped responsive className="donationTable">
                   <thead>
                     <tr>
-                      <th>WEB PORTAL ID</th>
+                      {/* <th>WEB PORTAL ID</th> */}
+                      <th>Email ID</th>
                       {status == 'Approved' &&
                         <th>Donor Id</th>}
                       <th>Donor Name</th>
@@ -245,15 +285,17 @@ function WebDonarCreation() {
                       <th>STATUS</th>
                       {status == 'Rejected' &&
                         <th>Remark</th>}
-
-                      <th>ACTION</th>
+                      {status == 'Approved' &&
+                        <th>Pending Donation</th>}
+                      <th className="min-width-128">ACTION</th>
                     </tr>
                   </thead>
                   <tbody>
                     {data.map(donor => {
                       return (
                         <tr>
-                          <td>{donor.webId}</td>
+                          {/* <td>{donor.webId}</td> */}
+                          <td>{donor.emailId}</td>
                           {status == 'Approved' &&
                             <td>{donor.donorId}</td>}
 
@@ -263,6 +305,13 @@ function WebDonarCreation() {
                           <td>{donor.approvalStatus}</td>
                           {status == 'Rejected' &&
                             <td>{donor.remark}</td>
+                          }
+                          {status == 'Approved' &&
+                          <>
+                          
+                            <td className="text-center">{donor.totalPendingDonation > 0 && (<b className="count"> {donor.totalPendingDonation }</b>)}
+                            </td>
+                            </>
                           }
                           <td>
                             <span>
@@ -328,15 +377,44 @@ function WebDonarCreation() {
           <Button variant="secondary" onClick={() => setShowConfirmationModal(false)}>Cancel</Button>
         </Modal.Footer>
       </Modal>
+      <Modal show={showDonationConfirmationModal} onHide={() => setShowDonationConfirmationModal(false)} className="confirmation-modal">
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Are you sure you want to {formData?.approvalStatus === "Approved" ? "approve" : "reject"} this?</p>
+          {formData?.approvalStatus == 'Rejected' &&
+            <form>
+              <div className="row">
+                <div className="col-12">
+                  <textarea
+                    placeholder="Rejection Comment here"
+                    className="pl20 form-control-inside"
+                    type="text"
+                    required="true"
+                    onChange={handleComment}
+                  />
+                  {invalidRemark && <span className="error-message red-text">Remark is required</span>}
+                </div>
+              </div>
+            </form>
+          }
+        </Modal.Body>
+        <Modal.Footer className="">
+          <Button variant="primary" onClick={() => approveUserDonation(formData)}>OK</Button>
+          <Button variant="secondary" onClick={() => setShowDonationConfirmationModal(false)}>Cancel</Button>
+        </Modal.Footer>
+      </Modal>
 
       <Modal
         show={showDonationModal}
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
+        className="DonationListModal"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Donation List of {donor.webId}</Modal.Title>
+          <Modal.Title>Donation List of {donor.emailId}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div class="row">
@@ -351,8 +429,9 @@ function WebDonarCreation() {
                     <th>Donation Amount</th>
                     <th>Payment Status</th>
                     <th>Payment Date</th>
-                    {/* <th>Total Amount</th> */}
-                    <th>View</th>
+                    <th>Status</th>
+                    <th>Remark</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -368,7 +447,17 @@ function WebDonarCreation() {
                             <td>{payment.amount}</td>
                             <td>{payment.paymentStatus}</td>
                             <td>{payment.paymentDate}</td>
-                            <td>
+                            <td>{donation.approvalStatus}</td>
+                            <td>{donation.remark}</td>
+                            <td className="min-width-128">
+                              {donation.approvalStatus == 'Pending' && donor.approvalStatus == 'Approved' &&
+                                <>
+                                  <BsCheckCircleFill title="Approve" className="icon-btn approve-button"
+                                    onClick={() => handleDonationApproveAndReject(donation, "Approved")} />
+                                  <AiFillCloseCircle title="Reject" className="icon-btn reject-button"
+                                    onClick={() => handleDonationApproveAndReject(donation, "Rejected")} />
+                                </>
+                              }
                               <span>
                                 <Link to={`/OfflinePlanAndDonationUpdate/${donation.donationId}`} className="view-icon icon-btn" ><FaRegEye /></Link>
                               </span>
@@ -381,16 +470,16 @@ function WebDonarCreation() {
                   })}
                 </tbody>
               </Table>
-              
+
               {donationModalTotalRecords > 0 &&
-                  <Pagination
-                    itemsCount={donationModalTotalRecords}
-                    itemsPerPage={donationModalPagesize}
-                    currentPage={donationModalPageNo}
-                    setCurrentPage={handleDonationModalPageClick}
-                    alwaysShown={false}
-                  />
-                }
+                <Pagination
+                  itemsCount={donationModalTotalRecords}
+                  itemsPerPage={donationModalPagesize}
+                  currentPage={donationModalPageNo}
+                  setCurrentPage={handleDonationModalPageClick}
+                  alwaysShown={false}
+                />
+              }
             </div>
           </div>
 

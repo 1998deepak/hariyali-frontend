@@ -33,23 +33,26 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
 
 
   const getAllDonationOfUser = async (pageNo) => {
-
     setLoading(true);
     const response = await DonationService.getAllDonationOfUser(pagesize, pageNo);
+    console.log(response?.data);
     if (response?.status === "Success") {
       console.log(response)
       setDonationList(response.data);
       setTotalRecords(response.totalRecords);
       setLoading(false);
+    } else if(response?.data?.status == "CONFLICT"){
+      toast(response?.data?.message);
+      setLoading(false);
     } else {
       toast.error(response?.message);
       setLoading(false);
     }
-
   };
 
   return (
     <>
+      <ToastContainer />
       {loading && <Loader />}
       <div className="bggray">
         <div className="col-12 admin-maindiv">

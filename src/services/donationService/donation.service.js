@@ -99,7 +99,7 @@ export const DonationService = {
     id = (await EncryptionService.encrypt(id)).toString();
     try {
       const response = await APIService.Instance.get(
-        URLS.GETUSERDETAILSBYDONORIDOREMAILID +"?emailOrDonorId="+ id
+        URLS.GETUSERDETAILSBYDONORIDOREMAILID + "?emailOrDonorId=" + id
       );
       console.log(response);
       return response?.data;
@@ -199,13 +199,19 @@ export const DonationService = {
 
 
   getAllDonationOfUser: async (PageSize, PageNo) => {
-   
-    const response = await APIService.Instance.get(
-      URLS.GETALLDONATIONOFUSER+"?PageSize="+PageSize+"&PageNo="+PageNo
-    );
-    console.log(response);
-    return response?.data;
-
+    try {
+      const response = await APIService.Instance.get(
+        URLS.GETALLDONATIONOFUSER + "?PageSize=" + PageSize + "&PageNo=" + PageNo
+      );
+      return response?.data;
+    } catch (err) {
+      console.log(err);
+      if (err?.response?.data) {
+        return err?.response;
+      } else {
+        toast.error(err?.message);
+      }
+    }
   },
 
   getDonationById: async (donationId) => {
@@ -478,7 +484,7 @@ export const DonationService = {
   getAllStatesByCountry: async (country) => {
     try {
       const response = await APIService.Instance.get(
-        URLS.GETSTATESBYCOUNTRY+"?countryCode="+country
+        URLS.GETSTATESBYCOUNTRY + "?countryCode=" + country
       );
       return response;
     } catch (err) {
