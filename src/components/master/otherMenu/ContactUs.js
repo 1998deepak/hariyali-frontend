@@ -39,6 +39,7 @@ function ContactUs() {
   const validate = () => {
     const validationErrors = [];
     console.log("Working!! : " + contactData.contactName);
+
     if (!captchaVerfied) {
       validationErrors.push({
         field: "captchaError",
@@ -51,7 +52,7 @@ function ContactUs() {
         field: "contactData.contactName",
         message: "Contact Name is required",
       });
-    } else if (/\d/.test(contactData.contactName)) {
+    } else if (!/^[a-zA-Z]+$/.test(contactData.contactName)) {
       validationErrors.push({
         field: "contactData.contactName",
         message: "Contact Name should only contain alphabets",
@@ -63,7 +64,7 @@ function ContactUs() {
         field: "contactData.contactSubject",
         message: "Subject is required",
       });
-    } else if (/\d/.test(contactData.contactSubject)) {
+    } else if (!/^[a-zA-Z&_]+$/.test(contactData.contactSubject)) {
       validationErrors.push({
         field: "contactData.contactSubject",
         message: "Subject should only contain alphabets",
@@ -76,9 +77,7 @@ function ContactUs() {
         message: "Email ID is required",
       });
     } else if (
-      !/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(
-        contactData.contactEmail
-      )
+      !/^[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*([.]{1}[A-Za-z0-9_]{2,3})+$/i.test(contactData.contactEmail)
     ) {
       validationErrors.push({
         field: "contactData.contactEmail",
@@ -90,6 +89,13 @@ function ContactUs() {
       validationErrors.push({
         field: "contactData.massage",
         message: "Massage is required",
+      });
+    }else if (
+      !/^[a-zA-Z]+$/.test(contactData.massage)
+    ) {
+      validationErrors.push({
+        field: "contactData.massage",
+        message: "Massage should only contain alphabets",
       });
     }
 
@@ -190,12 +196,14 @@ function ContactUs() {
                     <div className="">
                       <Row>
                         <div className="homeinput-div col-12 col-lg-6 col-12 field-wrapper">
-                          <label className="form-label">Name</label>
+                          <label className="form-label">
+                          Name <span className="red-text">*</span>
+                          </label>
                           <input
                             className="form-control form-text required"
                             type="text"
                             name="contactName"
-                            placeholder="Your name*"
+                            placeholder="Contact name"
                             required="required"
                             value={contactData.contactName}
                             onChange={handleValueChange}
@@ -215,11 +223,11 @@ function ContactUs() {
                           })}
                         </div>
                         <div className="homeinput-div col-12 col-lg-6 col-12 field-wrapper">
-                          <label className="form-label">Email Id</label>
+                          <label className="form-label"> Email Id <span className="red-text">*</span></label>
                           <input
                             className="form-control form-text required"
                             type="email"
-                            placeholder="Your e-mail*"
+                            placeholder="Contact e-mail"
                             required="required"
                             name="contactEmail"
                             value={contactData.contactEmail}
@@ -240,7 +248,7 @@ function ContactUs() {
                           })}
                         </div>
                         <div className="homeinput-div col-12 col-lg-12 col-12 field-wrapper">
-                          <label className="form-label">Subject</label>
+                          <label className="form-label">Subject <span className="red-text">*</span></label>
                           <input
                             className="form-control form-text required"
                             type="subject"
@@ -265,13 +273,13 @@ function ContactUs() {
                           })}
                         </div>
                         <div className="homeinput-div col-12 col-lg-12 col-12 field-wrapper">
-                          <label className="form-label">Message</label>
+                          <label className="form-label">Message <span className="red-text">*</span></label>
                           <textarea
                             className="form-control form-textarea required"
                             rows="4"
                             cols="60"
                             maxlength="2500"
-                            placeholder="Message*"
+                            placeholder="Message"
                             required="required"
                             aria-required="true"
                             name="massage"
@@ -295,8 +303,10 @@ function ContactUs() {
                         <div className="homeinput-div col-12 col-lg-12 col-12">
                           <Captcha
                             verified={false}
-                            setVerified={() => setCaptchaFlag(true)}
-                            id="captcha2"
+                              setVerified={(flag) => {
+                                setCaptchaFlag(flag);
+                              }}
+                              id="captcha1"
                           />
                           {errors.map((error, index) => {
                             if (error.field === "captchaError") {

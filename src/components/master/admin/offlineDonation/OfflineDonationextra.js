@@ -642,18 +642,6 @@ function OfflineDonation() {
                     >
                       Donate
                     </button>
-                    <button
-                      type="submit"
-                      className="mt20 mr10 webform-button--cancel "
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      className="mt20 mr10 webform-button--cancel "
-                    >
-                      Clear
-                    </button>
                   </form>
                 </Tab>
                 <Tab eventKey="giftaPlant" title="Gift a Plant">

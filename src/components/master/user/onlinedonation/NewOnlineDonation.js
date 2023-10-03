@@ -497,18 +497,6 @@ function NewOnlineDonation() {
                         >
                           Proceed to pay
                         </button>
-                        <button
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Clear
-                        </button>
                       </form>
                     </Tab>
                     <Tab
