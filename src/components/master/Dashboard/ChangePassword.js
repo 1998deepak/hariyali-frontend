@@ -32,10 +32,11 @@ const ChangePassword = () => {
   const [userDetails, setUserDetails] = useState(null);
 
   const handleValueChange = (event) => {
+    let { name, value }= event.target;
     const updatedValue = { ...formData };
-    updatedValue[event?.target?.name] = event?.target?.value;
+    updatedValue[name] = value;
     setFormData(updatedValue);
-    setErrors({ ...errors, [event?.target?.name]: "" });
+    setErrors({ ...errors, [name]: "" });
   };
 
   const checkCurrentPasswordMatch = async () => {
@@ -46,14 +47,14 @@ const ChangePassword = () => {
   }
 
   const checkNewPasswordMatch = async () => {
-
+    let valid = validPassword(formData.newPassword);
     if (formData.newPassword == '') {
       setErrors({ ...errors, ["newPassword"]: "New password is empty!" });
     } else if (userDetails.password == formData.newPassword) {
       setErrors({ ...errors, ["newPassword"]: "New password is same as old password!" });
-    } else if (formData.newPassword.length < 8) {
-      setErrors({ ...errors, ["newPassword"]: "Minimum 8 character long password required!" });
-    } else {
+    } else if(!valid){
+      setErrors({ ...errors, ["newPassword"]: "Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character!" });
+    } else{
       checkConfirmPasswordMatch();
     }
   }
@@ -112,6 +113,11 @@ const ChangePassword = () => {
       setUserDetails(JSON.parse(data));
     });
   }, []);
+
+  const validPassword = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=]).{8,}$/;
+    return passwordRegex.test(password);
+  };
 
   return (
     <>
