@@ -58,7 +58,7 @@ function ContactUs() {
         message: "Contact Name should only contain alphabets",
       });
     }
-    const regex = /^[a-zA-Z &_]+$/;
+    const regex = /^[a-zA-Z0-9 &_]+$/;
     if (!contactData?.contactSubject) {
       validationErrors.push({
         field: "contactData.contactSubject",
