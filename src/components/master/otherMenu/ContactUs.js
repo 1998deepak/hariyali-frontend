@@ -52,19 +52,19 @@ function ContactUs() {
         field: "contactData.contactName",
         message: "Contact Name is required",
       });
-    } else if (!/^[a-zA-Z]+$/.test(contactData.contactName)) {
+    } else if (!/^[a-zA-Z ]+$/.test(contactData.contactName)) {
       validationErrors.push({
         field: "contactData.contactName",
         message: "Contact Name should only contain alphabets",
       });
     }
-
+    const regex = /^[a-zA-Z &_]+$/;
     if (!contactData?.contactSubject) {
       validationErrors.push({
         field: "contactData.contactSubject",
         message: "Subject is required",
       });
-    } else if (!/^[a-zA-Z&_]+$/.test(contactData.contactSubject)) {
+    } else if (!regex.test(contactData.contactSubject)) {
       validationErrors.push({
         field: "contactData.contactSubject",
         message: "Subject should only contain alphabets",
@@ -91,7 +91,7 @@ function ContactUs() {
         message: "Massage is required",
       });
     }else if (
-      !/^[a-zA-Z]+$/.test(contactData.massage)
+      !regex.test(contactData.massage)
     ) {
       validationErrors.push({
         field: "contactData.massage",

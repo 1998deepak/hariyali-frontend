@@ -175,7 +175,7 @@ function Login() {
     console.log(response);
     console.log(response?.status === SUCCESS);
     if (response?.status === SUCCESS) {
-      toast.success("Otp sent successfully!");
+      toast.success("Otp sent successfully on your registered email Id !");
       setLoading(false)
     } else {
       toast.error("Invalid Donor Id ! Please Try Again");

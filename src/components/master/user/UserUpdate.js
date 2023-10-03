@@ -6,6 +6,8 @@ import { SUCCESS, stateOptions } from "../../constants/constants";
 import { UserService } from "../../../services/userService/user.service";
 import Loader from "../../common/loader/Loader";
 import PrivacyPolicy from "../../common/PrivacyPolicy";
+import TermsConditionsPopup from "../../common/popup/TermsConditionsPopup";
+import PrivacyPolicyPopup from "../../common/popup/PrivacyPolicyPopup";
 
 function UserUpdate() {
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
@@ -49,6 +51,10 @@ function UserUpdate() {
   const { email } = UserService.userDetails();
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
+  const [showConditons1, setShowConditons1] = useState(false);
+
+  const handleCloseConditions = () => setShowConditons(false);
+  const handleShowConditions1 = () => setShowConditons1(false);
 
   // getUser Details
   const getUserDetails = async (id) => {
@@ -211,6 +217,13 @@ function UserUpdate() {
     e.preventDefault();
     setShowConditons(true);
   };
+
+  const handleCloseConditions1 = (e) => {
+    e.preventDefault();
+    setShowConditons1(true);
+  };
+
+  
 
   return (
     <>
@@ -596,6 +609,7 @@ function UserUpdate() {
                             privacyPolicy={privacyPolicy}
                             setPrivacyPolicy={setPrivacyPolicy}
                             handleShowConditions={handleShowConditions}
+                            handleCloseConditions1={handleCloseConditions1}
                             isDisabled
                           />
                         </div>
@@ -615,6 +629,14 @@ function UserUpdate() {
           </div>
         </div>
       </div>
+      <TermsConditionsPopup
+            showConditons={showConditons}
+            handleCloseConditions={handleCloseConditions}
+          />
+          <PrivacyPolicyPopup
+            showConditons1={showConditons1}
+            handleCloseConditions1={handleShowConditions1}
+          />
       {/* body */}
     </>
   );
