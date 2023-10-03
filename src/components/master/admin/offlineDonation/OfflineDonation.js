@@ -31,6 +31,16 @@ function OfflineDonation() {
   const [citizenships, setCitizenships] = useState([]);
   const [activeTab, setActiveTab] = useState("NewDonor"); // Set the initial active tab
 
+  const [inputValue, setInputValue] = useState("");
+  const maxLength = 150;
+  const handleChangeTextarea = (event) => {
+    const inputValue = event.target.value;
+
+    if (inputValue.length <= maxLength) {
+      setInputValue(inputValue);
+    }
+  };
+
   const handleTabChange = (newTabKey) => {
     console.log(newTabKey);
     setActiveTab(newTabKey);
@@ -46,6 +56,7 @@ function OfflineDonation() {
     calculateOverallTotal(packages);
     setPackageData(packages);
     setAddress(initialAddress);
+    setInputValue("");
   };
   const handleDonationModalClose = () => setShowDonationModal(false);
 
@@ -153,15 +164,7 @@ function OfflineDonation() {
           demandDraftNumber: "",
           demandDraftDate: null,
           totalAmount: "",
-        },
-        {
-          paymentMode: "",
-          bankName: "",
-          chqORddNo: "",
-          chqORddDate: "",
-          paymentDate: "",
-          amount: 0,
-        },
+        }
       ],
     },
   ];
@@ -176,21 +179,45 @@ function OfflineDonation() {
       recipient: [],
       paymentInfo: [
         {
+          paymentInfoId: "",
           paymentMode: "",
           bankName: "",
           chqORddNo: "",
-          chqORddDate: "",
-          paymentDate: "",
-          amount: 0,
-        },
-        {
-          paymentMode: "",
-          bankName: "",
-          chqORddNo: "",
-          chqORddDate: "",
-          paymentDate: "",
-          amount: 0,
-        },
+          chqORddDate: null,
+          paymentDate: null,
+          amount: "",
+          donation: "",
+          createdDate: null,
+          createdBy: "",
+          modifiedDate: "",
+          modifiedBy: "",
+          remark: "",
+          isDeleted: "",
+          paymentTrackingId: "",
+          bankPaymentRefNo: "",
+          cardName: "",
+          currency: "",
+          paymentStatus: "",
+          orderId: "",
+          accountId: "",
+          receiptDate: null,
+          receivedAmount: "",
+          bankCharge: "",
+          documentNumber: null,
+          bankAddress: null,
+          depositNumber: null,
+          depositDate: null,
+          receiptNumber: null,
+          realizationDate: null,
+          creditCardNumber: "",
+          cardExpiry: "",
+          cardHolderName: "",
+          chequeNumber: "",
+          chequeDate: null,
+          demandDraftNumber: "",
+          demandDraftDate: null,
+          totalAmount: "",
+        }
       ],
     },
   ];
@@ -442,7 +469,7 @@ function OfflineDonation() {
     }
 
     // Validate payment info
-    if (donations && donations[0]?.paymentInfo) {
+    // if (donations && donations[0]?.paymentInfo) {
       for (let i = 0; i < donations[0].paymentInfo.length; i++) {
         console.log(i);
         if (i === 1) {
@@ -501,7 +528,7 @@ function OfflineDonation() {
           }
         }
       }
-    }
+    // }
 
     // Validate addresses
     for (let i = 0; i < address.length; i++) {
@@ -568,7 +595,7 @@ function OfflineDonation() {
         }
       }
 
-      if(addr?.country === "INDIA"){
+      if (addr?.country === "INDIA") {
         if (!addr?.postalCode) {
           validationErrors.push({
             field: "address[" + i + "].postalCode",
@@ -582,7 +609,7 @@ function OfflineDonation() {
           });
           document.getElementById("postalCode").focus();
         }
-       }else{
+      } else {
         if (!addr?.postalCode) {
           validationErrors.push({
             field: "address[" + i + "].postalCode",
@@ -596,7 +623,7 @@ function OfflineDonation() {
           });
           document.getElementById("postalCode").focus();
         }
-       }
+      }
     }
 
     // Validate recipient (only for "Gift Donate" donation type)
@@ -608,6 +635,15 @@ function OfflineDonation() {
           field: "donations.donationEvent",
           message: "Donation Event is required",
         });
+      }
+      if (!donations[0]?.giftContent) {
+        validationErrors.push({
+          field: "donations.giftContent",
+          message: "Message for the giftee is required",
+        });
+        if(document.getElementById("giftContent")){
+          document.getElementById("giftContent").focus();
+        }
       }
 
       for (let i = 0; i < recipient.length; i++) {
@@ -827,24 +863,28 @@ function OfflineDonation() {
         }
         if (document.getElementById("state3")) {
           document.getElementById("state3").style.display = "none";
-        }if(document.getElementById("state5")){
+        }
+        if (document.getElementById("state5")) {
           document.getElementById("state5").style.display = "block";
-          } if(document.getElementById("state4")){
-            document.getElementById("state4").style.display = "none";
-          }
+        }
+        if (document.getElementById("state4")) {
+          document.getElementById("state4").style.display = "none";
+        }
         setStates(response.data);
         setLoading(false);
       } else {
         if (document.getElementById("state2")) {
           document.getElementById("state2").style.display = "none";
-          } if(document.getElementById("state3")){
-            document.getElementById("state3").style.display = "block";
-          }
-          if(document.getElementById("state5")){
-            document.getElementById("state5").style.display = "none";
-            } if(document.getElementById("state4")){
-              document.getElementById("state4").style.display = "block";
-            }
+        }
+        if (document.getElementById("state3")) {
+          document.getElementById("state3").style.display = "block";
+        }
+        if (document.getElementById("state5")) {
+          document.getElementById("state5").style.display = "none";
+        }
+        if (document.getElementById("state4")) {
+          document.getElementById("state4").style.display = "block";
+        }
         setStates(response.data);
         setLoading(false);
       }
@@ -896,10 +936,10 @@ function OfflineDonation() {
     calculateOverallTotal(packages);
     setPackageData(packages);
     setAddress(initialAddress);
-    // setDonationType("");
     setDonations(intialDonations);
     setRecipient(initialRecipientData);
     setUserData(initialUserData);
+    setInputValue("");
   };
   const handleTabSelect = (eventKey) => {
     console.log(eventKey);
@@ -916,6 +956,7 @@ function OfflineDonation() {
     calculateOverallTotal(packages);
     setPackageData(packages);
     setAddress(initialAddress);
+    setInputValue("");
   };
 
   const handleChangeNumberOfBouquets = (e, row, rowIndex) => {
@@ -1000,27 +1041,20 @@ function OfflineDonation() {
   };
   //Handle Donations
   const handleDonationChange = (e, index) => {
-    console.log(e);
     const { name, value } = e.target;
     const updatedDonations = [...donations];
-    if (name === "donationEvent") {
-      console.log(name);
-      updatedDonations[index][name] = value;
-      console.log(updatedDonations[0].donationEvent);
-      console.log(updatedDonations[index]);
-      // setDonationsGift(updatedDonations[0])
-    }
     if (name === "generalDonation") {
       let gnrlDonation = parseInt(value);
-      console.log(gnrlDonation);
       updatedDonations[index][name] = gnrlDonation > 0 ? gnrlDonation : null;
       console.log(updatedDonations[index]);
       updatedDonations[0]["totalAmount"] = null;
+    }else{
+      updatedDonations[index][name] = value;
+      console.log(updatedDonations[index]);
     }
     setDonations(updatedDonations);
   };
-  console.log(donationsGift);
-  console.log(donations);
+
 
   const handleRecipentChange = (event, index) => {
     let { name, value } = event.target;
@@ -1083,57 +1117,10 @@ function OfflineDonation() {
     setDonations(updatedDonations);
   };
 
-  // hide show forgot link
-  const addaddressicon = () => {
-    if (document.getElementById("addaddressDiv")) {
-      if (document.getElementById("addaddressDiv").style.display === "none") {
-        document.getElementById("addaddressDiv").style.display = "block";
-      } else {
-        document.getElementById("addaddressDiv").style.display = "block";
-      }
-    }
-  };
   const minaddressDiv = () => {
     if (document.getElementById("addaddressDiv")) {
       if (document.getElementById("addaddressDiv").style.display === "block") {
         document.getElementById("addaddressDiv").style.display = "none";
-      }
-    }
-  };
-  const addpaymenticon = () => {
-    if (document.getElementById("addpaymentDiv")) {
-      if (document.getElementById("addpaymentDiv").style.display === "none") {
-        document.getElementById("addpaymentDiv").style.display = "block";
-      } else {
-        document.getElementById("addpaymentDiv").style.display = "block";
-      }
-    }
-  };
-  const minpaymentDiv = () => {
-    if (document.getElementById("addpaymentDiv")) {
-      if (document.getElementById("addpaymentDiv").style.display === "block") {
-        document.getElementById("addpaymentDiv").style.display = "none";
-      }
-    }
-  };
-
-  const addgiftpaymenticon = () => {
-    if (document.getElementById("addgiftpaymentDiv")) {
-      if (
-        document.getElementById("addgiftpaymentDiv").style.display === "none"
-      ) {
-        document.getElementById("addgiftpaymentDiv").style.display = "block";
-      } else {
-        document.getElementById("addgiftpaymentDiv").style.display = "block";
-      }
-    }
-  };
-  const mingiftpaymentDiv = () => {
-    if (document.getElementById("addgiftpaymentDiv")) {
-      if (
-        document.getElementById("addgiftpaymentDiv").style.display === "block"
-      ) {
-        document.getElementById("addgiftpaymentDiv").style.display = "none";
       }
     }
   };
@@ -1144,7 +1131,8 @@ function OfflineDonation() {
     console.log(e.target.value);
     const emailId = e.target.value;
     if (emailId.length > 2) {
-      const emailRegex = /^[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*([.]{1}[A-Za-z0-9_]{2,3})+$/i;
+      const emailRegex =
+        /^[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*([.]{1}[A-Za-z0-9_]{2,3})+$/i;
       if (!emailRegex.test(emailId)) {
         toast.error("Invalid Mail Id");
         return;
@@ -1152,12 +1140,9 @@ function OfflineDonation() {
       setLoading(true);
       let response = await DonationService.getDetailsByEmailId(emailId);
       console.log(response);
-      if (
-        response?.statusCode === 409 ||
-        response?.status == "NOT_FOUND"
-      ) {
+      if (response?.statusCode === 409 || response?.status == "NOT_FOUND") {
         setLoading(false);
-      }else{
+      } else {
         setShowDonationModal(true);
         setLoading(false);
       }
@@ -1233,59 +1218,6 @@ function OfflineDonation() {
       setLoading(false);
     }
   };
-
-  //Donation for gift Donate
-  // const createDonationGift = async (e, userData) => {
-  //   e.preventDefault();
-
-  // //   const isValid = validate();
-  // //   console.log("isValid:", isValid);
-
-  //   //if (isValid) {
-  //   const updatedDonations = [...donationsGift];
-  //   const filteredPackages = packageData.filter((pkg) => pkg.noOfBouquets > 0);
-  //   console.log(filteredPackages);
-  //   updatedDonations[0].userPackage = filteredPackages;
-
-  //   const formData = {
-  //         emailId: userData?.user?.emailId,
-  //         donorId: userData?.user?.donorId,
-  //         donations: updatedDonations.map((donation) => {
-  //           const donationData = {
-  //             ...donation,
-  //             paymentInfo: donation.paymentInfo.slice(0, 1), // Keep only the first payment info record
-  //           };
-  //           console.log(donation.donationType);
-  //           if (donation.donationType === "Self-Donate") {
-  //             donationData.recipient = []; // Exclude recipient data
-  //           } else if (donation.donationType === "Gift-Donate") {
-  //             donationData.recipient = recipient;
-  //           }
-
-  //           return donationData;
-  //         }),
-  //       }
-
-  //   setLoading(true);
-  //   const response = await DonationService.AddNewDonation(formData);
-  //   console.log(response);
-  //   if (response?.status === SUCCESS) {
-  //     console.log("Create Donation: "+JSON.stringify(response))
-  //     toast.success(response?.message);
-  //     clearForm(e);
-  //     setLoading(false);
-  //   } else {
-  //     toast.error(response?.message);
-  //     setLoading(false);
-  //   }
-
-  //   console.log(donations);
-  //   console.log(formData);
-  //   console.log(updatedDonations);
-  //   console.log();
-  // //}
-  // console.log("Not Working !")
-  // };
 
   const createDonationGift = async (e, userData) => {
     e.preventDefault();
@@ -1398,7 +1330,7 @@ function OfflineDonation() {
         id="uncontrolled-tab-example"
         className="newexti-tab"
         activeKey={activeTab}
-        onSelect={(eventKey) =>  handleTabChange(eventKey)}
+        onSelect={(eventKey) => handleTabChange(eventKey)}
       >
         <Tab eventKey="NewDonor" title="New Donor">
           <div className="bggray">
@@ -1412,7 +1344,7 @@ function OfflineDonation() {
                     activeKey={donationType}
                     onSelect={handleTabSelect}
                   >
-                    <Tab eventKey="Self-Donate" title="Plant A Tree" >
+                    <Tab eventKey="Self-Donate" title="Plant A Tree">
                       <form className="form-div contact-form-wrap">
                         <PackageDetails
                           packageData={packageData}
@@ -2383,7 +2315,11 @@ function OfflineDonation() {
                                     id="postalCode"
                                     placeholder="Postal Code"
                                     type="text"
-                                    maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
+                                    maxLength={
+                                      address[0]?.country === "INDIA"
+                                        ? "6"
+                                        : "5"
+                                    }
                                     value={address[0]?.postalCode}
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
@@ -2675,6 +2611,46 @@ function OfflineDonation() {
                                   {errors.map((error, index) => {
                                     if (
                                       error.field === "donations.donationEvent"
+                                    ) {
+                                      return (
+                                        <div
+                                          key={index}
+                                          className="error-message red-text"
+                                        >
+                                          {error.message}
+                                        </div>
+                                      );
+                                    }
+                                    return null;
+                                  })}
+                                </div>
+                              </div>
+                            </div>
+                            <div className="col-12 col-lg-6">
+                              <div className="row select-label">
+                                <div className="col-12 col-lg-4 user-giftee-msg">
+                                  Message For The Giftee{" "}
+                                  <span className="red-text">*</span>
+                                </div>
+                                <div className="col-12 col-lg-8">
+                                  <textarea
+                                    className="form-control-inside form-control"
+                                    placeholder="Message For The Giftee"
+                                    name="giftContent"
+                                    id="giftContent"
+                                    value={donations[0].giftContent}
+                                    onChange={(e) => {
+                                      handleChangeTextarea(e);
+                                      handleDonationChange(e, 0);
+                                    }}
+                                    maxLength={maxLength}
+                                  ></textarea>
+                                  <p>
+                                    {inputValue.length}/{maxLength} Characters
+                                  </p>
+                                  {errors.map((error, index) => {
+                                    if (
+                                      error.field === "donations.giftContent"
                                     ) {
                                       return (
                                         <div
@@ -3337,33 +3313,37 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div id="state4" className="col-12 col-lg-6" style={{display:"block"}}>
-                                <div className="row select-label">
-                                  <div className="col-12 col-lg-4 ">
-                                    State <span className="red-text">*</span>
-                                  </div>
-                                  <div className="col-12 col-lg-8 p0 ">
-                                    <select
-                                      className=" form-control-inside form-select form-control"
-                                      name="state"
-                                      id="state"
-                                      value={address[0]?.state}
-                                      onChange={(event) =>
-                                        handleAddressChange(event, 0)
-                                      }
-                                    >
-                                      <option disabled selected value="">
-                                        Select State
+                            <div
+                              id="state4"
+                              className="col-12 col-lg-6"
+                              style={{ display: "block" }}
+                            >
+                              <div className="row select-label">
+                                <div className="col-12 col-lg-4 ">
+                                  State <span className="red-text">*</span>
+                                </div>
+                                <div className="col-12 col-lg-8 p0 ">
+                                  <select
+                                    className=" form-control-inside form-select form-control"
+                                    name="state"
+                                    id="state"
+                                    value={address[0]?.state}
+                                    onChange={(event) =>
+                                      handleAddressChange(event, 0)
+                                    }
+                                  >
+                                    <option disabled selected value="">
+                                      Select State
+                                    </option>
+                                    {states.map((state) => (
+                                      <option
+                                        key={state}
+                                        value={state.stateName}
+                                      >
+                                        {state.stateName}
                                       </option>
-                                      {states.map((state) => (
-                                        <option
-                                          key={state}
-                                          value={state.stateName}
-                                        >
-                                          {state.stateName}
-                                        </option>
-                                      ))}
-                                    </select>
+                                    ))}
+                                  </select>
 
                                   {errors.map((error, index) => {
                                     if (error.field === "address[0].state") {
@@ -3459,7 +3439,11 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             )} */}
-                            <div id="state5" className="col-12 col-lg-6" style={{display:"none"}}>
+                            <div
+                              id="state5"
+                              className="col-12 col-lg-6"
+                              style={{ display: "none" }}
+                            >
                               <div className="row select-label">
                                 <div className="col-12 col-lg-4 ">
                                   {" "}
@@ -3539,7 +3523,11 @@ function OfflineDonation() {
                                     name="postalCode"
                                     placeholder="Postal Code"
                                     type="text"
-                                    maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
+                                    maxLength={
+                                      address[0]?.country === "INDIA"
+                                        ? "6"
+                                        : "5"
+                                    }
                                     value={address[0]?.postalCode}
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
@@ -3841,39 +3829,38 @@ function OfflineDonation() {
                                     State<span className="red-text">*</span>
                                   </div>
                                   <div className="col-12 col-lg-8 p0">
-                                    {
-                                      states.length === 0 ?
+                                    {states.length === 0 ? (
                                       <input
-                                      className=" form-control-inside"
-                                      name="state"
-                                      placeholder="state"
-                                      value={recipient[0].address[0].state}
-                                      onChange={(e) =>
-                                        handleRecipentAddressChange(e, 0)
-                                      }
-                                    ></input>
-                                      :
+                                        className=" form-control-inside"
+                                        name="state"
+                                        placeholder="state"
+                                        value={recipient[0].address[0].state}
+                                        onChange={(e) =>
+                                          handleRecipentAddressChange(e, 0)
+                                        }
+                                      ></input>
+                                    ) : (
                                       <select
-                                      className=" form-control-inside form-select"
-                                      name="state"
-                                      value={recipient[0].address[0].state}
-                                      onChange={(e) =>
-                                        handleRecipentAddressChange(e, 0)
-                                      }
-                                    >
-                                      <option disabled selected value="">
-                                        Select State
-                                      </option>
-                                      {states.map((state) => (
-                                        <option
-                                          key={state}
-                                          value={state.stateName}
-                                        >
-                                          {state.stateName}
+                                        className=" form-control-inside form-select"
+                                        name="state"
+                                        value={recipient[0].address[0].state}
+                                        onChange={(e) =>
+                                          handleRecipentAddressChange(e, 0)
+                                        }
+                                      >
+                                        <option disabled selected value="">
+                                          Select State
                                         </option>
-                                      ))}
-                                    </select>
-                                    }
+                                        {states.map((state) => (
+                                          <option
+                                            key={state}
+                                            value={state.stateName}
+                                          >
+                                            {state.stateName}
+                                          </option>
+                                        ))}
+                                      </select>
+                                    )}
                                     {errors.map((error, index) => {
                                       if (
                                         error.field ===
@@ -3941,7 +3928,12 @@ function OfflineDonation() {
                                       name="postalCode"
                                       placeholder="Postal Code"
                                       type="text"
-                                      maxLength={recipient[0].address[0].country === "INDIA" ? "6" : "5"}
+                                      maxLength={
+                                        recipient[0].address[0].country ===
+                                        "INDIA"
+                                          ? "6"
+                                          : "5"
+                                      }
                                       value={recipient[0].address[0].postalCode}
                                       onChange={(e) =>
                                         handleRecipentAddressChange(e, 0)
@@ -4437,7 +4429,11 @@ function OfflineDonation() {
                                     name="postalCode"
                                     placeholder="Postal Code"
                                     type="text"
-                                    maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
+                                    maxLength={
+                                      address[0]?.country === "INDIA"
+                                        ? "6"
+                                        : "5"
+                                    }
                                     value={address[0]?.postalCode}
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
@@ -4667,10 +4663,7 @@ function OfflineDonation() {
                         </button>
                       </form>
                     </Tab>
-                    <Tab
-                      eventKey="Gift-Donate"
-                      title="Gift A Tree"
-                    >
+                    <Tab eventKey="Gift-Donate" title="Gift A Tree">
                       {/* <h5>Gift a tree</h5> */}
                       <form className="form-div contact-form-wrap">
                         <div className="col-12 mt20">
@@ -4722,6 +4715,46 @@ function OfflineDonation() {
                                   {errors.map((error, index) => {
                                     if (
                                       error.field === "donations.donationEvent"
+                                    ) {
+                                      return (
+                                        <div
+                                          key={index}
+                                          className="error-message red-text"
+                                        >
+                                          {error.message}
+                                        </div>
+                                      );
+                                    }
+                                    return null;
+                                  })}
+                                </div>
+                              </div>
+                            </div>
+                            <div className="col-12 col-lg-6">
+                              <div className="row select-label">
+                                <div className="col-12 col-lg-4 user-giftee-msg">
+                                  Message For The Giftee{" "}
+                                  <span className="red-text">*</span>
+                                </div>
+                                <div className="col-12 col-lg-8">
+                                  <textarea
+                                    className="form-control-inside form-control"
+                                    placeholder="Message For The Giftee"
+                                    name="giftContent"
+                                    id="giftContent"
+                                    value={donations[0].giftContent}
+                                    onChange={(e) => {
+                                      handleChangeTextarea(e);
+                                      handleDonationChange(e, 0);
+                                    }}
+                                    maxLength={maxLength}
+                                  ></textarea>
+                                  <p>
+                                    {inputValue.length}/{maxLength} Characters
+                                  </p>
+                                  {errors.map((error, index) => {
+                                    if (
+                                      error.field === "donations.giftContent"
                                     ) {
                                       return (
                                         <div
@@ -5177,7 +5210,11 @@ function OfflineDonation() {
                                     name="postalCode"
                                     placeholder="Postal Code"
                                     type="text"
-                                    maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
+                                    maxLength={
+                                      address[0]?.country === "INDIA"
+                                        ? "6"
+                                        : "5"
+                                    }
                                     value={address[0]?.postalCode}
                                     onBlur={(e) => handleDonarIdBlur(e)}
                                     onChange={(event) =>
@@ -5580,7 +5617,12 @@ function OfflineDonation() {
                                       name="postalCode"
                                       placeholder="Postal Code"
                                       type="text"
-                                      maxLength={recipient[0].address[0].country === "INDIA" ? "6" : "5"}
+                                      maxLength={
+                                        recipient[0].address[0].country ===
+                                        "INDIA"
+                                          ? "6"
+                                          : "5"
+                                      }
                                       value={recipient[0].address[0].postalCode}
                                       onChange={(e) =>
                                         handleRecipentAddressChange(e, 0)

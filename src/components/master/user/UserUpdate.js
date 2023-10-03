@@ -74,8 +74,6 @@ function UserUpdate() {
     }
   };
 
-  
-
   const getCountryList = async () => {
     setLoading(true);
     const response = await DonationService.getAllCountries();
@@ -134,6 +132,19 @@ function UserUpdate() {
       }
       if (!firstAddress.city) {
         errors.city = "City is required";
+      }
+      if (firstAddress?.country === "INDIA") {
+        if (!firstAddress?.postalCode) {
+          errors.postalCode = "postalCode is required";
+        } else if (!/^\d{6}$/.test(firstAddress?.postalCode)) {
+          errors.postalCode = "Invalid Postal Code";
+        }
+      } else {
+        if (!firstAddress?.postalCode) {
+          errors.postalCode = "postalCode is required";
+        } else if (!/^\d{5}$/.test(firstAddress?.postalCode)) {
+          errors.postalCode = "Invalid Postal Code";
+        }
       }
     }
     setErrors(errors);
@@ -197,7 +208,7 @@ function UserUpdate() {
     });
     if (data) {
       getStatesByCountry(data.countryCode);
-  }
+    }
   };
 
   // handle Change
@@ -222,8 +233,6 @@ function UserUpdate() {
     e.preventDefault();
     setShowConditons1(true);
   };
-
-  
 
   return (
     <>
@@ -284,7 +293,7 @@ function UserUpdate() {
                       </div>
                       <div className="col-12 col-lg-6">
                         <div className="row select-label">
-                          <div className="col-12 col-lg-4">Mobile No.</div>
+                          <div className="col-12 col-lg-4">Mobile No.<span className="red-text">*</span></div>
                           <div className="col-12 col-lg-8 p0">
                             <input
                               className="form-control-inside form-control"
@@ -354,7 +363,7 @@ function UserUpdate() {
                               <option selected>Prefix</option>
                               <option value="Mr.">Mr.</option>
                               <option value="Mrs.">Mrs.</option>
-                             <option value="Ms.">Ms.</option>
+                              <option value="Ms.">Ms.</option>
                               <option value="Miss.">Miss.</option>
                             </select>
                           </div>
@@ -429,7 +438,7 @@ function UserUpdate() {
                         <div key={index} className="row">
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-12 col-lg-4"> Street 1</div>
+                              <div className="col-12 col-lg-4"> Street 1 <span className="red-text">*</span></div>
                               <div className="col-12 col-lg-8 p0">
                                 <input
                                   className="form-control-inside form-control"
@@ -485,7 +494,7 @@ function UserUpdate() {
                           </div>
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-12 col-lg-4 ">Country</div>
+                              <div className="col-12 col-lg-4 ">Country<span className="red-text">*</span></div>
                               <div className="col-12 col-lg-8 p0">
                                 <select
                                   className="form-control-inside form-select"
@@ -502,7 +511,10 @@ function UserUpdate() {
                                   </option>
                                   {countries.map((country) => {
                                     return (
-                                      <option key={country} value={country.countryName}>
+                                      <option
+                                        key={country}
+                                        value={country.countryName}
+                                      >
                                         {country.countryName}
                                       </option>
                                     );
@@ -518,7 +530,7 @@ function UserUpdate() {
                           </div>
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-12 col-lg-4 "> State</div>
+                              <div className="col-12 col-lg-4 "> State <span className="red-text">*</span> </div>
                               <div className="col-12 col-lg-8 p0">
                                 {states?.length === 0 ? (
                                   <input
@@ -533,12 +545,12 @@ function UserUpdate() {
                                   />
                                 ) : (
                                   <select
-                                  className="form-control-inside form-select"
-                                  name="state"
-                                  value={addr.state}
-                                  onChange={(event) =>
-                                    handleAddressChange(event, index)
-                                  }
+                                    className="form-control-inside form-select"
+                                    name="state"
+                                    value={addr.state}
+                                    onChange={(event) =>
+                                      handleAddressChange(event, index)
+                                    }
                                   >
                                     <option disabled selected value="">
                                       Select State
@@ -554,7 +566,7 @@ function UserUpdate() {
                                   </select>
                                 )}
 
-{errors.state && (
+                                {errors.state && (
                                   <div className="error-message red-text">
                                     {errors.state}
                                   </div>
@@ -562,7 +574,7 @@ function UserUpdate() {
                               </div>
                             </div>
                           </div>
-                       
+
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
                               <div className="col-12 col-lg-4">City</div>
@@ -587,7 +599,7 @@ function UserUpdate() {
                           </div>
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-12 col-lg-4">Postal Code</div>
+                              <div className="col-12 col-lg-4">Postal Code<span className="red-text">*</span></div>
                               <div className="col-12 col-lg-8 p0">
                                 <input
                                   className="form-control-inside form-control"
@@ -599,6 +611,11 @@ function UserUpdate() {
                                     handleAddressChange(event, index)
                                   }
                                 />
+                                {errors.postalCode && (
+                                  <div className="error-message red-text">
+                                    {errors.postalCode}
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
@@ -630,13 +647,13 @@ function UserUpdate() {
         </div>
       </div>
       <TermsConditionsPopup
-            showConditons={showConditons}
-            handleCloseConditions={handleCloseConditions}
-          />
-          <PrivacyPolicyPopup
-            showConditons1={showConditons1}
-            handleCloseConditions1={handleShowConditions1}
-          />
+        showConditons={showConditons}
+        handleCloseConditions={handleCloseConditions}
+      />
+      <PrivacyPolicyPopup
+        showConditons1={showConditons1}
+        handleCloseConditions1={handleShowConditions1}
+      />
       {/* body */}
     </>
   );

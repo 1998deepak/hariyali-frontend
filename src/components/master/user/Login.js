@@ -66,7 +66,7 @@ function Login() {
           setIsHide(!isHide);
           setLoading(false)
         } else {
-          toast.error("Email/Password wrong");
+          toast.error("Email / Password wrong");
           //toast.error(response?.data);
           setLoading(false)
         }
@@ -77,8 +77,6 @@ function Login() {
     }
   };
 
-
-  const [donarIdOrEmail, setDonarIdOrEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [verificationStatus, setVerificationStatus] = useState("");
   const [isHidden, setIsHidden] = useState(true);
@@ -151,9 +149,12 @@ function Login() {
     if (response?.status === SUCCESS) {
       toast.success("Email sent successfully!");
       setLoading(false)
-      navigate("/OtpId",{
-        state: formData.donorId,
-      });
+      setTimeout(() => {
+        navigate("/OtpId",{
+          state: formData.donorId,
+        });
+      }, 2000);
+      
     } else {
       toast.error("Invalid Donor Id ! Please Try Again");
       setLoading(false)
