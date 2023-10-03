@@ -144,29 +144,25 @@ const [loading, setLoading] = useState(false);
   const updateUser = async (e, emailID, userData, addressData) => {
     try {
       e.preventDefault();
-   // Perform validation for userData
-   const userErrors = validateFields(userData);
-   // Perform validation for addressData
-   const addressErrors =  validateFields(userData, addressData||[]);
-   // Merge the validation errors for both userData and addressData
-   const errors = { ...userErrors,...addressErrors};
-   console.log(errors);
-    // Check if there are any validation errors
-    if (Object.keys(errors).length > 0) {
-      // Handle validation errors, e.g., display error messages
+      // Perform validation for userData
+      const userErrors = validateFields(userData);
+      // Perform validation for addressData
+      const addressErrors = validateFields(userData, addressData || []);
+      // Merge the validation errors for both userData and addressData
+      const errors = { ...userErrors, ...addressErrors };
       console.log(errors);
-      return;
-    }
-      const formData = {
-        formData: {
-          user: userData,
-        },
-      };
-  
-      formData.formData.user.address = addressData;
+      // Check if there are any validation errors
+      if (Object.keys(errors).length > 0) {
+        // Handle validation errors, e.g., display error messages
+        console.log(errors);
+        return;
+      }
+      const formData = userData;
+      formData.address = addressData;
       setLoading(true);
+      console.log(formData);
       const response = await DonationService.updateUser(emailID, formData);
-  
+
       if (response?.status === SUCCESS) {
         toast.success(response?.message);
         setLoading(false);
