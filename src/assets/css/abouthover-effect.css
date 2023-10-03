@@ -178,13 +178,14 @@
   position: absolute;
   background-color: #fff;
   color: #148cb8;
-  height: 35px;
-  width: 35px;
+  height: 32px;
+  width: 32px;
   border-radius: 100px;
   padding-top: 1px;
   z-index: 99;
-  top: 115px;
+  top: 110px;
   left: 105px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 
 /* popup */
@@ -339,7 +340,13 @@
     transform: rotate(360deg);
   }
 }
-
+@media screen and (max-width: 1280px){
+  .moretrstee{
+    top: 105px;
+    right: 0px;
+    left: auto;
+  }
+}
 @media screen and (max-width:991px) {
   .hi-icon-wrap {
     height: auto;
@@ -368,10 +375,18 @@
   .trustee-popup-div {
     padding: 15px;
   }
+  .moretrstee{
+    top: 100px;
+    right: 45px;
+  }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 767px) {
   /* .hi-icon {
     margin: 15px;
   } */
+  .moretrstee{
+    top: 100px;
+    right: 20px;
+  }
 }
