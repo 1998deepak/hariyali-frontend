@@ -33,6 +33,7 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
 
 
   const getAllDonationOfUser = async (pageNo) => {
+    setPageNo(pageNo +1);
     setLoading(true);
     const response = await DonationService.getAllDonationOfUser(pagesize, pageNo);
     console.log(response?.data);
