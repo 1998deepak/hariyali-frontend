@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { OCCASION_LIST } from "../../../constants/constants";
+import '../style.css';
 
 const DonationHeader = ({
   userData,
@@ -8,7 +9,7 @@ const DonationHeader = ({
   errors,
   isOccasion,
 }) => {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const maxLength = 150;
   const handleChangeTextarea = (event) => {
     const inputValue = event.target.value;
@@ -38,47 +39,49 @@ const DonationHeader = ({
           </div>
         </div> */}
         {isOccasion ? (
-          <div className="col-12 col-lg-6">
-            <div className="row select-label">
-              <div className="col-12 col-lg-4 ">
-                Occasion <span className="red-text">*</span>
-              </div>
-              <div className="col-12 col-lg-8 p0">
-                <select
-                  className=" form-control-inside form-select"
-                  name="donationEvent"
-                  value={donations[0].donationEvent}
-                  onChange={(e) => handleDonationChange(e, 0)}
-                >
-                  <option disabled selected value="">
-                    Select occasion
-                  </option>
-                  {OCCASION_LIST.map((ocacasion) => (
-                    <option key={ocacasion.Value} value={ocacasion.value}>
-                      {ocacasion.label}
+          <>
+            <div className="col-lg-6">
+              <div className="row select-label">
+                <div className="col-12 col-lg-4 ">
+                  Occasion <span className="red-text">*</span>
+                </div>
+                <div className="col-12 col-lg-8 p0">
+                  <select
+                    className=" form-control-inside form-select"
+                    name="donationEvent"
+                    value={donations[0].donationEvent}
+                    onChange={(e) => handleDonationChange(e, 0)}
+                  >
+                    <option disabled selected value="">
+                      Select occasion
                     </option>
-                  ))}
-                </select>
-                {errors.map((error, index) => {
-                  if (error.field === "donations.donationEvent") {
-                    return (
-                      <div key={index} className="error-message red-text">
-                        {error.message}
-                      </div>
-                    );
-                  }
-                  return null;
-                })}
+                    {OCCASION_LIST.map((ocacasion) => (
+                      <option key={ocacasion.Value} value={ocacasion.value}>
+                        {ocacasion.label}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.map((error, index) => {
+                    if (error.field === "donations.donationEvent") {
+                      return (
+                        <div key={index} className="error-message red-text">
+                          {error.message}
+                        </div>
+                      );
+                    }
+                    return null;
+                  })}
+                </div>
               </div>
             </div>
             <div className="col-12 col-lg-6">
-              <div className=" select-label">
-                <div className="col-12 p0 field-wrapper">
-                  <label className="form-label">
-                    Message For The Giftee <span className="red-text">*</span>
-                  </label>
+              <div className="row select-label">
+                <div className="col-12 col-lg-4 user-giftee-msg">
+                  Message For The Giftee <span className="red-text">*</span>
+                </div>
+                <div className="col-12 col-lg-8">
                   <textarea
-                    className="form-control"
+                    className="form-control-inside form-control"
                     placeholder="Message For The Giftee"
                     name="giftContent"
                     id="giftContent"
@@ -105,7 +108,7 @@ const DonationHeader = ({
                 </div>
               </div>
             </div>
-          </div>
+          </>
         ) : (
           <></>
         )}
