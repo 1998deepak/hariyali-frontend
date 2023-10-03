@@ -1143,38 +1143,21 @@ function OfflineDonation() {
     console.log(e.target.value);
     const emailId = e.target.value;
     if (emailId.length > 2) {
+      const emailRegex = /^[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*([.]{1}[A-Za-z0-9_]{2,3})+$/i;
+      if (!emailRegex.test(emailId)) {
+        toast.error("Invalid Mail Id");
+        return;
+      }
       setLoading(true);
       let response = await DonationService.getDetailsByEmailId(emailId);
       console.log(response);
-      if (response?.status === "Success") {
-        setShowDonationModal(true);
-        // console.log(response?.data);
-        // let addr = [...initialAddress];
-        // if (response?.data?.address) {
-        //   if (hasValues(response?.data?.address[0])) {
-        //     addr[0] = response.data.address[0];
-        //   }
-        //   if (hasValues(response?.data?.address[1])) {
-        //     addr[1] = response.data.address[1];
-        //   }
-        // }
-
-        // setAddress(addr);
-        // const formData = {
-        //   formData: {
-        //     user: response?.data,
-        //   },
-        // };
-        // if (formData?.formData?.user?.donations) {
-        //   setPackageData(formData?.formData?.user?.donations[0]?.userPackage);
-        // }
-        // setUserData(formData.formData);
-        setLoading(false);
-      } else if (
+      if (
         response?.statusCode === 409 ||
         response?.status == "NOT_FOUND"
       ) {
-        //toast.error(response?.message);
+        setLoading(false);
+      }else{
+        setShowDonationModal(true);
         setLoading(false);
       }
     }
