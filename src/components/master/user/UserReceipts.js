@@ -7,6 +7,7 @@ import { UserService } from "../../../services/userService/user.service";
 import Loader from "../../common/loader/Loader";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
+import { convertDateFormat } from "../../utils/convertDateFormat";
 
 function UserReceipts() {
   //states to store data
@@ -26,6 +27,9 @@ function UserReceipts() {
     {
       dataField: "recieptDate",
       text: "Reciept Date",
+      formatter:(dataField)=>{
+        return convertDateFormat(dataField);
+      }
     },
     {
       dataField: "",

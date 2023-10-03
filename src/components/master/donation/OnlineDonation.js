@@ -283,10 +283,9 @@ function OnlineDonation() {
 
   const [errors, setErrors] = useState([]);
 
-  const validate = (pan) => {
+  const validate = (donationTypeData) => {
     const validationErrors = [];
     console.log(recipient[0]?.firstName, recipient[0].lastName, recipient[0]?.emailId);
-    // Validate donationType
     if (!donationType) {
       validationErrors.push({
         field: "donationType",
@@ -568,8 +567,8 @@ function OnlineDonation() {
     }
 
     // Validate recipient (only for "Gift Donate" donation type)
-    console.log(donationType);
-    if (donationType === "gift-donate") {
+    console.log(donationTypeData);
+    if (donationTypeData === "gift-donate") {
       console.log(donations[0].donationEvent);
       if (!donations[0]?.donationEvent) {
         validationErrors.push({
@@ -711,7 +710,7 @@ function OnlineDonation() {
   const userAdd = async (e, donationType) => {
     e.preventDefault();
     setDonationType(donationType == "self" ? "self-donate" : "gift-donate");
-    const isValid = validate();
+    const isValid = validate(donationType == "self" ? "self-donate" : "gift-donate");
     console.log("isValid:", isValid);
     if (!privacyPolicy1 ) {
       setPrivacyPolicymessage("Please accept privacy policy");

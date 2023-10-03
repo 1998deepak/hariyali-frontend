@@ -184,7 +184,7 @@ const RecipientDetails = ({
                 </div>
               </div>
             </div>
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-lg-6">
               <div className="row select-label">
               <div className="col-12 col-lg-4 ">Country</div>
                 <div className="col-12 col-lg-8 p0">
@@ -219,8 +219,8 @@ const RecipientDetails = ({
                 </div>
               </div>
             </div>
-            <div className="col-12 col-md-6">
-              <div className="select-label">
+            <div className="col-12 col-lg-6">
+              <div className="row select-label">
                 <div className="col-12 col-lg-4 "> State</div>
                 <div className="col-12 col-lg-8 p0">
                   {
