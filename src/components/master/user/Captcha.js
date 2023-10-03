@@ -3,6 +3,7 @@ import { FiRefreshCcw } from "react-icons/fi";
 function Captcha({ verified, setVerified }) {
   
   const [captcha, setCaptcha] = useState("");
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
     setCaptcha(generateString(6));
@@ -20,7 +21,11 @@ function Captcha({ verified, setVerified }) {
   }
 
   function handleCaptchaRefresh() {
+    setIsRefreshing(true); // Disable the input field during refresh
     setCaptcha(generateString(6));
+    setTimeout(() => {
+      setIsRefreshing(false); // Re-enable the input field after refresh
+    }, 500);
   }
 
   const onSubmit = (e) => {
@@ -46,7 +51,7 @@ function Captcha({ verified, setVerified }) {
               onClick={handleCaptchaRefresh}
               type="reset"
               className="capt-refresh"
-              disabled={verified === true}
+              disabled={verified === true || isRefreshing}
             >
               <FiRefreshCcw />
             </button>
