@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Tab, Tabs } from "react-bootstrap";
+import { Button, Card, Modal, Tab, Tabs } from "react-bootstrap";
 import { DonationService } from "../../../../services/donationService/donation.service";
 import {
   BANK_TRANSFER,
@@ -16,11 +16,12 @@ import SearchWithSuggestions from "../../../common/searchComponent/SearchWithSug
 import Loader from "../../../common/loader/Loader";
 import PaymentDetails from "../../../common/PaymentDetails";
 import PackageDetails from "../../../common/PackageDetails";
-import {INDIA} from "../../../constants/constants";
+import { INDIA } from "../../../constants/constants";
 
 function OfflineDonation() {
   const [donationType, setDonationType] = useState("Self-Donate");
   const [donationType1, setDonationType1] = useState("Gift-Donate");
+  const [showDonationModal, setShowDonationModal] = useState(false);
 
   const [hasAadharCard, setHasAadharCard] = useState(true);
   const [hasPassport, setHasPassport] = useState(true);
@@ -28,6 +29,25 @@ function OfflineDonation() {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [citizenships, setCitizenships] = useState([]);
+  const [activeTab, setActiveTab] = useState("NewDonor"); // Set the initial active tab
+
+  const handleTabChange = (newTabKey) => {
+    console.log(newTabKey);
+    setActiveTab(newTabKey);
+    setDonations(intialDonations);
+    setRecipient(initialRecipientData);
+    setUserData(initialUserData);
+    let packages = [...packageData];
+    packages.map((item) => ({
+      ...item,
+      noOfBouquets: 1,
+      amount: item.bouquetPrice,
+    }));
+    calculateOverallTotal(packages);
+    setPackageData(packages);
+    setAddress(initialAddress);
+  };
+  const handleDonationModalClose = () => setShowDonationModal(false);
 
   const handleRadioChange = (event) => {
     setHasAadharCard(event.target.value === "yes");
@@ -246,8 +266,8 @@ function OfflineDonation() {
         field: "userData.user.firstName",
         message: "First Name should only contain alphabets",
       });
-      if(document.getElementById("firstName")){
-      document.getElementById("firstName").focus();
+      if (document.getElementById("firstName")) {
+        document.getElementById("firstName").focus();
       }
     }
 
@@ -256,70 +276,85 @@ function OfflineDonation() {
         field: "userData.user.lastName",
         message: "Last Name is required",
       });
-      if(document.getElementById("lastName")){
+      if (document.getElementById("lastName")) {
         document.getElementById("lastName").focus();
-        }
+      }
     } else if (/\d/.test(userData.user.lastName)) {
       validationErrors.push({
         field: "userData.user.lastName",
         message: "Last Name should only contain alphabets",
       });
-      if(document.getElementById("lastName")){
+      if (document.getElementById("lastName")) {
         document.getElementById("lastName").focus();
-        }
+      }
     }
 
-    if (userData?.user?.citizenship?.toUpperCase() === INDIA || address[0]?.country?.toUpperCase() ===
-    INDIA ) {
+    if (
+      userData?.user?.citizenship?.toUpperCase() === INDIA ||
+      address[0]?.country?.toUpperCase() === INDIA
+    ) {
       if (hasAadharCard === true) {
         if (!userData?.user?.panCard) {
           validationErrors.push({
             field: "userData.user.panCard",
             message: "PAN Card is required",
           });
-          if(document.getElementById("panCard")){
+          if (document.getElementById("panCard")) {
             document.getElementById("panCard").focus();
           }
         } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard)) {
-            validationErrors.push({
-            field: "userData.user.panCard",
-            message: "PAN Card is Invalid",
-          });
-          if(document.getElementById("panCard")){
-            document.getElementById("panCard").focus();
-          }
-        }if(/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard) === true && userData?.user?.donarType === "Corporate"){
-          if(userData?.user?.panCard.trim().charAt(3) === "H" || userData?.user?.panCard.trim().charAt(3) === "P"){
-            validationErrors.push({
-              field: "userData.user.panCard",
-              message: "PAN Card is Invalid",
-            });
-            if(document.getElementById("panCard")){
-              document.getElementById("panCard").focus();
-            }
-        }
-      }
-      if(/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard) === true && userData?.user?.donarType === "Individual"){
-        if(userData?.user?.panCard.trim().charAt(3) !== "H" && userData?.user?.panCard.trim().charAt(3) !== "P"){
           validationErrors.push({
             field: "userData.user.panCard",
             message: "PAN Card is Invalid",
           });
-          if(document.getElementById("panCard")){
+          if (document.getElementById("panCard")) {
             document.getElementById("panCard").focus();
           }
-      }
-    }} else {
+        }
         if (
-          !(/^\d{12}$/.test(userData.user.addharCard))) {
+          /^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard) === true &&
+          userData?.user?.donarType === "Corporate"
+        ) {
+          if (
+            userData?.user?.panCard.trim().charAt(3) === "H" ||
+            userData?.user?.panCard.trim().charAt(3) === "P"
+          ) {
+            validationErrors.push({
+              field: "userData.user.panCard",
+              message: "PAN Card is Invalid",
+            });
+            if (document.getElementById("panCard")) {
+              document.getElementById("panCard").focus();
+            }
+          }
+        }
+        if (
+          /^[A-Z]{5}[0-9]{4}[A-Z]$/.test(userData?.user?.panCard) === true &&
+          userData?.user?.donarType === "Individual"
+        ) {
+          if (
+            userData?.user?.panCard.trim().charAt(3) !== "H" &&
+            userData?.user?.panCard.trim().charAt(3) !== "P"
+          ) {
+            validationErrors.push({
+              field: "userData.user.panCard",
+              message: "PAN Card is Invalid",
+            });
+            if (document.getElementById("panCard")) {
+              document.getElementById("panCard").focus();
+            }
+          }
+        }
+      } else {
+        if (!/^\d{12}$/.test(userData.user.addharCard)) {
           validationErrors.push({
             field: "userData.user.addharCard",
             message:
               "ADDHAR Number must contain exactly 12 digits and no alphabetic characters",
           });
-          if(document.getElementById("addharCard")){
+          if (document.getElementById("addharCard")) {
             document.getElementById("addharCard").focus();
-          } 
+          }
         }
       }
     } else {
@@ -328,52 +363,49 @@ function OfflineDonation() {
           field: "userData.user.passport",
           message: "Passport is required",
         });
-        if(document.getElementById("passport")){
+        if (document.getElementById("passport")) {
           document.getElementById("passport").focus();
-        } 
-      }}
+        }
+      }
+    }
 
     if (!userData?.user?.mobileNo) {
       validationErrors.push({
         field: "userData.user.mobileNo",
         message: "Mobile Number is required",
       });
-      if(document.getElementById("mobileNo")){
+      if (document.getElementById("mobileNo")) {
         document.getElementById("mobileNo").focus();
-        }
+      }
     } else if (!/^(?!.*[a-zA-Z])\d{10}$/.test(userData.user.mobileNo)) {
       validationErrors.push({
         field: "userData.user.mobileNo",
         message:
           "Mobile Number must contain exactly 10 digits and no alphabetic characters",
       });
-      if(document.getElementById("mobileNo")){
+      if (document.getElementById("mobileNo")) {
         document.getElementById("mobileNo").focus();
-        }
+      }
     }
-    const emailRegex = /^[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*([.]{1}[A-Za-z0-9_]{2,3})+$/i;
+    const emailRegex =
+      /^[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*([.]{1}[A-Za-z0-9_]{2,3})+$/i;
     if (!userData?.user?.emailId) {
       validationErrors.push({
         field: "userData.user.emailId",
         message: "Email ID is required",
       });
-      if(document.getElementById("emailId")){
+      if (document.getElementById("emailId")) {
         document.getElementById("emailId").focus();
-        }
-    } else if (
-      !emailRegex.test(
-        userData.user.emailId
-      )
-    ) {
+      }
+    } else if (!emailRegex.test(userData.user.emailId)) {
       validationErrors.push({
         field: "userData.user.emailId",
         message: "Invalid Email ID",
       });
-      if(document.getElementById("emailId")){
+      if (document.getElementById("emailId")) {
         document.getElementById("emailId").focus();
       }
     }
-
 
     if (!userData?.user?.donarType) {
       validationErrors.push({
@@ -386,7 +418,7 @@ function OfflineDonation() {
         field: "userData.user.prefix",
         message: "Prefix is required",
       });
-      if(document.getElementById("prefix")){
+      if (document.getElementById("prefix")) {
         document.getElementById("prefix").focus();
       }
     }
@@ -486,7 +518,7 @@ function OfflineDonation() {
           field: "address[" + i + "].street1",
           message: "Street is required",
         });
-        if(document.getElementById("street1")){
+        if (document.getElementById("street1")) {
           document.getElementById("street1").focus();
         }
       }
@@ -495,7 +527,7 @@ function OfflineDonation() {
           field: "address[" + i + "].country",
           message: "Country is required",
         });
-        if(document.getElementById("country")){
+        if (document.getElementById("country")) {
           document.getElementById("country").focus();
         }
       } else if (/\d/.test(userData.user.lastName)) {
@@ -503,7 +535,7 @@ function OfflineDonation() {
           field: "address[" + i + "].country",
           message: "Country should only contain alphabets",
         });
-        if(document.getElementById("country")){
+        if (document.getElementById("country")) {
           document.getElementById("country").focus();
         }
       }
@@ -512,7 +544,7 @@ function OfflineDonation() {
           field: "address[" + i + "].state",
           message: "State is required",
         });
-        if(document.getElementById("state")){
+        if (document.getElementById("state")) {
           document.getElementById("state").focus();
         }
       }
@@ -522,16 +554,15 @@ function OfflineDonation() {
           field: "address[" + i + "].city",
           message: "City is required",
         });
-        if(document.getElementById("city")){
+        if (document.getElementById("city")) {
           document.getElementById("city").focus();
         }
-       
       } else if (/\d/.test(addr?.city)) {
         validationErrors.push({
           field: "address[" + i + "].city",
           message: "City should only contain alphabets",
         });
-        if(document.getElementById("city")){
+        if (document.getElementById("city")) {
           document.getElementById("city").focus();
         }
       }
@@ -541,7 +572,7 @@ function OfflineDonation() {
           field: "address[" + i + "].postalCode",
           message: "Postal Code should only contain six numbers",
         });
-        if(document.getElementById("postalCode")){
+        if (document.getElementById("postalCode")) {
           document.getElementById("postalCode").focus();
         }
       }
@@ -583,17 +614,14 @@ function OfflineDonation() {
             message: "Last Name should only contain alphabets",
           });
         }
-        const emailRegex = /^[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*([.]{1}[A-Za-z0-9_]{2,3})+$/i;
+        const emailRegex =
+          /^[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*([.]{1}[A-Za-z0-9_]{2,3})+$/i;
         if (!rec?.emailId) {
           validationErrors.push({
             field: "recipient[" + i + "].emailId",
             message: "Email ID is required",
           });
-        } else if (
-          !emailRegex.test(
-            rec.emailId
-          )
-        ) {
+        } else if (!emailRegex.test(rec.emailId)) {
           validationErrors.push({
             field: "recipient[" + i + "].emailId",
             message: "Invalid Email ID",
@@ -771,21 +799,23 @@ function OfflineDonation() {
     setLoading(true);
     const response = await DonationService.getAllStatesByCountry(countryId);
     if (response?.status === 200) {
-      if(response?.data.length === 0){
-        console.log(response?.data.length)
-        if(document.getElementById("state2")){
-        document.getElementById("state2").style.display = "block";
-        } if(document.getElementById("state3")){
+      if (response?.data.length === 0) {
+        console.log(response?.data.length);
+        if (document.getElementById("state2")) {
+          document.getElementById("state2").style.display = "block";
+        }
+        if (document.getElementById("state3")) {
           document.getElementById("state3").style.display = "none";
         }
         setStates(response.data);
         setLoading(false);
-      }else{
-        if(document.getElementById("state2")){
+      } else {
+        if (document.getElementById("state2")) {
           document.getElementById("state2").style.display = "none";
-          } if(document.getElementById("state3")){
-            document.getElementById("state3").style.display = "block";
-          }
+        }
+        if (document.getElementById("state3")) {
+          document.getElementById("state3").style.display = "block";
+        }
         setStates(response.data);
         setLoading(false);
       }
@@ -903,9 +933,9 @@ function OfflineDonation() {
       name == "user.lastName"
     ) {
       currentField[keys[keys.length - 1]] = value.toUpperCase();
-    } else if(name == "user.emailId"){
+    } else if (name == "user.emailId") {
       currentField[keys[keys.length - 1]] = value.toLowerCase();
-    }else {
+    } else {
       currentField[keys[keys.length - 1]] = value;
     }
     setUserData(updatedFormData);
@@ -936,9 +966,8 @@ function OfflineDonation() {
     if (data) {
       if (data) {
         getStatesByCountry(data.countryCode);
+      }
     }
-    }
-    
   };
   //Handle Donations
   const handleDonationChange = (e, index) => {
@@ -994,7 +1023,7 @@ function OfflineDonation() {
     setRecipient(updatedAddress);
     if (data) {
       getStatesByCountry(data.countryCode);
-  }
+    }
     return updatedAddress;
   };
   const handlePaymentInfoChange = (e, donationIndex, payIndex) => {
@@ -1090,28 +1119,28 @@ function OfflineDonation() {
       let response = await DonationService.getDetailsByEmailId(emailId);
       console.log(response);
       if (response?.status === "Success") {
-        toast.success(response?.message);
-        console.log(response?.data);
-        let addr = [...initialAddress];
-        if (response?.data?.address) {
-          if (hasValues(response?.data?.address[0])) {
-            addr[0] = response.data.address[0];
-          }
-          if (hasValues(response?.data?.address[1])) {
-            addr[1] = response.data.address[1];
-          }
-        }
-        
-        setAddress(addr);
-        const formData = {
-          formData: {
-            user: response?.data,
-          },
-        };
-        if (formData?.formData?.user?.donations) {
-          setPackageData(formData?.formData?.user?.donations[0]?.userPackage);
-        }
-        setUserData(formData.formData);
+        setShowDonationModal(true);
+        // console.log(response?.data);
+        // let addr = [...initialAddress];
+        // if (response?.data?.address) {
+        //   if (hasValues(response?.data?.address[0])) {
+        //     addr[0] = response.data.address[0];
+        //   }
+        //   if (hasValues(response?.data?.address[1])) {
+        //     addr[1] = response.data.address[1];
+        //   }
+        // }
+
+        // setAddress(addr);
+        // const formData = {
+        //   formData: {
+        //     user: response?.data,
+        //   },
+        // };
+        // if (formData?.formData?.user?.donations) {
+        //   setPackageData(formData?.formData?.user?.donations[0]?.userPackage);
+        // }
+        // setUserData(formData.formData);
         setLoading(false);
       } else if (
         response?.statusCode === 409 ||
@@ -1356,6 +1385,8 @@ function OfflineDonation() {
         defaultActiveKey="NewDonor"
         id="uncontrolled-tab-example"
         className="newexti-tab"
+        activeKey={activeTab}
+        onSelect={(eventKey) =>  handleTabChange(eventKey)}
       >
         <Tab eventKey="NewDonor" title="New Donor">
           <div className="bggray">
@@ -1369,7 +1400,7 @@ function OfflineDonation() {
                     activeKey={donationType}
                     onSelect={handleTabSelect}
                   >
-                    <Tab eventKey="Self-Donate" title="Plant A Tree">
+                    <Tab eventKey="Self-Donate" title="Plant A Tree" >
                       <form className="form-div contact-form-wrap">
                         <PackageDetails
                           packageData={packageData}
@@ -1382,14 +1413,14 @@ function OfflineDonation() {
                         <div className="clear" />
                         <hr />
                         {userData?.user?.donarType === "Corporate" ? (
-                            <div className="actionheadingdiv">
-                              DETAILS OF POINT OF CONTACT
-                            </div>
-                          ) : (
-                            <div className="actionheadingdiv">
-                              DETAILS OF DONOR
-                            </div>
-                          )}
+                          <div className="actionheadingdiv">
+                            DETAILS OF POINT OF CONTACT
+                          </div>
+                        ) : (
+                          <div className="actionheadingdiv">
+                            DETAILS OF DONOR
+                          </div>
+                        )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-12 col-lg-6">
@@ -1431,7 +1462,8 @@ function OfflineDonation() {
                             <div className="col-12 col-lg-6">
                               <div className="row select-label">
                                 <div className="col-12 col-lg-4 ">
-                                  Mobile Number<span className="red-text">*</span>
+                                  Mobile Number
+                                  <span className="red-text">*</span>
                                 </div>
                                 <div className="col-12 col-lg-8 p0">
                                   <input
@@ -1695,16 +1727,15 @@ function OfflineDonation() {
                                 </div>
                               </div>{" "}
                             </div>
-                            {userData?.user?.citizenship?.toUpperCase() === INDIA ? (
+                            {userData?.user?.citizenship?.toUpperCase() ===
+                            INDIA ? (
                               <>
                                 {userData?.user?.donarType === "Individual" ? (
                                   <div className="col-12 col-lg-6">
                                     <div className="select-label">
                                       <div className="col-12 p0 field-wrapper">
                                         <div>
-                                          <label>
-                                            Do you have a PAN Card?
-                                          </label>
+                                          <label>Do you have a PAN Card?</label>
                                           <div className="radio-buttons">
                                             <label>
                                               <input
@@ -1778,10 +1809,13 @@ function OfflineDonation() {
                                     </div>
                                   </div>
                                 ) : (
-                                  <div id="addharId" className="col-12 col-lg-6">
+                                  <div
+                                    id="addharId"
+                                    className="col-12 col-lg-6"
+                                  >
                                     <div className="row select-label">
                                       <div className="col-12 col-lg-4">
-                                      AADHAAR Card{" "}
+                                        AADHAAR Card{" "}
                                         <span className="red-text">*</span>
                                       </div>
                                       <div className="col-12 col-lg-8 p0 ">
@@ -2021,7 +2055,10 @@ function OfflineDonation() {
                             </div>
                             <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4 "> Street 2</div>
+                                <div className="col-12 col-lg-4 ">
+                                  {" "}
+                                  Street 2
+                                </div>
                                 <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
@@ -2038,7 +2075,10 @@ function OfflineDonation() {
                             </div>
                             <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4 "> Street 3</div>
+                                <div className="col-12 col-lg-4 ">
+                                  {" "}
+                                  Street 3
+                                </div>
                                 <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
@@ -2119,49 +2159,53 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div id ="state3" className="col-12 col-lg-6" style={{display:"block"}}>
-                                <div className="row select-label">
-                                  <div className="col-12 col-lg-4 ">
-                                    State <span className="red-text">*</span>
-                                  </div>
-                                  <div className="col-12 col-lg-8 p0 ">
-                                    <select
-                                      className=" form-control-inside form-select form-control"
-                                      name="state"
-                                      id="state"
-                                      value={address[0]?.state}
-                                      onChange={(event) =>
-                                        handleAddressChange(event, 0)
-                                      }
-                                    >
-                                      <option disabled selected value="">
-                                        Select State
+                            <div
+                              id="state3"
+                              className="col-12 col-lg-6"
+                              style={{ display: "block" }}
+                            >
+                              <div className="row select-label">
+                                <div className="col-12 col-lg-4 ">
+                                  State <span className="red-text">*</span>
+                                </div>
+                                <div className="col-12 col-lg-8 p0 ">
+                                  <select
+                                    className=" form-control-inside form-select form-control"
+                                    name="state"
+                                    id="state"
+                                    value={address[0]?.state}
+                                    onChange={(event) =>
+                                      handleAddressChange(event, 0)
+                                    }
+                                  >
+                                    <option disabled selected value="">
+                                      Select State
+                                    </option>
+                                    {states.map((state) => (
+                                      <option
+                                        key={state}
+                                        value={state.stateName}
+                                      >
+                                        {state.stateName}
                                       </option>
-                                      {states.map((state) => (
-                                        <option
-                                          key={state}
-                                          value={state.stateName}
+                                    ))}
+                                  </select>
+                                  {errors.map((error, index) => {
+                                    if (error.field === "address[0].state") {
+                                      return (
+                                        <div
+                                          key={index}
+                                          className="error-message red-text"
                                         >
-                                          {state.stateName}
-                                        </option>
-                                      ))}
-                                    </select>
-                                    {errors.map((error, index) => {
-                                      if (error.field === "address[0].state") {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
-                                  </div>
+                                          {error.message}
+                                        </div>
+                                      );
+                                    }
+                                    return null;
+                                  })}
                                 </div>
                               </div>
+                            </div>
                             {/* {address[0]?.country.toUpperCase() === "INDIA" ? (
                               <div className="col-12 col-lg-6">
                                 <div className="select-label">
@@ -2240,7 +2284,11 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             )} */}
-                            <div id="state2" className="col-12 col-lg-6" style={{display:"none"}}>
+                            <div
+                              id="state2"
+                              className="col-12 col-lg-6"
+                              style={{ display: "none" }}
+                            >
                               <div className="row select-label">
                                 <div className="col-12 col-lg-4 ">
                                   {" "}
@@ -2250,9 +2298,9 @@ function OfflineDonation() {
                                   <input
                                     className="form-control-inside"
                                     name="state"
-                                      id="state1"
-                                      placeholder="State"
-                                      type="text"
+                                    id="state1"
+                                    placeholder="State"
+                                    type="text"
                                     value={address[0]?.state}
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
@@ -2346,7 +2394,10 @@ function OfflineDonation() {
                             <div className="row">
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-12 col-lg-4 "> Street 1</div>
+                                  <div className="col-12 col-lg-4 ">
+                                    {" "}
+                                    Street 1
+                                  </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -2364,7 +2415,10 @@ function OfflineDonation() {
                               </div>
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-12 col-lg-4 "> Street 2</div>
+                                  <div className="col-12 col-lg-4 ">
+                                    {" "}
+                                    Street 2
+                                  </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -2381,7 +2435,10 @@ function OfflineDonation() {
                               </div>
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-12 col-lg-4 "> Street 3</div>
+                                  <div className="col-12 col-lg-4 ">
+                                    {" "}
+                                    Street 3
+                                  </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -2508,7 +2565,9 @@ function OfflineDonation() {
                               </div>
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-12 col-lg-4 ">Postal Code</div>
+                                  <div className="col-12 col-lg-4 ">
+                                    Postal Code
+                                  </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -2631,14 +2690,14 @@ function OfflineDonation() {
                         <div className="col-12 col-lg-6 mt20"></div>
                         <hr />
                         {userData?.user?.donarType === "Corporate" ? (
-                            <div className="actionheadingdiv">
-                              DETAILS OF POINT OF CONTACT
-                            </div>
-                          ) : (
-                            <div className="actionheadingdiv">
-                              DETAILS OF DONOR
-                            </div>
-                          )}
+                          <div className="actionheadingdiv">
+                            DETAILS OF POINT OF CONTACT
+                          </div>
+                        ) : (
+                          <div className="actionheadingdiv">
+                            DETAILS OF DONOR
+                          </div>
+                        )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-12 col-lg-6">
@@ -2679,7 +2738,8 @@ function OfflineDonation() {
                             <div className="col-12 col-lg-6">
                               <div className="row select-label">
                                 <div className="col-12 col-lg-4 ">
-                                  Mobile Number<span className="red-text">*</span>
+                                  Mobile Number
+                                  <span className="red-text">*</span>
                                 </div>
                                 <div className="col-12 col-lg-8 p0">
                                   <input
@@ -2939,7 +2999,8 @@ function OfflineDonation() {
                               </div>{" "}
                             </div>
 
-                            {userData?.user?.citizenship?.toUpperCase() === INDIA ? (
+                            {userData?.user?.citizenship?.toUpperCase() ===
+                            INDIA ? (
                               <>
                                 {userData?.user?.donarType === "Individual" ? (
                                   <div className="col-12 col-lg-6">
@@ -3022,10 +3083,13 @@ function OfflineDonation() {
                                     </div>
                                   </div>
                                 ) : (
-                                  <div id="addharId" className="col-12 col-lg-6">
+                                  <div
+                                    id="addharId"
+                                    className="col-12 col-lg-6"
+                                  >
                                     <div className="row select-label">
                                       <div className="col-12 col-lg-4">
-                                      AADHAAR Card{" "}
+                                        AADHAAR Card{" "}
                                         <span className="red-text">*</span>
                                       </div>
                                       <div className="col-12 col-lg-8 p0 ">
@@ -3153,7 +3217,10 @@ function OfflineDonation() {
                             </div>
                             <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4 "> Street 2</div>
+                                <div className="col-12 col-lg-4 ">
+                                  {" "}
+                                  Street 2
+                                </div>
                                 <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
@@ -3170,7 +3237,10 @@ function OfflineDonation() {
                             </div>
                             <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4 "> Street 3</div>
+                                <div className="col-12 col-lg-4 ">
+                                  {" "}
+                                  Street 3
+                                </div>
                                 <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
@@ -3250,15 +3320,18 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div id="state3" className="col-12 col-lg-6" style={{display:"block"}}>
-                                <div className="row select-label">
-                                  <div className="col-12 col-lg-4 ">
-                                    State <span className="red-text">*</span>
-                                  </div>
-                                  <div className="col-12 col-lg-8 p0 ">
-                                    {
-                                      states.length === 0 ?
-                                      <input
+                            <div
+                              id="state3"
+                              className="col-12 col-lg-6"
+                              style={{ display: "block" }}
+                            >
+                              <div className="row select-label">
+                                <div className="col-12 col-lg-4 ">
+                                  State <span className="red-text">*</span>
+                                </div>
+                                <div className="col-12 col-lg-8 p0 ">
+                                  {states.length === 0 ? (
+                                    <input
                                       type="text"
                                       className=" form-control-inside form-control"
                                       name="state"
@@ -3268,8 +3341,9 @@ function OfflineDonation() {
                                       onChange={(event) =>
                                         handleAddressChange(event, 0)
                                       }
-                                      />:
-                                      <select
+                                    />
+                                  ) : (
+                                    <select
                                       className=" form-control-inside form-select form-control"
                                       name="state"
                                       id="state"
@@ -3290,24 +3364,24 @@ function OfflineDonation() {
                                         </option>
                                       ))}
                                     </select>
+                                  )}
+
+                                  {errors.map((error, index) => {
+                                    if (error.field === "address[0].state") {
+                                      return (
+                                        <div
+                                          key={index}
+                                          className="error-message red-text"
+                                        >
+                                          {error.message}
+                                        </div>
+                                      );
                                     }
-                                    
-                                    {errors.map((error, index) => {
-                                      if (error.field === "address[0].state") {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
-                                  </div>
+                                    return null;
+                                  })}
                                 </div>
                               </div>
+                            </div>
                             {/* {address[0]?.country === "INDIA" ? (
                               <div className="col-12 col-lg-6">
                                 <div className="select-label">
@@ -3386,7 +3460,11 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             )} */}
-                            <div id="state2" className="col-12 col-lg-6" style={{display:"none"}}>
+                            <div
+                              id="state2"
+                              className="col-12 col-lg-6"
+                              style={{ display: "none" }}
+                            >
                               <div className="row select-label">
                                 <div className="col-12 col-lg-4 ">
                                   {" "}
@@ -3396,9 +3474,9 @@ function OfflineDonation() {
                                   <input
                                     className="form-control-inside"
                                     name="state"
-                                      id="state1"
-                                      placeholder="State"
-                                      type="text"
+                                    id="state1"
+                                    placeholder="State"
+                                    type="text"
                                     value={address[0]?.state}
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
@@ -3678,7 +3756,10 @@ function OfflineDonation() {
 
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-12 col-lg-4 "> Street 2</div>
+                                  <div className="col-12 col-lg-4 ">
+                                    {" "}
+                                    Street 2
+                                  </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -3695,7 +3776,10 @@ function OfflineDonation() {
                               </div>
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-12 col-lg-4 "> Street 3</div>
+                                  <div className="col-12 col-lg-4 ">
+                                    {" "}
+                                    Street 3
+                                  </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -3838,7 +3922,9 @@ function OfflineDonation() {
                               </div>
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-12 col-lg-4 ">Postal Code</div>
+                                  <div className="col-12 col-lg-4 ">
+                                    Postal Code
+                                  </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -3903,7 +3989,8 @@ function OfflineDonation() {
                             <div className="col-12 col-lg-6">
                               <div className="row select-label">
                                 <div className="col-12 col-lg-4 ">
-                                  Donor ID <span className="red-text">*</span>
+                                  Donor ID / Email Id{" "}
+                                  <span className="red-text">*</span>
                                 </div>
                                 <div className="col-12 col-lg-8 p0">
                                   <SearchWithSuggestions
@@ -3926,14 +4013,14 @@ function OfflineDonation() {
                         <div className="clear" />
                         <hr />
                         {userData?.user?.donarType === "Corporate" ? (
-                            <div className="actionheadingdiv">
-                              DETAILS OF POINT OF CONTACT
-                            </div>
-                          ) : (
-                            <div className="actionheadingdiv">
-                              DETAILS OF DONOR
-                            </div>
-                          )}
+                          <div className="actionheadingdiv">
+                            DETAILS OF POINT OF CONTACT
+                          </div>
+                        ) : (
+                          <div className="actionheadingdiv">
+                            DETAILS OF DONOR
+                          </div>
+                        )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-12 col-lg-6">
@@ -3966,7 +4053,8 @@ function OfflineDonation() {
                             <div className="col-12 col-lg-6">
                               <div className="row select-label">
                                 <div className="col-12 col-lg-4 ">
-                                  Mobile Number<span className="red-text">*</span>
+                                  Mobile Number
+                                  <span className="red-text">*</span>
                                 </div>
                                 <div className="col-12 col-lg-8 p0">
                                   <input
@@ -4196,7 +4284,10 @@ function OfflineDonation() {
                             </div>
                             <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4 "> Street 2</div>
+                                <div className="col-12 col-lg-4 ">
+                                  {" "}
+                                  Street 2
+                                </div>
                                 <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
@@ -4214,7 +4305,10 @@ function OfflineDonation() {
                             </div>
                             <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4 "> Street 3</div>
+                                <div className="col-12 col-lg-4 ">
+                                  {" "}
+                                  Street 3
+                                </div>
                                 <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
@@ -4356,7 +4450,10 @@ function OfflineDonation() {
                             <div className="row">
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-12 col-lg-4 "> Street 1</div>
+                                  <div className="col-12 col-lg-4 ">
+                                    {" "}
+                                    Street 1
+                                  </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -4373,7 +4470,10 @@ function OfflineDonation() {
                               </div>
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-12 col-lg-4 "> Street 2</div>
+                                  <div className="col-12 col-lg-4 ">
+                                    {" "}
+                                    Street 2
+                                  </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -4390,7 +4490,10 @@ function OfflineDonation() {
                               </div>
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-12 col-lg-4 "> Street 3</div>
+                                  <div className="col-12 col-lg-4 ">
+                                    {" "}
+                                    Street 3
+                                  </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -4497,7 +4600,9 @@ function OfflineDonation() {
                               </div>
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-12 col-lg-4 ">Postal Code</div>
+                                  <div className="col-12 col-lg-4 ">
+                                    Postal Code
+                                  </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -4551,7 +4656,6 @@ function OfflineDonation() {
                     <Tab
                       eventKey="Gift-Donate"
                       title="Gift A Tree"
-                      //  onClick={(eventKey) => handleTabSelect()}
                     >
                       {/* <h5>Gift a tree</h5> */}
                       <form className="form-div contact-form-wrap">
@@ -4560,7 +4664,8 @@ function OfflineDonation() {
                             <div className="col-12 col-lg-6">
                               <div className="row select-label">
                                 <div className="col-12 col-lg-4 ">
-                                  Donor ID <span className="red-text">*</span>
+                                  Donor ID / Email Id{" "}
+                                  <span className="red-text">*</span>
                                 </div>
                                 <div className="col-12 col-lg-8 p0">
                                   <SearchWithSuggestions
@@ -4632,14 +4737,14 @@ function OfflineDonation() {
                         <div className="clear" />
                         <hr />
                         {userData?.user?.donarType === "Corporate" ? (
-                            <div className="actionheadingdiv">
-                              DETAILS OF POINT OF CONTACT
-                            </div>
-                          ) : (
-                            <div className="actionheadingdiv">
-                              DETAILS OF DONOR
-                            </div>
-                          )}
+                          <div className="actionheadingdiv">
+                            DETAILS OF POINT OF CONTACT
+                          </div>
+                        ) : (
+                          <div className="actionheadingdiv">
+                            DETAILS OF DONOR
+                          </div>
+                        )}
                         <div className="col-12 pr15 mt20">
                           <div className="row">
                             <div className="col-12 col-lg-6">
@@ -4672,7 +4777,8 @@ function OfflineDonation() {
                             <div className="col-12 col-lg-6">
                               <div className="row select-label">
                                 <div className="col-12 col-lg-4 ">
-                                  Mobile Number<span className="red-text">*</span>
+                                  Mobile Number
+                                  <span className="red-text">*</span>
                                 </div>
                                 <div className="col-12 col-lg-8 p0">
                                   <input
@@ -4910,7 +5016,10 @@ function OfflineDonation() {
                             </div>
                             <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4 "> Street 2</div>
+                                <div className="col-12 col-lg-4 ">
+                                  {" "}
+                                  Street 2
+                                </div>
                                 <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
@@ -4929,7 +5038,10 @@ function OfflineDonation() {
                             </div>
                             <div className="col-12 col-lg-6">
                               <div className="row select-label">
-                                <div className="col-12 col-lg-4 "> Street 3</div>
+                                <div className="col-12 col-lg-4 ">
+                                  {" "}
+                                  Street 3
+                                </div>
                                 <div className="col-12 col-lg-8 p0">
                                   <input
                                     className="form-control-inside"
@@ -5211,7 +5323,10 @@ function OfflineDonation() {
                             <div className="row">
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-12 col-lg-4 "> Street 1</div>
+                                  <div className="col-12 col-lg-4 ">
+                                    {" "}
+                                    Street 1
+                                  </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -5245,7 +5360,10 @@ function OfflineDonation() {
 
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-12 col-lg-4 "> Street 2</div>
+                                  <div className="col-12 col-lg-4 ">
+                                    {" "}
+                                    Street 2
+                                  </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -5262,7 +5380,10 @@ function OfflineDonation() {
                               </div>
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-12 col-lg-4 "> Street 3</div>
+                                  <div className="col-12 col-lg-4 ">
+                                    {" "}
+                                    Street 3
+                                  </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -5432,7 +5553,9 @@ function OfflineDonation() {
                               </div>
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
-                                  <div className="col-12 col-lg-4 ">Postal Code</div>
+                                  <div className="col-12 col-lg-4 ">
+                                    Postal Code
+                                  </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
                                       className="form-control-inside"
@@ -5476,7 +5599,39 @@ function OfflineDonation() {
           </div>
         </Tab>
       </Tabs>
-
+      <Modal
+        className="transaction-modal"
+        show={showDonationModal}
+        onHide={handleDonationModalClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Body>
+          <div className="row">
+            <div className="col-12">
+              <Card>
+                <Card.Body>
+                  <Card.Text>
+                    Your Donar Id/Email Id is already exists please continue in
+                    Existing Donar flow.
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              handleDonationModalClose();
+              handleTabChange("ExistingDonor");
+            }}
+          >
+            Procced to Existing Donation
+          </Button>
+        </Modal.Footer>
+      </Modal>
       {/* body */}
     </>
   );
