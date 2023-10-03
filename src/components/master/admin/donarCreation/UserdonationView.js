@@ -5,6 +5,7 @@ import { FaRegEye } from "react-icons/fa";
 import Loader from "../../../common/loader/Loader";
 import { toast, ToastContainer } from "react-toastify";
 import Pagination from '../../../common/Pagination';
+import { convertDateFormat } from "../../../utils/convertDateFormat";
 
 function UserdonationView({ userDetails, setAuthToken, authToken }) {
   const id = useParams().id;
@@ -71,9 +72,9 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
                 <tbody>
                   {donationList.map(donation => {
                     return (
-                      <tr>
+                      <tr key={donation.donationId}>
                         <td>{donation?.donationCode}</td>
-                        <td>{donation?.donationDate}</td>
+                        <td>{convertDateFormat(donation?.donationDate)}</td>
                         <td>{donation?.paymentInfo[0]?.bankPaymentRefNo}</td>
                         <td>{donation?.totalAmount}</td>
                         <td>{donation?.paymentInfo[0]?.paymentStatus}</td>
