@@ -407,7 +407,7 @@ function NewOnlineDonation() {
       );
       updatedDonations[0].userPackage = filteredPackages;
       const formData = {
-        emailId: userData?.user?.emailId,
+        emailId: email,
         donorId: userData?.user?.donorId, 
         donations: updatedDonations.map((donation) => {
           const donationData = {
@@ -497,18 +497,6 @@ function NewOnlineDonation() {
                         >
                           Proceed to pay
                         </button>
-                        <button
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Clear
-                        </button>
                       </form>
                     </Tab>
                     <Tab
@@ -554,20 +542,6 @@ function NewOnlineDonation() {
                           onClick={(e) => createDonation(e, userData)}
                         >
                           Proceed to pay
-                        </button>
-                        <button
-                          type="submit"
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          type="submit"
-                          className="mt20 mr10 webform-button--cancel "
-                          onClick={(e) => clearForm(e)}
-                        >
-                          Clear
                         </button>
                       </form>
                     </Tab>
