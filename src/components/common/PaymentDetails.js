@@ -40,7 +40,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
       getAllActiveBankAccounts();
     }, [])
     
-
+    console.log(errors);
   return (
     <>
       <div className="col-sm-12 pr15 mt20">
@@ -70,7 +70,8 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                     );
                   })}
                 </select>
-                {errors?.map((error, index) => {
+                {errors?.map((error) => {
+                  console.log(error.field === `donations[0].paymentInfo[${index}].paymentMode`);
                   if (
                     error.field === `donations[0].paymentInfo[${index}].paymentMode`
                   ) {
@@ -110,7 +111,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                   );
                 })}
               </select>
-                {errors?.map((error, index) => {
+                {errors?.map((error) => {
                   if (error.field === `donations[0].paymentInfo[${index}].accountId`) {
                     return (
                       <div key={index} className="error-message red-text">
@@ -143,7 +144,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                   }}
                   disabled={isDisabled}
                 />
-                {errors?.map((error, index) => {
+                {errors?.map((error) => {
                   if (error.field === `donations[0].paymentInfo[${index}].amount`) {
                     return (
                       <div key={index} className="error-message red-text">
@@ -171,7 +172,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
                   disabled={isDisabled}
                 />
-                {errors?.map((error, index) => {
+                {errors?.map((error) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].paymentDate`
                   ) {
@@ -241,7 +242,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                     );
                   })}
                 </select>
-                {errors?.map((error, index) => {
+                {errors?.map((error) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].paymentStatus`
                   ) {
@@ -271,7 +272,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
                   disabled={isDisabled}
                 />
-                {errors?.map((error, index) => {
+                {errors?.map((error) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].receiptDate`
                   ) {
@@ -304,7 +305,7 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
                   onChange={(event) => handlePaymentInfoChange(event, 0, index)}
                   disabled={isDisabled}
                 />
-                {errors?.map((error, index) => {
+                {errors?.map((error) => {
                   if (
                     error.field === `donations[0].paymentInfo[${index}].receivedAmount`
                   ) {
