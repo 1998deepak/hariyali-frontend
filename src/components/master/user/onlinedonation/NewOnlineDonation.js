@@ -211,6 +211,15 @@ function NewOnlineDonation() {
           message: "Donation Event is required",
         });
       }
+      if (!donations[0]?.giftContent) {
+        validationErrors.push({
+          field: "donations.giftContent",
+          message: "Message for the giftee is required",
+        });
+        if(document.getElementById("giftContent")){
+          document.getElementById("giftContent").focus();
+        }
+      }
       for (let i = 0; i < recipient.length; i++) {
         const rec = recipient[i];
 
@@ -311,9 +320,6 @@ function NewOnlineDonation() {
   };
 
   const handleTabSelect = (eventKey) => {
-    console.log('====================================');
-    console.log(eventKey);
-    console.log('====================================');
     setDonationType(eventKey);
     setDonations(intialDonations);
     setRecipient(initialRecipientData);
@@ -346,15 +352,14 @@ function NewOnlineDonation() {
     console.log(e);
     const { name, value } = e.target;
     const updatedDonations = [...donations];
-    if (name === "donationEvent") {
-      console.log(name);
-      updatedDonations[index][name] = value;
-    }
     if (name === "generalDonation") {
       let gnrlDonation = parseInt(value);
       updatedDonations[index][name] = gnrlDonation > 0 ? gnrlDonation : null;
       updatedDonations[0]["totalAmount"] = null;
+    }else{
+      updatedDonations[index][name] = value;
     }
+    console.log(updatedDonations);
     setDonations(updatedDonations);
   };
 
@@ -396,21 +401,22 @@ function NewOnlineDonation() {
     e.preventDefault();
     if (validate()) {
       const updatedDonations = [...donations];
-
+      console.log(donationType);
       const filteredPackages = packageData.filter(
         (pkg) => pkg.noOfBouquets > 0
       );
       updatedDonations[0].userPackage = filteredPackages;
       const formData = {
         emailId: userData?.user?.emailId,
-        donorId: userData?.user?.donorId,
+        donorId: userData?.user?.donorId, 
         donations: updatedDonations.map((donation) => {
           const donationData = {
             ...donation,
           };
-          if (donation.donationType === "Self-Donate") {
+          donationData.donationType = donationType;
+          if (donationType === "Self-Donate") {
             donationData.recipient = []; // Exclude recipient data
-          } else if (donation.donationType === "Gift-Donate") {
+          } else if (donationType === "Gift-Donate") {
             donationData.recipient = recipient;
           }
           return donationData;

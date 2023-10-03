@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { OCCASION_LIST } from "../../../constants/constants";
 
 const DonationHeader = ({
@@ -8,6 +8,15 @@ const DonationHeader = ({
   errors,
   isOccasion,
 }) => {
+  const [inputValue, setInputValue] = useState('');
+  const maxLength = 150;
+  const handleChangeTextarea = (event) => {
+    const inputValue = event.target.value;
+
+    if (inputValue.length <= maxLength) {
+      setInputValue(inputValue);
+    }
+  };
   return (
     <div className="col-12 mt20">
       <div className="row ">
@@ -60,6 +69,40 @@ const DonationHeader = ({
                   }
                   return null;
                 })}
+              </div>
+            </div>
+            <div className="col-12 col-lg-6">
+              <div className=" select-label">
+                <div className="col-12 p0 field-wrapper">
+                  <label className="form-label">
+                    Message For The Giftee <span className="red-text">*</span>
+                  </label>
+                  <textarea
+                    className="form-control"
+                    placeholder="Message For The Giftee"
+                    name="giftContent"
+                    id="giftContent"
+                    value={donations[0].giftContent}
+                    onChange={(e) => {
+                      handleChangeTextarea(e);
+                      handleDonationChange(e, 0);
+                    }}
+                    maxLength={maxLength}
+                  ></textarea>
+                  <p>
+                    {inputValue.length}/{maxLength} Characters
+                  </p>
+                  {errors.map((error, index) => {
+                    if (error.field === "donations.giftContent") {
+                      return (
+                        <div key={index} className="error-message red-text">
+                          {error.message}
+                        </div>
+                      );
+                    }
+                    return null;
+                  })}
+                </div>
               </div>
             </div>
           </div>

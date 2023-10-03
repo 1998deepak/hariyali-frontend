@@ -188,14 +188,10 @@ function UserUpdate() {
         console.log(errors);
         return;
       }
-      const formData = {
-        formData: {
-          user: userData,
-        },
-      };
-
-      formData.formData.user.address = addressData;
+      const formData = userData;
+      formData.address = addressData;
       setLoading(true);
+      console.log(formData);
       const response = await DonationService.updateUser(emailID, formData);
 
       if (response?.status === SUCCESS) {
