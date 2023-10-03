@@ -51,7 +51,7 @@ const Header = () => {
             </div>
             <div className="col-12 col-md-12 col-lg-8 footerlinks">
               <div className="row">
-                <div className="col-12 col-md-6 col-lg-4 footer-div small-non">
+                <div className="col-12 col-md-6 col-lg-4 footer-div">
                   <div className="footer-divheading">Company</div>
                   <ul>
                     <li>

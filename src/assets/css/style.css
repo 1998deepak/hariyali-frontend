@@ -3749,8 +3749,10 @@ figure.effect-layla:hover img {
 .banner-associate {
   background: url("../img/ways-to-associate.png") no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: 100% 100%;
   border-bottom: 1px solid #9c9b9b;
+  min-height: 400px;
+  height: auto;
 }
 
 .banner-wedo {
@@ -5524,6 +5526,9 @@ video {
   .Toastify__toast-container--top-right{
     top:4rem;
   }
+  .banner-associate{
+    min-height: 300px;
+  }
 }
 
 @media only screen and (max-width: 991px) {
@@ -5692,23 +5697,21 @@ video {
   .banner-associate,
   .banner-footprint {
     max-width: 100%;
-    background-size: cover;
+    background-size: 100% 100%;
     background-position: center;
     height: 30vh;
   }
-
+  .banner-associate,
+  .banner-footprint {
+    background-size: 100% 100%;
+    background-position: top center;
+    min-height: 216px;
+    height: auto;    
+  }
   .banner-wedo {
     background-size: contain;
     height: 30vh;
   }
-
-  .banner-associate,
-  .banner-footprint {
-    background-size: contain;
-    background-position: center;
-    background-color: #c9c9c9;
-  }
-
   .logindiv {
     width: 90%;
     height: 100%;
@@ -5848,7 +5851,7 @@ video {
   }
 }
 
-@media (max-width: 767px) {
+@media only screen and (max-width: 767px) {
   .desk-div {
     display: none !important;
   }
@@ -5919,18 +5922,16 @@ video {
     background-size: cover;
     background-position: top center;
   }
+  .banner-associate,
+  .banner-footprint {
+    background-size: 100% 100%;
+    min-height: 150px;
+    height: auto;    
+  }
 
   .banner-wedo {
     background-size: contain;
     height: 20vh;
-  }
-
-  .banner-associate,
-  .banner-footprint {
-    background-size: contain;
-    background-position: center;
-    background-color: #c9c9c9;
-    height: 180px;
   }
   .capt-code{
     font-size: 20px;
@@ -6035,6 +6036,15 @@ video {
   .navbar-expand .navbar-toggler{
     padding-left: 0;
     padding-right: 0;
+  }
+  
+}
+
+@media only screen and (max-width:414px){
+  .banner-associate,
+  .banner-footprint {
+    background-size: 100% 100%;
+    min-height: 115px;
   }
 }
 
