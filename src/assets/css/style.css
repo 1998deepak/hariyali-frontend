@@ -5748,9 +5748,11 @@ video {
     display: block;
     padding: 8px;
   }
-  .home-page-slider .react-slideshow-fadezoom-wrapper .slide-location,
-  .home-page-slider .react-slideshow-fadezoom-wrapper div[data-index="0"] .slide-location{
+  .home-page-slider .react-slideshow-fadezoom-wrapper .slide-location{
     bottom: 15%;
+  }
+  .home-page-slider .react-slideshow-fadezoom-wrapper div[data-index="0"] .slide-location{
+    bottom: 10%;
   }
   .home-page-slider .slide-content h2{
     width: 90%;
@@ -5974,6 +5976,7 @@ video {
   .home-page-slider .react-slideshow-fadezoom-wrapper div[data-index="0"] p{
     font-size: 0.5rem;
     text-align: center;
+    padding: 5px;
   }
   .home-page-slider .react-slideshow-fadezoom-wrapper div[data-index="0"] .slide-location{
     width: 90%;
@@ -5991,10 +5994,14 @@ video {
     padding: 8px;
   }
   .home-page-slider .react-slideshow-fadezoom-wrapper .slide-location{
-    bottom: 0;
+    bottom: 5px;
+  }
+  .home-page-slider .slide-location{
+    margin-top: 10px;
   }
   .home-page-slider .slide-location p{
     font-size: 0.5rem;
+    padding: 5px;
   }
   .donate-btn-group .btn{
     font-size: 0.65rem;
