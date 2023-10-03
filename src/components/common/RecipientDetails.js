@@ -71,13 +71,14 @@ const RecipientDetails = ({
             <div className="col-12 col-lg-6">
               <div className="row select-label">
                 <div className="col-12 col-lg-4 ">
-                  Mobile No.
+                  Mobile Number
                   <span className="red-text">*</span>
                 </div>
                 <div className="col-12 col-lg-8 p0">
                   <input
                     className="form-control-inside"
                     name="mobileNo"
+                    maxLength={10}
                     placeholder="Mobile No."
                     type="text"
                     value={recipient[0].mobileNo}
