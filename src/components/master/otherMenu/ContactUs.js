@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Button, Card, Container, Modal, Row } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "animate.css/animate.min.css";
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -22,15 +22,10 @@ function ContactUs() {
   };
 
   const [contactData, setContactData] = useState(initialUserData);
-  const [isValidEmail, setIsValidEmail] = useState(true);
-  const [isAlphbate, setIsAlphbate] = useState(true);
   const [errors, setErrors] = useState([]);
   const [captchaVerfied, setCaptchaVerfied] = useState(false);
-
-  const validateEmail = (email) => {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailPattern.test(email);
-  };
+  const [changeCaptcha,setChangeCaptcha] = useState(false);
+  const [showMessageModel, setShowMessageModel] = useState(false);
 
   const setCaptchaFlag = async (flag) => {
     setCaptchaVerfied(flag);
@@ -52,22 +47,22 @@ function ContactUs() {
         field: "contactData.contactName",
         message: "Contact Name is required",
       });
-    } else if (!/^[a-zA-Z]+$/.test(contactData.contactName)) {
+    } else if (!/^[a-zA-Z ]+$/.test(contactData.contactName)) {
       validationErrors.push({
         field: "contactData.contactName",
         message: "Contact Name should only contain alphabets",
       });
     }
-
+    const regex = /^[a-zA-Z0-9 &_]+$/;
     if (!contactData?.contactSubject) {
       validationErrors.push({
         field: "contactData.contactSubject",
         message: "Subject is required",
       });
-    } else if (!/^[a-zA-Z&_]+$/.test(contactData.contactSubject)) {
+    } else if (!regex.test(contactData.contactSubject)) {
       validationErrors.push({
         field: "contactData.contactSubject",
-        message: "Subject should only contain alphabets",
+        message: "Subject should only contain alphabets / numbers",
       });
     }
 
@@ -91,11 +86,11 @@ function ContactUs() {
         message: "Massage is required",
       });
     }else if (
-      !/^[a-zA-Z]+$/.test(contactData.massage)
+      !regex.test(contactData.massage)
     ) {
       validationErrors.push({
         field: "contactData.massage",
-        message: "Massage should only contain alphabets",
+        message: "Massage should only contain alphabets / numbers",
       });
     }
 
@@ -137,19 +132,24 @@ function ContactUs() {
       const response = await ContactUsService.AddConatct(contactData);
       if (response !== null) {
         console.log("Contact Us Form: " + JSON.stringify(response));
-        toast.success("Email Send to Hariyali Team!");
+        setShowMessageModel(true);
         clearForm(e);
+        setChangeCaptcha(!changeCaptcha);
         // setContactData((current) => {
         //   return current.map((item) => {
         //     return { ...item};
         //   });
         // });
+        if(document.getElementById('inputCaptcha')){
+          document.getElementById('inputCaptcha').value = "";
+        }
       } else {
         //toast.error(response?.message);
         console.log("Error Massage");
       }
     }
   };
+  const handleDonationModalClose = () => setShowMessageModel(false);
 
   return (
     <>
@@ -157,7 +157,7 @@ function ContactUs() {
       <section className="banner banner-contact">
         <div className="title">{/* <h1>Conatct Us</h1> */}</div>
       </section>
-      <ToastContainer />
+      <ToastContainer/>
       <div className="">
         <div className="">
           <div className="pv-75 pb-0">
@@ -174,8 +174,9 @@ function ContactUs() {
                   <address>
                     <h4 className="mb-0 askheading">Mahindra Foundation</h4>
                     <p className="ask-p">
-                      3rd Floor, Cecil Court Mahakavi Bhushan Marg Near Regal
-                      Cinema, Colaba Mumbai, Maharashtra - 400001
+                    3rd Floor, Cecil Court, Mahakavi Bhushan Marg,  <br/>
+                    Near Regal Cinema,Colaba Mumbai,<br/>
+                    Maharashtra - 400001
                     </p>
                     <a href="tel:022 22021031" className="ask-p">
                       <i className="bi bi-telephone-fill"></i> 022 22021031
@@ -307,6 +308,7 @@ function ContactUs() {
                                 setCaptchaFlag(flag);
                               }}
                               id="captcha1"
+                              changeCaptcha={changeCaptcha}
                           />
                           {errors.map((error, index) => {
                             if (error.field === "captchaError") {
@@ -531,6 +533,32 @@ function ContactUs() {
           </div>
         </div>
       </div>
+      <Modal
+        className="transaction-modal"
+        show={showMessageModel}
+        onHide={handleDonationModalClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Body>
+          <div className="row">
+            <div className="col-12">
+              <Card>
+                <Card.Body>
+                  <Card.Text
+                    dangerouslySetInnerHTML={{ __html: "Email Send to Hariyali Team!" }}
+                  ></Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleDonationModalClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
       {/* body */}
     </>
   );

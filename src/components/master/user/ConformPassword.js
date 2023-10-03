@@ -63,7 +63,7 @@ function ConformPassword() {
         toast.success(response?.message);
         setTimeout(()=>{
           navigate("/Login");
-        },1000)
+        },2000)
       } else {
         toast.error(response?.message);
       }
