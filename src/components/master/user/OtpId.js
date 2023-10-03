@@ -31,7 +31,7 @@ function OtpId() {
           state: data,
         }
         );
-       }, 1000);
+       }, 2000);
         
      } else {
        toast.error(response?.message);
