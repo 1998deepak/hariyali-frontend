@@ -1945,8 +1945,8 @@ function OnlineDonation() {
                                 </div>{" "}
                               </div>
                               {userData?.user?.citizenship?.toUpperCase() ===
-                              INDIA || address[0]?.country.toUpperCase() ===
-                              INDIA ? (
+                              INDIA && userData?.user?.donarType === "Individual"  || address[0]?.country.toUpperCase() ===
+                              INDIA && userData?.user?.donarType === "Corporate" ? (
                                 <>
                                   {userData?.user?.donarType ===
                                   "Individual" ? (
@@ -2024,6 +2024,7 @@ function OnlineDonation() {
                                             id="panCard"
                                             placeholder={userData?.user?.donarType === "Corporate"?"PAN Card":"PAN Card"}
                                             type="text"
+                                            maxLength={10}
                                             value={userData?.user?.panCard}
                                             onChange={handleChange}
                                             />
@@ -3313,8 +3314,8 @@ function OnlineDonation() {
                                 </div>{" "}
                               </div>
                               {userData?.user?.citizenship?.toUpperCase() ===
-                              INDIA || address[0]?.country.toUpperCase() ===
-                              INDIA ? (
+                              INDIA && userData?.user?.donarType === "Individual"  || address[0]?.country.toUpperCase() ===
+                              INDIA && userData?.user?.donarType === "Corporate" ? (
                                 <>
                                   {userData?.user?.donarType ===
                                   "Individual" ? (
@@ -3392,6 +3393,7 @@ function OnlineDonation() {
                                             id="panCard"
                                             placeholder={userData?.user?.donarType === "Corporate"?"PAN Card":"PAN Card"}
                                             type="text"
+                                            maxLength={10}
                                             value={userData?.user?.panCard}
                                             onChange={handleChange}
                                           />
