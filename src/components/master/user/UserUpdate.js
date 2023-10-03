@@ -107,48 +107,11 @@ function UserUpdate() {
   //validate form
   const validateFields = (userData, addressData) => {
     const errors = {};
-    // Validate emailId
-    if (!userData.emailId) {
-      errors.emailId = "Email ID is required";
-    } else if (
-      !/^([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+)\.([a-zA-Z]{2,5})$/.test(
-        userData.emailId
-      )
-    ) {
-      errors.emailId = "Enter a Valid Email Address";
-    }
-
     // Validate mobileNo
     if (!userData.mobileNo) {
       errors.mobileNo = "Mobile No. is required";
     } else if (!/^[0-9]{10}$/.test(userData.mobileNo)) {
       errors.mobileNo = "Mobile No. must contain only digits";
-    }
-
-    // Validate donarType
-    if (!userData.donarType || userData.donarType === "Donor Type") {
-      errors.donarType = "Please select a Donor Type";
-    }
-    console.log(userData.donarType);
-
-    if (!userData.organisation) {
-      errors.organisation = "Please Enter a organisation";
-    }
-
-    if (!userData.prefix) {
-      errors.organisation = "Please select a prefix";
-    }
-
-    if (!userData.firstName) {
-      errors.firstName = "First Name is required";
-    } else if (!/^[A-Za-z]+$/.test(userData.firstName)) {
-      errors.firstName = "First Name is invalid";
-    }
-
-    if (!userData.lastName) {
-      errors.lastName = "Last Name is required";
-    } else if (!/^[A-Za-z]+$/.test(userData.lastName)) {
-      errors.lastName = "Last Name is invalid";
     }
 
     // validation for address field
