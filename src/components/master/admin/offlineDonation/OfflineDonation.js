@@ -1784,6 +1784,7 @@ function OfflineDonation() {
                                           className="form-control-inside form-control"
                                           name="user.panCard"
                                           id="panCard"
+                                          maxLength={10}
                                           placeholder="PAN Card"
                                           type="text"
                                           value={userData?.user?.panCard}
@@ -3029,6 +3030,7 @@ function OfflineDonation() {
                                           className="form-control-inside form-control"
                                           name="user.panCard"
                                           id="panCard"
+                                          maxLength={10}
                                           placeholder="PAN Card"
                                           type="text"
                                           value={userData?.user?.panCard}
@@ -4165,6 +4167,7 @@ function OfflineDonation() {
                                     className="form-control-inside"
                                     name="user.panCard"
                                     id="panCard"
+                                    maxLength={10}
                                     placeholder="PAN Card"
                                     type="text"
                                     value={userData?.user?.panCard}
@@ -4878,6 +4881,7 @@ function OfflineDonation() {
                                     className="form-control-inside"
                                     name="user.panCard"
                                     id="panCard"
+                                    maxLength={10}
                                     placeholder="PAN Card"
                                     type="text"
                                     value={userData.user.panCard}
