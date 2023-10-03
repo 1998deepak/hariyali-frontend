@@ -174,8 +174,9 @@ function ContactUs() {
                   <address>
                     <h4 className="mb-0 askheading">Mahindra Foundation</h4>
                     <p className="ask-p">
-                      3rd Floor, Cecil Court Mahakavi Bhushan Marg Near Regal
-                      Cinema, Colaba Mumbai, Maharashtra - 400001
+                    3rd Floor, Cecil Court, Mahakavi Bhushan Marg,  <br/>
+                    Near Regal Cinema,Colaba Mumbai,<br/>
+                    Maharashtra - 400001
                     </p>
                     <a href="tel:022 22021031" className="ask-p">
                       <i className="bi bi-telephone-fill"></i> 022 22021031

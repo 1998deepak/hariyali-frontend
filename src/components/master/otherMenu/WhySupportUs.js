@@ -274,8 +274,8 @@ function WhySupportUs() {
           through Project Hariyali{" "}
         </p>
         <div className="text-center">
-          <div className="my-4" >
-            <Button className="btn btn-primary" onClick={goToDonate}> 
+          <div className="my-4">
+            <Button className="btn btn-primary" onClick={goToDonate}>
               <img src={plantation} alt="Donote" className="donoteicon" />
               Plant A Tree{" "}
             </Button>
@@ -301,7 +301,7 @@ function WhySupportUs() {
             <p className="text-center">
               Project Hariyali is a unique blend in the sphere of environmental
               sustainability and impacting livelihood. The Project is already
-              contributing towards mission LiFE & India’s commitment toward
+              contributing towards mission LiFE & India’s commitment towards
               carbon neutrality.
             </p>
           </div>
@@ -393,27 +393,27 @@ function WhySupportUs() {
       <div className="container py-5">
         <div className="feature-description">
           <h2 className="sub-title text-center mb-0 pb-0">Awards Won</h2>
-          </div>
-          <div className="awards-slider">
-            <Slider {...settings}>
-                {items.map((subItem, subIndex) => (
-                  <>
-                    <div className="award-tile">
-                      <div
-                        key={subIndex}
-                        className="slide-content2"
-                        onClick={() => openModal(subItem.image)}
-                      >
-                        <div className="award-wrapper">
-                          <h4>{subItem.quote}</h4>
-                        </div>
-                      </div>
+        </div>
+        <div className="awards-slider">
+          <Slider {...settings}>
+            {items.map((subItem, subIndex) => (
+              <>
+                <div className="award-tile">
+                  <div
+                    key={subIndex}
+                    className="slide-content2"
+                    onClick={() => openModal(subItem.image)}
+                  >
+                    <div className="award-wrapper">
+                      <h4>{subItem.quote}</h4>
                     </div>
-                  </>
-                ))}
-            </Slider>
+                  </div>
+                </div>
+              </>
+            ))}
+          </Slider>
 
-            {/* <Carousel indicators={true}>
+          {/* <Carousel indicators={true}>
               {items.map((item, index) => (
                 <Carousel.Item key={index}>
                   <div className="d-flex justify-content-center">
@@ -437,14 +437,14 @@ function WhySupportUs() {
                 </Carousel.Item>
               ))}
             </Carousel> */}
-          </div>
-          <Modal show={showModal} onHide={closeModal} className="awards-modal">
-            <Modal.Body>
-              {selectedImage && (
-                <img src={selectedImage} alt="Modal" className="img-fluid" />
-              )}
-            </Modal.Body>
-          </Modal>
+        </div>
+        <Modal show={showModal} onHide={closeModal} className="awards-modal">
+          <Modal.Body>
+            {selectedImage && (
+              <img src={selectedImage} alt="Modal" className="img-fluid" />
+            )}
+          </Modal.Body>
+        </Modal>
       </div>
       <section className="bg-green">
         <div className="container">
