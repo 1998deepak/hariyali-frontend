@@ -1,11 +1,12 @@
 import React from "react";
-import { stateOptions } from "../constants/constants";
 
 const RecipientDetails = ({
   recipient,
   handleRecipentChange,
   errors,
   handleRecipentAddressChange,
+  states,
+  countries,
 }) => {
   return (
     <>
@@ -126,7 +127,10 @@ const RecipientDetails = ({
           <div className="row">
             <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-12 col-lg-4 "> Street 1 <span className="red-text">*</span></div>
+                <div className="col-12 col-lg-4 ">
+                  {" "}
+                  Street 1 <span className="red-text">*</span>
+                </div>
                 <div className="col-12 col-lg-8 p0">
                   <input
                     className="form-control-inside"
@@ -180,20 +184,28 @@ const RecipientDetails = ({
                 </div>
               </div>
             </div>
-            <div className="col-12 col-lg-6">
+            <div className="col-12 col-md-6">
               <div className="row select-label">
-                <div className="col-12 col-lg-4 ">
-                  Country<span className="red-text">*</span>
-                </div>
+              <div className="col-12 col-lg-4 ">Country</div>
                 <div className="col-12 col-lg-8 p0">
-                  <input
-                    className="form-control-inside"
+                  <select
+                    className=" form-control-inside form-select"
                     name="country"
-                    placeholder="Country"
-                    type="text"
+                    id="recCountry"
                     value={recipient[0].address[0].country}
                     onChange={(e) => handleRecipentAddressChange(e, 0)}
-                  />
+                  >
+                    <option disabled selected value="">
+                      Select Country
+                    </option>
+                    {countries.map((country) => {
+                      return (
+                        <option value={country.countryName}>
+                          {country.countryName}
+                        </option>
+                      );
+                    })}
+                  </select>
                   {errors.map((error, index) => {
                     if (error.field === "recipient[0].address[0].country") {
                       return (
@@ -207,27 +219,40 @@ const RecipientDetails = ({
                 </div>
               </div>
             </div>
-            <div className="col-12 col-lg-6">
-              <div className="row select-label">
-                <div className="col-12 col-lg-4 ">
-                  State<span className="red-text">*</span>
-                </div>
+            <div className="col-12 col-md-6">
+              <div className="select-label">
+                <div className="col-12 col-lg-4 "> State</div>
                 <div className="col-12 col-lg-8 p0">
-                  <select
+                  {
+                    states?.length === 0 ?
+                    <input
+                    type="text"
+                    className=" form-control-inside"
+                    name="state"
+                    id="recState"
+                    placeholder="state"
+                    value={recipient[0].address[0].state}
+                    onChange={(e) => handleRecipentAddressChange(e, 0)}
+                    />
+                    :
+                    <select
                     className=" form-control-inside form-select"
                     name="state"
+                    id="recState"
                     value={recipient[0].address[0].state}
                     onChange={(e) => handleRecipentAddressChange(e, 0)}
                   >
                     <option disabled selected value="">
                       Select State
                     </option>
-                    {stateOptions.map((state) => (
-                      <option key={state} value={state}>
-                        {state}
+                    {states.map((state) => (
+                      <option key={state} value={state.stateName}>
+                        {state.stateName}
                       </option>
                     ))}
                   </select>
+                  }
+                  
                   {errors.map((error, index) => {
                     if (error.field === "recipient[0].address[0].state") {
                       return (

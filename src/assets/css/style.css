@@ -5539,7 +5539,6 @@ video {
   .slide-location {
     display: none;
   }
-
   .react-slideshow-fadezoom-wrapper {
     height: 650px;
   }
@@ -5741,6 +5740,31 @@ video {
     animation: transform 0.5ms ease-in 0.5ms;
     z-index: 99;
   }
+  .home-page-slider .slide-content{
+    display: block;
+    top:0%;
+  }
+  .home-page-slider .slide-location{
+    display: block;
+    padding: 8px;
+  }
+  .home-page-slider .react-slideshow-fadezoom-wrapper .slide-location{
+    bottom: 15%;
+  }
+  .home-page-slider .react-slideshow-fadezoom-wrapper div[data-index="0"] .slide-location{
+    bottom: 10%;
+  }
+  .home-page-slider .slide-content h2{
+    width: 90%;
+    font-size: 1.875rem;
+    margin-bottom: 1.5rem;
+  }
+  .home-page-slider .react-slideshow-container .nav:first-of-type{
+    left: 1rem;
+  }
+  .home-page-slider .react-slideshow-container .nav:last-of-type{
+    right: 1rem;
+  }
 }
 
 @media only screen and (max-width: 831px) {
@@ -5924,6 +5948,67 @@ video {
   }
   .logindiv {
     max-width: 300px;
+    margin: 3rem auto;
+  }
+  .home-page-slider .slide-content{
+    display: block;
+    padding: 5px 15px;
+    top:10px;
+    left: 10px;
+  }
+  .home-page-slider .slide-content h2{
+    font-size: 0.875rem;
+    width: 95%;
+    margin-bottom: 10px;
+  }
+  .impact-wrapper{
+    margin-top: -2rem;
+  }
+  .home-page-slider .react-slideshow-container .nav{
+    display: block;
+  }
+  .home-page-slider .react-slideshow-container .nav:first-of-type{
+    left: -5px;
+  }
+  .home-page-slider .react-slideshow-container .nav:last-of-type{
+    right: -5px;
+  }
+  .home-page-slider .react-slideshow-fadezoom-wrapper div[data-index="0"] p{
+    font-size: 0.5rem;
+    text-align: center;
+    padding: 5px;
+  }
+  .home-page-slider .react-slideshow-fadezoom-wrapper div[data-index="0"] .slide-location{
+    width: 90%;
+  }
+  .react-slideshow-container .default-nav{
+    width: 25px;
+    height: 25px;
+  }
+  .home-page-slider .default-nav svg{
+    width: 15px !important;
+    height: 15px !important;
+  }
+  .home-page-slider .slide-location{
+    display: block;
+    padding: 8px;
+  }
+  .home-page-slider .react-slideshow-fadezoom-wrapper .slide-location{
+    bottom: 5px;
+  }
+  .home-page-slider .slide-location{
+    margin-top: 10px;
+  }
+  .home-page-slider .slide-location p{
+    font-size: 0.5rem;
+    padding: 5px;
+  }
+  .donate-btn-group .btn{
+    font-size: 0.65rem;
+    padding: 0.25rem 0.5rem;
+  }
+  .donate-btn-group img{
+    width: 20px;
   }
 }
 

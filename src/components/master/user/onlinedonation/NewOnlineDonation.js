@@ -86,12 +86,40 @@ function NewOnlineDonation() {
   const [packageMessage, setPackageMessage] = useState("");
   const handleDonationModalClose = () => setShowDonationModal(false);
   const [paymentStatus, setPaymentStatus] = useState("");
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
 
+  const getCountryList = async () => {
+    setLoading(true);
+    const response = await DonationService.getAllCountries();
+    if (response?.status === 200) {
+      // let data = response.data.map((item)=> ({ label: item, value: item }))
+      setCountries(response.data);
+      setLoading(false);
+    } else {
+      toast.error(response?.message);
+      setLoading(false);
+    }
+  };
+  
+  const getStatesByCountry = async (countryId) => {
+    setLoading(true);
+    const response = await DonationService.getAllStatesByCountry(countryId);
+    console.log("get states", response.data );
+    if (response?.status === 200) {
+        setStates(response.data);
+        setLoading(false);
+    } else {
+      toast.error(response?.message);
+      setLoading(false);
+    }
+  };
   //calling api
   useEffect(() => {
     if (email) {
       getdetailsByEmailId(email);
     }
+    getCountryList();
     const urlParams = new URLSearchParams(window.location.search);
     const orderId = urlParams.get("orderId");
     if (orderId) {
@@ -283,6 +311,9 @@ function NewOnlineDonation() {
   };
 
   const handleTabSelect = (eventKey) => {
+    console.log('====================================');
+    console.log(eventKey);
+    console.log('====================================');
     setDonationType(eventKey);
     setDonations(intialDonations);
     setRecipient(initialRecipientData);
@@ -339,16 +370,24 @@ function NewOnlineDonation() {
       console.log(updatedAddress[index]);
       return updatedAddress;
     });
+    
   };
 
   const handleRecipentAddressChange = (event, index) => {
     const { name, value } = event.target;
+    let data = null;
+    if (name === "country") {
+      data = countries.find((item) => item.countryName === value);
+    }
     const updatedAddress = [...recipient];
     console.log(updatedAddress);
     updatedAddress[index].address[index][name] = value;
     console.log(updatedAddress[index]);
     console.log(updatedAddress);
     setRecipient(updatedAddress);
+    if (data) {
+      getStatesByCountry(data.countryCode);
+  }
     return updatedAddress;
   };
 
@@ -402,6 +441,7 @@ function NewOnlineDonation() {
       }
     }
   };
+
 
   return (
     <>
@@ -468,7 +508,6 @@ function NewOnlineDonation() {
                     <Tab
                       eventKey="Gift-Donate"
                       title="Gift a tree"
-                    //  onClick={(eventKey) => handleTabSelect()}
                     >
                       {/* <h5>Gift a tree</h5> */}
                       <form className="form-div contact-form-wrap">
@@ -500,6 +539,8 @@ function NewOnlineDonation() {
                           handleRecipentAddressChange={
                             handleRecipentAddressChange
                           }
+                          states={states}
+                          countries={countries}
                         />
                         <button
                           type="submit"
