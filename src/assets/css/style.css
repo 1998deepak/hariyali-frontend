@@ -2499,6 +2499,7 @@ tr td input {
 .page-scroll {
   margin-top: 80px;
   margin-left: 258px;
+  width: calc(100% - 247px);
 }
 
 .css-1wvake5.ps-collapsed .sidebartext {
@@ -5723,6 +5724,7 @@ video {
   }
   .page-scroll {
     margin-right: 0;
+    width: calc(100% - 30px);
     /* margin-top:0; */
   }
   .leftmenu-main aside{
@@ -6061,4 +6063,25 @@ video {
   /* top: 1em; */
   right: 1em;
   bottom: 28em;
+}
+
+.min-width-128{
+  min-width: 128px;
+}
+
+.donationTable td{
+  position: relative;
+}
+.donationTable td .count{
+  
+  padding: 2px 15px;
+  background: #23aa4a;
+  border-radius: 16px;
+  color: #ffffff;
+  position: absolute;
+  top: 8px;
+}
+.donationTable td span{
+  position: absolute;
+  top: -1px;
 }

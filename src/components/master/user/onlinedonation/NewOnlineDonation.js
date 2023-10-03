@@ -390,7 +390,9 @@ function NewOnlineDonation() {
     console.log(updatedAddress[index]);
     console.log(updatedAddress);
     setRecipient(updatedAddress);
+
     if (data) {
+      updatedAddress[index].address[index]["state"] = "";
       getStatesByCountry(data.countryCode);
   }
     return updatedAddress;

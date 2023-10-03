@@ -175,7 +175,7 @@ function ExistingOnlineDonate() {
         <UserLeftMenu />
         <div
           className="float-left page-scroll remove-top-margin"
-          style={{ width: "100%" }}
+          
         >
           <OnlineExistingDonar />
         </div>
@@ -190,7 +190,7 @@ function UpdateUserWithHeaderFooter() {
       <AdminHeader />
       <div className="leftmenu-main">
         <UserLeftMenu />
-        <div className="float-left page-scroll " style={{ width: "100%" }}>
+        <div className="float-left page-scroll " >
           <UserUpdate />
         </div>
       </div>
@@ -203,7 +203,7 @@ function UserDonationWithHeaderFooter() {
       <AdminHeader />
       <div className="leftmenu-main">
         <UserLeftMenu />
-        <div className="float-left page-scroll " style={{ width: "100%" }}>
+        <div className="float-left page-scroll " >
           <NewOnlineDonation />
         </div>
       </div>
@@ -216,7 +216,7 @@ function UserReceiptsWithHeaderFooter() {
       <AdminHeader />
       <div className="leftmenu-main">
         <UserLeftMenu />
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" >
           <UserReceipts />
         </div>
       </div>
@@ -230,7 +230,7 @@ function UserDashboardWithHeaderFooter() {
       <AdminHeader />
       <div className="leftmenu-main">
         <UserLeftMenu />
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" >
           <UserDashboard />
         </div>
       </div>
@@ -244,7 +244,7 @@ function OfflineDonationWithHeaderAndFooter() {
       <AdminHeader />
       <div className="leftmenu-main">
         <AdminLeftMenu />
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" >
           <OfflineDonation />
         </div>
       </div>
@@ -257,7 +257,7 @@ function FormBEWithHeaderAndFooter() {
       <AdminHeader />
       <div className="leftmenu-main">
         <AdminLeftMenu />
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" >
         <Form10BE/>
       </div>
       </div>
@@ -270,7 +270,7 @@ function AdminWithHeaderAndFooter() {
       <AdminHeader />
       <div className="leftmenu-main">
         <AdminLeftMenu />
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" >
           <WebDonarCreation />
         </div>
       </div>
@@ -283,7 +283,7 @@ function DonarAdminWithHeaderAndFooter() {
       <AdminHeader />
       <div className="leftmenu-main">
         <AdminLeftMenu />
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" >
           <DonarCreation />
         </div>
       </div>
@@ -296,7 +296,7 @@ function DonarAdminViewWithHeaderAndFooter() {
       <AdminHeader />
       <div className="leftmenu-main">
         <AdminLeftMenu />
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" >
           <DonarView />
         </div>
       </div>
@@ -309,7 +309,7 @@ function DonarAdminEditWithHeaderAndFooter() {
       <AdminHeader />
       <div className="leftmenu-main">
         <AdminLeftMenu />
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" >
           <OfflineDonationUpdate />
         </div>
       </div>{" "}
@@ -322,7 +322,7 @@ function DonarAdminPayWithHeaderAndFooter() {
       <AdminHeader />
       <div className="leftmenu-main">
         <AdminLeftMenu />
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" >
           <OfflinePlanAndDonationUpdate />
         </div>
       </div>
@@ -344,7 +344,7 @@ function DashboardWithHeaderAndFooter() {
       <AdminHeader />
       <div className="leftmenu-main">
         <AdminLeftMenu />
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" >
           <Dashboard />
         </div>
       </div>
@@ -357,7 +357,7 @@ function PlantingWithHeaderAndFooter() {
       <AdminHeader />
       <div className="leftmenu-main">
         <AdminLeftMenu />
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" >
           <DashboardTable />
         </div>
       </div>
@@ -370,7 +370,7 @@ function CommitmentWithHeaderAndFooter() {
       <AdminHeader />
       <div className="leftmenu-main">
         <AdminLeftMenu />
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" >
           <Commitment />
         </div>
       </div>
@@ -383,7 +383,7 @@ function ChangePasswordWithHeaderAndFooter() {
       <AdminHeader />
       <div className="leftmenu-main">
         <AdminLeftMenu />
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" >
           <ChangePassword />
         </div>
       </div>
@@ -396,7 +396,7 @@ function ChangeUserPasswordWithHeaderAndFooter() {
       <AdminHeader />
       <div className="leftmenu-main">
         <UserLeftMenu />
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" >
           <ChangePassword />
         </div>
       </div>
@@ -409,7 +409,7 @@ function UserDonationView({ userDetails, setAuthToken, authToken }) {
       <AdminHeader />
       <div className="leftmenu-main">
         <UserLeftMenu />
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" >
           <UserdonationView
             userDetails={userDetails?.email}
             setAuthToken={setAuthToken}
@@ -427,7 +427,7 @@ function UserSpecificDonation() {
       <AdminHeader />
       <div className="leftmenu-main">
         <UserLeftMenu />
-        <div className="float-left page-scroll" style={{ width: "100%" }}>
+        <div className="float-left page-scroll" >
           <UserSpecificDonationView />
         </div>
       </div>
