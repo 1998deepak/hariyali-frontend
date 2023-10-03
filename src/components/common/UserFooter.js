@@ -100,7 +100,7 @@ const Header = () => {
         </Container>
         <div className="copyright">          
          Copyrights © 2023 <span><a className="colorgreen" href="https://www.hariyali.org.in">Hariyali.org.in</a></span> | All rights reserved | Photo credit Naandi Foundation | We are available at
-          <span className="colorgreen"> <a className="colorgreen" href="1t.org">1t.org</a></span>
+          <span className="colorgreen"> <a className="colorgreen" href="https://www.1t.org/pledges/project-hariyali">1t.org</a></span>
         </div>
       </div>
     </>
