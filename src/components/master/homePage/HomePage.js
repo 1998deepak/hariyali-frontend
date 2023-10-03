@@ -369,10 +369,9 @@ function HomePage() {
                   India is committed to its National Determined Contributions and seeks to be carbon neutral by 2070.</p>
                   <p>India is promoting individual responsibility toward climate action through Mission LiFE "Lifestyle for Environment". Project Hariyali has increased the green cover and is in alignment with LiFE.</p><p>Hariyali Project has been conferred with multiple awards by national and international bodies.</p>
 
-
                 <div className="pt-5">
                   <a href="/WhySupportUs" className="btn btn-secondary">
-                    Read More
+                    Know More
                   </a>
                   <Link className="btn btn-primary" to={`/OnlineDonation`}>
                     Donate
@@ -408,7 +407,7 @@ function HomePage() {
               </p>
               <div className="pt-5">
                 <a href="/WaystoAssociate" className="btn btn-secondary">
-                  Read More
+                  Know More
                 </a>
                 <Link className="btn btn-primary" to={`/OnlineDonation`}>
                   Donate
@@ -430,7 +429,7 @@ function HomePage() {
                 </p>
                 <div className="pt-5">
                   <a href="/FootPrint" className="btn btn-secondary">
-                    Read More
+                    Know More
                   </a>
                   <Link className="btn btn-primary" to={`/OnlineDonation`}>
                     Donate
