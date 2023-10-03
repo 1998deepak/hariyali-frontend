@@ -536,15 +536,35 @@ function OfflineDonation() {
         }
       }
 
-      if ((addr?.postalCode).length > 6) {
-        validationErrors.push({
-          field: "address[" + i + "].postalCode",
-          message: "Postal Code should only contain six numbers",
-        });
-        if(document.getElementById("postalCode")){
+      if(addr?.country === "INDIA"){
+        if (!addr?.postalCode) {
+          validationErrors.push({
+            field: "address[" + i + "].postalCode",
+            message: "postalCode is required",
+          });
+          document.getElementById("postalCode").focus();
+        } else if (!/^\d{6}$/.test(addr?.postalCode)) {
+          validationErrors.push({
+            field: "address[" + i + "].postalCode",
+            message: "Invalid Postal Code",
+          });
           document.getElementById("postalCode").focus();
         }
-      }
+       }else{
+        if (!addr?.postalCode) {
+          validationErrors.push({
+            field: "address[" + i + "].postalCode",
+            message: "postalCode is required",
+          });
+          document.getElementById("postalCode").focus();
+        } else if (!/^\d{5}$/.test(addr?.postalCode)) {
+          validationErrors.push({
+            field: "address[" + i + "].postalCode",
+            message: "Invalid Postal Code",
+          });
+          document.getElementById("postalCode").focus();
+        }
+       }
     }
 
     // Validate recipient (only for "Gift Donate" donation type)
@@ -777,7 +797,11 @@ function OfflineDonation() {
         document.getElementById("state2").style.display = "block";
         } if(document.getElementById("state3")){
           document.getElementById("state3").style.display = "none";
-        }
+        }if(document.getElementById("state5")){
+          document.getElementById("state5").style.display = "block";
+          } if(document.getElementById("state4")){
+            document.getElementById("state4").style.display = "none";
+          }
         setStates(response.data);
         setLoading(false);
       }else{
@@ -786,6 +810,11 @@ function OfflineDonation() {
           } if(document.getElementById("state3")){
             document.getElementById("state3").style.display = "block";
           }
+          if(document.getElementById("state5")){
+            document.getElementById("state5").style.display = "none";
+            } if(document.getElementById("state4")){
+              document.getElementById("state4").style.display = "block";
+            }
         setStates(response.data);
         setLoading(false);
       }
@@ -2329,6 +2358,7 @@ function OfflineDonation() {
                                     id="postalCode"
                                     placeholder="Postal Code"
                                     type="text"
+                                    maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
                                     value={address[0]?.postalCode}
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
@@ -3258,7 +3288,7 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             </div>
-                            <div id="state3" className="col-12 col-lg-6" style={{display:"block"}}>
+                            <div id="state4" className="col-12 col-lg-6" style={{display:"block"}}>
                                 <div className="row select-label">
                                   <div className="col-12 col-lg-4 ">
                                     State <span className="red-text">*</span>
@@ -3379,7 +3409,7 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             )} */}
-                            <div id="state2" className="col-12 col-lg-6" style={{display:"none"}}>
+                            <div id="state5" className="col-12 col-lg-6" style={{display:"none"}}>
                               <div className="row select-label">
                                 <div className="col-12 col-lg-4 ">
                                   {" "}
@@ -3459,6 +3489,7 @@ function OfflineDonation() {
                                     name="postalCode"
                                     placeholder="Postal Code"
                                     type="text"
+                                    maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
                                     value={address[0]?.postalCode}
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
@@ -3838,6 +3869,7 @@ function OfflineDonation() {
                                       name="postalCode"
                                       placeholder="Postal Code"
                                       type="text"
+                                      maxLength={recipient[0].address[0].country === "INDIA" ? "6" : "5"}
                                       value={recipient[0].address[0].postalCode}
                                       onChange={(e) =>
                                         handleRecipentAddressChange(e, 0)
@@ -4323,6 +4355,7 @@ function OfflineDonation() {
                                     name="postalCode"
                                     placeholder="Postal Code"
                                     type="text"
+                                    maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
                                     value={address[0]?.postalCode}
                                     onChange={(event) =>
                                       handleAddressChange(event, 0)
@@ -5042,6 +5075,7 @@ function OfflineDonation() {
                                     name="postalCode"
                                     placeholder="Postal Code"
                                     type="text"
+                                    maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
                                     value={address[0]?.postalCode}
                                     onBlur={(e) => handleDonarIdBlur(e)}
                                     onChange={(event) =>
@@ -5432,6 +5466,7 @@ function OfflineDonation() {
                                       name="postalCode"
                                       placeholder="Postal Code"
                                       type="text"
+                                      maxLength={recipient[0].address[0].country === "INDIA" ? "6" : "5"}
                                       value={recipient[0].address[0].postalCode}
                                       onChange={(e) =>
                                         handleRecipentAddressChange(e, 0)

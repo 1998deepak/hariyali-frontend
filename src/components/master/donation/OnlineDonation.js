@@ -547,24 +547,35 @@ function OnlineDonation() {
           document.getElementById("city").focus();
         }        
       }
-      if (!addr?.postalCode) {
-        validationErrors.push({
-          field: "address[" + i + "].postalCode",
-          message: "postalCode is required",
-        });
-        if(document.getElementById("postalCode")){
+      if(addr?.country === "INDIA"){
+        if (!addr?.postalCode) {
+          validationErrors.push({
+            field: "address[" + i + "].postalCode",
+            message: "postalCode is required",
+          });
+          document.getElementById("postalCode").focus();
+        } else if (!/^\d{6}$/.test(addr?.postalCode)) {
+          validationErrors.push({
+            field: "address[" + i + "].postalCode",
+            message: "Invalid Postal Code",
+          });
           document.getElementById("postalCode").focus();
         }
-      } else if (!/^\d{6}$/.test(addr?.postalCode)) {
-        validationErrors.push({
-          field: "address[" + i + "].postalCode",
-          message: "Invalid Postal Code",
-        });
-        if(document.getElementById("postalCode")){
+       }else{
+        if (!addr?.postalCode) {
+          validationErrors.push({
+            field: "address[" + i + "].postalCode",
+            message: "postalCode is required",
+          });
+          document.getElementById("postalCode").focus();
+        } else if (!/^\d{5}$/.test(addr?.postalCode)) {
+          validationErrors.push({
+            field: "address[" + i + "].postalCode",
+            message: "Invalid Postal Code",
+          });
           document.getElementById("postalCode").focus();
         }
-        
-      }
+       }
     }
 
     // Validate recipient (only for "Gift Donate" donation type)
@@ -2525,7 +2536,7 @@ function OnlineDonation() {
                                       className="form-control-inside form-control"
                                       name="postalCode"
                                       id="postalCode"
-                                      maxLength={6}
+                                      maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
                                       placeholder="Postal Code"
                                       type="text"
                                       value={address[0]?.postalCode}
@@ -2705,6 +2716,7 @@ function OnlineDonation() {
                                         className="form-control-inside form-control"
                                         name="postalCode"
                                         placeholder="Postal Code"
+                                        maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
                                         type="text"
                                         value={address[1]?.postalCode}
                                         onChange={(event) =>
@@ -3893,7 +3905,7 @@ function OnlineDonation() {
                                       id="postalCode"
                                       name="postalCode"
                                       type="text"
-                                      maxLength={6}
+                                      maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
                                       placeholder="Postal Code"
                                       value={address[0]?.postalCode}
                                       onChange={(event) =>
@@ -4285,6 +4297,7 @@ function OnlineDonation() {
                                       <input
                                         className="form-control-inside form-control"
                                         name="postalCode"
+                                        maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
                                         placeholder="Postal Code"
                                         type="text"
                                         value={
