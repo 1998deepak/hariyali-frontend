@@ -283,10 +283,9 @@ function OnlineDonation() {
 
   const [errors, setErrors] = useState([]);
 
-  const validate = (pan) => {
+  const validate = (donationTypeData) => {
     const validationErrors = [];
     console.log(recipient[0]?.firstName, recipient[0].lastName, recipient[0]?.emailId);
-    // Validate donationType
     if (!donationType) {
       validationErrors.push({
         field: "donationType",
@@ -547,29 +546,40 @@ function OnlineDonation() {
           document.getElementById("city").focus();
         }        
       }
-      if (!addr?.postalCode) {
-        validationErrors.push({
-          field: "address[" + i + "].postalCode",
-          message: "postalCode is required",
-        });
-        if(document.getElementById("postalCode")){
+      if(addr?.country === "INDIA"){
+        if (!addr?.postalCode) {
+          validationErrors.push({
+            field: "address[" + i + "].postalCode",
+            message: "postalCode is required",
+          });
+          document.getElementById("postalCode").focus();
+        } else if (!/^\d{6}$/.test(addr?.postalCode)) {
+          validationErrors.push({
+            field: "address[" + i + "].postalCode",
+            message: "Invalid Postal Code",
+          });
           document.getElementById("postalCode").focus();
         }
-      } else if (!/^\d{6}$/.test(addr?.postalCode)) {
-        validationErrors.push({
-          field: "address[" + i + "].postalCode",
-          message: "Invalid Postal Code",
-        });
-        if(document.getElementById("postalCode")){
+       }else{
+        if (!addr?.postalCode) {
+          validationErrors.push({
+            field: "address[" + i + "].postalCode",
+            message: "postalCode is required",
+          });
+          document.getElementById("postalCode").focus();
+        } else if (!/^\d{5}$/.test(addr?.postalCode)) {
+          validationErrors.push({
+            field: "address[" + i + "].postalCode",
+            message: "Invalid Postal Code",
+          });
           document.getElementById("postalCode").focus();
         }
-        
-      }
+       }
     }
 
     // Validate recipient (only for "Gift Donate" donation type)
-    console.log(donationType);
-    if (donationType === "gift-donate") {
+    console.log(donationTypeData);
+    if (donationTypeData === "gift-donate") {
       console.log(donations[0].donationEvent);
       if (!donations[0]?.donationEvent) {
         validationErrors.push({
@@ -711,7 +721,7 @@ function OnlineDonation() {
   const userAdd = async (e, donationType) => {
     e.preventDefault();
     setDonationType(donationType == "self" ? "self-donate" : "gift-donate");
-    const isValid = validate();
+    const isValid = validate(donationType == "self" ? "self-donate" : "gift-donate");
     console.log("isValid:", isValid);
     if (!privacyPolicy1 ) {
       setPrivacyPolicymessage("Please accept privacy policy");
@@ -2525,7 +2535,7 @@ function OnlineDonation() {
                                       className="form-control-inside form-control"
                                       name="postalCode"
                                       id="postalCode"
-                                      maxLength={6}
+                                      maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
                                       placeholder="Postal Code"
                                       type="text"
                                       value={address[0]?.postalCode}
@@ -2705,6 +2715,7 @@ function OnlineDonation() {
                                         className="form-control-inside form-control"
                                         name="postalCode"
                                         placeholder="Postal Code"
+                                        maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
                                         type="text"
                                         value={address[1]?.postalCode}
                                         onChange={(event) =>
@@ -3893,7 +3904,7 @@ function OnlineDonation() {
                                       id="postalCode"
                                       name="postalCode"
                                       type="text"
-                                      maxLength={6}
+                                      maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
                                       placeholder="Postal Code"
                                       value={address[0]?.postalCode}
                                       onChange={(event) =>
@@ -4285,6 +4296,7 @@ function OnlineDonation() {
                                       <input
                                         className="form-control-inside form-control"
                                         name="postalCode"
+                                        maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
                                         placeholder="Postal Code"
                                         type="text"
                                         value={
