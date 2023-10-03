@@ -164,15 +164,7 @@ function OfflineDonation() {
           demandDraftNumber: "",
           demandDraftDate: null,
           totalAmount: "",
-        },
-        {
-          paymentMode: "",
-          bankName: "",
-          chqORddNo: "",
-          chqORddDate: "",
-          paymentDate: "",
-          amount: 0,
-        },
+        }
       ],
     },
   ];
@@ -187,21 +179,45 @@ function OfflineDonation() {
       recipient: [],
       paymentInfo: [
         {
+          paymentInfoId: "",
           paymentMode: "",
           bankName: "",
           chqORddNo: "",
-          chqORddDate: "",
-          paymentDate: "",
-          amount: 0,
-        },
-        {
-          paymentMode: "",
-          bankName: "",
-          chqORddNo: "",
-          chqORddDate: "",
-          paymentDate: "",
-          amount: 0,
-        },
+          chqORddDate: null,
+          paymentDate: null,
+          amount: "",
+          donation: "",
+          createdDate: null,
+          createdBy: "",
+          modifiedDate: "",
+          modifiedBy: "",
+          remark: "",
+          isDeleted: "",
+          paymentTrackingId: "",
+          bankPaymentRefNo: "",
+          cardName: "",
+          currency: "",
+          paymentStatus: "",
+          orderId: "",
+          accountId: "",
+          receiptDate: null,
+          receivedAmount: "",
+          bankCharge: "",
+          documentNumber: null,
+          bankAddress: null,
+          depositNumber: null,
+          depositDate: null,
+          receiptNumber: null,
+          realizationDate: null,
+          creditCardNumber: "",
+          cardExpiry: "",
+          cardHolderName: "",
+          chequeNumber: "",
+          chequeDate: null,
+          demandDraftNumber: "",
+          demandDraftDate: null,
+          totalAmount: "",
+        }
       ],
     },
   ];
@@ -453,7 +469,7 @@ function OfflineDonation() {
     }
 
     // Validate payment info
-    if (donations && donations[0]?.paymentInfo) {
+    // if (donations && donations[0]?.paymentInfo) {
       for (let i = 0; i < donations[0].paymentInfo.length; i++) {
         if (i === 1) {
           // Skip validation for paymentInfo[1]
@@ -511,7 +527,7 @@ function OfflineDonation() {
           }
         }
       }
-    }
+    // }
 
     // Validate addresses
     for (let i = 0; i < address.length; i++) {
@@ -919,7 +935,6 @@ function OfflineDonation() {
     calculateOverallTotal(packages);
     setPackageData(packages);
     setAddress(initialAddress);
-    // setDonationType("");
     setDonations(intialDonations);
     setRecipient(initialRecipientData);
     setUserData(initialUserData);
