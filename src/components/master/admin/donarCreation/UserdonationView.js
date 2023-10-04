@@ -35,7 +35,8 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
   const getAllDonationOfUser = async (pageNo) => {
 
     setLoading(true);
-    const response = await DonationService.getAllDonationOfUser(pagesize, pageNo);
+    const response = await DonationService.getAllDonationOfUser(pagesize, pageNo,null);
+    console.log(response);
     if (response?.status === "Success") {
       console.log(response)
       setDonationList(response.data);
