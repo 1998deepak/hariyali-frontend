@@ -15,7 +15,7 @@ import useScrollTop from "../../hooks/useScrollTop";
 function Login() {
   //scroll Screen to top
   useScrollTop();
-  
+
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -32,8 +32,6 @@ function Login() {
     donarID: "",
   });
   const navigate = useNavigate();
- 
-  
 
   const handleValueChange = (event) => {
     const updatedValue = { ...formData };
@@ -44,35 +42,41 @@ function Login() {
 
   const login = async (e) => {
     e.preventDefault();
-
-    setErrors({ ...errors, captcha: "" });
+    let error = { ...errors };
+    error.captcha = "";
     if (formData.username == "") {
-      setErrors({ ...errors, username: "Enter the Username" });
-    } else if (formData.password == "") {
-      setErrors({ ...errors, password: "Enter the Password" });
-    } else if (!verified) {
-      setErrors({ ...errors, captcha: "Please verify captcha" });
-    } else if (errors.username == "" && errors.password == "" && errors.captcha == "") {
-      setLoading(true)
+      error.username = "Enter the Username";
+    }
+    if (formData.password == "") {
+      error.password = "Enter the Password";
+    }
+    if (!verified) {
+      error.captcha = "Please verify captcha";
+    }
+    setErrors(error);
+    if (!error.username && !error.password && !error.captcha) {
+      setLoading(true);
       const response = await AuthService.login(formData);
       console.log(response);
       if (response) {
         if (response?.status === SUCCESS) {
           console.log("Response: " + response);
-          let userDetails = await EncryptionService.encrypt(JSON.stringify(formData));
+          let userDetails = await EncryptionService.encrypt(
+            JSON.stringify(formData)
+          );
           localStorage.setItem(USER_DETAILS, userDetails);
-          toast.success("OTP Send Successfully!")
+          toast.success("OTP Send Successfully!");
           setIsHidden(!isHidden);
           setIsHide(!isHide);
-          setLoading(false)
+          setLoading(false);
         } else {
           toast.error("Email / Password wrong");
           //toast.error(response?.data);
-          setLoading(false)
+          setLoading(false);
         }
       } else {
         toast.error("Email ID Wrong");
-        setLoading(false)
+        setLoading(false);
       }
     }
   };
@@ -88,7 +92,7 @@ function Login() {
       const response = await AuthService.verifyOtp(formData.username, otp);
       console.log("Response: " + JSON.stringify(response));
 
-      setLoading(true)
+      setLoading(true);
       if (response) {
         if (response?.status === SUCCESS) {
           //console.log(response?.data.token);
@@ -110,22 +114,21 @@ function Login() {
           }
           toast.success("Successfully Login!");
         } else {
-          
           toast.error("Invalid OTP!");
           console.log("Response: " + response.status);
         }
-        setLoading(false)
+        setLoading(false);
       } else {
         //toast.error("Invalid credentials ! Username or Password Incorrect");
         console.log("Failed To Login");
-        setLoading(false)
+        setLoading(false);
       }
     } catch (error) {
       console.error(error);
       //console.log(error.response.data.message);
       toast.success("OTP verification failed");
       setVerificationStatus("OTP verification failed");
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -142,24 +145,22 @@ function Login() {
       donorId: donarID,
     };
     console.log(formData);
-    setLoading(true)
+    setLoading(true);
     const response = await AuthService.sendForgetPasswordOtp(formData);
     console.log(response);
     console.log(response?.status === SUCCESS);
     if (response?.status === SUCCESS) {
       toast.success("Email sent successfully!");
-      setLoading(false)
+      setLoading(false);
       setTimeout(() => {
-        navigate("/OtpId",{
+        navigate("/OtpId", {
           state: formData.donorId,
         });
       }, 2000);
-      
     } else {
       toast.error("Invalid Donor Id ! Please Try Again");
-      setLoading(false)
-      setDonarID('');
-
+      setLoading(false);
+      setDonarID("");
     }
     //  }
   };
@@ -167,23 +168,23 @@ function Login() {
   const resendOtp = async (e) => {
     e.preventDefault();
     console.log(formData.username);
-      if (!formData.username) {
-        setErrors({ ...errors, username: "Enter the Username" });
-        return;
-      }
-    setLoading(true)
+    if (!formData.username) {
+      setErrors({ ...errors, username: "Enter the Username" });
+      return;
+    }
+    setLoading(true);
     const response = await UserService.resendOtp(formData.username);
     console.log(response);
     console.log(response?.status === SUCCESS);
     if (response?.status === SUCCESS) {
       toast.success("Otp sent successfully on your registered email Id !");
-      setLoading(false)
+      setLoading(false);
     } else {
       toast.error("Invalid Donor Id ! Please Try Again");
-      setLoading(false)
+      setLoading(false);
     }
     //  }
-  }
+  };
 
   if (redirectFlag === true) {
     return navigate("/Dashboard");
@@ -222,13 +223,11 @@ function Login() {
     navigate("/OtpId");
   };
 
-
   return (
     <>
       <ToastContainer />
       {loading && <Loader />}
       <div className="logindiv bggray">
-
         <div
           id="loginDiv"
           className="row justify-content-between contact-form-wrap login-wrapper"
@@ -241,7 +240,10 @@ function Login() {
           <div className="loginlogo">
             <img src={logo} alt="Logo" />
           </div>
-          <p>Welcome! This login is exclusively for our valued existing donors. Log in to access your profile and donation history.</p>
+          <p>
+            Welcome! This login is exclusively for our valued existing donors.
+            Log in to access your profile and donation history.
+          </p>
           <div className="">
             <form className="form-div contact-form-wrap">
               <div className="form-group mb-3">
@@ -255,7 +257,9 @@ function Login() {
                   onChange={(e) => handleValueChange(e)}
                 />
                 {errors.username !== "" && (
-                  <div className="error-message red-text">{errors.username}</div>
+                  <div className="error-message red-text">
+                    {errors.username}
+                  </div>
                 )}
               </div>
               <div className="form-group mb-3">
@@ -276,27 +280,23 @@ function Login() {
                   showIcon={showIcon}
                 />
                 {errors.password !== "" && (
-                  <div className="error-message red-text">{errors.password}</div>
+                  <div className="error-message red-text">
+                    {errors.password}
+                  </div>
                 )}
               </div>
 
               <div className="row justify-content-between mb-3">
                 {/* <div className="col-6 account-act">Account Activation</div> */}
-                <div
-                  className="col-6 account-act"
-                  onClick={forgotLink}
-                >
+                <div className="col-6 account-act" onClick={forgotLink}>
                   Forgot Password
                 </div>
-                
               </div>
 
               <Captcha verified={verified} setVerified={setVerified}></Captcha>
               {errors.captcha != "" && (
                 <div className="error-message red-text">{errors.captcha}</div>
               )}
-
-             
 
               <div id="VerifyOTP" className=" my-3">
                 {/* <label className="my-2"> */}
@@ -310,14 +310,13 @@ function Login() {
                 />
                 {/* </label> */}
                 <div
-                 className={isHidden ? "hide" : "account-act float-right"}
+                  className={isHidden ? "hide" : "account-act float-right"}
                   onClick={resendOtp}
                 >
                   Resend OTP
                 </div>
               </div>
               <div className="text-center mb-4">
-               
                 <button
                   onClick={login}
                   //className="webform-button--submit button button--primary js-form-submit form-submit"
