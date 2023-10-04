@@ -473,6 +473,7 @@ function OfflineDonation() {
     // Validate payment info
     // if (donations && donations[0]?.paymentInfo) {
       for (let i = 0; i < donations[0].paymentInfo.length; i++) {
+        console.log(i);
         if (i === 1) {
           // Skip validation for paymentInfo[1]
           continue;
@@ -1139,7 +1140,7 @@ function OfflineDonation() {
     // Call your function here or perform any desired actions
   };
 
-  // get Detail by donar ID
+  // get Detail by Donor ID
   const handleDonarIdBlur = async (e) => {
     e.preventDefault();
     const donorId = e.target.value;
@@ -1174,7 +1175,7 @@ function OfflineDonation() {
     }
   };
 
-  // get Detail by donar ID
+  // get Detail by Donor ID
   const handleSearchId = async (donorId) => {
     setLoading(true);
     let response = await DonationService.getDetailsByEmailIdOrDonorId(donorId);
@@ -1403,6 +1404,7 @@ function OfflineDonation() {
                                     className="form-control-inside"
                                     type="text"
                                     id="mobileNo"
+                                    maxLength={10}
                                     name="user.mobileNo"
                                     placeholder="Mobile Number"
                                     value={userData?.user?.mobileNo}
@@ -2703,6 +2705,7 @@ function OfflineDonation() {
                                   <input
                                     className="form-control-inside"
                                     type="text"
+                                    maxLength={10}
                                     name="user.mobileNo"
                                     placeholder="Mobile Number"
                                     value={userData.user.mobileNo}
@@ -3619,6 +3622,7 @@ function OfflineDonation() {
                                     <input
                                       className="form-control-inside"
                                       name="mobileNo"
+                                      maxLength={10}
                                       placeholder="Mobile Number"
                                       type="text"
                                       value={recipient[0].mobileNo}
@@ -4041,6 +4045,7 @@ function OfflineDonation() {
                                   <input
                                     className="form-control-inside"
                                     type="text"
+                                    maxLength={10}
                                     name="user.mobileNo"
                                     placeholder="Mobile Number"
                                     value={userData?.user?.mobileNo}
@@ -4816,6 +4821,7 @@ function OfflineDonation() {
                                   <input
                                     className="form-control-inside"
                                     type="text"
+                                    maxLength={10}
                                     name="user.mobileNo"
                                     placeholder="Mobile Number"
                                     value={userData.user.mobileNo}
@@ -5298,6 +5304,7 @@ function OfflineDonation() {
                                     <input
                                       className="form-control-inside"
                                       name="mobileNo"
+                                      maxLength={10}
                                       placeholder="Mobile Number"
                                       type="text"
                                       value={recipient[0].mobileNo}
@@ -5668,8 +5675,8 @@ function OfflineDonation() {
               <Card>
                 <Card.Body>
                   <Card.Text>
-                    Your Donar Id/Email Id is already exists please continue in
-                    Existing Donar flow.
+                    Your Donor Id/Email Id is already exists please continue in
+                    Existing Donor flow.
                   </Card.Text>
                 </Card.Body>
               </Card>
