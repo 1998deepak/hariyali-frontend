@@ -1044,7 +1044,7 @@ function OnlineDonation() {
                                     value={userData?.user?.donarType}
                                     onChange={handleChange}
                                   >
-                                    <option disabled selected value="">Donar Type</option>
+                                    <option disabled selected value="">Donor Type</option>
                                     <option value="Corporate">Corporate</option>
                                     <option value="Individual">Individual</option>
                                   </select>
@@ -1738,7 +1738,7 @@ function OnlineDonation() {
                                 value={userData.user.donarType}
                                 onChange={handleChange}
                               >
-                                <option disabled selected value="">Donar Type</option>
+                                <option disabled selected value="">Donor Type</option>
                                 <option value="Corporate">Corporate</option>
                                 <option value="Individual">Individual</option>
                               </select>
