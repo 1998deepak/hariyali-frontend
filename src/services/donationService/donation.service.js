@@ -204,9 +204,13 @@ export const DonationService = {
 
 
   getAllDonationOfUser: async (PageSize=10, PageNo=0,email) => {
+    let queryString = "?PageSize="+PageSize+"&PageNo="+PageNo;
+    if (email) {
+      queryString = queryString+"&email="+email;
+    }
    try{
     const response = await APIService.Instance.get(
-      URLS.GETALLDONATIONOFUSER+"?PageSize="+PageSize+"&PageNo="+PageNo+"&email="+email
+      URLS.GETALLDONATIONOFUSER+queryString
     );
     console.log(response);
     return response?.data;
