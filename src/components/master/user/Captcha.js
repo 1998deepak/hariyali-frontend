@@ -41,8 +41,8 @@ function Captcha({ verified, setVerified,changeCaptcha }) {
   return (
     <>
       <div className="row">
-        <div className="col">
-          <div className="captactcode ">
+      <div className="col col-sm-6">
+          <div className="captactcode">
             <div className="capt-code" id="captcha">
               {captcha}
             </div>
@@ -58,7 +58,7 @@ function Captcha({ verified, setVerified,changeCaptcha }) {
           </div>
         </div>
         
-        <div className="col captcha-wrapper">
+        <div className="col col-sm-6 captcha-wrapper">
           <input
             type="text"
             id="inputCaptcha"

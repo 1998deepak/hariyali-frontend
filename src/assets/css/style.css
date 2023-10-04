@@ -5945,6 +5945,15 @@ video {
     font-size: 20px;
     width: 140px;
   }
+  .captcha-wrapper input::-webkit-input-placeholder{
+  white-space: pre-line;
+  font-size: 10px;
+}
+  /* .captactcode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
   .headermenu{
     padding: 10px;
   }
