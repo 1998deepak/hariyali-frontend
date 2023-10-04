@@ -77,11 +77,11 @@ const AdminHeader = () => {
             <div className="bar-icon">
               <HiBars3CenterLeft onClick={toogleSideBar}/>
             </div>
-            <Link className="navbar-brand-logo">
+            <div className="navbar-brand-logo">
               <div className="admintop-logo">
                 <img src={Logo} alt="Hariyali" style={{ height: "45px" }} />
               </div>
-            </Link>
+            </div>
           </div>
           <div></div>
           <ul className="navbar-nav navbar-nav-icons flex-row">

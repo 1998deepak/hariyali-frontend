@@ -1756,6 +1756,7 @@ function OnlineDonation() {
                                           className="form-control-inside form-control"
                                           type="text"
                                           id="mobileNo"
+                                          maxLength={10}
                                           name="user.mobileNo"
                                           placeholder="Mobile Number"
                                           value={userData?.user?.mobileNo}
@@ -1797,6 +1798,7 @@ function OnlineDonation() {
                                         className="form-control-inside form-control"
                                         type="text"
                                         id="mobileNo"
+                                        maxLength={10}
                                         name="user.mobileNo"
                                         placeholder="Mobile Number"
                                         value={userData?.user?.mobileNo}
@@ -3136,6 +3138,7 @@ function OnlineDonation() {
                                           className="form-control-inside form-control"
                                           type="text"
                                           id="mobileNo"
+                                          maxLength={10}
                                           name="user.mobileNo"
                                           placeholder="Mobile Number"
                                           value={userData.user.mobileNo}
@@ -3174,6 +3177,7 @@ function OnlineDonation() {
                                         className="form-control-inside form-control"
                                         type="text"
                                         id="mobileNo"
+                                        maxLength={10}
                                         name="user.mobileNo"
                                         placeholder="Mobile Number"
                                         value={userData.user.mobileNo}
@@ -4025,6 +4029,7 @@ function OnlineDonation() {
                                       <input
                                         className="form-control-inside form-control"
                                         id="recMobileNo"
+                                        maxLength={10}
                                         name="mobileNo"
                                         placeholder="Mobile Number"
                                         type="text"

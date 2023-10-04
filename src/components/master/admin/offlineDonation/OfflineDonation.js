@@ -471,6 +471,7 @@ function OfflineDonation() {
     // Validate payment info
     // if (donations && donations[0]?.paymentInfo) {
       for (let i = 0; i < donations[0].paymentInfo.length; i++) {
+        console.log(i);
         if (i === 1) {
           // Skip validation for paymentInfo[1]
           continue;
@@ -1413,6 +1414,7 @@ function OfflineDonation() {
                                     className="form-control-inside"
                                     type="text"
                                     id="mobileNo"
+                                    maxLength={10}
                                     name="user.mobileNo"
                                     placeholder="Mobile Number"
                                     value={userData?.user?.mobileNo}
@@ -2734,6 +2736,7 @@ function OfflineDonation() {
                                   <input
                                     className="form-control-inside"
                                     type="text"
+                                    maxLength={10}
                                     name="user.mobileNo"
                                     placeholder="Mobile Number"
                                     value={userData.user.mobileNo}
@@ -3637,6 +3640,7 @@ function OfflineDonation() {
                                     <input
                                       className="form-control-inside"
                                       name="mobileNo"
+                                      maxLength={10}
                                       placeholder="Mobile Number"
                                       type="text"
                                       value={recipient[0].mobileNo}
@@ -4059,6 +4063,7 @@ function OfflineDonation() {
                                   <input
                                     className="form-control-inside"
                                     type="text"
+                                    maxLength={10}
                                     name="user.mobileNo"
                                     placeholder="Mobile Number"
                                     value={userData?.user?.mobileNo}
@@ -4826,6 +4831,7 @@ function OfflineDonation() {
                                   <input
                                     className="form-control-inside"
                                     type="text"
+                                    maxLength={10}
                                     name="user.mobileNo"
                                     placeholder="Mobile Number"
                                     value={userData.user.mobileNo}
@@ -5308,6 +5314,7 @@ function OfflineDonation() {
                                     <input
                                       className="form-control-inside"
                                       name="mobileNo"
+                                      maxLength={10}
                                       placeholder="Mobile Number"
                                       type="text"
                                       value={recipient[0].mobileNo}
