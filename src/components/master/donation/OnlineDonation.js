@@ -712,6 +712,7 @@ function OnlineDonation() {
     setIsDivOpen(false);
     setMessage("");
     setPackageErrorMessage(false);
+    setCaptchaVerfied(false);
   };
 
   const setCaptchaFlag = async (flag) => {
@@ -985,6 +986,7 @@ function OnlineDonation() {
     setDonations(intialDonations);
     setRecipient(initialRecipientData);
     setUserData(initialUserData);
+    setCaptchaVerfied(false);
   };
   const handleTabSelect = (eventKey) => {
     // eventKey.preventDefault();
@@ -2735,10 +2737,8 @@ function OnlineDonation() {
 
                           <div className="col-12 col-md-6 mt20">
                             <Captcha
-                              verified={false}
-                              setVerified={(flag) => {
-                                setCaptchaFlag(flag);
-                              }}
+                              verified={captchaVerfied}
+                              setVerified={setCaptchaVerfied}
                               id="captcha1"
                             />
                           </div>
@@ -4325,8 +4325,8 @@ function OnlineDonation() {
                           <hr />
                         <div className="col-12 col-md-6 mt20">
                           <CaptchaGift
-                            verified={false}
-                            setVerified={(flag) => setCaptchaFlag(flag)}
+                            verified={captchaVerfied}
+                            setVerified={setCaptchaVerfied}
                             id="captcha2"
                           />
                           {errors.map((error, index) => {

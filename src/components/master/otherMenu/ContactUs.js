@@ -135,6 +135,7 @@ function ContactUs() {
         setShowMessageModel(true);
         clearForm(e);
         setChangeCaptcha(!changeCaptcha);
+        setCaptchaVerfied(false);
         // setContactData((current) => {
         //   return current.map((item) => {
         //     return { ...item};
@@ -303,10 +304,8 @@ function ContactUs() {
                         </div>
                         <div className="homeinput-div col-12 col-lg-12 col-12">
                           <Captcha
-                            verified={false}
-                              setVerified={(flag) => {
-                                setCaptchaFlag(flag);
-                              }}
+                            verified={captchaVerfied}
+                              setVerified={setCaptchaVerfied}
                               id="captcha1"
                               changeCaptcha={changeCaptcha}
                           />
