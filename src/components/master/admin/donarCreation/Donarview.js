@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { AiFillEdit } from "react-icons/ai";
 import { DonationService } from "../../../../services/donationService/donation.service";
 import Loader from "../../../common/loader/Loader";
+import Pagination from '../../../common/Pagination';
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 
 function DonarView() {
@@ -13,6 +14,9 @@ function DonarView() {
   const[donorId,setDonorId]=useState("");
   const[donorName,setDonorName]=useState("");
   const [loading, setLoading] = useState(false);
+  const [pageNo, setPageNo] = useState(0);
+  const [pagesize, setPageSize] = useState(10);
+  const [totalRecords, setTotalRecords] = useState(0);
   
   const columns = [
     {
@@ -48,19 +52,18 @@ function DonarView() {
   useEffect(() => {
     if(id)
     {
-      getAllDonationOfUser(id);
+      getAllDonationOfUser(pageNo,id);
     }
-   
   }, [id]);
 
   
   
-  const getAllDonationOfUser = async (id) => {
-    console.log(id);
+  const getAllDonationOfUser = async (pageNo,email) => {
     setLoading(true);
-    const response = await DonationService.getAllDonationOfUser(id);
+    const response = await DonationService.getAllDonationOfUser(pagesize,pageNo,email);
+    console.log(response);
     if (response?.data) {
-      const donorData = JSON.parse(response.data);
+      const donorData = response.data;
       const newData = donorData.map((donor) => ({
         donorId:donor.donorId,
         donationId: donor.donationId,
@@ -72,6 +75,7 @@ function DonarView() {
         paymentStatus: donor.paymentInfo.paymentStatus,
         donationType:donor.donationType,
       }));
+      setTotalRecords(response.totalRecords);
       setData(newData);
       if (newData.length > 0) {
         const fullName = `${newData[0].firstName} ${newData[0].lastName}`;
@@ -81,7 +85,12 @@ function DonarView() {
     }
     setLoading(false);
   };
+  const handlePageClick = (event) => {
+    setPageNo(event);
+    getAllDonationOfUser(event-1);
+  };
 
+  console.log(totalRecords);
   return (
     <>
     {loading && <Loader/>}
@@ -102,7 +111,7 @@ function DonarView() {
                       name="donorId"
                       value={donorId}
                       onChange={(e) => setDonorId(e.target.value)}
-                      placeholder="Donar ID"
+                      placeholder="Donor ID"
                     />
                   </div>
                 </div>
@@ -117,7 +126,7 @@ function DonarView() {
                       name="donarName"
                       value={donorName}
                       onChange={(e) => setDonorName(e.target.value)}
-                      placeholder="Donar Name"
+                      placeholder="Donor Name"
                     />
                   </div>
                 </div>
@@ -130,9 +139,17 @@ function DonarView() {
                 keyField="donationId"
                 data={data}
                 columns={columns}
-                 pagination={paginationFactory()}
               />
               </div>
+              {totalRecords > 0 &&
+                <Pagination
+                  itemsCount={totalRecords}
+                  itemsPerPage={pagesize}
+                  currentPage={pageNo}
+                  setCurrentPage={handlePageClick}
+                  alwaysShown={false}
+                />
+              }
             </div>
             <div>
               <Link className="edit-icon" to={`/DonarCreation`}><IoArrowBackCircleSharp style={{fontSize:'40px'}}/></Link>

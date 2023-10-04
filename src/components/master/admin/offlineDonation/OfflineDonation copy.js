@@ -476,7 +476,7 @@ function OfflineDonation() {
                                     name="user.donarType"
                                     value={userData.user.donarType}
                                     onChange={handleChange}>
-                                    <option selected>Donar Type</option>
+                                    <option selected>Donor Type</option>
                                     <option value="Corporate">Corporate</option>
                                     <option value="Individual">Individual</option>
                                   </select>
@@ -722,7 +722,7 @@ function OfflineDonation() {
                                     <div className="col-8 p0">
                                       <select name="paymentMode" className=" form-control-inside form-select" value={donation.paymentInfo.paymentMode}
                                         onChange={(event) => handlePaymentInfoChange(event, index)}>
-                                        <option selected>Donar Type</option>
+                                        <option selected>Donor Type</option>
                                         <option value="Cheque">Cheque</option>
                                         <option value="Cash">Cash</option>
                                       </select>
@@ -972,7 +972,7 @@ function OfflineDonation() {
                                     name="user.donarType"
                                     value={userData.user.donarType}
                                     onChange={handleChange}>
-                                    <option selected>Donar Type</option>
+                                    <option selected>Donor Type</option>
                                     <option value="Corporate">Corporate</option>
                                     <option value="Individual">Individual</option>
                                   </select>
@@ -1422,7 +1422,7 @@ function OfflineDonation() {
                                     <div className="col-8 p0">
                                       <select name="paymentMode" className=" form-control-inside form-select" value={donation.paymentInfo.paymentMode}
                                         onChange={(event) => handlePaymentInfoChange(event, index)}>
-                                        <option selected>Donar Type</option>
+                                        <option selected>Donor Type</option>
                                         <option value="Cheque">Cheque</option>
                                         <option value="Cash">Cash</option>
                                       </select>

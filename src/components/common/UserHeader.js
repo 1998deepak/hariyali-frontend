@@ -18,7 +18,7 @@ const Header = () => {
   const [activeTab, setActiveTab] = useState('');
 
   const navigate = useNavigate();
- const customTitle = "Donar Login"
+ const customTitle = "Donor Login"
   const goToLogin = () => {
     navigate("/Login");
   };

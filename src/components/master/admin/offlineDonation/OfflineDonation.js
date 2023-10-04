@@ -1150,7 +1150,7 @@ function OfflineDonation() {
     // Call your function here or perform any desired actions
   };
 
-  // get Detail by donar ID
+  // get Detail by Donor ID
   const handleDonarIdBlur = async (e) => {
     e.preventDefault();
     const donorId = e.target.value;
@@ -1185,7 +1185,7 @@ function OfflineDonation() {
     }
   };
 
-  // get Detail by donar ID
+  // get Detail by Donor ID
   const handleSearchId = async (donorId) => {
     setLoading(true);
     let response = await DonationService.getDetailsByEmailIdOrDonorId(donorId);
@@ -5673,8 +5673,8 @@ function OfflineDonation() {
               <Card>
                 <Card.Body>
                   <Card.Text>
-                    Your Donar Id/Email Id is already exists please continue in
-                    Existing Donar flow.
+                    Your Donor Id/Email Id is already exists please continue in
+                    Existing Donor flow.
                   </Card.Text>
                 </Card.Body>
               </Card>
