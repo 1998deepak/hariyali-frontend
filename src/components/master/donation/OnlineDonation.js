@@ -300,6 +300,12 @@ function OnlineDonation() {
         document.getElementById("donarType").focus();
       }
     }
+    if (!packageData[0].noOfBouquets || !packageData[0].amount) {
+      validationErrors.push({
+        field: "package.noOfBouquets",
+        message: "Number of sapling required",
+      });
+    }
 
     if (!captchaVerfied) {
       validationErrors.push({
@@ -1699,6 +1705,7 @@ function OnlineDonation() {
                             initialPackageData={initialPackageData}
                             donations={donations}
                             calculateOverallTotal={calculateOverallTotal}
+                            errors={errors}
                           />
                           <div className="clear"></div>
                           <hr />
@@ -3103,6 +3110,7 @@ function OnlineDonation() {
                             initialPackageData={initialPackageData}
                             donations={donations}
                             calculateOverallTotal={calculateOverallTotal}
+                            errors={errors}
                           />
                           <div className="clear"></div>
                           <hr />

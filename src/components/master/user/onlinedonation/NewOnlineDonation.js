@@ -268,62 +268,62 @@ function NewOnlineDonation() {
             message: "Invalid Email ID",
           });
         }
-        if (!rec?.mobileNo) {
-          validationErrors.push({
-            field: "recipient[" + i + "].mobileNo",
-            message: "Mobile Number is required",
-          });
-        } else if (!/^(?!.*[a-zA-Z])\d{10}$/.test(rec.mobileNo)) {
-          validationErrors.push({
-            field: "recipient[" + i + "].mobileNo",
-            message:
-              "Mobile Number must contain exactly 10 digits and no alphabetic characters",
-          });
-        }
+        // if (!rec?.mobileNo) {
+        //   validationErrors.push({
+        //     field: "recipient[" + i + "].mobileNo",
+        //     message: "Mobile Number is required",
+        //   });
+        // } else if (!/^(?!.*[a-zA-Z])\d{10}$/.test(rec.mobileNo)) {
+        //   validationErrors.push({
+        //     field: "recipient[" + i + "].mobileNo",
+        //     message:
+        //       "Mobile Number must contain exactly 10 digits and no alphabetic characters",
+        //   });
+        // }
 
-        if (!rec?.address[0]?.street1) {
-          validationErrors.push({
-            field: "recipient[" + i + "].address[0].street1",
-            message: "Recipient Street is required",
-          });
-        }
-        if (!rec?.address[0]?.country) {
-          validationErrors.push({
-            field: "recipient[" + i + "].address[0].country",
-            message: "Recipient Country is required",
-          });
-        }
-        if (!rec?.address[0]?.state) {
-          validationErrors.push({
-            field: "recipient[" + i + "].address[0].state",
-            message: "Recipient State is required",
-          });
-        }
-        if (rec?.address[0]?.country === "INDIA") {
-          if (!rec?.address[0]?.postalCode) {
-            validationErrors.push({
-              field: "recipient[" + i + "].address[0].postalCode",
-              message: "Postal Code is required",
-            });
-          } else if (!/^\d{6}$/.test(rec?.address[0]?.postalCode)) {
-            validationErrors.push({
-              field: "recipient[" + i + "].address[0].postalCode",
-              message: "Invalid Postal Code",
-            });
-          }
-        } else {
-          if (rec?.address[0]?.postalCode) {
-            validationErrors.push({
-              field: "recipient[" + i + "].address[0].postalCode",
-              message: "Postal Code is required",
-            });
-          } else if (!/^\d{5}$/.test(rec?.address[0]?.postalCode)) {
-            validationErrors.push({
-              field: "recipient[" + i + "].address[0].postalCode",
-              message: "Invalid Postal Code",
-            });
-          }
-        }
+        // if (!rec?.address[0]?.street1) {
+        //   validationErrors.push({
+        //     field: "recipient[" + i + "].address[0].street1",
+        //     message: "Recipient Street is required",
+        //   });
+        // }
+        // if (!rec?.address[0]?.country) {
+        //   validationErrors.push({
+        //     field: "recipient[" + i + "].address[0].country",
+        //     message: "Recipient Country is required",
+        //   });
+        // }
+        // if (!rec?.address[0]?.state) {
+        //   validationErrors.push({
+        //     field: "recipient[" + i + "].address[0].state",
+        //     message: "Recipient State is required",
+        //   });
+        // }
+        // if (rec?.address[0]?.country === "INDIA") {
+        //   if (!rec?.address[0]?.postalCode) {
+        //     validationErrors.push({
+        //       field: "recipient[" + i + "].address[0].postalCode",
+        //       message: "Postal Code is required",
+        //     });
+        //   } else if (!/^\d{6}$/.test(rec?.address[0]?.postalCode)) {
+        //     validationErrors.push({
+        //       field: "recipient[" + i + "].address[0].postalCode",
+        //       message: "Invalid Postal Code",
+        //     });
+        //   }
+        // } else {
+        //   if (rec?.address[0]?.postalCode) {
+        //     validationErrors.push({
+        //       field: "recipient[" + i + "].address[0].postalCode",
+        //       message: "Postal Code is required",
+        //     });
+        //   } else if (!/^\d{5}$/.test(rec?.address[0]?.postalCode)) {
+        //     validationErrors.push({
+        //       field: "recipient[" + i + "].address[0].postalCode",
+        //       message: "Invalid Postal Code",
+        //     });
+        //   }
+        // }
       }
     }
     console.log(validationErrors);
