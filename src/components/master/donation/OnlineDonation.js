@@ -720,6 +720,7 @@ function OnlineDonation() {
     setIsDivOpen(false);
     setMessage("");
     setPackageErrorMessage(false);
+    setCaptchaVerfied(false);
     setReceipientStateflag(true);        
     setStateFlag(true); 
     setStates([]);
@@ -997,6 +998,7 @@ function OnlineDonation() {
     setDonations(intialDonations);
     setRecipient(initialRecipientData);
     setUserData(initialUserData);
+    setCaptchaVerfied(false);
   };
   const handleTabSelect = (eventKey) => {
     // eventKey.preventDefault();
@@ -2770,10 +2772,8 @@ function OnlineDonation() {
 
                           <div className="col-12 col-md-6 mt20">
                             <Captcha
-                              verified={false}
-                              setVerified={(flag) => {
-                                setCaptchaFlag(flag);
-                              }}
+                              verified={captchaVerfied}
+                              setVerified={setCaptchaVerfied}
                               id="captcha1"
                             />
                           </div>
@@ -4386,33 +4386,34 @@ function OnlineDonation() {
                           </div>
 
                           <hr />
-                          <div className="col-12 col-md-6 mt20">
-                            <CaptchaGift
-                              verified={false}
-                              setVerified={(flag) => setCaptchaFlag(flag)}
-                              id="captcha2"
-                            />
-                            {errors.map((error, index) => {
-                              if (error.field === "captchaError") {
-                                return (
-                                  <div
-                                    key={index}
-                                    className="error-message red-text"
-                                  >
-                                    {error.message}
-                                  </div>
-                                );
-                              }
-                              return null;
-                            })}
-                            {validatePopup.captcha ? (
-                              <div className="error-message red-text">
-                                {validatePopup.captcha}
-                              </div>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
+                        <div className="col-12 col-md-6 mt20">
+                          <CaptchaGift
+                            verified={captchaVerfied}
+                            setVerified={setCaptchaVerfied}
+                            id="captcha2"
+                          />
+                          {errors.map((error, index) => {
+                            if (error.field === "captchaError") {
+                              return (
+                                <div
+                                  key={index}
+                                  className="error-message red-text"
+                                >
+                                  {error.message}
+                                </div>
+                              );
+                            }
+                            return null;
+                          })}
+                          {validatePopup.captcha ? (
+                            <div className="error-message red-text">
+                              {validatePopup.captcha}
+                            </div>
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+
                           <hr />
                           <PrivacyPolicy
                             informationShare={informationShare}
