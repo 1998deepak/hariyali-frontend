@@ -24,7 +24,9 @@ const SearchWithSuggestions = ({ data,onClickSearch }) => {
 
   const handleSearchButtonClick = (event) => {
     event.preventDefault();
+    if(searchText){
     onClickSearch(searchText);
+    }
   };
 
   // const handleBlurSearch = (event) =>{

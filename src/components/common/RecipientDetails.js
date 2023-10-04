@@ -10,7 +10,7 @@ const RecipientDetails = ({
 }) => {
   return (
     <>
-      <div className="actionheadingdiv">DETAILS OF RECIPIENT</div>
+      <div className="actionheadingdiv">DETAILS OF GIFTEE / RECEIPIENT</div>
       <div className="col-12 pr15 mt20">
         <div>
           <div className="row">
@@ -72,7 +72,7 @@ const RecipientDetails = ({
               <div className="row select-label">
                 <div className="col-12 col-lg-4 ">
                   Mobile Number
-                  <span className="red-text">*</span>
+                  {/* <span className="red-text">*</span> */}
                 </div>
                 <div className="col-12 col-lg-8 p0">
                   <input
@@ -84,7 +84,7 @@ const RecipientDetails = ({
                     value={recipient[0].mobileNo}
                     onChange={(e) => handleRecipentChange(e, 0)}
                   />
-                  {errors.map((error, index) => {
+                  {/* {errors.map((error, index) => {
                     if (error.field === "recipient[0].mobileNo") {
                       return (
                         <div key={index} className="error-message red-text">
@@ -93,7 +93,7 @@ const RecipientDetails = ({
                       );
                     }
                     return null;
-                  })}
+                  })} */}
                 </div>
               </div>
             </div>
@@ -130,7 +130,8 @@ const RecipientDetails = ({
               <div className="row select-label">
                 <div className="col-12 col-lg-4 ">
                   {" "}
-                  Street 1 <span className="red-text">*</span>
+                  Street 1 
+                  {/* <span className="red-text">*</span> */}
                 </div>
                 <div className="col-12 col-lg-8 p0">
                   <input
@@ -141,7 +142,7 @@ const RecipientDetails = ({
                     value={recipient[0].address[0].street1}
                     onChange={(e) => handleRecipentAddressChange(e, 0)}
                   />
-                  {errors.map((error, index) => {
+                  {/* {errors.map((error, index) => {
                     if (error.field === "recipient[0].address[0].street1") {
                       return (
                         <div key={index} className="error-message red-text">
@@ -150,7 +151,7 @@ const RecipientDetails = ({
                       );
                     }
                     return null;
-                  })}
+                  })} */}
                 </div>
               </div>
             </div>
@@ -187,7 +188,9 @@ const RecipientDetails = ({
             </div>
             <div className="col-12 col-lg-6">
               <div className="row select-label">
-              <div className="col-12 col-lg-4 ">Country <span className="red-text">*</span></div>
+              <div className="col-12 col-lg-4 ">Country 
+              {/* <span className="red-text">*</span> */}
+              </div>
                 <div className="col-12 col-lg-8 p0">
                   <select
                     className=" form-control-inside form-select"
@@ -222,7 +225,9 @@ const RecipientDetails = ({
             </div>
             <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-12 col-lg-4 "> State <span className="red-text">*</span></div>
+                <div className="col-12 col-lg-4 "> State 
+                {/* <span className="red-text">*</span> */}
+                </div>
                 <div className="col-12 col-lg-8 p0">
                   {
                     states?.length === 0 ?
@@ -254,7 +259,7 @@ const RecipientDetails = ({
                   </select>
                   }
                   
-                  {errors.map((error, index) => {
+                  {/* {errors.map((error, index) => {
                     if (error.field === "recipient[0].address[0].state") {
                       return (
                         <div key={index} className="error-message red-text">
@@ -263,7 +268,7 @@ const RecipientDetails = ({
                       );
                     }
                     return null;
-                  })}
+                  })} */}
                 </div>
               </div>
             </div>
@@ -279,7 +284,7 @@ const RecipientDetails = ({
                     value={recipient[0].address[0].city}
                     onChange={(e) => handleRecipentAddressChange(e, 0)}
                   />
-                  {errors.map((error, index) => {
+                  {/* {errors.map((error, index) => {
                     if (error.field === "recipient[0].address[0].city") {
                       return (
                         <div key={index} className="error-message red-text">
@@ -288,13 +293,15 @@ const RecipientDetails = ({
                       );
                     }
                     return null;
-                  })}
+                  })} */}
                 </div>
               </div>
             </div>
             <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-12 col-lg-4 ">Postal Code <span className="red-text">*</span></div>
+                <div className="col-12 col-lg-4 ">Postal Code 
+                {/* <span className="red-text">*</span> */}
+                </div>
                 <div className="col-12 col-lg-8 p0">
                   <input
                     className="form-control-inside"
@@ -305,7 +312,7 @@ const RecipientDetails = ({
                     value={recipient[0].address[0].postalCode}
                     onChange={(e) => handleRecipentAddressChange(e, 0)}
                   />
-                 {errors.map((error, index) => {
+                 {/* {errors.map((error, index) => {
                     if (error.field === "recipient[0].address[0].postalCode") {
                       return (
                         <div key={index} className="error-message red-text">
@@ -314,7 +321,7 @@ const RecipientDetails = ({
                       );
                     }
                     return null;
-                  })}
+                  })} */}
                 </div>
               </div>
             </div>
