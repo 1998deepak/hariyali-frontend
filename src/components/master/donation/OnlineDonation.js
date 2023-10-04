@@ -1135,17 +1135,13 @@ function OnlineDonation() {
     console.log(updatedAddress);
     updatedAddress[index].address[index][name] = value;
     if (data) {
-      updatedAddress[index] ={
-        ...updatedAddress[index],
-      ["state"]: "",
-      } 
+      updatedAddress[index].address[index]["state"] =  "";
+      
     }
 
-    
     setRecipient(updatedAddress);
 
     if (data) {
-      recipient[index].state = "";
       getStatesByCountry(data.countryCode, 'Receipient');
     }
     return updatedAddress;
