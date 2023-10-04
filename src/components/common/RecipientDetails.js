@@ -79,7 +79,7 @@ const RecipientDetails = ({
                     className="form-control-inside"
                     name="mobileNo"
                     maxLength={10}
-                    placeholder="Mobile No."
+                    placeholder="Mobile Number"
                     type="text"
                     value={recipient[0].mobileNo}
                     onChange={(e) => handleRecipentChange(e, 0)}
