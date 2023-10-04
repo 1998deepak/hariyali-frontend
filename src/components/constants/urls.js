@@ -23,7 +23,7 @@ export const URLS = {
     SENDOTP: "/sendOtp",
     VERIFYOTPONLINE: "/verify-otp",
 
-    //  Donar
+    //  Donor
     GETALLUSERDONATION: "/getAlluser",
     GETALLDONATIONOFUSER: "/getAllDonationOfUser",
     GETDONATIONBYID: "/getDonationById/",
