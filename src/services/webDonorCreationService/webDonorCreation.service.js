@@ -62,5 +62,25 @@ export const WebDonorCreationService = {
     }
   },
 
+  approveUserDonation: async (data) => {
+    console.log(data);
+    try {
+      const response = await APIService.Instance.post(
+        URLS.APPROVE_USER_DONATION, data
+      ).catch(error => {
+        console.log(error);
+        throw error;
+      });
+      return response?.data;
+    } catch (err) {
+      console.log(err);
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+        toast.error(err?.message);
+      }
+    }
+  },
+
 };
 
