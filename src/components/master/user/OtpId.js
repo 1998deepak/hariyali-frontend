@@ -62,8 +62,8 @@ function OtpId() {
           <img src={logo} alt="Logo" />
         </div>
         <div className="row justify-content-between bgwite padding30 contact-form-wrap creditial-div">
-          <h5 className="header-text">Confirm Your OTP</h5>
-          <p>Please Enter your OTP!</p>
+          <h5 className="header-text">CONFIRM YOUR OTP</h5>
+          <p>Please enter your OTP</p>
           <div className="col-12">
             <form className="form-div contact-form-wrap" >
               <label className="col-12">

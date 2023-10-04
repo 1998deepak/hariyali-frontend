@@ -351,8 +351,8 @@ function Login() {
           id="forgotDiv"
           className="hide row justify-content-between contact-form-wrap login-wrapper"
         >
-          <h5 className="text-center">Donor ID</h5>
-          <p>Please Enter your Donor ID / Email ID!</p>
+          <h5 className="text-center">FORGOT PASSWORD</h5>
+          <p> Please enter your Donor ID / Email ID </p>
           <div className="">
             <form className="form-div contact-form-wrap">
               <input
