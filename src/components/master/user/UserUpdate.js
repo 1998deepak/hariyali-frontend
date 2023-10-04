@@ -301,7 +301,9 @@ function UserUpdate() {
                       </div>
                       <div className="col-12 col-lg-6">
                         <div className="row select-label">
-                          <div className="col-12 col-lg-4">Mobile Number<span className="red-text">*</span></div>
+                          <div className="col-12 col-lg-4">
+                            Mobile Number<span className="red-text">*</span>
+                          </div>
                           <div className="col-12 col-lg-8 p0">
                             <input
                               className="form-control-inside form-control"
@@ -464,7 +466,10 @@ function UserUpdate() {
                         <div key={index} className="row">
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-12 col-lg-4"> Street 1 <span className="red-text">*</span></div>
+                              <div className="col-12 col-lg-4">
+                                {" "}
+                                Street 1 <span className="red-text">*</span>
+                              </div>
                               <div className="col-12 col-lg-8 p0">
                                 <input
                                   className="form-control-inside form-control"
@@ -520,7 +525,9 @@ function UserUpdate() {
                           </div>
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-12 col-lg-4 ">Country<span className="red-text">*</span></div>
+                              <div className="col-12 col-lg-4 ">
+                                Country<span className="red-text">*</span>
+                              </div>
                               <div className="col-12 col-lg-8 p0">
                                 <select
                                   className="form-control-inside form-select"
@@ -556,7 +563,10 @@ function UserUpdate() {
                           </div>
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-12 col-lg-4 "> State <span className="red-text">*</span> </div>
+                              <div className="col-12 col-lg-4 ">
+                                {" "}
+                                State <span className="red-text">*</span>{" "}
+                              </div>
                               <div className="col-12 col-lg-8 p0">
                                 {states?.length === 0 ? (
                                   <input
@@ -625,7 +635,9 @@ function UserUpdate() {
                           </div>
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-12 col-lg-4">Postal Code<span className="red-text">*</span></div>
+                              <div className="col-12 col-lg-4">
+                                Postal Code<span className="red-text">*</span>
+                              </div>
                               <div className="col-12 col-lg-8 p0">
                                 <input
                                   className="form-control-inside form-control"

@@ -26,39 +26,46 @@ export default function FSCRAccount() {
                 transfer to the FCRA account using SWIFT Transaction mode.
               </p>{" "}
               <p className="mb-2">
-                As a citizen of <b>{data1}</b> you can make the payment of {" "}
-                <b>INR{" "}{data}</b> through bank transfer using the SWIFT Transaction
-                mode as given below.
+                As a citizen of <b>{data1}</b> you can make the payment of{" "}
+                <b>INR {data}</b> through bank transfer using the SWIFT
+                Transaction mode as given below.
               </p>{" "}
               <div className="desk-div d-flex">
                 <table>
                   <tbody>
                     <tr>
-                      <td>Account Name :</td>
+                      <td>Account Name</td>
+                      <td>:</td>
                       <td>Naandi Foundation Bank</td>
                     </tr>
                     <tr>
-                      <td>A/c No :</td>
+                      <td>A/c No</td>
+                      <td>:</td>
                       <td>40145230849</td>
                     </tr>
                     <tr>
-                      <td>Bank Name :</td>
+                      <td>Bank Name</td>
+                      <td>:</td>
                       <td>State Bank of India, New Delhi Main Branch</td>
                     </tr>
                     <tr>
-                      <td>Branch Code :</td>
+                      <td>Branch Code</td>
+                      <td>:</td>
                       <td>00691</td>
                     </tr>
                     <tr>
-                      <td>RTGS/IFSC Code :</td>
+                      <td>RTGS/IFSC Code</td>
+                      <td>:</td>
                       <td>SBIN0000691</td>
                     </tr>
                     <tr>
-                      <td>SWIFT :</td>
+                      <td>SWIFT</td>
+                      <td>:</td>
                       <td>SBININBB104</td>
                     </tr>
                     <tr>
-                      <td>Type of Account :</td>
+                      <td>Type of Account</td>
+                      <td>:</td>
                       <td>FCRA Savings Account</td>
                     </tr>
                   </tbody>
@@ -104,7 +111,10 @@ export default function FSCRAccount() {
               <p className="mb-2">
                 Once you have made the payment, kindly share your transaction
                 details (Bank transaction number, bank name, date of payment,
-                amount transacted) to <a href="mailto:support@hariyali.org.in">support@hariyali.org.in</a>
+                amount transacted) to{" "}
+                <a href="mailto:support@hariyali.org.in">
+                  support@hariyali.org.in
+                </a>
               </p>
               <Link to="/" className="btn btn-success" type="button">
                 Ok

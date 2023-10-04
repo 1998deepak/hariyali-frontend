@@ -28,6 +28,9 @@ function OfflineDonation() {
 
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
+  const [receipientStates, setReceipientStates] = useState([]);
+  const [stateFlag, setStateFlag] = useState(true);
+  const [receipientStateflag, setReceipientStateflag] = useState(true);
   const [citizenships, setCitizenships] = useState([]);
   const [activeTab, setActiveTab] = useState("NewDonor"); // Set the initial active tab
 
@@ -317,8 +320,7 @@ function OfflineDonation() {
     }
 
     if (
-      userData?.user?.citizenship?.toUpperCase() === INDIA ||
-      address[0]?.country?.toUpperCase() === INDIA
+      userData?.user?.citizenship?.toUpperCase() === INDIA
     ) {
       if (hasAadharCard === true) {
         if (!userData?.user?.panCard) {
@@ -852,41 +854,28 @@ function OfflineDonation() {
       setLoading(false);
     }
   };
-  const getStatesByCountry = async (countryId) => {
+  const getStatesByCountry = async (countryId, type) => {
     setLoading(true);
     const response = await DonationService.getAllStatesByCountry(countryId);
     if (response?.status === 200) {
-      if (response?.data.length === 0) {
-        console.log(response?.data.length);
-        if (document.getElementById("state2")) {
-          document.getElementById("state2").style.display = "block";
+      setLoading(false);
+      if (response?.data.length > 0) {
+       
+        if (type != 'Address') {
+          setReceipientStates(response.data);
+          setReceipientStateflag(true);       
+        } else {
+          setStates(response.data);
+          setStateFlag(true);       
         }
-        if (document.getElementById("state3")) {
-          document.getElementById("state3").style.display = "none";
-        }
-        if (document.getElementById("state5")) {
-          document.getElementById("state5").style.display = "block";
-        }
-        if (document.getElementById("state4")) {
-          document.getElementById("state4").style.display = "none";
-        }
-        setStates(response.data);
-        setLoading(false);
       } else {
-        if (document.getElementById("state2")) {
-          document.getElementById("state2").style.display = "none";
+        if (type != 'Address') {
+          setReceipientStateflag(false);
+          setReceipientStates([]);
+        } else {
+          setStateFlag(false);  
+          setStates([]); 
         }
-        if (document.getElementById("state3")) {
-          document.getElementById("state3").style.display = "block";
-        }
-        if (document.getElementById("state5")) {
-          document.getElementById("state5").style.display = "none";
-        }
-        if (document.getElementById("state4")) {
-          document.getElementById("state4").style.display = "block";
-        }
-        setStates(response.data);
-        setLoading(false);
       }
     } else {
       toast.error(response?.message);
@@ -1034,9 +1023,9 @@ function OfflineDonation() {
       return updatedAddress;
     });
     if (data) {
-      if (data) {
-        getStatesByCountry(data.countryCode);
-      }
+      
+      getStatesByCountry(data.countryCode, 'Address');
+      
     }
   };
   //Handle Donations
@@ -1085,7 +1074,8 @@ function OfflineDonation() {
     console.log(updatedAddress);
     setRecipient(updatedAddress);
     if (data) {
-      getStatesByCountry(data.countryCode);
+      updatedAddress[index].address[index]["state"] = "";
+      getStatesByCountry(data.countryCode, 'Receipient');
     }
     return updatedAddress;
   };
@@ -1205,7 +1195,7 @@ function OfflineDonation() {
           },
         };
       });
-
+      setStates([{stateName:data.address[0].state}]);
       setAddress(address);
       setLoading(false);
     } else if (response?.statusCode === 409) {
@@ -2115,6 +2105,7 @@ function OfflineDonation() {
                                   State <span className="red-text">*</span>
                                 </div>
                                 <div className="col-12 col-lg-8 p0 ">
+                                  {stateFlag ?
                                   <select
                                     className=" form-control-inside form-select form-control"
                                     name="state"
@@ -2136,6 +2127,19 @@ function OfflineDonation() {
                                       </option>
                                     ))}
                                   </select>
+                                  :
+                                  <input
+                                    className="form-control-inside"
+                                    name="state"
+                                    id="state1"
+                                    placeholder="State"
+                                    type="text"
+                                    value={address[0]?.state}
+                                    onChange={(event) =>
+                                      handleAddressChange(event, 0)
+                                    }
+                                  />
+                                  }
                                   {errors.map((error, index) => {
                                     if (error.field === "address[0].state") {
                                       return (
@@ -2230,44 +2234,8 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             )} */}
-                            <div
-                              id="state2"
-                              className="col-12 col-lg-6"
-                              style={{ display: "none" }}
-                            >
-                              <div className="row select-label">
-                                <div className="col-12 col-lg-4 ">
-                                  {" "}
-                                  State <span className="red-text">*</span>
-                                </div>
-                                <div className="col-12 col-lg-8 p0">
-                                  <input
-                                    className="form-control-inside"
-                                    name="state"
-                                    id="state1"
-                                    placeholder="State"
-                                    type="text"
-                                    value={address[0]?.state}
-                                    onChange={(event) =>
-                                      handleAddressChange(event, 0)
-                                    }
-                                  />
-                                  {errors.map((error, index) => {
-                                    if (error.field === "address[0].state") {
-                                      return (
-                                        <div
-                                          key={index}
-                                          className="error-message red-text"
-                                        >
-                                          {error.message}
-                                        </div>
-                                      );
-                                    }
-                                    return null;
-                                  })}
-                                </div>
-                              </div>
-                            </div>
+                            
+                          
                             <div className="col-12 col-lg-6">
                               <div className="row select-label">
                                 <div className="col-12 col-lg-4 ">
@@ -2474,6 +2442,7 @@ function OfflineDonation() {
                                     State<span className="red-text">*</span>
                                   </div>
                                   <div className="col-12 col-lg-8 p0">
+
                                     <select
                                       className=" form-control-inside form-select"
                                       name="state"
@@ -3323,6 +3292,7 @@ function OfflineDonation() {
                                   State <span className="red-text">*</span>
                                 </div>
                                 <div className="col-12 col-lg-8 p0 ">
+                                  {stateFlag ? 
                                   <select
                                     className=" form-control-inside form-select form-control"
                                     name="state"
@@ -3344,7 +3314,19 @@ function OfflineDonation() {
                                       </option>
                                     ))}
                                   </select>
-
+                                  :
+                                  <input
+                                    className="form-control-inside"
+                                    name="state"
+                                    id="state"
+                                    placeholder="State"
+                                    type="text"
+                                    value={address[0]?.state}
+                                    onChange={(event) =>
+                                      handleAddressChange(event, 0)
+                                    }
+                                  />
+                                  }
                                   {errors.map((error, index) => {
                                     if (error.field === "address[0].state") {
                                       return (
@@ -3439,7 +3421,7 @@ function OfflineDonation() {
                                 </div>
                               </div>
                             )} */}
-                            <div
+                            {/* <div
                               id="state5"
                               className="col-12 col-lg-6"
                               style={{ display: "none" }}
@@ -3476,7 +3458,7 @@ function OfflineDonation() {
                                   })}
                                 </div>
                               </div>
-                            </div>
+                            </div> */}
                             <div className="col-12 col-lg-6">
                               <div className="row select-label">
                                 <div className="col-12 col-lg-4 ">
@@ -3829,7 +3811,7 @@ function OfflineDonation() {
                                     State<span className="red-text">*</span>
                                   </div>
                                   <div className="col-12 col-lg-8 p0">
-                                    {states.length === 0 ? (
+                                    {!receipientStateflag ? (
                                       <input
                                         className=" form-control-inside"
                                         name="state"
@@ -3851,7 +3833,7 @@ function OfflineDonation() {
                                         <option disabled selected value="">
                                           Select State
                                         </option>
-                                        {states.map((state) => (
+                                        {receipientStates.map((state) => (
                                           <option
                                             key={state}
                                             value={state.stateName}
@@ -4361,6 +4343,7 @@ function OfflineDonation() {
                                   State <span className="red-text">*</span>
                                 </div>
                                 <div className="col-12 col-lg-8 p0">
+                                  {stateFlag ?
                                   <select
                                     className=" form-control-inside form-select"
                                     name="state"
@@ -4382,12 +4365,19 @@ function OfflineDonation() {
                                       </option>
                                     ))}
                                   </select>
-                                  {/* {errors.map((error, index) => {
-                                    if (error.field === 'address[0].state') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                  :
+                                  <input
+                                    className="form-control-inside"
+                                    name="state"
+                                    id="state1"
+                                    placeholder="State"
+                                    type="text"
+                                    value={address[0]?.state}
+                                    onChange={(event) =>
+                                      handleAddressChange(event, 0)
                                     }
-                                    return null;
-                                  })} */}
+                                  />
+                                  }
                                 </div>
                               </div>
                             </div>
@@ -5530,6 +5520,7 @@ function OfflineDonation() {
                                     State<span className="red-text">*</span>
                                   </div>
                                   <div className="col-12 col-lg-8 p0">
+                                    {receipientStateflag ? 
                                     <select
                                       className=" form-control-inside form-select"
                                       name="state"
@@ -5541,7 +5532,7 @@ function OfflineDonation() {
                                       <option disabled selected value="">
                                         Select State
                                       </option>
-                                      {states.map((state) => (
+                                      {receipientStates.map((state) => (
                                         <option
                                           key={state}
                                           value={state.stateName}
@@ -5550,6 +5541,17 @@ function OfflineDonation() {
                                         </option>
                                       ))}
                                     </select>
+                                    :
+                                    <input
+                                    type="text"
+                                    className="form-control-inside"
+                                    placeholder="State"
+                                    name="state"
+                                      value={recipient[0].address[0].state}
+                                      onChange={(e) =>
+                                        handleRecipentAddressChange(e, 0)
+                                      }/>
+                                      }
                                     {errors.map((error, index) => {
                                       if (
                                         error.field ===
