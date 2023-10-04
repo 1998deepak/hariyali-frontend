@@ -201,7 +201,7 @@ const RecipientDetails = ({
                     </option>
                     {countries.map((country) => {
                       return (
-                        <option value={country.countryName}>
+                        <option key={country} value={country.countryName}>
                           {country.countryName}
                         </option>
                       );
@@ -294,16 +294,27 @@ const RecipientDetails = ({
             </div>
             <div className="col-12 col-lg-6">
               <div className="row select-label">
-                <div className="col-12 col-lg-4 ">Postal Code</div>
+                <div className="col-12 col-lg-4 ">Postal Code <span className="red-text">*</span></div>
                 <div className="col-12 col-lg-8 p0">
                   <input
                     className="form-control-inside"
                     name="postalCode"
                     placeholder="Postal Code"
                     type="text"
+                    maxLength={recipient[0].address[0].country === "INDIA"?6:5}
                     value={recipient[0].address[0].postalCode}
                     onChange={(e) => handleRecipentAddressChange(e, 0)}
                   />
+                 {errors.map((error, index) => {
+                    if (error.field === "recipient[0].address[0].postalCode") {
+                      return (
+                        <div key={index} className="error-message red-text">
+                          {error.message}
+                        </div>
+                      );
+                    }
+                    return null;
+                  })}
                 </div>
               </div>
             </div>

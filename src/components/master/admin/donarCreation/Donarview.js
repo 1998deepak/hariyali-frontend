@@ -52,7 +52,7 @@ function DonarView() {
   useEffect(() => {
     if(id)
     {
-      getAllDonationOfUser(pageNo,id);
+      getAllDonationOfUser(id,pageNo);
     }
   }, [id]);
 
@@ -60,7 +60,7 @@ function DonarView() {
   
   const getAllDonationOfUser = async (pageNo,email) => {
     setLoading(true);
-    const response = await DonationService.getAllDonationOfUser(pagesize,pageNo,email);
+    const response = await DonationService.getAllDonationOfUser(email,pageNo,pagesize,);
     console.log(response);
     if (response?.data) {
       const donorData = response.data;

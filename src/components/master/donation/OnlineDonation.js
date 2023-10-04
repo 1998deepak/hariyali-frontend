@@ -110,7 +110,7 @@ function OnlineDonation() {
       isTaxBenefit: false,
       panCard: "",
       passport: "",
-      addharCard: "",
+      aadharCard: "",
       activityType: null,
       meconnectId: meconnectId,
       address: [],
@@ -477,15 +477,15 @@ function OnlineDonation() {
         }
       } else {
         if (
-          !(/^\d{12}$/.test(userData.user.addharCard))) {
+          !(/^\d{12}$/.test(userData.user.aadharCard))) {
           validationErrors.push({
-            field: "userData.user.addharCard",
+            field: "userData.user.aadharCard",
             message:
               "ADDHAR Number must contain exactly 12 digits and no alphabetic characters",
           });
-          if (document.getElementById("addharCard")) {
-            document.getElementById("addharCard").focus();
-          }
+          if(document.getElementById("aadharCard")){
+            document.getElementById("aadharCard").focus();
+          } 
         }
       }
     } else {
@@ -720,6 +720,7 @@ function OnlineDonation() {
     setIsDivOpen(false);
     setMessage("");
     setPackageErrorMessage(false);
+    setCaptchaVerfied(false);
     setReceipientStateflag(true);        
     setStateFlag(true); 
     setStates([]);
@@ -997,6 +998,7 @@ function OnlineDonation() {
     setDonations(intialDonations);
     setRecipient(initialRecipientData);
     setUserData(initialUserData);
+    setCaptchaVerfied(false);
   };
   const handleTabSelect = (eventKey) => {
     // eventKey.preventDefault();
@@ -2080,7 +2082,7 @@ function OnlineDonation() {
                                         {/* <div className="col-4 ">PAN card</div> */}
                                         <div className="col-12 p0 field-wrapper">
                                           <label
-                                            for="addharCard"
+                                            for="aadharCard"
                                             class="form-label top-27"
                                           >
                                             AADHAAR Card{" "}
@@ -2088,18 +2090,18 @@ function OnlineDonation() {
                                           </label>
                                           <input
                                             className="form-control-inside form-control"
-                                            name="user.addharCard"
-                                            id="addharCard"
+                                            name="user.aadharCard"
+                                            id="aadharCard"
                                             placeholder="AADHAAR Card Number"
                                             type="text"
                                             maxLength={12}
-                                            value={userData?.user?.addharCard}
+                                            value={userData?.user?.aadharCard}
                                             onChange={handleChange}
                                           />
                                           {errors.map((error, index) => {
                                             if (
                                               error.field ===
-                                              "userData.user.addharCard"
+                                              "userData.user.aadharCard"
                                             ) {
                                               return (
                                                 <div
@@ -2766,10 +2768,8 @@ function OnlineDonation() {
 
                           <div className="col-12 col-md-6 mt20">
                             <Captcha
-                              verified={false}
-                              setVerified={(flag) => {
-                                setCaptchaFlag(flag);
-                              }}
+                              verified={captchaVerfied}
+                              setVerified={setCaptchaVerfied}
                               id="captcha1"
                             />
                           </div>
@@ -3468,7 +3468,7 @@ function OnlineDonation() {
                                         {/* <div className="col-4 ">PAN card</div> */}
                                         <div className="col-12 p0 field-wrapper">
                                           <label
-                                            for="addharCard"
+                                            for="aadharCard"
                                             class="form-label top-27"
                                           >
                                             AADHAAR Card{" "}
@@ -3476,18 +3476,18 @@ function OnlineDonation() {
                                           </label>
                                           <input
                                             className="form-control-inside form-control"
-                                            name="user.addharCard"
-                                            id="addharCard"
+                                            name="user.aadharCard"
+                                            id="aadharCard"
                                             placeholder="AADHAAR Card Number"
                                             type="text"
                                             maxLength={12}
-                                            value={userData?.user?.addharCard}
+                                            value={userData?.user?.aadharCard}
                                             onChange={handleChange}
                                           />
                                           {errors.map((error, index) => {
                                             if (
                                               error.field ===
-                                              "userData.user.addharCard"
+                                              "userData.user.aadharCard"
                                             ) {
                                               return (
                                                 <div
@@ -4382,33 +4382,34 @@ function OnlineDonation() {
                           </div>
 
                           <hr />
-                          <div className="col-12 col-md-6 mt20">
-                            <CaptchaGift
-                              verified={false}
-                              setVerified={(flag) => setCaptchaFlag(flag)}
-                              id="captcha2"
-                            />
-                            {errors.map((error, index) => {
-                              if (error.field === "captchaError") {
-                                return (
-                                  <div
-                                    key={index}
-                                    className="error-message red-text"
-                                  >
-                                    {error.message}
-                                  </div>
-                                );
-                              }
-                              return null;
-                            })}
-                            {validatePopup.captcha ? (
-                              <div className="error-message red-text">
-                                {validatePopup.captcha}
-                              </div>
-                            ) : (
-                              <></>
-                            )}
-                          </div>
+                        <div className="col-12 col-md-6 mt20">
+                          <CaptchaGift
+                            verified={captchaVerfied}
+                            setVerified={setCaptchaVerfied}
+                            id="captcha2"
+                          />
+                          {errors.map((error, index) => {
+                            if (error.field === "captchaError") {
+                              return (
+                                <div
+                                  key={index}
+                                  className="error-message red-text"
+                                >
+                                  {error.message}
+                                </div>
+                              );
+                            }
+                            return null;
+                          })}
+                          {validatePopup.captcha ? (
+                            <div className="error-message red-text">
+                              {validatePopup.captcha}
+                            </div>
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+
                           <hr />
                           <PrivacyPolicy
                             informationShare={informationShare}
