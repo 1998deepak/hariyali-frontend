@@ -293,13 +293,13 @@ function UserUpdate() {
                       </div>
                       <div className="col-12 col-lg-6">
                         <div className="row select-label">
-                          <div className="col-12 col-lg-4">Mobile No.<span className="red-text">*</span></div>
+                          <div className="col-12 col-lg-4">Mobile Number<span className="red-text">*</span></div>
                           <div className="col-12 col-lg-8 p0">
                             <input
                               className="form-control-inside form-control"
                               type="text"
                               name="mobileNo"
-                              placeholder="Mobile No."
+                              placeholder="Mobile Number"
                               value={userData.mobileNo}
                               onChange={handleChange}
                             />

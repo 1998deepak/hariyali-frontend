@@ -386,7 +386,7 @@ function OnlineDonation() {
         document.getElementById("donarType").focus();
       }
     }
-    if (userData?.user?.donarType.toLowerCase() === "individual" && !userData?.user?.citizenship) {
+    if (userData?.user?.donarType?.toLowerCase() === "individual" && !userData?.user?.citizenship) {
       validationErrors.push({
         field: "userData.user.citizenship",
         message: "Citizenship is required",
