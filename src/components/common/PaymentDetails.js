@@ -40,7 +40,6 @@ const PaymentDetails = ({ donations, handlePaymentInfoChange, errors,setLoading,
       getAllActiveBankAccounts();
     }, [])
     
-    console.log(errors);
   return (
     <>
       <div className="col-sm-12 pr15 mt20">

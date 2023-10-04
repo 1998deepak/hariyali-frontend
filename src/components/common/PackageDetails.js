@@ -4,7 +4,7 @@ const PackageDetails = ({
   packageData,
   setPackageData,
   calculateOverallTotal,
-  disabled
+  disabled,errors
 }) => {
 
     const handleChangeNumberOfBouquets = (e, row, rowIndex) => {
@@ -68,6 +68,16 @@ const PackageDetails = ({
                       max={1000000}
                       disabled={disabled}
                     />
+                    {errors?.map((error, index) => {
+                    if (error.field === "package.noOfBouquets") {
+                      return (
+                        <div key={index} className="error-message red-text">
+                          {error.message}
+                        </div>
+                      );
+                    }
+                    return null;
+                  })}
                   </td>
                   <td>INR {packageItem.amount === 0 ? " ":packageItem.amount}</td>
                 </tr>

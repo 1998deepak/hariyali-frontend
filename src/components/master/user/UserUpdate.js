@@ -607,6 +607,7 @@ function UserUpdate() {
                                   name="postalCode"
                                   placeholder="Postal Code"
                                   type="text"
+                                  maxLength={addr?.country === "INDIA"?6:5}
                                   value={addr.postalCode}
                                   onChange={(event) =>
                                     handleAddressChange(event, index)
