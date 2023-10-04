@@ -94,6 +94,7 @@ export const DonationService = {
       return error.response.data;
     }
   },
+
   getDetailsByEmailIdOrDonorId: async (id) => {
     console.log(id);
     id = (await EncryptionService.encrypt(id)).toString();
@@ -139,11 +140,15 @@ export const DonationService = {
 
   getExistingDetailsByEmailId: async (emailId) => {
     console.log(emailId);
+    try {
     const response = await APIService.Instance.get(
       URLS.GETBYEXISTINGEMAILID + emailId
     );
     console.log(response);
     return response?.data;
+  } catch (error) {
+    return error.response.data;
+  }
   },
 
   getAllPackages: async () => {
@@ -198,33 +203,42 @@ export const DonationService = {
 
 
 
-  getAllDonationOfUser: async (PageSize, PageNo) => {
-   
+  getAllDonationOfUser: async (PageSize=10, PageNo=0,email) => {
+   try{
     const response = await APIService.Instance.get(
-      URLS.GETALLDONATIONOFUSER+"?PageSize="+PageSize+"&PageNo="+PageNo
+      URLS.GETALLDONATIONOFUSER+"?PageSize="+PageSize+"&PageNo="+PageNo+"&email="+email
     );
     console.log(response);
     return response?.data;
-
+  } catch (error) {
+    return error.response.data;
+  }
   },
 
   getDonationById: async (donationId) => {
     donationId = (await EncryptionService.encrypt(donationId)).toString();
+    try {
     const response = await APIService.Instance.get(
       URLS.GETDONATIONBYID + donationId
     );
     console.log(response);
     return response?.data;
-
+  } catch (error) {
+    return error.response.data;
+  }
   },
 
   getUserDetails: async (emailId) => {
     emailId = (await EncryptionService.encrypt(emailId)).toString();
+    try {
     const response = await APIService.Instance.get(
       URLS.GETUSERDETAILS + emailId
     );
     console.log(response);
     return response?.data;
+  } catch (error) {
+    return error.response.data;
+  }
   },
 
 
@@ -272,11 +286,15 @@ export const DonationService = {
     console.log(donorId);
     donorId = (await EncryptionService.encrypt(donorId)).toString();
     donorId = encodeURI(donorId);
+    try {
     const response = await APIService.Instance.get(
       URLS.GETUSERDETAILSBYDONORID + donorId
     );
     console.log(response);
     return response?.data;
+  } catch (error) {
+    return error.response.data;
+  }
   },
 
 
@@ -327,11 +345,15 @@ export const DonationService = {
   getDetailsByDonorId: async (donorId) => {
     console.log(donorId);
     donorId = (await EncryptionService.encrypt(donorId)).toString();
+    try {
     const response = await APIService.Instance.get(
       URLS.GETUSERDETAILSBYDONORID + donorId
     );
     console.log(response);
     return response?.data;
+  } catch (error) {
+    return error.response.data;
+  }
   },
 
 
@@ -387,20 +409,28 @@ export const DonationService = {
 
   sendOtp: async (email) => {
     console.log(email);
+    try {
     const response = await APIService.Instance.post(
       URLS.SENDOTP + `?email=${email}`,
     );
     return response?.data;
+  } catch (error) {
+    return error.response.data;
+  }
   },
 
   verifiyOtp: async (userId, otp) => {
     console.log(userId);
     userId = (await EncryptionService.encrypt(userId)).toString();
     otp = (await EncryptionService.encrypt(otp)).toString();
+    try {
     const response = await APIService.Instance.post(
       URLS.VERIFYOTPONLINE + `?donarIdOrEmail=${userId}&otp=${otp}`,
     );
     return response?.data;
+  } catch (error) {
+    return error.response.data;
+  }
   },
   getAllReceiptByUser: async (UserId) => {
     try {
