@@ -47,6 +47,8 @@ function OfflineDonation() {
   const handleTabChange = (newTabKey) => {
     console.log(newTabKey);
     setActiveTab(newTabKey);
+    let initDonation = {...intialDonations};
+    initDonation.paymentInfo = [];
     setDonations(intialDonations);
     setRecipient(initialRecipientData);
     setUserData(initialUserData);
@@ -60,7 +62,9 @@ function OfflineDonation() {
     setPackageData(packages);
     setAddress(initialAddress);
     setInputValue("");
+    setErrors([])
   };
+
   const handleDonationModalClose = () => setShowDonationModal(false);
 
   const handleRadioChange = (event) => {
@@ -276,6 +280,13 @@ function OfflineDonation() {
   const validate = () => {
     const validationErrors = [];
 
+    if (!packageData[0].noOfBouquets || !packageData[0].amount) {
+      validationErrors.push({
+        field: "package.noOfBouquets",
+        message: "Number of sapling required",
+      });
+    }
+
     // Validate donationType
     if (!donationType) {
       validationErrors.push({
@@ -318,6 +329,14 @@ function OfflineDonation() {
         document.getElementById("lastName").focus();
       }
     }
+
+    if (!userData?.user?.citizenship) {
+      validationErrors.push({
+        field: "userData.user.citizenship",
+        message: "Citizenship is required",
+      });
+      document.getElementById("citizenship").focus();
+    } 
 
     if (
       userData?.user?.citizenship?.toUpperCase() === INDIA
@@ -686,37 +705,6 @@ function OfflineDonation() {
             message: "Invalid Email ID",
           });
         }
-        if (!rec?.mobileNo) {
-          validationErrors.push({
-            field: "recipient[" + i + "].mobileNo",
-            message: "Mobile Number is required",
-          });
-        } else if (!/^(?!.*[a-zA-Z])\d{10}$/.test(rec.mobileNo)) {
-          validationErrors.push({
-            field: "recipient[" + i + "].mobileNo",
-            message:
-              "Mobile Number must contain exactly 10 digits and no alphabetic characters",
-          });
-        }
-
-        if (!rec?.address[0]?.street1) {
-          validationErrors.push({
-            field: "recipient[" + i + "].address[0].street1",
-            message: "Recipient Street is required",
-          });
-        }
-        if (!rec?.address[0]?.country) {
-          validationErrors.push({
-            field: "recipient[" + i + "].address[0].country",
-            message: "Recipient Country is required",
-          });
-        }
-        if (!rec?.address[0]?.state) {
-          validationErrors.push({
-            field: "recipient[" + i + "].address[0].state",
-            message: "Recipient State is required",
-          });
-        }
       }
     }
 
@@ -925,6 +913,8 @@ function OfflineDonation() {
     calculateOverallTotal(packages);
     setPackageData(packages);
     setAddress(initialAddress);
+    let initDonation = {...intialDonations};
+    initDonation.paymentInfo = [];
     setDonations(intialDonations);
     setRecipient(initialRecipientData);
     setUserData(initialUserData);
@@ -933,6 +923,8 @@ function OfflineDonation() {
   const handleTabSelect = (eventKey) => {
     console.log(eventKey);
     setDonationType(eventKey);
+    let initDonation = {...intialDonations};
+    initDonation.paymentInfo = [];
     setDonations(intialDonations);
     setRecipient(initialRecipientData);
     setUserData(initialUserData);
@@ -946,6 +938,7 @@ function OfflineDonation() {
     setPackageData(packages);
     setAddress(initialAddress);
     setInputValue("");
+    setErrors([]);
   };
 
   const handleChangeNumberOfBouquets = (e, row, rowIndex) => {
@@ -1209,9 +1202,174 @@ function OfflineDonation() {
     }
   };
 
+  const validateExisting = () => {
+    const validationErrors = [];
+
+    if (!packageData[0].noOfBouquets || !packageData[0].amount) {
+      validationErrors.push({
+        field: "package.noOfBouquets",
+        message: "Number of sapling required",
+      });
+    }
+
+    // Validate donationType
+    if (!donationType) {
+      validationErrors.push({
+        field: "donationType",
+        message: "Donation Type is required",
+      });
+    }
+
+    // Validate user data fields
+
+    if (!userData?.user?.emailId) {
+      validationErrors.push({
+        field: "existingUser",
+        message: "Select Existing User",
+      });
+    }
+
+    // Validate payment info
+    // if (donations && donations[0]?.paymentInfo) {
+      for (let i = 0; i < donations[0].paymentInfo.length; i++) {
+        console.log(i);
+        if (i === 1) {
+          // Skip validation for paymentInfo[1]
+          continue;
+        }
+        const payment = donations[0].paymentInfo[i];
+
+        if (!payment.paymentMode) {
+          validationErrors.push({
+            field: "donations[0].paymentInfo[" + i + "].paymentMode",
+            message: "Payment Mode is required",
+          });
+        }
+        if (!payment.paymentDate) {
+          validationErrors.push({
+            field: "donations[0].paymentInfo[" + i + "].paymentDate",
+            message: "Payment Date is required",
+          });
+        }
+        if (!payment.amount) {
+          validationErrors.push({
+            field: "donations[0].paymentInfo[" + i + "].amount",
+            message: "Amount is required",
+          });
+        }
+
+        if (!payment.paymentStatus) {
+          validationErrors.push({
+            field: "donations[0].paymentInfo[" + i + "].paymentStatus",
+            message: "Payment Status is required",
+          });
+        }
+        if (!payment.receiptDate) {
+          validationErrors.push({
+            field: "donations[0].paymentInfo[" + i + "].receiptDate",
+            message: "Receipt Date is required",
+          });
+        }
+
+        if (!payment.accountId || payment.accountId.trim() === "") {
+          validationErrors.push({
+            field: "donations[0].paymentInfo[" + i + "].accountId",
+            message: "Bank Account is required",
+          });
+        }
+        if (
+          donations[0]?.paymentInfo[i].paymentMode === BANK_TRANSFER ||
+          donations[0]?.paymentInfo[i].paymentMode === CHEQUE
+        ) {
+          if (!payment.receivedAmount) {
+            validationErrors.push({
+              field: "donations[0].paymentInfo[" + i + "].receivedAmount",
+              message: "Received Date is required",
+            });
+          }
+        }
+      }
+    // }
+
+    // Validate recipient (only for "Gift Donate" donation type)
+    if (donationType === "Gift-Donate") {
+      console.log(donations[0].donationEvent);
+      if (!donations[0]?.donationEvent) {
+        validationErrors.push({
+          field: "donations.donationEvent",
+          message: "Donation Event is required",
+        });
+      }
+      if (!donations[0]?.giftContent) {
+        validationErrors.push({
+          field: "donations.giftContent",
+          message: "Message for the giftee is required",
+        });
+        if(document.getElementById("giftContent")){
+          document.getElementById("giftContent").focus();
+        }
+      }
+
+      for (let i = 0; i < recipient.length; i++) {
+        const rec = recipient[i];
+
+        if (!rec?.firstName) {
+          validationErrors.push({
+            field: "recipient[" + i + "].firstName",
+            message: "First Name is required",
+          });
+        } else if (/\d/.test(rec.firstName)) {
+          validationErrors.push({
+            field: "recipient[" + i + "].firstName",
+            message: "First Name should only contain alphabets",
+          });
+        }
+        if (!rec?.lastName) {
+          validationErrors.push({
+            field: "recipient[" + i + "].lastName",
+            message: "Last Name is required",
+          });
+        } else if (/\d/.test(rec.lastName)) {
+          validationErrors.push({
+            field: "recipient[" + i + "].lastName",
+            message: "Last Name should only contain alphabets",
+          });
+        }
+        const emailRegex =
+          /^[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*@[A-Za-z0-9_-]+([.]?[A-Za-z0-9_-]+)*([.]{1}[A-Za-z0-9_]{2,3})+$/i;
+        if (!rec?.emailId) {
+          validationErrors.push({
+            field: "recipient[" + i + "].emailId",
+            message: "Email ID is required",
+          });
+        } else if (!emailRegex.test(rec.emailId)) {
+          validationErrors.push({
+            field: "recipient[" + i + "].emailId",
+            message: "Invalid Email ID",
+          });
+        }
+      }
+    }
+
+    const errorMessages = validationErrors.map(
+      (error) => `${error.field}: ${error.message}`
+    );
+    const errorMessageString = errorMessages.join("\n");
+
+    console.log(errorMessageString);
+
+    setErrors(validationErrors);
+    return validationErrors.length === 0;
+  };
+
   const createDonationGift = async (e, userData) => {
     e.preventDefault();
     console.log(donations);
+    const isValid = validateExisting();
+      console.log("isValid:", isValid);
+      if(!isValid){
+        return;
+      }
     const updatedDonations = [...donations];
     const filteredPackages = packageData.filter((pkg) => pkg.noOfBouquets > 0);
     console.log(updatedDonations);
@@ -1262,10 +1420,10 @@ function OfflineDonation() {
   const createDonation = async (e, userData) => {
     e.preventDefault();
 
-    //   const isValid = validate();
-    //   console.log("isValid:", isValid);
+      const isValid = validateExisting();
+      console.log("isValid:", isValid);
 
-    //if (isValid) {
+    if (isValid) {
     const updatedDonations = [...donations];
     const filteredPackages = packageData.filter((pkg) => pkg.noOfBouquets > 0);
     console.log(filteredPackages);
@@ -1307,7 +1465,7 @@ function OfflineDonation() {
     console.log(formData);
     console.log(updatedDonations);
     console.log();
-    //}
+    }
     console.log("Not Working !");
   };
 
@@ -1343,6 +1501,7 @@ function OfflineDonation() {
                           initialPackageData={initialPackageData}
                           donations={donations}
                           calculateOverallTotal={calculateOverallTotal}
+                          errors={errors}
                         />
                         <div className="clear" />
                         <hr />
@@ -2293,6 +2452,19 @@ function OfflineDonation() {
                                       handleAddressChange(event, 0)
                                     }
                                   />
+                                  {errors.map((error, index) => {
+                                    if (error.field === "address[0].postalCode") {
+                                      return (
+                                        <div
+                                          key={index}
+                                          className="error-message red-text"
+                                        >
+                                          {error.message}
+                                        </div>
+                                      );
+                                    }
+                                    return null;
+                                  })}
                                 </div>
                               </div>
                             </div>
@@ -2645,6 +2817,7 @@ function OfflineDonation() {
                           initialPackageData={initialPackageData}
                           donations={donations}
                           calculateOverallTotal={calculateOverallTotal}
+                          errors={errors}
                         />
                         <div className="clear" />
                         <div className="col-12 col-lg-6 mt20"></div>
@@ -2655,7 +2828,7 @@ function OfflineDonation() {
                           </div>
                         ) : (
                           <div className="actionheadingdiv">
-                            DETAILS OF DONOR
+                            DETAILS OF DONOR / GIFTER
                           </div>
                         )}
                         <div className="col-12 pr15 mt20">
@@ -2753,7 +2926,7 @@ function OfflineDonation() {
                                   </select>
                                   {errors.map((error, index) => {
                                     if (
-                                      error.field === "userData.user.DonarType"
+                                      error.field === "userData.user.donarType"
                                     ) {
                                       return (
                                         <div
@@ -3537,7 +3710,7 @@ function OfflineDonation() {
                         </div>
                         <hr />
                         <div className="actionheadingdiv">
-                          DETAILS OF RECIPIENT
+                          DETAILS OF GIFTEE / RECEIPIENT
                         </div>
                         <div className="col-12 pr15 mt20">
                           <div>
@@ -3616,7 +3789,7 @@ function OfflineDonation() {
                                 <div className="row select-label">
                                   <div className="col-12 col-lg-4 ">
                                     Mobile Number
-                                    <span className="red-text">*</span>
+                                    {/* <span className="red-text">*</span> */}
                                   </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
@@ -3630,7 +3803,7 @@ function OfflineDonation() {
                                         handleRecipentChange(e, 0)
                                       }
                                     />
-                                    {errors.map((error, index) => {
+                                    {/* {errors.map((error, index) => {
                                       if (
                                         error.field === "recipient[0].mobileNo"
                                       ) {
@@ -3644,7 +3817,7 @@ function OfflineDonation() {
                                         );
                                       }
                                       return null;
-                                    })}
+                                    })} */}
                                   </div>
                                 </div>
                               </div>
@@ -3688,7 +3861,8 @@ function OfflineDonation() {
                                 <div className="row select-label">
                                   <div className="col-12 col-lg-4 ">
                                     {" "}
-                                    Street 1<span className="red-text">*</span>
+                                    Street 1
+                                    {/* <span className="red-text">*</span> */}
                                   </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
@@ -3701,7 +3875,7 @@ function OfflineDonation() {
                                         handleRecipentAddressChange(e, 0)
                                       }
                                     />
-                                    {errors.map((error, index) => {
+                                    {/* {errors.map((error, index) => {
                                       if (
                                         error.field ===
                                         "recipient[0].address[0].street1"
@@ -3716,7 +3890,7 @@ function OfflineDonation() {
                                         );
                                       }
                                       return null;
-                                    })}
+                                    })} */}
                                   </div>
                                 </div>
                               </div>
@@ -3764,7 +3938,8 @@ function OfflineDonation() {
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
                                   <div className="col-12 col-lg-4 ">
-                                    Country<span className="red-text">*</span>
+                                    Country
+                                    {/* <span className="red-text">*</span> */}
                                   </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <select
@@ -3786,7 +3961,7 @@ function OfflineDonation() {
                                         );
                                       })}
                                     </select>
-                                    {errors.map((error, index) => {
+                                    {/* {errors.map((error, index) => {
                                       if (
                                         error.field ===
                                         "recipient[0].address[0].country"
@@ -3801,14 +3976,15 @@ function OfflineDonation() {
                                         );
                                       }
                                       return null;
-                                    })}
+                                    })} */}
                                   </div>
                                 </div>
                               </div>
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
                                   <div className="col-12 col-lg-4 ">
-                                    State<span className="red-text">*</span>
+                                    State
+                                    {/* <span className="red-text">*</span> */}
                                   </div>
                                   <div className="col-12 col-lg-8 p0">
                                     {!receipientStateflag ? (
@@ -3843,7 +4019,7 @@ function OfflineDonation() {
                                         ))}
                                       </select>
                                     )}
-                                    {errors.map((error, index) => {
+                                    {/* {errors.map((error, index) => {
                                       if (
                                         error.field ===
                                         "recipient[0].address[0].state"
@@ -3858,7 +4034,7 @@ function OfflineDonation() {
                                         );
                                       }
                                       return null;
-                                    })}
+                                    })} */}
                                   </div>
                                 </div>
                               </div>
@@ -3866,7 +4042,8 @@ function OfflineDonation() {
                                 <div className="row select-label">
                                   <div className="col-12 col-lg-4 ">
                                     {" "}
-                                    City <span className="red-text">*</span>
+                                    City 
+                                    {/* <span className="red-text">*</span> */}
                                   </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
@@ -3902,7 +4079,8 @@ function OfflineDonation() {
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
                                   <div className="col-12 col-lg-4 ">
-                                    Postal Code
+                                    Postal Code 
+                                    {/* <span className="red-text">*</span> */}
                                   </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
@@ -3921,6 +4099,22 @@ function OfflineDonation() {
                                         handleRecipentAddressChange(e, 0)
                                       }
                                     />
+                                    {/* {errors.map((error, index) => {
+                                      if (
+                                        error.field ===
+                                        "recipient[0].address[0].postalCode"
+                                      ) {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })} */}
                                   </div>
                                 </div>
                               </div>
@@ -3982,6 +4176,12 @@ function OfflineDonation() {
                                     data={userIdList}
                                     onClickSearch={handleSearchId}
                                   />
+                                  {errors.map((error, index) => {
+                                    if (error.field === 'existingUser') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
                                 </div>
                               </div>
                             </div>
@@ -3994,6 +4194,7 @@ function OfflineDonation() {
                           initialPackageData={initialPackageData}
                           donations={donations}
                           calculateOverallTotal={calculateOverallTotal}
+                          errors={errors}
                         />
                         <div className="clear" />
                         <hr />
@@ -4026,12 +4227,12 @@ function OfflineDonation() {
                                     onChange={handleChange}
                                     disabled
                                   />
-                                  {/* {errors.map((error, index) => {
+                                  {errors.map((error, index) => {
                                     if (error.field === 'userData.user.emailId') {
                                       return <div key={index} className="error-message red-text">{error.message}</div>;
                                     }
                                     return null;
-                                  })} */}
+                                  })}
                                 </div>
                               </div>
                             </div>
@@ -4052,12 +4253,7 @@ function OfflineDonation() {
                                     onChange={handleChange}
                                     disabled
                                   />
-                                  {/* {errors.map((error, index) => {
-                                    if (error.field === 'userData.user.mobileNo') {
-                                      return <div key={index} className="error-message red-text">{error.message}</div>;
-                                    }
-                                    return null;
-                                  })} */}
+
                                 </div>
                               </div>
                             </div>
@@ -4669,6 +4865,12 @@ function OfflineDonation() {
                                     data={userIdList}
                                     onClickSearch={handleSearchId}
                                   />
+                                   {errors.map((error, index) => {
+                                    if (error.field === 'existingUser') {
+                                      return <div key={index} className="error-message red-text">{error.message}</div>;
+                                    }
+                                    return null;
+                                  })}
                                 </div>
                               </div>
                             </div>
@@ -4770,6 +4972,7 @@ function OfflineDonation() {
                           initialPackageData={initialPackageData}
                           donations={donations}
                           calculateOverallTotal={calculateOverallTotal}
+                          errors={errors}
                         />
                         <div className="clear" />
                         <hr />
@@ -4802,12 +5005,12 @@ function OfflineDonation() {
                                     onChange={handleChange}
                                     disabled
                                   />
-                                  {/* {errors.map((error, index) => {
+                                  {errors.map((error, index) => {
                                     if (error.field === 'userData.user.emailId') {
                                       return <div key={index} className="error-message red-text">{error.message}</div>;
                                     }
                                     return null;
-                                  })} */}
+                                  })}
                                 </div>
                               </div>
                             </div>
@@ -5219,7 +5422,7 @@ function OfflineDonation() {
                         </div>
                         <hr />
                         <div className="actionheadingdiv">
-                          DETAILS OF RECIPIENT
+                          DETAILS OF GIFTEE / RECEIPIENT
                         </div>
                         <div className="col-12 pr15 mt20">
                           <div>
@@ -5298,7 +5501,7 @@ function OfflineDonation() {
                                 <div className="row select-label">
                                   <div className="col-12 col-lg-4 ">
                                     Mobile Number
-                                    <span className="red-text">*</span>
+                                    
                                   </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
@@ -5312,21 +5515,7 @@ function OfflineDonation() {
                                         handleRecipentChange(e, 0)
                                       }
                                     />
-                                    {errors.map((error, index) => {
-                                      if (
-                                        error.field === "recipient[0].mobileNo"
-                                      ) {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
+                                    
                                   </div>
                                 </div>
                               </div>
@@ -5383,22 +5572,7 @@ function OfflineDonation() {
                                         handleRecipentAddressChange(e, 0)
                                       }
                                     />
-                                    {errors.map((error, index) => {
-                                      if (
-                                        error.field ===
-                                        "recipient[0].address[0].street1"
-                                      ) {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
+                                    
                                   </div>
                                 </div>
                               </div>
@@ -5443,36 +5617,11 @@ function OfflineDonation() {
                                   </div>
                                 </div>
                               </div>
-                              {/* <div className="col-12 col-lg-6">
-                                <div className="row select-label">
-                                  <div className="col-12 col-lg-4 ">Country<span className="red-text">*</span></div>
-                                  <div className="col-12 col-lg-8 p0">
-                                    <input
-                                      className="form-control-inside"
-                                      name="country"
-                                      placeholder="Country"
-                                      type="text"
-                                      value={recipient[0].address[0].country}
-                                      onChange={(e) =>
-                                        handleRecipentAddressChange(
-                                          e,
-                                          0
-                                        )
-                                      }
-                                    />
-                                    {errors.map((error, index) => {
-                                      if (error.field === 'recipient[0].address[0].country') {
-                                        return <div key={index} className="error-message red-text">{error.message}</div>;
-                                      }
-                                      return null;
-                                    })}
-                                  </div>
-                                </div>
-                              </div> */}
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
                                   <div className="col-12 col-lg-4 ">
-                                    Country<span className="red-text">*</span>
+                                    Country
+                                    {/* <span className="red-text">*</span> */}
                                   </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <select
@@ -5495,29 +5644,15 @@ function OfflineDonation() {
                                         );
                                       })}
                                     </select>
-                                    {errors.map((error, index) => {
-                                      if (
-                                        error.field ===
-                                        "recipient[0].address[0].country"
-                                      ) {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
+                                    
                                   </div>
                                 </div>
                               </div>
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
                                   <div className="col-12 col-lg-4 ">
-                                    State<span className="red-text">*</span>
+                                    State
+                                    {/* <span className="red-text">*</span> */}
                                   </div>
                                   <div className="col-12 col-lg-8 p0">
                                     {receipientStateflag ? 
@@ -5552,22 +5687,7 @@ function OfflineDonation() {
                                         handleRecipentAddressChange(e, 0)
                                       }/>
                                       }
-                                    {errors.map((error, index) => {
-                                      if (
-                                        error.field ===
-                                        "recipient[0].address[0].state"
-                                      ) {
-                                        return (
-                                          <div
-                                            key={index}
-                                            className="error-message red-text"
-                                          >
-                                            {error.message}
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })}
+                                    
                                   </div>
                                 </div>
                               </div>
@@ -5575,7 +5695,8 @@ function OfflineDonation() {
                                 <div className="row select-label">
                                   <div className="col-12 col-lg-4 ">
                                     {" "}
-                                    City <span className="red-text">*</span>
+                                    City 
+                                    {/* <span className="red-text">*</span> */}
                                   </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
@@ -5611,7 +5732,8 @@ function OfflineDonation() {
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
                                   <div className="col-12 col-lg-4 ">
-                                    Postal Code
+                                    Postal Code 
+                                    {/* <span className="red-text">*</span> */}
                                   </div>
                                   <div className="col-12 col-lg-8 p0">
                                     <input
@@ -5630,7 +5752,9 @@ function OfflineDonation() {
                                         handleRecipentAddressChange(e, 0)
                                       }
                                     />
+                                   
                                   </div>
+                                  
                                 </div>
                               </div>
                             </div>
