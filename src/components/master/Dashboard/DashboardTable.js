@@ -157,7 +157,7 @@ const DashboardTable = () => {
 
 
   const getPlantationList = async (pageNo) => {
-
+    setPageNo(pageNo +1)
     if (selectedYear == null) {
       toast.error("Please select plantation year!");
     } else if (selectedSeason == null) {

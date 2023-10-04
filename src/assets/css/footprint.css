@@ -142,6 +142,9 @@ figure.effect-apollo:hover p {
 	transition-delay: 0.1s;
 }
 
+.modal.show.DonationListModal .modal-dialog{
+	max-width: 80% !important;
+}
 .modal.show .modal-dialog {
 	max-width: 65% !important;
 	margin-top: 119px;
