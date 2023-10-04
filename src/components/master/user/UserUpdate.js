@@ -61,7 +61,15 @@ function UserUpdate() {
     try {
       setLoading(true);
       const response = await DonationService.getUserDetails(id);
+      console.log(response?.data);
       if (response?.data) {
+        if(response?.data.aadharCard){
+          document.getElementById("pan").style.display="none";
+          document.getElementById("aadhaar").style.display="block";
+        }else if(response?.data.panCard){
+          document.getElementById("aadhaar").style.display="none";
+          document.getElementById("pan").style.display="block";
+        }
         setUserData(response.data);
         setAddressData(response.data.address);
         setInformationShare(response.data.campaignConsent);
@@ -293,7 +301,9 @@ function UserUpdate() {
                       </div>
                       <div className="col-12 col-lg-6">
                         <div className="row select-label">
-                          <div className="col-12 col-lg-4">Mobile Number<span className="red-text">*</span></div>
+                          <div className="col-12 col-lg-4">
+                            Mobile Number<span className="red-text">*</span>
+                          </div>
                           <div className="col-12 col-lg-8 p0">
                             <input
                               className="form-control-inside form-control"
@@ -413,7 +423,7 @@ function UserUpdate() {
                         </div>{" "}
                       </div>
 
-                      <div className="col-12 col-lg-6">
+                      <div id="pan" className="col-12 col-lg-6" style={{display:"block"}}>
                         <div className="row select-label">
                           <div className="col-12 col-lg-4">PAN card</div>
                           <div className="col-12 col-lg-8 p0">
@@ -423,6 +433,23 @@ function UserUpdate() {
                               name="panCard"
                               type="text"
                               value={userData.panCard}
+                              onChange={handleChange}
+                              disabled
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div id="aadhaar" className="col-12 col-lg-6" style={{display:"none"}}>
+                        <div className="row select-label">
+                          <div className="col-12 col-lg-4">AADHAAR Card</div>
+                          <div className="col-12 col-lg-8 p0">
+                            <input
+                              className="form-control-inside form-control"
+                              placeholder="AADHAAR Card Number"
+                              name="aadharCard"
+                              type="text"
+                              value={userData.aadharCard}
                               onChange={handleChange}
                               disabled
                             />
@@ -439,7 +466,10 @@ function UserUpdate() {
                         <div key={index} className="row">
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-12 col-lg-4"> Street 1 <span className="red-text">*</span></div>
+                              <div className="col-12 col-lg-4">
+                                {" "}
+                                Street 1 <span className="red-text">*</span>
+                              </div>
                               <div className="col-12 col-lg-8 p0">
                                 <input
                                   className="form-control-inside form-control"
@@ -495,7 +525,9 @@ function UserUpdate() {
                           </div>
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-12 col-lg-4 ">Country<span className="red-text">*</span></div>
+                              <div className="col-12 col-lg-4 ">
+                                Country<span className="red-text">*</span>
+                              </div>
                               <div className="col-12 col-lg-8 p0">
                                 <select
                                   className="form-control-inside form-select"
@@ -531,7 +563,10 @@ function UserUpdate() {
                           </div>
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-12 col-lg-4 "> State <span className="red-text">*</span> </div>
+                              <div className="col-12 col-lg-4 ">
+                                {" "}
+                                State <span className="red-text">*</span>{" "}
+                              </div>
                               <div className="col-12 col-lg-8 p0">
                                 {states?.length === 0 ? (
                                   <input
@@ -600,7 +635,9 @@ function UserUpdate() {
                           </div>
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
-                              <div className="col-12 col-lg-4">Postal Code<span className="red-text">*</span></div>
+                              <div className="col-12 col-lg-4">
+                                Postal Code<span className="red-text">*</span>
+                              </div>
                               <div className="col-12 col-lg-8 p0">
                                 <input
                                   className="form-control-inside form-control"
