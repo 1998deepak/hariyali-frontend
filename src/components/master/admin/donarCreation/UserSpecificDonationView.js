@@ -407,8 +407,6 @@ function UserSpecificDonationView() {
                     
                     <OnlinePaymentDetails
                       donations={donationData}
-                      // errors={errors}
-                      handlePaymentInfoChange={handlePaymentInfoChange}
                       index={0}
                       setLoading={setLoading}
                     />
@@ -416,10 +414,9 @@ function UserSpecificDonationView() {
                   {donationData.donationMode != 'online' && 
                     <PaymentDetails
                       donations={new Array(donationData)}
-                      // errors={errors}
-                      handlePaymentInfoChange={handlePaymentInfoChange}
                       index={0}
                       setLoading={setLoading}
+                      isDisabled
                     />
                   }
                     {/* {donationData.paymentInfo.map((payment) => {

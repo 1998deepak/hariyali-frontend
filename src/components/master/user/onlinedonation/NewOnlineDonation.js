@@ -202,6 +202,13 @@ function NewOnlineDonation() {
   const validate = () => {
     const validationErrors = [];
 
+    if (!packageData[0].noOfBouquets) {
+      validationErrors.push({
+        field: "package.noOfBouquets",
+        message: "Number of sapling required",
+      });
+    }
+
     // Validate recipient (only for "Gift Donate" donation type)
     if (donationType === "Gift-Donate") {
       console.log(donations[0].donationEvent);
@@ -292,6 +299,31 @@ function NewOnlineDonation() {
             message: "Recipient State is required",
           });
         }
+        if (rec?.address[0]?.country === "INDIA") {
+          if (!rec?.address[0]?.postalCode) {
+            validationErrors.push({
+              field: "recipient[" + i + "].address[0].postalCode",
+              message: "Postal Code is required",
+            });
+          } else if (!/^\d{6}$/.test(rec?.address[0]?.postalCode)) {
+            validationErrors.push({
+              field: "recipient[" + i + "].address[0].postalCode",
+              message: "Invalid Postal Code",
+            });
+          }
+        } else {
+          if (rec?.address[0]?.postalCode) {
+            validationErrors.push({
+              field: "recipient[" + i + "].address[0].postalCode",
+              message: "Postal Code is required",
+            });
+          } else if (!/^\d{5}$/.test(rec?.address[0]?.postalCode)) {
+            validationErrors.push({
+              field: "recipient[" + i + "].address[0].postalCode",
+              message: "Invalid Postal Code",
+            });
+          }
+        }
       }
     }
     console.log(validationErrors);
@@ -333,6 +365,7 @@ function NewOnlineDonation() {
     calculateOverallTotal(packages);
     setPackageData(packages);
     setPackageMessage("");
+    setErrors([])
   };
 
   const calculateOverallTotal = (packageData) => {
@@ -487,6 +520,7 @@ function NewOnlineDonation() {
                           initialPackageData={initialPackageData}
                           donations={donations}
                           calculateOverallTotal={calculateOverallTotal}
+                          errors={errors}
                         />
                         <div className="clear" />
                         <hr />
@@ -522,6 +556,7 @@ function NewOnlineDonation() {
                           initialPackageData={initialPackageData}
                           donations={donations}
                           calculateOverallTotal={calculateOverallTotal}
+                          errors={errors}
                         />
                         <div className="clear" />
                         <hr />
