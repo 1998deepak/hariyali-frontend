@@ -4376,7 +4376,7 @@ function OnlineDonation() {
                                       <input
                                         className="form-control-inside form-control"
                                         name="postalCode"
-                                        maxLength={address[0]?.country === "INDIA" ? "6" : "5"}
+                                        maxLength={recipient[0].address[0].country === "INDIA" ? "6" : "5"}
                                         placeholder="Postal Code"
                                         type="text"
                                         value={
