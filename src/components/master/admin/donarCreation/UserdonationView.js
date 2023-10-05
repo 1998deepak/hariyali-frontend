@@ -20,7 +20,7 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
 
   const handlePageClick = (event) => {
     setPageNo(event);
-    getAllDonationOfUser(userDetails, event-1);
+    getAllDonationOfUser(event-1);
   };
 
   useEffect(() => {
@@ -69,6 +69,7 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
                     <th>Donation Code</th>
                     <th>Transaction Date</th>
                     <th>Transaction Number</th>
+                    <th>Bank Transaction Number</th>
                     <th>Donation Amount</th>
                     <th>Payment Status</th>
                     <th>Action</th>
@@ -80,6 +81,7 @@ function UserdonationView({ userDetails, setAuthToken, authToken }) {
                       <tr key={donation.donationId}>
                         <td>{donation?.donationCode}</td>
                         <td>{convertDateFormat(donation?.donationDate)}</td>
+                        <td>{donation?.paymentInfo[0]?.orderId}</td>
                         <td>{donation?.paymentInfo[0]?.bankPaymentRefNo}</td>
                         <td>{donation?.totalAmount}</td>
                         <td>{donation?.paymentInfo[0]?.paymentStatus}</td>

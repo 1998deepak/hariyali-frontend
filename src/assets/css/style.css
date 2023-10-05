@@ -6093,7 +6093,7 @@ video {
   background: #23aa4a;
   border-radius: 16px;
   color: #ffffff;
-  position: absolute;
+  /* position: absolute; */
   top: 8px;
 }
 .donationTable td span{
