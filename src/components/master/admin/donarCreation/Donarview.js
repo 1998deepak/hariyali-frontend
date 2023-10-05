@@ -52,7 +52,7 @@ function DonarView() {
   useEffect(() => {
     if(id)
     {
-      getAllDonationOfUser(id,pageNo);
+      getAllDonationOfUser(pageNo,id);
     }
   }, [id]);
 
@@ -60,7 +60,7 @@ function DonarView() {
   
   const getAllDonationOfUser = async (pageNo,email) => {
     setLoading(true);
-    const response = await DonationService.getAllDonationOfUser(email,pageNo,pagesize,);
+    const response = await DonationService.getAllDonationOfUser(pagesize,pageNo,email);
     console.log(response);
     if (response?.data) {
       const donorData = response.data;
@@ -87,7 +87,7 @@ function DonarView() {
   };
   const handlePageClick = (event) => {
     setPageNo(event);
-    getAllDonationOfUser(event-1);
+    getAllDonationOfUser(event-1,id);
   };
 
   console.log(totalRecords);
