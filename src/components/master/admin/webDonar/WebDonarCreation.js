@@ -277,16 +277,12 @@ function WebDonarCreation() {
                     <tr>
                       {/* <th>WEB PORTAL ID</th> */}
                       <th>Email ID</th>
-                      {status == 'Approved' &&
-                        <th>Donor Id</th>}
+                      <th>Donor Id</th>
                       <th>Donor Name</th>
-                      <th>DONOR TYPE</th>
+                      <th>PAN/AADHAAR</th>
                       <th>ORGANISATION</th>
                       <th>STATUS</th>
-                      {status == 'Rejected' &&
-                        <th>Remark</th>}
-                      {status == 'Approved' &&
-                        <th>Pending Donation</th>}
+                      <th>Pending Donation</th>
                       <th className="min-width-128">ACTION</th>
                     </tr>
                   </thead>
@@ -294,25 +290,14 @@ function WebDonarCreation() {
                     {data.map(donor => {
                       return (
                         <tr>
-                          {/* <td>{donor.webId}</td> */}
                           <td>{donor.emailId}</td>
-                          {status == 'Approved' &&
-                            <td>{donor.donorId}</td>}
-
+                          <td>{donor.donorId}</td>
                           <td>{donor.firstName + ' ' + donor.lastName}</td>
-                          <td>{donor.donarType}</td>
+                          <td>{donor.panCard}</td>
                           <td>{donor.organisation}</td>
                           <td>{donor.approvalStatus}</td>
-                          {status == 'Rejected' &&
-                            <td>{donor.remark}</td>
-                          }
-                          {status == 'Approved' &&
-                          <>
-                          
-                            <td className="text-center">{donor.totalPendingDonation > 0 && (<b className="count"> {donor.totalPendingDonation }</b>)}
-                            </td>
-                            </>
-                          }
+                          <td className="text-center">{donor.totalPendingDonation > 0 && (<b className="count"> {donor.totalPendingDonation }</b>)}
+                          </td>
                           <td>
                             <span>
 
