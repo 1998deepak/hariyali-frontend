@@ -64,7 +64,7 @@ function Login() {
             JSON.stringify(formData)
           );
           localStorage.setItem(USER_DETAILS, userDetails);
-          toast.success("OTP Send Successfully");
+          toast.success("Otp sent successfully on your registered email Id");
           setIsHidden(!isHidden);
           setIsHide(!isHide);
           setLoading(false);
