@@ -1221,7 +1221,7 @@ function OfflineDonation() {
       setLoading(false);
     } else {
       console.log(response);
-      toast.error("Invalid Donor Id ! Please Try Again");
+      toast.error("Invalid Donor Id. Please Try Again");
       toast.error(response?.message);
       setLoading(false);
     }
@@ -1516,7 +1516,7 @@ function OfflineDonation() {
     console.log(updatedDonations);
     console.log();
     }
-    console.log("Not Working !");
+    console.log("Not Working ");
   };
 
   return (

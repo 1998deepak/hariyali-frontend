@@ -21,7 +21,7 @@ function ContactUs() {
               Send us a message
               </div>
               <div className="contact-p">
-                Please provide your most valuable information, so we can help you better!          </div>
+                Please provide your most valuable information, so we can help you better          </div>
               <form className="" >
                 <div className="" >
                 <Row>
