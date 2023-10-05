@@ -39,10 +39,10 @@ export default function Form10BE() {
         toast.success(response?.message);
         fileRef.current.value = '';  
       } else {
-        toast.error("Please select a ZIP file to upload...!")
+        toast.error("Please select a ZIP file to upload...")
       }
     } else {
-      toast.error("Please select a ZIP file to upload...!")
+      toast.error("Please select a ZIP file to upload...")
     }
   };
 

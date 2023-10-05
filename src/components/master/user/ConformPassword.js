@@ -111,7 +111,7 @@ function ConformPassword() {
         </div>
         <div className="row justify-content-between bgwite padding30 contact-form-wrap creditial-div">
           <h5 className="header-text">Confirm Password</h5>
-          <p>Please Enter your New Password!</p>
+          <p>Please Enter your New Password</p>
           <div className="col-12">
             <form className="form-div contact-form-wrap" >
             <label className="col-12 form-group">

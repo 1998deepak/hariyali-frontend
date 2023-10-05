@@ -192,7 +192,7 @@ function NewOnlineDonation() {
       setLoading(false);
     } else {
       console.log(response);
-      toast.error("Invalid Email Id ! Please Try Again");
+      toast.error("Invalid Email Id Please Try Again");
       toast.error(response?.message);
       setLoading(false);
     }

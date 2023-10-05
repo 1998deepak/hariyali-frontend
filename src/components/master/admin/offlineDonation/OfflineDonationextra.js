@@ -108,10 +108,6 @@ function OfflineDonation() {
         <Container className="pt30">
           <Row className="justify-content-between bgwite border1 padding30 contact-form-wrap">
             <h5>THANKS FOR YOUR INTEREST IN HARIYALI</h5>
-            {/* <p>
-              Please provide your UserName and password, so we can help you
-              better!
-            </p> */}
 
             <div className="col-12">
               <Tabs

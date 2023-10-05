@@ -47,7 +47,7 @@ function OtpId() {
     if (response?.status === SUCCESS) {
       toast.success("Otp sent successfully on your registered email Id !");
     } else {
-      toast.error("Invalid Donor Id ! Please Try Again");
+      toast.error("Invalid Donor Id Please Try Again");
     }
     //  }
   }

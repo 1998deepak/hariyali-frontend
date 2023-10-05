@@ -268,7 +268,7 @@ function WebDonarCreation() {
             <div className="row">
               {totalRecords > 0 &&
                 <div className="col-12 pr0">
-                  <span>{totalRecords} records found!</span>
+                  <span>{totalRecords} records found</span>
                 </div>
               }
               <div className="col-12 pr0">
