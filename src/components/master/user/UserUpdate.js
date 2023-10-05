@@ -123,7 +123,7 @@ function UserUpdate() {
     if (!userData.mobileNo) {
       errors.mobileNo = "Mobile No. is required";
     } else if (!/^[0-9]{10}$/.test(userData.mobileNo)) {
-      errors.mobileNo = "Mobile No. must contain only digits";
+      errors.mobileNo = "Mobile Number must contain exactly 10 digits and no alphabetic characters";
     }
 
     // validation for address field

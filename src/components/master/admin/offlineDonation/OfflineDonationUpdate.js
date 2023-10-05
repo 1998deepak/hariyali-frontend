@@ -7,44 +7,59 @@ import { DonationService } from "../../../../services/donationService/donation.s
 import { useParams, Link } from "react-router-dom";
 import Loader from "../../../common/loader/Loader";
 
-
 function OfflineDonationEdit() {
-
   // Initial Data for user
   const initialUserData = {
     user: {
-      firstName: '',
-      lastName: '',
-      mobileNo: '',
-      emailId: '',
-      donarType: '',
-      prefix: '',
-      organisation: '',
+      firstName: "",
+      lastName: "",
+      mobileNo: "",
+      emailId: "",
+      donarType: "",
+      prefix: "",
+      organisation: "",
       isTaxBenefit: false,
-      panCard: '',
+      panCard: "",
       activityType: null,
       address: null,
     },
   };
 
   // Initial data for address
-  const initialAddress = [{
-    street1: "",
-    street2: "",
-    street3: "",
-    country: "",
-    state: "",
-    city: "",
-    postalCode: "",
-  }];
+  const initialAddress = [
+    {
+      street1: "",
+      street2: "",
+      street3: "",
+      country: "",
+      state: "",
+      city: "",
+      postalCode: "",
+    },
+  ];
   const [userData, setUserData] = useState(initialUserData);
 
   const [addressData, setAddressData] = useState(initialAddress);
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
 
   const id = useParams().id;
   const [data, setData] = useState([]);
   const [emailData, setEmailData] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const getCountryList = async () => {
+    setLoading(true);
+    const response = await DonationService.getAllCountries();
+    if (response?.status === 200) {
+      // let data = response.data.map((item)=> ({ label: item, value: item }))
+      setCountries(response.data);
+      setLoading(false);
+    } else {
+      toast.error(response?.message);
+      setLoading(false);
+    }
+  };
 
   // getUser Details
   const getUserDetails = async (id) => {
@@ -59,12 +74,11 @@ function OfflineDonationEdit() {
         console.log(response.data.address);
         console.log(response.data);
         // const addressData = response.data.address[0];
-
         setUserData(response.data);
         setAddressData(response.data.address);
-      
+
         setEmailData(response.data.emailId);
-        
+        getStatesByCountry(response.data.address.country);
       }
       setLoading(false);
     } catch (error) {
@@ -80,39 +94,43 @@ function OfflineDonationEdit() {
     if (id) {
       getUserDetails(id);
     }
-
+    getCountryList();
   }, [id]);
 
+  useEffect(() => {
+    if (countries.length>0) {
+      let country = countries.find((item) => item.countryName === addressData[0].country);
+      getStatesByCountry(country.countryCode)  
+    }
+  }, [addressData[0].country && countries]);
 
   const [errors, setErrors] = useState({});
 
-
-  const validateFields = (userData,addressData) => {
+  const validateFields = (userData, addressData) => {
     const errors = {};
     // console.log(addressData && addressData.length > 0 ? addressData[0].city : null);
     console.log(userData);
-   
+
     // Validate emailId
     if (!userData.emailId) {
       errors.emailId = "Email ID is required";
-    }
-    else if (
+    } else if (
       !/^([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+)\.([a-zA-Z]{2,5})$/.test(
         userData.emailId
       )
     ) {
       errors.emailId = "Enter a Valid Email Address";
     }
-  
+
     // Validate mobileNo
     if (!userData.mobileNo) {
       errors.mobileNo = "Mobile No. is required";
     } else if (!/^[0-9]{10}$/.test(userData.mobileNo)) {
       errors.mobileNo = "Mobile No. must contain only digits";
     }
-  
+
     // Validate donarType
-    if (!userData.donarType || userData.donarType === "Donor Type"){
+    if (!userData.donarType || userData.donarType === "Donor Type") {
       errors.donarType = "Please select a Donor Type";
     }
     console.log(userData.donarType);
@@ -124,7 +142,7 @@ function OfflineDonationEdit() {
     if (!userData.prefix) {
       errors.organisation = "Please select a prefix";
     }
-  
+
     if (!userData.firstName) {
       errors.firstName = "First Name is required";
     } else if (!/^[A-Za-z]+$/.test(userData.firstName)) {
@@ -137,8 +155,6 @@ function OfflineDonationEdit() {
       errors.lastName = "Last Name is invalid";
     }
 
-   
-   
     // Add validation for other fields here
     console.log(errors.donarType);
 
@@ -146,7 +162,7 @@ function OfflineDonationEdit() {
     if (addressData && addressData.length > 0) {
       const firstAddress = addressData[0];
       console.log(firstAddress);
-      
+
       if (!firstAddress.street1) {
         errors.street1 = "Street 1 is required";
       }
@@ -159,69 +175,79 @@ function OfflineDonationEdit() {
       if (!firstAddress.city) {
         errors.city = "City is required";
       }
+      if (!firstAddress.city) {
+        errors.city = "City is required";
+      }
+      if (firstAddress.country === "INDIA") {
+        if (!firstAddress?.postalCode) {
+          errors.postalCode = "postalCode is required";
+        } else if (!/^\d{6}$/.test(firstAddress?.postalCode)) {
+          errors.postalCode = "Invalid Postal Code";
+        }
+      } else {
+        if (!firstAddress?.postalCode) {
+          errors.postalCode = "postalCode is required";
+        } else if (!/^\d{5}$/.test(firstAddress?.postalCode)) {
+          errors.postalCode = "Invalid Postal Code";
+        }
+      }
     }
-    
 
     setErrors(errors);
 
     return errors;
-   
   };
   console.log(errors.city);
 
-console.log(errors);
-
-
-
-
+  console.log(errors);
 
   // Update user Data
   const updateUser = async (e, emailID, userData, addressData) => {
     try {
       e.preventDefault();
       console.log(addressData[0].street1);
-   // Perform validation for userData
-   const userErrors = validateFields(userData);
-console.log(userErrors)
-   // Perform validation for addressData
-   const addressErrors =  validateFields(userData, addressData||[]);
-console.log(addressErrors);
-   // Merge the validation errors for both userData and addressData
-   const errors = { ...userErrors,...addressErrors};
-   console.log(errors);
-    // Check if there are any validation errors
-    if (Object.keys(errors).length > 0) {
-      // Handle validation errors, e.g., display error messages
+      // Perform validation for userData
+      const userErrors = validateFields(userData);
+      console.log(userErrors);
+      // Perform validation for addressData
+      const addressErrors = validateFields(userData, addressData || []);
+      console.log(addressErrors);
+      // Merge the validation errors for both userData and addressData
+      const errors = { ...userErrors, ...addressErrors };
       console.log(errors);
-      return;
-    }
+      // Check if there are any validation errors
+      if (Object.keys(errors).length > 0) {
+        // Handle validation errors, e.g., display error messages
+        console.log(errors);
+        return;
+      }
       console.log(emailID);
       console.log(userData);
-      
-      
+
       const formData = {
         formData: {
           user: userData,
         },
       };
-  
+
       console.log(formData);
       formData.formData.user.address = addressData;
       console.log(formData);
-  
-      Object.keys(data).forEach(key => {
-        if (key !== 'address') {
+
+      Object.keys(data).forEach((key) => {
+        if (key !== "address") {
           formData.formData.user[key] = data[key];
         }
       });
-  
-      console.log(addressData);
-      console.log(formData);
+
       setLoading(true);
-      const response = await DonationService.updateUser(emailID, formData.formData.user);
+      const response = await DonationService.updateUser(
+        emailID,
+        formData.formData.user
+      );
       console.log(response);
-      
-      if (response?.status === "Data Update Successfully") {
+
+      if (response?.status === "Success") {
         toast.success(response?.message);
         setLoading(false);
       } else {
@@ -231,62 +257,20 @@ console.log(addressErrors);
     } catch (err) {
       if (err?.response?.data) {
         console.log(err.response.data);
-        
       } else {
         console.log(err?.message);
       }
       setLoading(false);
     }
   };
-  
-
-  // State options
-  const stateOptions = [
-    "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Bihar",
-    "Chhattisgarh",
-    "Goa",
-    "Gujarat",
-    "Haryana",
-    "Himachal Pradesh",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Odisha",
-    "Punjab",
-    "Rajasthan",
-    "Sikkim",
-    "Tamil Nadu",
-    "Telangana",
-    "Tripura",
-    "Uttar Pradesh",
-    "Uttarakhand",
-    "West Bengal",
-    "Andaman and Nicobar Islands",
-    "Chandigarh",
-    "Dadra and Nagar Haveli",
-    "Daman and Diu",
-    "Lakshadweep",
-    "Delhi",
-    "Puducherry",
-  ];
-
-
-
-
-
 
   //Handle address change
   const handleAddressChange = (event, index) => {
     const { name, value } = event.target;
+    let data = null;
+    if (name === "country") {
+      data = countries.find((item) => item.countryName === value);
+    }
     setAddressData((prevAddress) => {
       const updatedAddress = [...prevAddress];
       updatedAddress[index] = {
@@ -296,6 +280,27 @@ console.log(addressErrors);
       console.log(updatedAddress[index]);
       return updatedAddress;
     });
+    if (data) {
+      addressData[0].state = "";
+      getStatesByCountry(data.countryCode);
+    }
+  };
+
+  const getStatesByCountry = async (countryId) => {
+    setLoading(true);
+    const response = await DonationService.getAllStatesByCountry(countryId);
+    console.log("get states", response.data);
+    if (response?.status === 200) {
+      setLoading(false);
+      if (response?.data.length > 0) {
+        setStates(response.data);
+      } else {
+        setStates([]);
+      }
+    } else {
+      toast.error(response?.message);
+      setLoading(false);
+    }
   };
 
   // handle Change
@@ -303,7 +308,7 @@ console.log(addressErrors);
     const { name, value } = event.target;
     const updatedFormData = { ...userData };
     console.log(updatedFormData);
-    const keys = name.split('.');
+    const keys = name.split(".");
     console.log(keys);
     let currentField = updatedFormData;
     for (let i = 0; i < keys.length - 1; i++) {
@@ -319,7 +324,7 @@ console.log(addressErrors);
   return (
     <>
       <ToastContainer />
-      {loading && <Loader/>}
+      {loading && <Loader />}
       <div className="bggray">
         <div className="col-12 admin-maindiv">
           <div className=" justify-content-between bgwite borderform1 padding30 all-form-wrap">
@@ -353,7 +358,10 @@ console.log(addressErrors);
                     <div className="row">
                       <div className="col-6">
                         <div className="row select-label">
-                          <div className="col-4 "> Email ID</div>
+                          <div className="col-4 ">
+                            {" "}
+                            Email ID <span className="red-text">*</span>
+                          </div>
                           <div className="col-8 p0">
                             <input
                               className="form-control-inside form-control"
@@ -363,44 +371,61 @@ console.log(addressErrors);
                               value={userData.emailId}
                               // onBlur={handleBlur}
                               onChange={handleChange}
-                             
                             />
-                            {errors.emailId && <div className="error-message red-text">{errors.emailId}</div>}
+                            {errors.emailId && (
+                              <div className="error-message red-text">
+                                {errors.emailId}
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
                       <div className="col-6">
                         <div className="row select-label">
-                          <div className="col-4 ">Mobile No.</div>
+                          <div className="col-4 ">
+                            Mobile No. <span className="red-text">*</span>
+                          </div>
                           <div className="col-8 p0">
                             <input
                               className="form-control-inside form-control"
                               type="text"
                               name="mobileNo"
                               placeholder="Mobile No."
+                              maxLength={10}
                               value={userData.mobileNo}
                               onChange={handleChange}
                             />
-                             {errors.mobileNo && <div className="error-message red-text">{errors.mobileNo}</div>}
+                            {errors.mobileNo && (
+                              <div className="error-message red-text">
+                                {errors.mobileNo}
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
                       <div className="col-6">
                         <div className="row select-label">
-                          <div className="col-4 "> Donor Type</div>
+                          <div className="col-4 ">
+                            {" "}
+                            Donor Type <span className="red-text">*</span>
+                          </div>
                           <div className="col-8 p0">
-                            <select className=" form-control-inside form-select"
+                            <select
+                              className=" form-control-inside form-select"
                               name="donarType"
                               value={userData.donarType}
-
-                              onChange={handleChange}>
+                              onChange={handleChange}
+                            >
                               <option selected>Donor Type</option>
                               <option value="Corporate">Corporate</option>
                               <option value="Individual">Individual</option>
                             </select>
-                            {errors.donarType && <div className="error-message red-text">{errors.donarType}</div>}
+                            {errors.donarType && (
+                              <div className="error-message red-text">
+                                {errors.donarType}
+                              </div>
+                            )}
                           </div>
-
                         </div>
                       </div>
                       <div className="col-6">
@@ -422,9 +447,11 @@ console.log(addressErrors);
                         <div className="row select-label">
                           <div className="col-4 ">Prefix</div>
                           <div className="col-8 p0">
-                            <select className=" form-control-inside form-select"
+                            <select
+                              className=" form-control-inside form-select"
                               value={userData.prefix}
-                              onChange={handleChange}>
+                              onChange={handleChange}
+                            >
                               <option selected>Prefix</option>
                               <option value="Mr.">Mr.</option>
                               <option value="Mrs.">Mrs.</option>
@@ -436,7 +463,9 @@ console.log(addressErrors);
                       </div>
                       <div className="col-6">
                         <div className="row select-label">
-                          <div className="col-4 ">First Name</div>
+                          <div className="col-4 ">
+                            First Name <span className="red-text">*</span>
+                          </div>
                           <div className="col-8 p0">
                             <input
                               className="form-control-inside form-control"
@@ -446,13 +475,19 @@ console.log(addressErrors);
                               value={userData.firstName}
                               onChange={handleChange}
                             />
-                            {errors.firstName && <div className="error-message red-text">{errors.firstName}</div>}
+                            {errors.firstName && (
+                              <div className="error-message red-text">
+                                {errors.firstName}
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
                       <div className="col-6">
                         <div className="row select-label">
-                          <div className="col-4 ">Last Name</div>
+                          <div className="col-4 ">
+                            Last Name <span className="red-text">*</span>
+                          </div>
                           <div className="col-8 p0">
                             <input
                               className="form-control-inside form-control"
@@ -461,9 +496,12 @@ console.log(addressErrors);
                               placeholder="Last Name"
                               value={userData.lastName}
                               onChange={handleChange}
-                              
                             />
-                             {errors.lastName && <div className="error-message red-text">{errors.lastName}</div>}
+                            {errors.lastName && (
+                              <div className="error-message red-text">
+                                {errors.lastName}
+                              </div>
+                            )}
                           </div>
                         </div>{" "}
                       </div>
@@ -481,7 +519,6 @@ console.log(addressErrors);
                               onChange={handleChange}
                               disabled
                             />
-                            
                           </div>
                         </div>
                       </div>
@@ -490,12 +527,15 @@ console.log(addressErrors);
                   <hr />
                   <div className="actionheadingdiv">Address</div>
                   <div className="col-12 pr15 mt20">
-                    {
-                      addressData.map((addr, index) => {
-                        return <div key={index} className="row">
+                    {addressData.map((addr, index) => {
+                      return (
+                        <div key={index} className="row">
                           <div className="col-6">
                             <div className="row select-label">
-                              <div className="col-4 "> Street 1</div>
+                              <div className="col-4 ">
+                                {" "}
+                                Street 1 <span className="red-text">*</span>
+                              </div>
                               <div className="col-8 p0">
                                 <input
                                   className="form-control-inside form-control"
@@ -503,9 +543,15 @@ console.log(addressErrors);
                                   placeholder=" Street 1"
                                   type="text"
                                   value={addr.street1}
-                                  onChange={(event) => handleAddressChange(event, index)}
+                                  onChange={(event) =>
+                                    handleAddressChange(event, index)
+                                  }
                                 />
-                                 {errors.street1 && <div className="error-message red-text">{errors.street1}</div>}
+                                {errors.street1 && (
+                                  <div className="error-message red-text">
+                                    {errors.street1}
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
@@ -519,7 +565,9 @@ console.log(addressErrors);
                                   placeholder="Street 2"
                                   type="text"
                                   value={addr.street2}
-                                  onChange={(event) => handleAddressChange(event, index)}
+                                  onChange={(event) =>
+                                    handleAddressChange(event, index)
+                                  }
                                 />
                               </div>
                             </div>
@@ -534,51 +582,108 @@ console.log(addressErrors);
                                   placeholder="Street 3"
                                   type="text"
                                   value={addr.street3}
-                                  onChange={(event) => handleAddressChange(event, index)}
+                                  onChange={(event) =>
+                                    handleAddressChange(event, index)
+                                  }
                                 />
                               </div>
                             </div>
                           </div>
                           <div className="col-6">
                             <div className="row select-label">
-                              <div className="col-4 ">Country</div>
+                              <div className="col-4 ">
+                                Country <span className="red-text">*</span>
+                              </div>
                               <div className="col-8 p0">
-                                <input
+                                {/* <input
                                   className="form-control-inside form-control"
                                   name="country"
                                   placeholder="Country"
                                   type="text"
                                   value={addr.country}
                                   onChange={(event) => handleAddressChange(event, index)}
-                                />
-                                 {errors.country && <div className="error-message red-text">{errors.country}</div>}
-                              </div>
-                            </div>
-                          </div>
-                          <div className="col-6">
-                            <div className="row select-label">
-                              <div className="col-4 ">State</div>
-                              <div className="col-8 p0">
+                                /> */}
                                 <select
                                   className=" form-control-inside form-select"
-                                  name="state"
-                                  value={addr.state}
-                                  onChange={(event) => handleAddressChange(event, index)}
+                                  name="country"
+                                  id="country"
+                                  value={addr.country}
+                                  onChange={(event) =>
+                                    handleAddressChange(event, index)
+                                  }
                                 >
-                                  <option value="">Select State</option>
-                                  {stateOptions.map((state) => (
-                                    <option key={state} value={state}>
-                                      {state}
-                                    </option>
-                                  ))}
+                                  <option disabled selected value="">
+                                    Select Country
+                                  </option>
+                                  {countries.map((country) => {
+                                    return (
+                                      <option value={country.countryName}>
+                                        {country.countryName}
+                                      </option>
+                                    );
+                                  })}
                                 </select>
-                                {errors.state && <div className="error-message red-text">{errors.state}</div>}
+                                {errors.country && (
+                                  <div className="error-message red-text">
+                                    {errors.country}
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
                           <div className="col-6">
                             <div className="row select-label">
-                              <div className="col-4 ">City</div>
+                              <div className="col-4 ">
+                                State <span className="red-text">*</span>
+                              </div>
+                              <div className="col-8 p0">
+                                {states.length > 0 ? (
+                                  <select
+                                    className=" form-control-inside form-select form-control"
+                                    id="state"
+                                    name="state"
+                                    value={addr.state}
+                                    onChange={(event) =>
+                                      handleAddressChange(event, index)
+                                    }
+                                  >
+                                    <option disabled selected value="">
+                                      Select State
+                                    </option>
+                                    {states.map((state) => (
+                                      <option
+                                        key={state}
+                                        value={state.stateName}
+                                      >
+                                        {state.stateName}
+                                      </option>
+                                    ))}
+                                  </select>
+                                ) : (
+                                  <input
+                                    className="form-control-inside form-control"
+                                    name="state"
+                                    placeholder="State"
+                                    type="text"
+                                    value={addr.state}
+                                    onChange={(event) =>
+                                      handleAddressChange(event, index)
+                                    }
+                                  />
+                                )}
+                                {errors.state && (
+                                  <div className="error-message red-text">
+                                    {errors.state}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-6">
+                            <div className="row select-label">
+                              <div className="col-4 ">
+                                City <span className="red-text">*</span>
+                              </div>
                               <div className="col-8 p0">
                                 <input
                                   className="form-control-inside form-control"
@@ -586,37 +691,55 @@ console.log(addressErrors);
                                   placeholder="City"
                                   type="text"
                                   value={addr.city}
-                                  onChange={(event) => handleAddressChange(event, index)}
+                                  onChange={(event) =>
+                                    handleAddressChange(event, index)
+                                  }
                                 />
-                                 {errors.city && <div className="error-message red-text">{errors.city}</div>}
+                                {errors.city && (
+                                  <div className="error-message red-text">
+                                    {errors.city}
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
                           <div className="col-6">
                             <div className="row select-label">
-                              <div className="col-4 ">Postal Code</div>
+                              <div className="col-4 ">
+                                Postal Code <span className="red-text">*</span>
+                              </div>
                               <div className="col-8 p0">
                                 <input
                                   className="form-control-inside form-control"
                                   name="postalCode"
                                   placeholder="Postal Code"
                                   type="text"
+                                  maxLength={
+                                    addr.country === "INDIA" ? "6" : "5"
+                                  }
                                   value={addr.postalCode}
-                                  onChange={(event) => handleAddressChange(event, index)}
-
+                                  onChange={(event) =>
+                                    handleAddressChange(event, index)
+                                  }
                                 />
+                                {errors.postalCode && (
+                                  <div className="error-message red-text">
+                                    {errors.postalCode}
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
                         </div>
-                      })
-                    }
-
+                      );
+                    })}
                   </div>
                   <button
                     type="submit"
                     className="mt20 mr10 webform-button--submit"
-                    onClick={(e) => updateUser(e, emailData, userData, addressData)}
+                    onClick={(e) =>
+                      updateUser(e, emailData, userData, addressData)
+                    }
                   >
                     Update
                   </button>
@@ -644,10 +767,12 @@ console.log(addressErrors);
                     Clear
                   </button> */}
                 </form>
-              </div></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       {/* body */}
-
     </>
   );
 }

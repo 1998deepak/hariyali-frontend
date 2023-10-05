@@ -705,6 +705,26 @@ function OfflineDonation() {
             message: "Invalid Email ID",
           });
         }
+
+        if (rec?.mobileNo && !/^(?!.*[a-zA-Z])\d{10}$/.test(rec.mobileNo)) {
+          validationErrors.push({
+            field: "recipient[" + i + "].mobileNo",
+            message:
+              "Mobile Number must contain exactly 10 digits and no alphabetic characters",
+          });
+        }
+        if (rec?.address[0]?.postalCode) {
+          if (
+            (rec?.address[0]?.country === "INDIA" &&
+              !/^\d{6}$/.test(rec?.address[0]?.postalCode)) ||
+            !/^\d{5}$/.test(rec?.address[0]?.postalCode)
+          ) {
+            validationErrors.push({
+              field: "recipient[" + i + "].address[0].postalCode",
+              message: "Invalid Postal Code",
+            });
+          }
+        }
       }
     }
 
@@ -1347,6 +1367,26 @@ function OfflineDonation() {
             field: "recipient[" + i + "].emailId",
             message: "Invalid Email ID",
           });
+        }
+
+        if (rec?.mobileNo && !/^(?!.*[a-zA-Z])\d{10}$/.test(rec.mobileNo)) {
+          validationErrors.push({
+            field: "recipient[" + i + "].mobileNo",
+            message:
+              "Mobile Number must contain exactly 10 digits and no alphabetic characters",
+          });
+        }
+        if (rec?.address[0]?.postalCode) {
+          if (
+            (rec?.address[0]?.country === "INDIA" &&
+              !/^\d{6}$/.test(rec?.address[0]?.postalCode)) ||
+            !/^\d{5}$/.test(rec?.address[0]?.postalCode)
+          ) {
+            validationErrors.push({
+              field: "recipient[" + i + "].address[0].postalCode",
+              message: "Invalid Postal Code",
+            });
+          }
         }
       }
     }
@@ -3803,7 +3843,7 @@ function OfflineDonation() {
                                         handleRecipentChange(e, 0)
                                       }
                                     />
-                                    {/* {errors.map((error, index) => {
+                                    {errors.map((error, index) => {
                                       if (
                                         error.field === "recipient[0].mobileNo"
                                       ) {
@@ -3817,7 +3857,7 @@ function OfflineDonation() {
                                         );
                                       }
                                       return null;
-                                    })} */}
+                                    })}
                                   </div>
                                 </div>
                               </div>
@@ -4099,7 +4139,7 @@ function OfflineDonation() {
                                         handleRecipentAddressChange(e, 0)
                                       }
                                     />
-                                    {/* {errors.map((error, index) => {
+                                    {errors.map((error, index) => {
                                       if (
                                         error.field ===
                                         "recipient[0].address[0].postalCode"
@@ -4114,7 +4154,7 @@ function OfflineDonation() {
                                         );
                                       }
                                       return null;
-                                    })} */}
+                                    })}
                                   </div>
                                 </div>
                               </div>
@@ -5515,7 +5555,21 @@ function OfflineDonation() {
                                         handleRecipentChange(e, 0)
                                       }
                                     />
-                                    
+                                    {errors.map((error, index) => {
+                                      if (
+                                        error.field === "recipient[0].mobileNo"
+                                      ) {
+                                        return (
+                                          <div
+                                            key={index}
+                                            className="error-message red-text"
+                                          >
+                                            {error.message}
+                                          </div>
+                                        );
+                                      }
+                                      return null;
+                                    })}
                                   </div>
                                 </div>
                               </div>
@@ -5638,7 +5692,7 @@ function OfflineDonation() {
                                       </option>
                                       {countries.map((country) => {
                                         return (
-                                          <option value={country.countryName}>
+                                          <option key={country} value={country.countryName}>
                                             {country.countryName}
                                           </option>
                                         );
@@ -5752,7 +5806,22 @@ function OfflineDonation() {
                                         handleRecipentAddressChange(e, 0)
                                       }
                                     />
-                                   
+                                    {errors.map((error, index) => {
+                                        if (
+                                          error.field ===
+                                          "recipient[0].address[0].postalCode"
+                                        ) {
+                                          return (
+                                            <div
+                                              key={index}
+                                              className="error-message red-text"
+                                            >
+                                              {error.message}
+                                            </div>
+                                          );
+                                        }
+                                        return null;
+                                      })}
                                   </div>
                                   
                                 </div>

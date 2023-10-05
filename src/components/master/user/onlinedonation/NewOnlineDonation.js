@@ -21,7 +21,7 @@ function NewOnlineDonation() {
       bouquetPrice: "",
       noOfBouquets: "",
       amount: "",
-    }
+    },
   ];
 
   const initialUserData = {
@@ -101,14 +101,14 @@ function NewOnlineDonation() {
       setLoading(false);
     }
   };
-  
+
   const getStatesByCountry = async (countryId) => {
     setLoading(true);
     const response = await DonationService.getAllStatesByCountry(countryId);
-    console.log("get states", response.data );
+    console.log("get states", response.data);
     if (response?.status === 200) {
-        setStates(response.data);
-        setLoading(false);
+      setStates(response.data);
+      setLoading(false);
     } else {
       toast.error(response?.message);
       setLoading(false);
@@ -124,14 +124,15 @@ function NewOnlineDonation() {
     const orderId = urlParams.get("orderId");
     if (orderId) {
       localStorage.setItem("userOrderId", orderId);
-      let newLocation = window.location.href.substring(0, window.location.href.indexOf("?orderId"));
+      let newLocation = window.location.href.substring(
+        0,
+        window.location.href.indexOf("?orderId")
+      );
       window.location.replace(newLocation);
-
-
     } else {
       const orderIdStr = localStorage.getItem("userOrderId");
       if (orderIdStr) {
-        localStorage.removeItem("userOrderId")
+        localStorage.removeItem("userOrderId");
         getPaymentInformation(orderIdStr);
       }
     }
@@ -152,16 +153,14 @@ function NewOnlineDonation() {
         setTransactionMessage(message);
         setShowDonationModal(true);
       } else {
-        let message =
-          "Something went wrong, please try again.";
+        let message = "Something went wrong, please try again.";
         console.log(message);
         setTransactionMessage(message);
         setShowDonationModal(true);
       }
       setLoading(false);
     } else {
-      let message =
-      "Something went wrong, please try again.";
+      let message = "Something went wrong, please try again.";
       console.log(message);
       setTransactionMessage(message);
       setShowDonationModal(true);
@@ -223,7 +222,7 @@ function NewOnlineDonation() {
           field: "donations.giftContent",
           message: "Message for the giftee is required",
         });
-        if(document.getElementById("giftContent")){
+        if (document.getElementById("giftContent")) {
           document.getElementById("giftContent").focus();
         }
       }
@@ -268,18 +267,25 @@ function NewOnlineDonation() {
             message: "Invalid Email ID",
           });
         }
-        // if (!rec?.mobileNo) {
-        //   validationErrors.push({
-        //     field: "recipient[" + i + "].mobileNo",
-        //     message: "Mobile Number is required",
-        //   });
-        // } else if (!/^(?!.*[a-zA-Z])\d{10}$/.test(rec.mobileNo)) {
-        //   validationErrors.push({
-        //     field: "recipient[" + i + "].mobileNo",
-        //     message:
-        //       "Mobile Number must contain exactly 10 digits and no alphabetic characters",
-        //   });
-        // }
+        if (rec?.mobileNo && !/^(?!.*[a-zA-Z])\d{10}$/.test(rec.mobileNo)) {
+          validationErrors.push({
+            field: "recipient[" + i + "].mobileNo",
+            message:
+              "Mobile Number must contain exactly 10 digits and no alphabetic characters",
+          });
+        }
+        if (rec?.address[0]?.postalCode) {
+          if (
+            (rec?.address[0]?.country === "INDIA" &&
+              !/^\d{6}$/.test(rec?.address[0]?.postalCode)) ||
+            !/^\d{5}$/.test(rec?.address[0]?.postalCode)
+          ) {
+            validationErrors.push({
+              field: "recipient[" + i + "].address[0].postalCode",
+              message: "Invalid Postal Code",
+            });
+          }
+        }
 
         // if (!rec?.address[0]?.street1) {
         //   validationErrors.push({
@@ -365,14 +371,13 @@ function NewOnlineDonation() {
     calculateOverallTotal(packages);
     setPackageData(packages);
     setPackageMessage("");
-    setErrors([])
+    setErrors([]);
   };
 
   const calculateOverallTotal = (packageData) => {
-
     console.log(packageData);
     let totalAmountOfPackage = 0;
-    packageData.map(data => {
+    packageData.map((data) => {
       totalAmountOfPackage += data.amount;
     });
     const updatedDonations = [...donations];
@@ -389,7 +394,7 @@ function NewOnlineDonation() {
       let gnrlDonation = parseInt(value);
       updatedDonations[index][name] = gnrlDonation > 0 ? gnrlDonation : null;
       updatedDonations[0]["totalAmount"] = null;
-    }else{
+    } else {
       updatedDonations[index][name] = value;
     }
     console.log(updatedDonations);
@@ -408,7 +413,6 @@ function NewOnlineDonation() {
       console.log(updatedAddress[index]);
       return updatedAddress;
     });
-    
   };
 
   const handleRecipentAddressChange = (event, index) => {
@@ -427,7 +431,7 @@ function NewOnlineDonation() {
     if (data) {
       updatedAddress[index].address[index]["state"] = "";
       getStatesByCountry(data.countryCode);
-  }
+    }
     return updatedAddress;
   };
 
@@ -443,7 +447,7 @@ function NewOnlineDonation() {
       updatedDonations[0].userPackage = filteredPackages;
       const formData = {
         emailId: email,
-        donorId: userData?.user?.donorId, 
+        donorId: userData?.user?.donorId,
         donations: updatedDonations.map((donation) => {
           const donationData = {
             ...donation,
@@ -461,13 +465,11 @@ function NewOnlineDonation() {
       if (filteredPackages?.length == 0 || filteredPackages[0].amount == 0) {
         setPackageMessage("Please select number of sapling");
       } else {
-
         setLoading(true);
 
         const response = await DonationService.AddNewDonation(formData);
 
         if (response?.status === SUCCESS) {
-
           toast.success(response?.message);
           setGatewayConfiguration(response);
           setTimeout(() => {
@@ -482,7 +484,6 @@ function NewOnlineDonation() {
       }
     }
   };
-
 
   return (
     <>
@@ -524,9 +525,9 @@ function NewOnlineDonation() {
                         />
                         <div className="clear" />
                         <hr />
-                        {packageMessage != '' && 
+                        {packageMessage != "" && (
                           <div className="red-text">{packageMessage}</div>
-                        }
+                        )}
                         <button
                           className="mt20 mr10 webform-button--submit"
                           onClick={(e) => createDonation(e, userData)}
@@ -535,10 +536,7 @@ function NewOnlineDonation() {
                         </button>
                       </form>
                     </Tab>
-                    <Tab
-                      eventKey="Gift-Donate"
-                      title="Gift A Tree"
-                    >
+                    <Tab eventKey="Gift-Donate" title="Gift A Tree">
                       {/* <h5>Gift a tree</h5> */}
                       <form className="form-div contact-form-wrap">
                         <DonationHeader
@@ -560,9 +558,9 @@ function NewOnlineDonation() {
                         />
                         <div className="clear" />
                         <hr />
-                        {packageMessage != '' && 
+                        {packageMessage != "" && (
                           <div className="red-text">{packageMessage}</div>
-                        }
+                        )}
                         <RecipientDetails
                           errors={errors}
                           recipient={recipient}
@@ -624,11 +622,11 @@ function NewOnlineDonation() {
               <Card>
                 <Card.Body>
                   <div className="card-icon">
-                    {paymentStatus == 'Success'? 
-                    <BsEmojiSmile />
-                    :
-                    <BsEmojiFrown/>
-                    }
+                    {paymentStatus == "Success" ? (
+                      <BsEmojiSmile />
+                    ) : (
+                      <BsEmojiFrown />
+                    )}
                   </div>
                   <Card.Text
                     dangerouslySetInnerHTML={{ __html: transactionMessage }}
