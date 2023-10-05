@@ -312,7 +312,7 @@ const RecipientDetails = ({
                     value={recipient[0].address[0].postalCode}
                     onChange={(e) => handleRecipentAddressChange(e, 0)}
                   />
-                 {/* {errors.map((error, index) => {
+                 {errors.map((error, index) => {
                     if (error.field === "recipient[0].address[0].postalCode") {
                       return (
                         <div key={index} className="error-message red-text">
@@ -321,7 +321,7 @@ const RecipientDetails = ({
                       );
                     }
                     return null;
-                  })} */}
+                  })}
                 </div>
               </div>
             </div>

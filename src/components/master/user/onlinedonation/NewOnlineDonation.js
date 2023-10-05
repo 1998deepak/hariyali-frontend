@@ -275,18 +275,22 @@ function NewOnlineDonation() {
           });
         }
         if (rec?.address[0]?.postalCode) {
-          if (
-            (rec?.address[0]?.country === "INDIA" &&
-              !/^\d{6}$/.test(rec?.address[0]?.postalCode)) ||
-            !/^\d{5}$/.test(rec?.address[0]?.postalCode)
-          ) {
+          if (rec?.address[0]?.country === "INDIA"){
+              if(!/^\d{6}$/.test(rec?.address[0]?.postalCode)){
+            validationErrors.push({
+              field: "recipient[" + i + "].address[0].postalCode",
+              message: "Invalid Postal Code",
+            });
+          }
+        }else{
+          if(!/^\d{5}$/.test(rec?.address[0]?.postalCode)){
             validationErrors.push({
               field: "recipient[" + i + "].address[0].postalCode",
               message: "Invalid Postal Code",
             });
           }
         }
-
+      }
         // if (!rec?.address[0]?.street1) {
         //   validationErrors.push({
         //     field: "recipient[" + i + "].address[0].street1",
