@@ -250,7 +250,7 @@ function WebDonarCreation() {
                   <option value="Individual">Individual</option>
                 </select>
               </div>
-              <div className="col-3">
+              {/* <div className="col-3">
                 <select
                   className="pl20 form-control-inside"
 
@@ -260,7 +260,7 @@ function WebDonarCreation() {
                   <option value="Approved">Approved</option>
                   <option value="Rejected">Rejected</option>
                 </select>
-              </div>
+              </div> */}
               <div className="col-3">
                 <button className="btn btn-search" onClick={() => getAllUserWithWebID(searchText, 0)}>Search</button>
               </div>
@@ -316,14 +316,14 @@ function WebDonarCreation() {
                           <td>
                             <span>
 
-                              {status == 'Pending' &&
+                              {/* {status == 'Pending' &&
                                 <>
                                   <BsCheckCircleFill title="Approve" className="icon-btn approve-button"
                                     onClick={() => handleApproveAndReject(donor, "Approved")} />
                                   <AiFillCloseCircle title="Reject" className="icon-btn reject-button"
                                     onClick={() => handleApproveAndReject(donor, "Rejected")} />
                                 </>
-                              }
+                              } */}
                               <Link onClick={() => getUserDonations(donor, 0)} className="view-icon icon-btn" ><FaRegEye /></Link>
                             </span>
 
