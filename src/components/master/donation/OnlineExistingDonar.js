@@ -985,7 +985,9 @@ export default function OnlineExistingDonar() {
                   ) : null}
                   {isCSR ? (
                     <div className=" mb10"> <p>
-                      For CSR related enquireis please reach us at Gangar Sunny GANGAR.SUNNY@mahindra.com 93224 56789
+                      For CSR Queries contact  <a href="mailto:support@hariyali.org.in">
+                          support@hariyali.org.in
+                        </a>{" "}| 022 22021031
                     </p></div>
                   ) : null}
                   <div>
@@ -1644,7 +1646,9 @@ export default function OnlineExistingDonar() {
                       ) : null}
                       {isCSRGift ? (
                         <div className=" mb10"> <p>
-                          For CSR related enquireis please reach us at Gangar Sunny GANGAR.SUNNY@mahindra.com 93224 56789
+                          For CSR Queries contact <a href="mailto:support@hariyali.org.in">
+                          support@hariyali.org.in
+                        </a>{" "}| 022 22021031
                         </p></div>
                       ) : null}
 
