@@ -19,7 +19,7 @@ const RecipientDetails = ({
                 <div className="col-12 col-lg-4 ">
                   First Name <span className="red-text">*</span>
                 </div>
-                <div className="col-12 col-lg-8 p0">
+                <div className="col-12 col-lg-8">
                   <input
                     className="form-control-inside"
                     name="firstName"
@@ -46,7 +46,7 @@ const RecipientDetails = ({
                 <div className="col-12 col-lg-4 ">
                   Last Name <span className="red-text">*</span>
                 </div>
-                <div className="col-12 col-lg-8 p0">
+                <div className="col-12 col-lg-8">
                   <input
                     className="form-control-inside"
                     name="lastName"
@@ -74,7 +74,7 @@ const RecipientDetails = ({
                   Mobile Number
                   {/* <span className="red-text">*</span> */}
                 </div>
-                <div className="col-12 col-lg-8 p0">
+                <div className="col-12 col-lg-8">
                   <input
                     className="form-control-inside"
                     name="mobileNo"
@@ -102,7 +102,7 @@ const RecipientDetails = ({
                 <div className="col-12 col-lg-4 ">
                   Email Id <span className="red-text">*</span>
                 </div>
-                <div className="col-12 col-lg-8 p0">
+                <div className="col-12 col-lg-8">
                   <input
                     className="form-control-inside"
                     name="emailId"
@@ -133,7 +133,7 @@ const RecipientDetails = ({
                   Street 1 
                   {/* <span className="red-text">*</span> */}
                 </div>
-                <div className="col-12 col-lg-8 p0">
+                <div className="col-12 col-lg-8">
                   <input
                     className="form-control-inside"
                     name="street1"
@@ -159,7 +159,7 @@ const RecipientDetails = ({
             <div className="col-12 col-lg-6">
               <div className="row select-label">
                 <div className="col-12 col-lg-4 "> Street 2</div>
-                <div className="col-12 col-lg-8 p0">
+                <div className="col-12 col-lg-8">
                   <input
                     className="form-control-inside"
                     name="street2"
@@ -174,7 +174,7 @@ const RecipientDetails = ({
             <div className="col-12 col-lg-6">
               <div className="row select-label">
                 <div className="col-12 col-lg-4 "> Street 3</div>
-                <div className="col-12 col-lg-8 p0">
+                <div className="col-12 col-lg-8">
                   <input
                     className="form-control-inside"
                     name="street3"
@@ -191,7 +191,7 @@ const RecipientDetails = ({
               <div className="col-12 col-lg-4 ">Country 
               {/* <span className="red-text">*</span> */}
               </div>
-                <div className="col-12 col-lg-8 p0">
+                <div className="col-12 col-lg-8">
                   <select
                     className=" form-control-inside form-select"
                     name="country"
@@ -228,7 +228,7 @@ const RecipientDetails = ({
                 <div className="col-12 col-lg-4 "> State 
                 {/* <span className="red-text">*</span> */}
                 </div>
-                <div className="col-12 col-lg-8 p0">
+                <div className="col-12 col-lg-8">
                   {
                     states?.length === 0 ?
                     <input
@@ -275,7 +275,7 @@ const RecipientDetails = ({
             <div className="col-12 col-lg-6">
               <div className="row select-label">
                 <div className="col-12 col-lg-4 ">City</div>
-                <div className="col-12 col-lg-8 p0">
+                <div className="col-12 col-lg-8">
                   <input
                     className="form-control-inside"
                     name="city"
@@ -302,7 +302,7 @@ const RecipientDetails = ({
                 <div className="col-12 col-lg-4 ">Postal Code 
                 {/* <span className="red-text">*</span> */}
                 </div>
-                <div className="col-12 col-lg-8 p0">
+                <div className="col-12 col-lg-8">
                   <input
                     className="form-control-inside"
                     name="postalCode"
