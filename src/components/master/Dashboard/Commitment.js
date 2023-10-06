@@ -96,7 +96,7 @@ const Commitment = () => {
         toast.success(response)
         setLoading(false);
       } else {
-        toast.error(response?.message);
+        toast.error("Something went wrong, Please try again later");
         setLoading(false);
       }
     }
@@ -110,7 +110,7 @@ const Commitment = () => {
         toast.success(response)
         setLoading(false);
       } else {
-        //toast.error(response?.message);
+        toast.error("Something went wrong, Please try again later");
         setLoading(false);
       }
   };
