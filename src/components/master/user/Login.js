@@ -150,7 +150,7 @@ function Login() {
         });
       }, 2000);
     } else {
-      toast.error("Invalid Donor Id. Please Try Again");
+      toast.error("Invalid entry, Please try again.");
       setLoading(false);
       setDonarID("");
     }
@@ -172,7 +172,7 @@ function Login() {
       toast.success("Otp sent successfully on your registered email Id");
       setLoading(false);
     } else {
-      toast.error("Invalid Donor Id. Please Try Again");
+      toast.error("Invalid entry, Please try again.");
       setLoading(false);
     }
     //  }

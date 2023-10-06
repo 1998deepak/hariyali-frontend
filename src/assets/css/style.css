@@ -2498,8 +2498,8 @@ tr td input {
 
 .page-scroll {
   margin-top: 80px;
-  margin-left: 258px;
-  width: calc(100% - 247px);
+  margin-left: 250px;
+  width: calc(100% - 250px);
 }
 
 .css-1wvake5.ps-collapsed .sidebartext {
@@ -5506,6 +5506,7 @@ video {
   .page-scroll{
     margin:0;
     margin-top: 70px;
+    width: 100%;
   }
   .selftGift-tab .nav-item .nav-link{
     font-size: 1rem;
@@ -5535,6 +5536,21 @@ video {
   }
   .banner-associate{
     min-height: 300px;
+  }
+  .leftmenu-main aside{
+    position: fixed;
+    left: 0;
+    margin-top: 62px;
+    z-index: 99;
+    transform: translateX(-100%);
+  }
+  .css-1wvake5{
+    margin-top: 0;
+  }
+  .open-nav .leftmenu-main aside{
+    transform: translateX(0);
+    animation: transform 0.5ms ease-in 0.5ms;
+    z-index: 99;
   }
 }
 
@@ -5730,22 +5746,6 @@ video {
   }
   .page-scroll {
     margin-right: 0;
-    width: calc(100% - 30px);
-    /* margin-top:0; */
-  }
-  .leftmenu-main aside{
-    position: fixed;
-    left: 0;
-    margin-top: 62px;
-    transform: translateX(-100%);
-  }
-  .css-1wvake5{
-    margin-top: 0;
-  }
-  .open-nav .leftmenu-main aside{
-    transform: translateX(0);
-    animation: transform 0.5ms ease-in 0.5ms;
-    z-index: 99;
   }
   .home-page-slider .slide-content{
     display: block;
