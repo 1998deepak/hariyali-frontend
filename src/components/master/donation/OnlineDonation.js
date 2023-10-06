@@ -725,7 +725,7 @@ function OnlineDonation() {
 
     console.log(validationErrors);
 
-    const errorMessages = validationerrors.map(
+    const errorMessages = validationErrors.map(
       (error) => `${error.field}: ${error.message}`
     );
     const errorMessageString = errorMessages.join("\n");
