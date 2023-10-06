@@ -11,7 +11,7 @@ import PrivacyPolicyPopup from "../../common/popup/PrivacyPolicyPopup";
 
 function UserUpdate() {
   const [privacyPolicy, setPrivacyPolicy] = useState(false);
-  const [informationShare, setInformationShare] = useState(false);
+  const [informationShare, setInformationShare] = useState("yes");
   const [showConditons, setShowConditons] = useState(false);
   // Initial Data for user
   const initialUserData = {

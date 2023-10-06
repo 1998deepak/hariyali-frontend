@@ -38,7 +38,7 @@ function OnlineDonation() {
   const [gatewayConfiguration, setGatewayConfiguration] = useState(null);
   const [privacyPolicy1, setPrivacyPolicy1] = useState(false);
   const [privacyPolicy2, setPrivacyPolicy2] = useState(false);
-  const [informationShare, setInformationShare] = useState(false);
+  const [informationShare, setInformationShare] = useState("yes");
 
   const [donation, setDonation] = useState("");
 
@@ -517,7 +517,7 @@ function OnlineDonation() {
         }
       }
     } else {
-      if (!userData?.user?.passport) {
+      if (!userData?.user?.country?.toUpperCase() === INDIA && !userData?.user?.passport) {
         validationErrors.push({
           field: "userData.user.passport",
           message: "Passport is required",
@@ -783,6 +783,7 @@ function OnlineDonation() {
       donationType == "self" ? "self-donate" : "gift-donate"
     );
     console.log("isValid:", isValid);
+    console.log(informationShare);
     if (!privacyPolicy1) {
       setPrivacyPolicymessage("Please accept privacy policy");
     } else if (!privacyPolicy2) {
