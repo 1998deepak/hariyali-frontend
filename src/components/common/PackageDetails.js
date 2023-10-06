@@ -60,7 +60,7 @@ const PackageDetails = ({
                       className="form-control-inside bouquets-field"
                       value={packageItem.noOfBouquets}
                       onChange={(event) => {
-                        // if (event.target.value < 0) {
+                        // if (event.target.value <= 0) {
                         //   event.target.value = 0;
                         // }
                         handleChangeNumberOfBouquets(event, packageItem, index);
