@@ -44,7 +44,7 @@ function Login() {
           <h5>THANKS FOR YOUR INTEREST IN HARIYALI</h5>
           <p>
             Please provide your UserName and password, so we can help you
-            better!
+            better
           </p>
           <div className="col-12">
             <form

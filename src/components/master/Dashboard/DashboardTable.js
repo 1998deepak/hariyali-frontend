@@ -159,13 +159,13 @@ const DashboardTable = () => {
   const getPlantationList = async (pageNo) => {
     setPageNo(pageNo +1)
     if (selectedYear == null) {
-      toast.error("Please select plantation year!");
+      toast.error("Please select plantation year");
     } else if (selectedSeason == null) {
-      toast.error("Please select season!");
+      toast.error("Please select season");
     } else if (selectedDistricts == null) {
-      toast.error("Please select districts!");
+      toast.error("Please select districts");
     } else if (selectedCities == null) {
-      toast.error("Please select cities!");
+      toast.error("Please select cities");
     } else {
       setLoading(true);
       let districtList = "";
@@ -217,13 +217,13 @@ const DashboardTable = () => {
   //Export Excel File Using Season Type
   const handleDownload = async () => {
     if (selectedYear == null) {
-      toast.error("Please select plantation year!");
+      toast.error("Please select plantation year");
     } else if (selectedSeason == null) {
-      toast.error("Please select season!");
+      toast.error("Please select season");
     } else if (selectedDistricts == null) {
-      toast.error("Please select districts!");
+      toast.error("Please select districts");
     } else if (selectedCities == null) {
-      toast.error("Please select cities!");
+      toast.error("Please select cities");
     } else {
       let districtList = "";
       selectedDistricts.map(data => {

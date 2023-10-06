@@ -42,18 +42,18 @@ const ChangePassword = () => {
   const checkCurrentPasswordMatch = async () => {
     console.log(userDetails.password);
     if (userDetails.password != formData.currentPassword) {
-      setErrors({ ...errors, ["currentPassword"]: "Current password does not match!" });
+      setErrors({ ...errors, ["currentPassword"]: "Current password does not match" });
     }
   }
 
   const checkNewPasswordMatch = async () => {
     let valid = validPassword(formData.newPassword);
     if (formData.newPassword == '') {
-      setErrors({ ...errors, ["newPassword"]: "New password is empty!" });
+      setErrors({ ...errors, ["newPassword"]: "New password is empty" });
     } else if (userDetails.password == formData.newPassword) {
-      setErrors({ ...errors, ["newPassword"]: "New password is same as old password!" });
+      setErrors({ ...errors, ["newPassword"]: "New password is same as old password" });
     } else if(!valid){
-      setErrors({ ...errors, ["newPassword"]: "Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character!" });
+      setErrors({ ...errors, ["newPassword"]: "Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character" });
     } else{
       checkConfirmPasswordMatch();
     }
@@ -61,25 +61,25 @@ const ChangePassword = () => {
 
   const checkConfirmPasswordMatch = async () => {
     if (formData.confirmPassword == '') {
-      setErrors({ ...errors, ["confirmPassword"]: "Confirm password is empty!" });
+        setErrors({ ...errors, ["confirmPassword"]: "Confirm password is empty" });
     } else if (formData.confirmPassword != "" && formData.newPassword != formData.confirmPassword) {
-      setErrors({ ...errors, ["confirmPassword"]: "Confirm password does not match with confirm password!" });
+      setErrors({ ...errors, ["confirmPassword"]: "Confirm password does not match with confirm password" });
     }
   }
 
   const changePasswordAPI = async () => {
     if (userDetails.password != formData.currentPassword) {
-      setErrors({ ...errors, ["currentPassword"]: "Current password does not match!" });
+      setErrors({ ...errors, ["currentPassword"]: "Current password does not match" });
     } else if (formData.newPassword == '') {
-      setErrors({ ...errors, ["newPassword"]: "New password is empty!" });
+      setErrors({ ...errors, ["newPassword"]: "New password is empty" });
     } else if (userDetails.password == formData.newPassword) {
-      setErrors({ ...errors, ["newPassword"]: "New password is same as old password!" });
+      setErrors({ ...errors, ["newPassword"]: "New password is same as old password" });
     } else if (formData.newPassword.length < 8) {
-      setErrors({ ...errors, ["newPassword"]: "Minimum 8 character long password required!" });
+      setErrors({ ...errors, ["newPassword"]: "Minimum 8 character long password required" });
     } else if (formData.confirmPassword == '') {
-      setErrors({ ...errors, ["confirmPassword"]: "Confirm password is empty!" });
+      setErrors({ ...errors, ["confirmPassword"]: "Confirm password is empty" });
     } else if (formData.confirmPassword != "" && formData.newPassword != formData.confirmPassword) {
-      setErrors({ ...errors, ["confirmPassword"]: "Confirm password does not match with confirm password!" });
+      setErrors({ ...errors, ["confirmPassword"]: "Confirm password does not match with confirm password" });
     } else {
       setLoading(true);
 

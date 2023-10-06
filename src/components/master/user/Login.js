@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import logo from "../../../assets/img/logotrans.png";
 import Captcha from "./Captcha";
 import ReactPasswordToggleIcon from "react-password-toggle-icon";
@@ -22,7 +22,6 @@ function Login() {
     password: "",
   });
   const inputRef = useRef(false);
-  const [redirectFlag, setRedirectFlag] = useState(false);
   const [verified, setVerified] = useState(false);
   const [errors, setErrors] = useState({
     username: "",
@@ -65,13 +64,12 @@ function Login() {
             JSON.stringify(formData)
           );
           localStorage.setItem(USER_DETAILS, userDetails);
-          toast.success("OTP Send Successfully!");
+          toast.success("Otp sent successfully on your registered email Id");
           setIsHidden(!isHidden);
           setIsHide(!isHide);
           setLoading(false);
         } else {
-          toast.error("Email / Password wrong");
-          //toast.error(response?.data);
+            toast.error(response.data);
           setLoading(false);
         }
       } else {
@@ -82,7 +80,6 @@ function Login() {
   };
 
   const [otp, setOtp] = useState("");
-  const [verificationStatus, setVerificationStatus] = useState("");
   const [isHidden, setIsHidden] = useState(true);
   const [isHide, setIsHide] = useState(true);
 
@@ -95,10 +92,8 @@ function Login() {
       setLoading(true);
       if (response) {
         if (response?.status === SUCCESS) {
-          //console.log(response?.data.token);
           localStorage.setItem(TOKEN, response?.token);
           // Assuming the response contains a 'status' or 'message' field indicating the verification status
-          setVerificationStatus(response.status);
           const { roleId } = UserService.getUserDetailsFromToken(
             response?.token
           );
@@ -112,22 +107,19 @@ function Login() {
               navigate("/UserDonation");
             }, 2000);
           }
-          toast.success("Successfully Login!");
+          toast.success("Successfully Login");
         } else {
-          toast.error("Invalid OTP!");
+          toast.error("Invalid OTP");
           console.log("Response: " + response.status);
         }
         setLoading(false);
       } else {
-        //toast.error("Invalid credentials ! Username or Password Incorrect");
         console.log("Failed To Login");
         setLoading(false);
       }
     } catch (error) {
       console.error(error);
-      //console.log(error.response.data.message);
       toast.success("OTP verification failed");
-      setVerificationStatus("OTP verification failed");
       setLoading(false);
     }
   };
@@ -150,7 +142,7 @@ function Login() {
     console.log(response);
     console.log(response?.status === SUCCESS);
     if (response?.status === SUCCESS) {
-      toast.success("Email sent successfully!");
+      toast.success("Email sent successfully");
       setLoading(false);
       setTimeout(() => {
         navigate("/OtpId", {
@@ -158,7 +150,7 @@ function Login() {
         });
       }, 2000);
     } else {
-      toast.error("Invalid Donor Id ! Please Try Again");
+      toast.error("Invalid entry, Please try again.");
       setLoading(false);
       setDonarID("");
     }
@@ -177,18 +169,15 @@ function Login() {
     console.log(response);
     console.log(response?.status === SUCCESS);
     if (response?.status === SUCCESS) {
-      toast.success("Otp sent successfully on your registered email Id !");
+      toast.success("Otp sent successfully on your registered email Id");
       setLoading(false);
     } else {
-      toast.error("Invalid Donor Id ! Please Try Again");
+      toast.error("Invalid entry, Please try again.");
       setLoading(false);
     }
     //  }
   };
 
-  if (redirectFlag === true) {
-    return navigate("/Dashboard");
-  }
   // hide show forgot link
   const forgotLink = (e) => {
     e.preventDefault();
@@ -232,11 +221,6 @@ function Login() {
           id="loginDiv"
           className="row justify-content-between contact-form-wrap login-wrapper"
         >
-          {/* <h5>THANKS FOR YOUR INTEREST IN HARIYALI</h5> */}
-          {/* <p>
-            Please provide your UserName and password, so we can help you
-            better!
-          </p> */}
           <div className="loginlogo">
             <img src={logo} alt="Logo" />
           </div>

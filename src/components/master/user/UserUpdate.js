@@ -259,7 +259,7 @@ function UserUpdate() {
                       <div className="col-12 col-lg-6">
                         <div className="row select-label">
                           <div className="col-12 col-lg-4"> Donor ID</div>
-                          <div className="col-12 col-lg-8 p0">
+                          <div className="col-12 col-lg-8">
                             <input
                               className="form-control-inside form-control"
                               type="text"
@@ -280,7 +280,7 @@ function UserUpdate() {
                       <div className="col-12 col-lg-6">
                         <div className="row select-label">
                           <div className="col-12 col-lg-4"> Email ID</div>
-                          <div className="col-12 col-lg-8 p0">
+                          <div className="col-12 col-lg-8">
                             <input
                               className="form-control-inside form-control"
                               type="text"
@@ -304,7 +304,7 @@ function UserUpdate() {
                           <div className="col-12 col-lg-4">
                             Mobile Number<span className="red-text">*</span>
                           </div>
-                          <div className="col-12 col-lg-8 p0">
+                          <div className="col-12 col-lg-8">
                             <input
                               className="form-control-inside form-control"
                               type="text"
@@ -325,7 +325,7 @@ function UserUpdate() {
                       <div className="col-12 col-lg-6">
                         <div className="row select-label">
                           <div className="col-12 col-lg-4"> Donor Type</div>
-                          <div className="col-12 col-lg-8 p0">
+                          <div className="col-12 col-lg-8">
                             <select
                               className=" form-control-inside form-select"
                               name="donarType"
@@ -348,7 +348,7 @@ function UserUpdate() {
                       <div className="col-12 col-lg-6">
                         <div className="row select-label">
                           <div className="col-12 col-lg-4"> Organisation</div>
-                          <div className="col-12 col-lg-8 p0">
+                          <div className="col-12 col-lg-8">
                             <input
                               className="form-control-inside form-control"
                               name="organisation"
@@ -364,7 +364,7 @@ function UserUpdate() {
                       <div className="col-12 col-lg-6">
                         <div className="row select-label">
                           <div className="col-12 col-lg-4">Prefix</div>
-                          <div className="col-12 col-lg-8 p0">
+                          <div className="col-12 col-lg-8">
                             <select
                               className=" form-control-inside form-select"
                               value={userData.prefix}
@@ -383,7 +383,7 @@ function UserUpdate() {
                       <div className="col-12 col-lg-6">
                         <div className="row select-label">
                           <div className="col-12 col-lg-4">First Name</div>
-                          <div className="col-12 col-lg-8 p0">
+                          <div className="col-12 col-lg-8">
                             <input
                               className="form-control-inside form-control"
                               type="text"
@@ -404,7 +404,7 @@ function UserUpdate() {
                       <div className="col-12 col-lg-6">
                         <div className="row select-label">
                           <div className="col-12 col-lg-4">Last Name</div>
-                          <div className="col-12 col-lg-8 p0">
+                          <div className="col-12 col-lg-8">
                             <input
                               className="form-control-inside form-control"
                               type="text"
@@ -426,7 +426,7 @@ function UserUpdate() {
                       <div id="pan" className="col-12 col-lg-6" style={{display:"block"}}>
                         <div className="row select-label">
                           <div className="col-12 col-lg-4">PAN card</div>
-                          <div className="col-12 col-lg-8 p0">
+                          <div className="col-12 col-lg-8">
                             <input
                               className="form-control-inside form-control"
                               placeholder="PAN card No."
@@ -443,7 +443,7 @@ function UserUpdate() {
                       <div id="aadhaar" className="col-12 col-lg-6" style={{display:"none"}}>
                         <div className="row select-label">
                           <div className="col-12 col-lg-4">AADHAAR Card</div>
-                          <div className="col-12 col-lg-8 p0">
+                          <div className="col-12 col-lg-8">
                             <input
                               className="form-control-inside form-control"
                               placeholder="AADHAAR Card Number"
@@ -470,7 +470,7 @@ function UserUpdate() {
                                 {" "}
                                 Street 1 <span className="red-text">*</span>
                               </div>
-                              <div className="col-12 col-lg-8 p0">
+                              <div className="col-12 col-lg-8">
                                 <input
                                   className="form-control-inside form-control"
                                   name="street1"
@@ -492,7 +492,7 @@ function UserUpdate() {
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
                               <div className="col-12 col-lg-4"> Street 2</div>
-                              <div className="col-12 col-lg-8 p0">
+                              <div className="col-12 col-lg-8">
                                 <input
                                   className="form-control-inside form-control"
                                   name="street2"
@@ -509,7 +509,7 @@ function UserUpdate() {
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
                               <div className="col-12 col-lg-4"> Street 3</div>
-                              <div className="col-12 col-lg-8 p0">
+                              <div className="col-12 col-lg-8">
                                 <input
                                   className="form-control-inside form-control"
                                   name="street3"
@@ -528,7 +528,7 @@ function UserUpdate() {
                               <div className="col-12 col-lg-4 ">
                                 Country<span className="red-text">*</span>
                               </div>
-                              <div className="col-12 col-lg-8 p0">
+                              <div className="col-12 col-lg-8">
                                 <select
                                   className="form-control-inside form-select"
                                   name="country"
@@ -567,7 +567,7 @@ function UserUpdate() {
                                 {" "}
                                 State <span className="red-text">*</span>{" "}
                               </div>
-                              <div className="col-12 col-lg-8 p0">
+                              <div className="col-12 col-lg-8">
                                 {states?.length === 0 ? (
                                   <input
                                     type="text"
@@ -614,7 +614,7 @@ function UserUpdate() {
                           <div className="col-12 col-lg-6">
                             <div className="row select-label">
                               <div className="col-12 col-lg-4">City</div>
-                              <div className="col-12 col-lg-8 p0">
+                              <div className="col-12 col-lg-8">
                                 <input
                                   className="form-control-inside form-control"
                                   name="city"
@@ -638,7 +638,7 @@ function UserUpdate() {
                               <div className="col-12 col-lg-4">
                                 Postal Code<span className="red-text">*</span>
                               </div>
-                              <div className="col-12 col-lg-8 p0">
+                              <div className="col-12 col-lg-8">
                                 <input
                                   className="form-control-inside form-control"
                                   name="postalCode"

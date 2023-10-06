@@ -599,15 +599,10 @@ function WaystoAssociate() {
                 <p>
                   <address>
                     {" "}
-                    For CSR Queries contact Sunny Gangar{" "}
-                    <a href="mail:csr@hariyali.org.in">
-                      <i className="bi bi-envelope-fill"></i>{" "}
-                      csr@hariyali.org.in
-                    </a>{" "}
-                    |{" "}
-                    <a href="tel:93224 56789 ">
-                      <i className="bi bi-phone"></i> 93224 56789{" "}
-                    </a>{" "}
+                    For CSR Queries contact {" "}
+                    <a href="mailto:support@hariyali.org.in">
+                    <i className="bi bi-envelope-fill"></i>{" "}support@hariyali.org.in
+                        </a>{" "}
                     |{" "}
                     <a href="tel: 022 22021031">
                       <i className="bi bi-telephone-fill"></i> 022 22021031
