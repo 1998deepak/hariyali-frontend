@@ -38,7 +38,7 @@ function OnlineDonation() {
   const [gatewayConfiguration, setGatewayConfiguration] = useState(null);
   const [privacyPolicy1, setPrivacyPolicy1] = useState(false);
   const [privacyPolicy2, setPrivacyPolicy2] = useState(false);
-  const [informationShare, setInformationShare] = useState(false);
+  const [informationShare, setInformationShare] = useState("yes");
 
   const [donation, setDonation] = useState("");
 
@@ -725,7 +725,7 @@ function OnlineDonation() {
 
     console.log(validationErrors);
 
-    const errorMessages = validationerrors.map(
+    const errorMessages = validationErrors.map(
       (error) => `${error.field}: ${error.message}`
     );
     const errorMessageString = errorMessages.join("\n");
@@ -786,6 +786,7 @@ function OnlineDonation() {
       donationType == "self" ? "self-donate" : "gift-donate"
     );
     console.log("isValid:", isValid);
+    console.log(informationShare);
     if (!privacyPolicy1) {
       setPrivacyPolicymessage("Please accept privacy policy");
     } else if (!privacyPolicy2) {

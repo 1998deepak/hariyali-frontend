@@ -95,6 +95,32 @@ export const PlantationService = {
       } 
     }
   },
+  getYear1Report: async (id) => {
+    console.log(id);
+    try {
+      const response = await APIService.Instance.post(
+        URLS.YEAR1REPORT+"?plantationId="+id
+      );
+      return response?.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } 
+    }
+  },
+  getYear2Report: async (id) => {
+    console.log(id);
+    try {
+      const response = await APIService.Instance.post(
+        URLS.YEAR2REPORT+"?plantationId="+id
+      );
+      return response?.data;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } 
+    }
+  },
   exportExcel: async (data) => {
     try {
       const response = await APIService.Instance.post(

@@ -75,5 +75,8 @@ export const URLS = {
     RESEND_OTP:"/reSendOtp",
 
     APPROVE_USER_DONATION: "/approveUserDonation",
+
+    YEAR1REPORT : "plantation/sendPlantationYear1Report",
+    YEAR2REPORT : "plantation/sendPlantationYear2Report"
     
 };

@@ -87,6 +87,34 @@ const Commitment = () => {
     }
   };
 
+  const getYear1Report = async (row) => {
+    setLoading(true);
+      console.log(row.id);
+      const response = await PlantationService.getYear1Report(row.id);
+      console.log(response);
+      if (response) {
+        toast.success(response)
+        setLoading(false);
+      } else {
+        toast.error(response?.message);
+        setLoading(false);
+      }
+    }
+
+  const getYear2Report = async (row) => {
+    setLoading(true);
+      console.log(row.id);
+      const response = await PlantationService.getYear2Report(row.id);
+      console.log(response);
+      if (response) {
+        toast.success(response)
+        setLoading(false);
+      } else {
+        //toast.error(response?.message);
+        setLoading(false);
+      }
+  };
+
 
   useEffect(() => {
     getYears();
@@ -183,8 +211,8 @@ const Commitment = () => {
                       <td>{commitment.plantationMaster?.plantationDateString}</td>
                       <td>{commitment.plantationMaster?.season}</td>
                       <td>
-                        <a href='javascript:void(0)' title='Year1 Report'><HiOutlineDocumentReport /></a> &nbsp; &nbsp;
-                        <a href='javascript:void(0)' title='Year2 Report'><HiOutlineDocumentReport /></a>
+                        <a href='javascript:void(0)' title='Year1 Report' onClick={() => {getYear1Report(commitment)}}><HiOutlineDocumentReport /></a> &nbsp; &nbsp;
+                        <a href='javascript:void(0)' title='Year2 Report' onClick={() => {getYear2Report(commitment)}}><HiOutlineDocumentReport /></a>
                       </td>
                     </tr>
                   )

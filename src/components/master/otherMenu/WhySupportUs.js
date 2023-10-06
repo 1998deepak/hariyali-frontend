@@ -300,9 +300,9 @@ function WhySupportUs() {
             </h3>
             <p className="text-center">
               Project Hariyali is a unique blend in the sphere of environmental
-              sustainability and impacting livelihood. The Project is already
-              contributing towards mission LiFE & India’s commitment towards
-              carbon neutrality.
+              sustainability and impacting livelihood. Project Hariyali is
+              already contributing towards mission LiFE & India’s commitment
+              towards carbon neutrality.
             </p>
           </div>
           <div className="justify-content-center quantitative-card">
