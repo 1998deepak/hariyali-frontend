@@ -517,7 +517,10 @@ function OnlineDonation() {
         }
       }
     } else {
-      if (!userData?.user?.passport) {
+      if (
+        !userData?.user?.country?.toUpperCase() === INDIA &&
+        !userData?.user?.passport
+      ) {
         validationErrors.push({
           field: "userData.user.passport",
           message: "Passport is required",
@@ -722,7 +725,7 @@ function OnlineDonation() {
 
     console.log(validationErrors);
 
-    const errorMessages = validationErrors.map(
+    const errorMessages = validationerrors.map(
       (error) => `${error.field}: ${error.message}`
     );
     const errorMessageString = errorMessages.join("\n");
@@ -1122,14 +1125,10 @@ function OnlineDonation() {
     console.log(updatedAddress);
     updatedAddress[index].address[index][name] = value;
     if (data) {
-      updatedAddress[index] = {
-        ...updatedAddress[index],
-        ["state"]: "",
-      };
+      updatedAddress[index].address[index]["state"] = "";
     }
     setRecipient(updatedAddress);
     if (data) {
-      recipient[index].state = "";
       getStatesByCountry(data.countryCode, "Receipient");
     }
     return updatedAddress;
@@ -1143,7 +1142,6 @@ function OnlineDonation() {
       }
     }
   };
-
 
   const [emailError, setMailError] = useState("");
 

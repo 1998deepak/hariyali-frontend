@@ -1572,7 +1572,7 @@ function OfflineDonation() {
                                   {" "}
                                   Email ID <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -1608,7 +1608,7 @@ function OfflineDonation() {
                                   Mobile Number
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -1643,7 +1643,7 @@ function OfflineDonation() {
                                   {" "}
                                   Donor Type <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.donarType"
@@ -1684,7 +1684,7 @@ function OfflineDonation() {
                                   Citizenship{" "}
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.citizenship"
@@ -1733,7 +1733,7 @@ function OfflineDonation() {
                                     Organisation{" "}
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="user.organisation"
@@ -1771,7 +1771,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   Prefix <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.prefix"
@@ -1810,7 +1810,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   First Name <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -1843,7 +1843,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   Last Name <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -1917,7 +1917,7 @@ function OfflineDonation() {
                                         PAN Card{" "}
                                         <span className="red-text">*</span>
                                       </div>
-                                      <div className="col-12 col-lg-8 p0 ">
+                                      <div className="col-12 col-lg-8 ">
                                         <input
                                           className="form-control-inside form-control"
                                           name="user.panCard"
@@ -1963,7 +1963,7 @@ function OfflineDonation() {
                                         AADHAAR Card{" "}
                                         <span className="red-text">*</span>
                                       </div>
-                                      <div className="col-12 col-lg-8 p0 ">
+                                      <div className="col-12 col-lg-8 ">
                                         <input
                                           className="form-control-inside form-control"
                                           name="user.addharCard"
@@ -2003,7 +2003,7 @@ function OfflineDonation() {
                                       Passport{" "}
                                       <span className="red-text">*</span>
                                     </div>
-                                    <div className="col-12 col-lg-8 p0">
+                                    <div className="col-12 col-lg-8">
                                       <input
                                         className="form-control-inside form-control"
                                         name="user.passport"
@@ -2078,7 +2078,7 @@ function OfflineDonation() {
                                       <div className="col-12 col-lg-6">
                                     <div className="row select-label">
                                     <div className="col-12 col-lg-4 clicks">Passport{" "} <span className="red-text">*</span></div>
-                                      <div className="col-12 col-lg-8 p0">
+                                      <div className="col-12 col-lg-8">
                                         <input
                                           className="form-control-inside form-control"
                                           name="user.passport"
@@ -2119,7 +2119,7 @@ function OfflineDonation() {
                                         <div className="col-12 col-lg-6">
                                     <div className="row select-label">
                                     <div className="col-12 col-lg-4">Tin Number{" "} <span className="red-text">*</span></div>
-                                      <div className="col-12 col-lg-8 p0">
+                                      <div className="col-12 col-lg-8">
                                         <input
                                           className="form-control-inside form-control"
                                           name="user.tinNumber"
@@ -2170,7 +2170,7 @@ function OfflineDonation() {
                                   {" "}
                                   Street 1 <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="street1"
@@ -2204,7 +2204,7 @@ function OfflineDonation() {
                                   {" "}
                                   Street 2
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="street2"
@@ -2224,7 +2224,7 @@ function OfflineDonation() {
                                   {" "}
                                   Street 3
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="street3"
@@ -2241,7 +2241,7 @@ function OfflineDonation() {
                             {/* <div className="col-12 col-lg-6">
                               <div className="row select-label">
                                 <div className="col-12 col-lg-4 ">Country <span className="red-text">*</span></div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="country"
@@ -2267,7 +2267,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   Country <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="country"
@@ -2313,7 +2313,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   State <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0 ">
+                                <div className="col-12 col-lg-8 ">
                                   {stateFlag ?
                                   <select
                                     className=" form-control-inside form-select form-control"
@@ -2371,7 +2371,7 @@ function OfflineDonation() {
                                   <div className="col-12 col-lg-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-12 col-lg-8 p0 ">
+                                  <div className="col-12 col-lg-8 ">
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="state"
@@ -2415,7 +2415,7 @@ function OfflineDonation() {
                                   <div className="col-12 col-lg-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside form-control"
                                       name="state"
@@ -2451,7 +2451,7 @@ function OfflineDonation() {
                                   {" "}
                                   City <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="city"
@@ -2485,7 +2485,7 @@ function OfflineDonation() {
                                   Postal Code{" "}
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="postalCode"
@@ -2539,7 +2539,7 @@ function OfflineDonation() {
                                     {" "}
                                     Street 1
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="street1"
@@ -2560,7 +2560,7 @@ function OfflineDonation() {
                                     {" "}
                                     Street 2
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="street2"
@@ -2580,7 +2580,7 @@ function OfflineDonation() {
                                     {" "}
                                     Street 3
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="street3"
@@ -2597,7 +2597,7 @@ function OfflineDonation() {
                               {/* <div className="col-12 col-lg-6">
                                 <div className="row select-label">
                                   <div className="col-12 col-lg-4 ">Country <span className="red-text">*</span></div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="country"
@@ -2663,7 +2663,7 @@ function OfflineDonation() {
                                   <div className="col-12 col-lg-4 ">
                                     State<span className="red-text">*</span>
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
 
                                     <select
                                       className=" form-control-inside form-select"
@@ -2690,7 +2690,7 @@ function OfflineDonation() {
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
                                   <div className="col-12 col-lg-4 ">City</div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="city"
@@ -2710,7 +2710,7 @@ function OfflineDonation() {
                                   <div className="col-12 col-lg-4 ">
                                     Postal Code
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="postalCode"
@@ -2774,7 +2774,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   Occasion <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="donationEvent"
@@ -2889,7 +2889,7 @@ function OfflineDonation() {
                                   {" "}
                                   Email ID <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -2924,7 +2924,7 @@ function OfflineDonation() {
                                   Mobile Number
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -2958,7 +2958,7 @@ function OfflineDonation() {
                                   {" "}
                                   Donor Type <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.donarType"
@@ -2999,7 +2999,7 @@ function OfflineDonation() {
                                   Citizenship{" "}
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.citizenship"
@@ -3048,7 +3048,7 @@ function OfflineDonation() {
                                     Organisation{" "}
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="user.organisation"
@@ -3085,7 +3085,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   Prefix <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.prefix"
@@ -3123,7 +3123,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   First Name <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -3155,7 +3155,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   Last Name <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -3231,7 +3231,7 @@ function OfflineDonation() {
                                         PAN Card{" "}
                                         <span className="red-text">*</span>
                                       </div>
-                                      <div className="col-12 col-lg-8 p0 ">
+                                      <div className="col-12 col-lg-8 ">
                                         <input
                                           className="form-control-inside form-control"
                                           name="user.panCard"
@@ -3277,7 +3277,7 @@ function OfflineDonation() {
                                         AADHAAR Card{" "}
                                         <span className="red-text">*</span>
                                       </div>
-                                      <div className="col-12 col-lg-8 p0 ">
+                                      <div className="col-12 col-lg-8 ">
                                         <input
                                           className="form-control-inside form-control"
                                           name="user.addharCard"
@@ -3317,7 +3317,7 @@ function OfflineDonation() {
                                       Passport{" "}
                                       <span className="red-text">*</span>
                                     </div>
-                                    <div className="col-12 col-lg-8 p0">
+                                    <div className="col-12 col-lg-8">
                                       <input
                                         className="form-control-inside form-control"
                                         name="user.passport"
@@ -3373,7 +3373,7 @@ function OfflineDonation() {
                                   {" "}
                                   Street 1 <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="street1"
@@ -3406,7 +3406,7 @@ function OfflineDonation() {
                                   {" "}
                                   Street 2
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="street2"
@@ -3426,7 +3426,7 @@ function OfflineDonation() {
                                   {" "}
                                   Street 3
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="street3"
@@ -3443,7 +3443,7 @@ function OfflineDonation() {
                             {/* <div className="col-12 col-lg-6">
                               <div className="row select-label">
                                 <div className="col-12 col-lg-4 ">Country <span className="red-text">*</span></div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="country"
@@ -3468,7 +3468,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   Country <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="country"
@@ -3514,7 +3514,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   State <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0 ">
+                                <div className="col-12 col-lg-8 ">
                                   {stateFlag ? 
                                   <select
                                     className=" form-control-inside form-select form-control"
@@ -3572,7 +3572,7 @@ function OfflineDonation() {
                                   <div className="col-12 col-lg-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-12 col-lg-8 p0 ">
+                                  <div className="col-12 col-lg-8 ">
                                     <select
                                       className=" form-control-inside form-select form-control"
                                       name="state"
@@ -3616,7 +3616,7 @@ function OfflineDonation() {
                                   <div className="col-12 col-lg-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside form-control"
                                       name="state"
@@ -3654,7 +3654,7 @@ function OfflineDonation() {
                                   {" "}
                                   State <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="state"
@@ -3688,7 +3688,7 @@ function OfflineDonation() {
                                   {" "}
                                   City <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="city"
@@ -3722,7 +3722,7 @@ function OfflineDonation() {
                                   Postal Code{" "}
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="postalCode"
@@ -3771,7 +3771,7 @@ function OfflineDonation() {
                                     First Name{" "}
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="firstName"
@@ -3806,7 +3806,7 @@ function OfflineDonation() {
                                     Last Name{" "}
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="lastName"
@@ -3841,7 +3841,7 @@ function OfflineDonation() {
                                     Mobile Number
                                     {/* <span className="red-text">*</span> */}
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="mobileNo"
@@ -3876,7 +3876,7 @@ function OfflineDonation() {
                                   <div className="col-12 col-lg-4 ">
                                     Email Id <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="emailId"
@@ -3914,7 +3914,7 @@ function OfflineDonation() {
                                     Street 1
                                     {/* <span className="red-text">*</span> */}
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="street1"
@@ -3951,7 +3951,7 @@ function OfflineDonation() {
                                     {" "}
                                     Street 2
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="street2"
@@ -3971,7 +3971,7 @@ function OfflineDonation() {
                                     {" "}
                                     Street 3
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="street3"
@@ -3991,7 +3991,7 @@ function OfflineDonation() {
                                     Country
                                     {/* <span className="red-text">*</span> */}
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <select
                                       className=" form-control-inside form-select"
                                       name="country"
@@ -4036,7 +4036,7 @@ function OfflineDonation() {
                                     State
                                     {/* <span className="red-text">*</span> */}
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     {!receipientStateflag ? (
                                       <input
                                         className=" form-control-inside"
@@ -4095,7 +4095,7 @@ function OfflineDonation() {
                                     City 
                                     {/* <span className="red-text">*</span> */}
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="city"
@@ -4132,7 +4132,7 @@ function OfflineDonation() {
                                     Postal Code 
                                     {/* <span className="red-text">*</span> */}
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="postalCode"
@@ -4221,7 +4221,7 @@ function OfflineDonation() {
                                   Donor ID / Email Id{" "}
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <SearchWithSuggestions
                                     data={userIdList}
                                     onClickSearch={handleSearchId}
@@ -4265,7 +4265,7 @@ function OfflineDonation() {
                                   {" "}
                                   Email ID <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -4292,7 +4292,7 @@ function OfflineDonation() {
                                   Mobile Number
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -4313,7 +4313,7 @@ function OfflineDonation() {
                                   {" "}
                                   Donor Type <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.donarType"
@@ -4348,7 +4348,7 @@ function OfflineDonation() {
                                     Organisation{" "}
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="user.organisation"
@@ -4376,7 +4376,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   Prefix <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.prefix"
@@ -4406,7 +4406,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   First Name <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -4430,7 +4430,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   Last Name <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -4455,7 +4455,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   PAN card <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="user.panCard"
@@ -4494,7 +4494,7 @@ function OfflineDonation() {
                                   {" "}
                                   Street 1 <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="street1"
@@ -4521,7 +4521,7 @@ function OfflineDonation() {
                                   {" "}
                                   Street 2
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="street2"
@@ -4542,7 +4542,7 @@ function OfflineDonation() {
                                   {" "}
                                   Street 3
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="street3"
@@ -4562,7 +4562,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   Country <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="country"
@@ -4588,7 +4588,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   State <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   {stateFlag ?
                                   <select
                                     className=" form-control-inside form-select"
@@ -4632,7 +4632,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   City <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="city"
@@ -4659,7 +4659,7 @@ function OfflineDonation() {
                                   Postal Code{" "}
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="postalCode"
@@ -4700,7 +4700,7 @@ function OfflineDonation() {
                                     {" "}
                                     Street 1
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="street1"
@@ -4720,7 +4720,7 @@ function OfflineDonation() {
                                     {" "}
                                     Street 2
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="street2"
@@ -4740,7 +4740,7 @@ function OfflineDonation() {
                                     {" "}
                                     Street 3
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="street3"
@@ -4805,7 +4805,7 @@ function OfflineDonation() {
                                   <div className="col-12 col-lg-4 ">
                                     State <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <select
                                       className=" form-control-inside form-select"
                                       name="state"
@@ -4830,7 +4830,7 @@ function OfflineDonation() {
                               <div className="col-12 col-lg-6">
                                 <div className="row select-label">
                                   <div className="col-12 col-lg-4 ">City</div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="city"
@@ -4849,7 +4849,7 @@ function OfflineDonation() {
                                   <div className="col-12 col-lg-4 ">
                                     Postal Code
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="postalCode"
@@ -4910,7 +4910,7 @@ function OfflineDonation() {
                                   Donor ID / Email Id{" "}
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <SearchWithSuggestions
                                     data={userIdList}
                                     onClickSearch={handleSearchId}
@@ -4929,7 +4929,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   Occasion <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="donationEvent"
@@ -5043,7 +5043,7 @@ function OfflineDonation() {
                                   {" "}
                                   Email ID <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -5070,7 +5070,7 @@ function OfflineDonation() {
                                   Mobile Number
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -5097,7 +5097,7 @@ function OfflineDonation() {
                                   {" "}
                                   Donor Type <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.donarType"
@@ -5133,7 +5133,7 @@ function OfflineDonation() {
                                     Organisation{" "}
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="user.organisation"
@@ -5162,7 +5162,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   Prefix <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="user.prefix"
@@ -5193,7 +5193,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   First Name <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -5218,7 +5218,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   Last Name <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     type="text"
@@ -5244,7 +5244,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   PAN card <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="user.panCard"
@@ -5284,7 +5284,7 @@ function OfflineDonation() {
                                   {" "}
                                   Street 1 <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="street1"
@@ -5312,7 +5312,7 @@ function OfflineDonation() {
                                   {" "}
                                   Street 2
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="street2"
@@ -5334,7 +5334,7 @@ function OfflineDonation() {
                                   {" "}
                                   Street 3
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="street3"
@@ -5355,7 +5355,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   Country <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="country"
@@ -5382,7 +5382,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   State <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <select
                                     className=" form-control-inside form-select"
                                     name="state"
@@ -5419,7 +5419,7 @@ function OfflineDonation() {
                                 <div className="col-12 col-lg-4 ">
                                   City <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="city"
@@ -5447,7 +5447,7 @@ function OfflineDonation() {
                                   Postal Code{" "}
                                   <span className="red-text">*</span>
                                 </div>
-                                <div className="col-12 col-lg-8 p0">
+                                <div className="col-12 col-lg-8">
                                   <input
                                     className="form-control-inside"
                                     name="postalCode"
@@ -5483,7 +5483,7 @@ function OfflineDonation() {
                                     First Name{" "}
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="firstName"
@@ -5518,7 +5518,7 @@ function OfflineDonation() {
                                     Last Name{" "}
                                     <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="lastName"
@@ -5553,7 +5553,7 @@ function OfflineDonation() {
                                     Mobile Number
                                     
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="mobileNo"
@@ -5588,7 +5588,7 @@ function OfflineDonation() {
                                   <div className="col-12 col-lg-4 ">
                                     Email Id <span className="red-text">*</span>
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="emailId"
@@ -5625,7 +5625,7 @@ function OfflineDonation() {
                                     {" "}
                                     Street 1
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="street1"
@@ -5647,7 +5647,7 @@ function OfflineDonation() {
                                     {" "}
                                     Street 2
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="street2"
@@ -5667,7 +5667,7 @@ function OfflineDonation() {
                                     {" "}
                                     Street 3
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="street3"
@@ -5687,7 +5687,7 @@ function OfflineDonation() {
                                     Country
                                     {/* <span className="red-text">*</span> */}
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <select
                                       className=" form-control-inside form-select"
                                       name="country"
@@ -5718,7 +5718,7 @@ function OfflineDonation() {
                                     State
                                     {/* <span className="red-text">*</span> */}
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     {receipientStateflag ? 
                                     <select
                                       className=" form-control-inside form-select"
@@ -5762,7 +5762,7 @@ function OfflineDonation() {
                                     City 
                                     {/* <span className="red-text">*</span> */}
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="city"
@@ -5799,7 +5799,7 @@ function OfflineDonation() {
                                     Postal Code 
                                     {/* <span className="red-text">*</span> */}
                                   </div>
-                                  <div className="col-12 col-lg-8 p0">
+                                  <div className="col-12 col-lg-8">
                                     <input
                                       className="form-control-inside"
                                       name="postalCode"

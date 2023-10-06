@@ -45,7 +45,7 @@ const DonationHeader = ({
                 <div className="col-12 col-lg-4 ">
                   Occasion <span className="red-text">*</span>
                 </div>
-                <div className="col-12 col-lg-8 p0">
+                <div className="col-12 col-lg-8">
                   <select
                     className=" form-control-inside form-select"
                     name="donationEvent"

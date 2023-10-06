@@ -7,9 +7,9 @@ import useScrollTop from "../../hooks/useScrollTop";
 
 export default function FSCRAccount() {
   const location = useLocation();
-  console.log(location.state)
-  const data = location.state.split(",")[0];
-  const data1 = location.state.split(",")[1];
+  console.log(location.state);
+  const data = location.state?.split(",")[0];
+  const data1 = location.state?.split(",")[1];
   useScrollTop();
   return (
     <>
@@ -111,7 +111,9 @@ export default function FSCRAccount() {
               <p className="mb-2">
                 Once you have made the payment, kindly share your transaction
                 details (Bank transaction number, bank name, date of payment,
-                amount transacted) to{" "}
+                amount transacted){" "}
+                <b>along with photocopy/scan of valid passport of the donor</b>{" "}
+                to{" "}
                 <a href="mailto:support@hariyali.org.in">
                   support@hariyali.org.in
                 </a>

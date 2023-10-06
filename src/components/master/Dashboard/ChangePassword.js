@@ -61,7 +61,7 @@ const ChangePassword = () => {
 
   const checkConfirmPasswordMatch = async () => {
     if (formData.confirmPassword == '') {
-      setErrors({ ...errors, ["confirmPassword"]: "Confirm password is empty" });
+        setErrors({ ...errors, ["confirmPassword"]: "Confirm password is empty" });
     } else if (formData.confirmPassword != "" && formData.newPassword != formData.confirmPassword) {
       setErrors({ ...errors, ["confirmPassword"]: "Confirm password does not match with confirm password" });
     }
