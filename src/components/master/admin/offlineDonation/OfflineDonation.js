@@ -79,7 +79,7 @@ function OfflineDonation() {
     {
       packageName: "",
       bouquetPrice: 450,
-      noOfBouquets: 1,
+      noOfBouquets: "",
       amount: 450,
     },
   ];
