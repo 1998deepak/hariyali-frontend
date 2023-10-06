@@ -296,7 +296,7 @@ function WhySupportUs() {
         <div className="container">
           <div className="feature-description">
             <h3 className="sub-title text-center">
-              Impact of Hariyali Project
+            Impact of Project Hariyali 
             </h3>
             <p className="text-center">
               Project Hariyali is a unique blend in the sphere of environmental
