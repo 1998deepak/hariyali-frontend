@@ -82,5 +82,41 @@ export const WebDonorCreationService = {
     }
   },
 
+  getUserDocuments: async (data) => {
+    console.log(data);
+    try {
+      const response = await APIService.Instance.post(
+        URLS.GET_USER_DOCUMENTS, data
+      ).catch(error => {
+        console.log(error);
+        throw error;
+      });
+      return response?.data;
+    } catch (err) {
+      console.log(err);
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+        toast.error(err?.message);
+      }
+    }
+  },
+
+  downloadDocument: async (data) => {
+    try {
+      const response = await APIService.Instance.post(
+        URLS.DoWNLOAD_USER_DOCUMENT, data, {
+        responseType: 'blob', // Ensure the responseType is set to 'blob'
+      }
+      );
+      return response;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+      }
+    }
+  },
+
 };
 

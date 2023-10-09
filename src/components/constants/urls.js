@@ -77,6 +77,9 @@ export const URLS = {
     APPROVE_USER_DONATION: "/approveUserDonation",
 
     YEAR1REPORT : "plantation/sendPlantationYear1Report",
-    YEAR2REPORT : "plantation/sendPlantationYear2Report"
+    YEAR2REPORT : "plantation/sendPlantationYear2Report",
     
+    //get user documents
+    GET_USER_DOCUMENTS : "/getUserDocuments",
+    DoWNLOAD_USER_DOCUMENT : "/downloadUserDocument",
 };

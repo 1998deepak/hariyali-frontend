@@ -4829,6 +4829,15 @@ iframe {
   border: 1px solid #23aa4a;
 }
 
+.donor-list .btn.btn-search {
+  position: absolute;
+  bottom: 8px;
+}
+
+.search-wrapper{
+  position: relative;
+}
+
 .pagination li {
   display: inline-block;
   border: 1px solid #ddd;
