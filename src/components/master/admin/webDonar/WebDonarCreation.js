@@ -3,6 +3,8 @@ import { BiSearchAlt } from "react-icons/bi";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { FaRegEye } from "react-icons/fa";
 import { BsCheckCircleFill } from "react-icons/bs";
+import { AiOutlineFolderOpen } from "react-icons/ai";
+import { FiDownload } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
@@ -29,16 +31,25 @@ function WebDonarCreation() {
   const [pageCount, setPageCount] = useState(1);
   const [totalRecords, setTotalRecords] = useState(0);
   const [showDonationModal, setShowDonationModal] = useState(false);
+  const [showDocumentModal, setShowDocumentModal] = useState(false);
   const [donationList, setDonationList] = useState([]);
+  const [documentList, setDocumentList] = useState([]);
 
   const [donationModalPageNo, setDonationModalPageNo] = useState(1);
   const [donationModalPagesize, setDonationModalPageSize] = useState(10);
   const [donationModalPageCount, setDonationModalPageCount] = useState(0);
   const [donationModalTotalRecords, setDonationModalTotalRecords] = useState(0);
 
+  const [documentModalPageNo, setDocumentModalPageNo] = useState(1);
+  const [documentModalPagesize, setDocumentModalPageSize] = useState(10);
+  const [documentModalPageCount, setDocumentModalPageCount] = useState(0);
+  const [documentModalTotalRecords, setDocumentModalTotalRecords] = useState(0);
+
   const [donor, setDonor] = useState({});
   const [remark, setRemark] = useState("");
   const [invalidRemark, setInvalidRemark] = useState(false);
+  const [fromDate, setFromDate] = useState(null);
+  const [toDate, setToDate] = useState(null);
 
 
   //Calling Function
@@ -49,13 +60,15 @@ function WebDonarCreation() {
   // Get all user donation
   const getAllUserWithWebID = async (searchText, pageNo) => {
     setLoading(true);
-    setPageNo(pageNo+1);
+    setPageNo(pageNo + 1);
     let pageRequest = {
       searchText: searchText,
       status: statusFilter,
       donorType: donorTypeFilter,
       pageNumber: pageNo,
-      pageSize: pagesize
+      pageSize: pagesize,
+      fromDate: fromDate,
+      toDate: toDate
     }
     setTotalRecords(0);
     const response = await WebDonorCreationService.getAllUserWithWebID(pageRequest);
@@ -109,6 +122,7 @@ function WebDonarCreation() {
   const handleClose = () => setShowDonationModal(false);
   const handleShow = () => setShowDonationModal(true);
 
+  const handleCloseDocumentModal = () => setShowDocumentModal(false);
 
   //Handle Approval
   const handleApproveAndReject = (row, msg) => {
@@ -124,9 +138,9 @@ function WebDonarCreation() {
   const handleDonationApproveAndReject = (row, msg) => {
     let data = {
       donationId: row.donationId,
-      isApproved: msg == 'Approved' ? true: false,
-      remark:null,
-      approvalStatus:msg
+      isApproved: msg == 'Approved' ? true : false,
+      remark: null,
+      approvalStatus: msg
     }
 
     setInvalidRemark(false);
@@ -168,19 +182,58 @@ function WebDonarCreation() {
       setLoading(true)
       const response = await WebDonorCreationService.approveUserDonation(formData);
       console.log(response);
-      getUserDonations(donor, donationModalPageNo-1);
-      getAllUserWithWebID("", pageNo-1);
+      getUserDonations(donor, donationModalPageNo - 1);
+      getAllUserWithWebID("", pageNo - 1);
       if (response?.status === SUCCESS) {
         toast.success(response?.message);
         setLoading(false)
       } else {
         toast.error(response?.message);
         setLoading(false)
-      }     
-      setShowDonationConfirmationModal(false); 
+      }
+      setShowDonationConfirmationModal(false);
     }
   };
 
+  const getUserDocuments = async (donor, pageNo) => {
+    setDonor(donor);
+    const request = {
+      pageNumber: pageNo,
+      pageSize: pagesize,
+      data: donor.userId
+    }
+    setLoading(true)
+    const response = await WebDonorCreationService.getUserDocuments(request);
+    console.log(response);
+    if (response?.status === SUCCESS) {
+      setDocumentList(response.data);
+      setShowDocumentModal(true);
+      toast.success(response?.message);
+      setLoading(false)
+    } else {
+      toast.error(response?.message);
+      setLoading(false)
+    }
+  };
+
+  const donwloadDocument = async(data) =>{
+    setLoading(true);
+    const response = await WebDonorCreationService.downloadDocument(data);
+    console.log(response);
+    if (response?.status === 200) {
+      setLoading(false);
+      console.log(response);
+      const url = window.URL.createObjectURL(response?.data);
+      const link = document.createElement("a");
+      const fileName = response.headers["content-disposition"].split("filename=")[1];
+      link.href = url;
+      link.setAttribute("download", fileName);
+      link.click();
+    } else {
+      setLoading(false);
+      toast.error(response?.message);
+    }
+  }
 
   const handlePageClick = (event) => {
     console.log(event);
@@ -191,6 +244,11 @@ function WebDonarCreation() {
   const handleDonationModalPageClick = (event) => {
     setDonationModalPageNo(event);
     getUserDonations(donor, event - 1);
+  };
+
+  const handleDocumentModalPageClick = (event) => {
+    setDocumentModalPageNo(event);
+    getUserDocuments(donor, event - 1);
   };
 
   // Handle Search for searching record
@@ -212,6 +270,16 @@ function WebDonarCreation() {
     setStatusFilter(event.target.value);
   };
 
+  const handleDateChange = (event) => {
+
+    const { name, value } = event.target;
+    if (name == 'fromDate') {
+      setFromDate(value);
+    } else {
+      setToDate(value);
+    }
+  }
+
   const clearSearch = () => {
     setSearchText('');
     getAllUserWithWebID("", 0);
@@ -221,13 +289,14 @@ function WebDonarCreation() {
     <>
       <ToastContainer />
       {loading && <Loader />}
-      <div className="bggray">
+      <div className="bggray donor-list">
         <div className="col-12 admin-maindiv">
           <div className=" justify-content-between bgwite borderform1 padding30 all-form-wrap">
             <h5>Donor List</h5>
 
             <div className="row">
-              <div className="col-3">
+              <div className="col-lg-3 col-md-6 col-sm-12">
+                <label className="select-label">Search here</label>
                 <input
                   placeholder="Search here"
                   id="searchField"
@@ -240,7 +309,8 @@ function WebDonarCreation() {
                   searchText ? <RxCross2 className="searchicon" onClick={clearSearch} /> : <BiSearchAlt className="searchicon" />
                 }
               </div>
-              <div className="col-3">
+              <div className="col-lg-2 col-md-6 col-sm-12">
+                <label className="select-label">Donor Type</label>
                 <select
                   className="pl20 form-control-inside"
                   onChange={handleDonorTypeFilter}
@@ -261,7 +331,27 @@ function WebDonarCreation() {
                   <option value="Rejected">Rejected</option>
                 </select>
               </div> */}
-              <div className="col-3">
+              <div className="col-lg-2 col-md-6 col-sm-12">
+                <label className="select-label">From Date</label>
+                <input
+                  className="form-control-inside"
+                  name="fromDate"
+                  placeholder="From Date"
+                  type="date"
+                  onChange={(event) => handleDateChange(event)}
+                />
+              </div>
+              <div className="col-lg-2 col-md-6 col-sm-12">
+                <label className="select-label">To Date</label>
+                <input
+                  className="form-control-inside"
+                  name="toDate"
+                  placeholder="To Date"
+                  type="date"
+                  onChange={(event) => handleDateChange(event)}
+                />
+              </div>
+              <div className="col-2 search-wrapper">
                 <button className="btn btn-search" onClick={() => getAllUserWithWebID(searchText, 0)}>Search</button>
               </div>
             </div>
@@ -296,7 +386,7 @@ function WebDonarCreation() {
                           <td>{donor.panCard}</td>
                           <td>{donor.organisation}</td>
                           <td>{donor.approvalStatus}</td>
-                          <td className="text-center">{donor.totalPendingDonation > 0 && (<b className="count"> {donor.totalPendingDonation }</b>)}
+                          <td className="text-center">{donor.totalPendingDonation > 0 && (<b className="count"> {donor.totalPendingDonation}</b>)}
                           </td>
                           <td>
                             <span>
@@ -309,6 +399,9 @@ function WebDonarCreation() {
                                     onClick={() => handleApproveAndReject(donor, "Rejected")} />
                                 </>
                               } */}
+                              {donor.hasDocument &&  
+                                <Link onClick={() => getUserDocuments(donor, 0)} className="view-icon icon-btn" ><AiOutlineFolderOpen /></Link>
+                              }
                               <Link onClick={() => getUserDonations(donor, 0)} className="view-icon icon-btn" ><FaRegEye /></Link>
                             </span>
 
@@ -471,6 +564,69 @@ function WebDonarCreation() {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal
+        show={showDocumentModal}
+        onHide={handleCloseDocumentModal}
+        backdrop="static"
+        keyboard={false}
+        className="DonationListModal"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Document List of {donor.emailId}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div class="row">
+            <div className="col-12 pr0">
+              <Table striped responsive>
+                <thead>
+                  <tr>
+                    <th>Document Year</th>
+                    <th>Document ID</th>
+                    <th>Document Type</th>
+                    <th>File Name</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {documentList.map(document => {
+                    return (
+                      <tr>
+                        <td>{document.year}</td>
+                        <td>{document.docId}</td>
+                        <td>{document.docType}</td>
+                        <td>{document.fileName}</td>
+
+                        <td className="min-width-128">
+
+                          <FiDownload title="Download File" className="icon-btn"
+                            onClick={() => donwloadDocument(document)} />
+
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>
+
+              {documentModalTotalRecords > 0 &&
+                <Pagination
+                  itemsCount={documentModalTotalRecords}
+                  itemsPerPage={documentModalPagesize}
+                  currentPage={documentModalPageNo}
+                  setCurrentPage={handleDocumentModalPageClick}
+                  alwaysShown={false}
+                />
+              }
+            </div>
+          </div>
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseDocumentModal}>
             Close
           </Button>
         </Modal.Footer>
