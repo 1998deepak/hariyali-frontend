@@ -208,6 +208,7 @@ function WebDonarCreation() {
     if (response?.status === SUCCESS) {
       setDocumentList(response.data);
       setShowDocumentModal(true);
+      setDocumentModalTotalRecords(response.totalRecords)
       toast.success(response?.message);
       setLoading(false)
     } else {
@@ -216,7 +217,7 @@ function WebDonarCreation() {
     }
   };
 
-  const donwloadDocument = async(data) =>{
+  const donwloadDocument = async (data) => {
     setLoading(true);
     const response = await WebDonorCreationService.downloadDocument(data);
     console.log(response);
@@ -233,7 +234,40 @@ function WebDonarCreation() {
       setLoading(false);
       toast.error(response?.message);
     }
-  }
+  };
+
+  const donwloadDonationReport = async () => {
+   
+    if (fromDate == null)
+      toast.error("Please select from date");
+    else if (toDate == null) {
+      toast.error("Please select to date");
+    } else {
+      setLoading(true);
+      let pageRequest = {
+        searchText: searchText,
+        status: statusFilter,
+        donorType: donorTypeFilter,
+        fromDate: fromDate,
+        toDate: toDate
+      }
+      const response = await WebDonorCreationService.downloadDonationReport(pageRequest);
+      console.log(response);
+      if (response?.status === 200) {
+        setLoading(false);
+        console.log(response);
+        const url = window.URL.createObjectURL(response?.data);
+        const link = document.createElement("a");
+        const fileName = response.headers["content-disposition"].split("filename=")[1];
+        link.href = url;
+        link.setAttribute("download", fileName);
+        link.click();
+      } else {
+        setLoading(false);
+        toast.error(response?.message);
+      }
+    }
+  };
 
   const handlePageClick = (event) => {
     console.log(event);
@@ -351,8 +385,9 @@ function WebDonarCreation() {
                   onChange={(event) => handleDateChange(event)}
                 />
               </div>
-              <div className="col-2 search-wrapper">
+              <div className="col-3 search-wrapper">
                 <button className="btn btn-search" onClick={() => getAllUserWithWebID(searchText, 0)}>Search</button>
+                <button className="btn btn-search" style={{left: 90 +'px'}} onClick={() => donwloadDonationReport()}>Donwload</button>
               </div>
             </div>
             <div className="row">
@@ -399,7 +434,7 @@ function WebDonarCreation() {
                                     onClick={() => handleApproveAndReject(donor, "Rejected")} />
                                 </>
                               } */}
-                              {donor.hasDocument &&  
+                              {donor.hasDocument &&
                                 <Link onClick={() => getUserDocuments(donor, 0)} className="view-icon icon-btn" ><AiOutlineFolderOpen /></Link>
                               }
                               <Link onClick={() => getUserDonations(donor, 0)} className="view-icon icon-btn" ><FaRegEye /></Link>

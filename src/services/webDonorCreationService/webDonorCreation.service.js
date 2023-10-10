@@ -118,5 +118,21 @@ export const WebDonorCreationService = {
     }
   },
 
+  downloadDonationReport: async (data) => {
+    try {
+      const response = await APIService.Instance.post(
+        URLS.DoWNLOAD_DONATION_REPORT, data, {
+        responseType: 'blob', // Ensure the responseType is set to 'blob'
+      }
+      );
+      return response;
+    } catch (err) {
+      if (err?.response?.data) {
+        return err?.response?.data;
+      } else {
+      }
+    }
+  },
+
 };
 

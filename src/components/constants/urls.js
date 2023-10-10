@@ -82,4 +82,5 @@ export const URLS = {
     //get user documents
     GET_USER_DOCUMENTS : "/getUserDocuments",
     DoWNLOAD_USER_DOCUMENT : "/downloadUserDocument",
+    DoWNLOAD_DONATION_REPORT : "/exportDonationReport",
 };
