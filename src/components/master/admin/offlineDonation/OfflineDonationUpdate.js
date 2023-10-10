@@ -371,6 +371,7 @@ function OfflineDonationEdit() {
                               value={userData.emailId}
                               // onBlur={handleBlur}
                               onChange={handleChange}
+                              disabled
                             />
                             {errors.emailId && (
                               <div className="error-message red-text">
@@ -415,6 +416,7 @@ function OfflineDonationEdit() {
                               name="donarType"
                               value={userData.donarType}
                               onChange={handleChange}
+                              disabled
                             >
                               <option selected>Donor Type</option>
                               <option value="Corporate">Corporate</option>
@@ -439,6 +441,7 @@ function OfflineDonationEdit() {
                               type="text"
                               value={userData.organisation}
                               onChange={handleChange}
+                              disabled
                             />
                           </div>
                         </div>
@@ -451,6 +454,7 @@ function OfflineDonationEdit() {
                               className=" form-control-inside form-select"
                               value={userData.prefix}
                               onChange={handleChange}
+                              disabled
                             >
                               <option selected>Prefix</option>
                               <option value="Mr.">Mr.</option>
@@ -546,6 +550,7 @@ function OfflineDonationEdit() {
                                   onChange={(event) =>
                                     handleAddressChange(event, index)
                                   }
+                                  disabled
                                 />
                                 {errors.street1 && (
                                   <div className="error-message red-text">
@@ -568,6 +573,7 @@ function OfflineDonationEdit() {
                                   onChange={(event) =>
                                     handleAddressChange(event, index)
                                   }
+                                  disabled
                                 />
                               </div>
                             </div>
@@ -585,6 +591,7 @@ function OfflineDonationEdit() {
                                   onChange={(event) =>
                                     handleAddressChange(event, index)
                                   }
+                                  disabled
                                 />
                               </div>
                             </div>
@@ -611,6 +618,7 @@ function OfflineDonationEdit() {
                                   onChange={(event) =>
                                     handleAddressChange(event, index)
                                   }
+                                  disabled
                                 >
                                   <option disabled selected value="">
                                     Select Country
@@ -646,6 +654,7 @@ function OfflineDonationEdit() {
                                     onChange={(event) =>
                                       handleAddressChange(event, index)
                                     }
+                                    disabled
                                   >
                                     <option disabled selected value="">
                                       Select State
@@ -669,6 +678,7 @@ function OfflineDonationEdit() {
                                     onChange={(event) =>
                                       handleAddressChange(event, index)
                                     }
+                                    disabled
                                   />
                                 )}
                                 {errors.state && (
@@ -694,6 +704,7 @@ function OfflineDonationEdit() {
                                   onChange={(event) =>
                                     handleAddressChange(event, index)
                                   }
+                                  disabled
                                 />
                                 {errors.city && (
                                   <div className="error-message red-text">
@@ -721,6 +732,7 @@ function OfflineDonationEdit() {
                                   onChange={(event) =>
                                     handleAddressChange(event, index)
                                   }
+                                  disabled
                                 />
                                 {errors.postalCode && (
                                   <div className="error-message red-text">
