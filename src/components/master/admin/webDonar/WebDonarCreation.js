@@ -421,7 +421,7 @@ function WebDonarCreation() {
                           <td>{donor.panCard}</td>
                           <td>{donor.organisation}</td>
                           <td>{donor.approvalStatus}</td>
-                          <td className="text-center">{donor.totalPendingDonation > 0 && (<b className="count"> {donor.totalPendingDonation}</b>)}
+                          <td className="text-center">{donor.totalPendingDonation > 0 && donor.approvalStatus != 'Pending' && (<b className="count"> {donor.totalPendingDonation}</b>)}
                           </td>
                           <td>
                             <span>
@@ -584,7 +584,7 @@ function WebDonarCreation() {
                 </tbody>
               </Table>
 
-              {donationModalTotalRecords > 0 &&
+              {donationModalTotalRecords > 0 && donor.approvalStatus !='Pending' &&
                 <Pagination
                   itemsCount={donationModalTotalRecords}
                   itemsPerPage={donationModalPagesize}
