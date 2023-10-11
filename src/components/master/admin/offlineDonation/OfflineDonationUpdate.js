@@ -112,15 +112,15 @@ function OfflineDonationEdit() {
     console.log(userData);
 
     // Validate emailId
-    if (!userData.emailId) {
-      errors.emailId = "Email ID is required";
-    } else if (
-      !/^([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+)\.([a-zA-Z]{2,5})$/.test(
-        userData.emailId
-      )
-    ) {
-      errors.emailId = "Enter a Valid Email Address";
-    }
+    // if (!userData.emailId) {
+    //   errors.emailId = "Email ID is required";
+    // } else if (
+    //   !/^([a-zA-Z0-9._-]+)@([a-zA-Z0-9._-]+)\.([a-zA-Z]{2,5})$/.test(
+    //     userData.emailId
+    //   )
+    // ) {
+    //   errors.emailId = "Enter a Valid Email Address";
+    // }
 
     // Validate mobileNo
     if (!userData.mobileNo) {
@@ -130,18 +130,18 @@ function OfflineDonationEdit() {
     }
 
     // Validate donarType
-    if (!userData.donarType || userData.donarType === "Donor Type") {
-      errors.donarType = "Please select a Donor Type";
-    }
-    console.log(userData.donarType);
+    // if (!userData.donarType || userData.donarType === "Donor Type") {
+    //   errors.donarType = "Please select a Donor Type";
+    // }
+    // console.log(userData.donarType);
 
-    if (!userData.organisation) {
-      errors.organisation = "Please Enter a organisation";
-    }
+    // if (!userData.organisation) {
+    //   errors.organisation = "Please Enter a organisation";
+    // }
 
-    if (!userData.prefix) {
-      errors.organisation = "Please select a prefix";
-    }
+    // if (!userData.prefix) {
+    //   errors.organisation = "Please select a prefix";
+    // }
 
     if (!userData.firstName) {
       errors.firstName = "First Name is required";
@@ -155,43 +155,43 @@ function OfflineDonationEdit() {
       errors.lastName = "Last Name is invalid";
     }
 
-    // Add validation for other fields here
-    console.log(errors.donarType);
+    // // Add validation for other fields here
+    // console.log(errors.donarType);
 
-    // validation for address field
-    if (addressData && addressData.length > 0) {
-      const firstAddress = addressData[0];
-      console.log(firstAddress);
+    // // validation for address field
+    // if (addressData && addressData.length > 0) {
+    //   const firstAddress = addressData[0];
+    //   console.log(firstAddress);
 
-      if (!firstAddress.street1) {
-        errors.street1 = "Street 1 is required";
-      }
-      if (!firstAddress.country) {
-        errors.country = "Country is required";
-      }
-      if (!firstAddress.state) {
-        errors.state = "State is required";
-      }
-      if (!firstAddress.city) {
-        errors.city = "City is required";
-      }
-      if (!firstAddress.city) {
-        errors.city = "City is required";
-      }
-      if (firstAddress.country === "INDIA") {
-        if (!firstAddress?.postalCode) {
-          errors.postalCode = "postalCode is required";
-        } else if (!/^\d{6}$/.test(firstAddress?.postalCode)) {
-          errors.postalCode = "Invalid Postal Code";
-        }
-      } else {
-        if (!firstAddress?.postalCode) {
-          errors.postalCode = "postalCode is required";
-        } else if (!/^\d{5}$/.test(firstAddress?.postalCode)) {
-          errors.postalCode = "Invalid Postal Code";
-        }
-      }
-    }
+    //   if (!firstAddress.street1) {
+    //     errors.street1 = "Street 1 is required";
+    //   }
+    //   if (!firstAddress.country) {
+    //     errors.country = "Country is required";
+    //   }
+    //   if (!firstAddress.state) {
+    //     errors.state = "State is required";
+    //   }
+    //   if (!firstAddress.city) {
+    //     errors.city = "City is required";
+    //   }
+    //   if (!firstAddress.city) {
+    //     errors.city = "City is required";
+    //   }
+    //   if (firstAddress.country === "INDIA") {
+    //     if (!firstAddress?.postalCode) {
+    //       errors.postalCode = "postalCode is required";
+    //     } else if (!/^\d{6}$/.test(firstAddress?.postalCode)) {
+    //       errors.postalCode = "Invalid Postal Code";
+    //     }
+    //   } else {
+    //     if (!firstAddress?.postalCode) {
+    //       errors.postalCode = "postalCode is required";
+    //     } else if (!/^\d{5}$/.test(firstAddress?.postalCode)) {
+    //       errors.postalCode = "Invalid Postal Code";
+    //     }
+    //   }
+    // }
 
     setErrors(errors);
 
