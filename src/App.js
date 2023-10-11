@@ -451,9 +451,9 @@ function App() {
         <Route path="/" element={<HomeWithHeaderAndFooter />} />
         <Route path="/Policy" element={<PolicyWithHeaderAndFooter />} />
         <Route path="/TermsandConditions" element={<TermsandConditionsWithHeaderAndFooter />} />
-        <Route path="/AboutUs" element={<AboutWithHeaderAndFooter />} />
+        <Route path="/WhoWeAre" element={<AboutWithHeaderAndFooter />} />
         <Route
-          path="/WaystoAssociate"
+          path="/HowToAssociate"
           element={<WaystoAssociateWithHeaderAndFooter />}
         />
         <Route path="/WhatWeDo" element={<WhatWeDoWithHeaderAndFooter />} />
@@ -461,13 +461,13 @@ function App() {
           path="/WhySupportUs"
           element={<WhySupportUsWithHeaderAndFooter />}
         />
-        <Route path="/FootPrint" element={<FootPrintWithHeaderAndFooter />} />
+        <Route path="/WhereAreWe" element={<FootPrintWithHeaderAndFooter />} />
         <Route
           path="/GalleryAwards"
           element={<GalleryAwardsWithHeaderAndFooter />}
         />
         <Route path="/Faq" element={<FaqWithHeaderAndFooter />} />
-        <Route path="/ContactUs" element={<ContactUsWithHeaderAndFooter />} />
+        <Route path="/WriteToUs" element={<ContactUsWithHeaderAndFooter />} />
         <Route path="/Login" element={<LoginWithHeaderAndFooter />} />
         <Route path="/OtpId" element={<OtpId />} />
         <Route path="/ConformPassword" element={<ConformPassword />} />

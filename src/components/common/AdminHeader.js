@@ -46,7 +46,7 @@ const AdminHeader = () => {
       }, 2000);
 
     } else {
-      toast.error("Invalid Credentials..!");
+      toast.error("Invalid Credentials");
     }
   };
 

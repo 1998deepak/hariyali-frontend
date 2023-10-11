@@ -301,7 +301,7 @@ function HomePage() {
                   forward, the project aims to plant 5 million trees per annum.{" "}
                 </p>
                 <div className="pt-5">
-                  <a href="/AboutUs" className="btn btn-secondary">
+                  <a href="/WhoWeAre" className="btn btn-secondary">
                     Know More
                   </a>
                   <Link className="btn btn-primary" to={`/OnlineDonation`}>
@@ -421,7 +421,7 @@ function HomePage() {
               There are two seasons for plantation - Monsoon and Winter.
               </p>
               <div className="pt-5">
-                <a href="/WaystoAssociate" className="btn btn-secondary">
+                <a href="/HowToAssociate" className="btn btn-secondary">
                   Know More
                 </a>
                 <Link className="btn btn-primary" to={`/OnlineDonation`}>
@@ -443,7 +443,7 @@ function HomePage() {
                   Uttar Pradesh, Punjab, Himachal Pradesh and Maharashtra.
                 </p>
                 <div className="pt-5">
-                  <a href="/FootPrint" className="btn btn-secondary">
+                  <a href="/WhereAreWe" className="btn btn-secondary">
                     Know More
                   </a>
                   <Link className="btn btn-primary" to={`/OnlineDonation`}>

@@ -70,8 +70,8 @@ const Header = () => {
            
                 <Nav className=" nav-list" activeKey={location.pathname}>
                   <Nav.Item >
-                    <Nav.Link href="/AboutUs" className={`${activeTab === 'AboutUs' ? 'active' : ''}`}
-        onClick={() => setActiveTab('AboutUs')} eventKey="/AboutUs">Who We Are</Nav.Link>
+                    <Nav.Link href="/WhoWeAre" className={`${activeTab === 'WhoWeAre' ? 'active' : ''}`}
+        onClick={() => setActiveTab('WhoWeAre')} eventKey="/WhoWeAre">Who We Are</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="/WhatWeDo" className={`${activeTab === 'WhatWeDo' ? 'active' : ''}`}
@@ -82,20 +82,20 @@ const Header = () => {
         onClick={() => setActiveTab('WhySupportUs')} eventKey="/WhySupportUs">Why Support Us</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link href="/WaystoAssociate" className={`${activeTab === 'WaystoAssociate' ? 'active' : ''}`}
-        onClick={() => setActiveTab('WaystoAssociate')} eventKey="/WaystoAssociate">How To Associate</Nav.Link>
+                    <Nav.Link href="/HowToAssociate" className={`${activeTab === 'HowToAssociate' ? 'active' : ''}`}
+        onClick={() => setActiveTab('HowToAssociate')} eventKey="/HowToAssociate">How To Associate</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link href="/FootPrint" className={`${activeTab === 'FootPrint' ? 'active' : ''}`}
-        onClick={() => setActiveTab('FootPrint')} eventKey="/FootPrint">Where Are We</Nav.Link>
+                    <Nav.Link href="/WhereAreWe" className={`${activeTab === 'FootPrint' ? 'active' : ''}`}
+        onClick={() => setActiveTab('FootPrint')} eventKey="/WhereAreWe">Where Are We</Nav.Link>
                   </Nav.Item>
                   {/* <Nav.Item>
                     <Nav.Link href="/Faq" className={`${activeTab === 'Faq' ? 'active' : ''}`}
         onClick={() => setActiveTab('Faq')} eventKey="/Faq">FAQ</Nav.Link>
                   </Nav.Item> */}
                   <Nav.Item>
-                    <Nav.Link href="/ContactUs" className={`${activeTab === 'ContactUs' ? 'active' : ''}`}
-        onClick={() => setActiveTab('ContactUs')} eventKey="/ContactUs">Write To Us</Nav.Link>
+                    <Nav.Link href="/WriteToUs" className={`${activeTab === 'ContactUs' ? 'active' : ''}`}
+        onClick={() => setActiveTab('ContactUs')} eventKey="/WriteToUs">Write To Us</Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Navbar.Collapse>

@@ -78,9 +78,9 @@ function OfflineDonation() {
   const initialPackageData = [
     {
       packageName: "",
-      bouquetPrice: 450,
+      bouquetPrice: "",
       noOfBouquets: "",
-      amount: 450,
+      amount: "",
     },
   ];
 
@@ -1414,7 +1414,7 @@ function OfflineDonation() {
 
   const createDonationGift = async (e, userData) => {
     e.preventDefault();
-    console.log(donations);
+    console.log(donationType);
     const isValid = validateExisting();
       console.log("isValid:", isValid);
       if(!isValid){
@@ -1427,21 +1427,21 @@ function OfflineDonation() {
     const formData = {
       emailId: userData?.user?.emailId,
       donorId: userData?.user?.donorId,
-
       donations: updatedDonations.map((donation) => {
         const donationData = {
           ...donation,
           paymentInfo: donation.paymentInfo.slice(0, 1),
         };
-        console.log(donation);
-        if (donation.donationType === "Self-Donate") {
+        donationData.donationType = donationType;
+        if (donationType === "Self-Donate") {
           donationData.recipient = [];
-        } else if (donation.donationType === "Gift-Donate") {
-          console.log(donation);
+        } else if (donationType === "Gift-Donate") {
           donationData.donationEvent = donation.donationEvent;
           donationData.recipient = recipient;
         }
-        console.log(updatedDonations);
+        if (filteredPackages.length >0) {
+          donationData.userPackage = filteredPackages;
+        }
         console.log(donationData);
         return donationData;
       }),
@@ -1469,14 +1469,13 @@ function OfflineDonation() {
   //Donation for Self Donate
   const createDonation = async (e, userData) => {
     e.preventDefault();
-
+    console.log(donationType)
       const isValid = validateExisting();
       console.log("isValid:", isValid);
 
     if (isValid) {
     const updatedDonations = [...donations];
     const filteredPackages = packageData.filter((pkg) => pkg.noOfBouquets > 0);
-    console.log(filteredPackages);
     updatedDonations[0].userPackage = filteredPackages;
 
     const formData = {
@@ -1487,13 +1486,12 @@ function OfflineDonation() {
           ...donation,
           paymentInfo: donation.paymentInfo.slice(0, 1), // Keep only the first payment info record
         };
-        console.log(donation.donationType);
-        if (donation.donationType === "Self-Donate") {
+        donationData.donationType = donationType;
+        if (donationType === "Self-Donate") {
           donationData.recipient = []; // Exclude recipient data
-        } else if (donation.donationType === "Gift-Donate") {
+        } else if (donationType === "Gift-Donate") {
           donationData.recipient = recipient;
         }
-
         return donationData;
       }),
     };
@@ -1510,13 +1508,7 @@ function OfflineDonation() {
       toast.error(response?.message);
       setLoading(false);
     }
-
-    console.log(donations);
-    console.log(formData);
-    console.log(updatedDonations);
-    console.log();
     }
-    console.log("Not Working ");
   };
 
   return (
