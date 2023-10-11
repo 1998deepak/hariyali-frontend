@@ -93,9 +93,9 @@ function OnlineDonation() {
   const initialPackageData = [
     {
       packageName: "",
-      bouquetPrice: 450,
+      bouquetPrice: "",
       noOfBouquets: "",
-      amount: 450,
+      amount: "",
     },
   ];
   const [packageData, setPackageData] = useState(initialPackageData);

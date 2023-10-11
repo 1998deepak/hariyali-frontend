@@ -78,9 +78,9 @@ function OfflineDonation() {
   const initialPackageData = [
     {
       packageName: "",
-      bouquetPrice: 450,
+      bouquetPrice: "",
       noOfBouquets: "",
-      amount: 450,
+      amount: "",
     },
   ];
 
