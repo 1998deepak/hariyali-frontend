@@ -9,6 +9,7 @@ import { MdCreateNewFolder } from "react-icons/md";
 import { IoReceiptSharp } from "react-icons/io5";
 import { Accordion } from "react-bootstrap";
 import { RiUserAddLine } from "react-icons/ri";
+import { AiOutlineFolderOpen } from "react-icons/ai";
 
 const LeftMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -85,6 +86,17 @@ const LeftMenu = () => {
                 className="nav-link dropdown-indicator-left label-1"
               > <RiUserAddLine/>
                 Donation
+              </Link>
+              </Accordion.Header>
+
+            </Accordion.Item>
+            <Accordion.Item eventKey="4">
+              <Accordion.Header className={location.pathname ==='/userDocuments'? 'disabled active' : 'disabled'}>
+              <Link
+                to="/userDocuments"
+                className="nav-link dropdown-indicator-left label-1"
+              > <AiOutlineFolderOpen/>
+                My Documents
               </Link>
               </Accordion.Header>
 
