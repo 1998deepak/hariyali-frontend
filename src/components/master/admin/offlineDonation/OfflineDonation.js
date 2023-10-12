@@ -836,7 +836,7 @@ function OfflineDonation() {
       }
 
       //setting recipent data
-      if (recipient[0].address[0].state) {
+      if (donationType) {
         formData.formData.user.donations[0].recipient = recipient;
       } else {
         formData.formData.user.donations[0].recipient = [];
@@ -2889,7 +2889,7 @@ function OfflineDonation() {
                                     id="emailId"
                                     placeholder="Email ID"
                                     value={userData.user.emailId}
-                                    // onBlur={handleBlur}
+                                    onBlur={handleBlur}
                                     onChange={handleChange}
                                   />
                                   {errors.map((error, index) => {
