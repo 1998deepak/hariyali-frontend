@@ -884,6 +884,10 @@ function OnlineDonation() {
             : 0;
         }
 
+        if(userData?.user?.donarType === "Corporate"){
+          userData.user.citizenship = address[0]?.country;
+        }
+
         if (user.donations[0].totalAmount == 0) {
           setPackageErrorMessage(true);
         } else {
