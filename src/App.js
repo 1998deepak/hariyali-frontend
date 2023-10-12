@@ -198,6 +198,19 @@ function UpdateUserWithHeaderFooter() {
     </>
   );
 }
+function UserDocumentsWithHeaderFooter() {
+  return (
+    <>
+      <AdminHeader />
+      <div className="leftmenu-main">
+        <UserLeftMenu />
+        <div className="float-left page-scroll " >
+          <UserDocumentView />
+        </div>
+      </div>
+    </>
+  );
+}
 function UserDonationWithHeaderFooter() {
   return (
     <>
@@ -435,19 +448,6 @@ function UserSpecificDonation() {
     </>
   );
 }
-function UserDocument() {
-  return (
-    <>
-      <AdminHeader />
-      <div className="leftmenu-main">
-        <UserLeftMenu />
-        <div className="float-left page-scroll" >
-          <UserDocumentView />
-        </div>
-      </div>
-    </>
-  );
-}
 function App() {
   const [authToken, setAuthToken] = useState();
   const userDetails = UserService.userDetails();
@@ -529,6 +529,15 @@ function App() {
           element={
             <ProtectedRoutes user={authority.user}>
               <UserDonationWithHeaderFooter />
+            </ProtectedRoutes>
+          }
+        />
+
+      <Route
+          path="/userDocuments"
+          element={
+            <ProtectedRoutes user={authority.user}>
+              <UserDocumentsWithHeaderFooter />
             </ProtectedRoutes>
           }
         />
@@ -724,12 +733,6 @@ function App() {
             </ProtectedRoutes>
           }
         />
-        <Route path="/userDocuments"
-          element={
-            <ProtectedRoutes user={authority.user}>
-              <UserDocument setAuthToken={setAuthToken} authToken={authToken} />
-            </ProtectedRoutes>
-          } />
       </Routes>
     </BrowserRouter>
   );
