@@ -47,6 +47,7 @@ import ChangePassword from "./components/master/Dashboard/ChangePassword";
 import TermsandConditions from "./components/master/otherMenu/TermsandConditions";
 import Form10BE from "./components/master/Form10BE/Form10BE";
 import FSCRAccount from "./components/master/donation/FSCRAccount";
+import UserDocumentView from "./components/master/user/UserDocumentView";
 
 
 function HomeWithHeaderAndFooter() {
@@ -434,6 +435,19 @@ function UserSpecificDonation() {
     </>
   );
 }
+function UserDocument() {
+  return (
+    <>
+      <AdminHeader />
+      <div className="leftmenu-main">
+        <UserLeftMenu />
+        <div className="float-left page-scroll" >
+          <UserDocumentView />
+        </div>
+      </div>
+    </>
+  );
+}
 function App() {
   const [authToken, setAuthToken] = useState();
   const userDetails = UserService.userDetails();
@@ -710,6 +724,12 @@ function App() {
             </ProtectedRoutes>
           }
         />
+        <Route path="/userDocuments"
+          element={
+            <ProtectedRoutes user={authority.user}>
+              <UserDocument setAuthToken={setAuthToken} authToken={authToken} />
+            </ProtectedRoutes>
+          } />
       </Routes>
     </BrowserRouter>
   );
