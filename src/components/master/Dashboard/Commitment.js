@@ -188,6 +188,7 @@ const Commitment = () => {
               <thead>
                 <tr>
                   <th>Donation Number</th>
+                  <th>Donor Id</th>
                   <th>Transaction Id</th>
                   <th>Donation Amount</th>
                   <th>No of Plant Planted</th>
@@ -203,6 +204,7 @@ const Commitment = () => {
                   return (
                     <tr>
                       <td>{commitment?.donation?.donationCode}</td>
+                      <td>{commitment?.donorId}</td>
                       <td>{commitment?.donation?.orderId}</td>
                       <td>{commitment?.donation?.totalAmount}</td>
                       <td>{commitment?.noOfPlantsPlanted}</td>
