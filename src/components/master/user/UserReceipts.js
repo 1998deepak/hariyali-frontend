@@ -17,8 +17,12 @@ function UserReceipts() {
 
   const columns = [
     {
-      dataField: "donation_id",
-      text: "Donation ID",
+      dataField: "donationNumber",
+      text: "Donation Number",
+    },
+    {
+      dataField: "transactionNumber",
+      text: "Transaction Number",
     },
     {
       dataField: "reciept_number",
