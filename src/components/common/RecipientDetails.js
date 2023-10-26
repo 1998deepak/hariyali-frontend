@@ -10,7 +10,7 @@ const RecipientDetails = ({
 }) => {
   return (
     <>
-      <div className="actionheadingdiv">DETAILS OF GIFTEE / RECEIPIENT</div>
+      <div className="actionheadingdiv">DETAILS OF GIFTEE / RECIPIENT</div>
       <div className="col-12 pr15 mt20">
         <div>
           <div className="row">

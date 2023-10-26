@@ -545,7 +545,7 @@ function ContactUs() {
               <Card>
                 <Card.Body>
                   <Card.Text
-                    dangerouslySetInnerHTML={{ __html: "Email Send to Hariyali Team" }}
+                    dangerouslySetInnerHTML={{ __html: "Email Sent to Hariyali Team" }}
                   ></Card.Text>
                 </Card.Body>
               </Card>

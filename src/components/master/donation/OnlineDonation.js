@@ -3976,7 +3976,7 @@ function OnlineDonation() {
                           </div>
                           <hr />
                           <div className="actionheadingdiv">
-                            DETAILS OF GIFTEE / RECEIPIENT
+                            DETAILS OF GIFTEE / RECIPIENT
                           </div>
                           <div className="col-12 pr15">
                             <div>
